@@ -17,6 +17,9 @@ register: setup.py
 %: %.in
 	cat $< | sed 's/VERSION/$(VERSION)/g' > $@
 
+setup.py: module setup.py.in
+	cat setup.py.in | sed 's/VERSION/$(VERSION)/g' | sed "s/MODULE/`cat module`/g" > $@
+
 clean:
 	rm -f MANIFEST
 	rm -rf dist

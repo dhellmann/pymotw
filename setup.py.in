@@ -72,7 +72,7 @@ setup (
     name = PROJECT,
     version = 'VERSION',
 
-    description = 'Python Module of the Week Examples',
+    description = 'Python Module of the Week Examples: MODULE',
     long_description = readme,
 
     author = 'Doug Hellmann',
