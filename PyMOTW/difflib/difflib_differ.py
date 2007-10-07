@@ -33,5 +33,5 @@ import difflib
 from difflib_data import *
 
 d = difflib.Differ()
-diff = d.compare(bio1_lines, bio2_lines)
+diff = d.compare(text1_lines, text2_lines)
 print '\n'.join(list(diff))

@@ -29,19 +29,26 @@
 
 __version__ = "$Id$"
 
-bio1 = """Doug Hellmann is a Senior Software Engineer at Racemi.  He has been
-programming in Python since version 1.4 on a variety of Unix and
-non-Unix platforms. He has worked on projects ranging from mapping to
-medical news publishing, with a little banking thrown in for good
-measure.  He writes the popular "Python Module of the
-Week" blog series."""
-bio1_lines = bio1.splitlines()
+text1 = """Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Integer
+eu lacus accumsan arcu fermentum euismod. Donec pulvinar porttitor
+tellus. Aliquam venenatis. Donec facilisis pharetra tortor.  In nec
+mauris eget magna consequat convallis. Nam sed sem vitae odio
+pellentesque interdum. Sed consequat viverra nisl. Suspendisse arcu
+metus, blandit quis, rhoncus ac, pharetra eget, velit. Mauris
+urna. Morbi nonummy molestie orci. Praesent nisi elit, fringilla ac,
+suscipit non, tristique vel, mauris. Curabitur vel lorem id nisl porta
+adipiscing. Suspendisse eu lectus. In nunc. Duis vulputate tristique
+enim. Donec quis lectus a justo imperdiet tempus."""
+text1_lines = text1.splitlines()
 
-bio2 = """Doug Hellmann is a Senior Software Engineer at Racemi.  He has been
-programming in Python since version 1.4 on a variety of Unix, and
-non-Unix, platforms. He has worked on projects ranging from GIS systems to
-medical news publishing, with a little banking thrown in for good
-measure.  In addition to the popular "Python Module of the
-Week" blog series, he writes a monthly column for Python Magazine
-titled "Something Completely Different"."""
-bio2_lines = bio2.splitlines()
+text2 = """Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Integer
+eu lacus accumsan arcu fermentum euismod. Donec pulvinar, porttitor
+tellus. Aliquam venenatis. Donec facilisis pharetra tortor. In nec
+mauris eget magna consequat convallis. Nam cras vitae mi vitae odio
+pellentesque interdum. Sed consequat viverra nisl. Suspendisse arcu
+metus, blandit quis, rhoncus ac, pharetra eget, velit. Mauris
+urna. Morbi nonummy molestie orci. Praesent nisi elit, fringilla ac,
+suscipit non, tristique vel, mauris. Curabitur vel lorem id nisl porta
+adipiscing. Duis vulputate tristique enim. Donec quis lectus a justo
+imperdiet tempus. Suspendisse eu lectus. In nunc. """
+text2_lines = text2.splitlines()
