@@ -1,0 +1,6 @@
+2007-10-14  Doug Hellmann  <doug.hellmann@gmail.com>
+
+	* PyMOTW/shlex/__init__.py: Add the shlex examples.
+
+	* MANIFEST.in: Include the text data files which are part of the shlex examples.
+
