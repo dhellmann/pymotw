@@ -1,3 +1,5 @@
 include LICENSE.txt
 include PyMOTW/shlex/*.txt
 include ChangeLog
+include PyMOTW/zipfile/*.zip
+include PyMOTW/zipfile/*.txt
