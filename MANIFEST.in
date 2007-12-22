@@ -3,3 +3,4 @@ include PyMOTW/shlex/*.txt
 include ChangeLog
 include PyMOTW/zipfile/*.zip
 include PyMOTW/zipfile/*.txt
+include PyMOTW/zipimport/example_package/*.txt

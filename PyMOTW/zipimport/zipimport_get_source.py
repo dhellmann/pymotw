@@ -23,7 +23,7 @@
 # CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 #
 
-"""Retrieving the code for a module within a zip archive.
+"""Retrieving the source code for a module within a zip archive.
 
 """
 
