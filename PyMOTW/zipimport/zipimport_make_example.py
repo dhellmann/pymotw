@@ -37,7 +37,7 @@ if __name__ == '__main__':
     try:
         zf.writepy('.')
         zf.write('zipimport_get_source.py')
-        zf.write('README.txt')
+        zf.write('example_package/README.txt')
     finally:
         zf.close()
     for name in zf.namelist():
