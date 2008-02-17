@@ -11,8 +11,11 @@ package: setup.py MANIFEST.in
 	python setup.py sdist --force-manifest
 	mv dist/*.gz ~/Desktop/
 	
-MANIFEST.in: MANIFEST.in.in PyMOTW/%/MANIFEST.in
-	cat MANIFEST.in.in PyMOTW/*/MANIFEST.in > MANIFEST.in
+MANIFESTS=MANIFEST.in.in $(wildcard PyMOTW/*/MANIFEST.in)
+
+.PHONEY: MANIFEST.in
+MANIFEST.in: $(MANIFESTS)
+	cat $(MANIFESTS) > MANIFEST.in
 
 register: setup.py
 	python setup.py register
