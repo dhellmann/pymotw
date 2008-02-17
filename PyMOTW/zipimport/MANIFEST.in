@@ -1,0 +1,2 @@
+include PyMOTW/zipimport/example_package/*.py
+include PyMOTW/zipimport/example_package/*.txt

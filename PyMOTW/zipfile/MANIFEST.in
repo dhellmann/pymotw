@@ -1,0 +1,2 @@
+include PyMOTW/zipfile/*.zip
+include PyMOTW/zipfile/*.txt
