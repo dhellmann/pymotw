@@ -1,2 +1,3 @@
 include LICENSE.txt
 include ChangeLog
+recursive-include html *.html *.txt *.doctree *.css *.js *.png *.json

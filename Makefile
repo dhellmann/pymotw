@@ -7,9 +7,16 @@ PROJECT=PyMOTW
 VERSION=$(shell basename $(SVNHOME))
 RELEASE=$(PROJECT)-$(VERSION)
 
-package: setup.py MANIFEST.in
+package: setup.py html_docs
+	rm -f MANIFEST.in
+	$(MAKE) MANIFEST.in
 	python setup.py sdist --force-manifest
 	mv dist/*.gz ~/Desktop/
+
+.PHONEY: html_docs
+html_docs:
+	mkdir -p html
+	sphinx-build -b html $(PROJECT) html/
 	
 MANIFESTS=MANIFEST.in.in $(wildcard PyMOTW/*/MANIFEST.in)
 
