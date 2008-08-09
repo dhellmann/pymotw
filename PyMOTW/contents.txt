@@ -1,0 +1,67 @@
+=========================
+Python Module of the Week
+=========================
+
+.. toctree::
+    :maxdepth: 1
+
+    atexit/atexit
+    BaseHTTPServer/BaseHTTPServer
+    bisect/bisect
+    calendar/calendar
+    cmd/cmd
+    collections/collections
+    commands/commands
+    ConfigParser/ConfigParser
+    contextlib/contextlib
+    Cookie/Cookie
+    copy/copy
+    csv/csv
+    datetime/datetime
+    difflib/difflib
+    dircache/dircache
+    EasyDialogs/EasyDialogs
+    filecmp/filecmp
+    fileinput/fileinput
+    fnmatch/fnmatch
+    functools/functools
+    getopt/getopt
+    getpass/getpass
+    glob/glob
+    hashlib/hashlib
+    heapq/heapq
+    hmac/hmac
+    imp/imp
+    inspect/inspect
+    itertools/itertools
+    linecache/linecache
+    locale/locale
+    logging/logging
+    mmap/mmap
+    operator/operator
+    optparse/optparse
+    pickle/pickle
+    pkgutil/pkgutil
+    pprint/pprint
+    Queue/Queue
+    sched/sched
+    shelve/shelve
+    shlex/shlex
+    shutil/shutil
+    SocketServer/SocketServer
+    string/string
+    StringIO/StringIO
+    subprocess/subprocess
+    tempfile/tempfile
+    textwrap/textwrap
+    threading/threading
+    time/time
+    timeit/timeit
+    traceback/traceback
+    unittest/unittest
+    urllib/urllib
+    urlparse/urlparse
+    weakref/weakref
+    zipfile/zipfile
+    zipimport/zipimport
+    

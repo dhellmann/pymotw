@@ -1,0 +1,273 @@
+==================
+   PyMOTW: hmac
+==================
+:Module: hmac
+:Purpose: Cryptographic signature and verification of messages.
+:Python Version: 2.2
+:Abstract:
+
+    The hmac module implements keyed-hashing for message authentication, as
+    described in RFC-2104.
+
+Description
+===========
+
+The HMAC algorithm can be used to verify the integrity of information passed
+between applications or stored in a potentially vulnerable location. The basic
+idea is to generate a cryptographic hash of the actual data combined with a
+shared secret key. The resulting hash can then be used to check the
+transmitted or stored message to determine a level of trust, without
+transmitting the secret key.
+
+Disclaimer: I'm not a security expert. For the full details on HMAC, check out
+RFC-2104.
+
+Example
+=======
+
+Creating the hash is not complex. Here's a simple example which uses the
+default MD5 hash algorithm:
+
+::
+
+    import hmac
+
+    digest_maker = hmac.new('secret-shared-key-goes-here')
+
+    f = open('hmac_simple.py', 'rb')
+    try:
+        while True:
+            block = f.read(1024)
+            if not block:
+                break
+            digest_maker.update(block)
+    finally:
+        f.close()
+
+    digest = digest_maker.hexdigest()
+    print digest
+
+When run, the code reads its source file and computes an HMAC signature for
+it:
+
+::
+
+    $ python hmac_simple.py 
+    7ce1ea6b179f5053b285410600dc3327
+
+If I haven't changed the file by the time I release the example source for
+this week, the copy you download should produce the same hash.
+
+SHA vs. MD5
+===========
+
+Although the default cryptographic algorithm for hmac is MD5, that is not the
+most secure method to use. MD5 hashes have some weaknesses, such as collisions
+(where two different messages produce the same hash). The SHA-1 algorithm is
+considered to be stronger, and should be used instead.
+
+::
+
+    import hmac
+    import hashlib
+
+    digest_maker = hmac.new('secret-shared-key-goes-here', '', hashlib.sha1)
+
+    f = open('hmac_sha.py', 'rb')
+    try:
+        while True:
+            block = f.read(1024)
+            if not block:
+                break
+            digest_maker.update(block)
+    finally:
+        f.close()
+
+    digest = digest_maker.hexdigest()
+    print digest
+
+hmac.new() takes 3 arguments. The first is the secret key, which should be
+shared between the two endpoints which are communicating so both ends can use
+the same value. The second value is an initial message. If the message content
+that needs to be authenticated is small, such as a timestamp or HTTP POST, the
+entire body of the message can be passed to new() instead of using the
+update() method. The last argument is the digest module to be used. The
+default is hashlib.md5. The previous example substitutes hashlib.sha1.
+
+::
+
+    $ python hmac_sha.py
+    ab667429a893eb1eaa0554dcff2511f130969044
+
+Binary Digests
+==============
+
+The first few examples used the hexdigest() method to produce printable
+digests. The hexdigest is is a different representation of the value
+calculated by the digest() method, which is a binary value that may include
+unprintable or non-ASCII characters, including NULs. Some web services (Google
+checkout, Amazon S3) use the base64 encoded version of the binary digest
+instead of the hexdigest.
+
+::
+
+    import base64
+    import hmac
+    import hashlib
+
+    f = open('hmac_base64.py', 'rb')
+    try:
+        body = f.read()
+    finally:
+        f.close()
+
+    digest = hmac.new('secret-shared-key-goes-here', body, hashlib.sha1).digest()
+    print base64.encodestring(digest)
+
+The base64 encoded string ends in a newline, which frequently needs to be
+stripped off when embedding the string in HTTP headers or other
+formatting-sensitive contexts.
+
+::
+
+    $ python hmac_base64.py
+    IVSRpXWIt2k15UUH3gKkU5ogfV4=
+
+
+Applications
+============
+
+HMAC authentication should be used for any public network service, and any
+time data is stored where security is important. For example, when sending
+data through a pipe or socket, that data should be signed and then the
+signature should be tested before the data is used. The extended example below
+is available in the hmac_pickle.py file as part of the PyMOTW source package.
+
+First, let's establish a function to calculate a digest for a string, and a
+simple class to be instantiated and passed through a communication channel.
+
+::
+
+    import hashlib
+    import hmac
+    try:
+        import cPickle as pickle
+    except:
+        import pickle
+    import pprint
+    from StringIO import StringIO
+
+
+    def make_digest(message):
+        "Return a digest for the message."
+        return hmac.new('secret-shared-key-goes-here', message, hashlib.sha1).hexdigest()
+
+
+    class SimpleObject(object):
+        "A very simple class to demonstrate checking digests before unpickling."
+        def __init__(self, name):
+            self.name = name
+        def __str__(self):
+            return self.name
+
+Next, create StringIO buffer to represent the socket or pipe. We will using a
+naive, but easy to parse, format for the data stream. The digest and length of
+the pickled data are written, followed by a new line. The pickled
+representation of the object follows. In a real system, we would not want to
+depend on a length value, since if the digest is wrong the length is probably
+wrong as well. Some sort of terminator sequence not likely to appear in the
+real data would be more appropriate.
+
+For this example, we will write two objects to the stream. The first is
+written using the correct digest value. 
+
+::
+
+    # Simulate a writable socket or pipe with StringIO
+    out_s = StringIO()
+
+    # Write a valid object to the stream:
+    #  digest\nlength\npickle
+    o = SimpleObject('digest matches')
+    pickled_data = pickle.dumps(o)
+    digest = make_digest(pickled_data)
+    header = '%s %s' % (digest, len(pickled_data))
+    print '\nWRITING:', header
+    out_s.write(header + '\n')
+    out_s.write(pickled_data)
+
+The second object is written to the stream with an invalid digest, produced by
+calculating the digest for some other data instead of the pickle.
+
+::
+
+    # Write an invalid object to the stream
+    o = SimpleObject('digest does not match')
+    pickled_data = pickle.dumps(o)
+    digest = make_digest('not the pickled data at all')
+    header = '%s %s' % (digest, len(pickled_data))
+    print '\nWRITING:', header
+    out_s.write(header + '\n')
+    out_s.write(pickled_data)
+
+    out_s.flush()
+
+
+Now that the data is in the StringIO buffer, we can read it back out again.
+The first step is to read the line of data with the digest and data length.
+Then the remaining data is read (using the length value). We could use
+pickle.load() to read directly from the stream, but that assumes a trusted
+data stream and we do not yet trust the data enough to unpickle it. Reading
+the pickle as a string collect the data from the stream, without actually
+unpickling the object.
+
+::
+
+    # Simulate a readable socket or pipe with StringIO
+    in_s = StringIO(out_s.getvalue())
+
+    # Read the data
+    while True:
+        first_line = in_s.readline()
+        if not first_line:
+            break
+        incoming_digest, incoming_length = first_line.split(' ')
+        incoming_length = int(incoming_length)
+        print '\nREAD:', incoming_digest, incoming_length
+        incoming_pickled_data = in_s.read(incoming_length)
+
+Once we have the pickled data, we can recalculate the digest value and compare
+it against what we read. If the digests match, we assume it is safe to trust
+the data and unpickle it.
+
+::
+
+        actual_digest = make_digest(incoming_pickled_data)
+        print 'ACTUAL:', actual_digest
+
+        if incoming_digest != actual_digest:
+            print 'WARNING: Data corruption'
+        else:
+            obj = pickle.loads(incoming_pickled_data)
+            print 'OK:', obj
+
+The output shows that the first object is verified and the second is deemed
+"corrupted", as expected:
+
+::
+
+    $ python hmac_pickle.py
+
+    WRITING: 387632cfa3d18cd19bdfe72b61ac395dfcdc87c9 124
+
+    WRITING: b01b209e28d7e053408ebe23b90fe5c33bc6a0ec 131
+
+    READ: 387632cfa3d18cd19bdfe72b61ac395dfcdc87c9 124
+    ACTUAL: 387632cfa3d18cd19bdfe72b61ac395dfcdc87c9
+    OK: digest matches
+
+    READ: b01b209e28d7e053408ebe23b90fe5c33bc6a0ec 131
+    ACTUAL: dec53ca1ad3f4b657dd81d514f17f735628b6828
+    WARNING: Data corruption
+
+
