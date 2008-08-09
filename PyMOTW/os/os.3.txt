@@ -1,0 +1,292 @@
+=========================
+   PyMOTW: os (Part 3)
+=========================
+:Module: os (Part 3)
+
+Description
+===========
+
+The previous installments covered process parameters and input/output. This
+week I will look at some of the functions for working with files and
+directories.
+
+File Descriptors
+================
+
+The os module includes the standard set of functions for working with
+low-level "file descriptors" (integers representing open files owned by the
+current process). This is a lower-level API than is provided by file()
+objects. Although I promised to cover file descriptors last time, I am going
+to skip over describing them here, since it is generally easier to work
+directly with file() objects. Refer to the library documentation for details
+if you do need to use file descriptors.
+
+Filesystem Permissions
+======================
+
+The function os.access() can be used to test the access rights a process has
+for a file.
+
+::
+
+    import os
+
+    print 'Testing:', __file__
+    print 'Exists:', os.access(__file__, os.F_OK)
+    print 'Readable:', os.access(__file__, os.R_OK)
+    print 'Writable:', os.access(__file__, os.W_OK)
+    print 'Executable:', os.access(__file__, os.X_OK)
+
+Your results will vary depending on how you install the example code, but it
+should look something like this:
+
+::
+
+    $ python os_access.py
+    Testing: os_access.py
+    Exists: True
+    Readable: True
+    Writable: True
+    Executable: False
+
+
+The library documentation for os.access() includes 2 special warnings. First,
+there isn't much sense in calling os.access() to test whether a file can be
+opened before actually calling open() on it. There is a small, but real,
+window between the 2 calls during which the permissions on the file could
+change. The other warning applies mostly to networked filesystems which extend
+the POSIX permission semantics. Some filesystem types may respond to the POSIX
+call that a process has permission to access a file, then report a failure
+when the attempt is made using open() for some reason not tested via the POSIX
+call. All in all, it is better to call open() with the required mode and catch
+the IOError raised if there is a problem.
+
+More detailed information about the file can be accessed using os.stat() or
+os.lstat() (if you want the status of something that might be a symbolic
+link).
+
+::
+
+    import os
+    import sys
+    import time
+
+    if len(sys.argv) == 1:
+      filename = __file__
+    else:
+      filename = sys.argv[1]
+
+    stat_info = os.stat(filename)
+
+    print 'os.stat(%s):' % filename
+    print '\tSize:', stat_info.st_size
+    print '\tPermissions:', oct(stat_info.st_mode)
+    print '\tOwner:', stat_info.st_uid
+    print '\tDevice:', stat_info.st_dev
+    print '\tLast modified:', time.ctime(stat_info.st_mtime)
+
+
+Once again, your results will vary depending on how the example code was
+installed. Try passing different filenames on the command line to os_stat.py.
+
+::
+
+    $ python os_stat.py
+    os.stat(os_stat.py):
+          Size: 1547
+          Permissions: 0100644
+          Owner: 527
+          Device: 234881026
+          Last modified: Sun Jun 10 08:13:26 2007
+
+
+On Unix-like systems, file permissions can be changed using os.chmod(),
+passing the mode as an integer. Mode values can be constructed using constants
+defined in the stat module. Here is an example which toggles the user's
+execute permission bit:
+
+::
+
+    import os
+    import stat
+
+# Determine what permissions are already set using stat
+    existing_permissions = stat.S_IMODE(os.stat(__file__).st_mode)
+
+    if not os.access(__file__, os.X_OK):
+      print 'Adding execute permission'
+      new_permissions = existing_permissions | stat.S_IXUSR
+    else:
+      print 'Removing execute permission'
+      # use xor to remove the user execute permission
+      new_permissions = existing_permissions ^ stat.S_IXUSR
+
+    os.chmod(__file__, new_permissions)
+
+
+The script assumes you have the right permissions to modify the mode of the
+file to begin with:
+
+::
+
+    $ python os_stat_chmod.py
+    Adding execute permission
+    $ python os_stat_chmod.py
+    Removing execute permission
+
+Directories
+===========
+
+There are several functions for working with directories on the filesystem,
+including creating, listing contents, and removing them.
+
+::
+
+    import os
+
+    dir_name = 'os_directories_example'
+
+    print 'Creating', dir_name
+    os.makedirs(dir_name)
+
+    file_name = os.path.join(dir_name, 'example.txt')
+    print 'Creating', file_name
+    f = open(file_name, 'wt')
+    try:
+      f.write('example file')
+    finally:
+      f.close()
+
+    print 'Listing', dir_name
+    print os.listdir(dir_name)
+
+    print 'Cleaning up'
+    os.unlink(file_name)
+    os.rmdir(dir_name)
+
+::
+
+    $ python os_directories.py
+    Creating os_directories_example
+    Creating os_directories_example/example.txt
+    Listing os_directories_example
+    ['example.txt']
+    Cleaning up
+
+
+There are 2 sets of functions for creating and deleting directories. When
+creating a new directory with os.mkdir(), all of the parent directories must
+already exist. When removing a directory with os.rmdir(), only the leaf
+directory (the last part of the path) is actually removed. In contrast,
+os.makedirs() and os.removedirs() operate on all of the nodes in the path.
+os.makedirs() will create any parts of the path which do not exist, and
+os.removedirs() will remove all of the parent directories (assuming it can).
+
+Symbolic Links
+==============
+
+For platforms and filesystems which support them, there are several functions
+for working with symlinks.
+
+::
+
+    import os, tempfile
+
+    link_name = tempfile.mktemp()
+
+    print 'Creating link %s->%s' % (link_name, __file__)
+    os.symlink(__file__, link_name)
+
+    stat_info = os.lstat(link_name)
+    print 'Permissions:', oct(stat_info.st_mode)
+
+    print 'Points to:', os.readlink(link_name)
+
+    # Cleanup
+    os.unlink(link_name)
+
+
+Notice that although os includes os.tempnam() for creating temporary
+filenames, it is not as secure as the tempfile module and produces a
+RuntimeWarning message when it is used. In general it is better to use the
+tempfile module.
+
+::
+
+    $ python os_symlinks.py
+    Creating link /tmp/tmpRxRiHn->os_symlinks.py
+    Permissions: 0120755
+    Points to: os_symlinks.py
+
+
+Walking a Directory Tree
+========================
+
+The function os.walk() traverses a directory recursively and for each
+directory generates a tuple containing the directory path, any immediate
+sub-directories of that path, and the names of any files in that directory.
+This example shows a simplistic recursive directory listing.
+
+::
+
+    import os, sys
+
+    # If we are not given a path to list, use /tmp
+    if len(sys.argv) == 1:
+        root = '/tmp'
+    else:
+        root = sys.argv[1]
+
+    for dir_name, sub_dirs, files in os.walk(root):
+        print '\n', dir_name
+        # Make the subdirectory names stand out with /
+        sub_dirs = [ '%s/' % n for n in sub_dirs ]
+        # Mix the directory contents together
+        contents = sub_dirs + files
+        contents.sort()
+        # Show the contents
+        for c in contents:
+            print '\t%s' % c
+
+::
+
+    $ python os_walk.py
+
+    /tmp
+          .KerberosLogin-0--1074266944 (inited,root,local)/
+          .KerberosLogin-527-4839472 (inited,gui,tty,local)/
+          527/
+          cs_cache_lock_527
+          cs_cache_lock_92
+          emacs527/
+          fry.log
+          hsperfdata_dhellmann/
+          objc_sharing_ppc_4294967294
+          objc_sharing_ppc_527
+          objc_sharing_ppc_92
+          svn.arg.1835l59
+          var_backups/
+
+    /tmp/.KerberosLogin-527-4839472 (inited,gui,tty,local)
+          KLLCCache.lock
+
+    /tmp/527
+
+    /tmp/emacs527
+          server
+
+    /tmp/hsperfdata_dhellmann
+          976
+
+    /tmp/var_backups
+          infodir.bak
+          local.nidump
+
+
+To be continued...
+==================
+
+Next time I'll wrap up this discussion of the os module with coverage of
+functions for creating and managing processes.
+
+

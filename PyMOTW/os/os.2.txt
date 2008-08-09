@@ -1,0 +1,193 @@
+=========================
+   PyMOTW: os (Part 2)
+=========================
+:Module: os (Part 2)
+
+Description
+===========
+
+The previous installment covered process parameters. This time we'll cover
+some of the input/output features provided by the module.
+
+Pipes
+=====
+
+The os module provides several functions for managing the I/O of child
+processes using pipes. The functions all work essentially the same way, but
+return different file handles depending on the type of input or output
+desired. For the most part, these functions are made obsolete by the new-ish
+subprocess module (added in 2.4), but there is a good chance you will
+encounter them if you are maintaining existing code.
+
+The most commonly used pipe function is popen(). It creates a new process
+running the command given and attaches a single stream to the input or output
+of that process, depending on the mode argument. While popen functions work on
+Windows, some of these examples assume some sort of Unix-like shell. The
+descriptions of the streams also assume Unix-like terminology:
+
+* stdin - The "standard input" stream for a process (file descriptor 0) is
+  readable by the process. This is usually where terminal input goes.
+
+* stdout - The "standard output" stream for a process (file descriptor 1) is
+  writable by the process, and is used for displaying non-error information to
+  the user.
+
+* stderr - The "standard error" stream for a process (file descriptor 2) is
+  writable by the process, and is used for conveying error messages.
+
+::
+
+    import os
+
+    print '\npopen, read:'
+    pipe_stdout = os.popen('echo "to stdout"', 'r')
+    try:
+      stdout_value = pipe_stdout.read()
+    finally:
+      pipe_stdout.close()
+    print '\tstdout:', repr(stdout_value)
+
+    print '\npopen, write:'
+    pipe_stdin = os.popen('cat -', 'w')
+    try:
+      pipe_stdin.write('\tstdin: to stdin\n')
+    finally:
+      pipe_stdin.close()
+
+
+    popen, read:
+          stdout: 'to stdout\n'
+
+    popen, write:
+          stdin: to stdin
+
+
+The caller can only read from OR write to the streams associated with the
+child process, which limits the usefulness. The other popen varients provide
+additional streams so it is possible to work with stdin, stdout, and stderr as
+needed.
+
+For example, popen2() returns a write-only stream attached to stdin of the
+child process, and a read-only stream attached to its stdout.
+
+::
+
+    print '\npopen2:'
+    pipe_stdin, pipe_stdout = os.popen2('cat -')
+    try:
+      pipe_stdin.write('through stdin to stdout')
+    finally:
+      pipe_stdin.close()
+    try:
+      stdout_value = pipe_stdout.read()
+    finally:
+      pipe_stdout.close()
+    print '\tpass through:', repr(stdout_value)
+
+
+This simplistic example illustrates bi-directional communication. The value
+written to stdin is read by cat (because of the '-' argument), then written
+back to stdout. Obviously a more complicated process could pass other types of
+messages back and forth through the pipe; even serialized objects.
+
+::
+
+    popen2:
+          pass through: 'through stdin to stdout'
+
+
+In most cases, it is desirable to have access to both stdout and stderr. The
+stdout stream is used for message passing and the stderr stream is used for
+errors, so reading from it separately reduces the complexity for parsing any
+error messages. The popen3() function returns 3 open streams tied to stdin,
+stdout, and stderr of the new process.
+
+::
+
+    print '\npopen3:'
+    pipe_stdin, pipe_stdout, pipe_stderr = os.popen3('cat -; echo ";to stderr" 1>&2')
+    try:
+      pipe_stdin.write('through stdin to stdout')
+    finally:
+      pipe_stdin.close()
+    try:
+      stdout_value = pipe_stdout.read()
+    finally:
+      pipe_stdout.close()
+    print '\tpass through:', repr(stdout_value)
+    try:
+      stderr_value = pipe_stderr.read()
+    finally:
+      pipe_stderr.close()
+    print '\tstderr:', repr(stderr_value)
+
+
+Notice that we have to read from and close both streams separately. There are
+some related to flow control and sequencing when dealing with I/O for multiple
+processes. The I/O is buffered, and if the caller expects to be able to read
+all of the data from a stream then the child process must close that stream to
+indicate the end-of-file. For more information on these issues, refer to the
+Flow Control Issues section of the Python library documentation.
+
+::
+
+    popen3:
+          pass through: 'through stdin to stdout'
+          stderr: ';to stderr\n'
+
+
+And finally, popen4() returns 2 streams, stdin and a merged stdout/stderr.
+This is useful when the results of the command need to be logged, but not
+parsed directly.
+
+::
+
+    print '\npopen4:'
+    pipe_stdin, pipe_stdout_and_stderr = os.popen4('cat -; echo ";to stderr" 1>&2')
+    try:
+      pipe_stdin.write('through stdin to stdout')
+    finally:
+      pipe_stdin.close()
+    try:
+      stdout_value = pipe_stdout_and_stderr.read()
+    finally:
+      pipe_stdout.close()
+    print '\tcombined output:', repr(stdout_value)
+
+::
+
+    popen4:
+          combined output: 'through stdin to stdout;to stderr\n'
+
+
+Besides accepting a single string command to be given to the shell for
+parsing, popen2(), popen3(), and popen4() also accept a sequence of strings
+(command, followed by arguments). In this case, the arguments are not
+processed by the shell.
+
+::
+
+    print '\npopen2, cmd as sequence:'
+    pipe_stdin, pipe_stdout = os.popen2(['cat', '-'])
+    try:
+      pipe_stdin.write('through stdin to stdout')
+    finally:
+      pipe_stdin.close()
+    try:
+      stdout_value = pipe_stdout.read()
+    finally:
+      pipe_stdout.close()
+    print '\tpass through:', repr(stdout_value)
+
+::
+
+    popen2, cmd as sequence:
+          pass through: 'through stdin to stdout'
+
+
+To be continued...
+==================
+
+Next time I'll cover working with file descriptors.
+
+

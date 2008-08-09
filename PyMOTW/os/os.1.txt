@@ -1,0 +1,241 @@
+================
+   PyMOTW: os
+================
+:Module: os
+:Purpose: Portable access to operating system specific features.
+:Python Version: 1.4 (or earlier)
+
+Description
+===========
+
+The os module provides a wrapper for platform specific modules such as posix,
+nt, and mac. The API for functions available on all platform should be the
+same, so using the os module offers some measure of portability. Not all
+functions are available on all platforms, however. Many of the process
+management functions described in this summary are not available for Windows.
+
+The Python documentation for the os module is subtitled "Miscellaneous
+operating system interfaces". The module includes mostly functions for
+creating and managing running processes or filesystem content (files and
+directories), with a few other random bits of functionality thrown in besides.
+In this session, we'll cover the features for learning about and changing
+process parameters. 
+
+A quick warning: Some of the example code below will only work on Unix-like
+operating systems.
+
+Process Owner
+=============
+
+The first set of functions I'll cover are used for determining and changing
+the process owner ids. These are mostly useful to authors of daemons or
+special system programs which need to change permission level rather than
+running as root. I won't try to explain all of the intricate details of Unix
+security, process owners, etc. in this brief post. See the References list
+below for more details.
+
+Let's start with a script to show the real and effective user and group
+information for a process, and then change the effective values. This is
+similar to what a daemon would need to do when it starts as root during a
+system boot, to lower the privilege level and run as a different user. If you
+download the examples to try them out, you should change the TEST_GID and
+TEST_UID values to match your user.
+
+::
+
+    import os
+
+    TEST_GID=501
+    TEST_UID=527
+
+    def show_user_info():
+           print 'Effective User  :', os.geteuid()
+           print 'Effective Group :', os.getegid()
+           print 'Actual User    :', os.getuid(), os.getlogin()
+           print 'Actual Group  :', os.getgid()
+           print 'Actual Groups   :', os.getgroups()
+           return
+
+    print 'BEFORE CHANGE:'
+    show_user_info()
+    print
+
+    try:
+           os.setegid(TEST_GID)
+    except OSError:
+           print 'ERROR: Could not change effective group.  Re-run as root.'
+    else:
+           print 'CHANGED GROUP:'
+           show_user_info()
+           print
+
+    try:
+           os.seteuid(TEST_UID)
+    except OSError:
+           print 'ERROR: Could not change effective user.  Re-run as root.'
+    else:
+           print 'CHANGE USER:'
+           show_user_info()
+           print
+
+When run as myself (527, 501) on OS X, I see this output:
+
+::
+
+    $ python os_process_user_example.py
+    BEFORE CHANGE:
+    Effective User  : 527
+    Effective Group : 501
+    Actual User      : 527 dhellmann
+    Actual Group    : 501
+    Actual Groups   : [501, 81, 79, 80]
+
+    CHANGED GROUP:
+    Effective User  : 527
+    Effective Group : 501
+    Actual User      : 527 dhellmann
+    Actual Group    : 501
+    Actual Groups   : [501, 81, 79, 80]
+
+    CHANGE USER:
+    Effective User  : 527
+    Effective Group : 501
+    Actual User      : 527 dhellmann
+    Actual Group    : 501
+    Actual Groups   : [501, 81, 79, 80]
+
+Notice that the values do not change. Since I am not running as root,
+processes I start cannot change their effective owner values. If I do try to
+set the effective user id or group id to anything other than my own, an
+OSError is raised.
+
+Now let's look at what happens when we run the same script using sudo to start
+out with root privileges:
+
+::
+
+    $ sudo python os_process_user_example.py
+    Password:
+    BEFORE CHANGE:
+    Effective User  : 0
+    Effective Group : 0
+    Actual User      : 0 dhellmann
+    Actual Group    : 0
+    Actual Groups   : [0, 262, 1, 2, 3, 31, 4, 29, 5, 80, 20]
+
+    CHANGED GROUP:
+    Effective User  : 0
+    Effective Group : 501
+    Actual User      : 0 dhellmann
+    Actual Group    : 0
+    Actual Groups   : [501, 262, 1, 2, 3, 31, 4, 29, 5, 80, 20]
+
+    CHANGE USER:
+    Effective User  : 527
+    Effective Group : 501
+    Actual User      : 0 dhellmann
+    Actual Group    : 0
+    Actual Groups   : [501, 262, 1, 2, 3, 31, 4, 29, 5, 80, 20]
+
+
+In this case, since we start as root, we can change the effective user and
+group for the process. Once we change the effective UID, the process is
+limited to the permissions of that user. Since non-root users cannot change
+their effective group, we need to change the group first then the user.
+
+Besides finding and changing the process owner, there are functions for
+determining the current and parent process id, finding and changing the
+process group and session ids, as well as finding the controlling terminal id.
+These can be useful for sending signals between processes or for complex
+applications such as writing your own command line shell.
+
+Process Environment
+===================
+
+Another feature of the operating system exposed to your program though the os
+module is the environment. Variables set in the environment are visible as
+strings which can be read through os.environ or os.getenv(). Environment
+variables are commonly used for configuration values such as search paths,
+file locations, and debug flags. Let's look at an example of retrieving an
+environment variable, and passing a value through to a child process.
+
+::
+
+    print 'Initial value:', os.environ.get('TESTVAR', None)
+    print 'Child process:'
+    os.system('echo $TESTVAR')
+
+    os.environ['TESTVAR'] = 'THIS VALUE WAS CHANGED'
+
+    print
+    print 'Changed value:', os.environ['TESTVAR']
+    print 'Child process:'
+    os.system('echo $TESTVAR')
+
+    del os.environ['TESTVAR']
+
+    print
+    print 'Removed value:', os.environ.get('TESTVAR', None)
+    print 'Child process:'
+    os.system('echo $TESTVAR')
+
+The os.environ object follows the standard Python mapping API for retrieving
+and setting values. Changes to os.environ are exported for child processes.
+
+::
+
+    $ python os_environ_example.py
+    Initial value: None
+    Child process:
+
+
+    Changed value: THIS VALUE WAS CHANGED
+    Child process:
+    THIS VALUE WAS CHANGED
+
+    Removed value: None
+    Child process:
+
+
+Process Working Directory
+=========================
+
+A concept from operating systems with hierarchical filesystems is the notion
+of the "current working directory". This is the directory on the filesystem
+the process uses as the default location when files are accessed with relative
+paths.
+
+::
+
+    print 'Starting:', os.getcwd()
+    print os.listdir(os.curdir)
+
+    print 'Moving up one:', os.pardir
+    os.chdir(os.pardir)
+
+    print 'After move:', os.getcwd()
+    print os.listdir(os.curdir)
+
+
+Note the use of os.curdir and os.pardir to refer to the current and parent
+directories in a portable manner. The output should not be surprising:
+
+::
+
+    Starting: /Users/dhellmann/Documents/PyMOTW/PyMOTW/os
+    ['.svn', '__init__.py', 'os_cwd_example.py', 'os_environ_example.py',
+    'os_process_id_example.py', 'os_process_user_example.py']
+    Moving up one: ..
+    After move: /Users/dhellmann/Documents/PyMOTW/PyMOTW
+    ['.svn', '__init__.py', 'bisect', 'ConfigParser', 'fileinput', 'linecache',
+    'locale', 'logging', 'os', 'Queue', 'StringIO', 'textwrap']
+
+
+To be continued...
+==================
+
+Today I've covered the functions in the os module for finding and changing
+process parameters. Next time, I will continue with the portion of the os
+module dedicated to managing filesystem objects.
+
+
