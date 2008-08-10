@@ -1,6 +1,6 @@
-====================
-   PyMOTW: timeit
-====================
+======
+timeit
+======
 :Module: timeit
 :Purpose: Time the execution of small bits of Python code.
 :Python Version: 2.3

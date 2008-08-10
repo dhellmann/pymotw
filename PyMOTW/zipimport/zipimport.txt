@@ -1,6 +1,6 @@
-=======================
-   PyMOTW: zipimport
-=======================
+=========
+zipimport
+=========
 :Module: zipimport
 :Purpose: Load Python code from inside ZIP archives.
 :Python Version: 2.3 and later

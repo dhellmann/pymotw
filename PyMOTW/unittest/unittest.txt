@@ -1,6 +1,6 @@
-======================
-   PyMOTW: unittest
-======================
+========
+unittest
+========
 :Module: unittest
 :Purpose: Automated testing framework
 :Python Version: 2.1

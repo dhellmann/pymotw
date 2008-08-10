@@ -1,6 +1,6 @@
-======================
-   PyMOTW: textwrap
-======================
+========
+textwrap
+========
 :Module: textwrap
 :Purpose: Formatting text by adjusting where line breaks occur in a paragraph.
 :Python Version: 2.5

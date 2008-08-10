@@ -1,6 +1,6 @@
-=====================
-   PyMOTW: zipfile
-=====================
+=======
+zipfile
+=======
 :Module: zipfile
 :Purpose: Read and write ZIP archive files.
 :Python Version: 1.6 and later
