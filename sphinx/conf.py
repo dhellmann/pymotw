@@ -14,7 +14,9 @@ __version__ = "$Id$"
 source_suffix = '.txt'
 
 project = 'Python Module of the Week'
-copyright = 'Doug Hellmann, <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/us/" rel="license">CC 3.0 (BY-NC-SA)</a>'
+copyright = 'Doug Hellmann'
+
+# Version information comes from the Makefile that calls sphinx-build.
 version = os.environ['VERSION']
 release = version
 
@@ -25,6 +27,7 @@ html_additional_pages = {
     }
 html_use_modindex = True
 
+# The TEMPLATES variable is set by the Makefile before sphinx-build is called.
 templates_path = ['../sphinx/templates/%s' % os.environ['TEMPLATES']]
 
 # Ignore some subdirectories entirely
