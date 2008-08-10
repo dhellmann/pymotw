@@ -16,8 +16,8 @@ package: setup.py html_docs
 
 .PHONEY: html_docs
 html_docs:
-	mkdir -p html
-	sphinx-build -b html -c sphinx $(PROJECT) html/
+	mkdir -p docs
+	sphinx-build -b html -c sphinx $(PROJECT) docs/
 	
 MANIFESTS=MANIFEST.in.in $(wildcard PyMOTW/*/MANIFEST.in)
 
