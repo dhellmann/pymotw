@@ -7,69 +7,222 @@ Python Module of the Week
     
     about
 
-    atexit/atexit
-    BaseHTTPServer/BaseHTTPServer
-    bisect/bisect
-    calendar/calendar
-    cmd/cmd
-    collections/collections
-    commands/commands
-    ConfigParser/ConfigParser
-    contextlib/contextlib
-    Cookie/Cookie
-    copy/copy
-    csv/csv
-    datetime/datetime
-    difflib/difflib
-    dircache/dircache
-    EasyDialogs/EasyDialogs
-    filecmp/filecmp
-    fileinput/fileinput
-    fnmatch/fnmatch
-    functools/functools
-    getopt/getopt
-    getpass/getpass
-    glob/glob
-    hashlib/hashlib
-    heapq/heapq
-    hmac/hmac
-    imp/imp
-    inspect/inspect
-    itertools/itertools
-    linecache/linecache
-    locale/locale
-    logging/logging
-    mmap/mmap
-    operator/operator
-    optparse/optparse
-    os/os
-    ospath/os.path
-    pickle/pickle
-    pkgutil/pkgutil
-    platform/platform
-    pprint/pprint
-    Queue/Queue
-    sched/sched
-    shelve/shelve
-    shlex/shlex
-    shutil/shutil
-    SimpleXMLRPCServer/SimpleXMLRPCServer
-    SocketServer/SocketServer
+String Services
+===============
+
+.. toctree::
+    :maxdepth: 2
+    
     string/string
+    difflib/difflib
     StringIO/StringIO
-    subprocess/subprocess
-    tempfile/tempfile
     textwrap/textwrap
-    threading/threading
+
+Data Types
+==========
+
+.. toctree::
+    :maxdepth: 2
+    
+    datetime/datetime
+    calendar/calendar
+    collections/collections
+    heapq/heapq
+    bisect/bisect
+    sched/sched
+    Queue/Queue
+    weakref/weakref
+    copy/copy
+    pprint/pprint
+
+Numeric and Mathematical Modules
+================================
+
+.. toctree::
+    :maxdepth: 2
+    
+    itertools/itertools
+    functools/functools
+    operator/operator
+
+File Formats
+============
+
+.. toctree::
+    :maxdepth: 2
+    
+    csv/csv
+    ConfigParser/ConfigParser
+
+
+Cryptographic Services
+======================
+
+.. toctree::
+    :maxdepth: 2
+    
+    hashlib/hashlib
+    hmac/hmac
+
+
+File and Directory Access
+=========================
+
+.. toctree::
+    :maxdepth: 2
+    
+    ospath/os.path
+    fileinput/fileinput
+    filecmp/filecmp
+    tempfile/tempfile
+    glob/glob
+    fnmatch/fnmatch
+    linecache/linecache
+    shutil/shutil
+    dircache/dircache
+
+
+Data Compression and Archiving
+==============================
+
+.. toctree::
+    :maxdepth: 2
+    
+    zipfile/zipfile
+
+
+Data Persistence
+================
+
+.. toctree::
+    :maxdepth: 2
+
+    pickle/pickle
+    shelve/shelve
+
+
+Generic Operating System Services
+=================================
+
+.. toctree::
+    :maxdepth: 2
+    
+    os/os
     time/time
-    timeit/timeit
-    traceback/traceback
-    unittest/unittest
+    optparse/optparse
+    getopt/getopt
+    logging/logging
+    getpass/getpass
+    platform/platform
+
+Optional Operating System Services
+==================================
+
+.. toctree::
+    :maxdepth: 2
+    
+    threading/threading
+    mmap/mmap
+
+
+Unix-specific Services
+======================
+
+.. toctree::
+    :maxdepth: 2
+
+    commands/commands
+
+
+Interprocess Communication and Networking
+=========================================
+
+.. toctree::
+    :maxdepth: 2
+
+    subprocess/subprocess
+
+
+Internet Protocols and Support
+==============================
+
+.. toctree::
+    :maxdepth: 2
+    
     urllib/urllib
     urlparse/urlparse
-    warnings/warnings
-    weakref/weakref
+    SocketServer/SocketServer
+    BaseHTTPServer/BaseHTTPServer
+    Cookie/Cookie
     xmlrpclib/xmlrpclib
-    zipfile/zipfile
+    SimpleXMLRPCServer/SimpleXMLRPCServer
+
+
+Internationalization
+====================
+
+.. toctree::
+    :maxdepth: 2
+    
+    locale/locale
+
+
+Program Frameworks
+==================
+
+.. toctree::
+    :maxdepth: 2
+    
+    cmd/cmd
+    shlex/shlex
+
+
+Development Tools
+=================
+
+.. toctree::
+    :maxdepth: 2
+
+    unittest/unittest
+
+
+Python Profilers
+================
+
+.. toctree::
+    :maxdepth: 2
+
+    timeit/timeit
+
+
+Python Runtime Services
+=======================
+
+.. toctree::
+    :maxdepth: 2
+
+    warnings/warnings
+    contextlib/contextlib
+    atexit/atexit
+    traceback/traceback
+    inspect/inspect
+
+
+Importing Modules
+=================
+
+.. toctree::
+    :maxdepth: 2
+
+    imp/imp
+    pkgutil/pkgutil
     zipimport/zipimport
+
+Miscelaneous
+============
+
+.. toctree::
+    :maxdepth: 2
+
+    EasyDialogs/EasyDialogs
     
