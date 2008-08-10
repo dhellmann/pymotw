@@ -1,6 +1,6 @@
-=====================
-   PyMOTW: fnmatch
-=====================
+=======
+fnmatch
+=======
 :Module: fnmatch
 :Purpose: Compare filenames against Unix-style glob patterns.
 :Python Version: 1.4 and later.

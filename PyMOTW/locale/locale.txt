@@ -1,6 +1,6 @@
-====================
-   PyMOTW: locale
-====================
+======
+locale
+======
 :Module: locale
 :Purpose: POSIX cultural localization API
 :Python Version: 1.5, with extensions through 2.5 (this discussion assumes 2.5)

@@ -1,6 +1,6 @@
-================================
-   PyMOTW: pickle and cPickle
-================================
+==================
+pickle and cPickle
+==================
 :Module: pickle and cPickle
 :Purpose: Python object serialization
 :Python Version: pickle at least 1.4, cPickle 1.5

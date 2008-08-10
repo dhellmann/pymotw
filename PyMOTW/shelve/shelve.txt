@@ -1,6 +1,6 @@
-====================
-   PyMOTW: shelve
-====================
+======
+shelve
+======
 :Module: shelve
 :Purpose: The shelve module implements persistent storage for arbitrary Python objects which can be pickled, using a dictionary-like API.
 :Python Version: 1.4

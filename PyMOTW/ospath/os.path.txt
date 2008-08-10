@@ -1,6 +1,6 @@
-=====================
-   PyMOTW: os.path
-=====================
+=======
+os.path
+=======
 :Module: os.path
 :Purpose: Parse, build, test, and otherwise work on file names and paths.
 :Python Version: 1.4 and later

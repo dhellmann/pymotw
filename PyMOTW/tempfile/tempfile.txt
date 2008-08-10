@@ -1,6 +1,6 @@
-======================
-   PyMOTW: tempfile
-======================
+========
+tempfile
+========
 :Module: tempfile
 :Purpose: Create temporary filesystem resources.
 :Python Version: Since 1.4 with major security revisions in 2.3

@@ -1,6 +1,6 @@
-====================
-   PyMOTW: pprint
-====================
+======
+pprint
+======
 :Module: pprint
 :Purpose: Pretty-print data structures
 :Python Version: 1.4

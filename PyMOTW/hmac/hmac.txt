@@ -1,6 +1,6 @@
-==================
-   PyMOTW: hmac
-==================
+====
+hmac
+====
 :Module: hmac
 :Purpose: Cryptographic signature and verification of messages.
 :Python Version: 2.2

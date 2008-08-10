@@ -1,6 +1,6 @@
-=======================
-   PyMOTW: fileinput
-=======================
+=========
+fileinput
+=========
 :Module: fileinput
 :Documentation: http://docs.python.org/lib/module-fileinput.html
 

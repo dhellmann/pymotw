@@ -1,6 +1,6 @@
-=====================
-   PyMOTW: difflib
-=====================
+=======
+difflib
+=======
 :Module: difflib
 :Purpose: Library of tools for computing and working with differences between sequences, especially of lines in text files.
 :Python Version: 2.1

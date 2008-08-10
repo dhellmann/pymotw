@@ -1,6 +1,6 @@
-========================
-   PyMOTW: contextlib
-========================
+==========
+contextlib
+==========
 :Module: contextlib
 :Purpose: Utilities for creating and working with context managers.
 :Python Version: 2.5

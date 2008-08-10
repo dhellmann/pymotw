@@ -1,6 +1,6 @@
-=====================
-   PyMOTW: filecmp
-=====================
+=======
+filecmp
+=======
 :Module: filecmp
 :Purpose: Compare files and directories on the filesystem.
 :Python Version: 2.1 and later

@@ -1,6 +1,6 @@
-=======================
-   PyMOTW: itertools
-=======================
+=========
+itertools
+=========
 :Module: itertools
 :Purpose: Iterator functions for efficient looping
 :Python Version: 2.3

@@ -1,6 +1,6 @@
-=======================
-   PyMOTW: functools
-=======================
+=========
+functools
+=========
 :Module: functools
 :Purpose: Tools for making decorators and other function wrappers.
 :Python Version: new in 2.5

@@ -1,6 +1,6 @@
-====================
-   PyMOTW: shutil
-====================
+======
+shutil
+======
 :Module: shutil
 :Purpose: High-level file operations.
 :Python Version: 1.4

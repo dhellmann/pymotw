@@ -1,6 +1,6 @@
-=========================
-   PyMOTW: collections
-=========================
+===========
+collections
+===========
 :Module: collections
 :Purpose: Container data types.
 :Python Version: 2.4 and later

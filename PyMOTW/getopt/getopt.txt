@@ -1,6 +1,6 @@
-====================
-   PyMOTW: getopt
-====================
+======
+getopt
+======
 :Module: getopt
 :Purpose: Command line option parsing
 :Python Version: 1.4

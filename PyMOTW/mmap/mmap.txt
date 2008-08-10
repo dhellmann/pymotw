@@ -1,6 +1,6 @@
-==================
-   PyMOTW: mmap
-==================
+====
+mmap
+====
 :Module: mmap
 :Purpose: Memory-map files instead of reading the contents directly.
 :Python Version: 2.1 and later

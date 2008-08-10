@@ -1,6 +1,6 @@
-===================
-   PyMOTW: sched
-===================
+=====
+sched
+=====
 :Module: sched
 :Purpose: Generic event scheduler.
 :Python Version: 1.4

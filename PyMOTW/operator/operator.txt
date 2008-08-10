@@ -1,6 +1,6 @@
-======================
-   PyMOTW: operator
-======================
+========
+operator
+========
 :Module: operator
 :Purpose: Functional interface to built-in operators.
 :Python Version: 1.4 and later

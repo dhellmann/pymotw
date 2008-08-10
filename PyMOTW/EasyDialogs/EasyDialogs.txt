@@ -1,6 +1,6 @@
-=========================
-   PyMOTW: EasyDialogs
-=========================
+===========
+EasyDialogs
+===========
 :Module: EasyDialogs
 :Purpose: Provides simple interfaces to Carbon dialogs from Python.
 :Python Version: At least 2.0, Macintosh-only (see References below for a Windows implementation)

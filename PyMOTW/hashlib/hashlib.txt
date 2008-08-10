@@ -1,6 +1,6 @@
-=====================
-   PyMOTW: hashlib
-=====================
+=======
+hashlib
+=======
 :Module: hashlib
 :Purpose: Cryptographic hashes and message digests
 :Python Version: 2.5

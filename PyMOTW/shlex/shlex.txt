@@ -1,6 +1,6 @@
-===================
-   PyMOTW: shlex
-===================
+=====
+shlex
+=====
 :Module: shlex
 :Purpose: Lexical analysis of shell-style syntaxes.
 :Python Version: 1.5.2, with additions in later versions

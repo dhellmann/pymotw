@@ -1,6 +1,6 @@
-======================
-   PyMOTW: calendar
-======================
+========
+calendar
+========
 :Module: calendar
 :Purpose: The calendar module implements classes for working with dates to manage year/month/week oriented values.
 :Python Version: 1.4, with updates in 2.5

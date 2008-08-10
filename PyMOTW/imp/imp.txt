@@ -1,6 +1,6 @@
-=================
-   PyMOTW: imp
-=================
+===
+imp
+===
 :Module: imp
 :Purpose: Interface to module import mechanism.
 :Python Version: At least 2.2.1

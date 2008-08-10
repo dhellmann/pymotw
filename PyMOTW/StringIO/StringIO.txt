@@ -1,6 +1,6 @@
-====================================
-   PyMOTW: StringIO and cStringIO
-====================================
+========================
+StringIO (and cStringIO)
+========================
 :Module: StringIO and cStringIO
 :Purpose: Work with text buffers using file-like API
 :Python Version: StringIO: 1.4, cStringIO: 1.5

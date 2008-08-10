@@ -1,6 +1,6 @@
-=====================
-   PyMOTW: pkgutil
-=====================
+=======
+pkgutil
+=======
 :Module: pkgutil
 :Purpose: Add to the module search path for a specific package to combine separate directories into a single package.
 :Python Version: 2.3 and later

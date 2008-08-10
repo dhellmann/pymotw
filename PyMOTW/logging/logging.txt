@@ -1,6 +1,6 @@
-=====================
-   PyMOTW: logging
-=====================
+=======
+logging
+=======
 :Module: logging
 :Purpose: Provide a standard interface for Python modules to report status, error, and informational messages.
 :Python Version: 2.3

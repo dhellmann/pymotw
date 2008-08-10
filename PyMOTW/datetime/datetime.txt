@@ -1,6 +1,6 @@
-======================
-   PyMOTW: datetime
-======================
+========
+datetime
+========
 :Module: datetime
 :Purpose: Date/time value manipulation.
 :Python Version: 2.3 and later

@@ -1,6 +1,6 @@
-====================
-   PyMOTW: atexit
-====================
+======
+atexit
+======
 :Module: atexit
 :Purpose: Register function(s) to be called when a program is closing down.
 :Python Version: 2.1.3 and later
