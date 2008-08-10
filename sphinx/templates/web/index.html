@@ -12,12 +12,12 @@
       The <a alt="Python Module of the Week" href="http://www.doughellmann.com/PyMOTW/">Python Module of the Week</a> series, or PyMOTW, is a tour of the <a alt="Python" href="http://www.python.org/">Python</a> standard library through short examples. This is version {{ release }}{% if last_updated %}, last updated {{ last_updated }}{% endif %}.
   </p>
   {% block tables %}
-  <table class="contentstable" align="center"><tr>
+  <table class="contentstable" align="center" valign="top"><tr>
     <td width="50%">
       <p class="biglink"><a class="biglink" href="{{ pathto("contents") }}">Complete Table of Contents</a><br>
          <span class="linkdescr">lists all module descriptions and subsections</span></p>
      {%- if hasdoc('about') %}
-     <p class="biglink"><a class="biglink" title="About these documents" href="{{ pathto('about') }}">About PyMOTW</a><br>
+     <p class="biglink"><a class="biglink" href="{{ pathto('about') }}">About PyMOTW</a><br>
          <span class="linkdescr">background on the series</span></p>
      {%- endif %}
     </td><td width="50%">
