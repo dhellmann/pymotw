@@ -1,6 +1,9 @@
-=========
-fileinput
-=========
+================
+:mod:`fileinput`
+================
+.. module:: fileinput
+    :synopsis: Create command-line filter programs.
+
 :Module: fileinput
 :Documentation: http://docs.python.org/lib/module-fileinput.html
 

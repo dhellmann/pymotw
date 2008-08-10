@@ -1,6 +1,9 @@
-====
-glob
-====
+===========
+:mod:`glob`
+===========
+.. module:: glob
+    :synopsis: Use Unix shell rules to fine filenames matching a pattern.
+
 :Module: glob
 :Purpose: Use Unix shell rules to fine filenames matching a pattern.
 :Python Version: 1.4
@@ -45,8 +48,8 @@ if you want to run the examples.
 Wildcards
 =========
 
-An asterisk (*) matches zero or more characters in a segment of a name. For
-example, dir/*.
+An asterisk (`*`) matches zero or more characters in a segment of a name. For
+example, `dir/*`.
 
 ::
 

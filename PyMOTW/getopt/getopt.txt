@@ -1,6 +1,9 @@
-======
-getopt
-======
+=============
+:mod:`getopt`
+=============
+.. module:: getopt
+    :synopsis: Command line option parsing
+
 :Module: getopt
 :Purpose: Command line option parsing
 :Python Version: 1.4

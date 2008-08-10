@@ -1,6 +1,9 @@
-===
-cmd
-===
+==========
+:mod:`cmd`
+==========
+.. module:: cmd
+    :synopsis: Create line-oriented command processors.
+
 :Module: cmd
 :Purpose: Create line-oriented command processors.
 :Python Version: 1.4 and later, with some additions in 2.3

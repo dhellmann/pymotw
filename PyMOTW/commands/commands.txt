@@ -1,6 +1,9 @@
-========
-commands
-========
+===============
+:mod:`commands`
+===============
+.. module:: commands
+    :synopsis: Run external shell commands and capture the status code and output.
+
 :Module: commands
 :Purpose: Run external shell commands and capture the status code and output.
 :Python Version: 1.4

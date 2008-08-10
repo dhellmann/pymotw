@@ -1,6 +1,9 @@
-=======
-fnmatch
-=======
+==============
+:mod:`fnmatch`
+==============
+.. module:: fnmatch
+    :synopsis: Compare filenames against Unix-style glob patterns.
+
 :Module: fnmatch
 :Purpose: Compare filenames against Unix-style glob patterns.
 :Python Version: 1.4 and later.

@@ -40,10 +40,7 @@ Python Module of the Week
     mmap/mmap
     operator/operator
     optparse/optparse
-    os/os.1
-    os/os.2
-    os/os.3
-    os/os.4
+    os/os
     ospath/os.path
     pickle/pickle
     pkgutil/pkgutil

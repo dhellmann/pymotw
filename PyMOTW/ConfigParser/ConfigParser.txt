@@ -1,6 +1,9 @@
-============
-ConfigParser
-============
+===================
+:mod:`ConfigParser`
+===================
+.. module:: ConfigParser
+    :synopsis: Read/write configuration files similar to Windows INI files
+
 :Module: ConfigParser
 :Documentation: http://docs.python.org/lib/module-ConfigParser.html
 :Purpose: Read/write configuration files similar to Windows INI files

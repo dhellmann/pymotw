@@ -1,6 +1,9 @@
-========
-dircache
-========
+===============
+:mod:`dircache`
+===============
+.. module:: dircache
+    :synopsis: Cache directory listings, updating when the modification time of a directory changes.
+
 :Module: dircache
 :Purpose: Cache directory listings, updating when the modification time of a directory changes.
 :Python Version: 1.4 and later

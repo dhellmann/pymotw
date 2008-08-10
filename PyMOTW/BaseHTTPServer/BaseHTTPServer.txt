@@ -1,6 +1,9 @@
-==============
-BaseHTTPServer
-==============
+=====================
+:mod:`BaseHTTPServer`
+=====================
+.. module:: BaseHTTPServer
+    :synopsis: Provides base classes for implementing web servers.
+
 :Module: BaseHTTPServer
 :Purpose: Provides base classes for implementing web servers.
 :Python Version: 1.4 and later

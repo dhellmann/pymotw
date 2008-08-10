@@ -1,6 +1,9 @@
-======
-Cookie
-======
+=============
+:mod:`Cookie`
+=============
+.. module:: Cookie
+    :synopsis: Working with HTTP cookies from the server side.
+
 :Module: Cookie
 :Purpose: Working with HTTP cookies from the server side.
 :Python Version: 2.1 and later

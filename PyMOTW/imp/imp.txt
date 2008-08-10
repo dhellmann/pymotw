@@ -1,6 +1,9 @@
-===
-imp
-===
+==========
+:mod:`imp`
+==========
+.. module:: imp
+    :synopsis: Interface to module import mechanism.
+
 :Module: imp
 :Purpose: Interface to module import mechanism.
 :Python Version: At least 2.2.1

@@ -1,6 +1,9 @@
-=======
-logging
-=======
+==============
+:mod:`logging`
+==============
+.. module:: logging
+    :synopsis: Provide a standard interface for Python modules to report status, error, and informational messages.
+
 :Module: logging
 :Purpose: Provide a standard interface for Python modules to report status, error, and informational messages.
 :Python Version: 2.3

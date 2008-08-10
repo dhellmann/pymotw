@@ -1,6 +1,9 @@
-========
-optparse
-========
+===============
+:mod:`optparse`
+===============
+.. module:: optparse
+    :synopsis: Command line option parser to replace getopt.
+
 :Module: optparse
 :Purpose: Command line option parser to replace getopt.
 :Python Version: 2.3

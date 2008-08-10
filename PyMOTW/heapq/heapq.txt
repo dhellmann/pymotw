@@ -1,6 +1,9 @@
-=====
-heapq
-=====
+============
+:mod:`heapq`
+============
+.. module:: heapq
+    :synopsis: In-place heap sort algorithm
+
 :Module: heapq
 :Purpose: In-place heap sort algorithm
 :Python Version: New in 2.3 with additions in 2.5

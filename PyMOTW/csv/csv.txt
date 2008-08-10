@@ -1,6 +1,9 @@
-===
-csv
-===
+==========
+:mod:`csv`
+==========
+.. module:: csv
+    :synopsis: Read and write comma separated value files.
+
 :Module: csv
 :Purpose: Read and write comma separated value files.
 :Python Version: 2.3 and later

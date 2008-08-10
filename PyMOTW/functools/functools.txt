@@ -1,6 +1,9 @@
-=========
-functools
-=========
+================
+:mod:`functools`
+================
+.. module:: functools
+    :synopsis: Tools for making decorators and other function wrappers.
+
 :Module: functools
 :Purpose: Tools for making decorators and other function wrappers.
 :Python Version: new in 2.5

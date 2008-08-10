@@ -1,6 +1,9 @@
-========
-datetime
-========
+===============
+:mod:`datetime`
+===============
+.. module:: datetime
+    :synopsis: Date/time value manipulation.
+
 :Module: datetime
 :Purpose: Date/time value manipulation.
 :Python Version: 2.3 and later

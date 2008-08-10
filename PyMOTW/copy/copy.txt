@@ -1,6 +1,9 @@
-====
-copy
-====
+===========
+:mod:`copy`
+===========
+.. module:: copy
+    :synopsis: Duplicate objects.
+
 :Module: copy
 :Purpose: Duplicate objects.
 :Python Version: 1.4

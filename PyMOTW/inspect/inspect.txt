@@ -1,6 +1,9 @@
-=======
-inspect
-=======
+==============
+:mod:`inspect`
+==============
+.. module:: inspect
+    :synopsis: Inspect live objects
+
 :Module: inspect
 :Purpose: Inspect live objects
 :Python Version: added in 2.1, with updates in 2.3 and 2.5

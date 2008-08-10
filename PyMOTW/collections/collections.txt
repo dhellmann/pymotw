@@ -1,6 +1,9 @@
-===========
-collections
-===========
+==================
+:mod:`collections`
+==================
+.. module:: collections
+    :synopsis: Container data types.
+
 :Module: collections
 :Purpose: Container data types.
 :Python Version: 2.4 and later

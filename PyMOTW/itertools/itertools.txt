@@ -1,6 +1,9 @@
-=========
-itertools
-=========
+================
+:mod:`itertools`
+================
+.. module:: itertools
+    :synopsis: Iterator functions for efficient looping
+
 :Module: itertools
 :Purpose: Iterator functions for efficient looping
 :Python Version: 2.3

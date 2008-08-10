@@ -1,6 +1,9 @@
-====
-hmac
-====
+===========
+:mod:`hmac`
+===========
+.. module:: hmac
+    :synopsis: Cryptographic signature and verification of messages.
+
 :Module: hmac
 :Purpose: Cryptographic signature and verification of messages.
 :Python Version: 2.2

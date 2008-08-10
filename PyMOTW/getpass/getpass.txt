@@ -1,6 +1,9 @@
-=======
-getpass
-=======
+==============
+:mod:`getpass`
+==============
+.. module:: getpass
+    :synopsis: Prompt the user for a value, usually a password, without echoing what they type to the console.
+
 :Module: getpass
 :Purpose: Prompt the user for a value, usually a password, without echoing what they type to the console.
 :Python Version: 1.5.2
