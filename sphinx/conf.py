@@ -6,14 +6,17 @@
 """Configuration file for Sphinx-generated documentation.
 """
 
+import glob
+import os
+
 __version__ = "$Id$"
 
 source_suffix = '.txt'
 
 project = 'Python Module of the Week'
 copyright = 'Doug Hellmann, <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/us/" rel="license">CC 3.0 (BY-NC-SA)</a>'
-version = 'VERSION'
-release = 'VERSION'
+version = os.environ['VERSION']
+release = version
 
 html_title = 'Python Module of the Week'
 html_short_title = 'PyMOTW'
@@ -31,7 +34,6 @@ exclude_trees = [
     ]
 
 # Ignore README files and other files commonly used but not part of the docs
-import glob
 unused_docs = [ 
     'cmd/cmd_file',
     'mmap/lorem', 

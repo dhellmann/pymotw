@@ -4,6 +4,8 @@ Python Module of the Week
 
 .. toctree::
     :maxdepth: 2
+    
+    about
 
     atexit/atexit
     BaseHTTPServer/BaseHTTPServer
@@ -44,12 +46,14 @@ Python Module of the Week
     ospath/os.path
     pickle/pickle
     pkgutil/pkgutil
+    platform/platform
     pprint/pprint
     Queue/Queue
     sched/sched
     shelve/shelve
     shlex/shlex
     shutil/shutil
+    SimpleXMLRPCServer/SimpleXMLRPCServer
     SocketServer/SocketServer
     string/string
     StringIO/StringIO
@@ -63,7 +67,9 @@ Python Module of the Week
     unittest/unittest
     urllib/urllib
     urlparse/urlparse
+    warnings/warnings
     weakref/weakref
+    xmlrpclib/xmlrpclib
     zipfile/zipfile
     zipimport/zipimport
     

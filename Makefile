@@ -5,6 +5,7 @@
 SVNHOME=$(shell svn info | grep "^URL" | cut -f2- -d:)
 PROJECT=PyMOTW
 VERSION=$(shell basename $(SVNHOME))
+export VERSION
 RELEASE=$(PROJECT)-$(VERSION)
 
 package: setup.py html_docs

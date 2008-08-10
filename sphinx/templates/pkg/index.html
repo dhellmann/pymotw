@@ -4,16 +4,14 @@
 {% block body %}
   <h1>{{ docstitle }}</h1>
   <p>
-    Welcome! This is
-    {% block description %}the documentation for {{ project }}
-    {{ release }}{% if last_updated %}, last updated {{ last_updated }}{% endif %}{% endblock %}.
+      The Python Module of the Week, or PyMOTW, is a tour of the `Python <http://www.python.org/>`_ standard library through short examples. This is version {{ release }}{% if last_updated %}, last updated {{ last_updated }}{% endif %}.
   </p>
   {% block tables %}
   <p><strong>Indices and tables:</strong></p>
   <table class="contentstable" align="center"><tr>
     <td width="50%">
       <p class="biglink"><a class="biglink" href="{{ pathto("contents") }}">Complete Table of Contents</a><br>
-         <span class="linkdescr">lists all sections and subsections</span></p>
+         <span class="linkdescr">lists all module descriptions and subsections</span></p>
       <p class="biglink"><a class="biglink" href="{{ pathto("search") }}">Search page</a><br>
          <span class="linkdescr">search this documentation</span></p>
     </td><td width="50%">
@@ -22,6 +20,16 @@
       <p class="biglink"><a class="biglink" href="{{ pathto("genindex") }}">General Index</a><br>
          <span class="linkdescr">all functions, classes, terms</span></p>
     </td></tr>
+    <tr>
+        <td>
+            {%- if hasdoc('about') %}
+            <p class="biglink"><a class="biglink" title="About these documents" href="{{ pathto('about') }}">About Python Module of the Week</a><br>
+                <span class="linkdesr">background on the series</span></p>
+            {%- endif %}
+        </td>
+        <td>
+        </td>
+    </tr>            
   </table>
   {% endblock %}
 {% endblock %}
