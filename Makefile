@@ -23,6 +23,10 @@ html_docs:
 website:
 	mkdir -p web
 	TEMPLATES='web' sphinx-build -b html -d sphinx/doctrees -c sphinx $(PROJECT) web/
+
+.PHONEY: installwebsite
+installwebsite: website
+	scp -r web/* homer:/var/www/doughellmann/DocumentRoot/PyMOTW/
 	
 MANIFESTS=MANIFEST.in.in $(wildcard PyMOTW/*/MANIFEST.in)
 

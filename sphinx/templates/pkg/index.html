@@ -14,22 +14,16 @@
          <span class="linkdescr">lists all module descriptions and subsections</span></p>
       <p class="biglink"><a class="biglink" href="{{ pathto("search") }}">Search page</a><br>
          <span class="linkdescr">search this documentation</span></p>
+         {%- if hasdoc('about') %}
+         <p class="biglink"><a class="biglink" title="About these documents" href="{{ pathto('about') }}">About PyMOTW</a><br>
+             <span class="linkdescr">background on the series</span></p>
+         {%- endif %}
     </td><td width="50%">
       <p class="biglink"><a class="biglink" href="{{ pathto("modindex") }}">Global Module Index</a><br>
          <span class="linkdescr">quick access to all modules</span></p>
       <p class="biglink"><a class="biglink" href="{{ pathto("genindex") }}">General Index</a><br>
          <span class="linkdescr">all functions, classes, terms</span></p>
     </td></tr>
-    <tr>
-        <td>
-            {%- if hasdoc('about') %}
-            <p class="biglink"><a class="biglink" title="About these documents" href="{{ pathto('about') }}">About PyMOTW</a><br>
-                <span class="linkdesr">background on the series</span></p>
-            {%- endif %}
-        </td>
-        <td>
-        </td>
-    </tr>            
   </table>
   {% endblock %}
 {% endblock %}
