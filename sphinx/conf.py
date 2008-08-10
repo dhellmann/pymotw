@@ -18,11 +18,11 @@ release = 'VERSION'
 html_title = 'Python Module of the Week'
 html_short_title = 'PyMOTW'
 html_additional_pages = {
-    'index':'defindex.html',
+    'index':'index.html',
     }
 html_use_modindex = True
 
-templates_path = ['../templates/pkg']
+templates_path = ['../sphinx/templates/pkg']
 
 # Ignore some subdirectories entirely
 exclude_trees = [
@@ -43,4 +43,5 @@ unused_docs = [
     ]
 ignore_base_names = [ 'README' ]
 for base in ignore_base_names:
-    unused_docs.extend(n[:-4] for n in glob.glob('*/%s.txt' % base))
+    print 'IGNORING:', glob.glob('../PyMOTW/*/%s.txt' % base)
+    unused_docs.extend(n[10:-4] for n in glob.glob('../PyMOTW/*/%s.txt' % base))
