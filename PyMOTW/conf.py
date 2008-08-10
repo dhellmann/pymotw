@@ -11,7 +11,7 @@ __version__ = "$Id$"
 source_suffix = '.txt'
 
 project = 'Python Module of the Week'
-copyright = 'Doug Hellmann'
+copyright = 'Doug Hellmann, <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/us/" rel="license">CC 3.0 (BY-NC-SA)</a>'
 version = 'VERSION'
 release = 'VERSION'
 
@@ -22,7 +22,7 @@ html_additional_pages = {
     }
 html_use_modindex = True
 
-templates_path = ['templates/pkg']
+templates_path = ['../templates/pkg']
 
 # Ignore some subdirectories entirely
 exclude_trees = [
