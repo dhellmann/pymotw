@@ -3,7 +3,7 @@ Python Module of the Week
 =========================
 
 .. toctree::
-    :maxdepth: 1
+    :maxdepth: 2
 
     atexit/atexit
     BaseHTTPServer/BaseHTTPServer

@@ -17,8 +17,12 @@ release = 'VERSION'
 
 html_title = 'Python Module of the Week'
 html_short_title = 'PyMOTW'
-html_additional_pages = {}
+html_additional_pages = {
+    'index':'defindex.html',
+    }
 html_use_modindex = True
+
+templates_path = ['templates/pkg']
 
 # Ignore some subdirectories entirely
 exclude_trees = [
