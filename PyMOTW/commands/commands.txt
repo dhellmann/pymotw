@@ -1,5 +1,5 @@
 ===============
-:mod:`commands`
+commands
 ===============
 .. module:: commands
     :synopsis: Run external shell commands and capture the status code and output.
@@ -15,7 +15,7 @@
 Description
 ===========
 
-Note: This module is made obsolete by the subprocess module.
+Note: This module is made obsolete by the :mod:`subprocess` module.
 
 There are 3 functions in the commands module for working with external
 commands. The functions are shell-aware and return the output or status code

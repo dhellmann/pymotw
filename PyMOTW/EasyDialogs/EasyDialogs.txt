@@ -1,5 +1,5 @@
 ==================
-:mod:`EasyDialogs`
+EasyDialogs
 ==================
 .. module:: EasyDialogs
     :synopsis: Provides simple interfaces to Carbon dialogs from Python.
@@ -32,6 +32,8 @@ the user.
 
     EasyDialogs.Message('This is a Message dialog')
 
+.. image:: MessageDialog.png
+
 It is easy to change the label of the "OK" button using the ok argument.
 
 ::
@@ -39,6 +41,8 @@ It is easy to change the label of the "OK" button using the ok argument.
     import EasyDialogs
 
     EasyDialogs.Message('The button label has changed', ok='Continue')
+
+.. image:: MessageDialog_continue.png
 
 ProgressBar
 ===========
@@ -77,6 +81,8 @@ to maxval.
 
     time.sleep(1)
 
+.. image:: ProgressBar_partial.png
+
 ::
 
     $ python EasyDialogs_ProgressBar.py 
@@ -91,6 +97,11 @@ to maxval.
     Phase 9
     Phase 10
     Done with loop
+
+.. image:: ProgressBar_complete.png
+
+::
+
     The dialog should be gone now
 
 
@@ -115,6 +126,7 @@ progress meter instead of incr().
         meter.set(i)
         time.sleep(1)
 
+.. image:: ProgressBar_set_partial.png
 
 Simple Prompts
 ==============
@@ -129,6 +141,7 @@ display a modal dialog to prompt the user for a simple string.
     response = EasyDialogs.AskString('What is your favorite color?', default='blue')
     print 'RESPONSE:', response
 
+.. image:: AskString.png
 
 The return value depends on the user's response. It is either the text they
 enter:
@@ -159,6 +172,8 @@ is longer than that, it is truncated.
     response = EasyDialogs.AskString('Enter a long string', default=default)
     print 'len(response)=', len(response)
 
+.. image:: AskString_too_long.png
+
 ::
 
     $ python EasyDialogs_AskString_too_long.py
@@ -178,6 +193,8 @@ back to the screen in clear-text.
 
     response = EasyDialogs.AskPassword('Password:', default='s3cr3t')
     print 'Shh!:', response
+
+.. image:: AskPassword.png
 
 ::
 
@@ -219,6 +236,8 @@ the type codes of files visible to the user, and interact with the dialog
 through callbacks. Refer to the module documentation and Apple's reference
 guide for more details.
 
+.. image:: AskForFileOpen.png
+
 ::
 
     $ python EasyDialogs_AskFileForOpen.py
@@ -240,6 +259,8 @@ AskFileForSave.
 
     print 'Selected:', filename
 
+.. image:: AskFileForSave.png
+
 ::
 
     $ python EasyDialogs_AskFileForSave.py
@@ -260,6 +281,8 @@ The dialog includes a button to let them create a new folder.
         )
 
     print 'Selected:', filename
+
+.. image:: AskFolder.png
 
 ::
 
@@ -309,6 +332,7 @@ the Python interpreter.
             )
     print arguments
 
+.. image:: GetArgv_1.png
 
 The first argument is a list of tuples containing the option specifier and a
 text description. The specifier can contain a single letter for simple boolean
@@ -318,15 +342,21 @@ letter options that take an argument; several letters for long-form switches
 sign for long options taking an argument. The option description is a string
 displayed in the dialog.
 
+.. image:: GetArgv_2.png
+
 The dialog is divided into 4 sections. At the top is the list of options you
 specified. The user can select an option from the list. If the option takes an
 argument, a text field is displayed so the user can provide a value. The Add
 button inserts the selected option into the command line field at the bottom
 of the dialog.
 
+.. image:: GetArgv_3.png
+
 The second argument to GetArgv is a list of commands and descriptions. The
 user can select a command to be included in the argument list from the menu in
 the middle of the dialog.
+
+.. image:: GetArgv_4.png
 
 The arguments addoldfile, addnewfile, and addfolder control the sensitivity of
 the buttons in the third section of the dialog. In this example, only the Add

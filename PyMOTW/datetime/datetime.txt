@@ -1,5 +1,5 @@
 ===============
-:mod:`datetime`
+datetime
 ===============
 .. module:: datetime
     :synopsis: Date/time value manipulation.

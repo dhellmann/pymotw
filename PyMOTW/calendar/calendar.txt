@@ -1,5 +1,5 @@
 ===============
-:mod:`calendar`
+calendar
 ===============
 .. module:: calendar
     :synopsis: The calendar module implements classes for working with dates to manage year/month/week oriented values.

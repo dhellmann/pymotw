@@ -1,6 +1,9 @@
 ========
 tempfile
 ========
+.. module:: tempfile
+    :synopsis: Create temporary filesystem resources.
+
 :Module: tempfile
 :Purpose: Create temporary filesystem resources.
 :Python Version: Since 1.4 with major security revisions in 2.3

@@ -1,5 +1,5 @@
 =====================
-:mod:`BaseHTTPServer`
+BaseHTTPServer
 =====================
 .. module:: BaseHTTPServer
     :synopsis: Provides base classes for implementing web servers.
@@ -206,7 +206,7 @@ which knows how to parse the form, if we give it the correct inputs.
         server.serve_forever()
 
 Using curl again, we can include form data, which automatically sets the
-method to POST. The last argument, -F datafile=@BaseHTTPServer_GET.py, posts
+method to POST. The last argument, ``-F datafile=@BaseHTTPServer_GET.py``, posts
 the contents of the file BaseHTTPServer_GET.py to illustrate reading file data
 from the form.
 

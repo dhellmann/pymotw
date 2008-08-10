@@ -1,5 +1,5 @@
 ==============
-:mod:`getpass`
+getpass
 ==============
 .. module:: getpass
     :synopsis: Prompt the user for a value, usually a password, without echoing what they type to the console.

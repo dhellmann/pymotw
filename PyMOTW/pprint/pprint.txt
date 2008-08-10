@@ -1,6 +1,9 @@
 ======
 pprint
 ======
+.. module:: pprint
+    :synopsis: Pretty-print data structures
+
 :Module: pprint
 :Purpose: Pretty-print data structures
 :Python Version: 1.4

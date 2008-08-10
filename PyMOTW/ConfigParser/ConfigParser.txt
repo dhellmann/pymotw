@@ -1,5 +1,5 @@
 ===================
-:mod:`ConfigParser`
+ConfigParser
 ===================
 .. module:: ConfigParser
     :synopsis: Read/write configuration files similar to Windows INI files

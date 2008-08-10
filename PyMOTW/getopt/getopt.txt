@@ -1,5 +1,5 @@
 =============
-:mod:`getopt`
+getopt
 =============
 .. module:: getopt
     :synopsis: Command line option parsing

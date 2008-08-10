@@ -1,5 +1,5 @@
 =============
-:mod:`atexit`
+atexit
 =============
 .. module:: atexit
     :synopsis: Register function(s) to be called when a program is closing down.

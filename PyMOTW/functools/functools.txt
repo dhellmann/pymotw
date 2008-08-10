@@ -1,5 +1,5 @@
 ================
-:mod:`functools`
+functools
 ================
 .. module:: functools
     :synopsis: Tools for making decorators and other function wrappers.

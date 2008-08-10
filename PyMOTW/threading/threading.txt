@@ -1,6 +1,9 @@
 =========
 threading
 =========
+.. module:: threading
+    :synopsis: Builds on the thread module to more easily manage several threads of execution.
+
 :Module: threading
 :Purpose: Builds on the thread module to more easily manage several threads of execution.
 :Python Version: since 1.5.2 (some of these examples require 2.5 because they use the with statement)

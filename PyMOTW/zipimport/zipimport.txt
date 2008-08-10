@@ -1,6 +1,9 @@
 =========
 zipimport
 =========
+.. module:: zipimport
+    :synopsis: Load Python code from inside ZIP archives.
+
 :Module: zipimport
 :Purpose: Load Python code from inside ZIP archives.
 :Python Version: 2.3 and later

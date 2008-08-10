@@ -1,5 +1,5 @@
 ===============
-:mod:`optparse`
+optparse
 ===============
 .. module:: optparse
     :synopsis: Command line option parser to replace getopt.

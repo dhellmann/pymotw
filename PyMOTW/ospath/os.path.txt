@@ -1,6 +1,9 @@
-=======
+==============
 os.path
-=======
+==============
+.. module:: os.path
+    :synopsis: Parse, build, test, and otherwise work on file names and paths.
+
 :Module: os.path
 :Purpose: Parse, build, test, and otherwise work on file names and paths.
 :Python Version: 1.4 and later

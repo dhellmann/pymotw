@@ -1,5 +1,5 @@
 ===========
-:mod:`copy`
+copy
 ===========
 .. module:: copy
     :synopsis: Duplicate objects.

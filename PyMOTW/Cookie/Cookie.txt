@@ -1,5 +1,5 @@
 =============
-:mod:`Cookie`
+Cookie
 =============
 .. module:: Cookie
     :synopsis: Working with HTTP cookies from the server side.

@@ -1,5 +1,5 @@
 ============
-:mod:`heapq`
+heapq
 ============
 .. module:: heapq
     :synopsis: In-place heap sort algorithm

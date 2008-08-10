@@ -1,6 +1,9 @@
 ========
 unittest
 ========
+.. module:: unittest
+    :synopsis: Automated testing framework
+
 :Module: unittest
 :Purpose: Automated testing framework
 :Python Version: 2.1

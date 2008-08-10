@@ -1,5 +1,5 @@
 ================
-:mod:`fileinput`
+fileinput
 ================
 .. module:: fileinput
     :synopsis: Create command-line filter programs.

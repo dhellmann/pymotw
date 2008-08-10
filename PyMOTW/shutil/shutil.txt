@@ -1,6 +1,9 @@
 ======
 shutil
 ======
+.. module:: shutil
+    :synopsis: High-level file operations.
+
 :Module: shutil
 :Purpose: High-level file operations.
 :Python Version: 1.4

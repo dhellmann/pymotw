@@ -1,5 +1,5 @@
 ==============
-:mod:`difflib`
+difflib
 ==============
 .. module:: difflib
     :synopsis: Library of tools for computing and working with differences between sequences, especially of lines in text files.

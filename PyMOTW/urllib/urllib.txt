@@ -1,6 +1,9 @@
 ======
 urllib
 ======
+.. module:: urllib
+    :synopsis: Accessing remote resources that don't need authentication, cookies, etc.
+
 :Module: urllib
 :Purpose: Accessing remote resources that don't need authentication, cookies, etc.
 :Python Version: 1.4 and later

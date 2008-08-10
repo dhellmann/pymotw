@@ -1,5 +1,5 @@
 ==========
-:mod:`imp`
+imp
 ==========
 .. module:: imp
     :synopsis: Interface to module import mechanism.

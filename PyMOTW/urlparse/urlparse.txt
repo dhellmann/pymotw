@@ -1,6 +1,9 @@
 ========
 urlparse
 ========
+.. module:: urlparse
+    :synopsis: Split URL into component pieces.
+
 :Module: urlparse
 :Purpose: Split URL into component pieces.
 :Python Version: since 1.4

@@ -1,5 +1,5 @@
 ==========
-:mod:`cmd`
+cmd
 ==========
 .. module:: cmd
     :synopsis: Create line-oriented command processors.
@@ -232,7 +232,7 @@ of the options.
     (Cmd) help
 
 Once the command is known, argument completion is handled by methods with the
-prefix complete_. This allows you to assemble a list of possible completions
+prefix ``complete_``. This allows you to assemble a list of possible completions
 using your own criteria (query a database, look at at a file or directory on
 the filesystem, etc.). In this case, the program has a hard-coded set of
 "friends" who receive a less formal greeting than named or anonymous

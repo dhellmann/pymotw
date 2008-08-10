@@ -1,6 +1,9 @@
 =========
 traceback
 =========
+.. module:: traceback
+    :synopsis: Extract, format, and print exceptions and stack traces.
+
 :Module: traceback
 :Purpose: Extract, format, and print exceptions and stack traces.
 :Python Version: 1.4 and later, with modifications over time

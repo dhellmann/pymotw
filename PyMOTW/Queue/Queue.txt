@@ -1,6 +1,9 @@
 =====
 Queue
 =====
+.. module:: Queue
+    :synopsis: Provides a thread-safe FIFO implementation
+
 :Module: Queue
 :Purpose: Provides a thread-safe FIFO implementation
 :Python Version: at least 1.4

@@ -1,5 +1,5 @@
 ==============
-:mod:`inspect`
+inspect
 ==============
 .. module:: inspect
     :synopsis: Inspect live objects
@@ -422,8 +422,8 @@ In addition to the documentation for a function or method, it is possible to
 ask for a complete specification of the arguments the callable takes,
 including default values. The getargspec() function returns a tuple containing
 the list of positional argument names, the name of any variable positional
-arguments (e.g., *args), the neame of any variable named arguments (e.g.,
-**kwds), and default values for the arguments. If there are default values,
+arguments (e.g., ``*args``), the neame of any variable named arguments (e.g.,
+``**kwds``), and default values for the arguments. If there are default values,
 they match up with the end of the positional argument list.
 
 ::

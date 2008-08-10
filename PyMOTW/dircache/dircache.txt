@@ -1,5 +1,5 @@
 ===============
-:mod:`dircache`
+dircache
 ===============
 .. module:: dircache
     :synopsis: Cache directory listings, updating when the modification time of a directory changes.

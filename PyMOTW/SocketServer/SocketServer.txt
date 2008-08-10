@@ -1,6 +1,9 @@
 ============
 SocketServer
 ============
+.. module:: SocketServer
+    :synopsis: Creating network servers.
+
 :Module: SocketServer
 :Purpose: Creating network servers.
 :Python Version: 1.4

@@ -1,5 +1,5 @@
 ===========
-:mod:`hmac`
+hmac
 ===========
 .. module:: hmac
     :synopsis: Cryptographic signature and verification of messages.

@@ -1,6 +1,9 @@
 =============
-:mod:`os`
+os
 =============
+.. module:: os
+    :synopsis: Portable access to operating system specific features.
+
 :Module: os
 :Purpose: Portable access to operating system specific features.
 :Python Version: 1.4 (or earlier)
@@ -508,7 +511,7 @@ execute permission bit:
     import os
     import stat
 
-# Determine what permissions are already set using stat
+    # Determine what permissions are already set using stat
     existing_permissions = stat.S_IMODE(os.stat(__file__).st_mode)
 
     if not os.access(__file__, os.X_OK):

@@ -1,6 +1,9 @@
 ======
 string
 ======
+.. module:: string
+    :synopsis: Contains useful constants and classes for working with text.
+
 :Module: string
 :Purpose: Contains useful constants and classes for working with text.
 :Python Version: 2.5

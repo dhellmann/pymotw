@@ -1,5 +1,5 @@
 ===========
-:mod:`glob`
+glob
 ===========
 .. module:: glob
     :synopsis: Use Unix shell rules to fine filenames matching a pattern.
@@ -59,7 +59,7 @@ example, `dir/*`.
 The pattern matches every pathname (file or directory) in the directory dir,
 without recursing further into subdirectories.
 
-:
+::
 
     $ python glob_asterisk.py
     ['dir/file.txt', 'dir/file1.txt', 'dir/file2.txt',

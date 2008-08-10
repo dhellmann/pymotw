@@ -1,5 +1,5 @@
 ================
-:mod:`linecache`
+linecache
 ================
 .. module:: linecache
     :synopsis: Retrieve lines of text from files or imported python modules, holding a cache of the results to make reading many lines from the same file more efficient.
@@ -93,7 +93,7 @@ file, linecache returns an empty string.
     print '\nNOT THERE: "%s" includes %d characters' %  (not_there, len(not_there))
 
 
-The module never raises an exception, even if the file does not exist:
+The module never raises an exception, even if the file does not exist::
 
     # Errors are even hidden if linecache cannot find the file
     no_such_file = linecache.getline('this_file_does_not_exist.txt', 1)
@@ -105,6 +105,8 @@ by specifying the base name of the module. The cache population code in
 linecache searches sys.path for the module if it cannot find the file
 directly.
 
+::
+
     # Look for the linecache module, using
     # the built in sys.path search.
     module_line = linecache.getline('linecache.py', 3)
@@ -113,6 +115,7 @@ directly.
 Example Output:
 
 ::
+
     SOURCE:  eros pede, egestas at, ultricies ac, pellentesque eu, tellus.
     CACHE :  eros pede, egestas at, ultricies ac, pellentesque eu, tellus.
 

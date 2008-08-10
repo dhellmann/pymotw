@@ -1,6 +1,9 @@
 ======
 timeit
 ======
+.. module:: timeit
+    :synopsis: Time the execution of small bits of Python code.
+
 :Module: timeit
 :Purpose: Time the execution of small bits of Python code.
 :Python Version: 2.3
@@ -92,7 +95,7 @@ storing the integers in a dictionary using the strings as keys.
     import timeit
     import sys
 
-# A few constants
+    # A few constants
     range_size=1000
     count=1000
     setup_statement="l = [ (str(x), x) for x in range(%d) ]; d = {}" % range_size
@@ -302,7 +305,7 @@ the module and call the function from the command line:
         for s, i in l:
             d[s] = i
 
-Then to run the test:
+Then to run the test::
 
     $ python -m timeit "import timeit_setitem; timeit_setitem.test_setitem()"
     100 loops, best of 3: 3.56 msec per loop

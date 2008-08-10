@@ -1,5 +1,5 @@
 =============
-:mod:`locale`
+locale
 =============
 .. module:: locale
     :synopsis: POSIX cultural localization API

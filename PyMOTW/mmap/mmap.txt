@@ -1,5 +1,5 @@
 ===========
-:mod:`mmap`
+mmap
 ===========
 .. module:: mmap
     :synopsis: Memory-map files instead of reading the contents directly.
@@ -108,7 +108,7 @@ to a slice to modify part of a line in place::
     import mmap
     import shutil
 
-# Copy the example file
+    # Copy the example file
     shutil.copyfile('lorem.txt', 'lorem_copy.txt')
 
     word = 'consectetuer'

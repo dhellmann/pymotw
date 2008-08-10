@@ -1,6 +1,9 @@
 =======
 weakref
 =======
+.. module:: weakref
+    :synopsis: Refer to an "expensive" object, but allow it to be garbage collected if there are no other non-weak references.
+
 :Module: weakref
 :Purpose: Refer to an "expensive" object, but allow it to be garbage collected if there are no other non-weak references.
 :Python Version: Since 2.1

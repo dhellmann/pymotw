@@ -1,6 +1,9 @@
 ==========
 subprocess
 ==========
+.. module:: subprocess
+    :synopsis: Spawn and communicate with additional processes.
+
 :Module: subprocess
 :Purpose: Spawn and communicate with additional processes.
 :Python Version: New in 2.4

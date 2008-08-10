@@ -1,6 +1,12 @@
-==================
+================================
 pickle and cPickle
-==================
+================================
+.. module:: pickle
+    :synopsis: Python object serialization
+
+.. module:: cPickle
+    :synopsis: Python object serialization
+
 :Module: pickle and cPickle
 :Purpose: Python object serialization
 :Python Version: pickle at least 1.4, cPickle 1.5
@@ -100,7 +106,7 @@ object with the same values.
 As you see, the newly constructed object is the equal to but not the same
 object as the original. No surprise there.
 
-:
+::
 
     $ python pickle_unpickle.py
     BEFORE:[{'a': 'A', 'b': 2, 'c': 3.0}]

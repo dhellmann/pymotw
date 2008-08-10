@@ -1,5 +1,5 @@
 ================
-:mod:`itertools`
+itertools
 ================
 .. module:: itertools
     :synopsis: Iterator functions for efficient looping
@@ -27,7 +27,7 @@ can reduce swapping and other side-effects of large data sets, increasing
 performance.
 
 All of the examples below assume the contents of itertools was imported using
-from itertools import *.
+``from itertools import *``.
 
 Merging and Splitting Iterators
 ===============================
@@ -230,9 +230,9 @@ computed value.
 
 The starmap() function is similar to imap(), but instead of constructing a
 tuple from multiple iterators it splits up the items in a single iterator as
-arguments to the mapping function using the * syntax. Where the mapping
+arguments to the mapping function using the ``*`` syntax. Where the mapping
 function to imap() is called f(i1, i2), the mapping function to starmap() is
-called f(*i).
+called ``f(*i)``.
 
 ::
 

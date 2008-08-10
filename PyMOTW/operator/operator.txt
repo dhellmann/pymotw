@@ -1,5 +1,5 @@
 ===============
-:mod:`operator`
+operator
 ===============
 .. module:: operator
     :synopsis: Functional interface to built-in operators.

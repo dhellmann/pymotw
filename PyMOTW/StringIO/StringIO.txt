@@ -1,6 +1,12 @@
 ========================
-StringIO (and cStringIO)
+StringIO and cStringIO
 ========================
+.. module:: StringIO
+    :synopsis: Work with text buffers using file-like API
+
+.. module:: cStringIO
+    :synopsis: Work with text buffers using file-like API
+
 :Module: StringIO and cStringIO
 :Purpose: Work with text buffers using file-like API
 :Python Version: StringIO: 1.4, cStringIO: 1.5

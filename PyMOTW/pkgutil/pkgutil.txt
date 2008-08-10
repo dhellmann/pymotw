@@ -1,6 +1,9 @@
-=======
+==============
 pkgutil
-=======
+==============
+.. module:: pkgutil
+    :synopsis: Add to the module search path for a specific package to combine separate directories into a single package.
+
 :Module: pkgutil
 :Purpose: Add to the module search path for a specific package to combine separate directories into a single package.
 :Python Version: 2.3 and later
@@ -202,7 +205,7 @@ Using .pkg files
 
 The first example illustrated how to extend the search path using extra
 directories included in the PYTHONPATH. It is also possible to add to the
-search path using *.pkg files containing directory names. PKG files are
+search path using ``*.pkg`` files containing directory names. PKG files are
 similar to the PTH files used by the site module. They can contain directory
 names, one per line, to be added to the search path for the package.
 

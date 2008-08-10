@@ -1,5 +1,5 @@
 ==================
-:mod:`collections`
+collections
 ==================
 .. module:: collections
     :synopsis: Container data types.
@@ -54,14 +54,14 @@ Python implementation.
 
     import collections
 
-# Add to the right
+    # Add to the right
     d = collections.deque()
     d.extend('abcdefg')
     print 'extend    :', d
     d.append('h')
     print 'append    :', d
 
-# Add to the left
+    # Add to the left
     d = collections.deque()
     d.extendleft('abcdefg')
     print 'extendleft:', d

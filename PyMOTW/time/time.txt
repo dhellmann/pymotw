@@ -1,6 +1,9 @@
 ====
 time
 ====
+.. module:: time
+    :synopsis: Functions for manipulating times.
+
 :Module: time
 :Purpose: Functions for manipulating times.
 :Python Version: 1.4 or earlier

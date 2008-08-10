@@ -1,5 +1,5 @@
 ==========
-:mod:`csv`
+csv
 ==========
 .. module:: csv
     :synopsis: Read and write comma separated value files.
