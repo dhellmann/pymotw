@@ -1,0 +1,22 @@
+{% extends "!layout.html" %}
+
+<!-- $Id$ -->
+
+{%- block footer %}
+    <div class="footer">
+    {%- if hasdoc('copyright') %}
+      &copy; <a href="{{ pathto('copyright') }}">Copyright</a> {{ copyright }}.
+    {%- else %}
+      &copy; Copyright {{ copyright }}.
+    {%- endif %}
+    {%- if last_updated %}
+      Last updated on {{ last_updated }}.
+    {%- endif %}
+    {%- if show_sphinx %}
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+    {%- endif %}
+
+    <br/><a href="http://creativecommons.org/licenses/by-nc-sa/3.0/us/" rel="license"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/us/88x31.png"/></a>
+    
+    </div>
+{%- endblock %}

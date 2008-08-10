@@ -8,7 +8,7 @@ VERSION=$(shell basename $(SVNHOME))
 export VERSION
 RELEASE=$(PROJECT)-$(VERSION)
 
-package: setup.py html_docs
+package: setup.py html_docs website
 	rm -f MANIFEST.in
 	$(MAKE) MANIFEST.in
 	python setup.py sdist --force-manifest
@@ -17,7 +17,12 @@ package: setup.py html_docs
 .PHONEY: html_docs
 html_docs:
 	mkdir -p docs
-	sphinx-build -b html -c sphinx $(PROJECT) docs/
+	TEMPLATES='pkg' sphinx-build -b html -d sphinx/doctrees -c sphinx $(PROJECT) docs/
+
+.PHONEY: website
+website:
+	mkdir -p web
+	TEMPLATES='web' sphinx-build -b html -d sphinx/doctrees -c sphinx $(PROJECT) web/
 	
 MANIFESTS=MANIFEST.in.in $(wildcard PyMOTW/*/MANIFEST.in)
 

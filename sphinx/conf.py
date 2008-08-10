@@ -25,7 +25,7 @@ html_additional_pages = {
     }
 html_use_modindex = True
 
-templates_path = ['../sphinx/templates/pkg']
+templates_path = ['../sphinx/templates/%s' % os.environ['TEMPLATES']]
 
 # Ignore some subdirectories entirely
 exclude_trees = [
