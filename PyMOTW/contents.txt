@@ -140,6 +140,7 @@ Interprocess Communication and Networking
 .. toctree::
     :maxdepth: 2
 
+    signal/signal
     subprocess/subprocess
 
 
