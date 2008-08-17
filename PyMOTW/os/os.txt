@@ -779,6 +779,7 @@ accomplish the same thing.
     Sleeping...
     Sun Jun 17 12:27:23 EDT 2007
 
+.. _creating-processes-with-os-fork:
 
 Creating Processes with os.fork()
 =================================
