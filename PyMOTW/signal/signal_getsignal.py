@@ -20,8 +20,7 @@ for n in dir(signal):
     if n.startswith('SIG') and not n.startswith('SIG_'):
         signals_to_names[getattr(signal, n)] = n
 
-for s in xrange(1, signal.NSIG):
-    name = signals_to_names[s]
+for s, name in sorted(signals_to_names.items()):
     handler = signal.getsignal(s)
     if handler is signal.SIG_DFL:
         handler = 'SIG_DFL'
