@@ -11,7 +11,7 @@ import os
 
 __version__ = "$Id$"
 
-source_suffix = '.txt'
+source_suffix = '.rst'
 
 project = 'Python Module of the Week'
 copyright = 'Doug Hellmann'

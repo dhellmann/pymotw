@@ -10,7 +10,7 @@ profile
 Description
 ===========
 
-The :module:`profile` and cProfile modules provide APIs for collecting and analyzing statistics about how Python source consumes processor resources.
+The profile and cProfile modules provide APIs for collecting and analyzing statistics about how Python source consumes processor resources.
 
 Examples
 ========

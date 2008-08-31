@@ -193,6 +193,7 @@ Python Profilers
 .. toctree::
     :maxdepth: 2
 
+    profile/profile
     timeit/timeit
 
 

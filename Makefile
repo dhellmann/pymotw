@@ -8,6 +8,12 @@ VERSION=$(shell basename $(SVNHOME))
 export VERSION
 RELEASE=$(PROJECT)-$(VERSION)
 
+help:
+	@echo "package - build tarball"
+	@echo "register - update PyPI (update VERSION first!)"
+	@echo "clean - remove build left-overs"
+	@echo "html_docs - run sphinx"
+
 package: setup.py html_docs website
 	rm -f MANIFEST.in
 	$(MAKE) MANIFEST.in
@@ -46,8 +52,3 @@ setup.py: module setup.py.in
 clean:
 	rm -f MANIFEST
 	rm -rf dist
-
-help:
-	@echo "package - build tarball"
-	@echo "register - update PyPI (update VERSION first!)"
-	@echo "clean - remove build left-overs"
