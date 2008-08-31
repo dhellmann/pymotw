@@ -34,9 +34,10 @@ def fib(n):
         return fib(n-1) + fib(n-2)
 
 def fib_seq(n):
-    seq = [ fib(n) ]
+    seq = [ ]
     if n > 0:
         seq.extend(fib_seq(n-1))
+    seq.append(fib(n))
     return seq
 
 print 'MEMOIZED'
