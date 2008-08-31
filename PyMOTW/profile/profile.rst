@@ -231,6 +231,11 @@ The arguments to ``print_callers()`` and ``print_callees()`` work the same as th
 References
 ==========
 
+Standard library documentation:
+
+ * `profile and cProfile <http://docs.python.org/lib/module-profile.html>`_
+ * `pstats <http://docs.python.org/lib/profile-stats.html>`_
+
 The Fibonacci example implementation came from `Fibonacci numbers (Python) - LiteratePrograms <http://en.literateprograms.org/Fibonacci_numbers_(Python)>`_.
 
 The memoize decorator came from `Python Decorators: Syntactic Sugar | avinash.vora <http://avinashv.net/2008/04/python-decorators-syntactic-sugar/>`_.
