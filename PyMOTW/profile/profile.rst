@@ -171,6 +171,61 @@ Since we are studying the performance of ``fib()`` and ``fib_seq()``, we can als
     :literal:
     :start-after: import profile
 
+The regular expression includes a literal left paren (``(``) to match against the function name portion of the location value.
+
+::
+
+    $ python profile_stats_restricted.py
+    Sun Aug 31 11:29:36 2008    profile_stats_0.stats
+    Sun Aug 31 11:29:36 2008    profile_stats_1.stats
+    Sun Aug 31 11:29:36 2008    profile_stats_2.stats
+    Sun Aug 31 11:29:36 2008    profile_stats_3.stats
+    Sun Aug 31 11:29:36 2008    profile_stats_4.stats
+    
+             489 function calls (351 primitive calls) in 0.008 CPU seconds
+    
+       Ordered by: cumulative time
+       List reduced from 13 to 2 due to restriction <'\\(fib'>
+    
+       ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        105/5    0.004    0.000    0.007    0.001 profile_fibonacci_memoized.py:36(fib_seq)
+           21    0.000    0.000    0.001    0.000 profile_fibonacci_memoized.py:26(fib)
+    
+    
+Caller / Callee Graphs
+======================
+
+**Stats** also includes methods for printing the callers and callees of functions.
+
+.. include:: profile_stats_callers.py
+    :literal:
+    :start-after: import profile
+
+The arguments to ``print_callers()`` and ``print_callees()`` work the same as the restriction arguments to ``print_stats()``.  The output shows the caller, callee, and cumulative time.
+
+::
+
+    $ python profile_stats_callers.py
+    INCOMING CALLERS:
+       Ordered by: cumulative time
+       List reduced from 13 to 2 due to restriction <'\\(fib'>
+    
+    Function                                   was called by...
+    profile_fibonacci_memoized.py:36(fib_seq)  <- <string>:1(<module>)(5)    0.007
+                                                  profile_fibonacci_memoized.py:36(fib_seq)(100)    0.007
+    profile_fibonacci_memoized.py:26(fib)      <- profile_fibonacci_memoized.py:19(__call__)(21)    0.002
+    
+    
+    OUTGOING CALLEES:
+       Ordered by: cumulative time
+       List reduced from 13 to 2 due to restriction <'\\(fib'>
+    
+    Function                                   called...
+    profile_fibonacci_memoized.py:36(fib_seq)  -> :0(append)(105)    0.001
+                                                  :0(extend)(100)    0.001
+                                                  profile_fibonacci_memoized.py:19(__call__)(105)    0.002
+                                                  profile_fibonacci_memoized.py:36(fib_seq)(100)    0.007
+    profile_fibonacci_memoized.py:26(fib)      -> profile_fibonacci_memoized.py:19(__call__)(38)    0.002
 
 
 References

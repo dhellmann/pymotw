@@ -19,5 +19,8 @@ for i in range(1, 5):
 stats.strip_dirs()
 stats.sort_stats('cumulative')
 
-# limit output to lines with "(fib" in them
-stats.print_stats('\(fib')
+print 'INCOMING CALLERS:'
+stats.print_callers('\(fib')
+
+print 'OUTGOING CALLEES:'
+stats.print_callees('\(fib')
