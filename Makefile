@@ -9,10 +9,11 @@ export VERSION
 RELEASE=$(PROJECT)-$(VERSION)
 
 help:
-	@echo "package - build tarball"
-	@echo "register - update PyPI (update VERSION first!)"
-	@echo "clean - remove build left-overs"
-	@echo "html_docs - run sphinx"
+	@echo "package        - build tarball"
+	@echo "installwebsite - copy new HTML files to website"
+	@echo "register       - update PyPI"
+	@echo "clean          - remove build left-overs"
+	@echo "html_docs      - run sphinx"
 
 package: setup.py html_docs website
 	rm -f MANIFEST.in
