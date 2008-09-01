@@ -27,9 +27,12 @@ html_docs:
 	TEMPLATES='pkg' sphinx-build -a -b html -d sphinx/doctrees -c sphinx $(PROJECT) docs/
 
 .PHONEY: website
-website:
+website: sphinx/templates/web/base.html
 	mkdir -p web
 	TEMPLATES='web' sphinx-build -a -b html -d sphinx/doctrees -c sphinx $(PROJECT) web/
+
+sphinx/templates/web/base.html: $(HOME)/Devel/personal/doughellmann/templates/base.html
+	cp $< $@
 
 .PHONEY: installwebsite
 installwebsite: website

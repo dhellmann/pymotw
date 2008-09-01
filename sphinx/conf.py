@@ -28,7 +28,8 @@ html_additional_pages = {
 html_use_modindex = True
 
 # The TEMPLATES variable is set by the Makefile before sphinx-build is called.
-templates_path = ['../sphinx/templates/%s' % os.environ['TEMPLATES']]
+templates_path = ['../sphinx/templates/%s' % os.environ['TEMPLATES'],
+                  ]
 
 # Ignore some subdirectories entirely
 exclude_trees = [

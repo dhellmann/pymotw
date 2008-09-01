@@ -11,7 +11,7 @@ String Services
 ===============
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
     
     string/string
     difflib/difflib
@@ -22,7 +22,7 @@ Data Types
 ==========
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
     
     datetime/datetime
     calendar/calendar
@@ -39,7 +39,7 @@ Numeric and Mathematical Modules
 ================================
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
     
     itertools/itertools
     functools/functools
@@ -49,7 +49,7 @@ File Formats
 ============
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
     
     csv/csv
     ConfigParser/ConfigParser
@@ -59,7 +59,7 @@ Cryptographic Services
 ======================
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
     
     hashlib/hashlib
     hmac/hmac
@@ -69,7 +69,7 @@ File and Directory Access
 =========================
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
     
     ospath/os.path
     fileinput/fileinput
@@ -86,7 +86,7 @@ Data Compression and Archiving
 ==============================
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
     
     zipfile/zipfile
 
@@ -95,7 +95,7 @@ Data Persistence
 ================
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
 
     pickle/pickle
     shelve/shelve
@@ -105,7 +105,7 @@ Generic Operating System Services
 =================================
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
     
     os/os
     time/time
@@ -119,7 +119,7 @@ Optional Operating System Services
 ==================================
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
     
     threading/threading
     mmap/mmap
@@ -129,7 +129,7 @@ Unix-specific Services
 ======================
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
 
     commands/commands
 
@@ -138,7 +138,7 @@ Interprocess Communication and Networking
 =========================================
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
 
     signal/signal
     subprocess/subprocess
@@ -148,7 +148,7 @@ Internet Protocols and Support
 ==============================
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
     
     urllib/urllib
     urlparse/urlparse
@@ -163,7 +163,7 @@ Internationalization
 ====================
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
     
     locale/locale
 
@@ -172,7 +172,7 @@ Program Frameworks
 ==================
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
     
     cmd/cmd
     shlex/shlex
@@ -182,7 +182,7 @@ Development Tools
 =================
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
 
     unittest/unittest
 
@@ -191,7 +191,7 @@ Python Profilers
 ================
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
 
     profile/profile
     timeit/timeit
@@ -201,7 +201,7 @@ Python Runtime Services
 =======================
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
 
     warnings/warnings
     contextlib/contextlib
@@ -214,7 +214,7 @@ Importing Modules
 =================
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
 
     imp/imp
     pkgutil/pkgutil
@@ -224,7 +224,7 @@ Miscelaneous
 ============
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
 
     EasyDialogs/EasyDialogs
     
