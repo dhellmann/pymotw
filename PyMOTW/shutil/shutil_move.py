@@ -28,9 +28,10 @@
 """
 
 __version__ = "$Id$"
+#end_pymotw_header
 
-import os
 from shutil import *
+import os
 
 print 'BEFORE: example : ', os.listdir('example')
 move('example', 'example2')

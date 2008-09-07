@@ -28,9 +28,10 @@
 """
 
 __version__ = "$Id$"
+#end_pymotw_header
 
-import os
 from shutil import *
+import os
 
 print 'BEFORE:', os.listdir(os.getcwd())
 copyfile('shutil_copyfile.py', 'shutil_copyfile.py.copy')

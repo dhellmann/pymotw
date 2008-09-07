@@ -28,9 +28,10 @@
 """
 
 __version__ = "$Id$"
+#end_pymotw_header
 
-from commands import *
 from shutil import *
+from commands import *
 
 print 'BEFORE:'
 print getoutput('ls -rlast /tmp/example')

@@ -28,9 +28,10 @@
 """
 
 __version__ = "$Id$"
+#end_pymotw_header
 
-import os
 from shutil import *
+import os
 import time
 
 def show_file_info(filename):

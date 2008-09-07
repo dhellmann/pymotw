@@ -4,19 +4,12 @@ shutil
 .. module:: shutil
     :synopsis: High-level file operations.
 
-:Module: shutil
 :Purpose: High-level file operations.
-:Python Version: 1.4
+:Python Version: 1.4 and later
 :Abstract:
 
     The shutil module includes high-level file operations such as copying,
     setting permissions, etc.
-
-Description
-===========
-
-The shutil module provides several functions for copying and removing entire
-files.
 
 Copying Files
 =============
@@ -26,14 +19,9 @@ IOError if you do not have permission to write to the destination file.
 Because the function opens the input file for reading, regardless of its type,
 special files cannot be copied as new special files with copyfile().
 
-::
-
-    import os
-    from shutil import *
-
-    print 'BEFORE:', os.listdir(os.getcwd())
-    copyfile('shutil_copyfile.py', 'shutil_copyfile.py.copy')
-    print 'AFTER:', os.listdir(os.getcwd())
+.. include:: shutil_copyfile.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -47,41 +35,9 @@ arguments to copyfile() are file names, the arguments to copyfileobj() are
 open file handles. The optional third argument is a buffer length to use for
 reading in chunks (by default, the entire file is read at one time).
 
-::
-
-    import os
-    from StringIO import StringIO
-    import sys
-    from shutil import *
-
-    class VerboseStringIO(StringIO):
-        def read(self, n=-1):
-            next = StringIO.read(self, n)
-            print 'read(%d) =>' % n, next
-            return next
-
-    lorem_ipsum = '''Lorem ipsum dolor sit amet, consectetuer adipiscing elit. 
-    Vestibulum aliquam mollis dolor. Donec vulputate nunc ut diam. 
-    Ut rutrum mi vel sem. Vestibulum ante ipsum.'''
-
-    print 'Default:'
-    input = VerboseStringIO(lorem_ipsum)
-    output = StringIO()
-    copyfileobj(input, output)
-
-    print
-
-    print 'All at once:'
-    input = VerboseStringIO(lorem_ipsum)
-    output = StringIO()
-    copyfileobj(input, output, -1)
-
-    print
-
-    print 'Blocks of 20:'
-    input = VerboseStringIO(lorem_ipsum)
-    output = StringIO()
-    copyfileobj(input, output, 20)
+.. include:: shutil_copyfileobj.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 The default behavior is to read using large blocks:
 
@@ -127,15 +83,9 @@ destination refers to a directory instead of a file, a new file is created in
 the directory using the base name of the source. The permissions of the file
 are copied along with the contents.
 
-::
-
-    import os
-    from shutil import *
-
-    os.mkdir('example')
-    print 'BEFORE:', os.listdir('example')
-    copy('shutil_copy.py', 'example')
-    print 'AFTER:', os.listdir('example')
+.. include:: shutil_copy.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -147,24 +97,9 @@ are copied along with the contents.
 copy2() works like copy(), but includes the access and modification times in
 the meta-data copied to the new file.
 
-::
-
-    import os
-    from shutil import *
-
-    def show_file_info(filename):
-        stat_info = os.stat(filename)
-        print '\tMode    :', stat_info.st_mode
-        print '\tCreated :', time.ctime(stat_info.st_ctime)
-        print '\tAccessed:', time.ctime(stat_info.st_atime)
-        print '\tModified:', time.ctime(stat_info.st_mtime)
-
-    os.mkdir('example')
-    print 'SOURCE:'
-    show_file_info('shutil_copy2.py')
-    copy2('shutil_copy2.py', 'example')
-    print 'DEST:'
-    show_file_info('example/shutil_copy2.py')
+.. include:: shutil_copy2.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -188,21 +123,14 @@ By default when a new file is created under Unix, it receives permissions based
 on the umask of the current user. To copy the permissions from one file to
 another, use copymode().
 
-::
-
-    from commands import *
-    from shutil import *
-
-    print 'BEFORE:', getstatus('file_to_change.txt')
-    copymode('shutil_copymode.py', 'file_to_change.txt')
-    print 'AFTER :', getstatus('file_to_change.txt')
+.. include:: shutil_copymode.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 First, I need to create a file to be modified:
 
-::
-
-    $ touch file_to_change.txt
-    $ chmod ugo+w file_to_change.txt
+.. include:: shutil_copymode.sh
+    :literal:
 
 Then running the example script will change the permissions.
 
@@ -215,24 +143,9 @@ Then running the example script will change the permissions.
 To copy other meta-data about the file (permissions, last access time, and last
 modified time), use copystat().
 
-::
-
-    import os
-    from shutil import *
-    import time
-
-    def show_file_info(filename):
-        stat_info = os.stat(filename)
-        print '\tMode    :', stat_info.st_mode
-        print '\tCreated :', time.ctime(stat_info.st_ctime)
-        print '\tAccessed:', time.ctime(stat_info.st_atime)
-        print '\tModified:', time.ctime(stat_info.st_mtime)
-
-    print 'BEFORE:'
-    show_file_info('file_to_change.txt')
-    copystat('shutil_copystat.py', 'file_to_change.txt')
-    print 'AFTER :'
-    show_file_info('file_to_change.txt')
+.. include:: shutil_copystat.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -263,16 +176,9 @@ Note: The documentation for copytree() says it should be considered a sample
 implementation, rather than a tool. You may want to copy the implementation and
 make it more robust, or add features like a progress meter.
 
-::
-
-    from commands import *
-    from shutil import *
-
-    print 'BEFORE:'
-    print getoutput('ls -rlast /tmp/example')
-    copytree('example', '/tmp/example')
-    print 'AFTER:'
-    print getoutput('ls -rlast /tmp/example')
+.. include:: shutil_copytree.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -289,16 +195,9 @@ To remove a directory and its contents, use rmtree(). Errors are raised as
 exceptions by default. Errors can be ignored if the second argument is tree,
 and a special error handler function can be provided in the third argument.
 
-::
-
-    from commands import *
-    from shutil import *
-
-    print 'BEFORE:'
-    print getoutput('ls -rlast /tmp/example')
-    rmtree('example', '/tmp/example')
-    print 'AFTER:'
-    print getoutput('ls -rlast /tmp/example')
+.. include:: shutil_rmtree.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -317,14 +216,9 @@ destination are within the same filesystem, the source is simply renamed.
 Otherwise the source is copied to the destination and then the source is
 removed.
 
-::
-
-    import os
-    from shutil import *
-
-    print 'BEFORE: example : ', os.listdir('example')
-    move('example', 'example2')
-    print 'AFTER : example2: ', os.listdir('example2')
+.. include:: shutil_move.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 

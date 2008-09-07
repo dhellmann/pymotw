@@ -28,11 +28,12 @@
 """
 
 __version__ = "$Id$"
+#end_pymotw_header
 
+from shutil import *
 import os
 from StringIO import StringIO
 import sys
-from shutil import *
 
 class VerboseStringIO(StringIO):
     def read(self, n=-1):
