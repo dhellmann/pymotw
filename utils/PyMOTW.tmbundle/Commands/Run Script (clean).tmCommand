@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/bin/bash
+
+cd "${TM_DIRECTORY}"
+#source $PYMOTW_HOME/sbox/PyMOTW/bin/activate
+echo '&lt;div class="syntax"&gt;&lt;pre&gt;'
+echo "\$ python `basename ${TM_FILEPATH}`"
+python "${TM_FILEPATH}" 2&gt;&amp;1 | /Users/dhellmann/Documents/PyMOTW/bin/clean_html.sh
+echo '&lt;/pre&gt;&lt;/div&gt;'</string>
+	<key>input</key>
+	<string>document</string>
+	<key>name</key>
+	<string>Run Script (for html)</string>
+	<key>output</key>
+	<string>openAsNewDocument</string>
+	<key>scope</key>
+	<string>source.python</string>
+	<key>uuid</key>
+	<string>BFDEB595-1151-49A6-A360-242264D7C754</string>
+</dict>
+</plist>

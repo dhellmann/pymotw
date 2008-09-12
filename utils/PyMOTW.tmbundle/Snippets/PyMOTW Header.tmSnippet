@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>#!/usr/bin/env python
+# encoding: utf-8
+#
+# Copyright (c) `date +%Y` ${TM_ORGANIZATION_NAME} All rights reserved.
+#
+"""$1
+"""
+
+__version__ = "\$Id\$"
+#end_pymotw_header
+
+$2
+</string>
+	<key>name</key>
+	<string>PyMOTW Header</string>
+	<key>scope</key>
+	<string>source.python</string>
+	<key>tabTrigger</key>
+	<string>header</string>
+	<key>uuid</key>
+	<string>286940D5-3FE2-4A13-B1B8-49313446C915</string>
+</dict>
+</plist>

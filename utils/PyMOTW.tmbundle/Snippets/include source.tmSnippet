@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>.. include:: $1
+	:literal:
+	:start-after: #end_pymotw_header
+</string>
+	<key>name</key>
+	<string>include source</string>
+	<key>scope</key>
+	<string>text.restructuredtext</string>
+	<key>tabTrigger</key>
+	<string>include</string>
+	<key>uuid</key>
+	<string>3E1E22C6-B3E0-458B-BBE0-4FC600C71DED</string>
+</dict>
+</plist>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>command</key>
+	<string>if [[ ! -f "$TM_NEW_FILE" ]]
+then
+   TM_YEAR=`date +%Y` \
+   TM_DATE=`date +%Y-%m-%d` \
+   TM_USERNAME=`niutil -readprop / /users/\$USER realname` \
+   perl -pe 's/\$\{([^}]*)\}/$ENV{$1}/g' \
+      &lt; pymotw.py &gt; "$TM_NEW_FILE"
+   module=$(basename $TM_NEW_FILE .py | cut -f1 -d_)
+   if [ "$module" != "" ]
+   then
+     echo "import $module" &gt;&gt; $TM_NEW_FILE
+   fi
+fi</string>
+	<key>extension</key>
+	<string>py</string>
+	<key>name</key>
+	<string>PyMOTW</string>
+	<key>scope</key>
+	<string>source.python</string>
+	<key>uuid</key>
+	<string>09C55F34-B3DE-4B6D-9E58-2F74CC46C63A</string>
+</dict>
+</plist>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/bin/bash
+
+cd "${TM_DIRECTORY}"
+echo "::"
+echo
+echo "    \$ python `basename ${TM_FILEPATH}`"
+python "${TM_FILEPATH}" 2&gt;&amp;1 | sed 's/^/    /'
+</string>
+	<key>input</key>
+	<string>document</string>
+	<key>keyEquivalent</key>
+	<string>@R</string>
+	<key>name</key>
+	<string>Run Script (for rst)</string>
+	<key>output</key>
+	<string>openAsNewDocument</string>
+	<key>scope</key>
+	<string>source.python</string>
+	<key>uuid</key>
+	<string>713D1243-B085-4C96-8C8F-9540A1C3E205</string>
+</dict>
+</plist>

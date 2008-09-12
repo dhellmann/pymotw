@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>PyMOTW</string>
+	<key>ordering</key>
+	<array>
+		<string>09C55F34-B3DE-4B6D-9E58-2F74CC46C63A</string>
+		<string>75BBCE1D-3FC0-4508-922D-9640508EC868</string>
+		<string>BFDEB595-1151-49A6-A360-242264D7C754</string>
+		<string>713D1243-B085-4C96-8C8F-9540A1C3E205</string>
+		<string>286940D5-3FE2-4A13-B1B8-49313446C915</string>
+		<string>3E1E22C6-B3E0-458B-BBE0-4FC600C71DED</string>
+	</array>
+	<key>uuid</key>
+	<string>C85AE128-BF84-431A-837C-54EE4A5B34CC</string>
+</dict>
+</plist>
