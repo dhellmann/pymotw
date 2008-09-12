@@ -14,7 +14,8 @@ help:
 	@echo "webisite       - build new HTML files for website but do not install"
 	@echo "register       - update PyPI"
 	@echo "clean          - remove build left-overs"
-	@echo "html_docs      - run sphinx"
+	@echo "html_docs      - run sphinx to create docs to go in package"
+	@echo "blog           - run sphinx to create the blog post"
 
 package: setup.py html_docs website
 	rm -f MANIFEST.in
@@ -26,6 +27,12 @@ package: setup.py html_docs website
 html_docs:
 	mkdir -p docs
 	TEMPLATES='pkg' sphinx-build -b html -d sphinx/doctrees -c sphinx $(PROJECT) docs/
+
+export MODULE=$(shell cat module)
+.PHONEY: blog
+blog: module
+	mkdir -p blog_posts
+	sphinx-build -b html -d blog_posts -c sphinx/blog $(PROJECT)/$(MODULE)/ blog_posts/
 
 .PHONEY: website
 website: sphinx/templates/web/base.html
