@@ -1,10 +1,10 @@
-===============
-calendar
-===============
+===========================
+calendar -- Work with dates
+===========================
+
 .. module:: calendar
     :synopsis: The calendar module implements classes for working with dates to manage year/month/week oriented values.
 
-:Module: calendar
 :Purpose: The calendar module implements classes for working with dates to manage year/month/week oriented values.
 :Python Version: 1.4, with updates in 2.5
 
@@ -317,3 +317,8 @@ So the PyATL meeting schedule for the year is:
      11:  8
      12: 13
 
+
+References
+==========
+
+Standard library documentation: `calendar <http://docs.python.org/lib/module-calendar.html>`_

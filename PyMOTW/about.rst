@@ -34,4 +34,6 @@ Translations
 License
 =======
 
-See :ref:`copyright`.
+.. toctree::
+
+ copyright

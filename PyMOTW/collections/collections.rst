@@ -1,16 +1,18 @@
-==================
-collections
-==================
+===================================
+collections -- Container data types
+===================================
+
 .. module:: collections
     :synopsis: Container data types.
 
-:Module: collections
 :Purpose: Container data types.
 :Python Version: 2.4 and later
-:Abstract:
 
-    The collections module includes container data types beyond the builtin
-    types list and dict.
+Description
+===========
+
+The collections module includes container data types beyond the builtin
+types list and dict.
 
 Deque
 =====

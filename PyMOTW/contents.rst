@@ -7,6 +7,14 @@ Python Module of the Week
     
     about
 
+Builtin Objects
+===============
+
+.. toctree::
+    :maxdepth: 1
+    
+    exceptions/exceptions
+
 String Services
 ===============
 

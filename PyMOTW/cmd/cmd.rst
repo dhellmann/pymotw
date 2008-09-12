@@ -1,15 +1,12 @@
-==========
-cmd
-==========
+==============================================
+cmd -- Create line-oriented command processors
+==============================================
+
 .. module:: cmd
     :synopsis: Create line-oriented command processors.
 
-:Module: cmd
 :Purpose: Create line-oriented command processors.
 :Python Version: 1.4 and later, with some additions in 2.3
-:Abstract:
-
-    The cmd module contains a base class for creating command interpreters.
 
 Description
 ===========
@@ -629,3 +626,7 @@ need to be joined together before being passed in.
     hello, Interactive User
     (Cmd) 
 
+References
+==========
+
+Standard library documentation: `cmd <http://docs.python.org/lib/module-cmd.html>`_

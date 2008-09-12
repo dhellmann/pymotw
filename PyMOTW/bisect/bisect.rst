@@ -1,10 +1,10 @@
-=====================
-bisect
-=====================
+========================================
+bisect -- Maintain lists in sorted order
+========================================
+
 .. module:: bisect
     :synopsis: Maintains a list in sorted order without having to call sort each time an item is added to the list.
 
-:Module: bisect
 :Purpose: Maintains a list in sorted order without having to call sort each time an item is added to the list.
 :Python Version: 1.4
 
@@ -129,3 +129,7 @@ available. If the C version is present, that implementation overrides the pure
 Python implementation automatically when you import the bisect module.
 
 
+References
+==========
+
+Standard library documentation: `bisect <http://docs.python.org/lib/module-bisect.html>`_

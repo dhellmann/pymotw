@@ -24,7 +24,7 @@ package: setup.py html_docs website
 .PHONEY: html_docs
 html_docs:
 	mkdir -p docs
-	TEMPLATES='pkg' sphinx-build -a -b html -d sphinx/doctrees -c sphinx $(PROJECT) docs/
+	TEMPLATES='pkg' sphinx-build -b html -d sphinx/doctrees -c sphinx $(PROJECT) docs/
 
 .PHONEY: website
 website: sphinx/templates/web/base.html
@@ -56,3 +56,5 @@ setup.py: module setup.py.in
 clean:
 	rm -f MANIFEST
 	rm -rf dist
+	rm -rf docs
+

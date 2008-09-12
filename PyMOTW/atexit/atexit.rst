@@ -1,10 +1,10 @@
-=============
-atexit
-=============
+=======================================================
+atexit -- Call functions when a program is closing down
+=======================================================
+
 .. module:: atexit
     :synopsis: Register function(s) to be called when a program is closing down.
 
-:Module: atexit
 :Purpose: Register function(s) to be called when a program is closing down.
 :Python Version: 2.1.3 and later
 
@@ -230,4 +230,8 @@ In general you will probably want to handle and quietly log all exceptions in
 your cleanup functions, since it is messy to have a program dump errors on
 exit.
 
+References
+==========
+
+Standard library documentation: `atexit <http://docs.python.org/lib/module-atexit.html>`_
 
