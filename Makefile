@@ -11,6 +11,7 @@ RELEASE=$(PROJECT)-$(VERSION)
 help:
 	@echo "package        - build tarball"
 	@echo "installwebsite - copy new HTML files to website"
+	@echo "webisite       - build new HTML files for website but do not install"
 	@echo "register       - update PyPI"
 	@echo "clean          - remove build left-overs"
 	@echo "html_docs      - run sphinx"
