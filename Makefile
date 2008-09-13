@@ -14,26 +14,26 @@ help:
 	@echo "webisite       - build new HTML files for website but do not install"
 	@echo "register       - update PyPI"
 	@echo "clean          - remove build left-overs"
-	@echo "html_docs      - run sphinx to create docs to go in package"
+	@echo "html           - run sphinx to create docs to go in package"
 	@echo "blog           - run sphinx to create the blog post"
 	@echo "pdf            - run sphinx to create the PDF"
 
-package: setup.py html_docs website
+package: setup.py html website
 	rm -f MANIFEST.in
 	$(MAKE) MANIFEST.in
 	python setup.py sdist --force-manifest
 	mv dist/*.gz ~/Desktop/
 
-.PHONEY: html_docs
-html_docs:
+.PHONEY: html
+html:
 	mkdir -p docs
-	TEMPLATES='pkg' sphinx-build -b html -d sphinx/doctrees -c sphinx $(PROJECT) docs/
+	TEMPLATES='pkg' sphinx-build -b html -d sphinx/doctrees -c sphinx $(PROJECT) docs
 
 .PHONEY: pdf
 pdf:
-	mkdir -p docs/pdf
-	TEMPLATES='pkg' sphinx-build -b latex -d sphinx/doctrees -c sphinx $(PROJECT) docs/pdf
-	(cd docs/pdf; PATH=$(PATH):/Volumes/TeXLive2007/bin/i386-darwin $(MAKE))
+	mkdir -p pdf_output
+	TEMPLATES='pkg' sphinx-build -b latex -d sphinx/doctrees -c sphinx $(PROJECT) pdf_output
+	(cd pdf_output; PATH=$(PATH):/Volumes/TeXLive2007/bin/i386-darwin $(MAKE))
 
 export MODULE=$(shell cat module)
 .PHONEY: blog

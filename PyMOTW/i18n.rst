@@ -1,0 +1,10 @@
+====================
+Internationalization
+====================
+
+.. toctree::
+    :maxdepth: 1
+    
+    locale/locale
+
+
