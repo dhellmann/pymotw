@@ -16,6 +16,7 @@ help:
 	@echo "clean          - remove build left-overs"
 	@echo "html_docs      - run sphinx to create docs to go in package"
 	@echo "blog           - run sphinx to create the blog post"
+	@echo "pdf            - run sphinx to create the PDF"
 
 package: setup.py html_docs website
 	rm -f MANIFEST.in
@@ -27,6 +28,12 @@ package: setup.py html_docs website
 html_docs:
 	mkdir -p docs
 	TEMPLATES='pkg' sphinx-build -b html -d sphinx/doctrees -c sphinx $(PROJECT) docs/
+
+.PHONEY: pdf
+pdf:
+	mkdir -p docs/pdf
+	TEMPLATES='pkg' sphinx-build -b latex -d sphinx/doctrees -c sphinx $(PROJECT) docs/pdf
+	(cd docs/pdf; PATH=$(PATH):/Volumes/TeXLive2007/bin/i386-darwin $(MAKE))
 
 export MODULE=$(shell cat module)
 .PHONEY: blog

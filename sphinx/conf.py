@@ -51,3 +51,7 @@ ignore_base_names = [ 'README' ]
 for base in ignore_base_names:
     print 'IGNORING:', glob.glob('../PyMOTW/*/%s.txt' % base)
     unused_docs.extend(n[10:-4] for n in glob.glob('../PyMOTW/*/%s.txt' % base))
+
+latex_documents = [
+    ('contents', 'PyMOTW.tex', 'Python Module of the Week', 'Doug Hellmann', 'manual', True),
+    ]
