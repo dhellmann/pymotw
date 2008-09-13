@@ -33,6 +33,7 @@ export MODULE=$(shell cat module)
 blog: module
 	mkdir -p blog_posts
 	sphinx-build -b html -d blog_posts -c sphinx/blog $(PROJECT)/$(MODULE)/ blog_posts/
+	cat blog_posts/$(MODULE).html | ../bin/clean_post.py > blog_posts/index.html
 
 .PHONEY: website
 website: sphinx/templates/web/base.html
