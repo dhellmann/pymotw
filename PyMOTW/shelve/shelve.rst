@@ -1,6 +1,7 @@
-======
-shelve
-======
+##############################################################
+:mod:`shelve` - Persistent storage of arbitrary Python objects
+##############################################################
+
 .. module:: shelve
     :synopsis: The shelve module implements persistent storage for arbitrary Python objects which can be pickled, using a dictionary-like API.
 
@@ -8,14 +9,12 @@ shelve
 :Purpose: The shelve module implements persistent storage for arbitrary Python objects which can be pickled, using a dictionary-like API.
 :Python Version: 1.4
 
-Description
-===========
-
 The shelve module can be used as a simple persistent storage option for Python
 objects when a relational database is overkill. The shelf is accessed by keys,
 just as with a dictionary. The values are pickled and written to a database
-created and managed by anydbm.
+created and managed by :mod:`anydbm`.
 
+====================
 Creating a new Shelf
 ====================
 
@@ -71,6 +70,7 @@ If your program tries to modify the database while it is opened read-only, an
 access error exception is generated. The exception type depends on the
 database module selected by anydbm when the database was created.
 
+==========
 Write-back
 ==========
 
@@ -143,6 +143,7 @@ than it writes, writeback will add more overhead than you might want.
     {'int': 10, 'new_value': 'this was not here before', 'float': 9.5, 'string': 'Sample data'}
 
 
+====================
 Specific Shelf Types
 ====================
 
@@ -153,4 +154,14 @@ store the data. There are times, however, when you do care. In those
 situations, you may want to use DbfilenameShelf or BsdDbShelf directly, or
 even subclass Shelf for a custom solution.
 
+==========
+References
+==========
 
+See also :mod:`anydbm`
+
+Standard library documentation: `shelve <http://docs.python.org/lib/module-shelve.html>`_
+
+`feedcache <http://www.doughellmann.com/projects/feedcache/>` uses shelve as a default storage option.
+
+`shove <http://pypi.python.org/pypi/shove/>` implements a similar API with more backend formats.
