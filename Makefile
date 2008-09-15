@@ -8,8 +8,6 @@ VERSION=$(shell basename $(SVNHOME))
 export VERSION
 RELEASE=$(PROJECT)-$(VERSION)
 
-export PATH=$(PATH):../../bin:../bin
-
 help:
 	@echo "package        - build tarball"
 	@echo "installwebsite - copy new HTML files to website"
@@ -42,7 +40,7 @@ export MODULE=$(shell cat module)
 blog: module
 	mkdir -p blog_posts
 	sphinx-build -b html -d blog_posts -c sphinx/blog $(PROJECT)/$(MODULE)/ blog_posts/
-	cat blog_posts/$(MODULE).html | clean_post.py > blog_posts/index.html
+	PATH=$(PATH):../../bin:../bin cat blog_posts/$(MODULE).html | clean_post.py | mate
 
 .PHONEY: website
 website: sphinx/templates/web/base.html
