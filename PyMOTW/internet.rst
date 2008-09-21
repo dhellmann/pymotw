@@ -5,12 +5,13 @@ Internet Protocols and Support
 .. toctree::
     :maxdepth: 1
     
-    urllib/urllib
-    urlparse/urlparse
-    SocketServer/SocketServer
-    BaseHTTPServer/BaseHTTPServer
-    Cookie/Cookie
-    xmlrpclib/xmlrpclib
-    SimpleXMLRPCServer/SimpleXMLRPCServer
+    BaseHTTPServer/index
+    Cookie/index
+    imaplib/index
+    SimpleXMLRPCServer/index
+    SocketServer/index
+    urllib/index
+    urlparse/index
+    xmlrpclib/index
 
 

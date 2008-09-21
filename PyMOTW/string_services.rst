@@ -5,7 +5,7 @@ String Services
 .. toctree::
     :maxdepth: 1
     
-    string/string
-    difflib/difflib
-    StringIO/StringIO
-    textwrap/textwrap
+    string/index
+    difflib/index
+    StringIO/index
+    textwrap/index

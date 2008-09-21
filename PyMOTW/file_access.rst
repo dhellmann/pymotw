@@ -5,12 +5,12 @@ File and Directory Access
 .. toctree::
     :maxdepth: 1
     
-    ospath/os.path
-    fileinput/fileinput
-    filecmp/filecmp
-    tempfile/tempfile
-    glob/glob
-    fnmatch/fnmatch
-    linecache/linecache
-    shutil/shutil
-    dircache/dircache
+    ospath/index
+    fileinput/index
+    filecmp/index
+    tempfile/index
+    glob/index
+    fnmatch/index
+    linecache/index
+    shutil/index
+    dircache/index

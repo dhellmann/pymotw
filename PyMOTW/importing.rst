@@ -5,7 +5,7 @@ Importing Modules
 .. toctree::
     :maxdepth: 1
 
-    imp/imp
-    pkgutil/pkgutil
-    zipimport/zipimport
+    imp/index
+    pkgutil/index
+    zipimport/index
 

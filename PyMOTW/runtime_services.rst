@@ -5,10 +5,8 @@ Python Runtime Services
 .. toctree::
     :maxdepth: 1
 
-    warnings/warnings
-    contextlib/contextlib
-    atexit/atexit
-    traceback/traceback
-    inspect/inspect
-
-
+    atexit/index
+    contextlib/index
+    inspect/index
+    traceback/index
+    warnings/index
