@@ -1,5 +1,5 @@
 #####################################
-:mod:`imaplib` - IMAP4 client library
+imaplib - IMAP4 client library
 #####################################
 
 .. module:: imaplib

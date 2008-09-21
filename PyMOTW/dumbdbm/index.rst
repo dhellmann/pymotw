@@ -1,5 +1,5 @@
 #############################################
-:mod:`dumbdbm` - Portable DBM Implementation
+dumbdbm -- Portable DBM Implementation
 #############################################
 
 .. module:: dumbdbm

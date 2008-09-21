@@ -1,5 +1,5 @@
 #############################################
-:mod:`dbm` - Simple database interface
+dbm -- Simple database interface
 #############################################
 
 .. module:: dbm

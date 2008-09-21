@@ -1,5 +1,5 @@
 ##########################################################
-:mod:`dbhash` - DBM-style API for the BSD database library
+dbhash -- DBM-style API for the BSD database library
 ##########################################################
 
 .. module:: dbhash

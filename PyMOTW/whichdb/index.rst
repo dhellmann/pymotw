@@ -1,5 +1,5 @@
 ####################################################
-:mod:`whichdb` - Identify DBM-style database formats
+whichdb -- Identify DBM-style database formats
 ####################################################
 
 .. module:: whichdb

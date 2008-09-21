@@ -1,5 +1,5 @@
 #############################################
-:mod:`anydbm` - Access to DBM-style databases
+anydbm -- Access to DBM-style databases
 #############################################
 
 .. module:: anydbm

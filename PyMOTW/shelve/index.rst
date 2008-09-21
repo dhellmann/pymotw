@@ -1,5 +1,5 @@
 ##############################################################
-:mod:`shelve` - Persistent storage of arbitrary Python objects
+shelve -- Persistent storage of arbitrary Python objects
 ##############################################################
 
 .. module:: shelve

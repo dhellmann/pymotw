@@ -1,5 +1,5 @@
 ##############################################
-:mod:`gdbm` - GNU's version of the dbm library
+gdbm -- GNU's version of the dbm library
 ##############################################
 
 .. module:: gdbm
