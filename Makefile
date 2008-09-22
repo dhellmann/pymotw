@@ -18,11 +18,16 @@ help:
 	@echo "blog           - run sphinx to create the blog post"
 	@echo "pdf            - run sphinx to create the PDF"
 
-package: setup.py html website
-	rm -f MANIFEST.in
+package: setup.py cleanhtml html
+	rm -f MANIFEST MANIFEST.in
 	$(MAKE) MANIFEST.in
 	python setup.py sdist --force-manifest
 	mv dist/*.gz ~/Desktop/
+
+.PHONY: cleanhtml
+cleanhtml:
+	rm -rf docs/*
+	rm -rf sphinx/doctrees/*
 
 .PHONEY: html
 html:
@@ -50,8 +55,13 @@ website: sphinx/templates/web/base.html
 sphinx/templates/web/base.html: $(HOME)/Devel/personal/doughellmann/templates/base.html
 	cp $< $@
 
+.PHONEY: cleanwebsite
+cleanwebsite:
+	rm -rf web/*
+
+
 .PHONEY: installwebsite
-installwebsite: website
+installwebsite: cleanwebsite website
 	scp -r web/* homer:/var/www/doughellmann/DocumentRoot/PyMOTW/
 	
 MANIFESTS=MANIFEST.in.in $(wildcard PyMOTW/*/MANIFEST.in)
