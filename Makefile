@@ -18,7 +18,9 @@ help:
 	@echo "blog           - run sphinx to create the blog post"
 	@echo "pdf            - run sphinx to create the PDF"
 
-package: setup.py cleanhtml html
+package: cleanhtml html
+	rm -f setup.py
+	$(MAKE) setup.py
 	rm -f MANIFEST MANIFEST.in
 	$(MAKE) MANIFEST.in
 	python setup.py sdist --force-manifest
