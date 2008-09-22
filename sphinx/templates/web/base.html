@@ -81,6 +81,13 @@
   <p>Welcome to Leaves, a static, 3 column layout made with your usual CSS and XHTML. It is able to correctly accommodate any font size increases or shrinkages (Is that a word?). It seems to work fine in Firefox, Opera, Internet Explorer and Safari. It's more minimal than other designs, because I think images (drop shadows, giant header images) are being obsessively over used these days. I think it detracts from the content and shoves way too much information to a viewer all at the same time, so here you go: Leaves, a minimalist design. Feel free to massacre or change the design to your liking. Well, I guess it's time for some more Latin. <strong>If you want me to create a custom design for you, feel free to drop me a line anytime at web@smallpark.org </strong></p>
 
 {% endblock %}
+
+{% block comments %}
+<!-- Disqus -->
+<div id="disqus_wrapper">
+<div id="disqus_thread"></div><script type="text/javascript" src="http://disqus.com/forums/doughellmann/embed.js"></script><noscript><a href="http://doughellmann.disqus.com/?url=ref">View the discussion thread.</a></noscript><a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+{% endblock %}
 </div>
 
 <div id="footer_ads">
@@ -123,6 +130,23 @@
 </div>
 
 </div>
+
+<!-- Disqus -->
+<script type="text/javascript">
+//<![CDATA[
+(function() {
+		var links = document.getElementsByTagName('a');
+		var query = '?';
+		for(var i = 0; i < links.length; i++) {
+			if(links[i].href.indexOf('#disqus_thread') >= 0) {
+				query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+			}
+		}
+		document.write('<script type="text/javascript" src="http://disqus.com/forums/doughellmann/get_num_replies.js' + query + '"></' + 'script>');
+	})();
+//]]>
+</script>
+
 
 </body>
 </html>
