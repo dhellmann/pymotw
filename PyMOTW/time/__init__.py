@@ -7,5 +7,3 @@
 """
 
 __version__ = "$Id$"
-
-import 

@@ -2,9 +2,8 @@
 # $Id$
 #
 
-SVNHOME=$(shell svn info | grep "^URL" | cut -f2- -d:)
 PROJECT=PyMOTW
-VERSION=$(shell basename $(SVNHOME))
+VERSION=$(shell basename $(PWD))
 export VERSION
 RELEASE=$(PROJECT)-$(VERSION)
 
@@ -17,19 +16,18 @@ help:
 	@echo "html           - run sphinx to create docs to go in package"
 	@echo "blog           - run sphinx to create the blog post"
 	@echo "pdf            - run sphinx to create the PDF"
+	@echo
+	@echo PROJECT=$(PROJECT)
+	@echo VERSION=$(VERSION)
+	@echo RELEASE=$(RELEASE)
 
-package: cleanhtml html
+package: clean html
 	rm -f setup.py
 	$(MAKE) setup.py
 	rm -f MANIFEST MANIFEST.in
 	$(MAKE) MANIFEST.in
 	python setup.py sdist --force-manifest
 	mv dist/*.gz ~/Desktop/
-
-.PHONY: cleanhtml
-cleanhtml:
-	rm -rf docs/*
-	rm -rf sphinx/doctrees/*
 
 .PHONEY: html
 html:
@@ -85,4 +83,5 @@ clean:
 	rm -f MANIFEST
 	rm -rf dist
 	rm -rf docs
-
+	rm -rf sphinx/doctrees/*
+	rm -rf web/*
