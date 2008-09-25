@@ -1,15 +1,12 @@
-===============
-dircache
-===============
+====================================
+dircache -- Cache directory listings
+====================================
+
 .. module:: dircache
     :synopsis: Cache directory listings, updating when the modification time of a directory changes.
 
-:Module: dircache
 :Purpose: Cache directory listings, updating when the modification time of a directory changes.
 :Python Version: 1.4 and later
-:Abstract:
-
-    The dircache module includes a function for caching directory listings.
 
 Listing Directory Contents
 ==========================
@@ -19,17 +16,9 @@ os.listdir() that caches the results and returns the same list each time it is
 called with the a path unless the modification date of the named directory
 changes.
 
-::
-
-    import dircache
-
-    path = '.'
-    first = dircache.listdir(path)
-    second = dircache.listdir(path)
-
-    print 'Contents :', first
-    print 'Identical:', first is second
-    print 'Equal    :', first == second
+.. include:: dircache_listdir.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 It is important to recognize that the exact same list is returned each time,
 so it should not be modified in place.
@@ -44,29 +33,9 @@ so it should not be modified in place.
 
 Of course, if the contents of the directory changes it is rescanned.
 
-::
-
-    import dircache
-    import os
-
-    path = '/tmp'
-    file_to_create = os.path.join(path, 'pymotw_tmp.txt')
-
-    # Look at the directory contents
-    first = dircache.listdir(path)
-
-    # Create the new file
-    open(file_to_create, 'wt').close()
-
-    # Rescan the directory
-    second = dircache.listdir(path)
-
-    # Remove the file we created
-    os.unlink(file_to_create)
-
-    print 'Identical :', first is second
-    print 'Equal     :', first == second
-    print 'Difference:', list(set(second) - set(first))
+.. include:: dircache_listdir_file_added.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 In this case the new file causes a new list to be constructed.
 
@@ -80,18 +49,9 @@ In this case the new file causes a new list to be constructed.
 It is also possible to reset the entire cache, discarding its contents so that
 each path will be rechecked.
 
-::
-
-    import dircache
-
-    path = '/tmp'
-    first = dircache.listdir(path)
-    dircache.reset()
-    second = dircache.listdir(path)
-
-    print 'Identical :', first is second
-    print 'Equal     :', first == second
-    print 'Difference:', list(set(second) - set(first))
+.. include:: dircache_reset.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -110,25 +70,9 @@ adding a '/' to the end of the names that represent directories. (Sorry
 Windows users, although it uses os.path.join() to construct names to test, it
 always appends a '/', not os.sep.)
 
-::
-
-    import dircache
-    from pprint import pprint
-
-    path = '../../trunk'
-
-    contents = dircache.listdir(path)
-
-    annotated = contents[:]
-    dircache.annotate(path, annotated)
-
-    fmt = '%20s\t%20s'
-
-    print fmt % ('ORIGINAL', 'ANNOTATED')
-    print fmt % (('-' * 20,)*2)
-
-    for o, a in zip(contents, annotated):
-        print fmt % (o, a)
+.. include:: dircache_annotate.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -149,4 +93,8 @@ always appends a '/', not os.sep.)
           static_content         static_content/
            template.html           template.html
 
+References
+==========
+
+Standard library documentation: `dircache <http://docs.python.org/lib/module-dircache.html>`_
 

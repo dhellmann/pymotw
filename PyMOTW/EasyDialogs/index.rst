@@ -1,18 +1,12 @@
-==================
-EasyDialogs
-==================
+==========================================
+EasyDialogs -- Carbon dialogs for Mac OS X
+==========================================
+
 .. module:: EasyDialogs
     :synopsis: Provides simple interfaces to Carbon dialogs from Python.
 
-:Module: EasyDialogs
 :Purpose: Provides simple interfaces to Carbon dialogs from Python.
 :Python Version: At least 2.0, Macintosh-only (see References below for a Windows implementation)
-:Abstract:
-
-    Use EasyDialogs to include Mac OS-native dialogs in your Python scripts.
-
-Description
-===========
 
 The EasyDialogs module includes classes and functions for working with simple
 message and prompt dialogs, as well as stock dialogs for querying the user for
@@ -26,21 +20,17 @@ Messages
 A simple Message function displays modal dialog containing a text message for
 the user.
 
-::
-
-    import EasyDialogs
-
-    EasyDialogs.Message('This is a Message dialog')
+.. include:: EasyDialogs_Message.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 .. image:: MessageDialog.png
 
 It is easy to change the label of the "OK" button using the ok argument.
 
-::
-
-    import EasyDialogs
-
-    EasyDialogs.Message('The button label has changed', ok='Continue')
+.. include:: EasyDialogs_Message_ok.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 .. image:: MessageDialog_continue.png
 
@@ -58,28 +48,9 @@ In determinate mode, set the maxval argument to the number of steps, amount of
 data to download, etc. Then use the incr() method to step the progress from 0
 to maxval.
 
-::
-
-    import EasyDialogs
-    import time
-
-    meter = EasyDialogs.ProgressBar('Making progress...',
-                                    maxval=10,
-                                    label='Starting',
-                                    )
-    for i in xrange(1, 11):
-        phase = 'Phase %d' % i
-        print phase
-        meter.label(phase)
-        meter.inc()
-        time.sleep(1)
-    print 'Done with loop'
-    time.sleep(1)
-
-    del meter
-    print 'The dialog should be gone now'
-
-    time.sleep(1)
+.. include:: EasyDialogs_ProgressBar.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 .. image:: ProgressBar_partial.png
 
@@ -111,20 +82,10 @@ screen.
 If you are measuring progress in uneven steps, you can use set() to change the
 progress meter instead of incr().
 
-::
+.. include:: EasyDialogs_ProgressBar_set.py
+    :literal:
+    :start-after: #end_pymotw_header
 
-    import EasyDialogs
-    import time
-
-    meter = EasyDialogs.ProgressBar('Making progress...',
-                                    maxval=1000,
-                                    label='Starting',
-                                    )
-    for i in xrange(1, 1001, 123):
-        msg = 'Bytes: %d' % i
-        meter.label(msg)
-        meter.set(i)
-        time.sleep(1)
 
 .. image:: ProgressBar_set_partial.png
 
@@ -134,12 +95,9 @@ Simple Prompts
 EasyDialogs also lets you ask the user for information. Use AskString to
 display a modal dialog to prompt the user for a simple string.
 
-::
-
-    import EasyDialogs
-
-    response = EasyDialogs.AskString('What is your favorite color?', default='blue')
-    print 'RESPONSE:', response
+.. include:: EasyDialogs_AskString.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 .. image:: AskString.png
 
@@ -162,15 +120,9 @@ or None if they press the Cancel button.
 The string response has a length limit of 254 characters. If the value entered
 is longer than that, it is truncated.
 
-::
-
-    import EasyDialogs
-    import string
-
-    default = string.ascii_letters * 10
-    print 'len(default)=', len(default)
-    response = EasyDialogs.AskString('Enter a long string', default=default)
-    print 'len(response)=', len(response)
+.. include:: EasyDialogs_AskString_too_long.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 .. image:: AskString_too_long.png
 
@@ -187,12 +139,9 @@ Passwords
 Use AskPassword to prompt the user for secret values that should not be echoed
 back to the screen in clear-text.
 
-::
-
-    import EasyDialogs
-
-    response = EasyDialogs.AskPassword('Password:', default='s3cr3t')
-    print 'Shh!:', response
+.. include:: EasyDialogs_AskPassword.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 .. image:: AskPassword.png
 
@@ -210,18 +159,9 @@ There are special functions for requesting file or directory names. These use
 the native file selector dialogs, so the user does not have to type in the
 paths. For example, to ask the user which file to open, use AskFileForOpen.
 
-::
-
-    import EasyDialogs
-    import os
-
-    filename = EasyDialogs.AskFileForOpen(
-        message='Select a Python source file',
-        defaultLocation=os.getcwd(),
-        wanted=unicode,
-        )
-
-    print 'Selected:', filename
+.. include:: EasyDialogs_AskFileForOpen.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 The wanted=unicode argument tells AskFileForOpen to return the name of the
 file as a unicode string. The other possible return types include ASCII
@@ -246,18 +186,9 @@ guide for more details.
 To prompt the user to provide a new filename when saving a file, use
 AskFileForSave. 
 
-::
-
-    import EasyDialogs
-    import os
-
-    filename = EasyDialogs.AskFileForSave(
-        message='Name the destination',
-        defaultLocation=os.getcwd(),
-        wanted=unicode,
-        )
-
-    print 'Selected:', filename
+.. include:: EasyDialogs_AskFileForSave.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 .. image:: AskFileForSave.png
 
@@ -269,18 +200,9 @@ AskFileForSave.
 If you need the user to select a directory, existing or new, use AskFolder.
 The dialog includes a button to let them create a new folder.
 
-::
-
-    import EasyDialogs
-    import os
-
-    filename = EasyDialogs.AskFolder(
-        message='Name the destination',
-        defaultLocation=os.getcwd(),
-        wanted=unicode,
-        )
-
-    print 'Selected:', filename
+.. include:: EasyDialogs_AskFolder.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 .. image:: AskFolder.png
 
@@ -301,36 +223,9 @@ the user does not specify arguments on the command line.
 Let's look at an example that builds a command using the options supported by
 the Python interpreter.
 
-::
-
-    import EasyDialogs
-
-    arguments = EasyDialogs.GetArgv([ 
-            ('c=', 'program passed in as string (terminates option list)'),
-            ('d', 'Debug'),
-            ('E', 'Ignore environment variables'),
-            ('i', 'Inspect interactively after running'),
-            ('m=', 'run library module as a script (terminates option list)'),
-            ('O', 'Optimize generated bytecode'),
-            ('Q=', 'division options: -Qold (default), -Qwarn, -Qwarnall, -Qnew'),
-            ('S', "don't imply 'import site' on initialization"),
-            ('t', 'issue warnings about inconsistent tab usage'),
-            ('tt', 'issue errors about inconsistent tab usage'),
-            ('u', 'unbuffered binary stdout and stderr'),
-            ('v', 'verbose (trace import statements)'),
-            ('V', 'print the Python version number and exit'),
-            ('W=', 'warning control  (arg is action:message:category:module:lineno)'),
-            ('x', 'skip first line of source, allowing use of non-Unix forms of #!cmd'),
-            ],
-            commandlist=[('python', 'Default Interpreter'),
-                         ('python2.5', 'Python 2.5'),
-                         ('pyhton2.4', 'Python 2.4'),
-                         ],
-            addoldfile=True,
-            addnewfile=False,
-            addfolder=False,
-            )
-    print arguments
+.. include:: EasyDialogs_GetArgv.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 .. image:: GetArgv_1.png
 
@@ -372,4 +267,15 @@ like sys.argv.
     $ python EasyDialogs_GetArgv.py
     ['python', '-d', '-v', '/Users/dhellmann/Documents/PyMOTW/in_progress/EasyDialogs/EasyDialogs_GetArgv.py']
 
+References
+==========
 
+`Navigation Services Reference <http://developer.apple.com/documentation/Carbon/Reference/Navigation_Services_Ref/Reference/reference.html>`_
+
+`EasyDialogs for Windows <http://www.averdevelopment.com/python/EasyDialogs.html>`_
+
+`optparse-gui <http://code.google.com/p/optparse-gui/>`_
+
+`EasyGui <http://www.ferg.org/easygui/>`_
+
+Standard library documentation: `EasyDialogs <http://docs.python.org/lib/module-EasyDialogs.html>`_
