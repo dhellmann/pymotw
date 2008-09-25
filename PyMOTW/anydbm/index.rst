@@ -1,6 +1,6 @@
-#############################################
+=======================================
 anydbm -- Access to DBM-style databases
-#############################################
+=======================================
 
 .. module:: anydbm
     :synopsis: anydbm provides a generic dictionary-like interface to DBM-style, string-keyed databases
@@ -10,7 +10,6 @@ anydbm -- Access to DBM-style databases
 
 anydbm is a front-end for DBM-style databases that use simple string values as keys to access records containing strings.  It uses the :mod:`whichdb` module to identify :mod:`dbhash`, :mod:`gdbm`, and :mod:`dbm` databases, then opens them with the appropriate module.  It is used as a backend for :mod:`shelve`, which knows how to store objects using :mod:`pickle`.
 
-=======================
 Creating a New Database
 =======================
 
@@ -40,7 +39,6 @@ Your results may vary, depending on what modules are installed on your system.
     $ python anydbm_whichdb.py
     dbhash
 
-============================
 Opening an Existing Database
 ============================
 
@@ -61,7 +59,6 @@ Once open, ``db`` is a dictionary-like object, with support for the usual method
     iterating: author Doug
     db["author"] = Doug
 
-===========
 Error Cases
 ===========
 

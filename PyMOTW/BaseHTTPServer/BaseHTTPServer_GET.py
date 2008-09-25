@@ -28,6 +28,7 @@
 """
 
 __version__ = "$Id$"
+#end_pymotw_header
 
 from BaseHTTPServer import BaseHTTPRequestHandler
 import urlparse
