@@ -1,31 +1,32 @@
-==============
-filecmp
-==============
+========================
+filecmp -- Compare files
+========================
+
 .. module:: filecmp
     :synopsis: Compare files and directories on the filesystem.
 
-:Module: filecmp
 :Purpose: Compare files and directories on the filesystem.
 :Python Version: 2.1 and later
-:Abstract:
-
-    Compare files and directories easily with the filecmp module.
 
 Example Data
 ============
 
-The examples in the discussion below use these test files:
+The examples in the discussion below use a set of test files created by ``filecmp_mkexamples.py``.
+
+.. include:: filecmp_mkexamples.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
-    $ ls -Rlast example/
+    $ ls -Rlast example
     total 0
     0 drwxr-xr-x  4 dhellmann  dhellmann  136 Apr 20 17:04 .
     0 drwxr-xr-x  9 dhellmann  dhellmann  306 Apr 20 17:04 ..
     0 drwxr-xr-x  8 dhellmann  dhellmann  272 Apr 20 17:04 dir1
     0 drwxr-xr-x  8 dhellmann  dhellmann  272 Apr 20 17:04 dir2
 
-    example//dir1:
+    example/dir1:
     total 32
     0 drwxr-xr-x  8 dhellmann  dhellmann  272 Apr 20 17:04 .
     0 drwxr-xr-x  4 dhellmann  dhellmann  136 Apr 20 17:04 ..
@@ -36,7 +37,7 @@ The examples in the discussion below use these test files:
     8 -rw-r--r--  1 dhellmann  dhellmann   22 Apr 20 17:04 file_only_in_dir1
     8 -rw-r--r--  1 dhellmann  dhellmann   17 Apr 20 17:04 not_the_same
 
-    example//dir2:
+    example/dir2:
     total 24
     0 drwxr-xr-x  8 dhellmann  dhellmann  272 Apr 20 17:04 .
     0 drwxr-xr-x  4 dhellmann  dhellmann  136 Apr 20 17:04 ..
@@ -57,31 +58,9 @@ The filecmp module includes functions and a class for comparing files and
 directories on the filesystem. If you need to compare two files, use the cmp()
 function.
 
-::
-
-    import filecmp
-
-    print 'common_file:', 
-    print filecmp.cmp('example/dir1/common_file', 
-                      'example/dir2/common_file'),
-    print filecmp.cmp('example/dir1/common_file', 
-                      'example/dir2/common_file',
-                      shallow=False)
-
-    print 'not_the_same:', 
-    print filecmp.cmp('example/dir1/not_the_same', 
-                      'example/dir2/not_the_same'),
-    print filecmp.cmp('example/dir1/not_the_same', 
-                      'example/dir2/not_the_same',
-                      shallow=False)
-
-    print 'identical:',
-    print filecmp.cmp('example/dir1/file_only_in_dir1', 
-                      'example/dir1/file_only_in_dir1'),
-    print filecmp.cmp('example/dir1/file_only_in_dir1', 
-                      'example/dir1/file_only_in_dir1',
-                      shallow=False)
-
+.. include:: filecmp_cmp.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 By default, cmp() looks only at the information available from os.stat(). The
 shallow argument tells cmp() whether to look at the contents of the file, as
@@ -106,29 +85,9 @@ the files must be present in both locations. The code below shows a simple way
 to build the common list. If you have a shorter formula, post it in the
 comments. The comparison also takes the shallow flag, just as with cmp().
 
-::
-
-    import filecmp
-    import os
-
-    # Determine the items that exist in both directories
-    d1_contents = set(os.listdir('example/dir1'))
-    d2_contents = set(os.listdir('example/dir2'))
-    common = list(d1_contents & d2_contents)
-    common_files = [ f 
-                    for f in common 
-                    if os.path.isfile(os.path.join('example/dir1', f))
-                    ]
-    print 'Common files:', common_files
-
-    # Compare the directories
-    match, mismatch, errors = filecmp.cmpfiles('example/dir1', 
-                                               'example/dir2', 
-                                               common_files)
-    print 'Match:', match
-    print 'Mismatch:', mismatch
-    print 'Errors:', errors
-
+.. include:: filecmp_cmpfiles.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 cmpfiles() returns three lists of filenames for files that match, files that
 do not match, and files that could not be compared (due to permission problems
@@ -151,11 +110,9 @@ but for recursive comparison of large directory trees or for more complete
 analysis, the dircmp class is more useful. In its simplest use case, you can
 print a report comparing two directories with the report() method:
 
-::
-
-    import filecmp
-
-    filecmp.dircmp('example/dir1', 'example/dir2').report()
+.. include:: filecmp_dircmp_report.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 The output is a plain-text report showing the results of just the contents of
 the directories given, without recursing. In this case, the file
@@ -175,11 +132,9 @@ of files like cmp() can.
 
 For more detail, and a recursive comparison, use report_full_closure():
 
-::
-
-    import filecmp
-
-    filecmp.dircmp('example/dir1', 'example/dir2').report_full_closure()
+.. include:: filecmp_dircmp_report_full_closure.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 The output includes comparisons of all parallel subdirectories.
 
@@ -226,14 +181,9 @@ of extra overhead.
 The files and subdirectories contained in the directories being compared are
 listed in left_list and right_list:
 
-::
-
-    import filecmp
-
-    dc = filecmp.dircmp('example/dir1', 'example/dir2')
-    print 'Left :', dc.left_list
-    print 'Right:', dc.right_list
-
+.. include:: filecmp_dircmp_list.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -244,13 +194,9 @@ listed in left_list and right_list:
 The inputs can be filtered by passing a list of names to ignore to the
 constructor. By default the names RCS, CVS, and tags are ignored.
 
-::
-
-    import filecmp
-
-    dc = filecmp.dircmp('example/dir1', 'example/dir2', ignore=['common_file'])
-    print 'Left :', dc.left_list
-    print 'Right:', dc.right_list
+.. include:: filecmp_dircmp_list_filter.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 In this case, the "common_file" is left out of the list of files to be
 compared.
@@ -264,15 +210,9 @@ compared.
 The set of files common to both input directories is maintained in common, and
 the files unique to each directory are listed in left_only, and right_only.
 
-::
-
-    import filecmp
-
-    dc = filecmp.dircmp('example/dir1', 'example/dir2')
-    print 'Common:', dc.common
-    print 'Left  :', dc.left_only
-    print 'Right :', dc.right_only
-
+.. include:: filecmp_dircmp_membership.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -285,16 +225,9 @@ The common members can be further broken down into files, directories and
 "funny" items (anything that has a different type in the two directories or
 where there is an error from os.stat()).
 
-::
-
-    import filecmp
-
-    dc = filecmp.dircmp('example/dir1', 'example/dir2')
-    print 'Common     :', dc.common
-    print 'Directories:', dc.common_dirs
-    print 'Files      :', dc.common_files
-    print 'Funny      :', dc.common_funny
-
+.. include:: filecmp_dircmp_common.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 In the example data, the item named "file_in_dir1" is a file in one directory
 and a subdirectory in the other, so it shows up in the "funny" list.
@@ -309,24 +242,16 @@ and a subdirectory in the other, so it shows up in the "funny" list.
 
 The differences between files are broken down similarly:
 
-::
-
-    import filecmp
-
-    dc = filecmp.dircmp('example/dir1', 'example/dir2')
-    print 'Same      :', dc.same_files
-    print 'Different :', dc.diff_files
-    print 'Funny     :', dc.funny_files
+.. include:: filecmp_dircmp_diff.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 Remember, the file "not_the_same" is only being compared via os.stat, and the
 contents are not examined.
 
-::
-
-    $ python filecmp_dircmp_diff.py
-    Same      : ['not_the_same', 'common_file']
-    Different : []
-    Funny     : []
+.. include:: filecmp_dircmp_subdirs.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 Finally, the subdirectories are also mapped to new dircmp objects in the
 attribute subdirs to allow easy recursive comparison.
@@ -345,4 +270,8 @@ attribute subdirs to allow easy recursive comparison.
     Subdirectories:
     {'common_dir': <filecmp.dircmp instance at 0x85da0>}
 
+References
+==========
+
+Standard library documentation: `filecmp <http://docs.python.org/lib/module-filecmp.html>`_
 
