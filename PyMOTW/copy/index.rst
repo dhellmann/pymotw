@@ -165,4 +165,3 @@ References
 ==========
 
 Standard library documentation: `copy <http://docs.python.org/lib/module-copy.html>`_
-
