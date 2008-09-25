@@ -8,9 +8,6 @@ collections -- Container data types
 :Purpose: Container data types.
 :Python Version: 2.4 and later
 
-Description
-===========
-
 The collections module includes container data types beyond the builtin
 types list and dict.
 
@@ -26,18 +23,9 @@ operations that lists support, such as examining the contents with
 __getitem__(), determining length, and removing elements from the middle by
 matching identity.
 
-::
-
-    import collections
-
-    d = collections.deque('abcdefg')
-    print 'Deque:', d
-    print 'Length:', len(d)
-    print 'Left end:', d[0]
-    print 'Right end:', d[-1]
-
-    d.remove('c')
-    print 'remove(c):', d
+.. include:: collections_deque.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -52,23 +40,9 @@ matching identity.
 A deque can be populated from either end, termed "left" and "right" in the
 Python implementation.
 
-::
-
-    import collections
-
-    # Add to the right
-    d = collections.deque()
-    d.extend('abcdefg')
-    print 'extend    :', d
-    d.append('h')
-    print 'append    :', d
-
-    # Add to the left
-    d = collections.deque()
-    d.extendleft('abcdefg')
-    print 'extendleft:', d
-    d.appendleft('h')
-    print 'appendleft:', d
+.. include:: collections_deque_populating.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 Notice that extendleft() iterates over its input and performs the equivalent
 of an appendleft() for each item. The end result is the deque contains the
@@ -85,25 +59,9 @@ input sequence in reverse order.
 Similarly, the elements of the deque can be consumed from both or either end,
 depending on the algorithm you're applying.
 
-::
-
-    import collections
-
-    print 'From the right:'
-    d = collections.deque('abcdefg')
-    while True:
-        try:
-            print d.pop()
-        except IndexError:
-            break
-
-    print 'From the left:'
-    d = collections.deque('abcdefg')
-    while True:
-        try:
-            print d.popleft()
-        except IndexError:
-            break
+.. include:: collections_deque_consuming.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -129,34 +87,9 @@ depending on the algorithm you're applying.
 Since deques are thread-safe, you can even consume the contents from both ends
 at the same time in separate threads.
 
-::
-
-    import collections
-    import threading
-    import time
-
-    candle = collections.deque(xrange(11))
-
-    def burn(direction, nextSource):
-        while True:
-            try:
-                next = nextSource()
-            except IndexError:
-                break
-            else:
-                print '%8s: %s' % (direction, next)
-                time.sleep(0.1)
-        print '%8s done' % direction
-        return
-
-    left = threading.Thread(target=burn, args=('Left', candle.popleft))
-    right = threading.Thread(target=burn, args=('Right', candle.pop))
-
-    left.start()
-    right.start()
-
-    left.join()
-    right.join()
+.. include:: collections_deque_both_ends.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -179,20 +112,9 @@ at the same time in separate threads.
 Another useful capability of the deque is to rotate it in either direction, to
 skip over some item(s).
 
-::
-
-    import collections
-
-    d = collections.deque(xrange(10))
-    print 'Normal        :', d
-
-    d = collections.deque(xrange(10))
-    d.rotate(2)
-    print 'Right rotation:', d
-
-    d = collections.deque(xrange(10))
-    d.rotate(-2)
-    print 'Left rotation :', d
+.. include:: collections_deque_rotate.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 Rotating the deque to the right (using a positive rotation) takes items from
 the right end and moves them to the left end. Rotating to the left (with a
@@ -215,17 +137,9 @@ The standard dictionary includes the method setdefault() for retrieving a
 value and establishing a default if the value does not exist. By contrast,
 defaultdict lets you specify the default up front when it is initialized.
 
-::
-
-    import collections
-
-    def default_factory():
-        return 'default value'
-
-    d = collections.defaultdict(default_factory, foo='bar')
-    print d
-    print d['foo']
-    print d['bar']
+.. include:: collections_defaultdict.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -241,4 +155,15 @@ aggregating or accumulating values, such as a list, set, or even integer. The
 standard library documentation includes several examples of using defaultdict
 this way.
 
+References
+==========
 
+`WikiPedia: Deque <http://en.wikipedia.org/wiki/Deque>`_
+
+`Deque Recipes <http://docs.python.org/lib/deque-recipes.html>`_
+
+`defaultdict examples <http://docs.python.org/lib/defaultdict-examples.html>`_
+
+`James Tauber: Evolution of Default Dictionaries in Python <http://jtauber.com/blog/2008/02/27/evolution_of_default_dictionaries_in_python/>`_
+
+Standard library documentation: `collections <http://docs.python.org/lib/module-collections.html>`_
