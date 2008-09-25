@@ -3,7 +3,7 @@
 #
 # Copyright (c) 2008 Doug Hellmann All rights reserved.
 #
-"""Creating datetime.date() instances from other types of values.
+"""
 """
 
 __version__ = "$Id$"
