@@ -30,6 +30,7 @@ This example is taken from the source for difflib.py.
 """
 
 __version__ = "$Id$"
+#end_pymotw_header
 
 from difflib import SequenceMatcher
 

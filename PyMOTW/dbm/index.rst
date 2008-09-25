@@ -1,6 +1,6 @@
-#############################################
+================================
 dbm -- Simple database interface
-#############################################
+================================
 
 .. module:: dbm
     :synopsis: Simple database interface
@@ -10,7 +10,6 @@ dbm -- Simple database interface
 
 The :mod:`dbm` module provides an interface to one of the dbm libraries, depending on how the module was configured during compilation.
 
-========
 Examples
 ========
 
@@ -29,7 +28,6 @@ Of course, your results will depend on what library ``configure`` was able to fi
 
 The ``open()`` function follows the same semantics as the :mod:`anydbm` module.
 
-==========
 References
 ==========
 

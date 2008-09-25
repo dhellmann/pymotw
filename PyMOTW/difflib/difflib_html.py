@@ -28,6 +28,7 @@
 """
 
 __version__ = "$Id$"
+#end_pymotw_header
 
 import difflib
 from difflib_data import *
