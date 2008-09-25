@@ -1,29 +1,26 @@
-=================
-contextlib
-=================
+=======================================
+contextlib -- Context manager utilities
+=======================================
+
 .. module:: contextlib
     :synopsis: Utilities for creating and working with context managers.
 
-:Module: contextlib
-:Purpose: Utilities for creating and working with context managers.
-:Python Version: 2.5
-:Abstract:
-
+:Purpose:
     The contextlib module contains utilities for working with context managers
-    and the with statement.
+    and the ``with`` statement.
+:Python Version: 2.5
 
-Description
-===========
 
-Context managers are tied to the with statement. Since with is officially part
-of Python 2.6, you have to import it from __future__ before using contextlib
-in Python 2.5.
+.. note:: 
+    Context managers are tied to the ``with`` statement. Since ``with`` is officially part
+    of Python 2.6, you have to import it from __future__ before using contextlib
+    in Python 2.5.
 
 From Generator to Context Manager
 =================================
 
 Creating context managers the traditional way, by writing a class with
-__enter__() and __exit__() methods, is not difficult. But sometimes it is more
+``__enter__()`` and ``__exit__()`` methods, is not difficult. But sometimes it is more
 overhead than you need just to manage a trivial bit of context. In those sorts
 of situations, you can use the contextmanager() decorator to convert a
 generator function into a context manager.
@@ -33,35 +30,9 @@ clean up the context. The value yielded, if any, is bound to the variable in
 the as clause of the with statement. Exceptions from within the with block are
 re-raised inside the generator, so you can handle them there.
 
-::
-
-    from __future__ import with_statement
-
-    import contextlib
-
-    @contextlib.contextmanager
-    def make_context():
-        print '  entering'
-        try:
-            yield {}
-        except RuntimeError, err:
-            print '  ERROR:', err
-        finally:
-            print '  exiting'
-
-    print 'Normal:'
-    with make_context() as value:
-        print '  inside with statement:', value
-
-    print
-    print 'Handled error:'
-    with make_context() as value:
-        raise RuntimeError('showing example of handling an error')
-
-    print
-    print 'Unhandled error:'
-    with make_context() as value:
-        raise ValueError('this exception is not handled')
+.. include:: contextlib_contextmanager.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -95,20 +66,9 @@ contexts do not need their own separate block, though, this adds to the
 indention level without giving any real benefit. By using contextlib.nested(),
 you can nest the contexts and use a single with statement.
 
-::
-
-    from __future__ import with_statement
-
-    import contextlib
-
-    @contextlib.contextmanager
-    def make_context(name):
-        print 'entering:', name
-        yield name
-        print 'exiting :', name
-
-    with contextlib.nested(make_context('A'), make_context('B'), make_context('C')) as (A, B, C):
-        print 'inside with statement:', A, B, C
+.. include:: contextlib_nested.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 Notice that the contexts are exited in the reverse order in which they are
 entered.
@@ -135,30 +95,9 @@ urllib.urlopen(), and you may have legacy classes in your own code as well. If
 you want to ensure that a handle is closed, use contextlib.closing() to create
 a context manager for it.
 
-::
-
-    from __future__ import with_statement
-
-    import contextlib
-
-    class Door(object):
-        def __init__(self):
-            print '  __init__()'
-        def close(self):
-            print '  close()'
-
-    print 'Normal Example:'
-    with contextlib.closing(Door()) as door:
-        print '  inside with statement'
-
-    print
-    print 'Error handling example:'
-    try:
-        with contextlib.closing(Door()) as door:
-            print '  raising from inside with statement'
-            raise RuntimeError('error message')
-    except Exception, err:
-        print '  Had an error:', err
+.. include:: contextlib_closing.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 The handle is closed whether there is an error in the with block or not.
 
@@ -176,3 +115,9 @@ The handle is closed whether there is an error in the with block or not.
       close()
       Had an error: error message
 
+References
+==========
+
+`PEP 0343 - The "with" statement <http://www.python.org/peps/pep-0343.html>`_
+
+Standard library documentation: `contextlib <http://docs.python.org/lib/module-contextlib.html>`_

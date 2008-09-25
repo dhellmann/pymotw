@@ -6,8 +6,7 @@
 """
 $Id$
 """
-
-
+#end_pymotw_header
 
 from __future__ import with_statement
 
