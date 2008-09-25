@@ -1,19 +1,13 @@
-===========
-copy
-===========
+=========================
+copy -- Duplicate objects
+=========================
+
 .. module:: copy
-    :synopsis: Duplicate objects.
+    :synopsis: Provides functions for duplicating objects using shallow or deep copy semantics.
 
-:Module: copy
-:Purpose: Duplicate objects.
+:Purpose: Provides functions for duplicating objects using shallow or deep copy semantics.
 :Python Version: 1.4
-:Abstract:
 
-    The copy module provides functions for duplicating objects using shallow
-    or deep copy semantics.
-
-Description
-===========
 
 The copy module includes 2 functions, copy() and deepcopy(), for duplicating
 existing objects.
@@ -25,26 +19,9 @@ The shallow copy created by copy() is a new container populated with
 references to the contents of the original object. For example, a new list is
 constructed and the elements of the original list are appended to it.
 
-::
-
-    import copy
-
-    class MyClass:
-        def __init__(self, name):
-            self.name = name
-        def __cmp__(self, other):
-            return cmp(self.name, other.name)
-
-    a = MyClass('a')
-    l = [ a ]
-    dup = copy.copy(l)
-
-    print 'l  :', l
-    print 'dup:', dup
-    print 'dup is l:', (dup is l)
-    print 'dup == l:', (dup == l)
-    print 'dup[0] is l[0]:', (dup[0] is l[0])
-    print 'dup[0] == l[0]:', (dup[0] == l[0])
+.. include:: copy_shallow.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 For a shallow copy, the MyClass instance is not duplicated so the reference in
 the dup list is to the same object that is in the l list.
@@ -105,26 +82,9 @@ __deepcopy__ hooks.
 
 This example illustrates how the methods are called:
 
-::
-
-    import copy
-
-    class MyClass:
-        def __init__(self, name):
-            self.name = name
-        def __cmp__(self, other):
-            return cmp(self.name, other.name)
-        def __copy__(self):
-            print '__copy__()'
-            return MyClass(self.name)
-        def __deepcopy__(self, memo):
-            print '__deepcopy__(%s)' % str(memo)
-            return MyClass(copy.deepcopy(self.name, memo))
-
-    a = MyClass('a')
-
-    sc = copy.copy(a)
-    dc = copy.deepcopy(a)
+.. include:: copy_hooks.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -146,24 +106,14 @@ __deepcopy__() method. This particular example is just for illustration
 purposes, since the default implementation of deepcopy() already handles the
 recursion cases correctly.
 
+.. include:: copy_recursion.py
+    :literal:
+    :start-after: #end_pymotw_header
+
 First some basic directed graph methods. A graph can be initialized with a
 name and a list of existing nodes to which it is connected. The
 addConnection() method is used to set up bi-directional connections. It is
 also used by the deepcopy operator.
-
-::
-
-    import copy
-    import pprint
-
-    class Graph:
-        def __init__(self, name, connections):
-            self.name = name
-            self.connections = connections
-        def addConnection(self, other):
-            self.connections.append(other)
-        def __repr__(self):
-            return '<Graph(%s) id=%s>' % (self.name, id(self))
 
 The __deepcopy__() method prints messages to show how it is called, and
 manages the memo dictionary contents as needed. Instead of copying the
@@ -172,37 +122,8 @@ individual connections to it. That ensures that the memo dictionary is updated
 as each new node is duplicated, and avoids recursion issues or extra copies of
 nodes. As before, it returns the copied object when it is done.
 
-::
-
-    def __deepcopy__(self, memo):
-        print
-        print repr(self)
-        not_there = []
-        existing = memo.get(self, not_there)
-        if existing is not not_there:
-            print '  ALREADY COPIED TO', repr(existing)
-            return existing
-        pprint.pprint(memo, indent=4, width=40)
-        dup = Graph(copy.deepcopy(self.name, memo), [])
-        print '  COPYING TO', repr(dup)
-        memo[self] = dup
-        for c in self.connections:
-            dup.addConnection(copy.deepcopy(c, memo))
-        return dup
-
-
 Next we can set up a graph with a nodes root, a, and b. The edges are a->root,
 b->a, b->root, root->a, root->b.
-
-::
-
-    root = Graph('root', [])
-    a = Graph('a', [root])
-    b = Graph('b', [a, root])
-    root.addConnection(a)
-    root.addConnection(b)
-
-    dup = copy.deepcopy(root)
 
 When the root node is copied, we see:
 
@@ -240,4 +161,8 @@ Notice that the second time the root node is encountered, while the a node is
 being copied, the recursion is detected and the existing copy is used instead
 of a new one.
 
+References
+==========
+
+Standard library documentation: `copy <http://docs.python.org/lib/module-copy.html>`_
 

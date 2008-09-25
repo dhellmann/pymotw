@@ -200,4 +200,3 @@ References
 `RFC 2109, HTTP State Management Mechanism <http://www.ietf.org/rfc/rfc2109.txt>`_
 
 Standard library documentation: `Cookie <http://docs.python.org/lib/module-Cookie.html>`_
-
