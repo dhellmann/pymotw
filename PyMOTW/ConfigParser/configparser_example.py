@@ -30,6 +30,7 @@ See http://blog.doughellmann.com/2007/04/pymotw-configparser.html
 """
 
 __module_id__ = "$Id$"
+#end_pymotw_header
 
 from ConfigParser import ConfigParser
 import os

@@ -1,21 +1,19 @@
-===================
-ConfigParser
-===================
+=============================================
+ConfigParser -- Work with configuration files
+=============================================
+
 .. module:: ConfigParser
     :synopsis: Read/write configuration files similar to Windows INI files
 
-:Module: ConfigParser
-:Documentation: http://docs.python.org/lib/module-ConfigParser.html
 :Purpose: Read/write configuration files similar to Windows INI files
 :Python Version: 1.5
-:Abstract:
 
-    The ConfigParser module is very useful for creating user-editable
-    configuration files for your applications. The configuration files are
-    broken up into sections, and each section can contain name-value pairs for
-    configuration data. Value interpolation using Python formatting strings
-    is also supported, to build values which depend on one another (this is
-    especially handy for paths or URLs).
+The ConfigParser module is very useful for creating user-editable
+configuration files for your applications. The configuration files are
+broken up into sections, and each section can contain name-value pairs for
+configuration data. Value interpolation using Python formatting strings
+is also supported, to build values which depend on one another (this is
+especially handy for paths or URLs).
 
 Example
 =======
@@ -53,17 +51,9 @@ were ready to be posted to the site, the tool would load the config file using
 the ConfigParser module to access the URL. That might look something like
 this:
 
-::
-
-    from ConfigParser import ConfigParser
-    import os
-
-    filename = os.path.join(os.environ['HOME'], '.approachrc')
-
-    config = ConfigParser()
-    config.read([filename])
-
-    url = config.get('portal', 'url')
+.. include:: configparser_example.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 
 In the example above, the value of the url variable is
@@ -93,4 +83,8 @@ config file format for simple data files. For example, an app which needed to
 store a very small amount of data in a database-like format might take
 advantage of ConfigParser so the files would be human-readable as well.
 
+References
+==========
+
+Standard library documentation: `ConfigParser <http://docs.python.org/lib/module-ConfigParser.html>`_
 
