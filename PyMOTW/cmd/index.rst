@@ -8,9 +8,6 @@ cmd -- Create line-oriented command processors
 :Purpose: Create line-oriented command processors.
 :Python Version: 1.4 and later, with some additions in 2.3
 
-Description
-===========
-
 The cmd module contains one public class, Cmd, designed to be used as a base
 class for command processors such as interactive shells and other command
 interpreters. By default it uses readline for interactive prompt handling,
@@ -31,21 +28,9 @@ your interpreter, make sure to implement do_EOF() and have it return True.
 
 This simple example program supports the "greet" command:
 
-::
-
-    import cmd
-
-    class HelloWorld(cmd.Cmd):
-        """Simple command processor example."""
-        
-        def do_greet(self, line):
-            print "hello"
-        
-        def do_EOF(self, line):
-            return True
-
-    if __name__ == '__main__':
-        HelloWorld().cmdloop()
+.. include:: cmd_simple.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 By running it interactively, we can demonstrate how commands are dispatched as
 well as show of some of the features included in Cmd for free.
@@ -101,29 +86,9 @@ Command Arguments
 This version of the example includes a few enhancements to eliminate some of
 the annoyances and add help for the greet command. 
 
-::
-
-    import cmd
-
-    class HelloWorld(cmd.Cmd):
-        """Simple command processor example."""
-        
-        def do_greet(self, person):
-            """greet [person]
-            Greet the named person"""
-            if person:
-                print "hi,", person
-            else:
-                print 'hi'
-        
-        def do_EOF(self, line):
-            return True
-        
-        def postloop(self):
-            print
-
-    if __name__ == '__main__':
-        HelloWorld().cmdloop()
+.. include:: cmd_arguments.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 First, let's look at the help. The docstring added to do_greet() becomes the
 help text for the command:
@@ -174,29 +139,9 @@ alternative solution is to implement a help handler for the greet command,
 named help_greet(). When present, it is called on to produce help text for the
 named command.
 
-::
-
-    import cmd
-
-    class HelloWorld(cmd.Cmd):
-        """Simple command processor example."""
-        
-        def do_greet(self, person):
-            if person:
-                print "hi,", person
-            else:
-                print 'hi'
-        
-        def help_greet(self):
-            print '\n'.join([ 'greet [person]',
-                               'Greet the named person',
-                               ])
-        
-        def do_EOF(self, line):
-            return True
-
-    if __name__ == '__main__':
-        HelloWorld().cmdloop()
+.. include:: cmd_do_help.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 In this simple example, the text is static but formatted more nicely. It would
 also be possible to use previous command state to tailor the contents of the
@@ -236,40 +181,9 @@ the filesystem, etc.). In this case, the program has a hard-coded set of
 strangers. A real program would probably save the list somewhere, and either
 read it once and cache the contents to be scanned as needed.
 
-::
-
-    import cmd
-
-    class HelloWorld(cmd.Cmd):
-        """Simple command processor example."""
-        
-        FRIENDS = [ 'Alice', 'Adam', 'Barbara', 'Bob' ]
-        
-        def do_greet(self, person):
-            "Greet the person"
-            if person and person in self.FRIENDS:
-                greeting = 'hi, %s!' % person
-            elif person:
-                greeting = "hello, " + person
-            else:
-                greeting = 'hello'
-            print greeting
-        
-        def complete_greet(self, text, line, begidx, endidx):
-            if not text:
-                completions = self.FRIENDS[:]
-            else:
-                completions = [ f
-                                for f in self.FRIENDS
-                                if f.startswith(text)
-                                ]
-            return completions
-        
-        def do_EOF(self, line):
-            return True
-
-    if __name__ == '__main__':
-        HelloWorld().cmdloop()
+.. include:: cmd_arg_completion.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 When there is input text, complete_greet() returns a list of friends that
 match. Otherwise, the full list of friends is returned.
@@ -299,58 +213,9 @@ Cmd includes several methods that can be overridden as hooks for taking
 actions or altering the base class behavior. This example is not exhaustive,
 but contains many of the methods commonly useful.
 
-::
-
-    import cmd
-
-    class Illustrate(cmd.Cmd):
-        "Illustrate the base class method use."
-        
-        def cmdloop(self, intro=None):
-            print 'cmdloop(%s)' % intro
-            return cmd.Cmd.cmdloop(self, intro)
-        
-        def preloop(self):
-            print 'preloop()'
-        
-        def postloop(self):
-            print 'postloop()'
-            
-        def parseline(self, line):
-            print 'parseline(%s) =>' % line,
-            ret = cmd.Cmd.parseline(self, line)
-            print ret
-            return ret
-        
-        def onecmd(self, s):
-            print 'onecmd(%s)' % s
-            return cmd.Cmd.onecmd(self, s)
-
-        def emptyline(self):
-            print 'emptyline()'
-            return cmd.Cmd.emptyline(self)
-        
-        def default(self, line):
-            print 'default(%s)' % line
-            return cmd.Cmd.default(self, line)
-        
-        def precmd(self, line):
-            print 'precmd(%s)' % line
-            return cmd.Cmd.precmd(self, line)
-        
-        def postcmd(self, stop, line):
-            print 'postcmd(%s, %s)' % (stop, line)
-            return cmd.Cmd.postcmd(self, stop, line)
-        
-        def do_greet(self, line):
-            print 'hello,', line
-
-        def do_EOF(self, line):
-            "Exit"
-            return True
-
-    if __name__ == '__main__':
-        Illustrate().cmdloop('Illustrating the methods of cmd.Cmd')
+.. include:: cmd_illustrate_methods.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 cmdloop() is the main processing loop of the interpreter. You can override it,
 but it is usually not necessary, since the preloop() and postloop() hooks are
@@ -404,30 +269,9 @@ attributes are used to format the output.
 This example class shows a command processor to let the user control the
 prompt for the interactive session.
 
-::
-
-    import cmd
-
-    class HelloWorld(cmd.Cmd):
-        """Simple command processor example."""
-
-        prompt = 'prompt: '
-        intro = "Simple command processor example."
-
-        doc_header = 'doc_header'
-        misc_header = 'misc_header'
-        undoc_header = 'undoc_header'
-        
-        ruler = '-'
-        
-        def do_prompt(self, line):
-            self.prompt = line + ': '
-
-        def do_EOF(self, line):
-            return True
-
-    if __name__ == '__main__':
-        HelloWorld().cmdloop()
+.. include:: cmd_attributes.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -455,32 +299,9 @@ prefixes. A question mark (?) is equivalent to the built-in help command, and
 can be used in the same way. An exclamation point (!) maps to do_shell(), and
 is intended for shelling out to run other commands, as in this example.
 
-::
-
-    import cmd
-    import os
-
-    class ShellEnabled(cmd.Cmd):
-        
-        last_output = ''
-
-        def do_shell(self, line):
-            "Run a shell command"
-            print "running shell command:", line
-            output = os.popen(line).read()
-            print output
-            self.last_output = output
-        
-        def do_echo(self, line):
-            "Print the input, replacing '$out' with the output of the last shell command"
-            # Obviously not robust
-            print line.replace('$out', self.last_output)
-        
-        def do_EOF(self, line):
-            return True
-        
-    if __name__ == '__main__':
-        ShellEnabled().cmdloop()
+.. include:: cmd_do_shell.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -542,41 +363,15 @@ superfluous prompts, you can set the prompt to an empty string. This example
 shows how to open a file and pass it as input to a modified version of the
 HelloWorld example.
 
-::
-
-    import cmd
-
-    class HelloWorld(cmd.Cmd):
-        """Simple command processor example."""
-        
-        # Disable rawinput module use
-        use_rawinput = False
-        
-        # Do not show a prompt after each command read
-        prompt = ''
-        
-        def do_greet(self, line):
-            print "hello,", line
-        
-        def do_EOF(self, line):
-            return True
-
-    if __name__ == '__main__':
-        import sys
-        input = open(sys.argv[1], 'rt')
-        try:
-            HelloWorld(stdin=input).cmdloop()
-        finally:
-            input.close()
-
+.. include:: cmd_file.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 With use_rawinput set to False and prompt set to an empty string, we can all
 the script on this input file:
 
-::
-
-    greet
-    greet Alice and Bob
+.. include:: cmd_file.txt
+    :literal:
 
 to produce output like:
 
@@ -594,25 +389,9 @@ command line arguments to the program as a command for your interpreter class,
 that is also possible. In that case, you can call onecmd() directly, as in
 this example.
 
-::
-
-    import cmd
-
-    class InteractiveOrCommandLine(cmd.Cmd):
-        """Accepts commands via the normal interactive prompt or on the command line."""
-
-        def do_greet(self, line):
-            print 'hello,', line
-        
-        def do_EOF(self, line):
-            return True
-
-    if __name__ == '__main__':
-        import sys
-        if len(sys.argv) > 1:
-            InteractiveOrCommandLine().onecmd(' '.join(sys.argv[1:]))
-        else:
-            InteractiveOrCommandLine().cmdloop()
+.. include:: cmd_argv.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 Since onecmd() takes a single string as input, the arguments to the program
 need to be joined together before being passed in.
