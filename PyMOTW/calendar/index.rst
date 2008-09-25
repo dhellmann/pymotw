@@ -8,9 +8,6 @@ calendar -- Work with dates
 :Purpose: The calendar module implements classes for working with dates to manage year/month/week oriented values.
 :Python Version: 1.4, with updates in 2.5
 
-Description
-===========
-
 The calendar module defines the Calendar class, which encapsulates
 calculations for values such as the dates of the weeks in a given month or
 year. In addition, the TextCalendar and HTMLCalendar classes can produce
@@ -22,12 +19,9 @@ Formatting Examples
 A very simple example which produces formatted text output for this month
 using TextCalendar might use the prmonth() method.
 
-::
-
-    import calendar
-
-    c = calendar.TextCalendar(calendar.SUNDAY)
-    c.prmonth(2007, 7)
+.. include:: calendar_textcalendar.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 I told TextCalendar to start weeks on Sunday, following the American
 convention. The default is to start on Monday, according to the European
@@ -49,32 +43,15 @@ The output looks like:
 The HTML output for the same time period is slightly different, since there is
 no prmonth() method:
 
-::
+.. include:: calendar_htmlcalendar.py
+    :literal:
+    :start-after: #end_pymotw_header
 
-    import calendar
-
-    c = calendar.HTMLCalendar(calendar.SUNDAY)
-    print c.formatmonth(2007, 7)
-
-
-The rendered output looks roughly the same.
+The rendered output looks roughly the same, but is wrapped with HTML tags.  You can also see that each table cell has a class attribute corresponding to the day of the week.
 
 ::
 
-    July 2007
-    Sun Mon Tue Wed Thu Fri Sat
-    1   2   3   4   5   6   7
-    8   9   10  11  12  13  14
-    15  16  17  18  19  20  21
-    22  23  24  25  26  27  28
-    29  30  31               
-
-
-You can see, though, that each table cell has a class attribute corresponding
-to the day of the week.
-
-::
-
+    $ python calendar_htmlcalendar.py
     <table border="0" cellpadding="0" cellspacing="0" class="month">
     <tr><th colspan="7" class="month">July 2007</th></tr>
     <tr><th class="sun">Sun</th><th class="mon">Mon</th><th class="tue">Tue</th><th class="wed">Wed</th><th class="thu">Thu</th><th class="fri">Fri</th><th class="sat">Sat</th></tr>
@@ -82,11 +59,12 @@ to the day of the week.
     <tr><td class="sun">8</td><td class="mon">9</td><td class="tue">10</td><td class="wed">11</td><td class="thu">12</td><td class="fri">13</td><td class="sat">14</td></tr>
     <tr><td class="sun">15</td><td class="mon">16</td><td class="tue">17</td><td class="wed">18</td><td class="thu">19</td><td class="fri">20</td><td class="sat">21</td></tr>
     <tr><td class="sun">22</td><td class="mon">23</td><td class="tue">24</td><td class="wed">25</td><td class="thu">26</td><td class="fri">27</td><td class="sat">28</td></tr>
-    <tr><td class="sun">29</td><td class="mon">30</td><td class="tue">31</td><td class="noday"> </td><td class="noday"> </td><td class="noday"> </td><td class="noday"> </td></tr>
+    <tr><td class="sun">29</td><td class="mon">30</td><td class="tue">31</td><td class="noday">&nbsp;</td><td class="noday">&nbsp;</td><td class="noday">&nbsp;</td><td class="noday">&nbsp;</td></tr>
     </table>
 
+
 If you need to produce output in a format other than one of the available
-defaults, you can use the calendar module to calculate the dates and organize
+defaults, you can use :mod:`calendar` to calculate the dates and organize
 the values into week and month ranges, then iterate over the rest yourself.
 The weekheader(), monthcalendar(), and yeardays2calendar() methods of Calendar
 are especially useful for that sort of work.
@@ -96,9 +74,9 @@ list includes the months as another list of weeks. The weeks are lists of
 tuples made up of day number (1-31) and weekday number (0-6). Days which fall
 outside of the month have a day number of 0.
 
-::
-
-    pprint.pprint(calendar.Calendar(calendar.SUNDAY).yeardays2calendar(2007, 2))
+.. include:: calendar_yeardays2calendar.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 Calling yeardays2calendar(2007, 2) returns data for 2007, organized with 2
 months per row.
@@ -171,9 +149,9 @@ months per row.
 
 This is equivalent to the data used by formatyear()
 
-::
-
-    print calendar.TextCalendar(calendar.SUNDAY).formatyear(2007, 2, 1, 1, 2)
+.. include:: calendar_formatyear.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 which for the same arguments produces output like:
 
@@ -234,7 +212,7 @@ which for the same arguments produces output like:
 
 If you want to format the output yourself for some reason (such as including
 links in HTML output), you will find the day_name, day_abbr, month_name, and
-month_abbr module attributtes useful. They are automatically configured
+month_abbr module attributes useful. They are automatically configured
 correctly for the current locale.
 
 Calculation Examples
@@ -247,9 +225,9 @@ Python Atlanta User's Group meets the 2nd Thursday of every month. To
 calculate the dates for the meetings for a year, you could use the return
 value of monthcalendar().
 
-::
-
-    pprint.pprint(calendar.monthcalendar(2007, 7))
+.. include:: calendar_monthcalendar.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 Notice that some days are 0. Those are days of the week which overlap with the
 given month but which are part of another month.
@@ -275,29 +253,9 @@ every month, we can use the 0 values to tell us whether the Thursday of the
 first week is included in the month (or if the month starts, for example on a
 Friday).
 
-::
-
-    import calendar
-
-    # Show every month
-    for month in range(1, 13):
-
-        # Compute the dates for each week which overlaps the month
-        c = calendar.monthcalendar(2007, month)
-        first_week = c[0]
-        second_week = c[1]
-        third_week = c[2]
-
-        # If there is a Thursday in the first week, the second Thursday
-        # is in the second week.  Otherwise the second Thursday must 
-        # be in the third week.
-        if first_week[calendar.THURSDAY]:
-            meeting_date = second_week[calendar.THURSDAY]
-        else:
-            meeting_date = third_week[calendar.THURSDAY]
-
-        print '%3s: %2s' % (month, meeting_date)
-
+.. include:: calendar_secondthursday.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 So the PyATL meeting schedule for the year is:
 

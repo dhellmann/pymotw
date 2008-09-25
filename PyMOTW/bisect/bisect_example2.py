@@ -23,14 +23,25 @@
 # CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 #
 
-"""Sample of TextCalendar output.
+"""Example use of the bisect module.
+
+See http://blog.doughellmann.com/2007/05/pymotw-bisect.html
 
 """
 
 __module_id__ = "$Id$"
 #end_pymotw_header
 
-import calendar
+import bisect
+import random
 
-c = calendar.TextCalendar(calendar.SUNDAY)
-c.prmonth(2007, 7)
+# Reset the seed
+random.seed(1)
+
+# Use bisect_left and insort_left.
+l = []
+for i in range(1, 20):
+	r = random.randint(1, 100)
+	position = bisect.bisect_left(l, r)
+	bisect.insort_left(l, r)
+	print '%2d %2d' % (r, position), l

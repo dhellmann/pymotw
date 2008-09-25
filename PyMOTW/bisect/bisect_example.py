@@ -30,6 +30,7 @@ See http://blog.doughellmann.com/2007/05/pymotw-bisect.html
 """
 
 __module_id__ = "$Id$"
+#end_pymotw_header
 
 import bisect
 import random
@@ -47,15 +48,4 @@ for i in range(1, 20):
 	r = random.randint(1, 100)
 	position = bisect.bisect(l, r)
 	bisect.insort(l, r)
-	print '%2d %2d' % (r, position), l
-
-# Reset the seed
-random.seed(1)
-
-# Use bisect_left and insort_left.
-l = []
-for i in range(1, 20):
-	r = random.randint(1, 100)
-	position = bisect.bisect_left(l, r)
-	bisect.insort_left(l, r)
 	print '%2d %2d' % (r, position), l

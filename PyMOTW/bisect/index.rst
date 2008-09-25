@@ -8,9 +8,6 @@ bisect -- Maintain lists in sorted order
 :Purpose: Maintains a list in sorted order without having to call sort each time an item is added to the list.
 :Python Version: 1.4
 
-Description
-===========
-
 The bisect module implements an algorithm for inserting elements into a list
 while maintaining the list in sorted order. This can be much more efficient
 than repeatedly sorting a list, or explicitly sorting a large list after it is
@@ -22,25 +19,9 @@ Example
 Let's look at a simple example using bisect.insort(), which inserts items into
 a list in sorted order.
 
-::
-
-    import bisect
-    import random
-
-    # Use a constant seed to ensure that we see
-    # the same pseudo-random numbers each time
-    # we run the loop.
-    random.seed(1)
-
-    # Generate 20 random numbers and
-    # insert them into a list in sorted
-    # order.
-    l = []
-    for i in range(1, 20):
-        r = random.randint(1, 100)
-        position = bisect.bisect(l, r)
-        bisect.insort(l, r)
-        print '%2d %2d' % (r, position), l
+.. include:: bisect_example.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 
 The output for that script is:
@@ -88,18 +69,9 @@ If we manipulate the same data using bisect_left() and insort_left(), we end
 up with the same sorted list but notice that the insert positions are
 different for the duplicate values.
 
-::
-
-    # Reset the seed
-    random.seed(1)
-
-    # Use bisect_left and insort_left.
-    l = []
-    for i in range(1, 20):
-        r = random.randint(1, 100)
-        position = bisect.bisect_left(l, r)
-        bisect.insort_left(l, r)
-        print '%2d %2d' % (r, position), l
+.. include:: bisect_example2.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -133,3 +105,5 @@ References
 ==========
 
 Standard library documentation: `bisect <http://docs.python.org/lib/module-bisect.html>`_
+
+`WikiPedia: Insertion Sort <http://en.wikipedia.org/wiki/Insertion_sort>`_
