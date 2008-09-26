@@ -10,6 +10,7 @@ Python Module of the Week
     string_services
     data_types
     numeric
+    internet_data
     file_formats
     cryptographic
     file_access
