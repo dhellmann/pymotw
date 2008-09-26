@@ -13,4 +13,5 @@ Internet Protocols and Support
     urllib/index
     urlparse/index
     uuid/index
+    webbrowser/index
     xmlrpclib/index
