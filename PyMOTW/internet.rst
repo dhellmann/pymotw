@@ -5,6 +5,7 @@ Internet Protocols and Support
 .. toctree::
     :maxdepth: 1
     
+    base64/index
     BaseHTTPServer/index
     Cookie/index
     imaplib/index
