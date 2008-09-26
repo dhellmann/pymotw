@@ -20,7 +20,7 @@ Python Module of the Week
     optional_os
     unix
     ipc
-    internet
+    internet_protocols
     i18n
     frameworks
     dev_tools
