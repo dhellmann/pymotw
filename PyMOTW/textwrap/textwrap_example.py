@@ -29,32 +29,10 @@ See http://blog.doughellmann.com/2007/04/pymotw-textwrap.html
 """
 
 __module_id__ = "$Id$"
+#end_pymotw_header
 
-import textwrap
-
-# Provide some sample text
 sample_text = '''
 	The textwrap module can be used to format text for output in situations
 	where pretty-printing is desired.  It offers programmatic functionality similar
 	to the paragraph wrapping or filling features found in many text editors.
 	'''
-
-# Illustrate wrapping without dedenting first
-print 'No dedent:\n'
-print textwrap.fill(sample_text)
-
-# Remove common whitespace prefix from the lines in the sample text
-dedented_text = textwrap.dedent(sample_text).strip()
-print '\nDedented:\n'
-print dedented_text
-
-# Format the output with a few different max line width values
-for width in [ 20, 60, 80 ]:
-	print
-	print '%d Columns:\n' % width
-	print textwrap.fill(dedented_text, width=width)
-
-# Demonstrate how to produce a hanging indent
-print '\nHanging indent:\n'
-print textwrap.fill(dedented_text, initial_indent='', subsequent_indent='    ')
-
