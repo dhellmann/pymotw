@@ -118,6 +118,6 @@ The handle is closed whether there is an error in the with block or not.
 References
 ==========
 
-`PEP 0343 - The "with" statement <http://www.python.org/peps/pep-0343.html>`_
+`PEP 343 <http://www.python.org/peps/pep-0343.html>`_ --  The ``with`` statement.
 
 Standard library documentation: `contextlib <http://docs.python.org/lib/module-contextlib.html>`_

@@ -184,6 +184,6 @@ For information on the deprecated functions moved to the string and unicode clas
 References
 ==========
 
-`PEP 292 <http://www.python.org/peps/pep-0292.html>`_ - Simpler String Substitutions
+`PEP 292 <http://www.python.org/peps/pep-0292.html>`_ -- Simpler String Substitutions
 
 Standard library documentation: `string <http://docs.python.org/lib/module-string.html>`_

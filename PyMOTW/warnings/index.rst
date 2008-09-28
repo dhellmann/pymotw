@@ -12,7 +12,7 @@ warnings
 Description
 ===========
 
-The warnings module was introduced in PEP 230 as a way to warn programmers
+The warnings module was introduced in `PEP 230`_ as a way to warn programmers
 about changes in language or library features in anticipation of backwards
 incompatible changes coming with Python 3.0. Since warnings are not fatal, a
 program may encounter the same warn-able situation many times in the course of
@@ -345,3 +345,7 @@ one for itself and one for old_function().
       old_function()
 
 
+References
+==========
+
+`PEP 230 <http://www.python.org/peps/pep-0230.html>`_ -- Warning Framework

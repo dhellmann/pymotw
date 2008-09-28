@@ -220,6 +220,6 @@ should be ordered in the output.
 References
 ==========
 
-`PEP 305, CSV File API <http://www.python.org/peps/pep-0305.html>`_
+`PEP 305 <http://www.python.org/peps/pep-0305.html>`_ -- CSV File API
 
 Standard library documentation: `csv <http://docs.python.org/lib/module-csv.html>`_
