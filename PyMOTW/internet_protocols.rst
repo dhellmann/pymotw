@@ -9,7 +9,8 @@ Internet Protocols and Support
     Cookie/index
     imaplib/index
     SimpleXMLRPCServer/index
-    SocketServer/index    
+    smtplib/index
+    SocketServer/index
     urllib/index
     urlparse/index
     uuid/index
