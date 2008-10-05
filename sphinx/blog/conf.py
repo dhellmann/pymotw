@@ -24,7 +24,7 @@ html_title = 'Python Module of the Week'
 html_short_title = 'PyMOTW'
 html_use_modindex = True
 
-master_doc = os.environ['MODULE']
+master_doc = 'index' #os.environ['MODULE']
 
 print os.getcwd()
 

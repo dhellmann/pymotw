@@ -45,7 +45,7 @@ export MODULE=$(shell cat module)
 blog: module
 	mkdir -p blog_posts
 	sphinx-build -b html -d blog_posts -c sphinx/blog $(PROJECT)/$(MODULE)/ blog_posts/
-	PATH=$(PATH):../../bin:../bin cat blog_posts/$(MODULE).html | clean_post.py | mate
+	PATH=$(PATH):../../bin:../bin cat blog_posts/index.html | clean_post.py | mate
 
 .PHONEY: website
 website: sphinx/templates/web/base.html
