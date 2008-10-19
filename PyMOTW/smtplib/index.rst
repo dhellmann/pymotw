@@ -180,4 +180,4 @@ References
 
 Standard library documentation: `smtplib <http://docs.python.org/lib/module-smtplib.html>`_
 
-See also :mod:`email`.
+See also :mod:`email` and :mod:`smtpd`.

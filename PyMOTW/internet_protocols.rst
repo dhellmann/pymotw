@@ -9,6 +9,7 @@ Internet Protocols and Support
     Cookie/index
     imaplib/index
     SimpleXMLRPCServer/index
+    smtpd/index
     smtplib/index
     SocketServer/index
     urllib/index
