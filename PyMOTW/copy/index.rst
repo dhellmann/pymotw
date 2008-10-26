@@ -161,7 +161,7 @@ Notice that the second time the root node is encountered, while the a node is
 being copied, the recursion is detected and the existing copy is used instead
 of a new one.
 
-References
-==========
+.. seealso::
 
-Standard library documentation: `copy <http://docs.python.org/lib/module-copy.html>`_
+    `copy <http://docs.python.org/library/copy.html>`_
+        The standard library documentation for this module.

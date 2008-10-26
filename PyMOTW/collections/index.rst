@@ -155,15 +155,19 @@ aggregating or accumulating values, such as a list, set, or even integer. The
 standard library documentation includes several examples of using defaultdict
 this way.
 
-References
-==========
+.. seealso::
 
-`WikiPedia: Deque <http://en.wikipedia.org/wiki/Deque>`_
+    `collections <http://docs.python.org/library/collections.html>`_
+        The standard library documentation for this module.
 
-`Deque Recipes <http://docs.python.org/lib/deque-recipes.html>`_
+    `WikiPedia: Deque <http://en.wikipedia.org/wiki/Deque>`_
+        A discussion of the deque data structure.
 
-`defaultdict examples <http://docs.python.org/lib/defaultdict-examples.html>`_
+    `Deque Recipes <http://docs.python.org/lib/deque-recipes.html>`_
+        Examples of using deques in algorithms from the standard library documentation.
 
-`James Tauber: Evolution of Default Dictionaries in Python <http://jtauber.com/blog/2008/02/27/evolution_of_default_dictionaries_in_python/>`_
+    `defaultdict examples <http://docs.python.org/lib/defaultdict-examples.html>`_
+        Examples of using defaultdict from the standard library documentation.
 
-Standard library documentation: `collections <http://docs.python.org/lib/module-collections.html>`_
+    `James Tauber: Evolution of Default Dictionaries in Python <http://jtauber.com/blog/2008/02/27/evolution_of_default_dictionaries_in_python/>`_
+        Discussion of how defaultdict relates to other means of initializing dictionaries.

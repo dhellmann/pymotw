@@ -156,7 +156,7 @@ In this case, a 404 error is always returned.
     </body>
 
 
-References
-==========
+.. seealso::
 
-Standard library documentation: `BaseHTTPServer <http://docs.python.org/lib/module-BaseHTTPServer.html>`_
+    `BaseHTTPServer <http://docs.python.org/library/basehttpserver.html>`_
+        The standard library documentation for this module.

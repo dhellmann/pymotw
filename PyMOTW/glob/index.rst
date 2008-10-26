@@ -51,10 +51,9 @@ Wildcards
 An asterisk (`*`) matches zero or more characters in a segment of a name. For
 example, `dir/*`.
 
-::
-
-    import glob
-    print glob.glob('dir/*')
+.. include:: glob_asterisk.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 The pattern matches every pathname (file or directory) in the directory dir,
 without recursing further into subdirectories.
@@ -68,13 +67,9 @@ without recursing further into subdirectories.
 To list files in a subdirectory, you must include the subdirectory in the
 pattern:
 
-::
-
-    print 'Named explicitly:'
-    print glob.glob('dir/subdir/*')
-
-    print 'Named with wildcard:'
-    print glob.glob('dir/*/*')
+.. include:: glob_subdir.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 The first case above lists the subdirectory name explicitly, while the second
 case depends on a wildcard to find the directory.
@@ -97,9 +92,9 @@ Single Character Wildcard
 The other wildcard character supported is the question mark (?). It matches
 any single character in that position in the name. For example,
 
-::
-
-    print glob.glob('dir/file?.txt')
+.. include:: glob_question.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 Matches all of the filenames which begin with "file", have one more character
 of any type, then end with ".txt".
@@ -118,9 +113,9 @@ When you need to match a specific character, use a character range instead of
 a question mark. For example, to find all of the files which have a digit in
 the name before the extension:
 
-::
-
-    print glob.glob('dir/*[0-9].*')
+.. include:: glob_charrange.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 The character range [0-9] matches any single digit. The range is ordered based
 on the character code for each letter/digit, and the dash indicates an
@@ -133,3 +128,10 @@ unbroken range of sequential characters. The same range value could be written
     ['dir/file1.txt', 'dir/file2.txt']
 
 
+.. seealso::
+
+    `glob <http://docs.python.org/library/glob.html>`_
+        The standard library documentation for this module.
+
+    `Pattern Matching Notation <http://www.opengroup.org/onlinepubs/000095399/utilities/xcu_chap02.html#tag_02_13>`_
+        An explanation of globbing from The Open Group's Shell Command Language specification.

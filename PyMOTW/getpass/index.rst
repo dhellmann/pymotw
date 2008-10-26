@@ -1,15 +1,12 @@
-==============
-getpass
-==============
+==========================================================
+getpass -- Prompt the user for a password without echoing.
+==========================================================
+
 .. module:: getpass
     :synopsis: Prompt the user for a value, usually a password, without echoing what they type to the console.
 
-:Module: getpass
 :Purpose: Prompt the user for a value, usually a password, without echoing what they type to the console.
 :Python Version: 1.5.2
-
-Description
-===========
 
 Many programs which interact with the user via the terminal need to ask the
 user for password values without showing what the user types on the screen.
@@ -22,12 +19,9 @@ Example
 The getpass() function prints a prompt then reads input from the user until
 they press return. The input is passed back as a string to the caller.
 
-::
-
-    import getpass
-
-    p = getpass.getpass()
-    print 'You entered:', p
+.. include:: getpass_defaults.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 The default prompt, if none is specified by the caller, is "Password:".
 
@@ -39,13 +33,9 @@ The default prompt, if none is specified by the caller, is "Password:".
 
 Of course the prompt can be anything your program needs.
 
-::
-
-    p = getpass.getpass(prompt='What is your favorite color? ')
-    if p.lower() == 'blue':
-       print 'Right.  Off you go.'
-    else:
-       print 'Auuuuugh!'
+.. include:: getpass_prompt.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 I don't recommend such an insecure authentication scheme, but it illustrates
 the point.
@@ -63,13 +53,9 @@ By default, getpass() uses stdout to print the prompt string. For a program
 which may produce useful output on sys.stdout, it is useful to send the prompt
 to another stream such as sys.stderr.
 
-::
-
-    import getpass
-    import sys
-
-    p = getpass.getpass(stream=sys.stderr)
-    print 'You entered:', p
+.. include:: getpass_stream.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 This way standard output can be redirected (to a pipe or file) without seeing
 the password prompt. The value entered by the user is still not echoed back to
@@ -100,19 +86,9 @@ stream redirected to standard input.
 It is up to the caller to detect when the input stream is not a tty and use an
 alternate method for reading in that case.
 
-::
-
-    import getpass
-    import os
-    import sys
-
-    if os.isatty(sys.stdin.fileno()):
-       p = getpass.getpass('Using getpass: ')
-    else:
-       print 'Using readline'
-       p = sys.stdin.readline().rstrip()
-
-    print 'Read: ', p
+.. include:: getpass_noterminal.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 With a tty:
 
@@ -130,4 +106,8 @@ Without a tty:
     Using readline
     Read:  sekret
 
+.. seealso::
 
+    `getpass <http://docs.python.org/library/getpass.html>`_
+        The standard library documentation for this module.
+    

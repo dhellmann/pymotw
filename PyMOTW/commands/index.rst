@@ -109,7 +109,7 @@ call is escaped so the environment variable name is not expanded.
     notthere.py: ls: notthere.py: No such file or directory
     $filename: ls: $filename: No such file or directory
 
-References
-==========
+.. seealso::
 
-Standard library documentation: `commands <http://docs.python.org/lib/module-commands.html>`_
+    `commands <http://docs.python.org/library/commands.html>`_
+        The standard library documentation for this module.

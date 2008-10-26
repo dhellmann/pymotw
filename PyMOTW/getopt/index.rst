@@ -1,17 +1,14 @@
-=============
-getopt
-=============
+=====================================
+getopt -- Command line option parsing
+=====================================
+
 .. module:: getopt
     :synopsis: Command line option parsing
 
-:Module: getopt
 :Purpose: Command line option parsing
 :Python Version: 1.4
 
-Description
-===========
-
-The getopt module is the old-school command line option parser which supports
+The getopt module is the *old-school* command line option parser which supports
 the conventions established by the Unix function getopt(). It parses an
 argument sequence, such as sys.argv and returns a sequence of (option,
 argument) pairs and a sequence of non-option arguments.
@@ -54,9 +51,9 @@ Short Form Options
 If a program wants to take 2 options, -a, and -b with the b option requiring
 an argument, the value should be "ab:".
 
-::
-
-    print getopt.getopt(['-a', '-bval', '-c', 'val'], 'ab:c:')
+.. include:: getopt_short.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -70,11 +67,9 @@ Long Form Options
 If a program wants to take 2 options, --noarg and --witharg the sequence
 should be [ 'noarg', 'witharg=' ].
 
-::
-
-    print getopt.getopt([ '--noarg', '--witharg', 'val', '--witharg2=another' ],
-                        '',
-                        [ 'noarg', 'witharg=', 'witharg2=' ])
+.. include:: getopt_long.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -89,36 +84,9 @@ Below is a more complete example program which takes 5 options: -o, -v,
 --output, --verbose, and --version. The -o, --output, and --version options
 require an argument.
 
-::
-
-    import getopt
-    import sys
-
-    version = '1.0'
-    verbose = False
-    output_filename = 'default.out'
-
-    print 'ARGV      :', sys.argv[1:]
-
-    options, remainder = getopt.getopt(sys.argv[1:], 'o:v', ['output=', 
-                                                             'verbose',
-                                                             'version=',
-                                                             ])
-    print 'OPTIONS   :', options
-
-    for opt, arg in options:
-        if opt in ('-o', '--output'):
-            output_filename = arg
-        elif opt in ('-v', '--verbose'):
-            verbose = True
-        elif opt == '--version':
-            version = arg
-
-    print 'VERSION   :', version
-    print 'VERBOSE   :', verbose
-    print 'OUTPUT    :', output_filename
-    print 'REMAINING :', remainder
-
+.. include:: getopt_example.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 The program can be called in a variety of ways.
 
@@ -233,6 +201,11 @@ GNU-style Option Parsing
 
 New in Python 2.3, an additional function gnu_getopt() was added. It allows
 option and non-option arguments to be mixed on the command line in any order.
+
+.. include:: getopt_gnu.py
+    :literal:
+    :start-after: #end_pymotw_header
+
 After changing the call in the previous example, the difference becomes clear:
 
 ::
@@ -262,4 +235,10 @@ remaining arguments as options.
     OUTPUT    : default.out
     REMAINING : ['--output', 'foo']
 
+.. seealso::
 
+    `getopt <http://docs.python.org/library/getopt.html>`_
+        The standard library documentation for this module.
+
+    :mod:`optparse`
+        The :mod:`optparse` module.

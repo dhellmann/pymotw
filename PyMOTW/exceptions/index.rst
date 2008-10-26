@@ -603,7 +603,7 @@ UnicodeWarning
   Warn about problems with unicode text.
 
 
-References
-==========
+.. seealso::
 
-Standard library documentation: `exceptions <http://docs.python.org/lib/module-exceptions.html>`_
+    `exceptions <http://docs.python.org/library/exceptions.html>`_
+        The standard library documentation for this module.

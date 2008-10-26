@@ -7,6 +7,7 @@
 """
 
 __version__ = "$Id$"
+#end_pymotw_header
 
 import heapq
 from heapq_showtree import show_tree

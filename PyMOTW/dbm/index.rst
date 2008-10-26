@@ -28,9 +28,10 @@ Of course, your results will depend on what library ``configure`` was able to fi
 
 The ``open()`` function follows the same semantics as the :mod:`anydbm` module.
 
-References
-==========
+.. seealso::
 
-See also :mod:`anydbm`.
+    `dbm <http://docs.python.org/library/dbm.html>`_
+        The standard library documentation for this module.
 
-Standard library documentation: `dbm <http://docs.python.org/lib/module-dbm.html>`_
+    :mod:`anydbm`
+        The :mod:`anydbm` module.

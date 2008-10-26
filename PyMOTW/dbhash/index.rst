@@ -10,9 +10,10 @@ dbhash -- DBM-style API for the BSD database library
 
 The :mod:`dbhash` module is the primary backend for :mod:`anydbm`.  It uses the :mod:`bsddb` library to manage database files.  The semantics are the same as :mod:`anydbm`, so refer to the examples on that page for details.
 
-References
-==========
+.. seealso::
 
-See also :mod:`anydbm`.
+    `dbhash <http://docs.python.org/library/dbhash.html>`_
+        The standard library documentation for this module.
 
-Standard library documentation: `dbhash <http://docs.python.org/lib/module-dbhash.html>`_
+    :mod:`anydbm`
+        The :mod:`anydbm` module.

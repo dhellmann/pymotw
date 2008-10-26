@@ -101,9 +101,10 @@ available. If the C version is present, that implementation overrides the pure
 Python implementation automatically when you import the bisect module.
 
 
-References
-==========
+.. seealso::
 
-Standard library documentation: `bisect <http://docs.python.org/lib/module-bisect.html>`_
+    `bisect <http://docs.python.org/library/bisect.html>`_
+        The standard library documentation for this module.
 
-`WikiPedia: Insertion Sort <http://en.wikipedia.org/wiki/Insertion_sort>`_
+    `WikiPedia: Insertion Sort <http://en.wikipedia.org/wiki/Insertion_sort>`_
+        A description of the insertion sort algorithm.

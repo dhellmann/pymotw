@@ -93,8 +93,8 @@ always appends a '/', not os.sep.)
           static_content         static_content/
            template.html           template.html
 
-References
-==========
+.. seealso::
 
-Standard library documentation: `dircache <http://docs.python.org/lib/module-dircache.html>`_
+    `dircache <http://docs.python.org/library/dircache.html>`_
+        The standard library documentation for this module.
 

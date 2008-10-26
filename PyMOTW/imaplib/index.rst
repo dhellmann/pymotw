@@ -10,7 +10,7 @@ imaplib - IMAP4 client library
 
 :mod:`imaplib` implements a client for communicating with Internet Message Access Protocol (IMAP) version 4 servers.  The IMAP protocol defines a set of *commands* sent to the server and the responses delivered back to the client.  Most of the commands are available as methods of the :class:`IMAP4` object used to communicate with the server.   
 
-These examples discuss part of the IMAP protocol, but are by no means complete.  Refer to `RFC-3501 <http://www.faqs.org/rfcs/rfc3501.html>`_ for complete details.
+These examples discuss part of the IMAP protocol, but are by no means complete.  Refer to `RFC 3501`_ for complete details.
 
 
 Variations
@@ -244,7 +244,7 @@ In this case, ``INBOX`` and ``Archive.2008`` each have one message with id ``1``
 Search Criteria
 ===============
 
-A variety of other search criteria can be used, including looking at dates for the message, flags, and other headers.  Refer to section 6.4.4. of RFC-3501 for complete details.
+A variety of other search criteria can be used, including looking at dates for the message, flags, and other headers.  Refer to section 6.4.4. of `RFC 3501`_ for complete details.
 
 As one example, to look for messages with ``'test message 2'`` in the subject, the search criteria could be constructed as::
 
@@ -375,7 +375,7 @@ This technique has the added benefit of making it easy to use :func:`ParseFlags(
 Whole Messages
 ==============
 
-As illustrated above, the client can ask the server for individual parts of the message separately.  It is also possible to retrieve the entire message as an RFC-2822 formatted mail message and parse it with classes from the :mod:`email` module.
+As illustrated above, the client can ask the server for individual parts of the message separately.  It is also possible to retrieve the entire message as an `RFC 2822`_ formatted mail message and parse it with classes from the :mod:`email` module.
 
 .. include:: imaplib_fetch_rfc822.py
     :literal:
@@ -500,23 +500,36 @@ This example explicitly calls :meth:`expunge()` to remove the messages, but call
 
 
 
-References
-==========
+.. seealso::
 
-Documentation
--------------
+    `imaplib <http://docs.python.org/library/imaplib.html>`_
+        The standard library documentation for this module.
 
-- Standard library documentation: `imaplib <http://docs.python.org/lib/module-imaplib.html>`_
-- `What is IMAP? <http://www.imap.org/about/whatisIMAP.html>`_
-- `University of Washington IMAP Information Center <http://www.washington.edu/imap/>`_
-- `RFC-3501: Internet Message Access Protocol <http://www.faqs.org/rfcs/rfc3501.html>`_
-- `RFC-2822: Internet Message Format <http://www.faqs.org/rfcs/rfc2822.html>`_
-- `IMAP Backup Script`_
+    `What is IMAP? <http://www.imap.org/about/whatisIMAP.html>`_
+        imap.org description of the IMAP protocol
 
-.. _IMAP Backup Script: http://snipplr.com/view/7955/imap-backup-script/
+    `University of Washington IMAP Information Center <http://www.washington.edu/imap/>`_
+        Good resource for IMAP information, along with source code.
 
-Related Modules
----------------
+    `RFC 3501`_
+        Internet Message Access Protocol
+        
+        .. _RFC 3501: http://www.faqs.org/rfcs/rfc3501.html
 
-- :mod:`rfc822` -- RFC-822 / RFC-2822 parser.
-- :mod:`email` -- Email message parser.
+    `RFC 2822`_
+        Internet Message Format
+    
+        .. _RFC 2822: http://www.faqs.org/rfcs/rfc2822.html
+
+    `IMAP Backup Script`_
+        A script to backup email from an IMAP server.
+
+        .. _IMAP Backup Script: http://snipplr.com/view/7955/imap-backup-script/
+
+    :mod:`rfc822`
+        The :mod:`rfc822` module includes an `RFC 822`_ / `RFC 2822`_ parser
+
+        .. _RFC 822: http://www.faqs.org/rfcs/rfc822.html
+
+    :mod:`email`
+        The :mod:`email` module for parsing email messages.

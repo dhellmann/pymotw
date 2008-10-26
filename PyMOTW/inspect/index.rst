@@ -1,26 +1,21 @@
-==============
-inspect
-==============
+===============================
+inspect -- Inspect live objects
+===============================
+
 .. module:: inspect
     :synopsis: Inspect live objects
 
-:Module: inspect
-:Purpose: Inspect live objects
-:Python Version: added in 2.1, with updates in 2.3 and 2.5
-:Abstract:
-
+:Purpose:
     The inspect module provides a variety of functions for introspecting on
     live objects and their source code.
-
-Description
-===========
+:Python Version: added in 2.1, with updates in 2.3 and 2.5
 
 The inspect module provides functions for learning about live objects,
 including modules, classes, instances, functions, and methods. You can use
 functions in this module to retrieve the original source code for a function,
 look at the arguments to a method on the stack, and extract the sort of
 information useful for producing library documentation for your source code.
-My own CommandLineApp module uses inspect to determine the valid options to a
+My own `CommandLineApp`_ module uses inspect to determine the valid options to a
 command line program, as well as any arguments and their names so command line
 programs are self-documenting and the help text is generated automatically.
 
@@ -39,35 +34,9 @@ will be used for reading the file, and the module type as defined in the imp
 module. It is important to note that the function looks only at the file's
 name, and does not actually check if the file exists or try to read the file.
 
-::
-
-    import imp
-    import inspect
-    import sys
-
-    if len(sys.argv) >= 2:
-        filename = sys.argv[1]
-    else:
-        filename = 'example.py'
-
-    try:
-        (name, suffix, mode, mtype)  = inspect.getmoduleinfo(filename)
-    except TypeError:
-        print 'Could not determine module type of %s' % filename
-    else:
-        mtype_name = { imp.PY_SOURCE:'source',
-                       imp.PY_COMPILED:'compiled',
-                       }.get(mtype, mtype)
-
-        mode_description = { 'rb':'(read-binary)',
-                             'U':'(universal newline)',
-                             }.get(mode, '')
-
-        print 'NAME   :', name
-        print 'SUFFIX :', suffix
-        print 'MODE   :', mode, mode_description
-        print 'MTYPE  :', mtype_name
-
+.. include:: inspect_getmoduleinfo.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 Here are a few sample runs:
 
@@ -97,48 +66,9 @@ file, found in PyMOTW/inspect/example.py which is included below and also
 available as part of the source distribution associated with this series of
 articles.
 
-::
-
-    #!/usr/bin/env python
-
-    # This comment appears first
-    # and spans 2 lines.
-
-    # This comment does not show up in the output of getcomments().
-
-    """Sample file to serve as the basis for inspect examples.
-    """
-
-    def module_level_function(arg1, arg2='default', *args, **kwargs):
-        """This function is declared in the module."""
-        local_variable = arg1
-        return
-
-    class A(object):
-        """The A class."""
-        def __init__(self, name):
-            self.name = name
-
-        def get_name(self):
-            "Returns the name of the instance."
-            return self.name
-
-    instance_of_a = A('sample_instance')
-
-    class B(A):
-        """This is the B class.
-        It is derived from A.
-        """
-
-        # This method is not part of A.
-        def do_something(self):
-            """Does some work"""
-            pass
-
-        def get_name(self):
-            "Overrides version from A"
-            return 'B(' + self.name + ')'
-
+.. include:: example.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 Modules
 =======
@@ -155,16 +85,9 @@ The types of members which might be returned depend on the type of object
 scanned. Modules can contain classes and functions; classes can contain
 methods and attributes; and so on. 
 
-::
-
-    import inspect
-
-    import example
-
-    for name, data in inspect.getmembers(example):
-        if name == '__builtins__':
-            continue
-        print '%s :' % name, repr(data)
+.. include:: inspect_getmembers_module.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 This sample prints the members of the example module. Modules have a set of
 __builtins__, which are ignored in the output for this example because they
@@ -184,17 +107,11 @@ are not actually part of the module and the list is long.
 
 The predicate argument can be used to filter the types of objects returned.
 
-::
+.. include:: inspect_getmembers_module_class.py
+    :literal:
+    :start-after: #end_pymotw_header
 
-    import inspect
-
-    import example
-
-    for name, data in inspect.getmembers(example, inspect.isclass):
-        print '%s :' % name, repr(data)
-
-
-    Notice that only classes are included in the output, now:
+Notice that only classes are included in the output, now::
 
     $ python inspect_getmembers_module_class.py
     A : <class 'example.A'>
@@ -207,14 +124,9 @@ Classes
 Classes can be scanned using getmembers() in the same way as modules, though
 the types of members are different.
 
-::
-
-    import inspect
-    from pprint import pprint
-
-    import example
-
-    pprint(inspect.getmembers(example.A))
+.. include:: inspect_getmembers_class.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 Since no filtering is applied, the output shows the attributes, methods,
 slots, and other members of the class:
@@ -241,30 +153,22 @@ slots, and other members of the class:
 
 To find the methods of a class, use the ismethod() predicate:
 
+.. include:: inspect_getmembers_class_methods.py
+    :literal:
+    :start-after: #end_pymotw_header
+
 ::
-
-    import inspect
-    from pprint import pprint
-
-    import example
-
-    pprint(inspect.getmembers(example.A, inspect.ismethod))
-
 
     $ python inspect_getmembers_class_methods.py
     [('__init__', <unbound method A.__init__>),
      ('get_name', <unbound method A.get_name>)]
 
 
-    If we look at class B, we see the over-ride for get_name() as well as the new method, and the inherited __init__() method implented in A.
+If we look at class B, we see the over-ride for get_name() as well as the new method, and the inherited __init__() method implented in A.
 
-    import inspect
-    from pprint import pprint
-
-    import example
-
-    pprint(inspect.getmembers(example.B, inspect.ismethod))
-
+.. include:: inspect_getmembers_class_methods_b.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 Notice that even though __init__() is inherited from A, it is identified as a
 method of B.
@@ -284,22 +188,15 @@ The docstring for an object can be retrieved with getdoc(). The return value
 is the __doc__ attribute with tabs expanded to spaces and with indentation
 made uniform.
 
-::
-
-    import inspect
-    import example
-
-    print 'B.__doc__:'
-    print example.B.__doc__
-    print
-    print 'getdoc(B):'
-    print inspect.getdoc(example.B)
+.. include:: inspect_getdoc.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 Notice the difference in indentation on the second line of the doctring:
 
 ::
 
-    $ python inspect_getdoc.py 
+    $ python inspect_getdoc.py
     B.__doc__:
     This is the B class.
         It is derived from A.
@@ -314,12 +211,9 @@ from the source file where an object is implemented, if the source is
 available. The getcomments() function looks at the source of the object and
 finds comments on lines preceding the implementation.
 
-::
-
-    import inspect
-    import example
-
-    print inspect.getcomments(example.B.do_something)
+.. include:: inspect_getcomments_method.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 The lines returned include the comment prefix, but any whitespace prefix is
 stripped off.
@@ -332,12 +226,9 @@ stripped off.
 When a module is passed to getcomments(), the return value is always the first
 comment in the module.
 
-::
-
-    import inspect
-    import example
-
-    print inspect.getcomments(example)
+.. include:: inspect_getcomments_module.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 Notice that contiguous lines from the example file are included as a single
 comment, but as soon as a blank line appears the comment is stopped.
@@ -354,12 +245,9 @@ Retrieving Source
 If the .py file is available, the original source code for the class or method
 can also be retrieved using getsource() and getsourcelines().
 
-::
-
-    import inspect
-    import example
-
-    print inspect.getsource(example.A.get_name)
+.. include:: inspect_getsource_method.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 The original indent level is retained in this case.
 
@@ -373,12 +261,9 @@ The original indent level is retained in this case.
 When a class is passed in, all of the methods for the class are included in
 the output.
 
-::
-
-    import inspect
-    import example
-
-    print inspect.getsource(example.A)
+.. include:: inspect_getsource_class.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -397,17 +282,14 @@ getsourcelines() instead of getsource(). The return value from
 getsourcelines() is a tuple containing a list of strings (the lines from the
 source file), and a starting line number in the file where the source appears.
 
-::
-
-    import inspect
-    import pprint
-    import example
-
-    pprint.pprint(inspect.getsourcelines(example.A.get_name))
+.. include:: inspect_getsourcelines_method.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
-    $ python inspect_getsourcelines_method.py (['    def get_name(self):\n',
+    $ python inspect_getsourcelines_method.py 
+    (['    def get_name(self):\n',
       '        "Returns the name of the instance."\n',
       '        return self.name\n'],
      53)
@@ -426,20 +308,9 @@ arguments (e.g., ``*args``), the neame of any variable named arguments (e.g.,
 ``**kwds``), and default values for the arguments. If there are default values,
 they match up with the end of the positional argument list.
 
-::
-
-    import inspect
-    import example
-
-    arg_spec = inspect.getargspec(example.module_level_function)
-    print 'NAMES   :', arg_spec[0]
-    print '*       :', arg_spec[1]
-    print '**      :', arg_spec[2]
-    print 'defaults:', arg_spec[3]
-
-    args_with_defaults = arg_spec[0][-len(arg_spec[3]):]
-    print 'args & defaults:', zip(args_with_defaults, arg_spec[3])
-
+.. include:: inspect_getargspec_function.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 Note that the first argument, arg1, does not have a default value. The single
 default therefore is matched up with arg2.
@@ -463,26 +334,9 @@ and tuples based on the classes it is given and their base classes. Each
 element in the list returned is either a tuple with a class and its base
 classes, or another list containing tuples for subclasses.
 
-::
-
-    import inspect
-    import example
-
-    class C(example.B):
-        pass
-
-    class D(C, example.A):
-        pass
-
-    def print_class_tree(tree, indent=-1):
-        if isinstance(tree, list):
-            for node in tree:
-                print_class_tree(node, indent+1)
-        else:
-            print '  ' * indent, tree[0].__name__
-        return
-
-    print_class_tree(inspect.getclasstree([example.A, example.B, C, D]))
+.. include:: inspect_getclasstree.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 The output from this example is the "tree" of inheritance for the A, B, C, and
 D classes. Note that D appears twice, since it inherits from both C and A.
@@ -499,11 +353,9 @@ D classes. Note that D appears twice, since it inherits from both C and A.
 
 If we call getclasstree() with unique=True, the output is different.
 
-::
-
-    print_class_tree(inspect.getclasstree([example.A, example.B, C, D],
-                                          unique=True,
-                                          ))
+.. include:: inspect_getclasstree_unique.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 This time, D only appears in the output once:
 
@@ -524,28 +376,9 @@ returns a tuple of classes in the order they should be scanned when resolving
 an attribute that might be inherited from a base class. Each class in the
 sequence appears only once.
 
-::
-
-    import inspect
-    import example
-
-    class C(object):
-        pass
-
-    class C_First(C, example.B):
-        pass
-
-    class B_First(example.B, C):
-        pass
-
-    print 'B_First:'
-    for c in inspect.getmro(B_First):
-        print '\t', c.__name__
-    print
-    print 'C_First:'
-    for c in inspect.getmro(C_First):
-        print '\t', c.__name__
-
+.. include:: inspect_getmro.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 This output demonstrates the "depth-first" nature of the MRO search. For
 B_First, A also comes before C in the search order, because B is derived from
@@ -590,21 +423,9 @@ names, the names of the variable arguments, and a dictionary with local values
 from the frame. By combining them, we can see the arguments to functions and
 local variables at different points in the call stack.
 
-::
-
-    import inspect
-
-    def recurse(limit):
-        local_variable = '.' * limit
-        print limit, inspect.getargvalues(inspect.currentframe())
-        if limit <= 0:
-            return
-        recurse(limit - 1)
-        return
-
-    if __name__ == '__main__':
-        recurse(3)
-
+.. include:: inspect_getargvalues.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 The value for local_variable is included in the frame's local variables even
 though it is not an argument to the function.
@@ -623,23 +444,9 @@ current frame to the first caller. This example is similar to the one above,
 except it waits until reaching the end of the recursion to print the stack
 information.
 
-::
-
-    import inspect
-
-    def recurse(limit):
-        local_variable = '.' * limit
-        if limit <= 0:
-            for frame, filename, line_num, func, source_code, source_index in inspect.stack():
-                print '%s[%d]\n  -> %s' % (filename, line_num, source_code[source_index].strip())
-                print inspect.getargvalues(frame)
-                print
-            return
-        recurse(limit - 1)
-        return
-
-    if __name__ == '__main__':
-        recurse(3)
+.. include:: inspect_stack.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 The last part of the output represents the main program, outside of the
 recurse function.
@@ -678,3 +485,12 @@ such as when an exception is being processed. See the documentation for
 trace(), getouterframes(), and getinnerframes() for more details.
 
 
+.. seealso::
+
+    `inspect <http://docs.python.org/library/inspect.html>`_
+        The standard library documentation for this module.
+
+    `CommandLineApp`_
+        Base class for object-oriented command line applications
+
+        .. _CommandLineApp: http://www.doughellmann.com/projects/CommandLineApp/

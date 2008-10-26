@@ -32,6 +32,7 @@ For a more complete example, see http://www.doughellmann.com/Projects/m3u2rss/
 """
 
 __module_id__ = "$Id$"
+#end_pymotw_header
 
 #
 # Import system modules

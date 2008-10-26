@@ -4,15 +4,12 @@ fileinput
 .. module:: fileinput
     :synopsis: Create command-line filter programs.
 
-:Module: fileinput
-:Documentation: http://docs.python.org/lib/module-fileinput.html
-
 
 To start this series, let's take a look at the fileinput module, a very useful
 module for creating command line programs for processing text files in a
 filter-ish manner. For example, the m3utorss app I recently wrote for my
-friend Patrick to convert some of his demo recordings into a podcastable
-format.
+friend `Patrick <http://events.mediumloud.com/>`_ to convert some of his 
+demo recordings into a podcastable format.
 
 The inputs to the program are one or more m3u file listing the mp3 files to be
 distributed. The output is a single blob of XML that looks like an RSS feed
@@ -30,21 +27,9 @@ complicated, and with some testing I'm sure I could even get the error
 handling right. But with the fileinput module, I don't need to worry about
 that. I just write something like:
 
-::
-
-    def main(self, *m3ufilenames):
-        self.startRSS()
-        self.generateChannelInfo()
-
-        for line in fileinput.input(m3ufilenames):
-            mp3filename = line.strip()
-            if not mp3filename or mp3filename.startswith('#'):
-                continue
-            self.generateItem(mp3filename)
-
-        self.endRSS()
-        return 0
-
+.. include:: fileinput_example.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 The relevant bit in that snippet is the for loop. The fileinput.input()
 function takes as argument a list of filenames to examine. If the list is
@@ -59,4 +44,10 @@ fileinput module includes functions for accessing that information
 (filename(), filelineno(), lineno(), etc.). Check out the standard library
 documentation for fileinput for more details.
 
+.. seealso::
 
+    `fileinput <http://docs.python.org/library/fileinput.html>`_
+        The standard library documentation for this module.
+
+    `Patrick Bryant <http://events.mediumloud.com/>`_
+        Atlanta-based singer/song-writer.

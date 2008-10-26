@@ -17,11 +17,13 @@ Besides the standard ``'r'``, ``'w'``, ``'c'``, and ``'n'`` flags, ``gdbm.open()
     * ``'u'`` to open the database unlocked.
 
 
+.. seealso::
 
-==========
-References
-==========
+    `gdbm <http://docs.python.org/library/gdbm.html>`_
+        The standard library documentation for this module.
 
-See also :mod:`dbm` and :mod:`anydbm`.
-
-Standard library documentation: `gdbm <http://docs.python.org/lib/module-gdbm.html>`_
+    :mod:`dbm`
+        The :mod:`dbm` module.
+    
+    :mod:`anydbm`
+        The :mod:`anydbm` module.

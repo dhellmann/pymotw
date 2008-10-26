@@ -83,8 +83,8 @@ config file format for simple data files. For example, an app which needed to
 store a very small amount of data in a database-like format might take
 advantage of ConfigParser so the files would be human-readable as well.
 
-References
-==========
+.. seealso::
 
-Standard library documentation: `ConfigParser <http://docs.python.org/lib/module-ConfigParser.html>`_
+    `ConfigParser <http://docs.python.org/library/configparser.html>`_
+        The standard library documentation for this module.
 

@@ -1,19 +1,14 @@
-================
-functools
-================
+=====================================================================
+functools -- Tools for making decorators and other function wrappers.
+=====================================================================
+
 .. module:: functools
     :synopsis: Tools for making decorators and other function wrappers.
 
-:Module: functools
-:Purpose: Tools for making decorators and other function wrappers.
-:Python Version: new in 2.5
-:Abstract:
-
+:Purpose: 
     The functools module includes tools for wrapping functions and other
     callable objects.
-
-Description
-===========
+:Python Version: new in 2.5
 
 The primary tool supplied by the functools module is the class partial, which
 can be used to "wrap" a callable with default arguments. The resulting object
@@ -28,47 +23,9 @@ This example shows two simple partial objects for the function myfunc().
 Notice that show_details() prints the func, args, and keywords attributes of
 the partial object.
 
-::
-
-    import functools
-
-    def myfunc(a, b=2):
-        """Docstring for myfunc()."""
-        print '\tcalled myfunc with:', (a, b)
-        return
-
-    def show_details(name, f, is_partial=False):
-        """Show details of a callable object."""
-        print '%s:' % name
-        print '\tobject:', f
-        if not is_partial:
-            print '\t__name__:', f.__name__
-        print '\t__doc__', repr(f.__doc__)
-        if is_partial:
-            print '\tfunc:', f.func
-            print '\targs:', f.args
-            print '\tkeywords:', f.keywords
-        return
-
-    show_details('myfunc', myfunc)
-    myfunc('a', 3)
-    print
-
-    p1 = functools.partial(myfunc, b=4)
-    show_details('partial with named default', p1, True)
-    p1('default a')
-    p1('override b', b=5)
-    print
-
-    p2 = functools.partial(myfunc, 'default a', b=99)
-    show_details('partial with defaults', p2, True)
-    p2()
-    p2(b='override b')
-    print
-
-    print 'Insufficient arguments:'
-    p1()
-
+.. include:: functools_partial.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 At the end of the example, the first partial created is invoked without
 passing a value for a, causing an exception.
@@ -116,40 +73,9 @@ decorated functions makes them more difficult to debug. By using
 update_wrapper, you can copy or add attributes from the original function to
 the partial object.
 
-::
-
-    import functools
-
-    def myfunc(a, b=2):
-        """Docstring for myfunc()."""
-        print '\tcalled myfunc with:', (a, b)
-        return
-
-    def show_details(name, f):
-        """Show details of a callable object."""
-        print '%s:' % name
-        print '\tobject:', f
-        print '\t__name__:', 
-        try:
-            print f.__name__
-        except AttributeError:
-            print '(no __name__)'
-        print '\t__doc__', repr(f.__doc__)
-        print
-        return
-
-    show_details('myfunc', myfunc)
-
-    p1 = functools.partial(myfunc, b=4)
-    show_details('raw wrapper', p1)
-
-    print 'Updating wrapper:'
-    print '\tassign:', functools.WRAPPER_ASSIGNMENTS
-    print '\tupdate:', functools.WRAPPER_UPDATES
-    print
-
-    functools.update_wrapper(p1, myfunc)
-    show_details('updated wrapper', p1)
+.. include:: functools_update_wrapper.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 The attributes added to the wrapper are defined in
 functools.WRAPPER_ASSIGNMENTS, while functools.WRAPPER_UPDATES lists values to
@@ -182,70 +108,9 @@ Methods and Other Callables
 
 Partials work with any callable object, including methods and instances.
 
-::
-
-    import functools
-
-    class MyClass(object):
-        """Demonstration class for functools"""
-        
-        def meth1(self, a, b=2):
-            """Docstring for meth1()."""
-            print '\tcalled meth1 with:', (self, a, b)
-            return
-        
-        def meth2(self, c, d=5):
-            """Docstring for meth2"""
-            print '\tcalled meth2 with:', (self, c, d)
-            return
-        wrapped_meth2 = functools.partial(meth2, 'wrapped c')
-        functools.update_wrapper(wrapped_meth2, meth2)
-        
-        def __call__(self, e, f=6):
-            """Docstring for MyClass.__call__"""
-            print '\tcalled object with:', (self, e, f)
-            return
-
-    def show_details(name, f):
-        """Show details of a callable object."""
-        print '%s:' % name
-        print '\tobject:', f
-        print '\t__name__:', 
-        try:
-            print f.__name__
-        except AttributeError:
-            print '(no __name__)'
-        print '\t__doc__', repr(f.__doc__)
-        return
-        
-    o = MyClass()
-
-    show_details('meth1 straight', o.meth1)
-    o.meth1('no default for a', b=3)
-    print
-
-    p1 = functools.partial(o.meth1, b=4)
-    functools.update_wrapper(p1, o.meth1)
-    show_details('meth1 wrapper', p1)
-    p1('a goes here')
-    print
-
-    show_details('meth2', o.meth2)
-    o.meth2('no default for c', d=6)
-    print
-
-    show_details('wrapped meth2', o.wrapped_meth2)
-    o.wrapped_meth2('no default for c', d=6)
-    print
-
-    show_details('instance', o)
-    o('no default for e')
-    print
-
-    p2 = functools.partial(o, f=7)
-    show_details('instance wrapper', p2)
-    p2('e goes here')
-
+.. include:: functools_method.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -294,46 +159,9 @@ decorators, since the decorated function ends up with properties of the
 original, "raw", function. functools provides a convenience function, wraps(),
 to be used as a decorator itself and to apply update_wrapper() automatically.
 
-::
-
-    import functools
-
-    def show_details(name, f):
-        """Show details of a callable object."""
-        print '%s:' % name
-        print '\tobject:', f
-        print '\t__name__:', 
-        try:
-            print f.__name__
-        except AttributeError:
-            print '(no __name__)'
-        print '\t__doc__', repr(f.__doc__)
-        print
-        return
-
-    def simple_decorator(f):
-        @functools.wraps(f)
-        def decorated(a='decorated defaults', b=1):
-            print '\tdecorated:', (a, b)
-            print '\t',
-            f(a, b=b)
-            return
-        return decorated
-
-    def myfunc(a, b=2):
-        print '\tmyfunc:', (a,b)
-        return
-
-    show_details('myfunc', myfunc)
-    myfunc('unwrapped, default b')
-    myfunc('unwrapped, passing b', 3)
-    print
-
-    wrapped_myfunc = simple_decorator(myfunc)
-    show_details('wrapped_myfunc', wrapped_myfunc)
-    wrapped_myfunc()
-    wrapped_myfunc('args to decorated', 4)
-
+.. include:: functools_wraps.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -356,3 +184,8 @@ to be used as a decorator itself and to apply update_wrapper() automatically.
         decorated: ('args to decorated', 4)
             myfunc: ('args to decorated', 4)
 
+.. seealso::
+
+    `functools <http://docs.python.org/library/functools.html>`_
+        The standard library documentation for this module.
+    

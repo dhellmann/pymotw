@@ -217,9 +217,12 @@ should be ordered in the output.
     9,i,08/09/07
     10,j,08/10/07
 
-References
-==========
+.. seealso::
 
-`PEP 305 <http://www.python.org/peps/pep-0305.html>`_ -- CSV File API
+    `csv <http://docs.python.org/library/csv.html>`_
+        The standard library documentation for this module.
 
-Standard library documentation: `csv <http://docs.python.org/lib/module-csv.html>`_
+    `PEP 305`_
+        PEP 305 -- CSV File API
+        
+        .. _PEP 305: http://www.python.org/peps/pep-0305.html

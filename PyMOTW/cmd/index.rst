@@ -405,7 +405,7 @@ need to be joined together before being passed in.
     hello, Interactive User
     (Cmd) 
 
-References
-==========
+.. seealso::
 
-Standard library documentation: `cmd <http://docs.python.org/lib/module-cmd.html>`_
+    `cmd <http://docs.python.org/library/cmd.html>`_
+        The standard library documentation for this module.

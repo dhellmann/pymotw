@@ -28,6 +28,7 @@
 """
 
 __module_id__ = "$Id$"
+#end_pymotw_header
 
 import base64
 import hmac

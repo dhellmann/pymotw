@@ -115,9 +115,13 @@ The handle is closed whether there is an error in the with block or not.
       close()
       Had an error: error message
 
-References
-==========
+.. seealso::
 
-`PEP 343 <http://www.python.org/peps/pep-0343.html>`_ --  The ``with`` statement.
+    `contextlib <http://docs.python.org/library/contextlib.html>`_
+        The standard library documentation for this module.
 
-Standard library documentation: `contextlib <http://docs.python.org/lib/module-contextlib.html>`_
+    `PEP 343`_
+        The ``with`` statement.
+        
+        .. _PEP 343: http://www.python.org/peps/pep-0343.html
+

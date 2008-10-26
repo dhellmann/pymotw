@@ -118,9 +118,13 @@ The base 16 functions work with the hexadecimal alphabet.
     Encoded : 546869732069732074686520646174612C20696E2074686520636C6561722E
     Decoded : This is the data, in the clear.
 
-References
-==========
+.. seealso::
 
-`RFC 3548 - The Base16, Base32, and Base64 Data Encodings <http://www.faqs.org/rfcs/rfc3548.html>`_
+    `base64 <http://docs.python.org/library/base64.html>`_
+        The standard library documentation for this module.
 
-Standard library documentation: `base64 <http://docs.python.org/lib/module-base64.html>`_
+    `RFC 3548`_ 
+        RFC 3548 -- The Base16, Base32, and Base64 Data Encodings
+        
+        .. _RFC 3548: http://www.faqs.org/rfcs/rfc3548.html
+

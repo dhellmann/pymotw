@@ -1,19 +1,14 @@
-===========
-hmac
-===========
+=============================================================
+hmac -- Cryptographic signature and verification of messages.
+=============================================================
+
 .. module:: hmac
     :synopsis: Cryptographic signature and verification of messages.
 
-:Module: hmac
-:Purpose: Cryptographic signature and verification of messages.
-:Python Version: 2.2
-:Abstract:
-
+:Purpose: 
     The hmac module implements keyed-hashing for message authentication, as
     described in RFC-2104.
-
-Description
-===========
+:Python Version: 2.2
 
 The HMAC algorithm can be used to verify the integrity of information passed
 between applications or stored in a potentially vulnerable location. The basic
@@ -23,7 +18,7 @@ transmitted or stored message to determine a level of trust, without
 transmitting the secret key.
 
 Disclaimer: I'm not a security expert. For the full details on HMAC, check out
-RFC-2104.
+`RFC 2104`_.
 
 Example
 =======
@@ -31,24 +26,9 @@ Example
 Creating the hash is not complex. Here's a simple example which uses the
 default MD5 hash algorithm:
 
-::
-
-    import hmac
-
-    digest_maker = hmac.new('secret-shared-key-goes-here')
-
-    f = open('hmac_simple.py', 'rb')
-    try:
-        while True:
-            block = f.read(1024)
-            if not block:
-                break
-            digest_maker.update(block)
-    finally:
-        f.close()
-
-    digest = digest_maker.hexdigest()
-    print digest
+.. include:: hmac_simple.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 When run, the code reads its source file and computes an HMAC signature for
 it:
@@ -69,25 +49,9 @@ most secure method to use. MD5 hashes have some weaknesses, such as collisions
 (where two different messages produce the same hash). The SHA-1 algorithm is
 considered to be stronger, and should be used instead.
 
-::
-
-    import hmac
-    import hashlib
-
-    digest_maker = hmac.new('secret-shared-key-goes-here', '', hashlib.sha1)
-
-    f = open('hmac_sha.py', 'rb')
-    try:
-        while True:
-            block = f.read(1024)
-            if not block:
-                break
-            digest_maker.update(block)
-    finally:
-        f.close()
-
-    digest = digest_maker.hexdigest()
-    print digest
+.. include:: hmac_sha.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 hmac.new() takes 3 arguments. The first is the secret key, which should be
 shared between the two endpoints which are communicating so both ends can use
@@ -112,20 +76,9 @@ unprintable or non-ASCII characters, including NULs. Some web services (Google
 checkout, Amazon S3) use the base64 encoded version of the binary digest
 instead of the hexdigest.
 
-::
-
-    import base64
-    import hmac
-    import hashlib
-
-    f = open('hmac_base64.py', 'rb')
-    try:
-        body = f.read()
-    finally:
-        f.close()
-
-    digest = hmac.new('secret-shared-key-goes-here', body, hashlib.sha1).digest()
-    print base64.encodestring(digest)
+.. include:: hmac_base64.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 The base64 encoded string ends in a newline, which frequently needs to be
 stripped off when embedding the string in HTTP headers or other
@@ -274,3 +227,21 @@ The output shows that the first object is verified and the second is deemed
     WARNING: Data corruption
 
 
+.. seealso::
+
+    `hmac <http://docs.python.org/library/hmac.html>`_
+        The standard library documentation for this module.
+    
+    `RFC 2104`_
+        HMAC: Keyed-Hashing for Message Authentication
+
+        .. _RFC 2104: http://www.faqs.org/rfcs/rfc2104.html
+
+    :mod:`hashlib`
+        The :mod:`hashlib` module.
+
+    `WikiPedia: MD5 <http://en.wikipedia.org/wiki/MD5>`_
+        Description of the MD5 hashing algorithm.
+
+    `Authenticating to Amazon S3 Web Service <http://docs.amazonwebservices.com/AmazonS3/2006-03-01/index.html?S3_Authentication.html>`_
+        Instructions for authenticating to S3 using HMAC-SHA1 signed credentials.

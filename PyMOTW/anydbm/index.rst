@@ -106,9 +106,10 @@ A similar TypeError is raised if a value is not a string.
         self.db[key] = value
     TypeError: Data values must be of type string or None.
 
-References
-==========
+.. seealso::
 
-See also :mod:`shelve`.
+    Module :mod:`shelve`
+        Examples for the :mod:`shelve` module, which uses :mod:`anydbm` to store data.
 
-Standard library documentation: `anydbm <http://docs.python.org/lib/module-anydbm.html>`_
+    `anydbm <http://docs.python.org/library/anydbm.html>`_
+        The standard library documentation for this module.

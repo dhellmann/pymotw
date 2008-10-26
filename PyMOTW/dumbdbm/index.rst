@@ -12,9 +12,10 @@ The :mod:`dumbdbm` module is a portable fallback implementation of the DBM API w
 
 It follows the semantics of the :mod:`anydbm` module.
 
-References
-==========
+.. seealso::
 
-See also :mod:`anydbm`
+    `dumbdbm <http://docs.python.org/library/dumbdbm.html>`_
+        The standard library documentation for this module.
 
-Standard library documentation: `dumbdbm <http://docs.python.org/lib/module-dumbdbm.html>`_
+    :mod:`anydbm`
+        The :mod:`anydbm` module.

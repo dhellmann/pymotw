@@ -276,7 +276,8 @@ So the PyATL meeting schedule for the year is:
      12: 13
 
 
-References
-==========
+.. seealso::
 
-Standard library documentation: `calendar <http://docs.python.org/lib/module-calendar.html>`_
+    `calendar <http://docs.python.org/library/calendar.html>`_
+        The standard library documentation for this module.
+

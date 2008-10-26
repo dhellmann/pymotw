@@ -230,8 +230,8 @@ In general you will probably want to handle and quietly log all exceptions in
 your cleanup functions, since it is messy to have a program dump errors on
 exit.
 
-References
-==========
+.. seealso::
 
-Standard library documentation: `atexit <http://docs.python.org/lib/module-atexit.html>`_
+    `atexit <http://docs.python.org/library/atexit.html>`_
+        The standard library documentation for this module.
 

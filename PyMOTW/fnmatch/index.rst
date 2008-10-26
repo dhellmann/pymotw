@@ -1,19 +1,12 @@
-==============
-fnmatch
-==============
+==============================================================
+fnmatch -- Compare filenames against Unix-style glob patterns.
+==============================================================
+
 .. module:: fnmatch
     :synopsis: Compare filenames against Unix-style glob patterns.
 
-:Module: fnmatch
-:Purpose: Compare filenames against Unix-style glob patterns.
+:Purpose: Handle Unix-style filename comparison with the fnmatch module.
 :Python Version: 1.4 and later.
-:Abstract:
-
-    Handle Unix-style filename comparison with the fnmatch module.
-
-
-Description
-===========
 
 The fnmatch module is used to compare filenames against glob-style patterns
 such as used by Unix shells.
@@ -139,4 +132,7 @@ Notice that some of the characters are escaped to make a valid expression.
     Pattern : fnmatch_*.py
     Regex   : fnmatch\_.*\.py$
 
+.. seealso::
 
+    `fnmatch <http://docs.python.org/library/fnmatch.html>`_
+        The standard library documentation for this module.

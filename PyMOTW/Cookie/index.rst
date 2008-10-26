@@ -192,11 +192,15 @@ pickles, they are potential security holes in your application and you should
 not use them. It is safer to store state on the server, and give the client a
 session key instead.
 
-References
-==========
+.. seealso::
 
-:mod:`cookielib` -- for working with cookies on the client-side
+    `Cookie <http://docs.python.org/library/cookie.html>`_
+        The standard library documentation for this module.
 
-`RFC 2109, HTTP State Management Mechanism <http://www.ietf.org/rfc/rfc2109.txt>`_
+    :mod:`cookielib`
+        The :mod:`cookielib` module, for working with cookies on the client-side.
 
-Standard library documentation: `Cookie <http://docs.python.org/lib/module-Cookie.html>`_
+    `RFC 2109`_
+        RFC 2109 -- HTTP State Management Mechanism
+        
+        .. _RFC 2109: http://www.ietf.org/rfc/rfc2109.txt

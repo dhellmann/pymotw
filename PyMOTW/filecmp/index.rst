@@ -270,8 +270,8 @@ attribute subdirs to allow easy recursive comparison.
     Subdirectories:
     {'common_dir': <filecmp.dircmp instance at 0x85da0>}
 
-References
-==========
+.. seealso::
 
-Standard library documentation: `filecmp <http://docs.python.org/lib/module-filecmp.html>`_
+    `filecmp <http://docs.python.org/library/filecmp.html>`_
+        The standard library documentation for this module.
 

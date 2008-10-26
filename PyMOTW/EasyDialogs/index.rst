@@ -267,15 +267,19 @@ like sys.argv.
     $ python EasyDialogs_GetArgv.py
     ['python', '-d', '-v', '/Users/dhellmann/Documents/PyMOTW/in_progress/EasyDialogs/EasyDialogs_GetArgv.py']
 
-References
-==========
+.. seealso::
 
-`Navigation Services Reference <http://developer.apple.com/documentation/Carbon/Reference/Navigation_Services_Ref/Reference/reference.html>`_
+    `EasyDialogs <http://docs.python.org/library/easydialogs.html>`_
+        The standard library documentation for this module.
 
-`EasyDialogs for Windows <http://www.averdevelopment.com/python/EasyDialogs.html>`_
+    `Navigation Services Reference <http://developer.apple.com/documentation/Carbon/Reference/Navigation_Services_Ref/Reference/reference.html>`_
+        Documentation for Apple's API for working with file objects under Mac OS X.
 
-`optparse-gui <http://code.google.com/p/optparse-gui/>`_
+    `EasyDialogs for Windows <http://www.averdevelopment.com/python/EasyDialogs.html>`_
+        A version of this module that runs under Windows.
 
-`EasyGui <http://www.ferg.org/easygui/>`_
+    `optparse-gui <http://code.google.com/p/optparse-gui/>`_
+        A replacement for GetArgv that works with :mod:`optparse` instead.
 
-Standard library documentation: `EasyDialogs <http://docs.python.org/lib/module-EasyDialogs.html>`_
+    `EasyGui <http://easygui.sourceforge.net/>`_
+        A similar portable library for creating simple graphical user interfaces.

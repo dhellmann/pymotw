@@ -29,18 +29,11 @@
 # CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 #
 
+__version__ = "$Id$"
+#end_pymotw_header
+
 """Sample file to serve as the basis for inspect examples.
 """
-
-__version__ = "$Id$"
-
-# Import system modules
-
-
-# Import local modules
-
-
-# Module
 
 def module_level_function(arg1, arg2='default', *args, **kwargs):
     """This function is declared in the module."""

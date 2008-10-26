@@ -283,14 +283,19 @@ Since tzinfo is an abstract base class, you need to define a subclass and
 provide appropriate implementations for a few methods to make it useful.
 Unfortunately, datetime does not include any actual implementations ready to
 be used. Ironically, the documentation does provide a few sample
-implementations. Refer to the tzinfo page for examples using fixed offsets as
+implementations. Refer to the standard library documentation page for examples using fixed offsets as
 well as a DST-aware class and more details about creating your own class.
 
-References
-==========
+.. seealso::
 
-`WikiPedia: Proleptic Gregorian calendar <http://en.wikipedia.org/wiki/Proleptic_Gregorian_calendar>`_
+    `datetime <http://docs.python.org/lib/module-datetime.html>`_
+        The standard library documentation for this module.
 
-Standard library documentation: `datetime <http://docs.python.org/lib/module-datetime.html>`_
+    `WikiPedia: Proleptic Gregorian calendar <http://en.wikipedia.org/wiki/Proleptic_Gregorian_calendar>`_
+        A description of the Gregorian calendar system.
 
-See also :mod:`calendar` and :mod:`time`.
+    :mod:`calendar`
+        The :mod:`calendar` module.
+
+    :mod:`time`
+        The :mod:`time` module.
