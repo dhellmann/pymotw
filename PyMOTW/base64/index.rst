@@ -82,11 +82,9 @@ Because the default base64 alphabet may use ``+`` and ``/``, and those two chara
 
 ::
 
-    Original         : '\xfb\xef'
     Standard encoding: ++8=
     URL-safe encoding: --8=
 
-    Original         : '\xff\xff'
     Standard encoding: //8=
     URL-safe encoding: __8=
 

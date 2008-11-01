@@ -1,6 +1,5 @@
 .. _copyright:
 
-=======================
 Copyright and Licensing
 =======================
 

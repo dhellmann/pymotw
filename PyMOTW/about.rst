@@ -4,27 +4,16 @@ About Python Module of the Week
 
 PyMOTW is a series of blog posts written by `Doug Hellmann <http://www.doughellmann.com/>`_.  It was started as a way to build the habit of writing something on a regular basis.  The focus of the series is building a set of example code for the modules in the `Python <http://www.python.org/>`_ standard library.
 
-:Project Home Page: http://www.doughellmann.com/PyMOTW/
+See the project home page at http://www.doughellmann.com/PyMOTW/ for updates and the latest release.
 
-Complete documentation for the standard library can be found on the Python web site at http://docs.python.org/lib/contents.html.
+Complete documentation for the standard library can be found on the Python web site at http://docs.python.org/library/contents.html.
+
+The source text for PyMOTW is `reStructuredText <http://docutils.sourceforge.net/>`_ and the HTML and PDF output are created using `Sphinx <http://sphinx.pocoo.org/>`_.
 
 Subscribe
 =========
 
 As new articles are written, they are posted to `my blog <http://blog.doughellmann.com/>`_.  Updates are available by `RSS <http://feeds.feedburner.com/PyMOTW>`_ and `email <http://www.feedburner.com/fb/a/emailverifySubmit?feedId=806224&amp;loc=en_US>`_.
-
-.. image:: feed.png
-    :alt: RSS Feed
-    :target: http://feeds.feedburner.com/PyMOTW
-
-.. image:: mail.png
-    :alt: Subscribe by Email
-    :target: http://www.feedburner.com/fb/a/emailverifySubmit?feedId=806224&amp;loc=en_US
-
-Other Contributors
-==================
-
-Thank you to John Benediktsson for the original HTML-to-reST conversion.
 
 Translations and Other Versions
 ===============================
@@ -33,9 +22,12 @@ Translations and Other Versions
 
 Gerard Flanagan is working on a "Python compendium" called `The Hazel Tree <http://www.thehazeltree.org/>`_.  He is converting a collection of old and new of Python-related reference material into reStructuredText and then building a single searchable repository from the results.  I am very pleased to have PyMOTW included with works from authors like Mark Pilgrim, Fredrik Lundh, Andrew Kuchling, and a growing list of others.
 
+Other Contributors
+==================
+
+Thank you to John Benediktsson for the original HTML-to-reST conversion.
+
 License
 =======
 
-.. toctree::
-
- copyright
+.. include:: copyright.rst

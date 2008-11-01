@@ -11,7 +11,7 @@ __version__ = "$Id$"
 
 import base64
 
-for original in [ '\xfb\xef', '\xff\xff' ]:
+for original in [ chr(251) + chr(239), chr(255) * 2 ]:
     print 'Original         :', repr(original)
     print 'Standard encoding:', base64.standard_b64encode(original)
     print 'URL-safe encoding:', base64.urlsafe_b64encode(original)

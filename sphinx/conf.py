@@ -32,5 +32,13 @@ templates_path = ['../sphinx/templates/%s' % os.environ['TEMPLATES'],
                   ]
 
 latex_documents = [
-    ('contents', 'PyMOTW.tex', 'Python Module of the Week', 'Doug Hellmann', 'manual', True),
+    ('pdf_contents', 'PyMOTW-%s.tex' % version, 
+     'Python Module of the Week', 'Doug Hellmann', 'manual', False),
     ]
+
+latex_preamble = r'''
+\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\thechapter.
+\ #1}}{}}
+ \renewcommand{\sectionmark}[1]{\markright{\MakeUppercase{\thesection.
+\ #1}}}
+'''

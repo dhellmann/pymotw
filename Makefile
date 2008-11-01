@@ -38,7 +38,7 @@ html:
 pdf:
 	mkdir -p pdf_output
 	TEMPLATES='pkg' sphinx-build -b latex -d sphinx/doctrees -c sphinx $(PROJECT) pdf_output
-	(cd pdf_output; PATH=$(PATH):/Volumes/TeXLive2007/bin/i386-darwin $(MAKE))
+	(cd pdf_output; PATH=/Volumes/TeXLive2007/bin/i386-darwin:$(PATH) $(MAKE))
 
 export MODULE=$(shell cat module)
 .PHONEY: blog
@@ -51,6 +51,8 @@ blog: module
 website: sphinx/templates/web/base.html
 	mkdir -p web
 	TEMPLATES='web' sphinx-build -a -b html -d sphinx/doctrees -c sphinx $(PROJECT) web/
+	$(MAKE) pdf
+	cp pdf_output/*.pdf web/
 
 sphinx/templates/web/base.html: $(HOME)/Devel/personal/doughellmann/templates/base.html
 	cp $< $@
