@@ -8,6 +8,9 @@ See the project home page at http://www.doughellmann.com/PyMOTW/ for updates and
 
 Complete documentation for the standard library can be found on the Python web site at http://docs.python.org/library/contents.html.
 
+Tools
+=====
+
 The source text for PyMOTW is `reStructuredText <http://docutils.sourceforge.net/>`_ and the HTML and PDF output are created using `Sphinx <http://sphinx.pocoo.org/>`_.
 
 Subscribe

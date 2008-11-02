@@ -23,19 +23,20 @@
 # CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 #
 
-"""Using tee()
+"""Example use of linecache module.
 
+See http://blog.doughellmann.com/2007/04/pymotw-linecache.html
 """
 
-__version__ = "$Id$"
+__module_id__ = '$Id$'
 #end_pymotw_header
 
-from itertools import *
+import linecache
+from linecache_data import *
 
-r = islice(count(), 5)
-i1, i2 = tee(r)
+filename = make_tempfile()
 
-for i in i1:
-    print 'i1:', i
-for i in i2:
-    print 'i2:', i
+# Blank lines include the newline
+print '\nBLANK : "%s"' % linecache.getline(filename, 6)
+
+cleanup(filename)
