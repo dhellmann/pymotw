@@ -51,6 +51,7 @@ blog: module
 website: sphinx/templates/web/base.html
 	mkdir -p web
 	TEMPLATES='web' sphinx-build -a -b html -d sphinx/doctrees -c sphinx $(PROJECT) web/
+	rm -f web/*.pdf pdf_output/*.pdf
 	$(MAKE) pdf
 	cp pdf_output/*.pdf web/
 
