@@ -97,5 +97,5 @@ If the data in the array is not in the native byte order, or needs to be swapped
     :mod:`struct`
         The struct module.
 
-    `Numerical Python <http://numpy.sourceforge.net/numdoc/HTML/numdoc.htm>`_
+    `Numerical Python <http://www.scipy.org>`_
         NumPy is a Python library for working with large datasets efficiently.
