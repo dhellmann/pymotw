@@ -1,15 +1,12 @@
-=============
-locale
-=============
+=========================================
+locale -- POSIX cultural localization API
+=========================================
+
 .. module:: locale
     :synopsis: POSIX cultural localization API
 
-:Module: locale
 :Purpose: POSIX cultural localization API
 :Python Version: 1.5, with extensions through 2.5 (this discussion assumes 2.5)
-
-Description
-===========
 
 The locale module is part of Python's internationalization and localization
 support library. It provides a standard way to handle operations that may
@@ -23,8 +20,8 @@ the application set it one time. In the examples below, I will change the
 locale several times for illustration purposes. It is far more likely that
 your application will set the locale once at startup and not change it.
 
-Example
-=======
+Probing the Current Locale
+==========================
 
 The most common way to let the user change the locale settings for an
 application is through an environment variable (LC_ALL, LC_CTYPE, LANG, or
@@ -32,27 +29,9 @@ LANGUAGE, depending on your platform). The application then calls
 locale.setlocale() without a hard-coded value, and the environment value is
 used.
 
-::
-
-    import locale
-    import os
-    import pprint
-
-    print 'Environment settings:'
-    for env_name in [ 'LC_ALL', 'LC_CTYPE', 'LANG', 'LANGUAGE' ]:
-        print '\t%s = %s' % (env_name, os.environ.get(env_name, ''))
-
-    # What is the default locale?
-    print
-    print 'Default locale:', locale.getdefaultlocale()
-
-    # Default settings based on the user's environment.
-    locale.setlocale(locale.LC_ALL, '')
-
-    # If we do not have a locale, assume US English.
-    print 'From environment:', locale.getlocale()
-
-    pprint.pprint(locale.localeconv())
+.. include:: locale_env_example.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 On my Mac, this produces output like:
 
@@ -211,23 +190,17 @@ Poland::
     'positive_sign': '',
     'thousands_sep': ' '}
 
+Currency
+========
+
 So you can see that the currency symbol setting changes, the character to
 separate whole numbers from decimal fractions, etc. Now let's use the
 different locales to print the same information formatted for each of these
 different locales (US dollars, Euros, and Polish złoty):
 
-::
-
-    sample_locales = [ ('USA', 'en_US'),
-                      ('France', 'fr_FR'),
-                      ('Spain', 'es_ES'),
-                      ('Portugal', 'pt_PT'),
-                      ('Poland', 'pl_PL'),
-                      ]
-
-    for name, loc in sample_locales:
-        locale.setlocale(locale.LC_ALL, loc)
-        print '%20s: %s' % (name, locale.currency(1234.56))
+.. include:: locale_currency_example.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 The output is this small table:
 
@@ -246,20 +219,12 @@ numbers (as illustrated above). The locale module provides atoi() and atof()
 functions for converting the strings to integer and floating point values
 respectively.
 
-::
+Numerical Formatting
+====================
 
-    sample_data = [ ('USA', 'en_US', '1234.56'),
-                   ('France', 'fr_FR', '1234,56'),
-                   ('Spain', 'es_ES', '1234,56'),
-                   ('Portugal', 'pt_PT', '1234.56'),
-                   ('Poland', 'pl_PL', '1234,56'),
-                   ]
-
-    for name, loc, a in sample_data:
-        locale.setlocale(locale.LC_ALL, loc)
-        f = locale.atof(a)
-        locale.setlocale(locale.LC_ALL, 'en_US')
-        print '%20s: %7s => %f' % (name, a, f)
+.. include:: locale_atof_example.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -270,23 +235,14 @@ respectively.
                Portugal: 1234.56 => 1234.560000
                  Poland: 1234,56 => 1234.560000
 
+Dates and Times
+===============
+
 Another important aspect of localization is date and time formatting:
 
-::
-
-    import locale
-    import time
-
-    sample_locales = [ ('USA', 'en_US'),
-                      ('France', 'fr_FR'),
-                      ('Spain', 'es_ES'),
-                      ('Portugal', 'pt_PT'),
-                      ('Poland', 'pl_PL'),
-                      ]
-
-    for name, loc in sample_locales:
-        locale.setlocale(locale.LC_ALL, loc)
-        print '%20s: %s' % (name, time.strftime(locale.nl_langinfo(locale.D_T_FMT)))
+.. include:: locale_date_example.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -297,9 +253,12 @@ Another important aspect of localization is date and time formatting:
                Portugal: Dom 20 Mai 10:19:54 2007
                  Poland: ndz 20 maj 10:19:54 2007
 
-This week I have only covered some of the high-level functions in the localize
-module. There are others which are lower level (format_string) or which relate
-to managing the locale for your application (resetlocale). As usual, you will
+This discussion only covers some of the high-level functions in the localize
+module. There are others which are lower level (``format_string()``) or which relate
+to managing the locale for your application (``resetlocale()``). As usual, you will
 want to refer to the Python library documentation for more details.
 
+.. seealso::
 
+    `locale <http://docs.python.org/library/locale.html>`_
+        The standard library documentation for this module.

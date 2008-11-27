@@ -32,6 +32,7 @@ could be printed by the script.
 """
 
 __module_id__ = "$Id$"
+#end_pymotw_header
 
 
 locales = [
