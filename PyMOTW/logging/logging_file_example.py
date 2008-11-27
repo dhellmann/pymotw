@@ -29,21 +29,22 @@ See http://blog.doughellmann.com/2007/05/pymotw-logging.html
 """
 
 __module_id__ = "$Id$"
+#end_pymotw_header
 
 import logging
 
 LOG_FILENAME = '/tmp/logging_example.out'
 logging.basicConfig(filename=LOG_FILENAME,
-					level=logging.DEBUG,
-					)
+                    level=logging.DEBUG,
+                    )
 
 logging.debug('This message should go to the log file')
 
 f = open(LOG_FILENAME, 'rt')
 try:
-	body = f.read()
+    body = f.read()
 finally:
-	f.close()
+    f.close()
 
 print 'FILE:'
 print body

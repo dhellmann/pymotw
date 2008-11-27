@@ -30,6 +30,7 @@ See http://blog.doughellmann.com/2007/05/pymotw-logging.html
 """
 
 __module_id__ = "$Id$"
+#end_pymotw_header
 
 import glob
 import logging
@@ -47,9 +48,9 @@ my_logger.addHandler(handler)
 
 # Log some messages
 for i in range(20):
-	my_logger.debug('i = %d' % i)
+    my_logger.debug('i = %d' % i)
 
 # See what files are created
 logfiles = glob.glob('%s*' % LOG_FILENAME)
 for filename in logfiles:
-	print filename
+    print filename

@@ -30,6 +30,7 @@ See http://blog.doughellmann.com/2007/05/pymotw-logging.html
 """
 
 __module_id__ = "$Id$"
+#end_pymotw_header
 
 import logging
 
