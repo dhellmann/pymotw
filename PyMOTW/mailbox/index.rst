@@ -271,13 +271,19 @@ Other Formats
 
 MH is another multi-file mailbox format used by some mail handlers.  Babyl and MMDF are single-file formats with different message separators than mbox.  None seem to be as popular as mbox or Maildir.  The single-file formats support the same API as mbox, and MH includes the folder-related methods found in the Maildir class.
 
-References
-==========
+.. seealso::
 
-`mbox manpage from qmail <http://www.qmail.org/man/man5/mbox.html>`_
+    `mailbox <http://docs.python.org/library/mailbox.html>`_
+        The standard library documentation for this module.
 
-`maildir manpage from qmail <http://www.qmail.org/man/man5/maildir.html>`_
+    mbox manpage from qmail
+        http://www.qmail.org/man/man5/mbox.html
 
-Standard library documentation: `mailbox <http://docs.python.org/lib/module-mailbox.html>`_
+    maildir manpage from qmail
+        http://www.qmail.org/man/man5/maildir.html
 
-See also :mod:`email` and :mod:`mhlib`.
+    :mod:`email`
+        The email module.
+
+    :mod:`mhlib`
+        The mhlib module.
