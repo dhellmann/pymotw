@@ -11,7 +11,13 @@ mhlib -- Work with MH mailboxes
 .. note::
     This module is superseded by :mod:`mailbox`.
 
-References
-==========
+.. seealso::
 
-Standard library documentation: `mhlib <http://docs.python.org/lib/module-mhlib.html>`_
+    `mhlib <http://docs.python.org/lib/module-mhlib.html>`_
+        Standard library documentation for this module.
+
+    :mod:`email`
+        The email module.
+
+    :mod:`mailbox`
+        The mailbox module.
