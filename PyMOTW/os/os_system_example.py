@@ -28,11 +28,9 @@
 """
 
 __module_id__ = "$Id$"
+#end_pymotw_header
 
 import os
 
 # Simple command
 os.system('ls -l')
-
-# Command with shell expansion
-os.system('ls -l $HOME')

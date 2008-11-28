@@ -23,7 +23,7 @@
 # CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 #
 
-"""Change permissions on a file
+"""Example use of popen() varients from os.
 
 """
 
@@ -31,18 +31,15 @@ __module_id__ = "$Id$"
 #end_pymotw_header
 
 import os
-import stat
 
-# Determine what permissions are already set using stat
-existing_permissions = stat.S_IMODE(os.stat(__file__).st_mode)
-
-if not os.access(__file__, os.X_OK):
-    print 'Adding execute permission'
-    new_permissions = existing_permissions | stat.S_IXUSR
-else:
-    print 'Removing execute permission'
-    # use xor to remove the user execute permission
-    new_permissions = existing_permissions ^ stat.S_IXUSR
-
-os.chmod(__file__, new_permissions)
-    
+print 'popen2, cmd as sequence:'
+pipe_stdin, pipe_stdout = os.popen2(['cat', '-'])
+try:
+    pipe_stdin.write('through stdin to stdout')
+finally:
+    pipe_stdin.close()
+try:
+    stdout_value = pipe_stdout.read()
+finally:
+    pipe_stdout.close()
+print '\tpass through:', repr(stdout_value)

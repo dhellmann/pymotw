@@ -1,18 +1,15 @@
-=============
-os
-=============
+============================================================
+os -- Portable access to operating system specific features.
+============================================================
+
 .. module:: os
     :synopsis: Portable access to operating system specific features.
 
-:Module: os
 :Purpose: Portable access to operating system specific features.
 :Python Version: 1.4 (or earlier)
 
-Description
-===========
-
-The os module provides a wrapper for platform specific modules such as posix,
-nt, and mac. The API for functions available on all platform should be the
+The os module provides a wrapper for platform specific modules such as :mod:`posix`,
+:mod:`nt`, and :mod:`mac`. The API for functions available on all platform should be the
 same, so using the os module offers some measure of portability. Not all
 functions are available on all platforms, however. Many of the process
 management functions described in this summary are not available for Windows.
@@ -21,16 +18,15 @@ The Python documentation for the os module is subtitled "Miscellaneous
 operating system interfaces". The module includes mostly functions for
 creating and managing running processes or filesystem content (files and
 directories), with a few other random bits of functionality thrown in besides.
-In this session, we'll cover the features for learning about and changing
-process parameters. 
 
-A quick warning: Some of the example code below will only work on Unix-like
-operating systems.
+.. note::
+
+    Some of the example code below will only work on Unix-like operating systems.
 
 Process Owner
 =============
 
-The first set of functions I'll cover are used for determining and changing
+The first set of functions to cover are used for determining and changing
 the process owner ids. These are mostly useful to authors of daemons or
 special system programs which need to change permission level rather than
 running as root. I won't try to explain all of the intricate details of Unix
@@ -44,42 +40,9 @@ system boot, to lower the privilege level and run as a different user. If you
 download the examples to try them out, you should change the TEST_GID and
 TEST_UID values to match your user.
 
-::
-
-    import os
-
-    TEST_GID=501
-    TEST_UID=527
-
-    def show_user_info():
-           print 'Effective User  :', os.geteuid()
-           print 'Effective Group :', os.getegid()
-           print 'Actual User    :', os.getuid(), os.getlogin()
-           print 'Actual Group  :', os.getgid()
-           print 'Actual Groups   :', os.getgroups()
-           return
-
-    print 'BEFORE CHANGE:'
-    show_user_info()
-    print
-
-    try:
-           os.setegid(TEST_GID)
-    except OSError:
-           print 'ERROR: Could not change effective group.  Re-run as root.'
-    else:
-           print 'CHANGED GROUP:'
-           show_user_info()
-           print
-
-    try:
-           os.seteuid(TEST_UID)
-    except OSError:
-           print 'ERROR: Could not change effective user.  Re-run as root.'
-    else:
-           print 'CHANGE USER:'
-           show_user_info()
-           print
+.. include:: os_process_user_example.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 When run as myself (527, 501) on OS X, I see this output:
 
@@ -162,25 +125,10 @@ variables are commonly used for configuration values such as search paths,
 file locations, and debug flags. Let's look at an example of retrieving an
 environment variable, and passing a value through to a child process.
 
-::
+.. include:: os_environ_example.py
+    :literal:
+    :start-after: #end_pymotw_header
 
-    print 'Initial value:', os.environ.get('TESTVAR', None)
-    print 'Child process:'
-    os.system('echo $TESTVAR')
-
-    os.environ['TESTVAR'] = 'THIS VALUE WAS CHANGED'
-
-    print
-    print 'Changed value:', os.environ['TESTVAR']
-    print 'Child process:'
-    os.system('echo $TESTVAR')
-
-    del os.environ['TESTVAR']
-
-    print
-    print 'Removed value:', os.environ.get('TESTVAR', None)
-    print 'Child process:'
-    os.system('echo $TESTVAR')
 
 The os.environ object follows the standard Python mapping API for retrieving
 and setting values. Changes to os.environ are exported for child processes.
@@ -208,16 +156,10 @@ of the "current working directory". This is the directory on the filesystem
 the process uses as the default location when files are accessed with relative
 paths.
 
-::
+.. include:: os_cwd_example.py
+    :literal:
+    :start-after: #end_pymotw_header
 
-    print 'Starting:', os.getcwd()
-    print os.listdir(os.curdir)
-
-    print 'Moving up one:', os.pardir
-    os.chdir(os.pardir)
-
-    print 'After move:', os.getcwd()
-    print os.listdir(os.curdir)
 
 
 Note the use of os.curdir and os.pardir to refer to the current and parent
@@ -225,6 +167,7 @@ directories in a portable manner. The output should not be surprising:
 
 ::
 
+    $ python os_cwd_example.py
     Starting: /Users/dhellmann/Documents/PyMOTW/PyMOTW/os
     ['.svn', '__init__.py', 'os_cwd_example.py', 'os_environ_example.py',
     'os_process_id_example.py', 'os_process_user_example.py']
@@ -260,32 +203,18 @@ descriptions of the streams also assume Unix-like terminology:
 * stderr - The "standard error" stream for a process (file descriptor 2) is
   writable by the process, and is used for conveying error messages.
 
+.. include:: os_popen.py
+    :literal:
+    :start-after: #end_pymotw_header
+
 ::
 
-    import os
-
-    print '\npopen, read:'
-    pipe_stdout = os.popen('echo "to stdout"', 'r')
-    try:
-      stdout_value = pipe_stdout.read()
-    finally:
-      pipe_stdout.close()
-    print '\tstdout:', repr(stdout_value)
-
-    print '\npopen, write:'
-    pipe_stdin = os.popen('cat -', 'w')
-    try:
-      pipe_stdin.write('\tstdin: to stdin\n')
-    finally:
-      pipe_stdin.close()
-
-
+    $ python os_popen.py 
     popen, read:
-          stdout: 'to stdout\n'
+            stdout: 'to stdout\n'
 
     popen, write:
-          stdin: to stdin
-
+            stdin: to stdin
 
 The caller can only read from OR write to the streams associated with the
 child process, which limits the usefulness. The other popen varients provide
@@ -295,19 +224,9 @@ needed.
 For example, popen2() returns a write-only stream attached to stdin of the
 child process, and a read-only stream attached to its stdout.
 
-::
-
-    print '\npopen2:'
-    pipe_stdin, pipe_stdout = os.popen2('cat -')
-    try:
-      pipe_stdin.write('through stdin to stdout')
-    finally:
-      pipe_stdin.close()
-    try:
-      stdout_value = pipe_stdout.read()
-    finally:
-      pipe_stdout.close()
-    print '\tpass through:', repr(stdout_value)
+.. include:: os_popen2.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 
 This simplistic example illustrates bi-directional communication. The value
@@ -317,35 +236,19 @@ messages back and forth through the pipe; even serialized objects.
 
 ::
 
+    $ python os_popen2.py 
     popen2:
-          pass through: 'through stdin to stdout'
-
+            pass through: 'through stdin to stdout'
 
 In most cases, it is desirable to have access to both stdout and stderr. The
 stdout stream is used for message passing and the stderr stream is used for
 errors, so reading from it separately reduces the complexity for parsing any
-error messages. The popen3() function returns 3 open streams tied to stdin,
+error messages. The ``popen3()`` function returns 3 open streams tied to stdin,
 stdout, and stderr of the new process.
 
-::
-
-    print '\npopen3:'
-    pipe_stdin, pipe_stdout, pipe_stderr = os.popen3('cat -; echo ";to stderr" 1>&2')
-    try:
-      pipe_stdin.write('through stdin to stdout')
-    finally:
-      pipe_stdin.close()
-    try:
-      stdout_value = pipe_stdout.read()
-    finally:
-      pipe_stdout.close()
-    print '\tpass through:', repr(stdout_value)
-    try:
-      stderr_value = pipe_stderr.read()
-    finally:
-      pipe_stderr.close()
-    print '\tstderr:', repr(stderr_value)
-
+.. include:: os_popen3.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 Notice that we have to read from and close both streams separately. There are
 some related to flow control and sequencing when dealing with I/O for multiple
@@ -356,59 +259,39 @@ Flow Control Issues section of the Python library documentation.
 
 ::
 
+    $ python os_popen3.py 
     popen3:
-          pass through: 'through stdin to stdout'
-          stderr: ';to stderr\n'
-
+            pass through: 'through stdin to stdout'
+            stderr: ';to stderr\n'
 
 And finally, popen4() returns 2 streams, stdin and a merged stdout/stderr.
 This is useful when the results of the command need to be logged, but not
 parsed directly.
 
-::
-
-    print '\npopen4:'
-    pipe_stdin, pipe_stdout_and_stderr = os.popen4('cat -; echo ";to stderr" 1>&2')
-    try:
-      pipe_stdin.write('through stdin to stdout')
-    finally:
-      pipe_stdin.close()
-    try:
-      stdout_value = pipe_stdout_and_stderr.read()
-    finally:
-      pipe_stdout.close()
-    print '\tcombined output:', repr(stdout_value)
+.. include:: os_popen4.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
+    $ python os_popen4.py 
     popen4:
-          combined output: 'through stdin to stdout;to stderr\n'
-
+            combined output: 'through stdin to stdout;to stderr\n'
 
 Besides accepting a single string command to be given to the shell for
-parsing, popen2(), popen3(), and popen4() also accept a sequence of strings
+parsing, ``popen2()``, ``popen3()``, and ``popen4()`` also accept a sequence of strings
 (command, followed by arguments). In this case, the arguments are not
 processed by the shell.
 
-::
-
-    print '\npopen2, cmd as sequence:'
-    pipe_stdin, pipe_stdout = os.popen2(['cat', '-'])
-    try:
-      pipe_stdin.write('through stdin to stdout')
-    finally:
-      pipe_stdin.close()
-    try:
-      stdout_value = pipe_stdout.read()
-    finally:
-      pipe_stdout.close()
-    print '\tpass through:', repr(stdout_value)
+.. include:: os_popen2_seq.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
+    $ python os_popen2_seq.py 
     popen2, cmd as sequence:
-          pass through: 'through stdin to stdout'
-
+            pass through: 'through stdin to stdout'
 
 
 File Descriptors
@@ -428,15 +311,9 @@ Filesystem Permissions
 The function os.access() can be used to test the access rights a process has
 for a file.
 
-::
-
-    import os
-
-    print 'Testing:', __file__
-    print 'Exists:', os.access(__file__, os.F_OK)
-    print 'Readable:', os.access(__file__, os.R_OK)
-    print 'Writable:', os.access(__file__, os.W_OK)
-    print 'Executable:', os.access(__file__, os.X_OK)
+.. include:: os_access.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 Your results will vary depending on how you install the example code, but it
 should look something like this:
@@ -466,26 +343,9 @@ More detailed information about the file can be accessed using os.stat() or
 os.lstat() (if you want the status of something that might be a symbolic
 link).
 
-::
-
-    import os
-    import sys
-    import time
-
-    if len(sys.argv) == 1:
-      filename = __file__
-    else:
-      filename = sys.argv[1]
-
-    stat_info = os.stat(filename)
-
-    print 'os.stat(%s):' % filename
-    print '\tSize:', stat_info.st_size
-    print '\tPermissions:', oct(stat_info.st_mode)
-    print '\tOwner:', stat_info.st_uid
-    print '\tDevice:', stat_info.st_dev
-    print '\tLast modified:', time.ctime(stat_info.st_mtime)
-
+.. include:: os_stat.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 Once again, your results will vary depending on how the example code was
 installed. Try passing different filenames on the command line to os_stat.py.
@@ -506,23 +366,9 @@ passing the mode as an integer. Mode values can be constructed using constants
 defined in the stat module. Here is an example which toggles the user's
 execute permission bit:
 
-::
-
-    import os
-    import stat
-
-    # Determine what permissions are already set using stat
-    existing_permissions = stat.S_IMODE(os.stat(__file__).st_mode)
-
-    if not os.access(__file__, os.X_OK):
-      print 'Adding execute permission'
-      new_permissions = existing_permissions | stat.S_IXUSR
-    else:
-      print 'Removing execute permission'
-      # use xor to remove the user execute permission
-      new_permissions = existing_permissions ^ stat.S_IXUSR
-
-    os.chmod(__file__, new_permissions)
+.. include:: os_stat_chmod.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 
 The script assumes you have the right permissions to modify the mode of the
@@ -541,29 +387,9 @@ Directories
 There are several functions for working with directories on the filesystem,
 including creating, listing contents, and removing them.
 
-::
-
-    import os
-
-    dir_name = 'os_directories_example'
-
-    print 'Creating', dir_name
-    os.makedirs(dir_name)
-
-    file_name = os.path.join(dir_name, 'example.txt')
-    print 'Creating', file_name
-    f = open(file_name, 'wt')
-    try:
-      f.write('example file')
-    finally:
-      f.close()
-
-    print 'Listing', dir_name
-    print os.listdir(dir_name)
-
-    print 'Cleaning up'
-    os.unlink(file_name)
-    os.rmdir(dir_name)
+.. include:: os_directories.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -589,22 +415,9 @@ Symbolic Links
 For platforms and filesystems which support them, there are several functions
 for working with symlinks.
 
-::
-
-    import os, tempfile
-
-    link_name = tempfile.mktemp()
-
-    print 'Creating link %s->%s' % (link_name, __file__)
-    os.symlink(__file__, link_name)
-
-    stat_info = os.lstat(link_name)
-    print 'Permissions:', oct(stat_info.st_mode)
-
-    print 'Points to:', os.readlink(link_name)
-
-    # Cleanup
-    os.unlink(link_name)
+.. include:: os_symlinks.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 
 Notice that although os includes os.tempnam() for creating temporary
@@ -628,26 +441,9 @@ directory generates a tuple containing the directory path, any immediate
 sub-directories of that path, and the names of any files in that directory.
 This example shows a simplistic recursive directory listing.
 
-::
-
-    import os, sys
-
-    # If we are not given a path to list, use /tmp
-    if len(sys.argv) == 1:
-        root = '/tmp'
-    else:
-        root = sys.argv[1]
-
-    for dir_name, sub_dirs, files in os.walk(root):
-        print '\n', dir_name
-        # Make the subdirectory names stand out with /
-        sub_dirs = [ '%s/' % n for n in sub_dirs ]
-        # Mix the directory contents together
-        contents = sub_dirs + files
-        contents.sort()
-        # Show the contents
-        for c in contents:
-            print '\t%s' % c
+.. include:: os_walk.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -699,12 +495,9 @@ The simplest way to run a separate command, without interacting with it at
 all, is os.system(). It takes a single string which is the command line to be
 executed by a sub-process running a shell.
 
-::
-
-    import os
-
-    # Simple command
-    os.system('ls -l')
+.. include:: os_system_example.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -728,10 +521,9 @@ executed by a sub-process running a shell.
 Since the command is passed directly to the shell for processing, it can even
 include shell syntax such as globbing or environment variables:
 
-::
-
-    # Command with shell expansion
-    os.system('ls -l $HOME')
+.. include:: os_system_shell.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -757,16 +549,10 @@ os.system() blocks until it is complete. Standard input, output, and error
 from the child process are tied to the appropriate streams owned by the caller
 by default, but can be redirected using shell syntax.
 
-::
+.. include:: os_system_background.py
+    :literal:
+    :start-after: #end_pymotw_header
 
-    import os
-    import time
-
-    print 'Calling...'
-    os.system('date; (sleep 3; date) &')
-
-    print 'Sleeping...'
-    time.sleep(5)
 
 This is getting into shell trickery, though, and there are better ways to
 accomplish the same thing.
@@ -791,14 +577,9 @@ bookstore for more details than I will present here.
 
 To create a new process as a clone of the current process, use os.fork():
 
-::
-
-    pid = os.fork()
-
-    if pid:
-       print 'Child process id:', pid
-    else:
-       print 'I am the child'
+.. include:: os_fork_example.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 Your output will vary based on the state of your system each time you run the
 example, but it should look something like:
@@ -815,7 +596,7 @@ child process. If it is not 0, you are in the parent process and the return
 value is the process id of the child process.
 
 From the parent process, it is possible to send the child signals. This is a
-bit more complicated to set up, and uses the signal module, so let's walk
+bit more complicated to set up, and uses the :mod:`signal` module, so let's walk
 through the code. First we can define a signal handler to be invoked when the
 signal is received.
 
@@ -877,13 +658,9 @@ can use the os.exec*() series of functions to run another program. When you
 "exec" a program, the code from that program replaces the code from your
 existing process.
 
-::
-
-    child_pid = os.fork()
-    if child_pid:
-       os.waitpid(child_pid, 0)
-    else:
-       os.execlp('ls', 'ls', '-l', '/tmp/')
+.. include:: os_exec_example.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -921,25 +698,10 @@ a few different ways to do that using wait() and related functions.
 If you don't care, or know, which child process might exit first os.wait()
 will return as soon as any exits:
 
-::
+.. include:: os_wait_example.py
+    :literal:
+    :start-after: #end_pymotw_header
 
-    import os
-    import sys
-    import time
-
-    for i in range(3):
-       print 'PARENT: Forking %s' % i
-       worker_pid = os.fork()
-       if not worker_pid:
-           print 'WORKER %s: Starting' % i
-           time.sleep(2 + i)
-           print 'WORKER %s: Finishing' % i
-           sys.exit(i)
-
-    for i in range(3):
-       print 'PARENT: Waiting for %s' % i
-       done = os.wait()
-       print 'PARENT:', done
 
 Notice that the return value from os.wait() is a tuple containing the process
 id and exit status ("a 16-bit number, whose low byte is the signal number that
@@ -966,27 +728,10 @@ killed the process, and whose high byte is the exit status").
 
 If you want a specific process, use os.waitpid().
 
-::
+.. include:: os_waitpid_example.py
+    :literal:
+    :start-after: #end_pymotw_header
 
-    import os
-    import sys
-    import time
-
-    workers = []
-    for i in range(3):
-       print 'PARENT: Forking %s' % i
-       worker_pid = os.fork()
-       if not worker_pid:
-           print 'WORKER %s: Starting' % i
-           time.sleep(2 + i)
-           print 'WORKER %s: Finishing' % i
-           sys.exit(i)
-       workers.append(worker_pid)
-
-    for pid in workers:
-       print 'PARENT: Waiting for %s' % pid
-       done = os.waitpid(pid, 0)
-       print 'PARENT:', done
 
 ::
 
@@ -1017,29 +762,48 @@ Spawn
 As a convenience, the os.spawn*() family of functions handles the fork() and
 exec*() calls for you in one statement:
 
+.. include:: os_spawn_example.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+
 ::
 
-    os.spawnlp(os.P_WAIT, 'ls', 'ls', '-l', '/tmp/')
-
-::
-
-    $ python os_exec_example.py       
-    total 40
-    drwxr-xr-x   2 dhellman  wheel      68 Jun 17 14:35 527
-    prw-------   1 root      wheel       0 Jun 15 19:24 afpserver_PIPE
-    drwx------   3 dhellman  wheel     102 Jun 17 12:13 emacs527
-    drwxr-xr-x   2 dhellman  wheel      68 Jun 16 05:01 hsperfdata_dhellmann
-    -rw-------   1 nobody    wheel      12 Jun 17 13:55 objc_sharing_ppc_4294967294
-    -rw-------   1 dhellman  wheel     144 Jun 17 14:32 objc_sharing_ppc_527
-    -rw-------   1 security  wheel      24 Jun 17 07:09 objc_sharing_ppc_92
-    drwxr-xr-x   4 dhellman  dhellman  136 Jun  8 03:16 var_backups
+    $ python os_spawn_example.py
+    total 112
+    drwx------  3 dhellmann  dhellmann   102 Nov 25 11:11 527
+    -rw-------  1 _www       wheel         0 Nov 24 18:26 aprZUFiBL
+    -rw-------  1 _www       wheel         0 Nov 24 18:26 aprrI2NMa
+    srwxrwxrwx  1 dhellmann  wheel         0 Nov 24 18:26 com.hp.launchport
+    drwx------  3 dhellmann  wheel       102 Nov 24 18:26 launchd-120.tTqeBv
+    drwx------  2 dhellmann  wheel        68 Nov 25 09:06 ssh-15RWPs917O
+    -rwx------  1 dhellmann  wheel       143 Nov 28 13:10 temp_textmate.PWLSvd
+    drwxr-xr-x  2 dhellmann  dhellmann    68 Nov 25 03:15 var_backups
 
 
-Conclusion
-==========
+.. seealso::
 
-There are a lot of other considerations to be taken into account when working
-with multiple processes, such as handling signals, closing duplicated file
-descriptors, etc. All of these topics are covered in reference books such as
-Advanced Programming in the UNIX(R) Environment.
+    `os <http://docs.python.org/lib/module-os.html>`_
+        Standard library documentation for this module.
 
+    `Unix Manual Page Introduction <http://www.scit.wlv.ac.uk/cgi-bin/mansec?2+intro>`_
+        Includes definitions of real and effective ids, etc.
+
+    `Speaking UNIX, Part 8. <http://www.ibm.com/developerworks/aix/library/au-speakingunix8/index.html>`_
+        Learn how UNIX multitasks.
+
+    `Unix Concepts <http://www.linuxhq.com/guides/LUG/node67.html>`_
+        For more discussion of stdin, stdout, and stderr.
+
+    :mod:`subprocess`
+        The subprocess module supersedes ``os.popen()``.
+
+    :mod:`tempfile`
+        The tempfile module for working with temporary files.
+
+    `Delve into Unix Process Creation <http://www.ibm.com/developerworks/aix/library/au-unixprocess.html>`_
+        Explains the life cycle of a UNIX process.
+
+    `Advanced Programming in the UNIX(R) Environment <http://www.amazon.com/Programming-Environment-Addison-Wesley-Professional-Computing/dp/0201433079/ref=pd_bbs_3/002-2842372-4768037?ie=UTF8&s=books&amp;qid=1182098757&sr=8-3>`_
+        Covers working with multiple processes, such as handling signals, closing duplicated file
+        descriptors, etc.

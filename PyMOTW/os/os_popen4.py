@@ -28,54 +28,11 @@
 """
 
 __module_id__ = "$Id$"
+#end_pymotw_header
 
 import os
 
-print '\npopen, read:'
-pipe_stdout = os.popen('echo "to stdout"', 'r')
-try:
-    stdout_value = pipe_stdout.read()
-finally:
-    pipe_stdout.close()
-print '\tstdout:', repr(stdout_value)
-
-print '\npopen, write:'
-pipe_stdin = os.popen('cat -', 'w')
-try:
-    pipe_stdin.write('\tstdin: to stdin\n')
-finally:
-    pipe_stdin.close()
-
-print '\npopen2:'
-pipe_stdin, pipe_stdout = os.popen2('cat -')
-try:
-    pipe_stdin.write('through stdin to stdout')
-finally:
-    pipe_stdin.close()
-try:
-    stdout_value = pipe_stdout.read()
-finally:
-    pipe_stdout.close()
-print '\tpass through:', repr(stdout_value)
-
-print '\npopen3:'
-pipe_stdin, pipe_stdout, pipe_stderr = os.popen3('cat -; echo ";to stderr" 1>&2')
-try:
-    pipe_stdin.write('through stdin to stdout')
-finally:
-    pipe_stdin.close()
-try:
-    stdout_value = pipe_stdout.read()
-finally:
-    pipe_stdout.close()
-print '\tpass through:', repr(stdout_value)
-try:
-    stderr_value = pipe_stderr.read()
-finally:
-    pipe_stderr.close()
-print '\tstderr:', repr(stderr_value)
-
-print '\npopen4:'
+print 'popen4:'
 pipe_stdin, pipe_stdout_and_stderr = os.popen4('cat -; echo ";to stderr" 1>&2')
 try:
     pipe_stdin.write('through stdin to stdout')
@@ -84,17 +41,5 @@ finally:
 try:
     stdout_value = pipe_stdout_and_stderr.read()
 finally:
-    pipe_stdout.close()
+    pipe_stdout_and_stderr.close()
 print '\tcombined output:', repr(stdout_value)
-
-print '\npopen2, cmd as sequence:'
-pipe_stdin, pipe_stdout = os.popen2(['cat', '-'])
-try:
-    pipe_stdin.write('through stdin to stdout')
-finally:
-    pipe_stdin.close()
-try:
-    stdout_value = pipe_stdout.read()
-finally:
-    pipe_stdout.close()
-print '\tpass through:', repr(stdout_value)

@@ -23,7 +23,7 @@
 # CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 #
 
-"""Change permissions on a file
+"""Using os.system() to run external commands.
 
 """
 
@@ -31,18 +31,6 @@ __module_id__ = "$Id$"
 #end_pymotw_header
 
 import os
-import stat
 
-# Determine what permissions are already set using stat
-existing_permissions = stat.S_IMODE(os.stat(__file__).st_mode)
-
-if not os.access(__file__, os.X_OK):
-    print 'Adding execute permission'
-    new_permissions = existing_permissions | stat.S_IXUSR
-else:
-    print 'Removing execute permission'
-    # use xor to remove the user execute permission
-    new_permissions = existing_permissions ^ stat.S_IXUSR
-
-os.chmod(__file__, new_permissions)
-    
+# Command with shell expansion
+os.system('ls -l $HOME')
