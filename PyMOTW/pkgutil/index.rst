@@ -1,18 +1,12 @@
-==============
-pkgutil
-==============
-.. module:: pkgutil
-    :synopsis: Add to the module search path for a specific package to combine separate directories into a single package.
+========================================
+pkgutil -- Extend the module search path
+========================================
 
-:Module: pkgutil
+.. module:: pkgutil
+    :synopsis: Extend the module search path
+
 :Purpose: Add to the module search path for a specific package to combine separate directories into a single package.
 :Python Version: 2.3 and later
-:Abstract:
-
-    Alter the search path for a specific package using pkgutil.
-
-Description
-===========
 
 The pkgutil module provides a single function, extend_path(), that is used to
 modify the search path for modules in a given package to include other
@@ -42,44 +36,22 @@ Now create a directory structure like::
     extension/demopkg1/__init__.py
     extension/demopkg1/not_shared.py
 
-Again, all of the files can be empty.
+All of the files can be empty.
 
-Now go back to demopkg1/__init__.py and edit it to contain::
+Now go back to demopkg1/__init__.py and edit it to contain:
 
-    import pkgutil
-    import pprint
-
-    print 'demopkg1.__path__ before:'
-    pprint.pprint(__path__)
-    print
-
-    __path__ = pkgutil.extend_path(__path__, __name__)
-
-    print 'demopkg1.__path__ after:'
-    pprint.pprint(__path__)
-    print
+.. include:: demopkg1/__init__.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 This shows what the search path is before and after it is modified, to
 illustrate the difference.
 
-Now a simple test program to import the package::
+Now a simple test program to import the package:
 
-    import demopkg1
-    print 'demopkg1:', demopkg1.__file__
-
-    try:
-        import demopkg1.shared
-    except Exception, err:
-        print 'demopkg1.shared: Not found (%s)' % err
-    else:
-        print 'demopkg1.shared:', demopkg1.shared.__file__
-
-    try:
-        import demopkg1.not_shared
-    except Exception, err:
-        print 'demopkg1.not_shared: Not found (%s)' % err
-    else:
-        print 'demopkg1.not_shared:', demopkg1.not_shared.__file__
+.. include:: pkgutil_extend_path.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 When this test program is run directly from the command line, the not_shared
 module is not found. 
@@ -128,7 +100,7 @@ test changes to an installed package. I don't want to replace the installed
 copy with my development version, since it is not necessarily correct (yet)
 and other tools on my system may depend on the installed package. I could
 configure a completely separate copy of the package in a development
-environment using something like virtualenv, but if I just need to modify one
+environment using something like `virtualenv`_, but if I just need to modify one
 file that could be overkill. Another option is to use pkgutil to modify the
 module search path for modules that belong to the package I'm working on. In
 this case, however, I need to reverse the path, since I want the development
@@ -141,32 +113,26 @@ Suppose the package looks like this::
     demopkg2/overloaded.py
 
 The function I'm working on is in demopkg2/overloaded.py. The installed
-version looks like::
+version looks like:
 
-    def func():
-        print 'This is the installed version of func().'
+.. include:: demopkg2/overloaded.py
+    :literal:
+    :start-after: #end_pymotw_header
 
-And demopkg2/__init__.py contains::
+And demopkg2/__init__.py contains:
 
-    import pkgutil
-    import pprint
-
-    __path__ = pkgutil.extend_path(__path__, __name__)
-    __path__.reverse()
+.. include:: demopkg2/__init__.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 Note the use of reverse() there to ensure that any directories added to the
 search path are scanned before the default location.
 
-With another simple test program, I can run the function::
+With another simple test program, I can run the function:
 
-    import demopkg2
-    print 'demopkg2:', demopkg2.__file__
-
-    import demopkg2.overloaded
-    print 'demopkg2.overloaded:', demopkg2.overloaded.__file__
-
-    print
-    demopkg2.overloaded.func()
+.. include:: pkgutil_devel.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 First, without any special path treatment::
 
@@ -182,10 +148,11 @@ And now I can set up a development directory like this::
     develop/demopkg2/__init__.py
     develop/demopkg2/overloaded.py
 
-And replace the overloaded module contents::
+And replace the overloaded module contents:
 
-    def func():
-        print 'This is the development version of func().'
+.. include:: develop/demopkg2/overloaded.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 Now, when the test program is run with the develop directory in the search
 path, the overloaded module from the development directory is found and used.
@@ -229,24 +196,17 @@ They both contain::
 
     demopkg
 
-This demo program shows the version of the module being imported::
+This demo program shows the version of the module being imported:
 
-    import demopkg1
-    print 'demopkg1:', demopkg1.__file__
+.. include:: pkgutil_os_specific.py
+    :literal:
+    :start-after: #end_pymotw_header
 
-    import demopkg1.shared
-    print 'demopkg1.shared:', demopkg1.shared.__file__
+A simple run script can be used to switch between the two packages:
 
-    import demopkg1.not_shared
-    print 'demopkg1.not_shared:', demopkg1.not_shared.__file__
-
-A simple run script can be used to switch between the two packages::
-
-    export PYTHONPATH=os_${1}
-    echo "PYTHONPATH=$PYTHONPATH"
-    echo
-
-    python pkgutil_os_specific.py
+.. include:: with_os.sh
+    :literal:
+    :start-after: #end_pymotw_header
 
 And when run with "one" or "two" as the arguments, the path is adjusted
 appropriately:
@@ -301,12 +261,11 @@ package. For example, with a directory structure like::
     nested/second/deep.py
     nested/shallow.py
 
-Where nested/__init__.py contains::
+Where nested/__init__.py contains:
 
-    import pkgutil
-
-    __path__ = pkgutil.extend_path(__path__, __name__)
-    __path__.reverse()
+.. include:: nested/__init__.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 And a development tree like::
 
@@ -320,18 +279,11 @@ Both the shallow and deep modules contain a simple function to print out a
 message indicating whether or not they come from the installed or development
 version.
 
-Again, we need a simple test program::
+Again, we need a simple test program:
 
-    import nested
-
-    import nested.shallow
-    print 'nested.shallow:', nested.shallow.__file__
-    nested.shallow.func()
-
-    print
-    import nested.second.deep
-    print 'nested.second.deep:', nested.second.deep.__file__
-    nested.second.deep.func()
+.. include:: pkgutil_nested.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 When pkgutil_nested.py is run without any special path considerations, we see
 the installed version of both modules::
@@ -354,3 +306,12 @@ version of both functions::
     This func() comes from the development version of nested.second.deep
 
 
+.. seealso::
+
+    `pkgutil <http://docs.python.org/lib/module-pkgutil.html>`_
+        Standard library documentation for this module.
+
+    `virtualenv`_
+        Ian Bicking's virtual environment script.
+
+.. _virtualenv: http://pypi.python.org/pypi/virtualenv

@@ -7,6 +7,7 @@
 """
 
 __version__ = "$Id$"
+#end_pymotw_header
 
 import demopkg1
 print 'demopkg1:', demopkg1.__file__
