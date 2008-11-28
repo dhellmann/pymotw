@@ -1,18 +1,12 @@
-==============
-os.path
-==============
-.. module:: os.path
-    :synopsis: Parse, build, test, and otherwise work on file names and paths.
+===========================================================
+os.path -- Platform-independent manipulation of file names.
+===========================================================
 
-:Module: os.path
+.. module:: os.path
+    :synopsis: Platform-independent manipulation of file names.
+
 :Purpose: Parse, build, test, and otherwise work on file names and paths.
 :Python Version: 1.4 and later
-:Abstract:
-
-    Use os.path for platform-independent manipulation of file names.
-
-Description
-===========
 
 Writing code to work with files on multiple platforms is easy using the
 functions included in the os.path module. Even programs not intended to be
@@ -44,16 +38,9 @@ Path parsing depends on a few variable defined in the os module:
   second element is the last component of the path, and the first element is
   everything that comes before it.
 
-::
-
-    import os.path
-
-    for path in [ '/one/two/three', 
-                  '/one/two/three/',
-                  '/',
-                  '.',
-                  '']:
-        print '"%s" : "%s"' % (path, os.path.split(path))
+.. include:: ospath_split.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -66,16 +53,9 @@ Path parsing depends on a few variable defined in the os module:
 
 basename() returns a value equivalent to the second part of the split() value.
 
-::
-
-    import os.path
-
-    for path in [ '/one/two/three', 
-                  '/one/two/three/',
-                  '/',
-                  '.',
-                  '']:
-        print '"%s" : "%s"' % (path, os.path.basename(path))
+.. include:: ospath_basename.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -88,16 +68,9 @@ basename() returns a value equivalent to the second part of the split() value.
 
 dirname() returns the first path of the split path:
 
-::
-
-    import os.path
-
-    for path in [ '/one/two/three', 
-                  '/one/two/three/',
-                  '/',
-                  '.',
-                  '']:
-        print '"%s" : "%s"' % (path, os.path.dirname(path))
+.. include:: ospath_dirname.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -111,12 +84,9 @@ dirname() returns the first path of the split path:
 splitext() works like split() but divides the path on the extension separator,
 rather than the directory names.
 
-::
-
-    import os.path
-
-    for path in [ 'filename.txt', 'filename', '/path/to/filename.txt', '/', '' ]:
-        print '"%s" :' % path, os.path.splitext(path)
+.. include:: ospath_splitext.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -133,16 +103,9 @@ may represent a path that does not actually exist, and the path separator is
 not included in the consideration, so the prefix might not stop on a separator
 boundary.
 
-::
-
-    import os.path
-
-    paths = ['/one/two/three/four',
-             '/one/two/threefold',
-             '/one/two/three/',
-             ]
-    print paths
-    print os.path.commonprefix(paths)
+.. include:: ospath_commonprefix.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -158,15 +121,9 @@ from other strings.
 
 To combine several path components into a single value, use join():
 
-::
-
-    import os.path
-
-    for parts in [ ('one', 'two', 'three'),
-                   ('/', 'one', 'two', 'three'),
-                   ('/one', '/two', '/three'),
-                   ]:
-        print parts, ':', os.path.join(*parts)
+.. include:: ospath_join.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -179,13 +136,9 @@ It's also easy to work with paths that include "variable" components that can
 be expanded automatically. For example, expanduser() converts the tilde (~)
 character to a user's home directory.
 
-::
-
-    import os.path
-
-    for user in [ '', 'dhellmann', 'postgres' ]:
-        lookup = '~' + user
-        print lookup, ':', os.path.expanduser(lookup)
+.. include:: ospath_expanduser.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -197,14 +150,9 @@ character to a user's home directory.
 expandvars() is more general, and expands any shell environment variables
 present in the path.
 
-::
-
-    import os.path
-    import os
-
-    os.environ['MYVAR'] = 'VALUE'
-
-    print os.path.expandvars('/path/to/$MYVAR')
+.. include:: ospath_expandvars.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -218,15 +166,9 @@ Paths assembled from separate strings using join() or with embedded variables
 might end up with extra separators or relative path components. Use normpath()
 to clean them up:
 
-::
-
-    import os.path
-
-    for path in [ 'one//two//three', 
-                  'one/./two/./three', 
-                  'one/../one/two/three',
-                  ]:
-        print path, ':', os.path.normpath(path)
+.. include:: ospath_normpath.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -237,12 +179,9 @@ to clean them up:
 
 To convert a relative path to a complete absolute filename, use abspath().
 
-::
-
-    import os.path
-
-    for path in [ '.', '..', './one/two/three', '../one/two/three']:
-        print '"%s" : "%s"' % (path, os.path.abspath(path))
+.. include:: ospath_abspath.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -259,16 +198,9 @@ Besides working with paths, os.path also includes some functions for
 retrieving file properties, which can be more convenient than calling
 os.stat():
 
-::
-
-    import os.path
-    import time
-
-    print 'File         :', __file__
-    print 'Access time  :', time.ctime(os.path.getatime(__file__))
-    print 'Modified time:', time.ctime(os.path.getmtime(__file__))
-    print 'Change time  :', time.ctime(os.path.getctime(__file__))
-    print 'Size         :', os.path.getsize(__file__)
+.. include:: ospath_properties.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -288,20 +220,9 @@ supports it, you may need to know if the path refers to a symbolic link or
 mount point. You will also want to test whether the path exists or not.
 os.path provides functions to test all of these conditions.
 
-::
-
-    import os.path
-
-    for file in [ __file__, os.path.dirname(__file__), '/', './broken_link']:
-        print 'File        :', file
-        print 'Absolute    :', os.path.isabs(file)
-        print 'Is File?    :', os.path.isfile(file)
-        print 'Is Dir?     :', os.path.isdir(file)
-        print 'Is Link?    :', os.path.islink(file)
-        print 'Mountpoint? :', os.path.ismount(file)
-        print 'Exists?     :', os.path.exists(file)
-        print 'Link Exists?:', os.path.lexists(file)
-        print
+.. include:: ospath_tests.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -351,25 +272,9 @@ you provide passing the directory name and the names of the contents of that
 directory. This example produces a recursive directory listing, ignoring .svn
 directories.
 
-::
-
-    import os.path
-    import pprint
-
-    def visit(arg, dirname, names):
-        print dirname, arg
-        for name in names:
-            subname = os.path.join(dirname, name)
-            if os.path.isdir(subname):
-                print '  %s/' % name
-            else:
-                print '  %s' % name
-        # Do not recurse into .svn directory
-        if '.svn' in names:
-            names.remove('.svn')
-        print
-
-    os.path.walk('..', visit, '(User data)')
+.. include:: ospath_walk.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -395,5 +300,11 @@ directories.
       ospath_tests.py
       ospath_walk.py
 
+.. seealso::
 
+    `os.path <http://docs.python.org/lib/module-os.path.html>`_
+        Standard library documentation for this module.
+
+    :mod:`os`
+        The os module is a parent of os.path.
 

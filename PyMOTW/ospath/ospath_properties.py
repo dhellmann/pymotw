@@ -7,6 +7,7 @@
 """
 
 __version__ = "$Id$"
+#end_pymotw_header
 
 import os.path
 import time
