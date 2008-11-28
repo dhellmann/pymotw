@@ -75,7 +75,7 @@ processes I start cannot change their effective owner values. If I do try to
 set the effective user id or group id to anything other than my own, an
 OSError is raised.
 
-Now let's look at what happens when we run the same script using sudo to start
+Now let's look at what happens when we run the same script using ``sudo`` to start
 out with root privileges:
 
 ::
@@ -160,8 +160,6 @@ paths.
     :literal:
     :start-after: #end_pymotw_header
 
-
-
 Note the use of os.curdir and os.pardir to refer to the current and parent
 directories in a portable manner. The output should not be surprising:
 
@@ -181,10 +179,10 @@ Pipes
 =====
 
 The os module provides several functions for managing the I/O of child
-processes using pipes. The functions all work essentially the same way, but
+processes using *pipes*. The functions all work essentially the same way, but
 return different file handles depending on the type of input or output
 desired. For the most part, these functions are made obsolete by the new-ish
-subprocess module (added in 2.4), but there is a good chance you will
+:mod:`subprocess` module (added in 2.4), but there is a good chance you will
 encounter them if you are maintaining existing code.
 
 The most commonly used pipe function is popen(). It creates a new process
@@ -217,7 +215,7 @@ descriptions of the streams also assume Unix-like terminology:
             stdin: to stdin
 
 The caller can only read from OR write to the streams associated with the
-child process, which limits the usefulness. The other popen varients provide
+child process, which limits the usefulness. The other popen variants provide
 additional streams so it is possible to work with stdin, stdout, and stderr as
 needed.
 
@@ -230,7 +228,7 @@ child process, and a read-only stream attached to its stdout.
 
 
 This simplistic example illustrates bi-directional communication. The value
-written to stdin is read by cat (because of the '-' argument), then written
+written to stdin is read by ``cat`` (because of the '-' argument), then written
 back to stdout. Obviously a more complicated process could pass other types of
 messages back and forth through the pipe; even serialized objects.
 
@@ -243,14 +241,14 @@ messages back and forth through the pipe; even serialized objects.
 In most cases, it is desirable to have access to both stdout and stderr. The
 stdout stream is used for message passing and the stderr stream is used for
 errors, so reading from it separately reduces the complexity for parsing any
-error messages. The ``popen3()`` function returns 3 open streams tied to stdin,
+error messages. The popen3() function returns 3 open streams tied to stdin,
 stdout, and stderr of the new process.
 
 .. include:: os_popen3.py
     :literal:
     :start-after: #end_pymotw_header
 
-Notice that we have to read from and close both streams separately. There are
+Notice that we have to read from and close both streams *separately*. There are
 some related to flow control and sequencing when dealing with I/O for multiple
 processes. The I/O is buffered, and if the caller expects to be able to read
 all of the data from a stream then the child process must close that stream to
@@ -279,7 +277,7 @@ parsed directly.
             combined output: 'through stdin to stdout;to stderr\n'
 
 Besides accepting a single string command to be given to the shell for
-parsing, ``popen2()``, ``popen3()``, and ``popen4()`` also accept a sequence of strings
+parsing, popen2(), popen3(), and popen4() also accept a sequence of strings
 (command, followed by arguments). In this case, the arguments are not
 processed by the shell.
 
@@ -297,13 +295,11 @@ processed by the shell.
 File Descriptors
 ================
 
-The os module includes the standard set of functions for working with
-low-level "file descriptors" (integers representing open files owned by the
-current process). This is a lower-level API than is provided by file()
-objects. Although I promised to cover file descriptors last time, I am going
-to skip over describing them here, since it is generally easier to work
-directly with file() objects. Refer to the library documentation for details
-if you do need to use file descriptors.
+The os module includes the standard set of functions for working with low-level *file descriptors* (integers
+representing open files owned by the current process). This is a lower-level API than is provided by
+file() objects. I am going to skip over describing them here, since it is generally easier to work
+directly with file() objects. Refer to the library documentation for details if you do need to use file
+descriptors.
 
 Filesystem Permissions
 ======================
@@ -480,16 +476,14 @@ This example shows a simplistic recursive directory listing.
           local.nidump
 
 
-
-Disclaimer
-==========
-
-Many of these functions have limited portability. For a more consistent way to
-work with processes in a platform independent manner, see the subprocess
-module instead.
-
 Running External Command
 ========================
+
+.. warning::
+
+    Many of these functions for working with processes have limited portability. For a more 
+    consistent way to work with processes in a platform independent manner, see the :mod:`subprocess`
+    module instead.
 
 The simplest way to run a separate command, without interacting with it at
 all, is os.system(). It takes a single string which is the command line to be
@@ -796,7 +790,7 @@ exec*() calls for you in one statement:
         For more discussion of stdin, stdout, and stderr.
 
     :mod:`subprocess`
-        The subprocess module supersedes ``os.popen()``.
+        The subprocess module supersedes os.popen().
 
     :mod:`tempfile`
         The tempfile module for working with temporary files.
