@@ -1,19 +1,12 @@
-===============
-operator
-===============
+=======================================================
+operator -- Functional interface to built-in operators.
+=======================================================
+
 .. module:: operator
     :synopsis: Functional interface to built-in operators.
 
-:Module: operator
 :Purpose: Functional interface to built-in operators.
 :Python Version: 1.4 and later
-:Abstract:
-
-    The operator module contains functions that perform the same operations as
-    man of the built-in operators.
-
-Description
-===========
 
 Functional programming using iterators occasionally requires you to create
 small functions for simple expressions. Sometimes these can be expressed as
@@ -29,20 +22,9 @@ There are logical operations for determining the boolean equivalent for a
 value, negating that to create the opposite boolean value, and comparing
 objects to see if they are identical.
 
-::
-
-    from operator import *
-
-    a = -1
-    b = 5
-
-    print 'a =', a
-    print 'b =', b
-
-    print 'not_(a):', not_(a)
-    print 'truth(a):', truth(a)
-    print 'is_(a, b):', is_(a,b)
-    print 'is_not(a, b):', is_not(a,b)
+.. include:: operator_boolean.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -58,17 +40,11 @@ objects to see if they are identical.
 Comparison Operators
 ====================
 
-All of the rich comparison operators are supported::
+All of the rich comparison operators are supported:
 
-    from operator import *
-
-    a = 1
-    b = 5.0
-
-    print 'a =', a
-    print 'b =', b
-    for func in (lt, le, eq, ne, ge, gt):
-        print '%s(a, b):' % func.__name__, func(a, b)
+.. include:: operator_comparisons.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -88,51 +64,14 @@ Arithmetic Operators
 
 The arithmetic operators for manipulating numerical values are also supported.
 
-::
+.. include:: operator_math.py
+    :literal:
+    :start-after: #end_pymotw_header
 
-    from operator import *
+.. note::
 
-    a = -1
-    b = 5.0
-    c = 2
-    d = 6
-
-    print 'a =', a
-    print 'b =', b
-    print 'c =', c
-    print 'd =', d
-
-    print '\nPositive/Negative:'
-    print 'abs(a):', abs(a)
-    print 'neg(a):', neg(a)
-    print 'neg(b):', neg(b)
-    print 'pos(a):', pos(a)
-    print 'pos(b):', pos(b)
-
-    print '\nArithmetic:'
-    print 'add(a, b):', add(a, b)
-    print 'div(a, b):', div(a, b)
-    print 'div(d, c):', div(d, c)
-    print 'floordiv(a, b):', floordiv(a, b)
-    print 'floordiv(d, c):', floordiv(d, c)
-    print 'mod(a, b):', mod(a, b)
-    print 'mul(a, b):', mul(a, b)
-    print 'pow(c, d):', pow(c, d)
-    print 'sub(b, a):', sub(b, a)
-    print 'truediv(a, b):', truediv(a, b)
-    print 'truediv(d, c):', truediv(d, c)
-
-    print '\nBitwise:'
-    print 'and_(c, d):', and_(c, d)
-    print 'invert(c):', invert(c)
-    print 'lshift(c, d):', lshift(c, d)
-    print 'or_(c, d):', or_(c, d)
-    print 'rshift(d, c):', rshift(d, c)
-    print 'xor(c, d):', xor(c, d)
-
-
-Notice the two division operators: floordiv (pre-3.0 integer division) and
-truediv (floating point division).
+  There are separate two division operators: ``floordiv`` (pre-3.0 integer division) 
+  and ``truediv`` (floating point division).
 
 ::
 
@@ -178,36 +117,9 @@ The operators for working with sequences can be divided into roughly 4 groups
 for building up sequences, searching, working with items, and removing items
 from sequences.
 
-::
-
-    from operator import *
-
-    a = [ 1, 2, 3 ]
-    b = [ 'a', 'b', 'c' ]
-
-    print 'a =', a
-    print 'b =', b
-
-    print '\nConstructive:'
-    print 'concat(a, b):', concat(a, b)
-    print 'repeat(a, 3):', repeat(a, 3)
-
-    print '\nSearching:'
-    print 'contains(a, 1):', contains(a, 1)
-    print 'contains(b, "d"):', contains(b, "d")
-    print 'countOf(a, 1):', countOf(a, 1)
-    print 'countOf(b, "d"):', countOf(b, "d")
-    print 'indexOf(a, 5):', indexOf(a, 1)
-
-    print '\nAccess Items:'
-    print 'getitem(b, 1):', getitem(b, 1)
-    print 'getslice(a, 1, 3)', getslice(a, 1, 3)
-    print 'setitem(b, 1, "d"):', setitem(b, 1, "d"), ',after b =', b
-    print 'setslice(a, 1, 3, [4, 5]):', setslice(a, 1, 3, [4, 5]), ', after a =', a
-
-    print '\nDestructive:'
-    print 'delitem(b, 1):', delitem(b, 1), ',after b =', b
-    print 'delslice(a, 1, 3):', delslice(a, 1, 3), ', after a =', a
+.. include:: operator_sequences.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -241,28 +153,12 @@ In-place Operators
 ==================
 
 In addition to the standard operators, many types of objects support
-"in-place" modification through special operators such as +=. There are
-equivalent functions for in-place modifications, too::
+"in-place" modification through special operators such as ``+=``. There are
+equivalent functions for in-place modifications, too:
 
-    from operator import *
-
-    a = -1
-    b = 5.0
-    c = [ 1, 2, 3 ]
-    d = [ 'a', 'b', 'c']
-    print 'a =', a
-    print 'b =', b
-    print 'c =', c
-    print 'd =', d
-
-    print 'iadd(a, b):', iadd(a, b)
-    a = iadd(a, b)
-    print 'a = iadd(a, b) =>', a
-
-    print 'iconcat(c, d):', iconcat(c, d)
-    c = iconcat(c, d)
-    print 'c = iconcat(c, d) =>', c
-
+.. include:: operator_inplace.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 These examples only demonstrate a couple of the functions. Refer to the stdlib
 documentation for complete details.
@@ -284,28 +180,16 @@ Attribute and Item "Getters"
 ============================
 
 One of the most unusual features of the operator module is the notion of
-"getters". These are callable objects constructed at runtime to retrieve
+*getters*. These are callable objects constructed at runtime to retrieve
 attributes of items from objects or sequences. Getters are especially useful
 when working with iterators or generator sequences, where they are intended to
 incur less overhead than a lambda or Python function.
 
-Attribute getters work like lambda x, n='attrname': getattr(x, n)::
+Attribute getters work like ``lambda x, n='attrname': getattr(x, n)``:
 
-    from operator import *
-
-    class MyObj(object):
-        """example class for attrgetter"""
-        def __init__(self, arg):
-            super(MyObj, self).__init__()
-            self.arg = arg
-        def __repr__(self):
-            return 'MyObj(%s)' % self.arg
-
-    l = [ MyObj(i) for i in xrange(5) ]
-    print l
-    g = attrgetter('arg')
-    vals = [ g(i) for i in l ]
-    print vals
+.. include:: operator_attrgetter.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -313,23 +197,11 @@ Attribute getters work like lambda x, n='attrname': getattr(x, n)::
     [MyObj(0), MyObj(1), MyObj(2), MyObj(3), MyObj(4)]
     [0, 1, 2, 3, 4]
 
-While item getters work like lambda x, y=5: x[y]::
+While item getters work like ``lambda x, y=5: x[y]``:
 
-    from operator import *
-
-    print 'Dictionaries:'
-    l = [ dict(val=i) for i in xrange(5) ]
-    print l
-    g = itemgetter('val')
-    vals = [ g(i) for i in l ]
-    print vals
-
-    print 'Tuples:'
-    l = [ (i, i*2) for i in xrange(5) ]
-    print l
-    g = itemgetter(1)
-    vals = [ g(i) for i in l ]
-    print vals
+.. include:: operator_itemgetter.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 
 Item getters work with mappings as well as sequences.
@@ -349,35 +221,12 @@ Working With Your Own Classes
 =============================
 
 The functions in the operator module work via the standard Python interfaces
-for their operations, so they work with your classes as well as the builtin
+for their operations, so they work with your classes as well as the built-in
 types.
 
-::
-
-    from operator import *
-
-    class MyObj(object):
-        """Example for operator overloading"""
-        def __init__(self, val):
-            super(MyObj, self).__init__()
-            self.val = val
-            return
-        def __str__(self):
-            return 'MyObj(%s)' % self.val
-        def __lt__(self, other):
-            """compare for less-than"""
-            print 'Testing %s < %s' % (self, other)
-            return self.val < other.val
-        def __add__(self, other):
-            """add values"""
-            print 'Adding %s + %s' % (self, other)
-            return MyObj(self.val + other.val)
-
-    a = MyObj(1)
-    b = MyObj(2)
-
-    print lt(a, b)
-    print add(a, b)
+.. include:: operator_classes.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -396,28 +245,9 @@ for mapping, number, and sequence types. The tests are not perfect, since the
 interfaces are not strictly defined, but they do give you some idea of what is
 supported.
 
-::
-
-    from operator import *
-
-    class NoType(object):
-        """Supports none of the type APIs"""
-        
-    class MultiType(object):
-        """Supports multiple type APIs"""
-        def __len__(self):
-            return 0
-        def __getitem__(self, name):
-            return 'mapping'
-        def __int__(self):
-            return 0
-
-    o = NoType()
-    t = MultiType()
-
-    for func in (isMappingType, isNumberType, isSequenceType):
-        print '%s(o):' % func.__name__, func(o)
-        print '%s(t):' % func.__name__, func(t)
+.. include:: operator_typechecking.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -430,3 +260,7 @@ supported.
     isSequenceType(t): True
 
 
+.. seealso::
+
+    `operator <http://docs.python.org/lib/module-operator.html>`_
+        Standard library documentation for this module.

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>.. seealso::
+
+    \`$1 &lt;http://docs.python.org/lib/module-$2.html&gt;\`_
+        Standard library documentation for this module.
+</string>
+	<key>name</key>
+	<string>seealso</string>
+	<key>scope</key>
+	<string>text.restructuredtext</string>
+	<key>tabTrigger</key>
+	<string>seealso</string>
+	<key>uuid</key>
+	<string>F980A942-3262-4870-86DF-EB17B1F5409C</string>
+</dict>
+</plist>
