@@ -1,16 +1,12 @@
-======================
-platform
-======================
+============================================================================
+platform -- Access system hardware, OS, and interpreter version information.
+============================================================================
+
 .. module:: platform
     :synopsis: Access system hardware, OS, and interpreter version information.
 
-:Module: platform
-:Purpose: Access system hardware, OS, and interpreter version information.
+:Purpose: Probe the underlying platform's architecture and version information with the platform module.
 :Python Version: 2.3+
-:Abstract: Probe the underlying platform's architecture and version information with the platform module.
-
-Description
-===========
 
 Although Python is often used as a cross-platform language, it is occasionally
 necessary to know what sort of system you're running on. Build tools obviously
@@ -24,13 +20,12 @@ it is configured. The platform module gives you some tools for learning about
 the interpreter, operating system, and hardware platform where your program is
 running.
 
-Examples
-========
+.. note::
 
-The example output below was generated on a MacBook Pro running OS X 10.5.2
-and a VMware VM running CentOS 4.6. I don't have ready access to Windows, but
-these functions all work there, too. (If someone wants to run the scripts on
-Windows and post the output in the comments, I would appreciate it!)
+    The example output below was generated on a MacBook Pro running OS X 10.5.2
+    and a VMware VM running CentOS 4.6. I don't have ready access to Windows, but
+    these functions all work there, too. (If someone wants to run the scripts on
+    Windows and post the output in the comments, I would appreciate it!)
 
 Interpreter
 ===========
@@ -41,14 +36,10 @@ forms of the interpreter version with major, minor, and patchlevel components.
 python_compiler() reports on the compiler used to build the interpreter. And
 python_build() gives a version string for the build of the interpreter.
 
-::
+.. include:: platform_python.py
+    :literal:
+    :start-after: #end_pymotw_header
 
-    import platform
-
-    print 'Version      :', platform.python_version()
-    print 'Version tuple:', platform.python_version_tuple()
-    print 'Compiler     :', platform.python_compiler()
-    print 'Build        :', platform.python_build()
 
 OS X::
 
@@ -78,13 +69,9 @@ True, the names in the return value are converted from a formal name to their
 more common form. When terse is true, returns a minimal value with some parts
 dropped.
 
-::
-
-    import platform
-
-    print 'Normal :', platform.platform()
-    print 'Aliased:', platform.platform(aliased=True)
-    print 'Terse  :', platform.platform(terse=True)
+.. include:: platform_platform.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 OS X::
 
@@ -114,19 +101,9 @@ number. version() returns the more detailed system version. machine() gives a
 hardware-type identifier such as 'i386'. processor() returns a real identifier
 for the processor, or the same value as machine() in many cases.
 
-::
-
-    import platform
-
-    print 'uname:', platform.uname()
-
-    print
-    print 'system   :', platform.system()
-    print 'node     :', platform.node()
-    print 'release  :', platform.release()
-    print 'version  :', platform.version()
-    print 'machine  :', platform.machine()
-    print 'processor:', platform.processor()
+.. include:: platform_os_info.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 
 OS X::
@@ -162,12 +139,9 @@ architecture() function. The first argument is the path to an executable
 program (defaulting to sys.executable, the Python interpreter). The return
 value is a tuple containing the bit architecture and the linkage format used.
 
-::
-
-    import platform
-
-    print 'interpreter:', platform.architecture()
-    print '/bin/ls    :', platform.architecture('/bin/ls')
+.. include:: platform_architecture.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 
 OS X::
@@ -183,3 +157,7 @@ Linux::
     /bin/ls    : ('32bit', 'ELF')
 
 
+.. seealso::
+
+    `platform <http://docs.python.org/lib/module-platform.html>`_
+        Standard library documentation for this module.
