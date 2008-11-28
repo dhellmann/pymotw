@@ -28,6 +28,7 @@
 """
 
 __module_id__ = "$Id$"
+#end_pymotw_header
 
 try:
     import cPickle as pickle
