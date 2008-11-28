@@ -30,6 +30,7 @@ Call this script with --help on the command line.
 """
 
 __module_id__ = "$Id$"
+#end_pymotw_header
 
 import optparse
 

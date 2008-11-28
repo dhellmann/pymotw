@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>.. include:: $1
+	<string>.. include:: `basename $TM_DIRECTORY`_$1.py
 	:literal:
 	:start-after: #end_pymotw_header
 </string>

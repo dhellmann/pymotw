@@ -5,7 +5,7 @@
 	<key>content</key>
 	<string>.. seealso::
 
-    \`$1 &lt;http://docs.python.org/lib/module-$2.html&gt;\`_
+    \``basename $TM_DIRECTORY` &lt;http://docs.python.org/lib/module-`basename $TM_DIRECTORY`.html&gt;\`_
         Standard library documentation for this module.
 </string>
 	<key>name</key>
