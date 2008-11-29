@@ -28,6 +28,7 @@
 """
 
 __version__ = "$Id$"
+#end_pymotw_header
 
 from pprint import pprint
 

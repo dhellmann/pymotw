@@ -48,12 +48,15 @@ blog: module
 	PATH=$(PATH):../../bin:../bin cat blog_posts/index.html | clean_post.py | mate
 
 .PHONEY: website
-website: sphinx/templates/web/base.html
+website:
 	mkdir -p web
-	TEMPLATES='web' sphinx-build -a -b html -d sphinx/doctrees -c sphinx $(PROJECT) web/
 	rm -f web/*.pdf pdf_output/*.pdf
-	$(MAKE) pdf
+	$(MAKE) webhtml pdf
 	cp pdf_output/*.pdf web/
+
+.PHONEY: webhtml webpdf
+webhtml: sphinx/templates/web/base.html
+	TEMPLATES='web' sphinx-build -a -b html -d sphinx/doctrees -c sphinx $(PROJECT) web/
 
 sphinx/templates/web/base.html: $(HOME)/Devel/personal/doughellmann/templates/base.html
 	cp $< $@

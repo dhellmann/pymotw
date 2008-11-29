@@ -28,6 +28,7 @@
 """
 
 __version__ = "$Id$"
+#end_pymotw_header
 
 import logging
 from pprint import pformat

@@ -28,14 +28,7 @@
 """
 
 __version__ = "$Id$"
-
-# Import system modules
-
-
-# Import local modules
-
-
-# Module
+#end_pymotw_header
 
 data = [ (i, { 'a':'A',
                'b':'B',
