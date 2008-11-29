@@ -780,24 +780,32 @@ exec*() calls for you in one statement:
     `os <http://docs.python.org/lib/module-os.html>`_
         Standard library documentation for this module.
 
-    `Unix Manual Page Introduction <http://www.scit.wlv.ac.uk/cgi-bin/mansec?2+intro>`_
-        Includes definitions of real and effective ids, etc.
-
-    `Speaking UNIX, Part 8. <http://www.ibm.com/developerworks/aix/library/au-speakingunix8/index.html>`_
-        Learn how UNIX multitasks.
-
-    `Unix Concepts <http://www.linuxhq.com/guides/LUG/node67.html>`_
-        For more discussion of stdin, stdout, and stderr.
-
     :mod:`subprocess`
         The subprocess module supersedes os.popen().
 
     :mod:`tempfile`
         The tempfile module for working with temporary files.
 
-    `Delve into Unix Process Creation <http://www.ibm.com/developerworks/aix/library/au-unixprocess.html>`_
+    *Unix Manual Page Introduction*
+        Includes definitions of real and effective ids, etc.
+        
+        http://www.scit.wlv.ac.uk/cgi-bin/mansec?2+intro
+
+    *Speaking UNIX, Part 8.*
+        Learn how UNIX multitasks.
+        
+        http://www.ibm.com/developerworks/aix/library/au-speakingunix8/index.html
+
+    *Unix Concepts*
+        For more discussion of stdin, stdout, and stderr.
+        
+        http://www.linuxhq.com/guides/LUG/node67.html
+
+    *Delve into Unix Process Creation*
         Explains the life cycle of a UNIX process.
+        
+        http://www.ibm.com/developerworks/aix/library/au-unixprocess.html
 
     `Advanced Programming in the UNIX(R) Environment <http://www.amazon.com/Programming-Environment-Addison-Wesley-Professional-Computing/dp/0201433079/ref=pd_bbs_3/002-2842372-4768037?ie=UTF8&s=books&amp;qid=1182098757&sr=8-3>`_
-        Covers working with multiple processes, such as handling signals, closing duplicated file
-        descriptors, etc.
+        Covers working with multiple processes, such as handling signals, closing duplicated
+        file descriptors, etc.

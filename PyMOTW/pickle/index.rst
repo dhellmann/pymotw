@@ -199,8 +199,9 @@ documentation.
     `pickle <http://docs.python.org/lib/module-pickle.html>`_
         Standard library documentation for this module.
 
-    `Pickle: An interesting stack language. <http://peadrop.com/blog/2007/06/18/pickle-an-interesting-stack-language/>`_ 
-        Article by Alexandre Vassalotti
-
     :mod:`shelve`
         The shelve module.
+
+    *Pickle: An interesting stack language.*
+        by Alexandre Vassalotti
+        http://peadrop.com/blog/2007/06/18/pickle-an-interesting-stack-language/

@@ -1,8 +1,6 @@
-.. $Id$
-
-=============================
-profile, cProfile, and pstats
-=============================
+=========================================================================
+profile, cProfile, and pstats -- Performance analysis of Python programs.
+=========================================================================
 
 .. module:: profile
     :synopsis: Performance analysis of Python programs.
@@ -13,9 +11,6 @@ profile, cProfile, and pstats
 :Purpose: Performance analysis of Python programs.
 :Python Version: 1.4 and later, these examples are for Python 2.5
 
-Description
-===========
-
 The profile and cProfile modules provide APIs for collecting and analyzing statistics about how Python source consumes processor resources.
 
 run()
@@ -25,9 +20,9 @@ The most basic starting point in the profile module is ``run()``.  It takes a st
 
 .. include:: profile_fibonacci_raw.py
    :literal:
-   :start-after: import profile
+   :start-after: #end_pymotw_header
 
-This recursive version of a fibonacci sequence calculator is especially useful for demonstrating the profile because we can improve the performance so much.  The standard report format shows a summary and then details for each function executed.
+This recursive version of a fibonacci sequence calculator [#fibonacci]_ is especially useful for demonstrating the profile because we can improve the performance so much.  The standard report format shows a summary and then details for each function executed.
 
 ::
 
@@ -52,11 +47,11 @@ This recursive version of a fibonacci sequence calculator is especially useful f
 
 As you can see, it takes 57356 separate function calls and 3/4 of a second to run.  Since there are only 66 *primitive* calls, we know that the vast majority of those 57k calls were recursive.  The details about where time was spent are broken out by function in the listing showing the number of calls, total time spent in the function, time per call (tottime/ncalls), cumulative time spent in a function, and the ratio of cumulative time to primitive calls.  
 
-Not surprisingly, most of the time here is spent calling ``fib()`` repeatedly.  We can add a memoize decorator to reduce the number of recursive calls and have a big impact on the performance of this function.
+Not surprisingly, most of the time here is spent calling ``fib()`` repeatedly.  We can add a memoize decorator [#memoize]_ to reduce the number of recursive calls and have a big impact on the performance of this function.
 
 .. include:: profile_fibonacci_memoized.py
     :literal:
-    :start-after: import profile
+    :start-after: #end_pymotw_header
 
 By remembering the Fibonacci value at each level we can avoid most of the recursion and drop down to 145 calls that only take 0.003 seconds.  Also notice that the ncalls count for ``fib()`` shows that it *never* recurses.
 
@@ -89,7 +84,7 @@ Of course, it's not always easy to construct the expression to pass to ``run()``
 
 .. include:: profile_runctx.py
     :literal:
-    :start-after: import profile
+    :start-after: #end_pymotw_header
 
 In this example, the value of "n" is passed through the local variable context instead of being embedded directly in the statement passed to ``runctx()``.
 
@@ -125,7 +120,7 @@ For example, to run several iterations of the same test and combine the results,
 
 .. include:: profile_stats.py
     :literal:
-    :start-after: import profile
+    :start-after: #end_pymotw_header
 
 The output report is sorted in descending order of cumulative time spent in the function and the directory names are removed from the printed filenames to conserve horizontal space.
 
@@ -169,7 +164,7 @@ Since we are studying the performance of ``fib()`` and ``fib_seq()``, we can als
 
 .. include:: profile_stats_restricted.py
     :literal:
-    :start-after: import profile
+    :start-after: #end_pymotw_header
 
 The regular expression includes a literal left paren (``(``) to match against the function name portion of the location value.
 
@@ -199,7 +194,7 @@ Caller / Callee Graphs
 
 .. include:: profile_stats_callers.py
     :literal:
-    :start-after: import profile
+    :start-after: #end_pymotw_header
 
 The arguments to ``print_callers()`` and ``print_callees()`` work the same as the restriction arguments to ``print_stats()``.  The output shows the caller, callee, and cumulative time.
 
@@ -228,15 +223,14 @@ The arguments to ``print_callers()`` and ``print_callees()`` work the same as th
     profile_fibonacci_memoized.py:26(fib)      -> profile_fibonacci_memoized.py:19(__call__)(38)    0.002
 
 
-References
-==========
+.. seealso::
 
-Standard library documentation:
+    `profile and cProfile <http://docs.python.org/lib/module-profile.html>`_
+        Standard library documentation for this module.
 
- * `profile and cProfile <http://docs.python.org/lib/module-profile.html>`_
- * `pstats <http://docs.python.org/lib/profile-stats.html>`_
+    `pstats <http://docs.python.org/lib/profile-stats.html>`_
+        Standard library documentation for pstats.
 
-The Fibonacci example implementation came from `Fibonacci numbers (Python) - LiteratePrograms <http://en.literateprograms.org/Fibonacci_numbers_(Python)>`_.
+    .. [#fibonacci] *Fibonacci numbers (Python) - LiteratePrograms* via http://en.literateprograms.org/Fibonacci_numbers_(Python)
 
-The memoize decorator came from `Python Decorators: Syntactic Sugar | avinash.vora <http://avinashv.net/2008/04/python-decorators-syntactic-sugar/>`_.
-
+    .. [#memoize] *Python Decorators: Syntactic Sugar | avinash.vora* from http://avinashv.net/2008/04/python-decorators-syntactic-sugar/
