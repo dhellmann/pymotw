@@ -29,22 +29,15 @@
 
 See http://blog.doughellmann.com/2007/04/pymotw-queue.html
 """
+#end_pymotw_header
 
-#
-# Import system modules
-#
+# System modules
 from Queue import Queue
 from threading import Thread
 import time
 
-#
-# Import local modules
-#
+# Local modules
 import feedparser
-
-#
-# Module
-#
 
 # Set up some global variables
 num_fetch_threads = 2
