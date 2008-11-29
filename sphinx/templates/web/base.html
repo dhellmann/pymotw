@@ -41,9 +41,6 @@
 </div>
 
 <div id="sidebar">
-    <p><a href="http://pyworks.mtacon.com">
-    <img border="0" 
-    width="150" alt="php|works &amp; PyWorks 2008 Conference" src="http://pyworks.mtacon.com/mat/mediasponsor.png" height="106"/> </a></p>
 {% block sidebar %}
 
     <h2>Sidebar</h2>
@@ -80,6 +77,10 @@
   <h2>Welcome to Leaves.</h2>
   <p>Welcome to Leaves, a static, 3 column layout made with your usual CSS and XHTML. It is able to correctly accommodate any font size increases or shrinkages (Is that a word?). It seems to work fine in Firefox, Opera, Internet Explorer and Safari. It's more minimal than other designs, because I think images (drop shadows, giant header images) are being obsessively over used these days. I think it detracts from the content and shoves way too much information to a viewer all at the same time, so here you go: Leaves, a minimalist design. Feel free to massacre or change the design to your liking. Well, I guess it's time for some more Latin. <strong>If you want me to create a custom design for you, feel free to drop me a line anytime at web@smallpark.org </strong></p>
 
+{% endblock %}
+
+{% block addthis %}
+<div id="addthis"><a href="http://www.addthis.com/bookmark.php" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="http://s7.addthis.com/static/btn/lg-share-en.gif" width="125" height="16" border="0" alt="Bookmark and Share" /></a><script type="text/javascript">var addthis_pub = "dhellmann";</script><script type="text/javascript" src="http://s7.addthis.com/js/widget.php?v=10"></script></div>
 {% endblock %}
 
 {% block comments %}
