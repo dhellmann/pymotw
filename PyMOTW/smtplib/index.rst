@@ -11,7 +11,10 @@ smtplib -- Simple Mail Transfer Protocol client
 :mod:`smtplib` includes the class :class:`SMTP`, which is useful for communicating with mail servers to send mail.  
 
 .. note::
-  The email addresses, host names, and IP addresses in the following examples have been obscured, but otherwise the transcripts illustrate the sequence of commands and responses accurately.
+
+    The email addresses, host names, and IP addresses in the following examples have been
+    obscured, but otherwise the transcripts illustrate the sequence of commands and responses
+    accurately.
 
 
 Sending an Email Message
@@ -166,18 +169,25 @@ As the last 2 lines of output here show, the address ``dhellmann`` is valid but 
     dhellmann: (250, '2.1.5 Doug Hellmann <dhellmann@mail.example.com>')
     notthere : (550, '5.1.1 <notthere>... User unknown')
 
+.. seealso::
 
-References
-==========
+    `smtplib <http://docs.python.org/lib/module-smtplib.html>`_
+        Standard library documentation for this module.
 
-`RFC 821: Simple Mail Transfer Protocol <http://www.faqs.org/rfcs/rfc821.html>`_
+    `RFC 821: Simple Mail Transfer Protocol <http://www.faqs.org/rfcs/rfc821.html>`_
+        The SMTP specification.
 
-`RFC 822: Standard for the Format of ARPA Internet Text Messages <http://www.faqs.org/rfcs/rfc822.html>`_
+    `RFC 1869: SMTP Service Extensions <http://www.faqs.org/rfcs/rfc1869.html>`_
+        Extensions to the base protocol.
 
-`RFC 1869: SMTP Service Extensions <http://www.faqs.org/rfcs/rfc1869.html>`_
+    `RFC 822: Standard for the Format of ARPA Internet Text Messages <http://www.faqs.org/rfcs/rfc822.html>`_
+        The original email message format specification.
 
-`RFC 2822: Internet Message Format <http://www.faqs.org/rfcs/rfc2822.html>`_
+    `RFC 2822: Internet Message Format <http://www.faqs.org/rfcs/rfc2822.html>`_
+        Updates to the email message format.
 
-Standard library documentation: `smtplib <http://docs.python.org/lib/module-smtplib.html>`_
+    :mod:`email`
+        Standard library module for parsing email messages.
 
-See also :mod:`email` and :mod:`smtpd`.
+    :mod:`smtpd`
+        Implements a simple SMTP server.
