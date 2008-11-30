@@ -181,9 +181,10 @@ Deprecated Functions
 
 For information on the deprecated functions moved to the string and unicode classes, refer to `String Methods <http://docs.python.org/lib/string-methods.html#string-methods>`_ in the manual.
 
-References
-==========
+.. seealso::
 
-`PEP 292 <http://www.python.org/peps/pep-0292.html>`_ -- Simpler String Substitutions
+    `string <http://docs.python.org/lib/module-string.html>`_
+        Standard library documentation for this module.
 
-Standard library documentation: `string <http://docs.python.org/lib/module-string.html>`_
+    `PEP 292 <http://www.python.org/peps/pep-0292.html>`_
+        Simpler String Substitutions
