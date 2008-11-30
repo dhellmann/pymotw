@@ -7,6 +7,7 @@
 """
 
 __version__ = "$Id$"
+#end_pymotw_header
 
 from SimpleXMLRPCServer import SimpleXMLRPCServer, list_public_methods
 import os

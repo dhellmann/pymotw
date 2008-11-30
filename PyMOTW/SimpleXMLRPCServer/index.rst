@@ -1,26 +1,24 @@
-================================
-SimpleXMLRPCServer
-================================
+===================================================
+SimpleXMLRPCServer -- Implements an XML-RPC server.
+===================================================
+
 .. module:: SimpleXMLRPCServer
     :synopsis: Implements an XML-RPC server.
 
-:Module: SimpleXMLRPCServer
 :Purpose: Implements an XML-RPC server.
 :Python Version: 2.2 and later
-:Abstract: The SimpleXMLRPCServer module makes it easy to use remote procedure calls in Python that work with many other languages, too.
-
-Description
-===========
 
 The SimpleXMLRPCServer module contains classes for creating your own
 cross-platform, language-independent server using the XML-RPC protocol. Client
 libraries exist for many other languages, making XML-RPC an easy choice for
 building RPC-style services.
 
-Note: All of the examples provided here include a client module as well to
-interact with the demonstration server. If you want to download the code and
-run the examples, you will want to use 2 separate shell windows, one for the
-server and one for the client.
+.. note::
+
+    All of the examples provided here include a client module as well to
+    interact with the demonstration server. If you want to download the code and
+    run the examples, you will want to use 2 separate shell windows, one for the
+    server and one for the client.
 
 A Simple Server
 ===============
@@ -33,40 +31,17 @@ instance and tell it where to listen for incoming requests ('localhost' port
 register the function so the server knows how to call it. The final step is to
 put the server into an infinite loop receiving and responding to requests.
 
-::
-
-    from SimpleXMLRPCServer import SimpleXMLRPCServer
-    import logging
-    import os
-
-    # Set up logging
-    logging.basicConfig(level=logging.DEBUG)
-
-    server = SimpleXMLRPCServer(('localhost', 9000), logRequests=True)
-
-    # Expose a function
-    def list_contents(dir_name):
-        logging.debug('list_contents(%s)', dir_name)
-        return os.listdir(dir_name)
-    server.register_function(list_contents)
-
-    try:
-        print 'Use Control-C to exit'
-        server.serve_forever()
-    except KeyboardInterrupt:
-        print 'Exiting'
-
+.. include:: SimpleXMLRPCServer_function.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 The server can be accessed at the URL http://localhost:9000 using xmlrpclib.
 This client code illustrates how to call the list_contents() service from
 Python.
 
-::
-
-    import xmlrpclib
-
-    proxy = xmlrpclib.ServerProxy('http://localhost:9000')
-    print proxy.list_contents('/tmp')
+.. include:: SimpleXMLRPCServer_function_client.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 Notice that we simply connect the ServerProxy to the server using its base
 URL, and then call methods directly on the proxy. Each method invoked on the
@@ -108,32 +83,17 @@ the names you want to use in your external API. You might need to load a
 platform-specific implementation, build the service API dynamically based on a
 configuration file, or replace real functions with stubs for testing. If you
 want to register a function with an alternate name, pass the name as the
-second argument to register_function(), like this::
+second argument to register_function(), like this:
 
-    from SimpleXMLRPCServer import SimpleXMLRPCServer
-    import os
+.. include:: SimpleXMLRPCServer_alternate_name.py
+    :literal:
+    :start-after: #end_pymotw_header
 
-    server = SimpleXMLRPCServer(('localhost', 9000))
+The client should now use the name 'dir()' instead of 'list_contents()':
 
-    # Expose a function with an alternate name
-    def list_contents(dir_name):
-        return os.listdir(dir_name)
-    server.register_function(list_contents, 'dir')
-
-    try:
-        print 'Use Control-C to exit'
-        server.serve_forever()
-    except KeyboardInterrupt:
-        print 'Exiting'
-
-
-The client should now use the name 'dir()' instead of 'list_contents()'::
-
-    import xmlrpclib
-
-    proxy = xmlrpclib.ServerProxy('http://localhost:9000')
-    print 'dir():', proxy.dir('/tmp')
-    print 'list_contents():', proxy.list_contents('/tmp')
+.. include:: SimpleXMLRPCServer_alternate_name_client.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 Calling list_contents() results in an error, since the server no longer has a
 handler registered by that name.
@@ -171,40 +131,20 @@ services using a different prefix. One other difference in this example is
 that some of the functions return None, so we have to tell the server to
 translate the None values to a nil value (see XML-RPC Extensions).
 
-::
-
-    from SimpleXMLRPCServer import SimpleXMLRPCServer
-    import os
-
-    server = SimpleXMLRPCServer(('localhost', 9000), allow_none=True)
-
-    server.register_function(os.listdir, 'dir.list')
-    server.register_function(os.mkdir, 'dir.create')
-    server.register_function(os.rmdir, 'dir.remove')
-
-    try:
-        print 'Use Control-C to exit'
-        server.serve_forever()
-    except KeyboardInterrupt:
-        print 'Exiting'
+.. include:: SimpleXMLRPCServer_dotted_name.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 
 To call the service functions in the client, simply refer to them with the
-dotted name, like so::
+dotted name, like so:
 
-    import xmlrpclib
-
-    proxy = xmlrpclib.ServerProxy('http://localhost:9000')
-    print 'BEFORE       :', 'EXAMPLE' in proxy.dir.list('/tmp')
-    print 'CREATE       :', proxy.dir.create('/tmp/EXAMPLE')
-    print 'SHOULD EXIST :', 'EXAMPLE' in proxy.dir.list('/tmp')
-    print 'REMOVE       :', proxy.dir.remove('/tmp/EXAMPLE')
-    print 'AFTER        :', 'EXAMPLE' in proxy.dir.list('/tmp')
-
+.. include:: SimpleXMLRPCServer_dotted_name_client.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 and (assuming you don't have a /tmp/EXAMPLE on your system) the output for the
 sample client script looks like::
-
 
     $ python SimpleXMLRPCServer_dotted_name_client.py
     BEFORE       : False
@@ -221,33 +161,16 @@ A less useful, but potentially interesting feature is the ability to register
 functions with names that are otherwise invalid attribute names. This example
 service registers a function with the name "multiply args".
 
-::
-
-    from SimpleXMLRPCServer import SimpleXMLRPCServer
-
-    server = SimpleXMLRPCServer(('localhost', 9000))
-
-    def my_function(a, b):
-        return a * b
-    server.register_function(my_function, 'multiply args')
-
-    try:
-        print 'Use Control-C to exit'
-        server.serve_forever()
-    except KeyboardInterrupt:
-        print 'Exiting'
-
+.. include:: SimpleXMLRPCServer_arbitrary_name.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 Since the registered name contains a space, we can't use dot notation to
 access it directly from the proxy. We can, however, use getattr().
 
-::
-
-    import xmlrpclib
-
-    proxy = xmlrpclib.ServerProxy('http://localhost:9000')
-    print getattr(proxy, 'multiply args')(5, 5)
-
+.. include:: SimpleXMLRPCServer_arbitrary_name_client.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 This example is provide not necessarily because it is a good idea, but because
 you may encounter existing services with arbitrary names and need to be able
@@ -266,32 +189,15 @@ We've talked about establishing APIs using good naming conventions. Another
 way to do that is to use instances of classes and expose their methods. We can
 recreate the first example using an instance with a single method.
 
-::
+.. include:: SimpleXMLRPCServer_instance.py
+    :literal:
+    :start-after: #end_pymotw_header
 
-    from SimpleXMLRPCServer import SimpleXMLRPCServer
-    import os
-    import inspect
+A client can call the method directly:
 
-    server = SimpleXMLRPCServer(('localhost', 9000), logRequests=True)
-
-    class DirectoryService:
-        def list(self, dir_name):
-            return os.listdir(dir_name)
-
-    server.register_instance(DirectoryService())
-
-    try:
-        print 'Use Control-C to exit'
-        server.serve_forever()
-    except KeyboardInterrupt:
-        print 'Exiting'
-
-A client can call the method directly::
-
-    import xmlrpclib
-
-    proxy = xmlrpclib.ServerProxy('http://localhost:9000')
-    print proxy.list('/tmp')
+.. include:: SimpleXMLRPCServer_instance_client.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 and receive output like::
 
@@ -304,43 +210,17 @@ and receive output like::
 We've lost the 'dir.' prefix for the service, though, so let's define a class
 to let us set up a service tree that can be invoked from clients.
 
-::
-
-    from SimpleXMLRPCServer import SimpleXMLRPCServer
-    import os
-    import inspect
-
-    server = SimpleXMLRPCServer(('localhost', 9000), logRequests=True)
-
-    class ServiceRoot:
-        pass
-
-    class DirectoryService:
-        def list(self, dir_name):
-            return os.listdir(dir_name)
-
-    root = ServiceRoot()
-    root.dir = DirectoryService()
-
-    server.register_instance(root, allow_dotted_names=True)
-
-    try:
-        print 'Use Control-C to exit'
-        server.serve_forever()
-    except KeyboardInterrupt:
-        print 'Exiting'
-
+.. include:: SimpleXMLRPCServer_instance_dotted_names.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 By registering the instance of ServiceRoot with allow_dotted_names=True, we
 give the server permission to walk the tree of objects when a request comes in
 to find the named method using getattr().
 
-::
-
-    import xmlrpclib
-
-    proxy = xmlrpclib.ServerProxy('http://localhost:9000')
-    print proxy.dir.list('/tmp')
+.. include:: SimpleXMLRPCServer_instance_dotted_names_client.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -354,53 +234,11 @@ Dispatching Calls Yourself
 By default register_instance() finds all callable attributes of the instance
 with names not starting with '_' and registers them with their name. If you
 want to be more careful about the exposed methods, you could provide your own
-dispatching logic. For example::
+dispatching logic. For example:
 
-    from SimpleXMLRPCServer import SimpleXMLRPCServer
-    import os
-    import inspect
-
-    server = SimpleXMLRPCServer(('localhost', 9000), logRequests=True)
-
-    def expose(f):
-        "Decorator to set exposed flag on a function."
-        f.exposed = True
-        return f
-
-    def is_exposed(f):
-        "Test whether another function should be publicly exposed."
-        return getattr(f, 'exposed', False)
-
-    class MyService:
-        PREFIX = 'prefix'
-
-        def _dispatch(self, method, params):
-            # Remove our prefix from the method name
-            if not method.startswith(self.PREFIX + '.'):
-                raise Exception('method "%s" is not supported' % method)
-            
-            method_name = method.partition('.')[2]
-            func = getattr(self, method_name)            
-            if not is_exposed(func):
-                raise Exception('method "%s" is not supported' % method)
-            
-            return func(*params)
-
-        @expose
-        def public(self):
-            return 'This is public'
-            
-        def private(self):
-            return 'This is private'
-
-    server.register_instance(MyService())
-
-    try:
-        print 'Use Control-C to exit'
-        server.serve_forever()
-    except KeyboardInterrupt:
-        print 'Exiting'
-
+.. include:: SimpleXMLRPCServer_instance_with_prefix.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 The public() method of MyService is marked as exposed to the XML-RPC service
 while private() is not. The _dispatch() method is invoked when the client
@@ -410,21 +248,11 @@ Then it requires the function to have an attribute called "exposed" with a
 true value. The exposed flag is set on a function using a decorator for
 convenience.
 
-Here are a few sample client calls::
+Here are a few sample client calls:
 
-    import xmlrpclib
-
-    proxy = xmlrpclib.ServerProxy('http://localhost:9000')
-    print 'public():', proxy.prefix.public()
-    try:
-        print 'private():', proxy.prefix.private()
-    except Exception, err:
-        print 'ERROR:', err
-    try:
-        print 'public() without prefix:', proxy.public()
-    except Exception, err:
-        print 'ERROR:', err
-
+.. include:: SimpleXMLRPCServer_instance_with_prefix_client.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 and the resulting output, with the expected error messages trapped and
 reported::
@@ -450,39 +278,9 @@ register_introspection_functions(). You can add explicit support for
 system.listMethods() and system.methodHelp() by defining _listMethods() and
 _methodHelp() on your service class. For example,
 
-::
-
-    from SimpleXMLRPCServer import SimpleXMLRPCServer, list_public_methods
-    import os
-    import inspect
-
-    server = SimpleXMLRPCServer(('localhost', 9000), logRequests=True)
-    server.register_introspection_functions()
-
-    class DirectoryService:
-        
-        def _listMethods(self):
-            return list_public_methods(self)
-
-        def _methodHelp(self, method):
-            f = getattr(self, method)
-            return inspect.getdoc(f)
-        
-        def list(self, dir_name):
-            """list(dir_name) => [<filenames>]
-            
-            Returns a list containing the contents of the named directory.
-            """
-            return os.listdir(dir_name)
-
-    server.register_instance(DirectoryService())
-
-    try:
-        print 'Use Control-C to exit'
-        server.serve_forever()
-    except KeyboardInterrupt:
-        print 'Exiting'
-
+.. include:: SimpleXMLRPCServer_introspection.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 In this case, the convenience function list_public_methods() scans an instance
 to return the names of callable attributes that do not start with '_'. You
@@ -494,18 +292,9 @@ like.
 This client queries the server and reports on all of the publicly callable
 methods.
 
-::
-
-    import xmlrpclib
-
-    proxy = xmlrpclib.ServerProxy('http://localhost:9000')
-    for method_name in proxy.system.listMethods():
-        print '=' * 60
-        print method_name
-        print '-' * 60
-        print proxy.system.methodHelp(method_name)
-        print
-
+.. include:: SimpleXMLRPCServer_introspection_client.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 Notice that the system methods are included in the results.
 
@@ -545,3 +334,17 @@ Notice that the system methods are included in the results.
     This server does NOT support system.methodSignature.
 
 
+.. seealso::
+
+    `SimpleXMLRPCServer <http://docs.python.org/lib/module-SimpleXMLRPCServer.html>`_
+        Standard library documentation for this module.
+
+    `XML-RPC How To <http://www.tldp.org/HOWTO/XML-RPC-HOWTO/index.html>`_
+        Describes how to use XML-RPC to implement clients and servers in 
+        a variety of languages.
+
+    `XML-RPC Extensions <http://ontosys.com/xml-rpc/extensions.php>`_
+        Specifies an extension to the XML-RPC protocol.
+
+    :mod:`xmlrpclib`
+        XML-RPC client library
