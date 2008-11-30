@@ -144,17 +144,24 @@ MailmanProxy
 :mod:`smtpd` also includes a special proxy that acts as a front-end for Mailman.  If the local Mailman configuration recognizes the address, it is handled directly.  Otherwise the message is delivered to the proxy.
 
 
-References
-==========
+.. seealso::
 
-Standard library documentation: `smtpd <http://docs.python.org/library/smtpd.html>`_
+    `smtpd <http://docs.python.org/lib/module-smtpd.html>`_
+        Standard library documentation for this module.
 
-The :mod:`smtplib` module provides a client interface.
+    :mod:`smtplib`
+        Provides a client interface.
 
-See also :mod:`email` and :mod:`asyncore`.
+    :mod:`email`
+        Parses email messages.
+
+    :mod:`asyncore`
+        Base module for writing asynchronous servers.
+
+    `RFC 2822`_
+        Defines the email message format.
+
+    `GNU Mailman mailing list software <http://www.gnu.org/software/mailman/index.html>`_
+        An excellent example of Python software that works with email messages.
 
 .. _RFC 2822: http://rfc.net/rfc2822.html
-
-`RFC 2822`_
-
-`GNU Mailman mailing list software <http://www.gnu.org/software/mailman/index.html>`_
