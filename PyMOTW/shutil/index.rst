@@ -1,15 +1,15 @@
-======
-shutil
-======
+=====================================
+shutil -- High-level file operations.
+=====================================
+
 .. module:: shutil
     :synopsis: High-level file operations.
 
 :Purpose: High-level file operations.
 :Python Version: 1.4 and later
-:Abstract:
 
-    The shutil module includes high-level file operations such as copying,
-    setting permissions, etc.
+The shutil module includes high-level file operations such as copying,
+setting permissions, etc.
 
 Copying Files
 =============
@@ -227,3 +227,7 @@ removed.
     AFTER : example2:  ['shutil_copy.py']
 
 
+.. seealso::
+
+    `shutil <http://docs.python.org/lib/module-shutil.html>`_
+        Standard library documentation for this module.
