@@ -36,11 +36,13 @@ Real world applications of StringIO include a web application stack where variou
 The application we are building at work includes a shell scripting interface in the form of several command line programs. Some of these programs are responsible for pulling data from the database and dumping it on the console (either to show the user, or so the text can serve as input to another command). The commands share a set of formatter plugins to produce a text representation of an object in a variety of ways (XML, bash syntax, human readable, etc.). Since the formatters normally write to standard output, testing the results would be a little tricky without the StringIO module. Using StringIO to intercept the output of the formatter gives us an easy way to collect the output in memory to compare against expected results.
 
 
-References
-==========
+.. seealso::
 
-`The StringIO module ::: www.effbot.org <http://effbot.org/librarybook/stringio.htm>`_
+    `StringIO <http://docs.python.org/lib/module-StringIO.html>`_
+        Standard library documentation for this module.
 
-`Efficient String Concatenation in Python <http://www.skymind.com/%7Eocrow/python_string/>`_
+    `The StringIO module ::: www.effbot.org <http://effbot.org/librarybook/stringio.htm>`_
+        effbot's examples with StringIO
 
-Standard library documentation: `StringIO <http://docs.python.org/lib/module-StringIO.html>`_
+    `Efficient String Concatenation in Python <http://www.skymind.com/%7Eocrow/python_string/>`_
+        Examines various methods of combining strings and their relative merits.
