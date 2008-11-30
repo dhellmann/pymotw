@@ -28,6 +28,7 @@
 """
 
 __version__ = "$Id$"
+#end_pymotw_header
 
 import logging
 import sys

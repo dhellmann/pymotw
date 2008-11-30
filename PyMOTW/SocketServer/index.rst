@@ -1,26 +1,18 @@
-============
-SocketServer
-============
+=========================================
+SocketServer -- Creating network servers.
+=========================================
+
 .. module:: SocketServer
     :synopsis: Creating network servers.
 
-:Module: SocketServer
 :Purpose: Creating network servers.
 :Python Version: 1.4
-:Abstract:
 
-    The SocketServer module is a framework for creating network servers.
-    It provides base classes for handling TCP, UDP, Unix streams, and Unix
-    datagrams and supports both threading and forking servers, depending on
-    what is most appropriate for your situation.
-
-Description
-===========
-
-The SocketServer module defines classes for handling synchronous network
-requests (the server request handler blocks until the request is completed).
-It also provides mix-in classes for easily converting servers to use a
-separate thread or process for each request.
+The SocketServer module is a framework for creating network servers. It defines classes for
+handling synchronous network requests (the server request handler blocks until the request is
+completed) over TCP, UDP, Unix streams, and Unix datagrams. It also provides mix-in classes
+for easily converting servers to use a separate thread or process for each request, depending
+on what is most appropriate for your situation.
 
 Responsibility for processing a request is split between a server class and a
 request handler class. The server deals with the communication issues (listing
@@ -106,127 +98,12 @@ EchoRequestHandler.handle(), but I have overridden all of the methods
 described above to insert logging calls so the output of the sample program
 illustrates the sequence of calls made.
 
-::
+The only thing left is to have simple program which creates the server, runs it in a thread,
+and connects to it to illustrate which methods are called as the data is echoed back.
 
-    import logging
-    import sys
-    import SocketServer
-
-    logging.basicConfig(level=logging.DEBUG,
-                        format='%(name)s: %(message)s',
-                        )
-
-    class EchoRequestHandler(SocketServer.BaseRequestHandler):
-        
-        def __init__(self, request, client_address, server):
-            self.logger = logging.getLogger('EchoRequestHandler')
-            self.logger.debug('__init__')
-            SocketServer.BaseRequestHandler.__init__(self, request, client_address, server)
-            return
-
-        def setup(self):
-            self.logger.debug('setup')
-            return SocketServer.BaseRequestHandler.setup(self)
-
-        def handle(self):
-            self.logger.debug('handle')
-
-            # Echo the back to the client
-            data = self.request.recv(1024)
-            self.logger.debug('recv()->"%s"', data)
-            self.request.send(data)
-            return
-
-        def finish(self):
-            self.logger.debug('finish')
-            return SocketServer.BaseRequestHandler.finish(self)
-
-    class EchoServer(SocketServer.TCPServer):
-        
-        def __init__(self, server_address, handler_class=EchoRequestHandler):
-            self.logger = logging.getLogger('EchoServer')
-            self.logger.debug('__init__')
-            SocketServer.TCPServer.__init__(self, server_address, handler_class)
-            return
-
-        def server_activate(self):
-            self.logger.debug('server_activate')
-            SocketServer.TCPServer.server_activate(self)
-            return
-
-        def serve_forever(self):
-            self.logger.debug('waiting for request')
-            self.logger.info('Handling requests, press <Ctrl-C> to quit')
-            while True:
-                self.handle_request()
-            return
-
-        def handle_request(self):
-            self.logger.debug('handle_request')
-            return SocketServer.TCPServer.handle_request(self)
-
-        def verify_request(self, request, client_address):
-            self.logger.debug('verify_request(%s, %s)', request, client_address)
-            return SocketServer.TCPServer.verify_request(self, request, client_address)
-
-        def process_request(self, request, client_address):
-            self.logger.debug('process_request(%s, %s)', request, client_address)
-            return SocketServer.TCPServer.process_request(self, request, client_address)
-
-        def server_close(self):
-            self.logger.debug('server_close')
-            return SocketServer.TCPServer.server_close(self)
-
-        def finish_request(self, request, client_address):
-            self.logger.debug('finish_request(%s, %s)', request, client_address)
-            return SocketServer.TCPServer.finish_request(self, request, client_address)
-
-        def close_request(self, request_address):
-            self.logger.debug('close_request(%s)', request_address)
-            return SocketServer.TCPServer.close_request(self, request_address)
-
-And now a simple program which creates the server, runs it in a thread, and
-connects to it to illustrate which methods are called as the data is echoed
-back.
-
-::
-
-    if __name__ == '__main__':
-        import socket
-        import threading
-
-        address = ('localhost', 0) # let the kernel give us a port
-        server = EchoServer(address, EchoRequestHandler)
-        ip, port = server.server_address # find out what port we were given
-
-        t = threading.Thread(target=server.serve_forever)
-        t.setDaemon(True) # don't hang on exit
-        t.start()
-
-        logger = logging.getLogger('client')
-        logger.info('Server on %s:%s', ip, port)
-
-        # Connect to the server
-        logger.debug('creating socket')
-        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        logger.debug('connecting to server')
-        s.connect((ip, port))
-
-        # Send the data
-        message = 'Hello, world'
-        logger.debug('sending data: "%s"', message)
-        len_sent = s.send(message)
-
-        # Receive a response
-        logger.debug('waiting for response')
-        response = s.recv(len_sent)
-        logger.debug('response from server: "%s"', response)
-
-        # Clean up
-        logger.debug('closing socket')
-        s.close()
-        logger.debug('done')
-        server.socket.close()
+.. include:: SocketServer_echo.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 The output for the program should look something like this:
 
@@ -264,46 +141,9 @@ instead of the 0.
 
 A simpler version of the same thing, without the logging, would look like:
 
-::
-
-    import SocketServer
-
-    class EchoRequestHandler(SocketServer.BaseRequestHandler):
-
-        def handle(self):
-            # Echo the back to the client
-            data = self.request.recv(1024)
-            self.request.send(data)
-            return
-
-    if __name__ == '__main__':
-        import socket
-        import threading
-
-        address = ('localhost', 0) # let the kernel give us a port
-        server = SocketServer.TCPServer(address, EchoRequestHandler)
-        ip, port = server.server_address # find out what port we were given
-
-        t = threading.Thread(target=server.serve_forever)
-        t.setDaemon(True) # don't hang on exit
-        t.start()
-
-        # Connect to the server
-        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        s.connect((ip, port))
-
-        # Send the data
-        message = 'Hello, world'
-        print 'Sending : "%s"' % message
-        len_sent = s.send(message)
-
-        # Receive a response
-        response = s.recv(len_sent)
-        print 'Received: "%s"' % response
-
-        # Clean up
-        s.close()
-        server.socket.close()
+.. include:: SocketServer_echo_simple.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 Notice in that case, no special server class is required since the TCPServer
 does what we need.
@@ -324,53 +164,9 @@ ready to be handled, and the work is done in the new child.
 
 For threads, use the ThreadingMixIn:
 
-::
-
-    import threading
-    import SocketServer
-
-    class ThreadedEchoRequestHandler(SocketServer.BaseRequestHandler):
-
-        def handle(self):
-            # Echo the back to the client
-            data = self.request.recv(1024)
-            cur_thread = threading.currentThread()
-            response = '%s: %s' % (cur_thread.getName(), data)
-            self.request.send(response)
-            return
-
-    class ThreadedEchoServer(SocketServer.ThreadingMixIn, SocketServer.TCPServer):
-        pass
-
-    if __name__ == '__main__':
-        import socket
-        import threading
-
-        address = ('localhost', 0) # let the kernel give us a port
-        server = ThreadedEchoServer(address, ThreadedEchoRequestHandler)
-        ip, port = server.server_address # find out what port we were given
-
-        t = threading.Thread(target=server.serve_forever)
-        t.setDaemon(True) # don't hang on exit
-        t.start()
-        print 'Server loop running in thread:', t.getName()
-
-        # Connect to the server
-        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        s.connect((ip, port))
-
-        # Send the data
-        message = 'Hello, world'
-        print 'Sending : "%s"' % message
-        len_sent = s.send(message)
-
-        # Receive a response
-        response = s.recv(1024)
-        print 'Received: "%s"' % response
-
-        # Clean up
-        s.close()
-        server.socket.close()
+.. include:: SocketServer_threaded.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 The response from the server includes the id of the thread where the request
 is handled:
@@ -384,53 +180,9 @@ is handled:
 
 To use separate processes, use the ForkingMixIn:
 
-::
-
-    import os
-    import SocketServer
-
-    class ForkingEchoRequestHandler(SocketServer.BaseRequestHandler):
-
-        def handle(self):
-            # Echo the back to the client
-            data = self.request.recv(1024)
-            cur_pid = os.getpid()
-            response = '%s: %s' % (cur_pid, data)
-            self.request.send(response)
-            return
-
-    class ForkingEchoServer(SocketServer.ForkingMixIn, SocketServer.TCPServer):
-        pass
-
-    if __name__ == '__main__':
-        import socket
-        import threading
-
-        address = ('localhost', 0) # let the kernel give us a port
-        server = ForkingEchoServer(address, ForkingEchoRequestHandler)
-        ip, port = server.server_address # find out what port we were given
-
-        t = threading.Thread(target=server.serve_forever)
-        t.setDaemon(True) # don't hang on exit
-        t.start()
-        print 'Server loop running in process:', os.getpid()
-
-        # Connect to the server
-        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        s.connect((ip, port))
-
-        # Send the data
-        message = 'Hello, world'
-        print 'Sending : "%s"' % message
-        len_sent = s.send(message)
-
-        # Receive a response
-        response = s.recv(1024)
-        print 'Received: "%s"' % response
-
-        # Clean up
-        s.close()
-        server.socket.close()
+.. include:: SocketServer_forking.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 In this case, the process id of the child is included in the response from the
 server:
@@ -443,3 +195,11 @@ server:
     Received: "20175: Hello, world"
 
 
+.. seealso::
+
+    `SocketServer <http://docs.python.org/lib/module-SocketServer.html>`_
+        Standard library documentation for this module.
+
+    :mod:`asyncore`
+        Use asyncore to create asynchronous servers that do not block while processing a
+        request.
