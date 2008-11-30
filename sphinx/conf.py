@@ -36,9 +36,5 @@ latex_documents = [
      'Python Module of the Week', 'Doug Hellmann', 'manual', False),
     ]
 
-latex_preamble = r'''
-\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\thechapter.
-\ #1}}{}}
- \renewcommand{\sectionmark}[1]{\markright{\MakeUppercase{\thesection.
-\ #1}}}
-'''
+#latex_preamble = r'''
+#'''
