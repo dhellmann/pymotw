@@ -3,11 +3,9 @@ shelve -- Persistent storage of arbitrary Python objects
 ##############################################################
 
 .. module:: shelve
-    :synopsis: The shelve module implements persistent storage for arbitrary Python objects which can be pickled, using a dictionary-like API.
+    :synopsis: Persistent storage of arbitrary Python objects
 
-:Module: shelve
 :Purpose: The shelve module implements persistent storage for arbitrary Python objects which can be pickled, using a dictionary-like API.
-:Python Version: 1.4
 
 The shelve module can be used as a simple persistent storage option for Python
 objects when a relational database is overkill. The shelf is accessed by keys,
@@ -22,27 +20,15 @@ The simplest way to use shelve is via the DbfilenameShelf class. It uses
 anydbm to store the data. You can use the class directly, or simply call
 shelve.open():
 
-::
-
-    import shelve
-
-    s = shelve.open('test_shelf.db')
-    try:
-        s['key1'] = { 'int': 10, 'float':9.5, 'string':'Sample data' }
-    finally:
-        s.close()
+.. include:: shelve_create.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 To access the data again, open the shelf and use it like a dictionary:
 
-::
-
-    s = shelve.open('test_shelf.db')
-    try:
-        existing = s['key1']
-    finally:
-        s.close()
-
-    print existing
+.. include:: shelve_existing.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 If you run both sample scripts, you should see:
 
@@ -52,19 +38,13 @@ If you run both sample scripts, you should see:
     $ python shelve_existing.py 
     {'int': 10, 'float': 9.5, 'string': 'Sample data'}
 
-The dbm module does not support multiple applications writing to the same
+The :mod:`dbm` module does not support multiple applications writing to the same
 database at the same time. If you know your client will not be modifying the
 shelf, you can tell shelve to open the database read-only.
 
-::
-
-    s = shelve.open('test_shelf.db', flag='r')
-    try:
-        existing = s['key1']
-    finally:
-        s.close()
-
-    print existing
+.. include:: shelve_readonly.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 If your program tries to modify the database while it is opened read-only, an
 access error exception is generated. The exception type depends on the
@@ -78,20 +58,9 @@ Shelves do not track modifications to volatile objects, by default. That means
 if you change the contents of an item stored in the shelf, you must update the
 shelf explicitly by storing the item again.
 
-::
-
-    s = shelve.open('test_shelf.db')
-    try:
-        print s['key1']
-        s['key1']['new_value'] = 'this was not here before'
-    finally:
-        s.close()
-
-    s = shelve.open('test_shelf.db', writeback=True)
-    try:
-        print s['key1']
-    finally:
-        s.close()
+.. include:: shelve_withoutwriteback.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 In this example, the dictionary at 'key1' is not stored again, so when the
 shelf is re-opened, the changes have not been preserved.
@@ -109,22 +78,9 @@ remember all of the objects retrieved from the database using an in-memory
 cache. Each cache object is also written back to the database when the shelf
 is closed. 
 
-::
-
-    s = shelve.open('test_shelf.db', writeback=True)
-    try:
-        print s['key1']
-        s['key1']['new_value'] = 'this was not here before'
-        print s['key1']
-    finally:
-        s.close()
-
-    s = shelve.open('test_shelf.db', writeback=True)
-    try:
-        print s['key1']
-    finally:
-        s.close()
-
+.. include:: shelve_writeback.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 Although it reduces the chance of programmer error, and can make object
 persistence more transparent, using writeback mode may not be desirable in
@@ -154,14 +110,16 @@ store the data. There are times, however, when you do care. In those
 situations, you may want to use DbfilenameShelf or BsdDbShelf directly, or
 even subclass Shelf for a custom solution.
 
-==========
-References
-==========
+.. seealso::
 
-See also :mod:`anydbm`
+    `shelve <http://docs.python.org/lib/module-shelve.html>`_
+        Standard library documentation for this module.
 
-Standard library documentation: `shelve <http://docs.python.org/lib/module-shelve.html>`_
+    :mod:`anydbm`
+        The anydbm module.
 
-`feedcache <http://www.doughellmann.com/projects/feedcache/>` uses shelve as a default storage option.
+    `feedcache <http://www.doughellmann.com/projects/feedcache/>`_
+        The feedcache module uses shelve as a default storage option.
 
-`shove <http://pypi.python.org/pypi/shove/>` implements a similar API with more backend formats.
+    `shove <http://pypi.python.org/pypi/shove/>`_
+        Shove implements a similar API with more backend formats.
