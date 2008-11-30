@@ -1,21 +1,15 @@
-=====
-sched
-=====
+=================================
+sched -- Generic event scheduler.
+=================================
+
 .. module:: sched
     :synopsis: Generic event scheduler.
 
-:Module: sched
 :Purpose: Generic event scheduler.
 :Python Version: 1.4
-:Abstract:
 
-    The sched module implements a generic event scheduler for running tasks at
-    specific times.
-
-Description
-===========
-
-The scheduler class uses a generic interface to schedule events. It uses a
+The sched module implements a generic event scheduler for running tasks at
+specific times.  The scheduler class uses a
 time function to learn the current time, and a delay function to wait for a
 specific period of time. The actual units of time are not important, which
 makes the interface flexible enough to be used for many purposes.
@@ -45,21 +39,9 @@ This example schedules 2 different events to run after 2 and 3 seconds
 respectively. When the event's time comes up, print_event() is called and
 prints the current time and the name argument passed to the event.
 
-::
-
-    import sched
-    import time
-
-    scheduler = sched.scheduler(time.time, time.sleep)
-
-    def print_event(name):
-        print 'EVENT:', time.time(), name
-
-    print 'START:', time.time()
-    scheduler.enter(2, 1, print_event, ('first',))
-    scheduler.enter(3, 1, print_event, ('second',))
-
-    scheduler.run()
+.. include:: sched_basic.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 The output will look something like this:
 
@@ -84,23 +66,9 @@ later than they were scheduled. In the next example, long_event() sleeps but
 it could just as easily delay by performing a long calculation or by blocking
 on I/O.
 
-::
-
-    import sched
-    import time
-
-    scheduler = sched.scheduler(time.time, time.sleep)
-
-    def long_event(name):
-        print 'BEGIN EVENT :', time.time(), name
-        time.sleep(2)
-        print 'FINISH EVENT:', time.time(), name
-
-    print 'START:', time.time()
-    scheduler.enter(2, 1, long_event, ('first',))
-    scheduler.enter(3, 1, long_event, ('second',))
-
-    scheduler.run()
+.. include:: sched_overlap.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 The result is the second event is run immediately after the first finishes,
 since the first event took long enough to push the clock past the desired
@@ -122,13 +90,9 @@ Event Priorities
 If more than one event is scheduled for the same time their priority values
 are used to determine the order they are run. 
 
-::
-
-    now = time.time()
-    print 'START:', now
-    scheduler.enterabs(now+2, 2, print_event, ('first',))
-    scheduler.enterabs(now+2, 1, print_event, ('second',))
-    scheduler.run()
+.. include:: sched_priority.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 In order to ensure that they are scheduled for the exact same time, the
 enterabs() method is used instead of enter(). The first argument to enterabs()
@@ -150,38 +114,9 @@ to cancel it later. Since run() blocks, the event has to be canceled in a
 different thread. For this example, a thread is started to run the scheduler
 and the main processing thread is used to cancel the event.
 
-::
-
-    import sched
-    import threading
-    import time
-
-    scheduler = sched.scheduler(time.time, time.sleep)
-
-    # Set up a global to be modified by the threads
-    counter = 0
-
-    def increment_counter(name):
-        global counter
-        print 'EVENT:', time.time(), name
-        counter += 1
-        print 'NOW:', counter
-
-    print 'START:', time.time()
-    e1 = scheduler.enter(2, 1, increment_counter, ('E1',))
-    e2 = scheduler.enter(3, 1, increment_counter, ('E2',))
-
-    # Start a thread to run the events
-    t = threading.Thread(target=scheduler.run)
-    t.start()
-
-    # Back in the main thread, cancel the first scheduled event.
-    scheduler.cancel(e1)
-
-    # Wait for the scheduler to finish running in the thread
-    t.join()
-
-    print 'FINAL:', counter
+.. include:: sched_cancel.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 Two events were scheduled, but the first was later canceled. Only the second
 event runs, so the counter variable is only incremented one time.
@@ -194,4 +129,12 @@ event runs, so the counter variable is only incremented one time.
     NOW: 1
     FINAL: 1
 
+
+.. seealso::
+
+    `sched <http://docs.python.org/lib/module-sched.html>`_
+        Standard library documentation for this module.
+
+    :mod:`time`
+        The time module.
 
