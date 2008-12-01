@@ -1,19 +1,12 @@
-========
-tempfile
-========
+==================================================
+tempfile -- Create temporary filesystem resources.
+==================================================
+
 .. module:: tempfile
     :synopsis: Create temporary filesystem resources.
 
-:Module: tempfile
 :Purpose: Create temporary filesystem resources.
 :Python Version: Since 1.4 with major security revisions in 2.3
-:Abstract:
-
-    Securely generate temporary files and directories with the tempfile
-    module.
-
-Description
-===========
 
 Many programs need to create files to write intermediate data. Creating files
 with unique names securely, so they cannot be guessed by someone wanting to
@@ -33,31 +26,9 @@ to find or open the file, since there is no reference to it in the filesystem
 table. The file created by TemporaryFile() is removed automatically when it is
 closed.
 
-::
-
-    import os
-    import tempfile
-
-    print 'Building a file name yourself:'
-    filename = '/tmp/guess_my_name.%s.txt' % os.getpid()
-    temp = open(filename, 'w+b')
-    try:
-        print 'temp:', temp
-        print 'temp.name:', temp.name
-    finally:
-        temp.close()
-        # Clean up the temporary file yourself
-        os.remove(filename)
-
-    print
-    print 'TemporaryFile:'
-    temp = tempfile.TemporaryFile()
-    try:
-        print 'temp:', temp
-        print 'temp.name:', temp.name
-    finally:
-        # Automatically cleans up the file
-        temp.close()
+.. include:: tempfile_TemporaryFile.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 This example illustrates the difference in creating a temporary file using a
 common pattern for making up a name, versus using the TemporaryFile()
@@ -78,19 +49,9 @@ By default, the file handle is created with mode 'w+b' so it behaves
 consistently on all platforms and your program can write to it and read from
 it.
 
-::
-
-    import os
-    import tempfile
-
-    temp = tempfile.TemporaryFile()
-    try:
-        temp.write('Some data')
-        temp.seek(0)
-        
-        print temp.read()
-    finally:
-        temp.close()
+.. include:: tempfile_TemporaryFile_binary.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 After writing, you have to rewind the file handle using seek() in order to
 read the data back from it.
@@ -102,19 +63,9 @@ read the data back from it.
 
 If you want the file to work in text mode, pass mode='w+t' when you create it:
 
-::
-
-    import tempfile
-
-    f = tempfile.TemporaryFile(mode='w+t')
-    try:
-        f.writelines(['first\n', 'second\n'])
-        f.seek(0)
-
-        for line in f:
-            print line.rstrip()
-    finally:
-        f.close()
+.. include:: tempfile_TemporaryFile_text.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 The file handle treats the data as text:
 
@@ -133,19 +84,9 @@ the file is the simplest way to pass it between parts of the application. The
 NamedTemporaryFile() function creates a file with a name, accessed from the
 name attribute.
 
-::
-
-    import os
-    import tempfile
-
-    temp = tempfile.NamedTemporaryFile()
-    try:
-        print 'temp:', temp
-        print 'temp.name:', temp.name
-    finally:
-        # Automatically cleans up the file
-        temp.close()
-    print 'Exists after close:', os.path.exists(temp.name)
+.. include:: tempfile_NamedTemporaryFile.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 Even though the file is named, it is still removed after the handle is closed.
 
@@ -163,15 +104,9 @@ If you need several temporary files, it may be more convenient to create a
 single temporary directory and then open all of the files in that directory.
 To create a temporary directory, use mkdtemp().
 
-::
-
-    import os
-    import tempfile
-
-    directory_name = tempfile.mkdtemp()
-    print directory_name
-    # Clean up the directory yourself
-    os.removedirs(directory_name)
+.. include:: tempfile_mkdtemp.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 Since the directory is not "opened" per se, you have to remove it yourself
 when you are done with it.
@@ -196,19 +131,9 @@ filenames to some degree. Names are generated using the formula::
 where all of the values except random can be passed as arguments to
 TemporaryFile(), NamedTemporaryFile(), and mkdtemp(). For example:
 
-::
-
-    import tempfile
-
-    temp = tempfile.NamedTemporaryFile(suffix='_suffix', 
-                                       prefix='prefix_', 
-                                       dir='/tmp',
-                                       )
-    try:
-        print 'temp:', temp
-        print 'temp.name:', temp.name
-    finally:
-        temp.close()
+.. include:: tempfile_NamedTemporaryFile_args.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 The prefix and suffix arguments are combined with a random string of
 characters to build the file name, and the dir argument is taken as-is and
@@ -226,12 +151,11 @@ Temporary File Location
 If you don't specify an explicit destination using the dir argument, the
 actual path used for the temporary files will vary based on your platform and
 settings. The tempfile module includes 2 functions for querying the settings
-being used at runtime::
+being used at runtime:
 
-    import tempfile
-
-    print 'gettempdir():', tempfile.gettempdir()
-    print 'gettempprefix():', tempfile.gettempprefix()
+.. include:: tempfile_settings.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 gettempdir() returns the default directory that will hold all of the temporary
 files and gettempprefix() returns the string prefix for new file and directory
@@ -250,18 +174,18 @@ can create a file. From the library documentation:
 Python searches a standard list of directories and sets tempdir to the first
 one which the calling user can create files in. The list is:
 
-1. The directory named by the TMPDIR environment variable.
+1. The directory named by the ``TMPDIR`` environment variable.
 
-2. The directory named by the TEMP environment variable.
+2. The directory named by the ``TEMP`` environment variable.
 
-3. The directory named by the TMP environment variable.
+3. The directory named by the ``TMP`` environment variable.
 
 4. A platform-specific location:
 
    * On RiscOS, the directory named by the Wimp$ScrapDir environment variable.
 
-   * On Windows, the directories C:$\backslash$TEMP, C:$\backslash$TMP,
-     $\backslash$TEMP, and $\backslash$TMP, in that order.
+   * On Windows, the directories C:\TEMP, C:\TMP,
+     \TEMP, and \TMP, in that order.
 
    * On all other platforms, the directories /tmp, /var/tmp, and /usr/tmp, in that order.
 
@@ -271,16 +195,16 @@ If your program needs to use a global location for all temporary files that
 you need to set explicitly but do not want to set through one of these
 environment variables, you can set tempfile.tempdir directly.
 
-::
-
-    import tempfile
-
-    tempfile.tempdir = '/I/changed/this/path'
-    print 'gettempdir():', tempfile.gettempdir()
+.. include:: tempfile_tempdir.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
     $ python tempfile_tempdir.py
     gettempdir(): /I/changed/this/path
 
+.. seealso::
 
+    `tempfile <http://docs.python.org/lib/module-tempfile.html>`_
+        Standard library documentation for this module.
