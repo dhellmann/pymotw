@@ -314,6 +314,10 @@ If the buffer is modified inside the pre-input hook, you need to call ``redispla
     `effbot: The readline module <http://sandbox.effbot.org/librarybook/readline.htm>`_
         Effbot's guide to the readline module.
 
+    `pyreadline <https://launchpad.net/pyreadline>`_
+        pyreadline, developed as a Python-based replacement for readline to be
+        used in `iPython <http://ipython.scipy.org/>`_.
+
     :mod:`cmd`
         The :mod:`cmd` module uses :mod:`readline` extensively to implement  
         tab-completion in the command interface.  Some of the examples here
