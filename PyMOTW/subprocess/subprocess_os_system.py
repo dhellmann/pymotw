@@ -28,11 +28,9 @@
 """
 
 __module_id__ = "$Id$"
+#end_pymotw_header
 
 import subprocess
 
 # Simple command
 subprocess.call('ls -l', shell=True)
-
-# Command with shell expansion
-subprocess.call('ls -l $HOME', shell=True)

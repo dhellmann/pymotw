@@ -1,22 +1,19 @@
-==========
-subprocess
-==========
+==============================================================
+subprocess -- Spawn and communicate with additional processes.
+==============================================================
+
 .. module:: subprocess
     :synopsis: Spawn and communicate with additional processes.
 
-:Module: subprocess
 :Purpose: Spawn and communicate with additional processes.
 :Python Version: New in 2.4
-
-Description
-===========
 
 The subprocess module provides a consistent interface to creating and working
 with additional processes. It offers a higher-level interface than some of the
 other available modules, and is intended to replace functions such as
 os.system, os.spawn*, os.popen*, popen2.* and commands.*. To make it easier to
-compare subprocess with those other modules, this week I will re-create
-earlier examples using the functions being replaced.
+compare subprocess with those other modules, I will re-create
+the previous examples using the functions being replaced.
 
 The subprocess module defines one class, Popen() and a few wrapper functions
 which use that class. Popen() takes several arguments to make it easier to set
@@ -24,12 +21,11 @@ up the new process, and then communicate with it via pipes. I will concentrate
 on example code here; for a complete description of the arguments, refer to
 section 17.1.1 of the library documentation.
 
-A Note About Portability
-========================
+.. note::
 
-The API is roughly the same, but the underlying implementation is slightly
-different between Unix and Windows. All of the examples shown here were tested
-on Mac OS X. Your mileage on a non-Unix OS will vary.
+    The API is roughly the same, but the underlying implementation is slightly
+    different between Unix and Windows. All of the examples shown here were tested
+    on Mac OS X. Your mileage on a non-Unix OS will vary.
 
 Running External Command
 ========================
@@ -37,31 +33,28 @@ Running External Command
 To run an external command without interacting with it, such as one would do
 with os.system(), Use the call() function.
 
-::
-
-    import subprocess
-
-    # Simple command
-    subprocess.call('ls -l', shell=True)
+.. include:: subprocess_os_system.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
-    $ python replace_os_system.py
+    $ python subprocess_os_system.py
     total 16
     -rw-r--r--   1 dhellman  dhellman     0 Jul  1 11:29 __init__.py
     -rw-r--r--   1 dhellman  dhellman  1316 Jul  1 11:32 replace_os_system.py
     -rw-r--r--   1 dhellman  dhellman  1167 Jul  1 11:31 replace_os_system.py~
 
-And since we set shell=True, shell variables in the command string are
+And since we set ``shell=True``, shell variables in the command string are
 expanded:
 
+.. include:: subprocess_shell_variables.py
+    :literal:
+    :start-after: #end_pymotw_header
+
 ::
 
-    # Command with shell expansion
-    subprocess.call('ls -l $HOME', shell=True)
-
-::
-
+    $ python subprocess_shell_variables.py
     total 40
     drwx------   10 dhellman  dhellman   340 Jun 30 18:45 Desktop
     drwxr-xr-x   15 dhellman  dhellman   510 Jun 19 07:08 Devel
@@ -78,98 +71,94 @@ expanded:
     -rw-r--r--    1 dhellman  dhellman   204 Jun 18 17:07 pgadmin.log
     drwxr-xr-x    3 dhellman  dhellman   102 Apr 29 16:32 tmp
 
-Reading Output of Another Command
-=================================
+Working with Pipes
+==================
 
 By passing different arguments for stdin, stdout, and stderr it is possible to
 mimic the variations of os.popen().
 
+popen
+-----
+
 Reading from the output of a pipe:
+
+.. include:: subprocess_popen_read.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
-    print '\nread:'
-    proc = subprocess.Popen('echo "to stdout"',
-                           shell=True,
-                           stdout=subprocess.PIPE,
-                           )
-    stdout_value = proc.communicate()[0]
-    print '\tstdout:', repr(stdout_value)
+    $ python subprocess_popen_read.py
+    
+    read:
+    	stdout: 'to stdout\n'
 
 
 Writing to the input of a pipe:
 
+.. include:: subprocess_popen_write.py
+    :literal:
+    :start-after: #end_pymotw_header
+
 ::
 
-    print '\nwrite:'
-    proc = subprocess.Popen('cat -',
-                           shell=True,
-                           stdin=subprocess.PIPE,
-                           )
-    proc.communicate('\tstdin: to stdin\n')
+    $ python PyMOTW/subprocess/subprocess_popen_write.py 
+
+    write:
+            stdin: to stdin
+
+popen2
+------
 
 Reading and writing, as with popen2:
 
+.. include:: subprocess_popen2.py
+    :literal:
+    :start-after: #end_pymotw_header
+
 ::
 
-    print '\npopen2:'
+    $ python PyMOTW/subprocess/subprocess_popen2.py 
 
-    proc = subprocess.Popen('cat -',
-                           shell=True,
-                           stdin=subprocess.PIPE,
-                           stdout=subprocess.PIPE,
-                           )
-    stdout_value = proc.communicate('through stdin to stdout')[0]
-    print '\tpass through:', repr(stdout_value)
+    popen2:
+            pass through: 'through stdin to stdout'
+
+popen3
+------
 
 Separate streams for stdout and stderr, as with popen3:
 
+.. include:: subprocess_popen3.py
+    :literal:
+    :start-after: #end_pymotw_header
+
 ::
 
-    print '\npopen3:'
-    proc = subprocess.Popen('cat -; echo ";to stderr" 1>&2',
-                           shell=True,
-                           stdin=subprocess.PIPE,
-                           stdout=subprocess.PIPE,
-                           stderr=subprocess.PIPE,
-                           )
-    stdout_value, stderr_value = proc.communicate('through stdin to stdout')
-    print '\tpass through:', repr(stdout_value)
-    print '\tstderr:', repr(stderr_value)
+    $ python PyMOTW/subprocess/subprocess_popen3.py 
+
+    popen3:
+            pass through: 'through stdin to stdout'
+            stderr: ';to stderr\n'
+
+popen4
+------
 
 Merged stdout and stderr, as with popen4:
 
-::
-
-    print '\npopen4:'
-    proc = subprocess.Popen('cat -; echo ";to stderr" 1>&2',
-                           shell=True,
-                           stdin=subprocess.PIPE,
-                           stdout=subprocess.PIPE,
-                           stderr=subprocess.STDOUT,
-                           )
-    stdout_value, stderr_value = proc.communicate('through stdin to stdout\n')
-    print '\tcombined output:', repr(stdout_value)
-
-Sample output:
+.. include:: subprocess_popen4.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
-    read:
-           stdout: 'to stdout\n'
-
-    write:
-           stdin: to stdin
-
-    popen2:
-           pass through: 'through stdin to stdout'
-
-    popen3:
-           pass through: 'through stdin to stdout'
-           stderr: ';to stderr\n'
+    $ python PyMOTW/subprocess/subprocess_popen4.py
 
     popen4:
-           combined output: 'through stdin to stdout\n;to stderr\n'
+            combined output: 'through stdin to stdout\n;to stderr\n'
+
+
+Interacting with Another Command
+================================
 
 All of the above examples assume a limited amount of interaction. The
 communicate() method reads all of the output and waits for child process to
@@ -178,20 +167,9 @@ individual pipe handles used by the Popen instance. To illustrate this, I will
 use this simple echo program which reads its standard input and writes it back
 to standard output:
 
-::
-
-    import sys
-
-    sys.stderr.write('repeater.py: starting\n')
-
-    while True:
-       next_line = sys.stdin.readline()
-       if not next_line:
-           break
-       sys.stdout.write(next_line)
-       sys.stdout.flush()
-
-    sys.stderr.write('repeater.py: exiting\n')
+.. include:: repeater.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 Make note of the fact that repeater.py writes to stderr when it starts and
 stops. We can use that to show the lifetime of the subprocess in the next
@@ -201,34 +179,10 @@ sequence of 10 numbers are written to stdin of the process, and after each
 write the next line of output is read back. In the second example, the same 10
 numbers are written but the output is read all at once using communicate().
 
-::
+.. include:: interaction.py
+    :literal:
+    :start-after: #end_pymotw_header
 
-    import subprocess
-
-    print 'One line at a time:'
-    proc = subprocess.Popen('repeater.py',
-                           shell=True,
-                           stdin=subprocess.PIPE,
-                           stdout=subprocess.PIPE,
-                           )
-    for i in range(10):
-       proc.stdin.write('%d\n' % i)
-       output = proc.stdout.readline()
-       print output.rstrip()
-    proc.communicate()
-
-    print
-    print 'All output at once:'
-    proc = subprocess.Popen('repeater.py',
-                           shell=True,
-                           stdin=subprocess.PIPE,
-                           stdout=subprocess.PIPE,
-                           )
-    for i in range(10):
-       proc.stdin.write('%d\n' % i)
-
-    output = proc.communicate()[0]
-    print output
 
 Notice where the "repeater.py: exiting" lines fall in the output for each
 loop:
@@ -275,38 +229,16 @@ possible to do something similar with subprocess. For this example, I will
 again set up a separate script for the child process to be executed by the
 parent process.
 
-::
-
-    import os
-    import signal
-    import time
-
-    def signal_usr1(signum, frame):
-       "Callback invoked when a signal is received"
-       pid = os.getpid()
-       print 'Received USR1 in process %s' % pid
-
-    print 'CHILD: Setting up signal handler'
-    signal.signal(signal.SIGUSR1, signal_usr1)
-    print 'CHILD: Pausing to wait for signal'
-    time.sleep(5)
+.. include:: signal_child.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 
 And now the parent process:
 
-::
-
-    import os
-    import signal
-    import subprocess
-    import time
-
-    proc = subprocess.Popen('signal_child.py')
-    print 'PARENT: Pausing before sending signal...'
-    time.sleep(1)
-    print 'PARENT: Signaling %s' % proc.pid
-    os.kill(proc.pid, signal.SIGUSR1)
-
+.. include:: signal_parent.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 And the output should look something like this:
 
@@ -331,3 +263,11 @@ file descriptors, ensuring the pipes are closed, etc.) are "built in" instead
 of being handled by your code separately.
 
 
+.. seealso::
+
+    `subprocess <http://docs.python.org/lib/module-subprocess.html>`_
+        Standard library documentation for this module.
+
+    :mod:`os`
+        Although deprecated, the functions for working with processes
+        found in the os module are still widely used in existing code.
