@@ -30,6 +30,7 @@ of strings and integers.
 """
 
 __version__ = "$Id$"
+#end_pymotw_header
 
 import timeit
 

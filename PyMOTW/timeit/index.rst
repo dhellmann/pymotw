@@ -1,24 +1,17 @@
-======
-timeit
-======
+==========================================================
+timeit -- Time the execution of small bits of Python code.
+==========================================================
+
 .. module:: timeit
     :synopsis: Time the execution of small bits of Python code.
 
-:Module: timeit
 :Purpose: Time the execution of small bits of Python code.
 :Python Version: 2.3
-:Abstract:
 
-    The timeit module provides a simple interface for determining the
-    execution time of small bits of Python code. It uses a platform-specific
-    time function to provide the most accurate time calculation possible.
-
-Description
-===========
-
-The timeit module offers programmatic and command line interfaces for testing
-the time it takes to run small bits of code. It reduces the impact of startup
-or shutdown costs on the time calculation by executing the code repeatedly.
+The timeit module provides a simple interface for determining the execution time of small
+bits of Python code. It uses a platform-specific time function to provide the most accurate
+time calculation possible. It reduces the impact of startup or shutdown costs on the time
+calculation by executing the code repeatedly.
 
 Module Contents
 ===============
@@ -33,24 +26,15 @@ primary statement repeatedly and returns the amount of time which passes. The
 argument to timeit() controls how many times to run the statement; the default
 is 1,000,000.
 
-Example
-=======
+Basic Example
+=============
 
 To illustrate how the various arguments to Timer are used, here is a simple
 example which prints an identifying value when each statement is executed:
 
-::
-
-    import timeit
-
-    # using setitem
-    t = timeit.Timer("print 'main statement'", "print 'setup'")
-
-    print 'TIMEIT:'
-    print t.timeit(2)
-
-    print 'REPEAT:'
-    print t.repeat(3, 2)
+.. include:: timeit_example.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 When run, the output is:
 
@@ -311,3 +295,7 @@ Then to run the test::
     100 loops, best of 3: 3.56 msec per loop
 
 
+.. seealso::
+
+    `timeit <http://docs.python.org/lib/module-timeit.html>`_
+        Standard library documentation for this module.
