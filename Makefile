@@ -50,7 +50,7 @@ blog: module
 .PHONEY: website
 website:
 	mkdir -p web
-	rm -f web/*.pdf pdf_output/*.pdf
+	rm -rf web/ pdf_output/
 	$(MAKE) webhtml pdf
 	cp pdf_output/*.pdf web/
 
