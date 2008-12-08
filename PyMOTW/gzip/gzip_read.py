@@ -11,8 +11,8 @@ __version__ = "$Id$"
 
 import gzip
 
-input = gzip.open('example.txt.gz', 'rb')
+input_file = gzip.open('example.txt.gz', 'rb')
 try:
-    print input.read()
+    print input_file.read()
 finally:
-    input.close()
+    input_file.close()

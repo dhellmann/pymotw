@@ -11,24 +11,24 @@ __version__ = "$Id$"
 
 import gzip
 
-input = gzip.open('example.txt.gz', 'rb')
+input_file = gzip.open('example.txt.gz', 'rb')
 try:
     print 'Entire file:'
-    all_data = input.read()
+    all_data = input_file.read()
     print all_data
     
     expected = all_data[5:15]
     
     # rewind to beginning
-    input.seek(0)
+    input_file.seek(0)
     
     # move ahead 5 bytes
-    input.seek(5)
+    input_file.seek(5)
     print 'Starting at position 5 for 10 bytes:'
-    partial = input.read(10)
+    partial = input_file.read(10)
     print partial
     
     print
     print expected == partial
 finally:
-    input.close()
+    input_file.close()

@@ -17,12 +17,12 @@ uncompressed_data = 'The same line, over and over.\n' * 10
 print 'UNCOMPRESSED:', len(uncompressed_data)
 print uncompressed_data
 
-buffer = StringIO()
-f = gzip.GzipFile(mode='wb', fileobj=buffer)
+buf = StringIO()
+f = gzip.GzipFile(mode='wb', fileobj=buf)
 f.write(uncompressed_data)
 f.flush()
 
-compressed_data = buffer.getvalue()
+compressed_data = buf.getvalue()
 print 'COMPRESSED:', len(compressed_data)
 print binascii.hexlify(compressed_data)
 
