@@ -7,3 +7,4 @@ Data Compression and Archiving
 
     gzip/index
     zipfile/index
+    zlib/index
