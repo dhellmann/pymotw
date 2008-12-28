@@ -1,5 +1,0 @@
-include LICENSE.txt
-include ChangeLog
-recursive-include docs *.html *.txt *.doctree *.css *.js *.png *.json
-recursive-include PyMOTW *.rst
-recursive-include sphinx *.py *.html

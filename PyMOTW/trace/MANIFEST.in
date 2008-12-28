@@ -1,4 +1,0 @@
-include PyMOTW/trace/trace_example/*.py
-include PyMOTW/trace/trace_example/*.cover
-include PyMOTW/trace/coverdir1/*.dat
-include PyMOTW/trace/coverdir1/*.cover
