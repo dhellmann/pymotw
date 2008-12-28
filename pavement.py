@@ -248,17 +248,24 @@ def html():
       the name of the sphinx builder to use
       default: html
     """
-    os.environ['TEMPLATES'] = options.html.templates
+    set_templates(options.html.templates)
     run_sphinx('html')
     return
 
 ###########################
 
+def set_templates(template_name):
+    """Set the TEMPLATES environment variable, used by sphinx/conf.py.
+    """
+    os.environ['TEMPLATES'] = template_name
+    print 'Set TEMPLATES = "%s"' % template_name
+    return
+
 @task
 def pdf():
     """Generate the PDF book.
     """
-    os.environ['TEMPLATES'] = options.pdf.templates
+    set_templates(options.pdf.templates)
     run_sphinx('pdf')
     latex_dir = path(options.pdf.builddir) / 'latex'
     sh('cd %s; make' % latex_dir)
@@ -304,7 +311,7 @@ def webtemplatebase():
 def webhtml():
     """Generate HTML files for website.
     """
-    os.environ['TEMPLATES'] = options.pdf.templates
+    set_templates(options.website.templates)
     run_sphinx('website')
     return
 
