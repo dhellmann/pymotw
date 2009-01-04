@@ -6,6 +6,7 @@ include pavement.py
 include README.txt
 recursive-include docs *.html *.txt *.css *.js *.png
 recursive-include PyMOTW *.rst
+recursive-include PyMOTW *.txt
 include sphinx/conf.py
 recursive-include sphinx/templates *.py *.html
 prune utils
