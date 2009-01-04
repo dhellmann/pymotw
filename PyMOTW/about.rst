@@ -29,7 +29,7 @@ Spanish
 Chinese
 -------
 
-Cai JunJie(菜俊杰) and Sheng Yan(盛艳), have started a google code project called PyMOTWCN (http://code.google.com/p/pymotwcn/) and posted the completed translations at http://www.vbarter.cn/pymotw/.
+Junjie Cai (蔡俊杰) and Yan Sheng (盛艳) have started a google code project called PyMOTWCN (http://code.google.com/p/pymotwcn/) and posted the completed translations at http://www.vbarter.cn/pymotw/.
 
 Compendiums
 -----------
