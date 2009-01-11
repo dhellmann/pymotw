@@ -291,11 +291,14 @@ well as a DST-aware class and more details about creating your own class.
     `datetime <http://docs.python.org/lib/module-datetime.html>`_
         The standard library documentation for this module.
 
-    `WikiPedia: Proleptic Gregorian calendar <http://en.wikipedia.org/wiki/Proleptic_Gregorian_calendar>`_
-        A description of the Gregorian calendar system.
-
     :mod:`calendar`
         The :mod:`calendar` module.
 
     :mod:`time`
         The :mod:`time` module.
+
+    `dateutil http://labix.org/python-dateutil`_
+        dateutil from Labix extends the datetime module with additional features.
+
+    `WikiPedia: Proleptic Gregorian calendar <http://en.wikipedia.org/wiki/Proleptic_Gregorian_calendar>`_
+        A description of the Gregorian calendar system.
