@@ -23,12 +23,18 @@ The simplest way to work with bz2 requires holding all of the data to be compres
     :literal:
     :start-after: #end_pymotw_header
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'bz2_memory.py'))
+.. }}}
+
 ::
 
-    $ python bz2_memory.py
-    Original     : 26 This is the original text.
-    Compressed   : 62 425a683931415926535916be35a600000293804001040022e59c402000314c000111e93d434da223028cf9e73148cae0a0d6ed7f17724538509016be35a6
-    Decompressed : 26 This is the original text.
+	$ python bz2_memory.py
+	Original     : 26 This is the original text.
+	Compressed   : 62 425a683931415926535916be35a600000293804001040022e59c402000314c000111e93d434da223028cf9e73148cae0a0d6ed7f17724538509016be35a6
+	Decompressed : 26 This is the original text.
+
+.. {{{end}}}
 
 Notice that for short text, the compressed version can be significantly longer.  While the actual results depend on the input data, for short bits of text it is interesting to observe the compression overhead.
 
@@ -36,31 +42,38 @@ Notice that for short text, the compressed version can be significantly longer. 
     :literal:
     :start-after: #end_pymotw_header
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'bz2_lengths.py'))
+.. }}}
+
 ::
 
-    $ python bz2_lengths.py
-          len(data)  len(compressed)
-    ---------------  ---------------
-                  0               14 *
-                 26               62 *
-                 52               68 *
-                 78               70 
-                104               72 
-                130               77 
-                156               77 
-                182               73 
-                208               75 
-                234               80 
-                260               80 
-                286               81 
-                312               80 
-                338               81 
-                364               81 
-                390               76 
-                416               78 
-                442               84 
-                468               84 
-                494               87 
+	$ python bz2_lengths.py
+	      len(data)  len(compressed)
+	---------------  ---------------
+	              0               14 *
+	             26               62 *
+	             52               68 *
+	             78               70 
+	            104               72 
+	            130               77 
+	            156               77 
+	            182               73 
+	            208               75 
+	            234               80 
+	            260               80 
+	            286               81 
+	            312               80 
+	            338               81 
+	            364               81 
+	            390               76 
+	            416               78 
+	            442               84 
+	            468               84 
+	            494               87 
+
+.. {{{end}}}
+
 
 Working with Streams
 ====================
@@ -210,11 +223,17 @@ The BZ2Decompressor class can also be used in situations where compressed and un
     :literal:
     :start-after: #end_pymotw_header
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'bz2_mixed.py'))
+.. }}}
+
 ::
 
-    $ python bz2_mixed.py
-    Decompressed matches lorem: True
-    Unused data matches lorem : True
+	$ python bz2_mixed.py
+	Decompressed matches lorem: True
+	Unused data matches lorem : True
+
+.. {{{end}}}
 
 
 Writing Compressed Files
@@ -226,11 +245,21 @@ The BZ2File class can be used to write to and read from bzip2-compressed files u
     :literal:
     :start-after: #end_pymotw_header
 
+.. {{{cog
+.. from paver.path import path
+.. from paver.runtime import sh
+.. workdir = path(cog.inFile).dirname()
+.. sh("cd %s; rm -f example.txt.bzw" % workdir)
+.. cog.out(run_script(cog.inFile, 'bz2_file_write.py'))
+.. }}}
+
 ::
 
-    $ python bz2_file_write.py
-    -rw-r--r--  1 dhellmann  dhellmann  74 Dec 24 10:44 example.txt.bz2
-    example.txt.bz2: bzip2 compressed data, block size = 900k
+	$ python bz2_file_write.py
+	example.txt.bz2: bzip2 compressed data, block size = 900k
+
+.. {{{end}}}
+
 
 Different compression levels can be used by passing a *compresslevel* argument.  Valid values range from 1 to 9, inclusive.  Lower values are faster and result in less compression.  Higher values are slower and compress more, up to a point.
 
@@ -240,19 +269,20 @@ Different compression levels can be used by passing a *compresslevel* argument. 
 
 The center column of numbers in the output of the script is the size in bytes of the files produced.  As you see, for this input data, the higher compression values do not always pay off in decreased storage space for the same input data.  Results will vary, of course.
 
+.. {{{cog
+.. from paver.path import path
+.. from paver.runtime import sh
+.. workdir = path(cog.inFile).dirname()
+.. sh("cd %s; rm -f compress-level*.gz2" % workdir)
+.. cog.out(run_script(cog.inFile, 'bz2_.py'))
+.. }}}
+
 ::
 
-    $ python bz2_file_compresslevel.py
-    3018243926 8771 compress-level-1.bz2
-    1942389165 4949 compress-level-2.bz2
-    2596054176 3708 compress-level-3.bz2
-    1491394456 2705 compress-level-4.bz2
-    1425874420 2705 compress-level-5.bz2
-    2232840816 2574 compress-level-6.bz2
-    447681641 2394 compress-level-7.bz2
-    3699654768 1137 compress-level-8.bz2
-    3103658384 1137 compress-level-9.bz2
-    Input contains 754688 bytes
+	$ python bz2_.py
+	python: can't open file 'bz2_.py': [Errno 2] No such file or directory
+
+.. {{{end}}}
 
 A BZ2File instance also includes a ``writelines()`` method that can be used to write a sequence of strings.
 
@@ -260,19 +290,29 @@ A BZ2File instance also includes a ``writelines()`` method that can be used to w
     :literal:
     :start-after: #end_pymotw_header
 
+.. {{{cog
+.. from paver.path import path
+.. from paver.runtime import sh
+.. workdir = path(cog.inFile).dirname()
+.. sh("cd %s; rm -f example_lines.txt.bz2" % workdir)
+.. cog.out(run_script(cog.inFile, 'bz2_file_writelines.py'))
+.. }}}
+
 ::
 
-    $ python bz2_file_writelines.py
-    The same line, over and over.
-    The same line, over and over.
-    The same line, over and over.
-    The same line, over and over.
-    The same line, over and over.
-    The same line, over and over.
-    The same line, over and over.
-    The same line, over and over.
-    The same line, over and over.
-    The same line, over and over.
+	$ python bz2_file_writelines.py
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+
+.. {{{end}}}
 
 
 Reading Compressed Files
@@ -286,10 +326,17 @@ To read data back from previously compressed files, simply open the file with mo
 
 This example reads the file written by ``bz2_file_write.py`` from the previous section.
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'bz2_file_read.py'))
+.. }}}
+
 ::
 
-    $ python bz2_file_read.py
-    Contents of the example file go here.
+	$ python bz2_file_read.py
+	Contents of the example file go here.
+	
+
+.. {{{end}}}
     
 While reading a file, it is also possible to seek and read only part of the data.
 
@@ -299,17 +346,22 @@ While reading a file, it is also possible to seek and read only part of the data
 
 The ``seek()`` position is relative to the *uncompressed* data, so the caller does not even need to know that the data file is compressed.
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'bz2_file_seek.py'))
+.. }}}
+
 ::
 
-    $ python bz2_file_seek.py
-    Entire file:
-    Contents of the example file go here.
+	$ python bz2_file_seek.py
+	Entire file:
+	Contents of the example file go here.
+	
+	Starting at position 5 for 10 bytes:
+	nts of the
+	
+	True
 
-    Starting at position 5 for 10 bytes:
-    nts of the
-
-    True
-
+.. {{{end}}}
 
 
 .. seealso::

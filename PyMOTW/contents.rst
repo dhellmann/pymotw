@@ -26,5 +26,6 @@ Python Module of the Week
     dev_tools
     profilers
     runtime_services
+    language
     importing
     miscelaneous

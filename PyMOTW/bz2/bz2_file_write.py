@@ -18,5 +18,4 @@ try:
 finally:
     output.close()
 
-os.system('ls -l example.txt.bz2')
 os.system('file example.txt.bz2')

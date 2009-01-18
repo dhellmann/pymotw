@@ -11,7 +11,8 @@ __version__ = "$Id$"
 
 import base64
 
-initial_data = open(__file__, 'rt').read()
+# Load this source file and strip the header.
+initial_data = open(__file__, 'rt').read().split('#end_pymotw_header')[1]
 
 encoded_data = base64.b64encode(initial_data)
 
@@ -22,4 +23,6 @@ print '%d bytes before encoding' % num_initial
 print 'Expect %d padding bytes' % padding
 print '%d bytes after encoding' % len(encoded_data)
 print
-print encoded_data
+#print encoded_data
+for i in xrange((len(encoded_data)/40)+1):
+    print encoded_data[i*40:(i+1)*40]

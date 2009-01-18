@@ -22,36 +22,25 @@ A basic example of encoding some text looks like this:
 The output shows the 558 bytes of the original source expand to 744 bytes after being encoded.
 
 .. note::
-    There are no carriage returns in the output produced by the library, but I have inserted them in the output here to make this page render more cleanly in HTML.
+    There are no carriage returns in the output produced by the library, so I have broken the encoded data up artificially to make it fit better on the page.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'base64_b64encode.py'))
+.. }}}
 
 ::
 
-    558 bytes before encoding
-    Expect 0 padding bytes
-    744 bytes after encoding
+	$ python base64_b64encode.py
+	113 bytes before encoding
+	Expect 1 padding bytes
+	152 bytes after encoding
+	
+	CgppbXBvcnQgYmFzZTY0CgojIExvYWQgdGhpcyBz
+	b3VyY2UgZmlsZSBhbmQgc3RyaXAgdGhlIGhlYWRl
+	ci4KaW5pdGlhbF9kYXRhID0gb3BlbihfX2ZpbGVf
+	XywgJ3J0JykucmVhZCgpLnNwbGl0KCc=
 
-    IyEvdXNyL2Jpbi9lbnYgcHl0aG9uCiMgZW5
-    jb2Rpbmc6IHV0Zi04CiMKIyBDb3B5cmlnaH
-    QgKGMpIDIwMDggRG91ZyBIZWxsbWFubiBBb
-    GwgcmlnaHRzIHJlc2VydmVkLgojCiIiIgoi
-    IiIKCl9fdmVyc2lvbl9fID0gIiRJZDogYmF
-    zZTY0X2I2NGVuY29kZS5weSAxNTI1IDIwMD
-    gtMDctMjAgMTM6MjM6MzVaIGRoZWxsbWFub
-    iAkIgojZW5kX3B5bW90d19oZWFkZXIKCmlt
-    cG9ydCBiYXNlNjQKCmluaXRpYWxfZGF0YSA
-    9IG9wZW4oX19maWxlX18sICdydCcpLnJlYW
-    QoKQoKZW5jb2RlZF9kYXRhID0gYmFzZTY0L
-    mI2NGVuY29kZShpbml0aWFsX2RhdGEpCgpu
-    dW1faW5pdGlhbCA9IGxlbihpbml0aWFsX2R
-    hdGEpCnBhZGRpbmcgPSB7IDA6MCwgMToyLC
-    AyOjEgfVtudW1faW5pdGlhbCAlIDNdCgpwc
-    mludCAnJWQgYnl0ZXMgYmVmb3JlIGVuY29k
-    aW5nJyAlIG51bV9pbml0aWFsCnByaW50ICd
-    FeHBlY3QgJWQgcGFkZGluZyBieXRlcycgJS
-    BwYWRkaW5nCnByaW50ICclZCBieXRlcyBhZ
-    nRlciBlbmNvZGluZycgJSBsZW4oZW5jb2Rl
-    ZF9kYXRhKQpwcmludApwcmludCBlbmNvZGV
-    kX2RhdGEK
+.. {{{end}}}
 
 
 Base 64 Decoding
@@ -65,11 +54,18 @@ The encoded string can be converted back to the original form by taking 4 bytes 
 
 The encoding process looks at each sequence of 24 bits in the input (3 bytes) and encodes those same 24 bits spread over 4 bytes in the output.  The last two characters, the ``==``, are padding because the number of bits in the original string was not evenly divisible by 24 in this example.
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'base64_b64decode.py'))
+.. }}}
+
 ::
 
-    Original: This is the data, in the clear.
-    Encoded : VGhpcyBpcyB0aGUgZGF0YSwgaW4gdGhlIGNsZWFyLg==
-    Decoded : This is the data, in the clear.
+	$ python base64_b64decode.py
+	Original: This is the data, in the clear.
+	Encoded : VGhpcyBpcyB0aGUgZGF0YSwgaW4gdGhlIGNsZWFyLg==
+	Decoded : This is the data, in the clear.
+
+.. {{{end}}}
 
 URL-safe Variations
 ===================
@@ -80,13 +76,23 @@ Because the default base64 alphabet may use ``+`` and ``/``, and those two chara
     :literal:
     :start-after: #end_pymotw_header
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'base64_urlsafe.py'))
+.. }}}
+
 ::
 
-    Standard encoding: ++8=
-    URL-safe encoding: --8=
+	$ python base64_urlsafe.py
+	Original         : '\xfb\xef'
+	Standard encoding: ++8=
+	URL-safe encoding: --8=
+	
+	Original         : '\xff\xff'
+	Standard encoding: //8=
+	URL-safe encoding: __8=
+	
 
-    Standard encoding: //8=
-    URL-safe encoding: __8=
+.. {{{end}}}
 
 
 Other Encodings
@@ -98,11 +104,18 @@ Besides base 64, the module provides functions for working with base 32 and base
     :literal:
     :start-after: #end_pymotw_header
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'base64_base32.py'))
+.. }}}
+
 ::
 
-    Original: This is the data, in the clear.
-    Encoded : KRUGS4ZANFZSA5DIMUQGIYLUMEWCA2LOEB2GQZJAMNWGKYLSFY======
-    Decoded : This is the data, in the clear.
+	$ python base64_base32.py
+	Original: This is the data, in the clear.
+	Encoded : KRUGS4ZANFZSA5DIMUQGIYLUMEWCA2LOEB2GQZJAMNWGKYLSFY======
+	Decoded : This is the data, in the clear.
+
+.. {{{end}}}
 
 The base 16 functions work with the hexadecimal alphabet.
 
@@ -110,11 +123,18 @@ The base 16 functions work with the hexadecimal alphabet.
     :literal:
     :start-after: #end_pymotw_header
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'base64_base16.py'))
+.. }}}
+
 ::
 
-    Original: This is the data, in the clear.
-    Encoded : 546869732069732074686520646174612C20696E2074686520636C6561722E
-    Decoded : This is the data, in the clear.
+	$ python base64_base16.py
+	Original: This is the data, in the clear.
+	Encoded : 546869732069732074686520646174612C20696E2074686520636C6561722E
+	Decoded : This is the data, in the clear.
+
+.. {{{end}}}
 
 .. seealso::
 

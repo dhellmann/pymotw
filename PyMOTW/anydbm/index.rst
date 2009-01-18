@@ -26,6 +26,22 @@ The ``open()`` function takes *flags* to control how the database file is manage
     :literal:
     :start-after: #end_pymotw_header
 
+.. {{{cog
+.. from paver.path import path
+.. from paver.runtime import sh
+.. workdir = path(cog.inFile).dirname()
+.. sh("cd %s; rm -f /tmp/example.db" % workdir)
+.. cog.out(run_script(cog.inFile, 'anydbm_new.py'))
+.. }}}
+
+::
+
+	$ python anydbm_new.py
+	
+
+.. {{{end}}}
+
+
 In this example, the file is always re-initialized.  To see what type of database was created, we can use :mod:`whichdb`.
 
 .. include:: anydbm_whichdb.py
@@ -34,10 +50,17 @@ In this example, the file is always re-initialized.  To see what type of databas
 
 Your results may vary, depending on what modules are installed on your system.
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'anydbm_whichdb.py'))
+.. }}}
+
 ::
 
-    $ python anydbm_whichdb.py
-    dbhash
+	$ python anydbm_whichdb.py
+	dbhash
+
+.. {{{end}}}
+
 
 Opening an Existing Database
 ============================
@@ -50,14 +73,20 @@ To open an existing database, use *flags* of either ``'r'`` (for read-only) or `
 
 Once open, ``db`` is a dictionary-like object, with support for the usual methods:
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'anydbm_existing.py'))
+.. }}}
+
 ::
 
-    $ python anydbm_existing.py
-    keys(): ['key', 'today', 'author']
-    iterating: key value
-    iterating: today Sunday
-    iterating: author Doug
-    db["author"] = Doug
+	$ python anydbm_existing.py
+	keys(): ['key', 'today', 'author']
+	iterating: key value
+	iterating: today Sunday
+	iterating: author Doug
+	db["author"] = Doug
+
+.. {{{end}}}
 
 Error Cases
 ===========
@@ -70,19 +99,25 @@ The keys of the database need to be strings.
 
 Passing another type results in a TypeError.
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'anydbm_intkeys.py'))
+.. }}}
+
 ::
 
-    $ python anydbm_intkeys.py
-    Traceback (most recent call last):
-      File "/Users/dhellmann/Documents/PyMOTW/in_progress/anydbm/PyMOTW/anydbm/anydbm_intkeys.py", line 16, in <module>
-        db[1] = 'one'
-      File "/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/bsddb/__init__.py", line 230, in __setitem__
-        _DeadlockWrap(wrapF)  # self.db[key] = value
-      File "/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/bsddb/dbutils.py", line 62, in DeadlockWrap
-        return function(*_args, **_kwargs)
-      File "/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/bsddb/__init__.py", line 229, in wrapF
-        self.db[key] = value
-    TypeError: Integer keys only allowed for Recno and Queue DB's
+	$ python anydbm_intkeys.py
+	Traceback (most recent call last):
+	  File "anydbm_intkeys.py", line 16, in <module>
+	    db[1] = 'one'
+	  File "/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/bsddb/__init__.py", line 230, in __setitem__
+	    _DeadlockWrap(wrapF)  # self.db[key] = value
+	  File "/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/bsddb/dbutils.py", line 62, in DeadlockWrap
+	    return function(*_args, **_kwargs)
+	  File "/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/bsddb/__init__.py", line 229, in wrapF
+	    self.db[key] = value
+	TypeError: Integer keys only allowed for Recno and Queue DB's
+
+.. {{{end}}}
 
 Values must be strings or ``None``.
 
@@ -92,19 +127,25 @@ Values must be strings or ``None``.
 
 A similar TypeError is raised if a value is not a string.
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'anydbm_intvalue.py'))
+.. }}}
+
 ::
 
-    $ python anydbm_intvalue.py
-    Traceback (most recent call last):
-      File "/Users/dhellmann/Documents/PyMOTW/in_progress/anydbm/PyMOTW/anydbm/anydbm_intvalue.py", line 16, in <module>
-        db['one'] = 1
-      File "/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/bsddb/__init__.py", line 230, in __setitem__
-        _DeadlockWrap(wrapF)  # self.db[key] = value
-      File "/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/bsddb/dbutils.py", line 62, in DeadlockWrap
-        return function(*_args, **_kwargs)
-      File "/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/bsddb/__init__.py", line 229, in wrapF
-        self.db[key] = value
-    TypeError: Data values must be of type string or None.
+	$ python anydbm_intvalue.py
+	Traceback (most recent call last):
+	  File "anydbm_intvalue.py", line 16, in <module>
+	    db['one'] = 1
+	  File "/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/bsddb/__init__.py", line 230, in __setitem__
+	    _DeadlockWrap(wrapF)  # self.db[key] = value
+	  File "/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/bsddb/dbutils.py", line 62, in DeadlockWrap
+	    return function(*_args, **_kwargs)
+	  File "/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/bsddb/__init__.py", line 229, in wrapF
+	    self.db[key] = value
+	TypeError: Data values must be of type string or None.
+
+.. {{{end}}}
 
 .. seealso::
 

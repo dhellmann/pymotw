@@ -29,7 +29,8 @@ Junjie Cai (蔡俊杰) and Yan Sheng (盛艳) have started a google code project
 German
 ------
 
-Ralf Schoenian is preparing a German translation at http://www.schoenian-online.de/pymotw.html.
+Ralf Schönian is translating PyMOTW into German, following an alphabetical order.  The results are available on his web site, http://schoenian-online.de/pymotw.html.  Ralf is an active member of the `pyCologne <http://wiki.python.de/User_Group_K%C3%B6ln?action=show&redirect=pyCologne>`_ user group in Germany and author of pyVoc, the open source English/German vocabulary trainer (http://code.google.com/p/pyvoc/).
+
 
 Spanish
 -------
