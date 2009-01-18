@@ -16,20 +16,26 @@ The source text for PyMOTW is `reStructuredText <http://docutils.sourceforge.net
 Subscribe
 =========
 
-As new articles are written, they are posted to `my blog <http://blog.doughellmann.com/>`_.  Updates are available by `RSS <http://feeds.feedburner.com/PyMOTW>`_ and `email <http://www.feedburner.com/fb/a/emailverifySubmit?feedId=806224&amp;loc=en_US>`_.
+As new articles are written, they are posted to my blog (http://blog.doughellmann.com/).  Updates are available by RSS from http://feeds.feedburner.com/PyMOTW and `email <http://www.feedburner.com/fb/a/emailverifySubmit?feedId=806224&amp;loc=en_US>`_.
 
 Translations and Other Versions
 ===============================
-
-Spanish
--------
-
-`Ernesto Rico Schmidt <http://denklab.org/>`_ provides a Spanish translation that follows the English version posts. Ernesto is in Bolivia, and is translating these examples as a way to contribute to the members of the `Bolivian Free Software <http://www.softwarelibre.org.bo/>`_ community who use Python.   The full list of articles available in Spanish can be found at http://denklab.org/articles/category/pymotw/, and of course there is an `RSS feed <http://denklab.org/feeds/articles/category/pymotw/>`_.
 
 Chinese
 -------
 
 Junjie Cai (蔡俊杰) and Yan Sheng (盛艳) have started a google code project called PyMOTWCN (http://code.google.com/p/pymotwcn/) and posted the completed translations at http://www.vbarter.cn/pymotw/.
+
+German
+------
+
+Ralf Schoenian is preparing a German translation at http://www.schoenian-online.de/pymotw.html.
+
+Spanish
+-------
+
+`Ernesto Rico Schmidt <http://denklab.org/>`_ provides a Spanish translation that follows the English version posts. Ernesto is in Bolivia, and is translating these examples as a way to contribute to the members of the `Bolivian Free Software <http://www.softwarelibre.org.bo/>`_ community who use Python.   The full list of articles available in Spanish can be found at http://denklab.org/articles/category/pymotw/, and there is an `RSS feed <http://denklab.org/feeds/articles/category/pymotw/>`_.
+
 
 Compendiums
 -----------
