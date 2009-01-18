@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>.. {{{cog
+.. from paver.path import path
+.. from paver.runtime import sh
+.. workdir = path(cog.inFile).dirname()
+.. sh("cd %s; $1" % workdir)
+.. cog.out(run_script(cog.inFile, '`basename $TM_DIRECTORY`_$2.py'))
+.. }}}
+.. {{{end}}}
+</string>
+	<key>name</key>
+	<string>cog with cleanup</string>
+	<key>scope</key>
+	<string>text.restructuredtext</string>
+	<key>tabTrigger</key>
+	<string>cleancog</string>
+	<key>uuid</key>
+	<string>DF0853BA-F98E-4A8B-99E7-A68D1EF83B13</string>
+</dict>
+</plist>

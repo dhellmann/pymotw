@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>.. {{{cog
+.. cog.out(run_script(cog.inFile, '`basename $TM_DIRECTORY`_$1.py'))
+.. }}}
+.. {{{end}}}
+</string>
+	<key>name</key>
+	<string>cog</string>
+	<key>scope</key>
+	<string>text.restructuredtext</string>
+	<key>tabTrigger</key>
+	<string>cog</string>
+	<key>uuid</key>
+	<string>9186E153-5EF6-4ED1-A427-F825889DD3FA</string>
+</dict>
+</plist>
