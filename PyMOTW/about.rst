@@ -16,7 +16,7 @@ The source text for PyMOTW is `reStructuredText <http://docutils.sourceforge.net
 Subscribe
 =========
 
-As new articles are written, they are posted to my blog (http://blog.doughellmann.com/).  Updates are available by RSS from http://feeds.feedburner.com/PyMOTW and `email <http://www.feedburner.com/fb/a/emailverifySubmit?feedId=806224&amp;loc=en_US>`_.
+As new articles are written, they are posted to my blog (http://blog.doughellmann.com/).  Updates are available by RSS from http://feeds.doughellmann.com/PyMOTW and `email <http://feedburner.google.com/fb/a/mailverify?uri=PyMOTW&amp;loc=en_US>`_.
 
 Translations and Other Versions
 ===============================
