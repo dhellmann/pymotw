@@ -297,7 +297,7 @@ well as a DST-aware class and more details about creating your own class.
     :mod:`time`
         The :mod:`time` module.
 
-    `dateutil http://labix.org/python-dateutil`_
+    `dateutil <http://labix.org/python-dateutil>`_
         dateutil from Labix extends the datetime module with additional features.
 
     `WikiPedia: Proleptic Gregorian calendar <http://en.wikipedia.org/wiki/Proleptic_Gregorian_calendar>`_
