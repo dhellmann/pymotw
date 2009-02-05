@@ -19,7 +19,7 @@ mbox = mailbox.mbox('example.mbox')
 mbox.lock()
 try:
     msg = mailbox.mboxMessage()
-    msg.set_unixfrom('author')
+    msg.set_unixfrom('author Sat Feb  7 01:05:34 2009')
     msg['From'] = from_addr
     msg['To'] = to_addr
     msg['Subject'] = 'Sample message 1'

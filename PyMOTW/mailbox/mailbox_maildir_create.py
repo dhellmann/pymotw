@@ -20,7 +20,7 @@ mbox = mailbox.Maildir('Example')
 mbox.lock()
 try:
     msg = mailbox.mboxMessage()
-    msg.set_unixfrom('author')
+    msg.set_unixfrom('author Sat Feb  7 01:05:34 2009')
     msg['From'] = from_addr
     msg['To'] = to_addr
     msg['Subject'] = 'Sample message 1'
@@ -29,7 +29,7 @@ try:
     mbox.flush()
 
     msg = mailbox.mboxMessage()
-    msg.set_unixfrom('author')
+    msg.set_unixfrom('author Sat Feb  7 01:05:34 2009')
     msg['From'] = from_addr
     msg['To'] = to_addr
     msg['Subject'] = 'Sample message 2'
@@ -48,4 +48,3 @@ for dirname, subdirs, files in os.walk('Example'):
         print '***', fullname
         print open(fullname).read()
         print '*' * 20
-        
