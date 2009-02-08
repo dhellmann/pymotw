@@ -6,6 +6,7 @@ Python Module of the Week
     :maxdepth: 2
     
     about
+    history
     builtins
     string_services
     data_types

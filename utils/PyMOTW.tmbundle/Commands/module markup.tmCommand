@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string># just to remind you of some useful environment variables
+# see Help / Environment Variables for the full list
+if [ ! -z "$TM_SELECTED_TEXT" ]
+then
+	echo -n ':mod:`'$TM_SELECTED_TEXT'`'
+else
+	echo -n ':mod:`'$TM_CURRENT_WORD'`'
+fi
+</string>
+	<key>fallbackInput</key>
+	<string>word</string>
+	<key>input</key>
+	<string>selection</string>
+	<key>keyEquivalent</key>
+	<string>^m</string>
+	<key>name</key>
+	<string>module markup</string>
+	<key>output</key>
+	<string>replaceSelectedText</string>
+	<key>scope</key>
+	<string>text.restructuredtext</string>
+	<key>uuid</key>
+	<string>6ED595A0-FF77-4532-AC4A-EE35D5D5E65C</string>
+</dict>
+</plist>
