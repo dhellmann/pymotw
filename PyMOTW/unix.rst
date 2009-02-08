@@ -6,5 +6,5 @@ Unix-specific Services
     :maxdepth: 1
 
     commands/index
-
+    pwd/index
 

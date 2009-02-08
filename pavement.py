@@ -139,7 +139,7 @@ options(
 
 )
 
-def run_script(input_file, script_name, interpreter='python'):
+def run_script(input_file, script_name, interpreter='python', include_prefix=True):
     """Run a script in the context of the input_file's directory, 
     return the text output formatted to be included as an rst
     literal text block.
@@ -149,7 +149,11 @@ def run_script(input_file, script_name, interpreter='python'):
     rundir = path(input_file).dirname()
     output_text = sh('cd %(rundir)s; %(interpreter)s %(script_name)s 2>&1' % vars(),
                     capture=True)
-    response = '\n::\n\n\t$ %(interpreter)s %(script_name)s\n\t' % vars()
+    if include_prefix:
+        response = '\n::\n\n'
+    else:
+        response = ''
+    response += '\t$ %(interpreter)s %(script_name)s\n\t' % vars()
     response += '\n\t'.join(output_text.splitlines())
     while not response.endswith('\n\n'):
         response += '\n'
