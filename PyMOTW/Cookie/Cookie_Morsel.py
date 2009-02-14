@@ -41,7 +41,7 @@ c['with_max_age']['max-age'] = 300 # seconds
 
 # A cookie that expires at a specific time
 c['expires_at_time'] = 'cookie_value'
-expires = datetime.datetime.now() + datetime.timedelta(hours=1)
+expires = datetime.datetime(2009, 2, 14, 18, 30, 14) + datetime.timedelta(hours=1)
 c['expires_at_time']['expires'] = expires.strftime('%a, %d %b %Y %H:%M:%S') # Wdy, DD-Mon-YY HH:MM:SS GMT
 
 show_cookie(c)

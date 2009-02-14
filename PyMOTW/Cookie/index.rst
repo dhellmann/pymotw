@@ -30,10 +30,19 @@ a cookie looks something like:
     :start-after: #end_pymotw_header
 
 The output is a valid Set-Cookie header ready to be passed to the client as
-part of the HTTP response::
+part of the HTTP response:
 
-    $ python Cookie_setheaders.py
-    Set-Cookie: mycookie=cookie_value
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'Cookie_setheaders.py'))
+.. }}}
+
+::
+
+	$ python Cookie_setheaders.py
+	Set-Cookie: mycookie=cookie_value
+
+.. {{{end}}}
+
 
 Morsels
 =======
@@ -50,35 +59,41 @@ The above example includes two different methods for setting stored cookies
 that expire. You can set max-age to a number of seconds, or expires to a date
 and time when the cookie should be discarded.
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'Cookie_Morsel.py'))
+.. }}}
+
 ::
 
-    $ python Cookie_Morsel.py
-    Set-Cookie: encoded_value_cookie="\"cookie_value\""; Comment=Notice that this cookie value has escaped quotes
-    Set-Cookie: expires_at_time=cookie_value; expires=Sun, 01 Jun 2008 11:37:00
-    Set-Cookie: restricted_cookie=cookie_value; Domain=PyMOTW; Path=/sub/path; secure
-    Set-Cookie: with_max_age="expires in 5 minutes"; Max-Age=300
+	$ python Cookie_Morsel.py
+	Set-Cookie: encoded_value_cookie="\"cookie_value\""; Comment=Notice that this cookie value has escaped quotes
+	Set-Cookie: expires_at_time=cookie_value; expires=Sat, 14 Feb 2009 19:30:14
+	Set-Cookie: restricted_cookie=cookie_value; Domain=PyMOTW; Path=/sub/path; secure
+	Set-Cookie: with_max_age="expires in 5 minutes"; Max-Age=300
+	
+	key = restricted_cookie
+	  value = cookie_value
+	  coded_value = cookie_value
+	  domain = PyMOTW
+	  secure = True
+	  path = /sub/path
+	
+	key = with_max_age
+	  value = expires in 5 minutes
+	  coded_value = "expires in 5 minutes"
+	  max-age = 300
+	
+	key = encoded_value_cookie
+	  value = "cookie_value"
+	  coded_value = "\"cookie_value\""
+	  comment = Notice that this cookie value has escaped quotes
+	
+	key = expires_at_time
+	  value = cookie_value
+	  coded_value = cookie_value
+	  expires = Sat, 14 Feb 2009 19:30:14
 
-    key = restricted_cookie
-      value = cookie_value
-      coded_value = cookie_value
-      domain = PyMOTW
-      secure = True
-      path = /sub/path
-
-    key = with_max_age
-      value = expires in 5 minutes
-      coded_value = "expires in 5 minutes"
-      max-age = 300
-
-    key = encoded_value_cookie
-      value = "cookie_value"
-      coded_value = "\"cookie_value\""
-      comment = Notice that this cookie value has escaped quotes
-
-    key = expires_at_time
-      value = cookie_value
-      coded_value = cookie_value
-      expires = Sun, 01 Jun 2008 11:37:00
+.. {{{end}}}
 
 
 Both the Cookie and Morsel objects act like dictionaries. The Morsel responds
@@ -111,18 +126,16 @@ Morsel.coded_value is always the representation to be used for transmitting
 the value to the client. Both values are always strings. Values saved to a
 cookie that are not strings are converted automatically.
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'Cookie_coded_values.py'))
+.. }}}
+
 ::
 
-    $ python Cookie_coded_value.py
-    integer
-      Set-Cookie: integer=5
-      value=5 <type 'str'>
-      coded_value=5
+	$ python Cookie_coded_values.py
+	python: can't open file 'Cookie_coded_values.py': [Errno 2] No such file or directory
 
-    string_with_quotes
-      Set-Cookie: string_with_quotes="He said, \"Hello, World!\""
-      value=He said, "Hello, World!" <type 'str'>
-      coded_value="He said, \"Hello, World!\""
+.. {{{end}}}
 
 Receiving and Parsing Cookie Headers
 ====================================
@@ -142,16 +155,22 @@ instantiating it, or use the load() method.
     :literal:
     :start-after: #end_pymotw_header
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'Cookie_parse.py'))
+.. }}}
+
 ::
 
-    $ python Cookie_parse.py
-    From constructor:
-    Set-Cookie: integer=5
-    Set-Cookie: string_with_quotes="He said, \"Hello, World!\""
+	$ python Cookie_parse.py
+	From constructor:
+	Set-Cookie: integer=5
+	Set-Cookie: string_with_quotes="He said, \"Hello, World!\""
+	
+	From load():
+	Set-Cookie: integer=5
+	Set-Cookie: string_with_quotes="He said, \"Hello, World!\""
 
-    From load():
-    Set-Cookie: integer=5
-    Set-Cookie: string_with_quotes="He said, \"Hello, World!\""
+.. {{{end}}}
 
 Alternative Output Formats
 ==========================
@@ -164,21 +183,28 @@ js_output() method.
     :literal:
     :start-after: #end_pymotw_header
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'Cookie_js_output.py'))
+.. }}}
+
 ::
 
-    $ python Cookie_js_output.py
+	$ python Cookie_js_output.py
+	
+	        <script type="text/javascript">
+	        <!-- begin hiding
+	        document.cookie = "another_cookie="second value"";
+	        // end hiding -->
+	        </script>
+	        
+	        <script type="text/javascript">
+	        <!-- begin hiding
+	        document.cookie = "mycookie=cookie_value";
+	        // end hiding -->
+	        </script>
+	        
 
-            <script type="text/javascript">
-            <!-- begin hiding
-            document.cookie = "another_cookie="second value"";
-            // end hiding -->
-            </script>
-            
-            <script type="text/javascript">
-            <!-- begin hiding
-            document.cookie = "mycookie=cookie_value";
-            // end hiding -->
-            </script>
+.. {{{end}}}
 
 
 Deprecated Classes
