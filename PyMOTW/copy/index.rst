@@ -26,15 +26,21 @@ constructed and the elements of the original list are appended to it.
 For a shallow copy, the MyClass instance is not duplicated so the reference in
 the dup list is to the same object that is in the l list.
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'copy_shallow.py'))
+.. }}}
+
 ::
 
-    $ python copy_shallow.py
-    l  : [<__main__.MyClass instance at 0x78d00>]
-    dup: [<__main__.MyClass instance at 0x78d00>]
-    dup is l: False
-    dup == l: True
-    dup[0] is l[0]: True
-    dup[0] == l[0]: True
+	$ python copy_shallow.py
+	l  : [<__main__.MyClass instance at 0x86fd0>]
+	dup: [<__main__.MyClass instance at 0x86fd0>]
+	dup is l: False
+	dup == l: True
+	dup[0] is l[0]: True
+	dup[0] == l[0]: True
+
+.. {{{end}}}
 
 
 Deep Copies
@@ -55,15 +61,21 @@ apparent.
 Notice that the first element of the list is no longer the same object
 reference, but the two objects still evaluate as being equal.
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'copy_deep.py'))
+.. }}}
+
 ::
 
-    $ python copy_deep.py
-    l  : [<__main__.MyClass instance at 0x78d28>]
-    dup: [<__main__.MyClass instance at 0x78cd8>]
-    dup is l: False
-    dup == l: True
-    dup[0] is l[0]: False
-    dup[0] == l[0]: True
+	$ python copy_deep.py
+	l  : [<__main__.MyClass instance at 0x86fa8>]
+	dup: [<__main__.MyClass instance at 0x86fd0>]
+	dup is l: False
+	dup == l: True
+	dup[0] is l[0]: False
+	dup[0] == l[0]: True
+
+.. {{{end}}}
 
 
 Controlling Copy Behavior
@@ -86,24 +98,30 @@ This example illustrates how the methods are called:
     :literal:
     :start-after: #end_pymotw_header
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'copy_hooks.py'))
+.. }}}
+
 ::
 
-    $ python copy_hooks.py
-    __copy__()
-    __deepcopy__({})
+	$ python copy_hooks.py
+	__copy__()
+	__deepcopy__({})
+
+.. {{{end}}}
 
 
 Recursion in Deep Copy
 ======================
 
-To avoid problems with duplicating recursive data structures, deepcopy() uses
+To avoid problems with duplicating recursive data structures, ``deepcopy()`` uses
 a dictionary to track objects which have already been copied. This dictionary
-is passed to the __deepcopy__() method so it can be used there as well.
+is passed to the ``__deepcopy__()`` method so it can be used there as well.
 
 This example shows how an interconnected data structure such as a Digraph
 might assist with protecting against recursion by implementing a
-__deepcopy__() method. This particular example is just for illustration
-purposes, since the default implementation of deepcopy() already handles the
+``__deepcopy__()`` method. This particular example is just for illustration
+purposes, since the default implementation of ``deepcopy()`` already handles the
 recursion cases correctly.
 
 .. include:: copy_recursion.py
@@ -115,7 +133,7 @@ name and a list of existing nodes to which it is connected. The
 addConnection() method is used to set up bi-directional connections. It is
 also used by the deepcopy operator.
 
-The __deepcopy__() method prints messages to show how it is called, and
+The ``__deepcopy__()`` method prints messages to show how it is called, and
 manages the memo dictionary contents as needed. Instead of copying the
 connection list wholesale, it creates a new list and appends copies of the
 individual connections to it. That ensures that the memo dictionary is updated
@@ -127,35 +145,41 @@ b->a, b->root, root->a, root->b.
 
 When the root node is copied, we see:
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'copy_recursion.py'))
+.. }}}
+
 ::
 
-    $ python copy_recursion.py
+	$ python copy_recursion.py
+	
+	<Graph(root) id=562520>
+	{}
+	  COPYING TO <Graph(root) id=564720>
+	
+	<Graph(a) id=564440>
+	{   <Graph(root) id=562520>: <Graph(root) id=564720>,
+	    546880: 'root',
+	    555888: ['root']}
+	  COPYING TO <Graph(a) id=564680>
+	
+	<Graph(root) id=562520>
+	  ALREADY COPIED TO <Graph(root) id=564720>
+	
+	<Graph(b) id=564480>
+	{   <Graph(root) id=562520>: <Graph(root) id=564720>,
+	    <Graph(a) id=564440>: <Graph(a) id=564680>,
+	    249312: 'a',
+	    546880: 'root',
+	    555888: [   'root',
+	                'a',
+	                <Graph(root) id=562520>,
+	                <Graph(a) id=564440>],
+	    562520: <Graph(root) id=564720>,
+	    564440: <Graph(a) id=564680>}
+	  COPYING TO <Graph(b) id=9439872>
 
-    <Graph(root) id=508592>
-    {}
-      COPYING TO <Graph(root) id=510792>
-
-    <Graph(a) id=510512>
-    {   <Graph(root) id=508592>: <Graph(root) id=510792>,
-        488896: 'root',
-        497392: ['root']}
-      COPYING TO <Graph(a) id=510752>
-
-    <Graph(root) id=508592>
-      ALREADY COPIED TO <Graph(root) id=510792>
-
-    <Graph(b) id=510552>
-    {   <Graph(root) id=508592>: <Graph(root) id=510792>,
-        <Graph(a) id=510512>: <Graph(a) id=510752>,
-        237120: 'a',
-        488896: 'root',
-        497392: [   'root',
-                    'a',
-                    <Graph(root) id=508592>,
-                    <Graph(a) id=510512>],
-        508592: <Graph(root) id=510792>,
-        510512: <Graph(a) id=510752>}
-      COPYING TO <Graph(b) id=530392>
+.. {{{end}}}
 
 Notice that the second time the root node is encountered, while the a node is
 being copied, the recursion is detected and the existing copy is used instead
