@@ -35,7 +35,7 @@ __module_id__ = "$Id$"
 from ConfigParser import ConfigParser
 import os
 
-filename = os.path.join(os.environ['HOME'], '.approachrc')
+filename = 'approach.ini'
 config = ConfigParser()
 config.read([filename])
 

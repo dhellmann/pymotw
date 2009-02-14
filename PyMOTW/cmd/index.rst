@@ -1,3 +1,5 @@
+.. Do not need to both with cog for this one, since the examples are interactive.
+
 ==============================================
 cmd -- Create line-oriented command processors
 ==============================================
