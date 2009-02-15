@@ -30,38 +30,45 @@ the partial object.
 At the end of the example, the first partial created is invoked without
 passing a value for a, causing an exception.
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'functools_partial.py'))
+.. }}}
+
 ::
 
-    $ python functools_partial.py
-    myfunc:
-        object: <function myfunc at 0x7cbf0>
-        __name__: myfunc
-        __doc__ 'Docstring for myfunc().'
-        called myfunc with: ('a', 3)
+	$ python functools_partial.py
+	myfunc:
+		object: <function myfunc at 0x822f0>
+		__name__: myfunc
+		__doc__ 'Docstring for myfunc().'
+		called myfunc with: ('a', 3)
+	
+	partial with named default:
+		object: <functools.partial object at 0x880f0>
+		__doc__ 'partial(func, *args, **keywords) - new function with partial application\n\tof the given arguments and keywords.\n'
+		func: <function myfunc at 0x822f0>
+		args: ()
+		keywords: {'b': 4}
+		called myfunc with: ('default a', 4)
+		called myfunc with: ('override b', 5)
+	
+	partial with defaults:
+		object: <functools.partial object at 0x88120>
+		__doc__ 'partial(func, *args, **keywords) - new function with partial application\n\tof the given arguments and keywords.\n'
+		func: <function myfunc at 0x822f0>
+		args: ('default a',)
+		keywords: {'b': 99}
+		called myfunc with: ('default a', 99)
+		called myfunc with: ('default a', 'override b')
+	
+	Insufficient arguments:
+	Traceback (most recent call last):
+	  File "functools_partial.py", line 49, in <module>
+	    p1()
+	TypeError: myfunc() takes at least 1 non-keyword argument (0 given)
 
-    partial with named default:
-        object: <functools.partial object at 0x74ea0>
-        __doc__ 'partial(func, *args, **keywords) - new function with partial application\n\tof the given arguments and keywords.\n'
-        func: <function myfunc at 0x7cbf0>
-        args: ()
-        keywords: {'b': 4}
-        called myfunc with: ('default a', 4)
-        called myfunc with: ('override b', 5)
+.. {{{end}}}
 
-    partial with defaults:
-        object: <functools.partial object at 0x74ed0>
-        __doc__ 'partial(func, *args, **keywords) - new function with partial application\n\tof the given arguments and keywords.\n'
-        func: <function myfunc at 0x7cbf0>
-        args: ('default a',)
-        keywords: {'b': 99}
-        called myfunc with: ('default a', 99)
-        called myfunc with: ('default a', 'override b')
-
-    Insufficient arguments:
-    Traceback (most recent call last):
-      File "/Users/dhellmann/Documents/PyMOTW/in_progress/functools/functools_partial.py", line 48, in <module>
-        p1()
-    TypeError: myfunc() takes at least 1 non-keyword argument (0 given)
 
 
 update_wrapper
@@ -81,27 +88,34 @@ The attributes added to the wrapper are defined in
 functools.WRAPPER_ASSIGNMENTS, while functools.WRAPPER_UPDATES lists values to
 be modified.
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'functools_update_wrapper.py'))
+.. }}}
+
 ::
 
-    $ python functools_update_wrapper.py
-    myfunc:
-        object: <function myfunc at 0x7cb30>
-        __name__: myfunc
-        __doc__ 'Docstring for myfunc().'
+	$ python functools_update_wrapper.py
+	myfunc:
+		object: <function myfunc at 0x82270>
+		__name__: myfunc
+		__doc__ 'Docstring for myfunc().'
+	
+	raw wrapper:
+		object: <functools.partial object at 0x7bfc0>
+		__name__: (no __name__)
+		__doc__ 'partial(func, *args, **keywords) - new function with partial application\n\tof the given arguments and keywords.\n'
+	
+	Updating wrapper:
+		assign: ('__module__', '__name__', '__doc__')
+		update: ('__dict__',)
+	
+	updated wrapper:
+		object: <functools.partial object at 0x7bfc0>
+		__name__: myfunc
+		__doc__ 'Docstring for myfunc().'
+	
 
-    raw wrapper:
-        object: <functools.partial object at 0x74f30>
-        __name__: (no __name__)
-        __doc__ 'partial(func, *args, **keywords) - new function with partial application\n\tof the given arguments and keywords.\n'
-
-    Updating wrapper:
-        assign: ('__module__', '__name__', '__doc__')
-        update: ('__dict__',)
-
-    updated wrapper:
-        object: <functools.partial object at 0x74f30>
-        __name__: myfunc
-        __doc__ 'Docstring for myfunc().'
+.. {{{end}}}
 
 Methods and Other Callables
 ===========================
@@ -112,44 +126,50 @@ Partials work with any callable object, including methods and instances.
     :literal:
     :start-after: #end_pymotw_header
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'functools_method.py'))
+.. }}}
+
 ::
 
-    $ python functools_method.py
-    meth1 straight:
-        object: <bound method MyClass.meth1 of <__main__.MyClass object at 0x7ecd0>>
-        __name__: meth1
-        __doc__ 'Docstring for meth1().'
-        called meth1 with: (<__main__.MyClass object at 0x7ecd0>, 'no default for a', 3)
+	$ python functools_method.py
+	meth1 straight:
+		object: <bound method MyClass.meth1 of <__main__.MyClass object at 0x85b10>>
+		__name__: meth1
+		__doc__ 'Docstring for meth1().'
+		called meth1 with: (<__main__.MyClass object at 0x85b10>, 'no default for a', 3)
+	
+	meth1 wrapper:
+		object: <functools.partial object at 0x88300>
+		__name__: meth1
+		__doc__ 'Docstring for meth1().'
+		called meth1 with: (<__main__.MyClass object at 0x85b10>, 'a goes here', 4)
+	
+	meth2:
+		object: <bound method MyClass.meth2 of <__main__.MyClass object at 0x85b10>>
+		__name__: meth2
+		__doc__ 'Docstring for meth2'
+		called meth2 with: (<__main__.MyClass object at 0x85b10>, 'no default for c', 6)
+	
+	wrapped meth2:
+		object: <functools.partial object at 0x88270>
+		__name__: meth2
+		__doc__ 'Docstring for meth2'
+		called meth2 with: ('wrapped c', 'no default for c', 6)
+	
+	instance:
+		object: <__main__.MyClass object at 0x85b10>
+		__name__: (no __name__)
+		__doc__ 'Demonstration class for functools'
+		called object with: (<__main__.MyClass object at 0x85b10>, 'no default for e', 6)
+	
+	instance wrapper:
+		object: <functools.partial object at 0x88330>
+		__name__: (no __name__)
+		__doc__ 'partial(func, *args, **keywords) - new function with partial application\n\tof the given arguments and keywords.\n'
+		called object with: (<__main__.MyClass object at 0x85b10>, 'e goes here', 7)
 
-    meth1 wrapper:
-        object: <functools.partial object at 0x81060>
-        __name__: meth1
-        __doc__ 'Docstring for meth1().'
-        called meth1 with: (<__main__.MyClass object at 0x7ecd0>, 'a goes here', 4)
-
-    meth2:
-        object: <bound method MyClass.meth2 of <__main__.MyClass object at 0x7ecd0>>
-        __name__: meth2
-        __doc__ 'Docstring for meth2'
-        called meth2 with: (<__main__.MyClass object at 0x7ecd0>, 'no default for c', 6)
-
-    wrapped meth2:
-        object: <functools.partial object at 0x74f90>
-        __name__: meth2
-        __doc__ 'Docstring for meth2'
-        called meth2 with: ('wrapped c', 'no default for c', 6)
-
-    instance:
-        object: <__main__.MyClass object at 0x7ecd0>
-        __name__: (no __name__)
-        __doc__ 'Demonstration class for functools'
-        called object with: (<__main__.MyClass object at 0x7ecd0>, 'no default for e', 6)
-
-    instance wrapper:
-        object: <functools.partial object at 0x81090>
-        __name__: (no __name__)
-        __doc__ 'partial(func, *args, **keywords) - new function with partial application\n\tof the given arguments and keywords.\n'
-        called object with: (<__main__.MyClass object at 0x7ecd0>, 'e goes here', 7)
+.. {{{end}}}
 
 wraps
 =====
@@ -163,26 +183,32 @@ to be used as a decorator itself and to apply update_wrapper() automatically.
     :literal:
     :start-after: #end_pymotw_header
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'functools_wraps.py'))
+.. }}}
+
 ::
 
-    $ python functools_wraps.py
-    myfunc:
-        object: <function myfunc at 0x7cc70>
-        __name__: myfunc
-        __doc__ None
+	$ python functools_wraps.py
+	myfunc:
+		object: <function myfunc at 0x82370>
+		__name__: myfunc
+		__doc__ None
+	
+		myfunc: ('unwrapped, default b', 2)
+		myfunc: ('unwrapped, passing b', 3)
+	
+	wrapped_myfunc:
+		object: <function myfunc at 0x823b0>
+		__name__: myfunc
+		__doc__ None
+	
+		decorated: ('decorated defaults', 1)
+			myfunc: ('decorated defaults', 1)
+		decorated: ('args to decorated', 4)
+			myfunc: ('args to decorated', 4)
 
-        myfunc: ('unwrapped, default b', 2)
-        myfunc: ('unwrapped, passing b', 3)
-
-    wrapped_myfunc:
-        object: <function myfunc at 0x7ccb0>
-        __name__: myfunc
-        __doc__ None
-
-        decorated: ('decorated defaults', 1)
-            myfunc: ('decorated defaults', 1)
-        decorated: ('args to decorated', 4)
-            myfunc: ('args to decorated', 4)
+.. {{{end}}}
 
 .. seealso::
 
