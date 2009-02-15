@@ -13,7 +13,7 @@ import dircache
 from pprint import pprint
 import os
 
-path = '../../../trunk'
+path = '../..'
 
 contents = dircache.listdir(path)
 
