@@ -41,8 +41,7 @@ find the references to mp3 files.
 In this example, I don't care what file or line number we are processing in
 the input. For other tools (grep-like searching, for example) you might. The
 fileinput module includes functions for accessing that information
-(filename(), filelineno(), lineno(), etc.). Check out the standard library
-documentation for fileinput for more details.
+(filename(), filelineno(), lineno(), etc.).
 
 .. seealso::
 
