@@ -1,3 +1,5 @@
+.. Don't use cog, too many date changes.
+
 ========================================
 datetime -- Date/time value manipulation
 ========================================

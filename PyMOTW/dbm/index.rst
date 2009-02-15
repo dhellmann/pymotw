@@ -21,10 +21,16 @@ The ``library`` attribute identifies the library being used, by name.
 
 Of course, your results will depend on what library ``configure`` was able to find when the interpreter was built.
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'dbm_library.py'))
+.. }}}
+
 ::
 
-    $ python dbm_library.py
-    GNU gdbm
+	$ python dbm_library.py
+	GNU gdbm
+
+.. {{{end}}}
 
 The ``open()`` function follows the same semantics as the :mod:`anydbm` module.
 
