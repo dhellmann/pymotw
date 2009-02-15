@@ -55,10 +55,16 @@ an argument, the value should be "ab:".
     :literal:
     :start-after: #end_pymotw_header
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'getopt_short.py'))
+.. }}}
+
 ::
 
-    $ python getopt_short.py 
-    ([('-a', ''), ('-b', 'val'), ('-c', 'val')], [])
+	$ python getopt_short.py
+	([('-a', ''), ('-b', 'val'), ('-c', 'val')], [])
+
+.. {{{end}}}
 
 
 Long Form Options
@@ -71,10 +77,16 @@ should be [ 'noarg', 'witharg=' ].
     :literal:
     :start-after: #end_pymotw_header
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'getopt_long.py'))
+.. }}}
+
 ::
 
-    $ python getopt_long.py 
-    ([('--noarg', ''), ('--witharg', 'val'), ('--witharg2', 'another')], [])
+	$ python getopt_long.py
+	([('--noarg', ''), ('--witharg', 'val'), ('--witharg2', 'another')], [])
+
+.. {{{end}}}
 
 
 Example
@@ -90,63 +102,93 @@ require an argument.
 
 The program can be called in a variety of ways.
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'getopt_example.py'))
+.. }}}
+
 ::
 
-    $ python ./getopt_example.py
-    ARGV      : []
-    OPTIONS   : []
-    VERSION   : 1.0
-    VERBOSE   : False
-    OUTPUT    : default.out
-    REMAINING : []
+	$ python getopt_example.py
+	ARGV      : []
+	OPTIONS   : []
+	VERSION   : 1.0
+	VERBOSE   : False
+	OUTPUT    : default.out
+	REMAINING : []
+
+.. {{{end}}}
 
 A single letter option can be a separate from its argument:
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'getopt_example.py -o foo'))
+.. }}}
+
 ::
 
-    $ python ./getopt_example.py -o foo
-    ARGV      : ['-o', 'foo']
-    OPTIONS   : [('-o', 'foo')]
-    VERSION   : 1.0
-    VERBOSE   : False
-    OUTPUT    : foo
-    REMAINING : []
+	$ python getopt_example.py -o foo
+	ARGV      : ['-o', 'foo']
+	OPTIONS   : [('-o', 'foo')]
+	VERSION   : 1.0
+	VERBOSE   : False
+	OUTPUT    : foo
+	REMAINING : []
+
+.. {{{end}}}
 
 or combined:
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'getopt_example.py -ofoo'))
+.. }}}
+
 ::
 
-    $ python ./getopt_example.py -ofoo
-    ARGV      : ['-ofoo']
-    OPTIONS   : [('-o', 'foo')]
-    VERSION   : 1.0
-    VERBOSE   : False
-    OUTPUT    : foo
-    REMAINING : []
+	$ python getopt_example.py -ofoo
+	ARGV      : ['-ofoo']
+	OPTIONS   : [('-o', 'foo')]
+	VERSION   : 1.0
+	VERBOSE   : False
+	OUTPUT    : foo
+	REMAINING : []
+
+.. {{{end}}}
 
 A long form option can similarly be separate:
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'getopt_example.py --output foo'))
+.. }}}
+
 ::
 
-    $ python ./getopt_example.py --output foo    
-    ARGV      : ['--output', 'foo']
-    OPTIONS   : [('--output', 'foo')]
-    VERSION   : 1.0
-    VERBOSE   : False
-    OUTPUT    : foo
-    REMAINING : []
+	$ python getopt_example.py --output foo
+	ARGV      : ['--output', 'foo']
+	OPTIONS   : [('--output', 'foo')]
+	VERSION   : 1.0
+	VERBOSE   : False
+	OUTPUT    : foo
+	REMAINING : []
+
+.. {{{end}}}
 
 or combined, with =:
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'getopt_example.py --output=foo'))
+.. }}}
+
 ::
 
-    $ python ./getopt_example.py --output=foo
-    ARGV      : ['--output=foo']
-    OPTIONS   : [('--output', 'foo')]
-    VERSION   : 1.0
-    VERBOSE   : False
-    OUTPUT    : foo
-    REMAINING : []
+	$ python getopt_example.py --output=foo
+	ARGV      : ['--output=foo']
+	OPTIONS   : [('--output', 'foo')]
+	VERSION   : 1.0
+	VERBOSE   : False
+	OUTPUT    : foo
+	REMAINING : []
+
+.. {{{end}}}
 
 
 Abbreviating Long Form Options
@@ -155,45 +197,63 @@ Abbreviating Long Form Options
 The long form option does not have to be spelled out entirely, so long as a
 unique prefix is provided:
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'getopt_example.py --o foo'))
+.. }}}
+
 ::
 
-    $ python ./getopt_example.py --o foo
-    ARGV      : ['--o', 'foo']
-    OPTIONS   : [('--output', 'foo')]
-    VERSION   : 1.0
-    VERBOSE   : False
-    OUTPUT    : foo
-    REMAINING : []
+	$ python getopt_example.py --o foo
+	ARGV      : ['--o', 'foo']
+	OPTIONS   : [('--output', 'foo')]
+	VERSION   : 1.0
+	VERBOSE   : False
+	OUTPUT    : foo
+	REMAINING : []
+
+.. {{{end}}}
 
 If a unique prefix is not provided, an exception is raised.
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'getopt_example.py --ver 2.0'))
+.. }}}
+
 ::
 
-    $ python ./getopt_example.py --ver 2.0
-    ARGV      : ['--ver', '2.0']
-    Traceback (most recent call last):
-      File "./getopt_example.py", line 43, in 
-        'version=',
-      File "/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/getopt.py", line 89, in getopt
-        opts, args = do_longs(opts, args[0][2:], longopts, args[1:])
-      File "/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/getopt.py", line 153, in do_longs
-        has_arg, opt = long_has_args(opt, longopts)
-      File "/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/getopt.py", line 180, in long_has_args
-        raise GetoptError('option --%s not a unique prefix' % opt, opt)
-    getopt.GetoptError: option --ver not a unique prefix
+	$ python getopt_example.py --ver 2.0
+	ARGV      : ['--ver', '2.0']
+	Traceback (most recent call last):
+	  File "getopt_example.py", line 44, in <module>
+	    'version=',
+	  File "/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/getopt.py", line 89, in getopt
+	    opts, args = do_longs(opts, args[0][2:], longopts, args[1:])
+	  File "/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/getopt.py", line 153, in do_longs
+	    has_arg, opt = long_has_args(opt, longopts)
+	  File "/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/getopt.py", line 180, in long_has_args
+	    raise GetoptError('option --%s not a unique prefix' % opt, opt)
+	getopt.GetoptError: option --ver not a unique prefix
+
+.. {{{end}}}
 
 Option processing stops as soon as the first non-option argument is
 encountered.
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'getopt_example.py -v not_an_option --output foo'))
+.. }}}
+
 ::
 
-    $ python ./getopt_example.py -v not_an_option --output foo
-    ARGV      : ['-v', 'not_an_option', '--output', 'foo']
-    OPTIONS   : [('-v', '')]
-    VERSION   : 1.0
-    VERBOSE   : True
-    OUTPUT    : default.out
-    REMAINING : ['not_an_option', '--output', 'foo']
+	$ python getopt_example.py -v not_an_option --output foo
+	ARGV      : ['-v', 'not_an_option', '--output', 'foo']
+	OPTIONS   : [('-v', '')]
+	VERSION   : 1.0
+	VERBOSE   : True
+	OUTPUT    : default.out
+	REMAINING : ['not_an_option', '--output', 'foo']
+
+.. {{{end}}}
 
 
 GNU-style Option Parsing
@@ -208,32 +268,43 @@ option and non-option arguments to be mixed on the command line in any order.
 
 After changing the call in the previous example, the difference becomes clear:
 
-::
-
-    $ python ./getopt_gnu.py -v not_an_option --output foo
-    ARGV      : ['-v', 'not_an_option', '--output', 'foo']
-    OPTIONS   : [('-v', ''), ('--output', 'foo')]
-    VERSION   : 1.0
-    VERBOSE   : True
-    OUTPUT    : foo
-    REMAINING : ['not_an_option']
-
-
-Special Case: --
-================
-
-If getopt encounters -- in the input arguments, it stops processing the
-remaining arguments as options.
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'getopt_gnu.py -v not_an_option --output foo'))
+.. }}}
 
 ::
 
-    $ python ./getopt_example.py -v -- --output foo
-    ARGV      : ['-v', '--', '--output', 'foo']
-    OPTIONS   : [('-v', '')]
-    VERSION   : 1.0
-    VERBOSE   : True
-    OUTPUT    : default.out
-    REMAINING : ['--output', 'foo']
+	$ python getopt_gnu.py -v not_an_option --output foo
+	ARGV      : ['-v', 'not_an_option', '--output', 'foo']
+	OPTIONS   : [('-v', ''), ('--output', 'foo')]
+	VERSION   : 1.0
+	VERBOSE   : True
+	OUTPUT    : foo
+	REMAINING : ['not_an_option']
+
+.. {{{end}}}
+
+
+Special Case: ``--``
+====================
+
+If getopt encounters ``--`` in the input arguments, it stops processing the remaining arguments as options.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'getopt_example.py -v -- --output foo'))
+.. }}}
+
+::
+
+	$ python getopt_example.py -v -- --output foo
+	ARGV      : ['-v', '--', '--output', 'foo']
+	OPTIONS   : [('-v', '')]
+	VERSION   : 1.0
+	VERBOSE   : True
+	OUTPUT    : default.out
+	REMAINING : ['--output', 'foo']
+
+.. {{{end}}}
 
 .. seealso::
 

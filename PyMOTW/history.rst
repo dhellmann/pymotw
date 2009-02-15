@@ -1,6 +1,10 @@
 History
 =======
 
+1.83
+  - 15 Feb 2009, :mod:`grp`
+  - Continue converting older articles to use cog.
+
 1.82
   - 8 Feb 2009, :mod:`pwd`
   - Fix ``set_unixfrom()`` examples in :mod:`mailbox` article based on feedback from Tom Lynn.
