@@ -23,13 +23,18 @@ changes.
 It is important to recognize that the exact same list is returned each time,
 so it should not be modified in place.
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'dircache_listdir.py'))
+.. }}}
+
 ::
 
-    $ python dircache_listdir.py
-    Contents : ['.svn', '__init__.py', 'dircache_annotate.py', 'dircache_listdir.py', 
-    'dircache_listdir_file_added.py', 'dircache_reset.py']
-    Identical: True
-    Equal    : True
+	$ python dircache_listdir.py
+	Contents : ['.svn', '__init__.py', 'dircache_annotate.py', 'dircache_listdir.py', 'dircache_listdir_file_added.py', 'dircache_reset.py', 'index.rst']
+	Identical: True
+	Equal    : True
+
+.. {{{end}}}
 
 Of course, if the contents of the directory changes it is rescanned.
 
@@ -39,12 +44,18 @@ Of course, if the contents of the directory changes it is rescanned.
 
 In this case the new file causes a new list to be constructed.
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'dircache_listdir_file_added.py'))
+.. }}}
+
 ::
 
-    $ python dircache_listdir_file_added.py
-    Identical : False
-    Equal     : False
-    Difference: ['pymotw_tmp.txt']
+	$ python dircache_listdir_file_added.py
+	Identical : False
+	Equal     : False
+	Difference: ['pymotw_tmp.txt']
+
+.. {{{end}}}
 
 It is also possible to reset the entire cache, discarding its contents so that
 each path will be rechecked.
@@ -53,12 +64,18 @@ each path will be rechecked.
     :literal:
     :start-after: #end_pymotw_header
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'dircache_reset.py'))
+.. }}}
+
 ::
 
-    $ python dircache_reset.py
-    Identical : False
-    Equal     : True
-    Difference: []
+	$ python dircache_reset.py
+	Identical : False
+	Equal     : True
+	Difference: []
+
+.. {{{end}}}
 
 
 Annotated Listings
@@ -74,24 +91,35 @@ always appends a '/', not os.sep.)
     :literal:
     :start-after: #end_pymotw_header
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'dircache_annotate.py'))
+.. }}}
+
 ::
 
-    $ python dircache_annotate.py
-                ORIGINAL               ANNOTATED
-    --------------------    --------------------
-               .DS_Store               .DS_Store
-                    .svn                   .svn/
-               ChangeLog               ChangeLog
-             LICENSE.txt             LICENSE.txt
-                MANIFEST                MANIFEST
-             MANIFEST.in             MANIFEST.in
-          MANIFEST.in.in          MANIFEST.in.in
-                Makefile                Makefile
-                  PyMOTW                 PyMOTW/
-              README.txt              README.txt
-             setup.py.in             setup.py.in
-          static_content         static_content/
-           template.html           template.html
+	$ python dircache_annotate.py
+	            ORIGINAL	           ANNOTATED
+	--------------------	--------------------
+	           .DS_Store	           .DS_Store
+	                .svn	               .svn/
+	         LICENSE.txt	         LICENSE.txt
+	         MANIFEST.in	         MANIFEST.in
+	              PyMOTW	             PyMOTW/
+	     PyMOTW.egg-info	    PyMOTW.egg-info/
+	          README.txt	          README.txt
+	          blog_posts	         blog_posts/
+	                dist	               dist/
+	                docs	               docs/
+	              module	              module
+	         pavement.py	         pavement.py
+	   paver-minilib.zip	   paver-minilib.zip
+	            setup.py	            setup.py
+	              sphinx	             sphinx/
+	           trace.txt	           trace.txt
+	               utils	              utils/
+	                 web	                web/
+
+.. {{{end}}}
 
 .. seealso::
 

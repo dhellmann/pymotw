@@ -11,8 +11,9 @@ __version__ = "$Id$"
 
 import dircache
 from pprint import pprint
+import os
 
-path = '../../trunk'
+path = '../../../trunk'
 
 contents = dircache.listdir(path)
 
