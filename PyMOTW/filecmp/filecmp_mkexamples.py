@@ -50,7 +50,7 @@ def make_example_dir(top):
     return
 
 if __name__ == '__main__':
-    os.chdir(os.path.dirname(__file__))
+    os.chdir(os.path.dirname(__file__) or os.getcwd())
     make_example_dir('example')
     make_example_dir('example/dir1/common_dir')
     make_example_dir('example/dir2/common_dir')
