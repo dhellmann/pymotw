@@ -48,3 +48,5 @@ try:
                           })
 finally:
     f.close()
+
+print open(sys.argv[1], 'rt').read()

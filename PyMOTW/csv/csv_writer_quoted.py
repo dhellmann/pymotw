@@ -41,3 +41,5 @@ try:
         writer.writerow( (i+1, chr(ord('a') + i), '08/%02d/07' % (i+1)) )
 finally:
     f.close()
+
+print open(sys.argv[1], 'rt').read()

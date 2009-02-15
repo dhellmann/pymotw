@@ -43,19 +43,25 @@ The example file "testdata.csv" was exported from NeoOffice.
 
 As it is read, each row of the input data is converted to a list of strings.
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'csv_reader.py testdata.csv'))
+.. }}}
+
 ::
 
-    $ python csv_reader.py testdata.csv
-    ['Title 1', 'Title 2', 'Title 3']
-    ['1', 'a', '08/18/07']
-    ['2', 'b', '08/19/07']
-    ['3', 'c', '08/20/07']
-    ['4', 'd', '08/21/07']
-    ['5', 'e', '08/22/07']
-    ['6', 'f', '08/23/07']
-    ['7', 'g', '08/24/07']
-    ['8', 'h', '08/25/07']
-    ['9', 'i', '08/26/07']
+	$ python csv_reader.py testdata.csv
+	['Title 1', 'Title 2', 'Title 3']
+	['1', 'a', '08/18/07']
+	['2', 'b', '08/19/07']
+	['3', 'c', '08/20/07']
+	['4', 'd', '08/21/07']
+	['5', 'e', '08/22/07']
+	['6', 'f', '08/23/07']
+	['7', 'g', '08/24/07']
+	['8', 'h', '08/25/07']
+	['9', 'i', '08/26/07']
+
+.. {{{end}}}
 
 If you know that certain columns have specific types, you can convert the
 strings yourself, but csv does not automatically convert the input. It does
@@ -65,11 +71,17 @@ not always the same as a "line" of input from the file).
 .. include:: testlinebreak.csv
     :literal:
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'csv_reader.py testlinebreak.csv'))
+.. }}}
+
 ::
 
-    $ python csv_reader.py testlinebreak.csv 
-    ['Title 1', 'Title 2', 'Title 3']
-    ['1', 'first line\nsecond line', '08/18/07']
+	$ python csv_reader.py testlinebreak.csv
+	['Title 1', 'Title 2', 'Title 3']
+	['1', 'first line\nsecond line', '08/18/07']
+
+.. {{{end}}}
 
 Writing
 =======
@@ -85,21 +97,27 @@ writer object. For each row, use writerow() to print the row.
 The output does not look exactly like the exported data used in the reader
 example:
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'csv_writer.py testout.csv'))
+.. }}}
+
 ::
 
-    $ python csv_writer.py testout.csv 
-    $ cat testout.csv 
-    Title 1,Title 2,Title 3
-    1,a,08/01/07
-    2,b,08/02/07
-    3,c,08/03/07
-    4,d,08/04/07
-    5,e,08/05/07
-    6,f,08/06/07
-    7,g,08/07/07
-    8,h,08/08/07
-    9,i,08/09/07
-    10,j,08/10/07
+	$ python csv_writer.py testout.csv
+	Title 1,Title 2,Title 3
+	1,a,08/01/07
+	2,b,08/02/07
+	3,c,08/03/07
+	4,d,08/04/07
+	5,e,08/05/07
+	6,f,08/06/07
+	7,g,08/07/07
+	8,h,08/08/07
+	9,i,08/09/07
+	10,j,08/10/07
+	
+
+.. {{{end}}}
 
 The default quoting behavior is different for the writer, so the string column
 is not quoted. That is easy to change by adding a quoting argument to quote
@@ -111,22 +129,27 @@ non-numeric values:
 
 And now the strings are quoted:
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'csv_writer_quoted.py testout_quoted.csv'))
+.. }}}
+
 ::
 
-    $ python csv_writer_quoted.py testout_quoted.csv 
-    $ cat testout_quoted.csv 
-    "Title 1","Title 2","Title 3"
-    1,"a","08/01/07"
-    2,"b","08/02/07"
-    3,"c","08/03/07"
-    4,"d","08/04/07"
-    5,"e","08/05/07"
-    6,"f","08/06/07"
-    7,"g","08/07/07"
-    8,"h","08/08/07"
-    9,"i","08/09/07"
-    10,"j","08/10/07"
+	$ python csv_writer_quoted.py testout_quoted.csv
+	"Title 1","Title 2","Title 3"
+	1,"a","08/01/07"
+	2,"b","08/02/07"
+	3,"c","08/03/07"
+	4,"d","08/04/07"
+	5,"e","08/05/07"
+	6,"f","08/06/07"
+	7,"g","08/07/07"
+	8,"h","08/08/07"
+	9,"i","08/09/07"
+	10,"j","08/10/07"
+	
 
+.. {{{end}}}
 
 Quoting
 =======
@@ -181,18 +204,24 @@ The dictionary-based reader and writer are implemented as wrappers around the
 sequence-based classes, and use the same arguments and API. The only
 difference is that rows are dictionaries instead of lists or tuples.
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'csv_dictreader.py testdata.csv'))
+.. }}}
+
 ::
 
-    $ python csv_dictreader.py testdata.csv 
-    {'Title 1': '1', 'Title 3': '08/18/07', 'Title 2': 'a'}
-    {'Title 1': '2', 'Title 3': '08/19/07', 'Title 2': 'b'}
-    {'Title 1': '3', 'Title 3': '08/20/07', 'Title 2': 'c'}
-    {'Title 1': '4', 'Title 3': '08/21/07', 'Title 2': 'd'}
-    {'Title 1': '5', 'Title 3': '08/22/07', 'Title 2': 'e'}
-    {'Title 1': '6', 'Title 3': '08/23/07', 'Title 2': 'f'}
-    {'Title 1': '7', 'Title 3': '08/24/07', 'Title 2': 'g'}
-    {'Title 1': '8', 'Title 3': '08/25/07', 'Title 2': 'h'}
-    {'Title 1': '9', 'Title 3': '08/26/07', 'Title 2': 'i'}
+	$ python csv_dictreader.py testdata.csv
+	{'Title 1': '1', 'Title 3': '08/18/07', 'Title 2': 'a'}
+	{'Title 1': '2', 'Title 3': '08/19/07', 'Title 2': 'b'}
+	{'Title 1': '3', 'Title 3': '08/20/07', 'Title 2': 'c'}
+	{'Title 1': '4', 'Title 3': '08/21/07', 'Title 2': 'd'}
+	{'Title 1': '5', 'Title 3': '08/22/07', 'Title 2': 'e'}
+	{'Title 1': '6', 'Title 3': '08/23/07', 'Title 2': 'f'}
+	{'Title 1': '7', 'Title 3': '08/24/07', 'Title 2': 'g'}
+	{'Title 1': '8', 'Title 3': '08/25/07', 'Title 2': 'h'}
+	{'Title 1': '9', 'Title 3': '08/26/07', 'Title 2': 'i'}
+
+.. {{{end}}}
 
 The DictWriter must be given a list of field names so it knows how the columns
 should be ordered in the output.
@@ -201,21 +230,27 @@ should be ordered in the output.
     :literal:
     :start-after: #end_pymotw_header
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'csv_dictwriter.py testout.csv'))
+.. }}}
+
 ::
 
-    $ python csv_dictwriter.py testout.csv
-    $ cat testout.csv
-    Title 1,Title 2,Title 3
-    1,a,08/01/07
-    2,b,08/02/07
-    3,c,08/03/07
-    4,d,08/04/07
-    5,e,08/05/07
-    6,f,08/06/07
-    7,g,08/07/07
-    8,h,08/08/07
-    9,i,08/09/07
-    10,j,08/10/07
+	$ python csv_dictwriter.py testout.csv
+	Title 1,Title 2,Title 3
+	1,a,08/01/07
+	2,b,08/02/07
+	3,c,08/03/07
+	4,d,08/04/07
+	5,e,08/05/07
+	6,f,08/06/07
+	7,g,08/07/07
+	8,h,08/08/07
+	9,i,08/09/07
+	10,j,08/10/07
+	
+
+.. {{{end}}}
 
 .. seealso::
 
