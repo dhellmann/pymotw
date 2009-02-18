@@ -37,9 +37,7 @@ f = open(sys.argv[1], 'wt')
 try:
     fieldnames = ('Title 1', 'Title 2', 'Title 3')
     writer = csv.DictWriter(f, fieldnames=fieldnames)
-    headers = {}
-    for n in fieldnames:
-        headers[n] = n
+    headers = dict( (n,n) for n in fieldnames )
     writer.writerow(headers)
     for i in range(10):
         writer.writerow({ 'Title 1':i+1,

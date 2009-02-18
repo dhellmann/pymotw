@@ -1,6 +1,9 @@
 History
 =======
 
+1.84
+  - Updated DictWriter example in :mod:`csv` based on feedback from Trilok Khairnar.
+
 1.83
   - 15 Feb 2009, :mod:`grp`
   - Continue converting older articles to use cog.
