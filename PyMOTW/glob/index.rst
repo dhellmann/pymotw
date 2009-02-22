@@ -1,15 +1,12 @@
-===========
-glob
-===========
+=================================
+glob -- Filename pattern matching
+=================================
+
 .. module:: glob
     :synopsis: Use Unix shell rules to fine filenames matching a pattern.
 
-:Module: glob
 :Purpose: Use Unix shell rules to fine filenames matching a pattern.
 :Python Version: 1.4
-
-Description
-===========
 
 Even though the glob API is very simple, the module packs a lot of power. It
 is useful in any situation where your program needs to look for a list of
@@ -31,16 +28,26 @@ Example Data
 The examples below assume the following test files are present in the current
 working directory:
 
+.. {{{cog
+.. from paver.path import path
+.. outdir = path(cog.inFile).dirname() / 'dir'
+.. outdir.rmtree()
+.. cog.out(run_script(cog.inFile, 'glob_maketestdata.py'))
+.. }}}
+
 ::
 
-    dir/
-    dir/file.txt
-    dir/file1.txt
-    dir/file2.txt
-    dir/filea.txt
-    dir/fileb.txt
-    dir/subdir/
-    dir/subdir/subfile.txt
+	$ python glob_maketestdata.py
+	dir
+	dir/file.txt
+	dir/file1.txt
+	dir/file2.txt
+	dir/filea.txt
+	dir/fileb.txt
+	dir/subdir
+	dir/subdir/subfile.txt
+
+.. {{{end}}}
 
 Use the glob_maketestdata.py script in the sample code to create these files
 if you want to run the examples.
@@ -58,11 +65,21 @@ example, `dir/*`.
 The pattern matches every pathname (file or directory) in the directory dir,
 without recursing further into subdirectories.
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'glob_asterisk.py'))
+.. }}}
+
 ::
 
-    $ python glob_asterisk.py
-    ['dir/file.txt', 'dir/file1.txt', 'dir/file2.txt',
-    'dir/filea.txt', 'dir/fileb.txt', 'dir/subdir']
+	$ python glob_asterisk.py
+	dir/file.txt
+	dir/file1.txt
+	dir/file2.txt
+	dir/filea.txt
+	dir/fileb.txt
+	dir/subdir
+
+.. {{{end}}}
 
 To list files in a subdirectory, you must include the subdirectory in the
 pattern:
@@ -74,13 +91,19 @@ pattern:
 The first case above lists the subdirectory name explicitly, while the second
 case depends on a wildcard to find the directory.
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'glob_subdir.py'))
+.. }}}
+
 ::
 
-    $ python glob_subdir.py
-    Named explicitly:
-    ['dir/subdir/subfile.txt']
-    Named with wildcard:
-    ['dir/subdir/subfile.txt']
+	$ python glob_subdir.py
+	Named explicitly:
+		dir/subdir/subfile.txt
+	Named with wildcard:
+		dir/subdir/subfile.txt
+
+.. {{{end}}}
 
 The results, in this case, are the same. If there was another subdirectory,
 the wildcard would match both subdirectories and include the filenames from
@@ -99,11 +122,19 @@ any single character in that position in the name. For example,
 Matches all of the filenames which begin with "file", have one more character
 of any type, then end with ".txt".
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'glob_question.py'))
+.. }}}
+
 ::
 
-    $ python glob_question.py
-    ['dir/file1.txt', 'dir/file2.txt',
-    'dir/filea.txt', 'dir/fileb.txt']
+	$ python glob_question.py
+	dir/file1.txt
+	dir/file2.txt
+	dir/filea.txt
+	dir/fileb.txt
+
+.. {{{end}}}
 
 
 Character Ranges
@@ -122,10 +153,17 @@ on the character code for each letter/digit, and the dash indicates an
 unbroken range of sequential characters. The same range value could be written
 [0123456789], in this case.
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'glob_charrange.py'))
+.. }}}
+
 ::
 
-    $ python glob_charrange.py
-    ['dir/file1.txt', 'dir/file2.txt']
+	$ python glob_charrange.py
+	dir/file1.txt
+	dir/file2.txt
+
+.. {{{end}}}
 
 
 .. seealso::
@@ -135,3 +173,6 @@ unbroken range of sequential characters. The same range value could be written
 
     `Pattern Matching Notation <http://www.opengroup.org/onlinepubs/000095399/utilities/xcu_chap02.html#tag_02_13>`_
         An explanation of globbing from The Open Group's Shell Command Language specification.
+
+    :mod:`fnmatch`
+        Filename matching implementation.

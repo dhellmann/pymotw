@@ -1,3 +1,5 @@
+.. Not using cog because these examples are interactive.
+
 ==========================================================
 getpass -- Prompt the user for a password without echoing.
 ==========================================================

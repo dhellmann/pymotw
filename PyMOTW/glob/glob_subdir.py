@@ -33,7 +33,9 @@ __module_id__ = "$Id$"
 import glob
 
 print 'Named explicitly:'
-print glob.glob('dir/subdir/*')
+for name in glob.glob('dir/subdir/*'):
+    print '\t', name
 
 print 'Named with wildcard:'
-print glob.glob('dir/*/*')
+for name in glob.glob('dir/*/*'):
+    print '\t', name

@@ -31,4 +31,5 @@ __module_id__ = "$Id$"
 #end_pymotw_header
 
 import glob
-print glob.glob('dir/*')
+for name in glob.glob('dir/*'):
+    print name

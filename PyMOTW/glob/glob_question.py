@@ -32,4 +32,5 @@ __module_id__ = "$Id$"
 
 import glob
 
-print glob.glob('dir/file?.txt')
+for name in glob.glob('dir/file?.txt'):
+    print name

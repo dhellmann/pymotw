@@ -32,5 +32,5 @@ __module_id__ = "$Id$"
 
 import glob
 
-filenames = glob.glob('*.py')
-print filenames
+for name in glob.glob('*.py'):
+    print name
