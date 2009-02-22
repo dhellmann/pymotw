@@ -311,7 +311,7 @@ When opening an existing archive for reading, you can specify ``"r:*"`` to have 
 	README.txt                     75        
 	tarfile_compression.tar        10240      ['README.txt']
 	tarfile_compression.tar.gz     213        ['README.txt']
-	tarfile_compression.tar.bz2    189        ['README.txt']
+	tarfile_compression.tar.bz2    186        ['README.txt']
 
 .. {{{end}}}
 
