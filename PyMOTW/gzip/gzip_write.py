@@ -12,11 +12,12 @@ __version__ = "$Id$"
 import gzip
 import os
 
-output = gzip.open('example.txt.gz', 'wb')
+outfilename = 'example.txt.gz'
+output = gzip.open(outfilename, 'wb')
 try:
     output.write('Contents of the example file go here.\n')
 finally:
     output.close()
 
-os.system('ls -l example.txt.gz')
-os.system('file example.txt.gz')
+print outfilename, 'contains', os.stat(outfilename).st_size, 'bytes of compressed data'
+os.system('file -b --mime %s' % outfilename)

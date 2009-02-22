@@ -1,6 +1,6 @@
-=================================
-gzip -- Read and write gzip files
-=================================
+====================================
+gzip -- Read and write GNU zip files
+====================================
 
 .. module:: gzip
     :synopsis: Read and write gzip files
@@ -19,11 +19,17 @@ The module-level function ``open()`` creates an instance of the file-like class 
     :literal:
     :start-after: #end_pymotw_header
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'gzip_write.py'))
+.. }}}
+
 ::
 
-    $ python gzip_write.py
-    -rw-r--r--  1 dhellmann  dhellmann  68 Dec  7 10:44 example.txt.gz
-    example.txt.gz: gzip compressed data, was "example.txt", last modified: Sun Dec  7 10:44:42 2008, max compression
+	$ python gzip_write.py
+	application/x-gzip
+	example.txt.gz contains 68 bytes of compressed data
+
+.. {{{end}}}
 
 Different compression levels can be used by passing a *compresslevel* argument.  Valid values range from 1 to 9, inclusive.  Lower values are faster and result in less compression.  Higher values are slower and compress more, up to a point.
 
@@ -33,19 +39,28 @@ Different compression levels can be used by passing a *compresslevel* argument. 
 
 The center column of numbers in the output of the script is the size in bytes of the files produced.  As you see, for this input data, the higher compression values do not necessarily pay off in decreased storage space.  Results will vary, depending on the input data.
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'gzip_compresslevel.py'))
+.. }}}
+
 ::
 
-    $ python gzip_compresslevel.py
-    Input contains 754688 bytes
-    999397133 9839 compress-level-1.gz
-    2612203818 8260 compress-level-2.gz
-    3676863750 8221 compress-level-3.gz
-    4292954809 4160 compress-level-4.gz
-    3686111199 4160 compress-level-5.gz
-    3075010677 4160 compress-level-6.gz
-    2468097299 4160 compress-level-7.gz
-    1221970342 4160 compress-level-8.gz
-    1820398784 4160 compress-level-9.gz
+	$ python gzip_compresslevel.py
+	Input contains 754688 bytes
+	
+	Level  Size        Checksum
+	-----  ----------  ---------------------------------
+	    1        9839  c8846d31ca545a7a0e8fdd949c54c45a
+	    2        8260  27e5aae3ba8bd0d3b198b0a5ffc00596
+	    3        8221  3945c1528f3021121a15be354dd5486c
+	    4        4160  a0337f59f61cb6cba74e109010f67816
+	    5        4160  a2ecdfbf94475207363c110f45ea88f8
+	    6        4160  e49bb2a8c96e07d1330bc0d17627b9c5
+	    7        4160  11af8a85058684d8434baf0c4fbcab78
+	    8        4160  ada8a279ccb0d83061eccc3899dcf2c9
+	    9        4160  0ad228f1007db41284284ba702009f3a
+
+.. {{{end}}}
 
 A GzipFile instance also includes a ``writelines()`` method that can be used to write a sequence of strings.
 
@@ -53,19 +68,25 @@ A GzipFile instance also includes a ``writelines()`` method that can be used to 
     :literal:
     :start-after: #end_pymotw_header
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'gzip_writelines.py'))
+.. }}}
+
 ::
 
-    $ python gzip_writelines.py
-    The same line, over and over.
-    The same line, over and over.
-    The same line, over and over.
-    The same line, over and over.
-    The same line, over and over.
-    The same line, over and over.
-    The same line, over and over.
-    The same line, over and over.
-    The same line, over and over.
-    The same line, over and over.
+	$ python gzip_writelines.py
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+
+.. {{{end}}}
 
 
 Reading Compressed Data
@@ -79,10 +100,17 @@ To read data back from previously compressed files, simply open the file with mo
 
 This example reads the file written by ``gzip_write.py`` from the previous section.
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'gzip_read.py'))
+.. }}}
+
 ::
 
-    $ python gzip_read.py
-    Contents of the example file go here.
+	$ python gzip_read.py
+	Contents of the example file go here.
+	
+
+.. {{{end}}}
     
 While reading a file, it is also possible to seek and read only part of the data.
 
@@ -92,16 +120,22 @@ While reading a file, it is also possible to seek and read only part of the data
 
 The ``seek()`` position is relative to the *uncompressed* data, so the caller does not even need to know that the data file is compressed.
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'gzip_seek.py'))
+.. }}}
+
 ::
 
-    $ python gzip_seek.py
-    Entire file:
-    Contents of the example file go here.
+	$ python gzip_seek.py
+	Entire file:
+	Contents of the example file go here.
+	
+	Starting at position 5 for 10 bytes:
+	nts of the
+	
+	True
 
-    Starting at position 5 for 10 bytes:
-    nts of the
-
-    True
+.. {{{end}}}
 
 
 Working with Streams
@@ -121,35 +155,43 @@ It is possible to use the GzipFile class directly to compress or uncompress a da
     working with streams of compressed data, you may want to prefix the data with
     an integer representing the actual amount of data to be read.
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'gzip_StringIO.py'))
+.. }}}
+
 ::
 
-    $ python gzip_StringIO.py
-    UNCOMPRESSED: 300
-    The same line, over and over.
-    The same line, over and over.
-    The same line, over and over.
-    The same line, over and over.
-    The same line, over and over.
-    The same line, over and over.
-    The same line, over and over.
-    The same line, over and over.
-    The same line, over and over.
-    The same line, over and over.
-    
-    COMPRESSED: 48
-    1f8b080097fc3b4902ff0ac94855284ecc4d55c8c9cc4bd551c82f4b2d5248cc4b0133f4b8424665916401000000ffff
-    
-    RE-READ: 300
-    The same line, over and over.
-    The same line, over and over.
-    The same line, over and over.
-    The same line, over and over.
-    The same line, over and over.
-    The same line, over and over.
-    The same line, over and over.
-    The same line, over and over.
-    The same line, over and over.
-    The same line, over and over.
+	$ python gzip_StringIO.py
+	UNCOMPRESSED: 300
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	
+	COMPRESSED: 48
+	1f8b080084e3a14902ff0ac94855284ecc4d55c8c9cc4bd551c82f4b2d5248cc4b0133f4b8424665916401000000ffff
+	
+	RE-READ: 300
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	
+
+.. {{{end}}}
+
 
 
 .. seealso::

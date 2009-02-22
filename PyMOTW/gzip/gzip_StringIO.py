@@ -28,7 +28,7 @@ print binascii.hexlify(compressed_data)
 
 inbuffer = StringIO(compressed_data)
 f = gzip.GzipFile(mode='rb', fileobj=inbuffer)
-reread_data = f.read()#len(uncompressed_data))
+reread_data = f.read(len(uncompressed_data))
 f.close()
 
 print
