@@ -18,7 +18,7 @@ print 'Input contains %d bytes' % len(data)
 print
 
 print 'Level  Size        Checksum'
-print '-----  ----------  ---------------------------------'
+print '-----  ----------  ----------------------------------------'
 
 for i in xrange(1, 10):
     filename = 'compress-level-%s.gz' % i
@@ -28,5 +28,5 @@ for i in xrange(1, 10):
     finally:
         output.close()
     size = os.stat(filename).st_size
-    cksum = hashlib.md5(open(filename, 'rb').read()).hexdigest()
+    cksum = hashlib.sha1(open(filename, 'rb').read()).hexdigest()
     print '%5d  %10d  %s' % (i, size, cksum)
