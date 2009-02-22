@@ -50,15 +50,15 @@ The center column of numbers in the output of the script is the size in bytes of
 	
 	Level  Size        Checksum
 	-----  ----------  ---------------------------------
-	    1        9839  c8846d31ca545a7a0e8fdd949c54c45a
-	    2        8260  27e5aae3ba8bd0d3b198b0a5ffc00596
-	    3        8221  3945c1528f3021121a15be354dd5486c
-	    4        4160  a0337f59f61cb6cba74e109010f67816
-	    5        4160  a2ecdfbf94475207363c110f45ea88f8
-	    6        4160  e49bb2a8c96e07d1330bc0d17627b9c5
-	    7        4160  11af8a85058684d8434baf0c4fbcab78
-	    8        4160  ada8a279ccb0d83061eccc3899dcf2c9
-	    9        4160  0ad228f1007db41284284ba702009f3a
+	    1        9839  86e0b93e34d5c402a61a9a136682fcbb
+	    2        8260  b0ea2a3985a72083ceac93c0ef1d15ac
+	    3        8221  0936a02cbd3c258db0456f8cb2b1b9fc
+	    4        4160  464cc3d60d7bd8481e8353146ed91fd6
+	    5        4160  e22f9cbfabbb0f39a9fdf77f7a51eb99
+	    6        4160  c9d17ecae873a52af4573204ac10e4f3
+	    7        4160  a9cacc735a053ebb93fa2e7ec3ced61c
+	    8        4160  4b40db1e10fc9799de972415db07744d
+	    9        4160  e07e2f071b2335a53ff39949017c2307
 
 .. {{{end}}}
 
@@ -175,7 +175,7 @@ It is possible to use the GzipFile class directly to compress or uncompress a da
 	The same line, over and over.
 	
 	COMPRESSED: 48
-	1f8b080084e3a14902ff0ac94855284ecc4d55c8c9cc4bd551c82f4b2d5248cc4b0133f4b8424665916401000000ffff
+	1f8b080082e4a14902ff0ac94855284ecc4d55c8c9cc4bd551c82f4b2d5248cc4b0133f4b8424665916401000000ffff
 	
 	RE-READ: 300
 	The same line, over and over.
