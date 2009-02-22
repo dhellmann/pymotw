@@ -30,15 +30,11 @@ the partial object.
 At the end of the example, the first partial created is invoked without
 passing a value for a, causing an exception.
 
-.. {{{cog
-.. cog.out(run_script(cog.inFile, 'functools_partial.py'))
-.. }}}
-
 ::
 
 	$ python functools_partial.py
 	myfunc:
-		object: <function myfunc at 0x822f0>
+		object: <function myfunc at 0x822b0>
 		__name__: myfunc
 		__doc__ 'Docstring for myfunc().'
 		called myfunc with: ('a', 3)
@@ -46,7 +42,7 @@ passing a value for a, causing an exception.
 	partial with named default:
 		object: <functools.partial object at 0x880f0>
 		__doc__ 'partial(func, *args, **keywords) - new function with partial application\n\tof the given arguments and keywords.\n'
-		func: <function myfunc at 0x822f0>
+		func: <function myfunc at 0x822b0>
 		args: ()
 		keywords: {'b': 4}
 		called myfunc with: ('default a', 4)
@@ -55,7 +51,7 @@ passing a value for a, causing an exception.
 	partial with defaults:
 		object: <functools.partial object at 0x88120>
 		__doc__ 'partial(func, *args, **keywords) - new function with partial application\n\tof the given arguments and keywords.\n'
-		func: <function myfunc at 0x822f0>
+		func: <function myfunc at 0x822b0>
 		args: ('default a',)
 		keywords: {'b': 99}
 		called myfunc with: ('default a', 99)
@@ -66,9 +62,6 @@ passing a value for a, causing an exception.
 	  File "functools_partial.py", line 49, in <module>
 	    p1()
 	TypeError: myfunc() takes at least 1 non-keyword argument (0 given)
-
-.. {{{end}}}
-
 
 
 update_wrapper
@@ -88,15 +81,11 @@ The attributes added to the wrapper are defined in
 functools.WRAPPER_ASSIGNMENTS, while functools.WRAPPER_UPDATES lists values to
 be modified.
 
-.. {{{cog
-.. cog.out(run_script(cog.inFile, 'functools_update_wrapper.py'))
-.. }}}
-
 ::
 
 	$ python functools_update_wrapper.py
 	myfunc:
-		object: <function myfunc at 0x82270>
+		object: <function myfunc at 0x82230>
 		__name__: myfunc
 		__doc__ 'Docstring for myfunc().'
 	
@@ -113,9 +102,6 @@ be modified.
 		object: <functools.partial object at 0x7bfc0>
 		__name__: myfunc
 		__doc__ 'Docstring for myfunc().'
-	
-
-.. {{{end}}}
 
 Methods and Other Callables
 ===========================
@@ -125,10 +111,6 @@ Partials work with any callable object, including methods and instances.
 .. include:: functools_method.py
     :literal:
     :start-after: #end_pymotw_header
-
-.. {{{cog
-.. cog.out(run_script(cog.inFile, 'functools_method.py'))
-.. }}}
 
 ::
 
@@ -169,8 +151,6 @@ Partials work with any callable object, including methods and instances.
 		__doc__ 'partial(func, *args, **keywords) - new function with partial application\n\tof the given arguments and keywords.\n'
 		called object with: (<__main__.MyClass object at 0x85b10>, 'e goes here', 7)
 
-.. {{{end}}}
-
 wraps
 =====
 
@@ -183,15 +163,11 @@ to be used as a decorator itself and to apply update_wrapper() automatically.
     :literal:
     :start-after: #end_pymotw_header
 
-.. {{{cog
-.. cog.out(run_script(cog.inFile, 'functools_wraps.py'))
-.. }}}
-
 ::
 
 	$ python functools_wraps.py
 	myfunc:
-		object: <function myfunc at 0x82370>
+		object: <function myfunc at 0x82330>
 		__name__: myfunc
 		__doc__ None
 	
@@ -199,7 +175,7 @@ to be used as a decorator itself and to apply update_wrapper() automatically.
 		myfunc: ('unwrapped, passing b', 3)
 	
 	wrapped_myfunc:
-		object: <function myfunc at 0x823b0>
+		object: <function myfunc at 0x82370>
 		__name__: myfunc
 		__doc__ None
 	
@@ -207,8 +183,6 @@ to be used as a decorator itself and to apply update_wrapper() automatically.
 			myfunc: ('decorated defaults', 1)
 		decorated: ('args to decorated', 4)
 			myfunc: ('args to decorated', 4)
-
-.. {{{end}}}
 
 .. seealso::
 

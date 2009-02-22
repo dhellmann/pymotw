@@ -28,6 +28,7 @@
 """
 
 __version__ = "$Id$"
+#end_pymotw_header
 
 from zipfile_infolist import print_info
 import zipfile

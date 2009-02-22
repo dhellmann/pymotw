@@ -1,15 +1,14 @@
-=======
-zipfile
-=======
+===========================================
+zipfile -- Read and write ZIP archive files
+===========================================
+
 .. module:: zipfile
     :synopsis: Read and write ZIP archive files.
 
-:Module: zipfile
 :Purpose: Read and write ZIP archive files.
 :Python Version: 1.6 and later
-:Abstract:
 
-    The zipfile module can be used to manipulate ZIP archive files. 
+The zipfile module can be used to manipulate ZIP archive files. 
 
 Limitations
 ===========
@@ -24,23 +23,25 @@ Testing ZIP Files
 The is_zipfile() function returns a boolean indicating whether or not the
 filename passed as an argument refers to a valid ZIP file.
 
-::
-
-    import zipfile
-
-    for filename in [ 'README.txt', 'example.zip', 
-                      'bad_example.zip', 'notthere.zip' ]:
-        print '%20s  %s' % (filename, zipfile.is_zipfile(filename))
+.. include:: zipfile_is_zipfile.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 Notice that if the file does not exist, is_zipfile() returns False.
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'zipfile_is_zipfile.py'))
+.. }}}
+
 ::
 
-    $ python zipfile_is_zipfile.py 
-              README.txt  False
-             example.zip  True
-         bad_example.zip  False
-            notthere.zip  False
+	$ python zipfile_is_zipfile.py
+	          README.txt  False
+	         example.zip  True
+	     bad_example.zip  False
+	        notthere.zip  False
+
+.. {{{end}}}
 
 Reading Meta-data from a ZIP Archive
 ====================================
@@ -51,82 +52,73 @@ adding additional files.
 
 To read the names of the files in an existing archive, use namelist():
 
-::
-
-    import zipfile
-
-    zf = zipfile.ZipFile('example.zip', 'r')
-    print zf.namelist()
+.. include:: zipfile_namelist.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 The return value is a list of strings with the names of the archive contents:
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'zipfile_namelist.py'))
+.. }}}
+
 ::
 
-    $ python zipfile_namelist.py 
-    ['README.txt']
+	$ python zipfile_namelist.py
+	['README.txt']
+
+.. {{{end}}}
 
 The list of names is only part of the information available from the archive,
 though. To access all of the meta-data about the ZIP contents, use the
 infolist() or getinfo() methods.
 
-::
-
-    import datetime
-    import zipfile
-
-    def print_info(archive_name):
-        zf = zipfile.ZipFile(archive_name)
-        for info in zf.infolist():
-            print info.filename
-            print '\tComment:\t', info.comment
-            print '\tModified:\t', datetime.datetime(*info.date_time)
-            print '\tSystem:\t\t', info.create_system, '(0 = Windows, 3 = Unix)'
-            print '\tZIP version:\t', info.create_version
-            print '\tCompressed:\t', info.compress_size, 'bytes'
-            print '\tUncompressed:\t', info.file_size, 'bytes'
-            print
-
-    if __name__ == '__main__':
-        print_info('example.zip')
+.. include:: zipfile_infolist.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 There are additional fields other than those printed here, but deciphering the
 values into anything useful requires careful reading of the PKZIP Application
 Note with the ZIP file specification.
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'zipfile_infolist.py'))
+.. }}}
+
 ::
 
-    $ python zipfile_infolist.py 
-    README.txt
-            Comment:
-            Modified:       2007-12-16 10:08:52
-            System:         3 (0 = Windows, 3 = Unix)
-            ZIP version:    23
-            Compressed:     63 bytes
-            Uncompressed:   75 bytes
+	$ python zipfile_infolist.py
+	README.txt
+		Comment:	
+		Modified:	2007-12-16 10:08:52
+		System:		3 (0 = Windows, 3 = Unix)
+		ZIP version:	23
+		Compressed:	63 bytes
+		Uncompressed:	75 bytes
+	
+
+.. {{{end}}}
 
 If you know in advance the name of the archive member, you can retrieve its
 ZipInfo object with getinfo().
 
-::
-
-    import zipfile
-
-    zf = zipfile.ZipFile('example.zip')
-    for filename in [ 'README.txt', 'notthere.txt' ]:
-        try:
-            info = zf.getinfo(filename)
-        except KeyError:
-            print 'ERROR: Did not find %s in zip file' % filename
-        else:
-            print '%s is %d bytes' % (info.filename, info.file_size)
+.. include:: zipfile_getinfo.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 If the archive member is not present, getinfo() raises a KeyError.
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'zipfile_getinfo.py'))
+.. }}}
+
 ::
 
-    $ python zipfile_getinfo.py 
-    README.txt is 75 bytes
-    ERROR: Did not find notthere.txt in zip file
+	$ python zipfile_getinfo.py
+	README.txt is 75 bytes
+	ERROR: Did not find notthere.txt in zip file
+
+.. {{{end}}}
 
 Extracting Archived Files From a ZIP Archive
 ============================================
@@ -134,30 +126,26 @@ Extracting Archived Files From a ZIP Archive
 To access the data from an archive member, use the read() method, passing the
 member's name.
 
-::
-
-    import zipfile
-
-    zf = zipfile.ZipFile('example.zip')
-    for filename in [ 'README.txt', 'notthere.txt' ]:
-        try:
-            data = zf.read(filename)
-        except KeyError:
-            print 'ERROR: Did not find %s in zip file' % filename
-        else:
-            print filename, ':'
-            print repr(data)
-        print
+.. include:: zipfile_read.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 The data is automatically decompressed for you, if necessary.
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'zipfile_read.py'))
+.. }}}
+
 ::
 
-    $ python zipfile_read.py 
-    README.txt :
-    'The examples for the zipfile module use this file and example.zip as data.\n'
+	$ python zipfile_read.py
+	README.txt :
+	'The examples for the zipfile module use this file and example.zip as data.\n'
+	
+	ERROR: Did not find notthere.txt in zip file
+	
 
-    ERROR: Did not find notthere.txt in zip file
+.. {{{end}}}
 
 Creating New Archives
 =====================
@@ -166,24 +154,9 @@ To create a new archive, simple instantiate the ZipFile with a mode of 'w'.
 Any existing file is truncated and a new archive is started. To add files, use
 the write() method.
 
-::
-
-    __version__ = "$Id$"
-
-    from zipfile_infolist import print_info
-    import zipfile
-
-    print 'creating archive'
-    zf = zipfile.ZipFile('zipfile_write.zip', mode='w')
-    try:
-        print 'adding README.txt'
-        zf.write('README.txt')
-    finally:
-        print 'closing'
-        zf.close()
-
-    print
-    print_info('zipfile_write.zip')
+.. include:: zipfile_write.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 By default, the contents of the archive are not compressed:
 
@@ -207,37 +180,16 @@ set the compression mode for individual files or for the archive as a whole
 using zipfile.ZIP_DEFLATED. The default compression mode is
 zipfile.ZIP_STORED.
 
-::
-
-    from zipfile_infolist import print_info
-    import zipfile
-    try:
-        import zlib
-        compression = zipfile.ZIP_DEFLATED
-    except:
-        compression = zipfile.ZIP_STORED
-
-    modes = { zipfile.ZIP_DEFLATED: 'deflated',
-              zipfile.ZIP_STORED:   'stored',
-              }
-
-    print 'creating archive'
-    zf = zipfile.ZipFile('zipfile_write_compression.zip', mode='w')
-    try:
-        print 'adding README.txt with compression mode', modes[compression]
-        zf.write('README.txt', compress_type=compression)
-    finally:
-        print 'closing'
-        zf.close()
-
-    print
-    print_info('zipfile_write_compression.zip')
+.. include:: zipfile_write_compression.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 This time the archive member is compressed:
 
 ::
 
-    $ python zipfile_write_compression.py creating archive
+    $ python zipfile_write_compression.py 
+    creating archive
     adding README.txt with compression mode deflated
     closing
 
@@ -256,17 +208,9 @@ Using Alternate Archive Member Names
 It is easy to add a file to an archive using a name other than the original
 file name, by passing the arcname argument to write().
 
-::
-
-    from zipfile_infolist import print_info
-    import zipfile
-
-    zf = zipfile.ZipFile('zipfile_write_arcname.zip', mode='w')
-    try:
-        zf.write('README.txt', arcname='NOT_README.txt')
-    finally:
-        zf.close()
-    print_info('zipfile_write_arcname.zip')
+.. include:: zipfile_write_arcname.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 There is no sign of the original filename in the archive:
 
@@ -289,25 +233,9 @@ come from an existing file. Rather than writing the data to a file, then
 adding that file to the ZIP archive, you can use the writestr() method to add
 a string of bytes to the archive directly.
 
-::
-
-    from zipfile_infolist import print_info
-    import zipfile
-
-    msg = 'This data did not exist in a file before being added to the ZIP file'
-    zf = zipfile.ZipFile('zipfile_writestr.zip', 
-                         mode='w',
-                         compression=zipfile.ZIP_DEFLATED, 
-                         )
-    try:
-        zf.writestr('from_string.txt', msg)
-    finally:
-        zf.close()
-
-    print_info('zipfile_writestr.zip')
-
-    zf = zipfile.ZipFile('zipfile_writestr.zip', 'r')
-    print zf.read('from_string.txt')
+.. include:: zipfile_writestr.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 
 In this case, I used the compress argument to ZipFile to compress the data,
@@ -333,35 +261,17 @@ By default, the modification date is computed for you when you add a file or
 string to the archive. When using writestr(), it is also possible to pass a
 ZipInfo instance to define that and other meta-data yourself.
 
-::
-
-    import time
-    import zipfile
-    from zipfile_infolist import print_info
-
-    msg = 'This data did not exist in a file before being added to the ZIP file'
-    zf = zipfile.ZipFile('zipfile_writestr_zipinfo.zip', 
-                         mode='w',
-                         )
-    try:
-        info = zipfile.ZipInfo('from_string.txt', 
-                               date_time=time.localtime(time.time()),
-                               )
-        info.compress_type=zipfile.ZIP_DEFLATED
-        info.comment='Remarks go here'
-        info.create_system=0
-        zf.writestr(info, msg)
-    finally:
-        zf.close()
-
-    print_info('zipfile_writestr_zipinfo.zip')
+.. include:: zipfile_writestr_zipinfo.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 In this example, I set the modified time to the current time, compress the
 data, provide a false value for create_system, and add a comment.
 
 ::
 
-    $ python zipfile_writestr_zipinfo.pyfrom_string.txt
+    $ python zipfile_writestr_zipinfo.py
+    from_string.txt
             Comment:        Remarks go here
             Modified:       2007-12-16 11:44:14
             System:         0 (0 = Windows, 3 = Unix)
@@ -376,30 +286,9 @@ In addition to creating new archives, it is possible to append to an existing
 archive or add an archive at the end of an existing file (such as a .exe file
 for a self-extracting archive). To open a file to append to it, use mode 'a'.
 
-::
-
-    from zipfile_infolist import print_info
-    import zipfile
-
-    print 'creating archive'
-    zf = zipfile.ZipFile('zipfile_append.zip', mode='w')
-    try:
-        zf.write('README.txt')
-    finally:
-        zf.close()
-
-    print
-    print_info('zipfile_append.zip')
-
-    print 'appending to the archive'
-    zf = zipfile.ZipFile('zipfile_append.zip', mode='a')
-    try:
-        zf.write('README.txt', arcname='README2.txt')
-    finally:
-        zf.close()
-
-    print
-    print_info('zipfile_append.zip')
+.. include:: zipfile_append.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 The resulting archive ends up with 2 members:
 
@@ -444,26 +333,9 @@ extra method writepy(), PyZipFile scans a directory for .py files and adds the
 corresponding .pyo or .pyc file to the archive. If neither compiled form
 exists, a .pyc file is created and added.
 
-::
-
-    import sys
-    import zipfile
-
-    if __name__ == '__main__':
-        zf = zipfile.PyZipFile('zipfile_pyzipfile.zip', mode='w')
-        try:
-            zf.debug = 3
-            print 'Adding python files'
-            zf.writepy('.')
-        finally:
-            zf.close()
-        for name in zf.namelist():
-            print name
-
-        print
-        sys.path.insert(0, 'zipfile_pyzipfile.zip')
-        import zipfile_pyzipfile
-        print 'Imported from:', zipfile_pyzipfile.__file__
+.. include:: zipfile_pyzipfile.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 When I set the debug attribute of the PyZipFile to 3, verbose debugging is
 enabled and you can observe as it compiles each .py file it finds.
@@ -518,5 +390,13 @@ enabled and you can observe as it compiles each .py file it finds.
     
     Imported from: zipfile_pyzipfile.zip/zipfile_pyzipfile.pyc
 
+.. seealso::
 
+    `zipfile <http://docs.python.org/library/zipfile.html>`_
+        The standard library documentation for this module.
 
+    :mod:`zlib`
+        ZIP compression library
+
+    :mod:`tarfile`
+        Read and write tar archives

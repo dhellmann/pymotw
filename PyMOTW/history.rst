@@ -2,7 +2,9 @@ History
 =======
 
 1.84
+  - 22 Feb 2009, :mod:`tarfile`
   - Updated DictWriter example in :mod:`csv` based on feedback from Trilok Khairnar.
+  - Cleaned up use of cog in a few older modules
 
 1.83
   - 15 Feb 2009, :mod:`grp`

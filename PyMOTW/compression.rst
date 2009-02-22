@@ -7,5 +7,6 @@ Data Compression and Archiving
 
     bz2/index
     gzip/index
+    tarfile/index
     zipfile/index
     zlib/index
