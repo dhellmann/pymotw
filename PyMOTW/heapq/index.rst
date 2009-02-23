@@ -43,55 +43,62 @@ items are added from a data source.
     :literal:
     :start-after: #end_pymotw_header
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'heapq_heappush.py'))
+.. }}}
+
 ::
 
-    $ python heapq_heappush.py
-    random : [19, 9, 4, 10, 11, 8, 2]
+	$ python heapq_heappush.py
+	random : [19, 9, 4, 10, 11, 8, 2]
+	
+	add  19:
+	
+	                 19                 
+	------------------------------------
+	
+	add   9:
+	
+	                 9                  
+	        19        
+	------------------------------------
+	
+	add   4:
+	
+	                 4                  
+	        19                9         
+	------------------------------------
+	
+	add  10:
+	
+	                 4                  
+	        10                9         
+	    19   
+	------------------------------------
+	
+	add  11:
+	
+	                 4                  
+	        10                9         
+	    19       11   
+	------------------------------------
+	
+	add   8:
+	
+	                 4                  
+	        10                8         
+	    19       11       9    
+	------------------------------------
+	
+	add   2:
+	
+	                 2                  
+	        10                4         
+	    19       11       9        8    
+	------------------------------------
+	
 
-    add  19:
-
-                     19                 
-    ------------------------------------
-
-    add   9:
-
-                     9                  
-            19        
-    ------------------------------------
-
-    add   4:
-
-                     4                  
-            19                9         
-    ------------------------------------
-
-    add  10:
-
-                     4                  
-            10                9         
-        19   
-    ------------------------------------
-
-    add  11:
-
-                     4                  
-            10                9         
-        19       11   
-    ------------------------------------
-
-    add   8:
-
-                     4                  
-            10                8         
-        19       11       9    
-    ------------------------------------
-
-    add   2:
-
-                     2                  
-            10                4         
-        19       11       9        8    
-    ------------------------------------
+.. {{{end}}}
 
 
 If the data is already in memory, it is more efficient to use heapify() to
@@ -101,16 +108,23 @@ rearrange the items of the list in place.
     :literal:
     :start-after: #end_pymotw_header
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'heapq_heapify.py'))
+.. }}}
+
 ::
 
-    $ python heapq_heapify.py
-    random    : [19, 9, 4, 10, 11, 8, 2]
-    heapified :
+	$ python heapq_heapify.py
+	random    : [19, 9, 4, 10, 11, 8, 2]
+	heapified :
+	
+	                 2                  
+	        9                 4         
+	    10       11       8        19   
+	------------------------------------
+	
 
-                     2                  
-            9                 4         
-        10       11       8        19   
-    ------------------------------------
+.. {{{end}}}
 
 
 Accessing Contents of a Heap
@@ -124,61 +138,67 @@ heapify() and heappop() are used to sort a list of numbers.
     :literal:
     :start-after: #end_pymotw_header
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'heapq_heappop.py'))
+.. }}}
+
 ::
 
-    $ python heapq_heappop.py
-    random    : [19, 9, 4, 10, 11, 8, 2]
-    heapified :
+	$ python heapq_heappop.py
+	random    : [19, 9, 4, 10, 11, 8, 2]
+	heapified :
+	
+	                 2                  
+	        9                 4         
+	    10       11       8        19   
+	------------------------------------
+	
+	
+	pop      2:
+	
+	                 4                  
+	        9                 8         
+	    10       11       19   
+	------------------------------------
+	
+	pop      4:
+	
+	                 8                  
+	        9                 19        
+	    10       11   
+	------------------------------------
+	
+	pop      8:
+	
+	                 9                  
+	        10                19        
+	    11   
+	------------------------------------
+	
+	pop      9:
+	
+	                 10                 
+	        11                19        
+	------------------------------------
+	
+	pop     10:
+	
+	                 11                 
+	        19        
+	------------------------------------
+	
+	pop     11:
+	
+	                 19                 
+	------------------------------------
+	
+	pop     19:
+	
+	------------------------------------
+	
+	inorder   : [2, 4, 8, 9, 10, 11, 19]
 
-                     2                  
-            9                 4         
-        10       11       8        19   
-    ------------------------------------
-
-
-    pop      2:
-
-                     4                  
-            9                 8         
-        10       11       19   
-    ------------------------------------
-
-    pop      4:
-
-                     8                  
-            9                 19        
-        10       11   
-    ------------------------------------
-
-    pop      8:
-
-                     9                  
-            10                19        
-        11   
-    ------------------------------------
-
-    pop      9:
-
-                     10                 
-            11                19        
-    ------------------------------------
-
-    pop     10:
-
-                     11                 
-            19        
-    ------------------------------------
-
-    pop     11:
-
-                     19                 
-    ------------------------------------
-
-    pop     19:
-
-    ------------------------------------
-
-    inorder   : [2, 4, 8, 9, 10, 11, 19]
+.. {{{end}}}
 
 
 To remove existing elements and replace them with new values in a single
@@ -191,51 +211,57 @@ operation, use heapreplace().
 This technique lets you maintain a fixed size heap, such as a queue of jobs
 ordered by priority.
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'heapq_heapreplace.py'))
+.. }}}
+
 ::
 
-    $ python heapq_heapreplace.py
-    start:
+	$ python heapq_heapreplace.py
+	start:
+	
+	                 2                  
+	        9                 4         
+	    10       11       8        19   
+	------------------------------------
+	
+	replace  2 with  0:
+	
+	                 0                  
+	        9                 4         
+	    10       11       8        19   
+	------------------------------------
+	
+	replace  0 with  7:
+	
+	                 4                  
+	        9                 7         
+	    10       11       8        19   
+	------------------------------------
+	
+	replace  4 with 13:
+	
+	                 7                  
+	        9                 8         
+	    10       11       13       19   
+	------------------------------------
+	
+	replace  7 with  9:
+	
+	                 8                  
+	        9                 9         
+	    10       11       13       19   
+	------------------------------------
+	
+	replace  8 with  5:
+	
+	                 5                  
+	        9                 9         
+	    10       11       13       19   
+	------------------------------------
+	
 
-                     2                  
-            9                 4         
-        10       11       8        19   
-    ------------------------------------
-
-    replace  2 with  0:
-
-                     0                  
-            9                 4         
-        10       11       8        19   
-    ------------------------------------
-
-    replace  0 with  7:
-
-                     4                  
-            9                 7         
-        10       11       8        19   
-    ------------------------------------
-
-    replace  4 with 13:
-
-                     7                  
-            9                 8         
-        10       11       13       19   
-    ------------------------------------
-
-    replace  7 with  9:
-
-                     8                  
-            9                 9         
-        10       11       13       19   
-    ------------------------------------
-
-    replace  8 with  5:
-
-                     5                  
-            9                 9         
-        10       11       13       19   
-    ------------------------------------
-
+.. {{{end}}}
 
 Data Extremes
 =============
@@ -249,14 +275,20 @@ in handy in a few cases.
     :literal:
     :start-after: #end_pymotw_header
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'heapq_extremes.py'))
+.. }}}
+
 ::
 
-    $ python heapq_extremes.py
-    all       : [19, 9, 4, 10, 11, 8, 2]
-    3 largest : [19, 11, 10]
-    from sort : [19, 11, 10]
-    3 smallest: [2, 4, 8]
-    from sort : [2, 4, 8]
+	$ python heapq_extremes.py
+	all       : [19, 9, 4, 10, 11, 8, 2]
+	3 largest : [19, 11, 10]
+	from sort : [19, 11, 10]
+	3 smallest: [2, 4, 8]
+	from sort : [2, 4, 8]
+
+.. {{{end}}}
 
 .. seealso::
 
