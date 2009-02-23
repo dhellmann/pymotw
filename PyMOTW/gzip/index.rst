@@ -39,27 +39,24 @@ Different compression levels can be used by passing a *compresslevel* argument. 
 
 The center column of numbers in the output of the script is the size in bytes of the files produced.  As you see, for this input data, the higher compression values do not necessarily pay off in decreased storage space.  Results will vary, depending on the input data.
 
-.. {{{cog
-.. cog.out(run_script(cog.inFile, 'gzip_compresslevel.py'))
-.. }}}
+.. Cannot cog this because the file contains data that changes for some reason (update timestamp?)
 
 ::
 
 	$ python gzip_compresslevel.py
 	Level  Size        Checksum
-	-----  ----------  ----------------------------------------
+	-----  ----------  ---------------------------------
 	data       754688  e4c0f9433723971563f08a458715119c
-	    1        9839  78d06978eaff611ae12e6fbd0c9f003b
-	    2        8260  64d49798497ef3f140530758913b8f7f
-	    3        8221  746a0b6f719554aced9ce057b34b82a0
-	    4        4160  797fb9e9454a5c36914cb3d48056551e
-	    5        4160  178b553d15242b7bdabcd020b8e8c27c
-	    6        4160  fddef0fef1a8d152bc3e48ee5750e543
-	    7        4160  f479f37b4e2ced760cc4c72f8514bd87
-	    8        4160  00dcfae4ad8ccf82fcfa4b24278a95d1
-	    9        4160  c2c1394f3e5a5a6546d72e33d61bf1a5
+	    1        9839  c4088de2afeb9d4be8dd0ecc95a419c7
+	    2        8260  621e3b156084161ccc48599218617cd8
+	    3        8221  e59f000f53b82c0243026d85c7c13a6f
+	    4        4160  f3af98abbbc554fe829d75ff97321d4a
+	    5        4160  3d81fbcb438ee96688e599783877599b
+	    6        4160  ebfbb8101820abdc4b3e59f1642e8f25
+	    7        4160  93b62c79406e44fcb8d2d2de27c50663
+	    8        4160  a115438bd119453c1908e826b47fc092
+	    9        4160  95fc9dca4ee590c6d85c1e4048ea84cb
 
-.. {{{end}}}
 
 A GzipFile instance also includes a ``writelines()`` method that can be used to write a sequence of strings.
 
@@ -174,7 +171,7 @@ It is possible to use the GzipFile class directly to compress or uncompress a da
 	The same line, over and over.
 	
 	COMPRESSED: 48
-	1f8b08003be8a14902ff0ac94855284ecc4d55c8c9cc4bd551c82f4b2d5248cc4b0133f4b8424665916401000000ffff
+	1f8b0800b5e9a14902ff0ac94855284ecc4d55c8c9cc4bd551c82f4b2d5248cc4b0133f4b8424665916401000000ffff
 	
 	RE-READ: 300
 	The same line, over and over.

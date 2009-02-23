@@ -14,15 +14,13 @@ import os
 import hashlib
 
 def get_hash(data):
-    h = hashlib.md5()
-    h.update(data)
-    return h.hexdigest()
+    return hashlib.md5(data).hexdigest()
 
 data = open('lorem.txt', 'r').read() * 1024
 cksum = get_hash(data)
 
 print 'Level  Size        Checksum'
-print '-----  ----------  ----------------------------------------'
+print '-----  ----------  ---------------------------------'
 print 'data   %10d  %s' % (len(data), cksum)
 
 for i in xrange(1, 10):
