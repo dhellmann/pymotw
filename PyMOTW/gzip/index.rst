@@ -48,16 +48,16 @@ The center column of numbers in the output of the script is the size in bytes of
 	$ python gzip_compresslevel.py
 	Level  Size        Checksum
 	-----  ----------  ----------------------------------------
-	data       754688  be1343890dcdd5726e4dc7663daf708889ba05bb
-	    1        9839  44d908c255484d94a16feb62686499782130236d
-	    2        8260  7bcb1977f5f47d151ae11e25a92270de3af1f043
-	    3        8221  e58e5dceb51019dd9814e90d7655499f8beaa3e9
-	    4        4160  8b916dcc1434540e9ba814dc7b003c0e88a198cb
-	    5        4160  a883bcf37d2347ef9ff30ef1a35368169e9e31b7
-	    6        4160  37eae3ce97bf706e86d82bfc6ab2bcbeaa916ece
-	    7        4160  70abed691ce145b9b8b3f3d78a03faaa7d4cffa4
-	    8        4160  727245fdfcf7b631fd838312ea442d25250c6140
-	    9        4160  800000f695b882d7521818f512f0899310917fc9
+	data       754688  e4c0f9433723971563f08a458715119c
+	    1        9839  78d06978eaff611ae12e6fbd0c9f003b
+	    2        8260  64d49798497ef3f140530758913b8f7f
+	    3        8221  746a0b6f719554aced9ce057b34b82a0
+	    4        4160  797fb9e9454a5c36914cb3d48056551e
+	    5        4160  178b553d15242b7bdabcd020b8e8c27c
+	    6        4160  fddef0fef1a8d152bc3e48ee5750e543
+	    7        4160  f479f37b4e2ced760cc4c72f8514bd87
+	    8        4160  00dcfae4ad8ccf82fcfa4b24278a95d1
+	    9        4160  c2c1394f3e5a5a6546d72e33d61bf1a5
 
 .. {{{end}}}
 
@@ -174,7 +174,7 @@ It is possible to use the GzipFile class directly to compress or uncompress a da
 	The same line, over and over.
 	
 	COMPRESSED: 48
-	1f8b080099e7a14902ff0ac94855284ecc4d55c8c9cc4bd551c82f4b2d5248cc4b0133f4b8424665916401000000ffff
+	1f8b08003be8a14902ff0ac94855284ecc4d55c8c9cc4bd551c82f4b2d5248cc4b0133f4b8424665916401000000ffff
 	
 	RE-READ: 300
 	The same line, over and over.
