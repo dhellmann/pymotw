@@ -13,12 +13,17 @@ import gzip
 import os
 import hashlib
 
+def get_hash(data):
+    h = hashlib.md5()
+    h.update(data)
+    return h.hexdigest()
+
 data = open('lorem.txt', 'r').read() * 1024
-print 'Input contains %d bytes' % len(data)
-print
+cksum = get_hash(data)
 
 print 'Level  Size        Checksum'
 print '-----  ----------  ----------------------------------------'
+print 'data   %10d  %s' % (len(data), cksum)
 
 for i in xrange(1, 10):
     filename = 'compress-level-%s.gz' % i
@@ -28,5 +33,5 @@ for i in xrange(1, 10):
     finally:
         output.close()
     size = os.stat(filename).st_size
-    cksum = hashlib.sha1(open(filename, 'rb').read()).hexdigest()
+    cksum = get_hash(open(filename, 'rb').read())
     print '%5d  %10d  %s' % (i, size, cksum)
