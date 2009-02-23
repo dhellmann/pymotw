@@ -151,9 +151,7 @@ It is possible to use the GzipFile class directly to compress or uncompress a da
     working with streams of compressed data, you may want to prefix the data with
     an integer representing the actual amount of data to be read.
 
-.. {{{cog
-.. cog.out(run_script(cog.inFile, 'gzip_StringIO.py'))
-.. }}}
+.. Compressed data changes between runs, do not use cog.
 
 ::
 
@@ -171,7 +169,7 @@ It is possible to use the GzipFile class directly to compress or uncompress a da
 	The same line, over and over.
 	
 	COMPRESSED: 48
-	1f8b0800b5e9a14902ff0ac94855284ecc4d55c8c9cc4bd551c82f4b2d5248cc4b0133f4b8424665916401000000ffff
+	1f8b080093eaa14902ff0ac94855284ecc4d55c8c9cc4bd551c82f4b2d5248cc4b0133f4b8424665916401000000ffff
 	
 	RE-READ: 300
 	The same line, over and over.
@@ -185,9 +183,6 @@ It is possible to use the GzipFile class directly to compress or uncompress a da
 	The same line, over and over.
 	The same line, over and over.
 	
-
-.. {{{end}}}
-
 
 
 .. seealso::
