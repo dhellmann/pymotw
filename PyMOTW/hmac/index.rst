@@ -33,10 +33,16 @@ default MD5 hash algorithm:
 When run, the code reads its source file and computes an HMAC signature for
 it:
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'hmac_simple.py'))
+.. }}}
+
 ::
 
-    $ python hmac_simple.py 
-    7ce1ea6b179f5053b285410600dc3327
+	$ python hmac_simple.py
+	f6e62950ca9a6fd2c1c10b8a9625fd96
+
+.. {{{end}}}
 
 If I haven't changed the file by the time I release the example source for
 this week, the copy you download should produce the same hash.
@@ -61,10 +67,16 @@ entire body of the message can be passed to new() instead of using the
 update() method. The last argument is the digest module to be used. The
 default is hashlib.md5. The previous example substitutes hashlib.sha1.
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'hmac_sha.py'))
+.. }}}
+
 ::
 
-    $ python hmac_sha.py
-    ab667429a893eb1eaa0554dcff2511f130969044
+	$ python hmac_sha.py
+	228e895a6e962927927e17693eecf93acfc0644b
+
+.. {{{end}}}
 
 Binary Digests
 ==============
@@ -84,10 +96,17 @@ The base64 encoded string ends in a newline, which frequently needs to be
 stripped off when embedding the string in HTTP headers or other
 formatting-sensitive contexts.
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'hmac_base64.py'))
+.. }}}
+
 ::
 
-    $ python hmac_base64.py
-    IVSRpXWIt2k15UUH3gKkU5ogfV4=
+	$ python hmac_base64.py
+	4Ebg/TZVHP1voFEf7ZXXft5rUl0=
+	
+
+.. {{{end}}}
 
 
 Applications
@@ -210,21 +229,27 @@ the data and unpickle it.
 The output shows that the first object is verified and the second is deemed
 "corrupted", as expected:
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'hmac_pickle.py'))
+.. }}}
+
 ::
 
-    $ python hmac_pickle.py
+	$ python hmac_pickle.py
+	
+	WRITING: 387632cfa3d18cd19bdfe72b61ac395dfcdc87c9 124
+	
+	WRITING: b01b209e28d7e053408ebe23b90fe5c33bc6a0ec 131
+	
+	READ: 387632cfa3d18cd19bdfe72b61ac395dfcdc87c9 124
+	ACTUAL: 387632cfa3d18cd19bdfe72b61ac395dfcdc87c9
+	OK: digest matches
+	
+	READ: b01b209e28d7e053408ebe23b90fe5c33bc6a0ec 131
+	ACTUAL: dec53ca1ad3f4b657dd81d514f17f735628b6828
+	WARNING: Data corruption
 
-    WRITING: 387632cfa3d18cd19bdfe72b61ac395dfcdc87c9 124
-
-    WRITING: b01b209e28d7e053408ebe23b90fe5c33bc6a0ec 131
-
-    READ: 387632cfa3d18cd19bdfe72b61ac395dfcdc87c9 124
-    ACTUAL: 387632cfa3d18cd19bdfe72b61ac395dfcdc87c9
-    OK: digest matches
-
-    READ: b01b209e28d7e053408ebe23b90fe5c33bc6a0ec 131
-    ACTUAL: dec53ca1ad3f4b657dd81d514f17f735628b6828
-    WARNING: Data corruption
+.. {{{end}}}
 
 
 .. seealso::
