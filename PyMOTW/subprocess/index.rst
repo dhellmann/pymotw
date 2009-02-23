@@ -317,8 +317,8 @@ And the output should look something like this:
 	PARENT: Pausing before sending signal...
 	CHILD: Setting up signal handler
 	CHILD: Pausing to wait for signal
-	PARENT: Signaling 18769
-	CHILD: Received USR1 in process 18769
+	PARENT: Signaling 19202
+	CHILD: Received USR1 in process 19202
 
 .. {{{end}}}
 

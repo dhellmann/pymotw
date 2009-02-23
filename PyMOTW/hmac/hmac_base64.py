@@ -34,7 +34,7 @@ import base64
 import hmac
 import hashlib
 
-f = open('hmac_base64.py', 'rb')
+f = open('lorem.txt', 'rb')
 try:
     body = f.read()
 finally:

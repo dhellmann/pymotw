@@ -40,7 +40,7 @@ it:
 ::
 
 	$ python hmac_simple.py
-	f6e62950ca9a6fd2c1c10b8a9625fd96
+	4bcb287e284f8c21e87e14ba2dc40b16
 
 .. {{{end}}}
 
@@ -103,7 +103,7 @@ formatting-sensitive contexts.
 ::
 
 	$ python hmac_base64.py
-	4Ebg/TZVHP1voFEf7ZXXft5rUl0=
+	olW2DoXHGJEKGU0aE9fOwSVE/o4=
 	
 
 .. {{{end}}}

@@ -34,7 +34,7 @@ import hmac
 
 digest_maker = hmac.new('secret-shared-key-goes-here')
 
-f = open('hmac_simple.py', 'rb')
+f = open('lorem.txt', 'rb')
 try:
     while True:
         block = f.read(1024)
