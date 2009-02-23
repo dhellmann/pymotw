@@ -127,7 +127,7 @@ The predicate argument can be used to filter the types of objects returned.
     :literal:
     :start-after: #end_pymotw_header
 
-Notice that only classes are included in the output, now::
+Notice that only classes are included in the output, now:
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'inspect_getmembers_module_class.py'))
