@@ -38,7 +38,7 @@ import sys
 def signal_usr1(signum, frame):
     "Callback invoked when a signal is received"
     pid = os.getpid()
-    print 'CHILD: Received USR1 in process %s' % pid
+    print 'CHILD: Received USR1'
     sys.stdout.flush()
 
 print 'CHILD: Setting up signal handler'
