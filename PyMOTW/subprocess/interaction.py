@@ -33,7 +33,7 @@ __module_id__ = "$Id$"
 import subprocess
 
 print 'One line at a time:'
-proc = subprocess.Popen('repeater.py', 
+proc = subprocess.Popen('python repeater.py', 
                         shell=True,
                         stdin=subprocess.PIPE,
                         stdout=subprocess.PIPE,
@@ -46,7 +46,7 @@ proc.communicate()
 
 print
 print 'All output at once:'
-proc = subprocess.Popen('repeater.py', 
+proc = subprocess.Popen('python repeater.py', 
                         shell=True,
                         stdin=subprocess.PIPE,
                         stdout=subprocess.PIPE,

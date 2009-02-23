@@ -37,13 +37,28 @@ with os.system(), Use the call() function.
     :literal:
     :start-after: #end_pymotw_header
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'subprocess_os_system.py'))
+.. }}}
+
 ::
 
-    $ python subprocess_os_system.py
-    total 16
-    -rw-r--r--   1 dhellman  dhellman     0 Jul  1 11:29 __init__.py
-    -rw-r--r--   1 dhellman  dhellman  1316 Jul  1 11:32 replace_os_system.py
-    -rw-r--r--   1 dhellman  dhellman  1167 Jul  1 11:31 replace_os_system.py~
+	$ python subprocess_os_system.py
+	__init__.py
+	index.rst
+	interaction.py
+	repeater.py
+	signal_child.py
+	signal_parent.py
+	subprocess_os_system.py
+	subprocess_popen2.py
+	subprocess_popen3.py
+	subprocess_popen4.py
+	subprocess_popen_read.py
+	subprocess_popen_write.py
+	subprocess_shell_variables.py
+
+.. {{{end}}}
 
 And since we set ``shell=True``, shell variables in the command string are
 expanded:
@@ -52,24 +67,39 @@ expanded:
     :literal:
     :start-after: #end_pymotw_header
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'subprocess_shell_variables.py'))
+.. }}}
+
 ::
 
-    $ python subprocess_shell_variables.py
-    total 40
-    drwx------   10 dhellman  dhellman   340 Jun 30 18:45 Desktop
-    drwxr-xr-x   15 dhellman  dhellman   510 Jun 19 07:08 Devel
-    drwx------   29 dhellman  dhellman   986 Jun 29 07:44 Documents
-    drwxr-xr-x   44 dhellman  dhellman  1496 Jun 29 09:51 DownloadedApps
-    drwx------   55 dhellman  dhellman  1870 May 22 14:53 Library
-    drwx------    8 dhellman  dhellman   272 Mar  4  2006 Movies
-    drwx------   11 dhellman  dhellman   374 Jun 21 07:04 Music
-    drwx------   12 dhellman  dhellman   408 Jul  1 01:00 Pictures
-    drwxr-xr-x    5 dhellman  dhellman   170 Oct  1  2006 Public
-    drwxr-xr-x   15 dhellman  dhellman   510 May 12 15:19 Sites
-    drwxr-xr-x    5 dhellman  dhellman   170 Oct  5  2005 cfx
-    drwxr-xr-x    4 dhellman  dhellman   136 Jan 23  2006 iPod
-    -rw-r--r--    1 dhellman  dhellman   204 Jun 18 17:07 pgadmin.log
-    drwxr-xr-x    3 dhellman  dhellman   102 Apr 29 16:32 tmp
+	$ python subprocess_shell_variables.py
+	%backup%~
+	Desktop
+	Devel
+	Documents
+	DownloadedApps
+	Downloads
+	Library
+	Logitech
+	Movies
+	Music
+	Pictures
+	Public
+	Sites
+	bender
+	bin
+	browser - logitech
+	cfx
+	emacs
+	iPod
+	nltk_data
+	pgadmin.log
+	public_html
+	texlive
+	tmp
+
+.. {{{end}}}
 
 Working with Pipes
 ==================
@@ -86,12 +116,18 @@ Reading from the output of a pipe:
     :literal:
     :start-after: #end_pymotw_header
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'subprocess_popen_read.py'))
+.. }}}
+
 ::
 
-    $ python subprocess_popen_read.py
-    
-    read:
-    	stdout: 'to stdout\n'
+	$ python subprocess_popen_read.py
+	
+	read:
+		stdout: '\n'
+
+.. {{{end}}}
 
 
 Writing to the input of a pipe:
@@ -100,12 +136,18 @@ Writing to the input of a pipe:
     :literal:
     :start-after: #end_pymotw_header
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'subprocess_popen_write.py'))
+.. }}}
+
 ::
 
-    $ python PyMOTW/subprocess/subprocess_popen_write.py 
+	$ python subprocess_popen_write.py
+		stdin: to stdin
+	
+	write:
 
-    write:
-            stdin: to stdin
+.. {{{end}}}
 
 popen2
 ------
@@ -116,12 +158,18 @@ Reading and writing, as with popen2:
     :literal:
     :start-after: #end_pymotw_header
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'subprocess_popen2.py'))
+.. }}}
+
 ::
 
-    $ python PyMOTW/subprocess/subprocess_popen2.py 
+	$ python subprocess_popen2.py
+	
+	popen2:
+		pass through: 'through stdin to stdout'
 
-    popen2:
-            pass through: 'through stdin to stdout'
+.. {{{end}}}
 
 popen3
 ------
@@ -132,13 +180,19 @@ Separate streams for stdout and stderr, as with popen3:
     :literal:
     :start-after: #end_pymotw_header
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'subprocess_popen3.py'))
+.. }}}
+
 ::
 
-    $ python PyMOTW/subprocess/subprocess_popen3.py 
+	$ python subprocess_popen3.py
+	
+	popen3:
+		pass through: 'through stdin to stdout'
+		stderr: ';to stderr\n'
 
-    popen3:
-            pass through: 'through stdin to stdout'
-            stderr: ';to stderr\n'
+.. {{{end}}}
 
 popen4
 ------
@@ -149,12 +203,18 @@ Merged stdout and stderr, as with popen4:
     :literal:
     :start-after: #end_pymotw_header
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'subprocess_popen4.py'))
+.. }}}
+
 ::
 
-    $ python PyMOTW/subprocess/subprocess_popen4.py
+	$ python subprocess_popen4.py
+	
+	popen4:
+		combined output: 'through stdin to stdout\n;to stderr\n'
 
-    popen4:
-            combined output: 'through stdin to stdout\n;to stderr\n'
+.. {{{end}}}
 
 
 Interacting with Another Command
@@ -187,36 +247,41 @@ numbers are written but the output is read all at once using communicate().
 Notice where the "repeater.py: exiting" lines fall in the output for each
 loop:
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'interaction.py'))
+.. }}}
+
 ::
 
-    $ python interaction.py
-    One line at a time:
-    repeater.py: starting
-    0
-    1
-    2
-    3
-    4
-    5
-    6
-    7
-    8
-    9
-    repeater.py: exiting
+	$ python interaction.py
+	One line at a time:
+	repeater.py: starting
+	0
+	1
+	2
+	3
+	4
+	5
+	6
+	7
+	8
+	
+	All output at once:
+	repeater.py: starting
+	0
+	1
+	2
+	3
+	4
+	5
+	6
+	7
+	8
+	9
+	repeater.py: exiting
+	
 
-    All output at once:
-    repeater.py: starting
-    repeater.py: exiting
-    0
-    1
-    2
-    3
-    4
-    5
-    6
-    7
-    8
-    9
+.. {{{end}}}
 
 
 Signaling Between Processes
@@ -242,14 +307,20 @@ And now the parent process:
 
 And the output should look something like this:
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'signal_parent.py'))
+.. }}}
+
 ::
 
-    $ python signal_parent.py
-    CHILD: Setting up signal handler
-    CHILD: Pausing to wait for signal
-    PARENT: Pausing before sending signal...
-    PARENT: Signaling 4124
-    Received USR1 in process 4124
+	$ python signal_parent.py
+	PARENT: Pausing before sending signal...
+	CHILD: Setting up signal handler
+	CHILD: Pausing to wait for signal
+	PARENT: Signaling 18769
+	CHILD: Received USR1 in process 18769
+
+.. {{{end}}}
 
 
 Conclusions

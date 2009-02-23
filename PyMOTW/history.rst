@@ -3,6 +3,7 @@ History
 
 1.85
   - Continue converting older articles to use cog.
+  - Fix subprocess examples so they work if the permissions on the "child" scripts haven't been changed from the default way they are installed.
 
 1.84
   - 22 Feb 2009, :mod:`tarfile`

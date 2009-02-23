@@ -12,7 +12,7 @@ __version__ = "$Id$"
 import subprocess
 
 print '\nread:'
-proc = subprocess.Popen('echo "to stdout"', 
+proc = subprocess.Popen(['echo', '"to stdout"'], 
                         shell=True, 
                         stdout=subprocess.PIPE,
                         )

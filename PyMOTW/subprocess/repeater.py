@@ -32,7 +32,8 @@ __module_id__ = "$Id$"
 
 import sys
 
-sys.stderr.write('repeater.py: starting\n')
+sys.stdout.write('repeater.py: starting\n')
+sys.stdout.flush()
 
 while True:
     next_line = sys.stdin.readline()
@@ -41,4 +42,5 @@ while True:
     sys.stdout.write(next_line)
     sys.stdout.flush()
 
-sys.stderr.write('repeater.py: exiting\n')
+sys.stdout.write('repeater.py: exiting\n')
+sys.stdout.flush()

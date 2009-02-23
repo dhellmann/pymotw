@@ -33,4 +33,4 @@ __module_id__ = "$Id$"
 import subprocess
 
 # Simple command
-subprocess.call('ls -l', shell=True)
+subprocess.call(['ls', '-1'], shell=True)

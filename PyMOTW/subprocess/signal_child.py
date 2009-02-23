@@ -33,13 +33,17 @@ __module_id__ = "$Id$"
 import os
 import signal
 import time
+import sys
 
 def signal_usr1(signum, frame):
     "Callback invoked when a signal is received"
     pid = os.getpid()
-    print 'Received USR1 in process %s' % pid
+    print 'CHILD: Received USR1 in process %s' % pid
+    sys.stdout.flush()
 
 print 'CHILD: Setting up signal handler'
+sys.stdout.flush()
 signal.signal(signal.SIGUSR1, signal_usr1)
 print 'CHILD: Pausing to wait for signal'
+sys.stdout.flush()
 time.sleep(5)

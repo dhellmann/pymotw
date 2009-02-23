@@ -12,7 +12,7 @@ __version__ = "$Id$"
 import subprocess
 
 print '\nwrite:'
-proc = subprocess.Popen('cat -',
+proc = subprocess.Popen(['cat', '-'],
                         shell=True,
                         stdin=subprocess.PIPE,
                         )

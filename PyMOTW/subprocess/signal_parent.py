@@ -34,9 +34,12 @@ import os
 import signal
 import subprocess
 import time
+import sys
 
-proc = subprocess.Popen('signal_child.py')
+proc = subprocess.Popen(['python', 'signal_child.py'])
 print 'PARENT: Pausing before sending signal...'
+sys.stdout.flush()
 time.sleep(1)
 print 'PARENT: Signaling %s' % proc.pid
+sys.stdout.flush()
 os.kill(proc.pid, signal.SIGUSR1)
