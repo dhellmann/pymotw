@@ -18,7 +18,7 @@ when you write your code (e.g., for plugins or extensions to an application).
 Example Package
 ===============
 
-The examples below use a package called "example" with __init__.py:
+The examples below use a package called "example" with ``__init__.py``:
 
 .. include:: example/__init__.py
     :literal:
@@ -49,15 +49,21 @@ mode to use for opening the file, and a type code from a constant defined in
 the module. This table is incomplete, because some of the importable module or
 package types do not correspond to single files.
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'imp_get_suffixes.py'))
+.. }}}
+
 ::
 
-    $ python imp_get_suffixes.py
-     Extension       Mode       Type
-    --------------------------------
-           .so         rb  extension
-     module.so         rb  extension
-           .py          U     source
-          .pyc         rb   compiled
+	$ python imp_get_suffixes.py
+	 Extension       Mode       Type
+	--------------------------------
+	       .so         rb  extension
+	 module.so         rb  extension
+	       .py          U     source
+	      .pyc         rb   compiled
+
+.. {{{end}}}
 
 Finding Modules
 ===============
@@ -78,14 +84,20 @@ for any nested modules. That means that when importing the submodule from the
 package, you need to give a path that points to the package directory for
 find_module() to locate the module you're looking for. 
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'imp_find_module.py'))
+.. }}}
+
 ::
 
-    $ python imp_find_module.py
-    Package:
-    package /Users/dhellmann/Documents/PyMOTW/in_progress/imp/example
+	$ python imp_find_module.py
+	Package:
+	package /Users/dhellmann/Documents/PyMOTW/trunk/PyMOTW/imp/example
+	
+	Sub-module:
+	source ./example/submodule.py
 
-    Sub-module:
-    source ./example/submodule.py
+.. {{{end}}}
 
 If find_module() cannot locate the module, it raises an ImportError.
 
@@ -93,10 +105,16 @@ If find_module() cannot locate the module, it raises an ImportError.
     :literal:
     :start-after: #end_pymotw_header
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'imp_find_module_error.py'))
+.. }}}
+
 ::
 
-    $ python imp_find_module_error.py
-    ImportError: No module named no_such_module
+	$ python imp_find_module_error.py
+	ImportError: No module named no_such_module
+
+.. {{{end}}}
 
 Loading Modules
 ===============
@@ -112,13 +130,15 @@ by find_module() (the open file handle, filename, and description tuple).
 load_module() creates a new module object with the name given, loads the code
 for it, and adds it to sys.modules.
 
+.. Do not use cog for this example because the path changes.
+
 ::
 
-    $ python imp_load_module.py
-    Importing example package
-    Package: <module 'example' from '/Users/dhellmann/Documents/PyMOTW/in_progress/imp/example/__init__.pyc'>
-    Importing submodule
-    Sub-module: <module 'example.module' from '/Users/dhellmann/Documents/PyMOTW/in_progress/imp/example/submodule.py'>
+	$ python imp_load_module.py
+	Importing example package
+	Package: <module 'example' from '/Users/dhellmann/Documents/PyMOTW/trunk/PyMOTW/imp/example/__init__.py'>
+	Importing submodule
+	Sub-module: <module 'example.module' from '/Users/dhellmann/Documents/PyMOTW/trunk/PyMOTW/imp/example/submodule.py'>
 
 If you call load_module() for a module which has already been imported, the
 effect is like calling reload() on the existing module object.
@@ -129,11 +149,17 @@ effect is like calling reload() on the existing module object.
 
 Instead of a creating a new module, the contents of the existing module are simply replaced.
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'imp_load_module_reload.py'))
+.. }}}
+
 ::
 
-    $ python imp_load_module_reload.py
-    0 (not in sys.modules) Importing example package
-    1 (have in sys.modules) Importing example package
+	$ python imp_load_module_reload.py
+	0 (not in sys.modules) Importing example package
+	1 (have in sys.modules) Importing example package
+
+.. {{{end}}}
 
 .. seealso::
 

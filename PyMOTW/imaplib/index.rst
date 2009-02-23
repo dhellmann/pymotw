@@ -1,3 +1,5 @@
+.. This module does not use cog because of the IMAP server requirements.
+
 #####################################
 imaplib - IMAP4 client library
 #####################################
