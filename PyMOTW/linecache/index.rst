@@ -38,11 +38,10 @@ strip the trailing newline from the value returned from the cache.
     :literal:
     :start-after: #end_pymotw_header
 
-::
-
-    $ python linecache_getline.py
-    SOURCE:  eros pede, egestas at, ultricies ac, pellentesque eu, tellus.
-    CACHE :  eros pede, egestas at, ultricies ac, pellentesque eu, tellus.
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'linecache_getline.py'))
+.. }}}
+.. {{{end}}}
 
 Handling Blank Lines
 ====================
@@ -53,12 +52,10 @@ Next let's see what happens if the line we want is empty:
     :literal:
     :start-after: #end_pymotw_header
 
-::
-
-    $ python linecache_empty_line.py
-
-    BLANK : "
-    "
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'linecache_empty_line.py'))
+.. }}}
+.. {{{end}}}
 
 Error Handling
 ==============
@@ -70,11 +67,10 @@ file, linecache returns an empty string.
     :literal:
     :start-after: #end_pymotw_header
 
-::
-
-    $ python linecache_out_of_range.py
-    
-    NOT THERE: "" includes 0 characters
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'linecache_out_of_range.py'))
+.. }}}
+.. {{{end}}}
 
 
 The module never raises an exception, even if the file does not exist:
@@ -83,11 +79,10 @@ The module never raises an exception, even if the file does not exist:
     :literal:
     :start-after: #end_pymotw_header
 
-::
-
-    $ python linecache_missing_file.py
-
-    NO FILE:
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'linecache_missing_file.py'))
+.. }}}
+.. {{{end}}}
 
 Python Source
 =============
@@ -102,11 +97,10 @@ directly.
     :literal:
     :start-after: #end_pymotw_header
 
-::
-
-    $ python linecache_path_search.py
-    
-    MODULE :  This is intended to read lines from modules imported -- hence if a filename
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'linecache_path_search.py'))
+.. }}}
+.. {{{end}}}
     
 .. seealso::
 
