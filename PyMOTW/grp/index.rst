@@ -45,6 +45,7 @@ Suppose you need to print a report of all of the "real" groups on a system, incl
 	bin                                         7          * 
 	certusers                                  29          * root, _jabber, _postfix, _cyrus, _calendar
 	com.apple.access_screensharing-disabled   101            dhellmann
+	com.apple.access_ssh                      102            dhellmann
 	consoleusers                               53            
 	daemon                                      1          * root
 	dhellmann                                 501            
@@ -91,7 +92,7 @@ Another common task might be to print a list of all the groups for a given user:
 ::
 
 	$ python grp_groups_for_user.py
-	dhellmann belongs to: _lpadmin, admin, com.apple.access_screensharing-disabled, racemi
+	dhellmann belongs to: _lpadmin, admin, com.apple.access_screensharing-disabled, com.apple.access_ssh, racemi
 
 .. {{{end}}}
 
