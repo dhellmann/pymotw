@@ -30,20 +30,6 @@ ending in '.py'.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'fnmatch_fnmatch.py'))
 .. }}}
-
-::
-
-	$ python fnmatch_fnmatch.py
-	Pattern : fnmatch_*.py
-	
-	Filename: .svn                      False
-	Filename: __init__.py               False
-	Filename: fnmatch_filter.py         True
-	Filename: fnmatch_fnmatch.py        True
-	Filename: fnmatch_fnmatchcase.py    True
-	Filename: fnmatch_translate.py      True
-	Filename: index.rst                 False
-
 .. {{{end}}}
 
 To force a case-sensitive comparison, regardless of the filesystem and
@@ -59,20 +45,6 @@ pattern.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'fnmatch_fnmatchcase.py'))
 .. }}}
-
-::
-
-	$ python fnmatch_fnmatchcase.py
-	Pattern : FNMATCH_*.PY
-	
-	Filename: .svn                      False
-	Filename: __init__.py               False
-	Filename: fnmatch_filter.py         False
-	Filename: fnmatch_fnmatch.py        False
-	Filename: fnmatch_fnmatchcase.py    False
-	Filename: fnmatch_translate.py      False
-	Filename: index.rst                 False
-
 .. {{{end}}}
 
 Filtering
@@ -91,14 +63,6 @@ files associated with this post.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'fnmatch_filter.py'))
 .. }}}
-
-::
-
-	$ python fnmatch_filter.py
-	Pattern : fnmatch_*.py
-	Files   : ['.svn', '__init__.py', 'fnmatch_filter.py', 'fnmatch_fnmatch.py', 'fnmatch_fnmatchcase.py', 'fnmatch_translate.py', 'index.rst']
-	Matches : ['fnmatch_filter.py', 'fnmatch_fnmatch.py', 'fnmatch_fnmatchcase.py', 'fnmatch_translate.py']
-
 .. {{{end}}}
 
 Translating Patterns
@@ -117,13 +81,6 @@ Notice that some of the characters are escaped to make a valid expression.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'fnmatch_translate.py'))
 .. }}}
-
-::
-
-	$ python fnmatch_translate.py
-	Pattern : fnmatch_*.py
-	Regex   : fnmatch\_.*\.py$
-
 .. {{{end}}}
 
 .. seealso::

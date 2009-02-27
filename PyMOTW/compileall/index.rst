@@ -29,31 +29,6 @@ By default, all of the subdirectories are scanned to a depth of 10.  When using 
 .. sh("cd %s; find . -name '*.pyc' | xargs rm -f" % workdir)
 .. cog.out(run_script(cog.inFile, 'compileall_compile_dir.py'))
 .. }}}
-
-::
-
-	$ python compileall_compile_dir.py
-	Listing examples ...
-	Listing examples/.svn ...
-	Listing examples/.svn/prop-base ...
-	Listing examples/.svn/props ...
-	Listing examples/.svn/text-base ...
-	Listing examples/.svn/tmp ...
-	Listing examples/.svn/tmp/prop-base ...
-	Listing examples/.svn/tmp/props ...
-	Listing examples/.svn/tmp/text-base ...
-	Compiling examples/a.py ...
-	Listing examples/subdir ...
-	Listing examples/subdir/.svn ...
-	Listing examples/subdir/.svn/prop-base ...
-	Listing examples/subdir/.svn/props ...
-	Listing examples/subdir/.svn/text-base ...
-	Listing examples/subdir/.svn/tmp ...
-	Listing examples/subdir/.svn/tmp/prop-base ...
-	Listing examples/subdir/.svn/tmp/props ...
-	Listing examples/subdir/.svn/tmp/text-base ...
-	Compiling examples/subdir/b.py ...
-
 .. {{{end}}}
 
 To filter directories out, use the ``rx`` argument to provide a regular expression to match the names to exclude.
@@ -69,15 +44,6 @@ To filter directories out, use the ``rx`` argument to provide a regular expressi
 .. sh("cd %s; find . -name '*.pyc' | xargs rm -f" % workdir)
 .. cog.out(run_script(cog.inFile, 'compileall_exclude_dirs.py'))
 .. }}}
-
-::
-
-	$ python compileall_exclude_dirs.py
-	Listing examples ...
-	Compiling examples/a.py ...
-	Listing examples/subdir ...
-	Compiling examples/subdir/b.py ...
-
 .. {{{end}}}
 
 The maxlevels argument controls the depth of recursion.  For example, to avoid recursion entirely pass ``0``.
@@ -94,13 +60,6 @@ The maxlevels argument controls the depth of recursion.  For example, to avoid r
 .. sh("cd %s; find . -name '*.pyc' | xargs rm -f" % workdir)
 .. cog.out(run_script(cog.inFile, 'compileall_recursion_depth.py'))
 .. }}}
-
-::
-
-	$ python compileall_recursion_depth.py
-	Listing examples ...
-	Compiling examples/a.py ...
-
 .. {{{end}}}
 
 
@@ -122,16 +81,6 @@ This example replaces the default contents of sys.path to avoid permission error
 .. sh("cd %s; find . -name '*.pyc' | xargs rm -f" % workdir)
 .. cog.out(run_script(cog.inFile, 'compileall_path.py'))
 .. }}}
-
-::
-
-	$ python compileall_path.py
-	sys.path = ['examples', 'notthere']
-	Listing examples ...
-	Compiling examples/a.py ...
-	Listing notthere ...
-	Can't list notthere
-
 .. {{{end}}}
 
 
@@ -143,20 +92,6 @@ It is also possible to invoke :mod:`compileall` from the command line, as you mi
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-m compileall -h'))
 .. }}}
-
-::
-
-	$ python -m compileall -h
-	option -h not recognized
-	usage: python compileall.py [-l] [-f] [-q] [-d destdir] [-x regexp] [directory ...]
-	-l: don't recurse down
-	-f: force rebuild even if timestamps are up-to-date
-	-q: quiet operation
-	-d destdir: purported directory name for error messages
-	   if no directory arguments, -l sys.path is assumed
-	-x regexp: skip files matching the regular expression regexp
-	   the regexp is search for in the full path of the file
-
 .. {{{end}}}
 
 To recreate the example above, skipping ``.svn`` directories, one would run:
@@ -168,15 +103,6 @@ To recreate the example above, skipping ``.svn`` directories, one would run:
 .. sh("cd %s; find . -name '*.pyc' | xargs rm -f" % workdir)
 .. cog.out(run_script(cog.inFile, "-m compileall -x '/\.svn' examples"))
 .. }}}
-
-::
-
-	$ python -m compileall -x '/\.svn' examples
-	Listing examples ...
-	Compiling examples/a.py ...
-	Listing examples/subdir ...
-	Compiling examples/subdir/b.py ...
-
 .. {{{end}}}
 
 

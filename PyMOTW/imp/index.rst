@@ -52,17 +52,6 @@ package types do not correspond to single files.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'imp_get_suffixes.py'))
 .. }}}
-
-::
-
-	$ python imp_get_suffixes.py
-	 Extension       Mode       Type
-	--------------------------------
-	       .so         rb  extension
-	 module.so         rb  extension
-	       .py          U     source
-	      .pyc         rb   compiled
-
 .. {{{end}}}
 
 Finding Modules
@@ -87,16 +76,6 @@ find_module() to locate the module you're looking for.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'imp_find_module.py'))
 .. }}}
-
-::
-
-	$ python imp_find_module.py
-	Package:
-	package /Users/dhellmann/Documents/PyMOTW/trunk/PyMOTW/imp/example
-	
-	Sub-module:
-	source ./example/submodule.py
-
 .. {{{end}}}
 
 If find_module() cannot locate the module, it raises an ImportError.
@@ -108,12 +87,6 @@ If find_module() cannot locate the module, it raises an ImportError.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'imp_find_module_error.py'))
 .. }}}
-
-::
-
-	$ python imp_find_module_error.py
-	ImportError: No module named no_such_module
-
 .. {{{end}}}
 
 Loading Modules
@@ -152,13 +125,6 @@ Instead of a creating a new module, the contents of the existing module are simp
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'imp_load_module_reload.py'))
 .. }}}
-
-::
-
-	$ python imp_load_module_reload.py
-	0 (not in sys.modules) Importing example package
-	1 (have in sys.modules) Importing example package
-
 .. {{{end}}}
 
 .. seealso::

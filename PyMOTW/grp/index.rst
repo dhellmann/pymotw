@@ -33,47 +33,6 @@ Suppose you need to print a report of all of the "real" groups on a system, incl
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'grp_getgrall.py'))
 .. }}}
-
-::
-
-	$ python grp_getgrall.py
-	Name                                      GID   Password Members
-	---------------------------------------- ---- ---------- ------------------------------
-	accessibility                              90          * 
-	admin                                      80          * root, dhellmann
-	authedusers                                50            
-	bin                                         7          * 
-	certusers                                  29          * root, _jabber, _postfix, _cyrus, _calendar
-	com.apple.access_screensharing-disabled   101            dhellmann
-	com.apple.access_ssh                      102            dhellmann
-	consoleusers                               53            
-	daemon                                      1          * root
-	dhellmann                                 501            
-	dialer                                     68          * 
-	everyone                                   12            
-	group                                      16            
-	interactusers                              51            
-	kmem                                        2          * root
-	localaccounts                              61            
-	mail                                        6          * 
-	netaccounts                                62            
-	netusers                                   52            
-	network                                    69          * 
-	nobody                                     -2          * 
-	nogroup                                    -1          * 
-	operator                                    5          * root
-	owner                                      10            
-	postgres                                  401            
-	procmod                                     9          * root
-	procview                                    8          * root
-	racemi                                    500            dhellmann
-	smmsp                                      25            
-	staff                                      20          * root, test
-	sys                                         3          * root
-	tty                                         4          * root
-	utmp                                       45          * 
-	wheel                                       0          * root
-
 .. {{{end}}}
 
 Group Memberships for a User
@@ -88,12 +47,6 @@ Another common task might be to print a list of all the groups for a given user:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'grp_groups_for_user.py'))
 .. }}}
-
-::
-
-	$ python grp_groups_for_user.py
-	dhellmann belongs to: _lpadmin, admin, com.apple.access_screensharing-disabled, com.apple.access_ssh, racemi
-
 .. {{{end}}}
 
 Finding a Group By Name
@@ -108,15 +61,6 @@ As with :mod:`pwd`, it is also possible to query for information about a specifi
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'grp_getgrnam.py'))
 .. }}}
-
-::
-
-	$ python grp_getgrnam.py
-	Name    : admin
-	GID     : 80
-	Password: *
-	Members : root, dhellmann
-
 .. {{{end}}}
 
 Finding a Group by ID
@@ -131,12 +75,6 @@ To identify the group running the current process, combine getgrgid() with os.ge
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'grp_getgrgid_process.py'))
 .. }}}
-
-::
-
-	$ python grp_getgrgid_process.py
-	Currently running with GID=501 name=dhellmann
-
 .. {{{end}}}
 
 And to get the group name based on the permissions on a file, look up the group returned by os.stat().
@@ -148,12 +86,6 @@ And to get the group name based on the permissions on a file, look up the group 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'grp_getgrgid_fileowner.py'))
 .. }}}
-
-::
-
-	$ python grp_getgrgid_fileowner.py
-	grp_getgrgid_fileowner.py is owned by dhellmann (501)
-
 .. {{{end}}}
 
 

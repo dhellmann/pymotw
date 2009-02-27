@@ -110,34 +110,6 @@ input.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'difflib_ndiff.py'))
 .. }}}
-
-::
-
-	$ python difflib_ndiff.py
-	  Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Integer
-	- eu lacus accumsan arcu fermentum euismod. Donec pulvinar porttitor
-	+ eu lacus accumsan arcu fermentum euismod. Donec pulvinar, porttitor
-	?                                                         +
-	
-	- tellus. Aliquam venenatis. Donec facilisis pharetra tortor.  In nec
-	?                                                             -
-	
-	+ tellus. Aliquam venenatis. Donec facilisis pharetra tortor. In nec
-	- mauris eget magna consequat convallis. Nam sed sem vitae odio
-	?                                             ------
-	
-	+ mauris eget magna consequat convallis. Nam cras vitae mi vitae odio
-	?                                            +++        +++++++++
-	
-	  pellentesque interdum. Sed consequat viverra nisl. Suspendisse arcu
-	  metus, blandit quis, rhoncus ac, pharetra eget, velit. Mauris
-	  urna. Morbi nonummy molestie orci. Praesent nisi elit, fringilla ac,
-	  suscipit non, tristique vel, mauris. Curabitur vel lorem id nisl porta
-	- adipiscing. Suspendisse eu lectus. In nunc. Duis vulputate tristique
-	- enim. Donec quis lectus a justo imperdiet tempus.
-	+ adipiscing. Duis vulputate tristique enim. Donec quis lectus a justo
-	+ imperdiet tempus. Suspendisse eu lectus. In nunc. 
-
 .. {{{end}}}
 
 Other Diff Formats
@@ -157,29 +129,6 @@ tools:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'difflib_unified.py'))
 .. }}}
-
-::
-
-	$ python difflib_unified.py
-	---  
-	+++  
-	@@ -1,10 +1,10 @@
-	 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Integer
-	-eu lacus accumsan arcu fermentum euismod. Donec pulvinar porttitor
-	-tellus. Aliquam venenatis. Donec facilisis pharetra tortor.  In nec
-	-mauris eget magna consequat convallis. Nam sed sem vitae odio
-	+eu lacus accumsan arcu fermentum euismod. Donec pulvinar, porttitor
-	+tellus. Aliquam venenatis. Donec facilisis pharetra tortor. In nec
-	+mauris eget magna consequat convallis. Nam cras vitae mi vitae odio
-	 pellentesque interdum. Sed consequat viverra nisl. Suspendisse arcu
-	 metus, blandit quis, rhoncus ac, pharetra eget, velit. Mauris
-	 urna. Morbi nonummy molestie orci. Praesent nisi elit, fringilla ac,
-	 suscipit non, tristique vel, mauris. Curabitur vel lorem id nisl porta
-	-adipiscing. Suspendisse eu lectus. In nunc. Duis vulputate tristique
-	-enim. Donec quis lectus a justo imperdiet tempus.
-	+adipiscing. Duis vulputate tristique enim. Donec quis lectus a justo
-	+imperdiet tempus. Suspendisse eu lectus. In nunc. 
-
 .. {{{end}}}
 
 Using context_diff() produces similar readable output:
@@ -187,36 +136,6 @@ Using context_diff() produces similar readable output:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'difflib_context.py'))
 .. }}}
-
-::
-
-	$ python difflib_context.py
-	***  
-	---  
-	***************
-	*** 1,10 ****
-	  Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Integer
-	! eu lacus accumsan arcu fermentum euismod. Donec pulvinar porttitor
-	! tellus. Aliquam venenatis. Donec facilisis pharetra tortor.  In nec
-	! mauris eget magna consequat convallis. Nam sed sem vitae odio
-	  pellentesque interdum. Sed consequat viverra nisl. Suspendisse arcu
-	  metus, blandit quis, rhoncus ac, pharetra eget, velit. Mauris
-	  urna. Morbi nonummy molestie orci. Praesent nisi elit, fringilla ac,
-	  suscipit non, tristique vel, mauris. Curabitur vel lorem id nisl porta
-	! adipiscing. Suspendisse eu lectus. In nunc. Duis vulputate tristique
-	! enim. Donec quis lectus a justo imperdiet tempus.
-	--- 1,10 ----
-	  Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Integer
-	! eu lacus accumsan arcu fermentum euismod. Donec pulvinar, porttitor
-	! tellus. Aliquam venenatis. Donec facilisis pharetra tortor. In nec
-	! mauris eget magna consequat convallis. Nam cras vitae mi vitae odio
-	  pellentesque interdum. Sed consequat viverra nisl. Suspendisse arcu
-	  metus, blandit quis, rhoncus ac, pharetra eget, velit. Mauris
-	  urna. Morbi nonummy molestie orci. Praesent nisi elit, fringilla ac,
-	  suscipit non, tristique vel, mauris. Curabitur vel lorem id nisl porta
-	! adipiscing. Duis vulputate tristique enim. Donec quis lectus a justo
-	! imperdiet tempus. Suspendisse eu lectus. In nunc. 
-
 .. {{{end}}}
 
 HTML Output
@@ -233,30 +152,6 @@ produces a fully-formed HTML file as output.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'difflib_html.py'))
 .. }}}
-
-::
-
-	$ python difflib_html.py
-	
-	    <table class="diff" id="difflib_chg_to0__top"
-	           cellspacing="0" cellpadding="0" rules="groups" >
-	        <colgroup></colgroup> <colgroup></colgroup> <colgroup></colgroup>
-	        <colgroup></colgroup> <colgroup></colgroup> <colgroup></colgroup>
-	        
-	        <tbody>
-	            <tr><td class="diff_next" id="difflib_chg_to0__0"><a href="#difflib_chg_to0__0">f</a></td><td class="diff_header" id="from0_1">1</td><td nowrap="nowrap">Lorem&nbsp;ipsum&nbsp;dolor&nbsp;sit&nbsp;amet,&nbsp;consectetuer&nbsp;adipiscing&nbsp;elit.&nbsp;Integer</td><td class="diff_next"><a href="#difflib_chg_to0__0">f</a></td><td class="diff_header" id="to0_1">1</td><td nowrap="nowrap">Lorem&nbsp;ipsum&nbsp;dolor&nbsp;sit&nbsp;amet,&nbsp;consectetuer&nbsp;adipiscing&nbsp;elit.&nbsp;Integer</td></tr>
-	            <tr><td class="diff_next"><a href="#difflib_chg_to0__1">n</a></td><td class="diff_header" id="from0_2">2</td><td nowrap="nowrap">eu&nbsp;lacus&nbsp;accumsan&nbsp;arcu&nbsp;fermentum&nbsp;euismod.&nbsp;Donec&nbsp;pulvinar&nbsp;porttitor</td><td class="diff_next"><a href="#difflib_chg_to0__1">n</a></td><td class="diff_header" id="to0_2">2</td><td nowrap="nowrap">eu&nbsp;lacus&nbsp;accumsan&nbsp;arcu&nbsp;fermentum&nbsp;euismod.&nbsp;Donec&nbsp;pulvinar<span class="diff_add">,</span>&nbsp;porttitor</td></tr>
-	            <tr><td class="diff_next"></td><td class="diff_header" id="from0_3">3</td><td nowrap="nowrap">tellus.&nbsp;Aliquam&nbsp;venenatis.&nbsp;Donec&nbsp;facilisis&nbsp;pharetra&nbsp;tortor.&nbsp;<span class="diff_sub">&nbsp;</span>In&nbsp;nec</td><td class="diff_next"></td><td class="diff_header" id="to0_3">3</td><td nowrap="nowrap">tellus.&nbsp;Aliquam&nbsp;venenatis.&nbsp;Donec&nbsp;facilisis&nbsp;pharetra&nbsp;tortor.&nbsp;In&nbsp;nec</td></tr>
-	            <tr><td class="diff_next" id="difflib_chg_to0__1"></td><td class="diff_header" id="from0_4">4</td><td nowrap="nowrap">mauris&nbsp;eget&nbsp;magna&nbsp;consequat&nbsp;convallis.&nbsp;Nam&nbsp;s<span class="diff_sub">ed&nbsp;sem</span>&nbsp;vitae&nbsp;odio</td><td class="diff_next"></td><td class="diff_header" id="to0_4">4</td><td nowrap="nowrap">mauris&nbsp;eget&nbsp;magna&nbsp;consequat&nbsp;convallis.&nbsp;Nam&nbsp;<span class="diff_add">cra</span>s&nbsp;vitae&nbsp;<span class="diff_add">mi&nbsp;vitae&nbsp;</span>odio</td></tr>
-	            <tr><td class="diff_next"></td><td class="diff_header" id="from0_5">5</td><td nowrap="nowrap">pellentesque&nbsp;interdum.&nbsp;Sed&nbsp;consequat&nbsp;viverra&nbsp;nisl.&nbsp;Suspendisse&nbsp;arcu</td><td class="diff_next"></td><td class="diff_header" id="to0_5">5</td><td nowrap="nowrap">pellentesque&nbsp;interdum.&nbsp;Sed&nbsp;consequat&nbsp;viverra&nbsp;nisl.&nbsp;Suspendisse&nbsp;arcu</td></tr>
-	            <tr><td class="diff_next"></td><td class="diff_header" id="from0_6">6</td><td nowrap="nowrap">metus,&nbsp;blandit&nbsp;quis,&nbsp;rhoncus&nbsp;ac,&nbsp;pharetra&nbsp;eget,&nbsp;velit.&nbsp;Mauris</td><td class="diff_next"></td><td class="diff_header" id="to0_6">6</td><td nowrap="nowrap">metus,&nbsp;blandit&nbsp;quis,&nbsp;rhoncus&nbsp;ac,&nbsp;pharetra&nbsp;eget,&nbsp;velit.&nbsp;Mauris</td></tr>
-	            <tr><td class="diff_next"></td><td class="diff_header" id="from0_7">7</td><td nowrap="nowrap">urna.&nbsp;Morbi&nbsp;nonummy&nbsp;molestie&nbsp;orci.&nbsp;Praesent&nbsp;nisi&nbsp;elit,&nbsp;fringilla&nbsp;ac,</td><td class="diff_next"></td><td class="diff_header" id="to0_7">7</td><td nowrap="nowrap">urna.&nbsp;Morbi&nbsp;nonummy&nbsp;molestie&nbsp;orci.&nbsp;Praesent&nbsp;nisi&nbsp;elit,&nbsp;fringilla&nbsp;ac,</td></tr>
-	            <tr><td class="diff_next"></td><td class="diff_header" id="from0_8">8</td><td nowrap="nowrap">suscipit&nbsp;non,&nbsp;tristique&nbsp;vel,&nbsp;mauris.&nbsp;Curabitur&nbsp;vel&nbsp;lorem&nbsp;id&nbsp;nisl&nbsp;porta</td><td class="diff_next"></td><td class="diff_header" id="to0_8">8</td><td nowrap="nowrap">suscipit&nbsp;non,&nbsp;tristique&nbsp;vel,&nbsp;mauris.&nbsp;Curabitur&nbsp;vel&nbsp;lorem&nbsp;id&nbsp;nisl&nbsp;porta</td></tr>
-	            <tr><td class="diff_next"><a href="#difflib_chg_to0__top">t</a></td><td class="diff_header" id="from0_9">9</td><td nowrap="nowrap"><span class="diff_sub">adipiscing.&nbsp;Suspendisse&nbsp;eu&nbsp;lectus.&nbsp;In&nbsp;nunc.&nbsp;Duis&nbsp;vulputate&nbsp;tristique</span></td><td class="diff_next"><a href="#difflib_chg_to0__top">t</a></td><td class="diff_header" id="to0_9">9</td><td nowrap="nowrap"><span class="diff_add">adipiscing.&nbsp;Duis&nbsp;vulputate&nbsp;tristique&nbsp;enim.&nbsp;Donec&nbsp;quis&nbsp;lectus&nbsp;a&nbsp;justo</span></td></tr>
-	            <tr><td class="diff_next"></td><td class="diff_header" id="from0_10">10</td><td nowrap="nowrap"><span class="diff_sub">enim.&nbsp;Donec&nbsp;quis&nbsp;lectus&nbsp;a&nbsp;justo&nbsp;imperdiet&nbsp;tempus.</span></td><td class="diff_next"></td><td class="diff_header" id="to0_10">10</td><td nowrap="nowrap"><span class="diff_add">imperdiet&nbsp;tempus.&nbsp;Suspendisse&nbsp;eu&nbsp;lectus.&nbsp;In&nbsp;nunc.&nbsp;</span></td></tr>
-	        </tbody>
-	    </table>
-
 .. {{{end}}}
 
 
@@ -279,15 +174,6 @@ to detect noise. The default for ndiff is to ignore space and tab characters.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'difflib_junk.py'))
 .. }}}
-
-::
-
-	$ python difflib_junk.py
-	A = " abcd"
-	B = "abcd abcd"
-	isjunk=None     : (0, 4, 5) " abcd" " abcd"
-	isjunk=(x==" ") : (1, 0, 4) "abcd" "abcd"
-
 .. {{{end}}}
 
 
@@ -307,16 +193,6 @@ printed:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'difflib_seq.py'))
 .. }}}
-
-::
-
-	$ python difflib_seq.py
-	 delete s1[0:1] ([1]) s2[0:0] ([])
-	  equal s1[1:4] ([2, 3, 5]) s2[0:3] ([2, 3, 5])
-	 insert s1[4:4] ([]) s2[3:4] ([4])
-	  equal s1[4:5] ([6]) s2[4:5] ([6])
-	replace s1[5:6] ([4]) s2[5:6] ([1])
-
 .. {{{end}}}
 
 

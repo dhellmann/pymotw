@@ -31,12 +31,6 @@ The "portal" section refers to the approach document web site. Once the diffs we
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'configparser_example.py'))
 .. }}}
-
-::
-
-	$ python configparser_example.py
-	http://localhost:8080/Portal
-
 .. {{{end}}}
 
 

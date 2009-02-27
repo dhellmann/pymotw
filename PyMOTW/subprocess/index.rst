@@ -40,24 +40,6 @@ with os.system(), Use the call() function.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'subprocess_os_system.py'))
 .. }}}
-
-::
-
-	$ python subprocess_os_system.py
-	__init__.py
-	index.rst
-	interaction.py
-	repeater.py
-	signal_child.py
-	signal_parent.py
-	subprocess_os_system.py
-	subprocess_popen2.py
-	subprocess_popen3.py
-	subprocess_popen4.py
-	subprocess_popen_read.py
-	subprocess_popen_write.py
-	subprocess_shell_variables.py
-
 .. {{{end}}}
 
 And since we set ``shell=True``, shell variables in the command string are
@@ -70,35 +52,6 @@ expanded:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'subprocess_shell_variables.py'))
 .. }}}
-
-::
-
-	$ python subprocess_shell_variables.py
-	%backup%~
-	Desktop
-	Devel
-	Documents
-	DownloadedApps
-	Downloads
-	Library
-	Logitech
-	Movies
-	Music
-	Pictures
-	Public
-	Sites
-	bender
-	bin
-	browser - logitech
-	cfx
-	emacs
-	iPod
-	nltk_data
-	pgadmin.log
-	public_html
-	texlive
-	tmp
-
 .. {{{end}}}
 
 Working with Pipes
@@ -119,14 +72,6 @@ Reading from the output of a pipe:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'subprocess_popen_read.py'))
 .. }}}
-
-::
-
-	$ python subprocess_popen_read.py
-	
-	read:
-		stdout: '\n'
-
 .. {{{end}}}
 
 
@@ -139,14 +84,6 @@ Writing to the input of a pipe:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'subprocess_popen_write.py'))
 .. }}}
-
-::
-
-	$ python subprocess_popen_write.py
-		stdin: to stdin
-	
-	write:
-
 .. {{{end}}}
 
 popen2
@@ -161,14 +98,6 @@ Reading and writing, as with popen2:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'subprocess_popen2.py'))
 .. }}}
-
-::
-
-	$ python subprocess_popen2.py
-	
-	popen2:
-		pass through: 'through stdin to stdout'
-
 .. {{{end}}}
 
 popen3
@@ -183,15 +112,6 @@ Separate streams for stdout and stderr, as with popen3:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'subprocess_popen3.py'))
 .. }}}
-
-::
-
-	$ python subprocess_popen3.py
-	
-	popen3:
-		pass through: 'through stdin to stdout'
-		stderr: ';to stderr\n'
-
 .. {{{end}}}
 
 popen4
@@ -206,14 +126,6 @@ Merged stdout and stderr, as with popen4:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'subprocess_popen4.py'))
 .. }}}
-
-::
-
-	$ python subprocess_popen4.py
-	
-	popen4:
-		combined output: 'through stdin to stdout\n;to stderr\n'
-
 .. {{{end}}}
 
 
@@ -250,37 +162,6 @@ loop:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'interaction.py'))
 .. }}}
-
-::
-
-	$ python interaction.py
-	One line at a time:
-	repeater.py: starting
-	0
-	1
-	2
-	3
-	4
-	5
-	6
-	7
-	8
-	
-	All output at once:
-	repeater.py: starting
-	0
-	1
-	2
-	3
-	4
-	5
-	6
-	7
-	8
-	9
-	repeater.py: exiting
-	
-
 .. {{{end}}}
 
 
@@ -310,16 +191,6 @@ And the output should look something like this:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'signal_parent.py'))
 .. }}}
-
-::
-
-	$ python signal_parent.py
-	PARENT: Pausing before sending signal...
-	CHILD: Setting up signal handler
-	CHILD: Pausing to wait for signal
-	PARENT: Signaling child
-	CHILD: Received USR1
-
 .. {{{end}}}
 
 

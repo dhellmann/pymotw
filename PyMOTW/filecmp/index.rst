@@ -85,14 +85,6 @@ be the same if their contents are not compared.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'filecmp_cmp.py'))
 .. }}}
-
-::
-
-	$ python filecmp_cmp.py
-	common_file: True True
-	not_the_same: True False
-	identical: True True
-
 .. {{{end}}}
 
 
@@ -115,15 +107,6 @@ or for any other reason).
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'filecmp_cmpfiles.py'))
 .. }}}
-
-::
-
-	$ python filecmp_cmpfiles.py
-	Common files: ['not_the_same', 'file_in_dir1', 'common_file']
-	Match: ['not_the_same', 'common_file']
-	Mismatch: ['file_in_dir1']
-	Errors: []
-
 .. {{{end}}}
 
 
@@ -148,17 +131,6 @@ of files like cmp() can.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'filecmp_dircmp_report.py'))
 .. }}}
-
-::
-
-	$ python filecmp_dircmp_report.py
-	diff example/dir1 example/dir2
-	Only in example/dir1 : ['dir_only_in_dir1', 'file_only_in_dir1']
-	Only in example/dir2 : ['dir_only_in_dir2', 'file_only_in_dir2']
-	Identical files : ['common_file', 'not_the_same']
-	Common subdirectories : ['common_dir']
-	Common funny cases : ['file_in_dir1']
-
 .. {{{end}}}
 
 For more detail, and a recursive comparison, use report_full_closure():
@@ -172,38 +144,6 @@ The output includes comparisons of all parallel subdirectories.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'filecmp_dircmp_report_full_closure.py'))
 .. }}}
-
-::
-
-	$ python filecmp_dircmp_report_full_closure.py
-	diff example/dir1 example/dir2
-	Only in example/dir1 : ['dir_only_in_dir1', 'file_only_in_dir1']
-	Only in example/dir2 : ['dir_only_in_dir2', 'file_only_in_dir2']
-	Identical files : ['common_file', 'not_the_same']
-	Common subdirectories : ['common_dir']
-	Common funny cases : ['file_in_dir1']
-	
-	diff example/dir1/common_dir example/dir2/common_dir
-	Common subdirectories : ['dir1', 'dir2']
-	
-	diff example/dir1/common_dir/dir2 example/dir2/common_dir/dir2
-	Identical files : ['common_file', 'file_only_in_dir2', 'not_the_same']
-	Common subdirectories : ['common_dir', 'dir_only_in_dir2', 'file_in_dir1']
-	
-	diff example/dir1/common_dir/dir2/common_dir example/dir2/common_dir/dir2/common_dir
-	
-	diff example/dir1/common_dir/dir2/dir_only_in_dir2 example/dir2/common_dir/dir2/dir_only_in_dir2
-	
-	diff example/dir1/common_dir/dir2/file_in_dir1 example/dir2/common_dir/dir2/file_in_dir1
-	
-	diff example/dir1/common_dir/dir1 example/dir2/common_dir/dir1
-	Identical files : ['common_file', 'file_in_dir1', 'file_only_in_dir1', 'not_the_same']
-	Common subdirectories : ['common_dir', 'dir_only_in_dir1']
-	
-	diff example/dir1/common_dir/dir1/common_dir example/dir2/common_dir/dir1/common_dir
-	
-	diff example/dir1/common_dir/dir1/dir_only_in_dir1 example/dir2/common_dir/dir1/dir_only_in_dir1
-
 .. {{{end}}}
 
 Using differences in your program
@@ -224,13 +164,6 @@ listed in left_list and right_list:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'filecmp_dircmp_list.py'))
 .. }}}
-
-::
-
-	$ python filecmp_dircmp_list.py
-	Left : ['common_dir', 'common_file', 'dir_only_in_dir1', 'file_in_dir1', 'file_only_in_dir1', 'not_the_same']
-	Right: ['common_dir', 'common_file', 'dir_only_in_dir2', 'file_in_dir1', 'file_only_in_dir2', 'not_the_same']
-
 .. {{{end}}}
 
 The inputs can be filtered by passing a list of names to ignore to the
@@ -246,13 +179,6 @@ compared.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'filecmp_dircmp_list_filter.py'))
 .. }}}
-
-::
-
-	$ python filecmp_dircmp_list_filter.py
-	Left : ['common_dir', 'dir_only_in_dir1', 'file_in_dir1', 'file_only_in_dir1', 'not_the_same']
-	Right: ['common_dir', 'dir_only_in_dir2', 'file_in_dir1', 'file_only_in_dir2', 'not_the_same']
-
 .. {{{end}}}
 
 The set of files common to both input directories is maintained in common, and
@@ -265,14 +191,6 @@ the files unique to each directory are listed in left_only, and right_only.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'filecmp_dircmp_membership.py'))
 .. }}}
-
-::
-
-	$ python filecmp_dircmp_membership.py
-	Common: ['not_the_same', 'common_file', 'file_in_dir1', 'common_dir']
-	Left  : ['dir_only_in_dir1', 'file_only_in_dir1']
-	Right : ['dir_only_in_dir2', 'file_only_in_dir2']
-
 .. {{{end}}}
 
 The common members can be further broken down into files, directories and
@@ -289,15 +207,6 @@ and a subdirectory in the other, so it shows up in the "funny" list.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'filecmp_dircmp_common.py'))
 .. }}}
-
-::
-
-	$ python filecmp_dircmp_common.py
-	Common     : ['not_the_same', 'common_file', 'file_in_dir1', 'common_dir']
-	Directories: ['common_dir']
-	Files      : ['not_the_same', 'common_file']
-	Funny      : ['file_in_dir1']
-
 .. {{{end}}}
 
 The differences between files are broken down similarly:
@@ -311,14 +220,6 @@ Remember, the file "not_the_same" is only being compared via os.stat, and the co
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'filecmp_dircmp_diff.py'))
 .. }}}
-
-::
-
-	$ python filecmp_dircmp_diff.py
-	Same      : ['not_the_same', 'common_file']
-	Different : []
-	Funny     : []
-
 .. {{{end}}}
 
 Finally, the subdirectories are also mapped to new dircmp objects in the

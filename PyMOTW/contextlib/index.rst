@@ -37,28 +37,6 @@ re-raised inside the generator, so you can handle them there.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'contextlib_contextmanager.py'))
 .. }}}
-
-::
-
-	$ python contextlib_contextmanager.py
-	Normal:
-	  entering
-	  inside with statement: {}
-	  exiting
-	
-	Handled error:
-	  entering
-	  ERROR: showing example of handling an error
-	  exiting
-	
-	Unhandled error:
-	  entering
-	  exiting
-	Traceback (most recent call last):
-	  File "contextlib_contextmanager.py", line 37, in <module>
-	    raise ValueError('this exception is not handled')
-	ValueError: this exception is not handled
-
 .. {{{end}}}
 
 
@@ -82,18 +60,6 @@ entered.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'contextlib_nested.py'))
 .. }}}
-
-::
-
-	$ python contextlib_nested.py
-	entering: A
-	entering: B
-	entering: C
-	inside with statement: A B C
-	exiting : C
-	exiting : B
-	exiting : A
-
 .. {{{end}}}
 
 
@@ -116,21 +82,6 @@ The handle is closed whether there is an error in the with block or not.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'contextlib_closing.py'))
 .. }}}
-
-::
-
-	$ python contextlib_closing.py
-	Normal Example:
-	  __init__()
-	  inside with statement
-	  close()
-	
-	Error handling example:
-	  __init__()
-	  raising from inside with statement
-	  close()
-	  Had an error: error message
-
 .. {{{end}}}
 
 .. seealso::

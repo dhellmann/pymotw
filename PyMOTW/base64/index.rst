@@ -27,19 +27,6 @@ The output shows the 558 bytes of the original source expand to 744 bytes after 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'base64_b64encode.py'))
 .. }}}
-
-::
-
-	$ python base64_b64encode.py
-	113 bytes before encoding
-	Expect 1 padding bytes
-	152 bytes after encoding
-	
-	CgppbXBvcnQgYmFzZTY0CgojIExvYWQgdGhpcyBz
-	b3VyY2UgZmlsZSBhbmQgc3RyaXAgdGhlIGhlYWRl
-	ci4KaW5pdGlhbF9kYXRhID0gb3BlbihfX2ZpbGVf
-	XywgJ3J0JykucmVhZCgpLnNwbGl0KCc=
-
 .. {{{end}}}
 
 
@@ -57,14 +44,6 @@ The encoding process looks at each sequence of 24 bits in the input (3 bytes) an
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'base64_b64decode.py'))
 .. }}}
-
-::
-
-	$ python base64_b64decode.py
-	Original: This is the data, in the clear.
-	Encoded : VGhpcyBpcyB0aGUgZGF0YSwgaW4gdGhlIGNsZWFyLg==
-	Decoded : This is the data, in the clear.
-
 .. {{{end}}}
 
 URL-safe Variations
@@ -79,19 +58,6 @@ Because the default base64 alphabet may use ``+`` and ``/``, and those two chara
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'base64_urlsafe.py'))
 .. }}}
-
-::
-
-	$ python base64_urlsafe.py
-	Original         : '\xfb\xef'
-	Standard encoding: ++8=
-	URL-safe encoding: --8=
-	
-	Original         : '\xff\xff'
-	Standard encoding: //8=
-	URL-safe encoding: __8=
-	
-
 .. {{{end}}}
 
 
@@ -107,14 +73,6 @@ Besides base 64, the module provides functions for working with base 32 and base
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'base64_base32.py'))
 .. }}}
-
-::
-
-	$ python base64_base32.py
-	Original: This is the data, in the clear.
-	Encoded : KRUGS4ZANFZSA5DIMUQGIYLUMEWCA2LOEB2GQZJAMNWGKYLSFY======
-	Decoded : This is the data, in the clear.
-
 .. {{{end}}}
 
 The base 16 functions work with the hexadecimal alphabet.
@@ -126,14 +84,6 @@ The base 16 functions work with the hexadecimal alphabet.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'base64_base16.py'))
 .. }}}
-
-::
-
-	$ python base64_base16.py
-	Original: This is the data, in the clear.
-	Encoded : 546869732069732074686520646174612C20696E2074686520636C6561722E
-	Decoded : This is the data, in the clear.
-
 .. {{{end}}}
 
 .. seealso::

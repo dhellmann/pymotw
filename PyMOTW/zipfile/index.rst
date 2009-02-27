@@ -32,15 +32,6 @@ Notice that if the file does not exist, is_zipfile() returns False.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'zipfile_is_zipfile.py'))
 .. }}}
-
-::
-
-	$ python zipfile_is_zipfile.py
-	          README.txt  False
-	         example.zip  True
-	     bad_example.zip  False
-	        notthere.zip  False
-
 .. {{{end}}}
 
 Reading Meta-data from a ZIP Archive
@@ -61,12 +52,6 @@ The return value is a list of strings with the names of the archive contents:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'zipfile_namelist.py'))
 .. }}}
-
-::
-
-	$ python zipfile_namelist.py
-	['README.txt']
-
 .. {{{end}}}
 
 The list of names is only part of the information available from the archive,
@@ -84,19 +69,6 @@ Note with the ZIP file specification.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'zipfile_infolist.py'))
 .. }}}
-
-::
-
-	$ python zipfile_infolist.py
-	README.txt
-		Comment:	
-		Modified:	2007-12-16 10:08:52
-		System:		3 (0 = Windows, 3 = Unix)
-		ZIP version:	23
-		Compressed:	63 bytes
-		Uncompressed:	75 bytes
-	
-
 .. {{{end}}}
 
 If you know in advance the name of the archive member, you can retrieve its
@@ -111,13 +83,6 @@ If the archive member is not present, getinfo() raises a KeyError.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'zipfile_getinfo.py'))
 .. }}}
-
-::
-
-	$ python zipfile_getinfo.py
-	README.txt is 75 bytes
-	ERROR: Did not find notthere.txt in zip file
-
 .. {{{end}}}
 
 Extracting Archived Files From a ZIP Archive
@@ -135,16 +100,6 @@ The data is automatically decompressed for you, if necessary.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'zipfile_read.py'))
 .. }}}
-
-::
-
-	$ python zipfile_read.py
-	README.txt :
-	'The examples for the zipfile module use this file and example.zip as data.\n'
-	
-	ERROR: Did not find notthere.txt in zip file
-	
-
 .. {{{end}}}
 
 Creating New Archives

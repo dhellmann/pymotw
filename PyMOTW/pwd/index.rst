@@ -36,18 +36,6 @@ Most of the example code above deals with formatting the results nicely.  The ``
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'pwd_getpwall.py'))
 .. }}}
-
-::
-
-	$ python pwd_getpwall.py
-	User        UID Home Dir          Description
-	---------- ---- ----------------- ------------------------------
-	daemon        1 /var/root         System Services
-	dhellmann   527 /Users/dhellmann  Doug Hellmann
-	nobody       -2 /var/empty        Unprivileged User
-	postgres    401 /var/empty        PostgreSQL Server
-	root          0 /var/root         System Administrator
-
 .. {{{end}}}
 
 
@@ -66,25 +54,6 @@ The passwords on my system are stored outside of the main user database in a sha
 .. cog.out(run_script(cog.inFile, 'pwd_getpwnam.py dhellmann'))
 .. cog.out(run_script(cog.inFile, 'pwd_getpwnam.py postgres', include_prefix=False))
 .. }}}
-
-::
-
-	$ python pwd_getpwnam.py dhellmann
-	Username: dhellmann
-	Password: ********
-	Comment : Doug Hellmann
-	UID/GID : 527 / 501
-	Home    : /Users/dhellmann
-	Shell   : /bin/bash
-
-	$ python pwd_getpwnam.py postgres
-	Username: postgres
-	Password: 
-	Comment : PostgreSQL Server
-	UID/GID : 401 / 401
-	Home    : /var/empty
-	Shell   : /usr/bin/false
-
 .. {{{end}}}
 
 
@@ -100,12 +69,6 @@ It is also possible to look up a user by their numerical user id.  This is usefu
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'pwd_getpwuid_fileowner.py'))
 .. }}}
-
-::
-
-	$ python pwd_getpwuid_fileowner.py
-	pwd_getpwuid_fileowner.py is owned by dhellmann (527)
-
 .. {{{end}}}
 
 
@@ -118,12 +81,6 @@ The numeric user id is can also be used to find information about the user curre
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'pwd_getpwuid_process.py'))
 .. }}}
-
-::
-
-	$ python pwd_getpwuid_process.py
-	Currently running with UID=527 username=dhellmann
-
 .. {{{end}}}
 
 

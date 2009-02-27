@@ -26,14 +26,6 @@ The simplest way to work with bz2 requires holding all of the data to be compres
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'bz2_memory.py'))
 .. }}}
-
-::
-
-	$ python bz2_memory.py
-	Original     : 26 This is the original text.
-	Compressed   : 62 425a683931415926535916be35a600000293804001040022e59c402000314c000111e93d434da223028cf9e73148cae0a0d6ed7f17724538509016be35a6
-	Decompressed : 26 This is the original text.
-
 .. {{{end}}}
 
 Notice that for short text, the compressed version can be significantly longer.  While the actual results depend on the input data, for short bits of text it is interesting to observe the compression overhead.
@@ -45,33 +37,6 @@ Notice that for short text, the compressed version can be significantly longer. 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'bz2_lengths.py'))
 .. }}}
-
-::
-
-	$ python bz2_lengths.py
-	      len(data)  len(compressed)
-	---------------  ---------------
-	              0               14 *
-	             26               62 *
-	             52               68 *
-	             78               70 
-	            104               72 
-	            130               77 
-	            156               77 
-	            182               73 
-	            208               75 
-	            234               80 
-	            260               80 
-	            286               81 
-	            312               80 
-	            338               81 
-	            364               81 
-	            390               76 
-	            416               78 
-	            442               84 
-	            468               84 
-	            494               87 
-
 .. {{{end}}}
 
 
@@ -226,13 +191,6 @@ The BZ2Decompressor class can also be used in situations where compressed and un
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'bz2_mixed.py'))
 .. }}}
-
-::
-
-	$ python bz2_mixed.py
-	Decompressed matches lorem: True
-	Unused data matches lorem : True
-
 .. {{{end}}}
 
 
@@ -252,12 +210,6 @@ The BZ2File class can be used to write to and read from bzip2-compressed files u
 .. sh("cd %s; rm -f example.txt.bzw" % workdir)
 .. cog.out(run_script(cog.inFile, 'bz2_file_write.py'))
 .. }}}
-
-::
-
-	$ python bz2_file_write.py
-	example.txt.bz2: bzip2 compressed data, block size = 900k
-
 .. {{{end}}}
 
 
@@ -276,12 +228,6 @@ The center column of numbers in the output of the script is the size in bytes of
 .. sh("cd %s; rm -f compress-level*.gz2" % workdir)
 .. cog.out(run_script(cog.inFile, 'bz2_.py'))
 .. }}}
-
-::
-
-	$ python bz2_.py
-	python: can't open file 'bz2_.py': [Errno 2] No such file or directory
-
 .. {{{end}}}
 
 A BZ2File instance also includes a ``writelines()`` method that can be used to write a sequence of strings.
@@ -297,21 +243,6 @@ A BZ2File instance also includes a ``writelines()`` method that can be used to w
 .. sh("cd %s; rm -f example_lines.txt.bz2" % workdir)
 .. cog.out(run_script(cog.inFile, 'bz2_file_writelines.py'))
 .. }}}
-
-::
-
-	$ python bz2_file_writelines.py
-	The same line, over and over.
-	The same line, over and over.
-	The same line, over and over.
-	The same line, over and over.
-	The same line, over and over.
-	The same line, over and over.
-	The same line, over and over.
-	The same line, over and over.
-	The same line, over and over.
-	The same line, over and over.
-
 .. {{{end}}}
 
 
@@ -329,13 +260,6 @@ This example reads the file written by ``bz2_file_write.py`` from the previous s
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'bz2_file_read.py'))
 .. }}}
-
-::
-
-	$ python bz2_file_read.py
-	Contents of the example file go here.
-	
-
 .. {{{end}}}
     
 While reading a file, it is also possible to seek and read only part of the data.
@@ -349,18 +273,6 @@ The ``seek()`` position is relative to the *uncompressed* data, so the caller do
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'bz2_file_seek.py'))
 .. }}}
-
-::
-
-	$ python bz2_file_seek.py
-	Entire file:
-	Contents of the example file go here.
-	
-	Starting at position 5 for 10 bytes:
-	nts of the
-	
-	True
-
 .. {{{end}}}
 
 

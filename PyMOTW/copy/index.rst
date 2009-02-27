@@ -1,5 +1,3 @@
-.. Don't use cog since object reprs include memory addresses that change.
-
 =========================
 copy -- Duplicate objects
 =========================
@@ -28,15 +26,10 @@ constructed and the elements of the original list are appended to it.
 For a shallow copy, the MyClass instance is not duplicated so the reference in
 the dup list is to the same object that is in the l list.
 
-::
-
-	$ python copy_shallow.py
-	l  : [<__main__.MyClass instance at 0x8b080>]
-	dup: [<__main__.MyClass instance at 0x8b080>]
-	dup is l: False
-	dup == l: True
-	dup[0] is l[0]: True
-	dup[0] == l[0]: True
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'copy_shallow.py'))
+.. }}}
+.. {{{end}}}
 
 
 Deep Copies
@@ -57,15 +50,10 @@ apparent.
 Notice that the first element of the list is no longer the same object
 reference, but the two objects still evaluate as being equal.
 
-::
-
-	$ python copy_deep.py
-	l  : [<__main__.MyClass instance at 0x8c0a8>]
-	dup: [<__main__.MyClass instance at 0x8c058>]
-	dup is l: False
-	dup == l: True
-	dup[0] is l[0]: False
-	dup[0] == l[0]: True
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'copy_deep.py'))
+.. }}}
+.. {{{end}}}
 
 
 Controlling Copy Behavior
@@ -88,11 +76,10 @@ This example illustrates how the methods are called:
     :literal:
     :start-after: #end_pymotw_header
 
-::
-
-	$ python copy_hooks.py
-	__copy__()
-	__deepcopy__({})
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'copy_hooks.py'))
+.. }}}
+.. {{{end}}}
 
 
 Recursion in Deep Copy
@@ -129,35 +116,10 @@ b->a, b->root, root->a, root->b.
 
 When the root node is copied, we see:
 
-::
-
-	$ python copy_recursion.py
-	
-	<Graph(root) id=562640>
-	{}
-	  COPYING TO <Graph(root) id=564840>
-	
-	<Graph(a) id=564560>
-	{   <Graph(root) id=562640>: <Graph(root) id=564840>,
-	    546880: 'root',
-	    555888: ['root']}
-	  COPYING TO <Graph(a) id=564800>
-	
-	<Graph(root) id=562640>
-	  ALREADY COPIED TO <Graph(root) id=564840>
-	
-	<Graph(b) id=564600>
-	{   <Graph(root) id=562640>: <Graph(root) id=564840>,
-	    <Graph(a) id=564560>: <Graph(a) id=564800>,
-	    249312: 'a',
-	    546880: 'root',
-	    555888: [   'root',
-	                'a',
-	                <Graph(root) id=562640>,
-	                <Graph(a) id=564560>],
-	    562640: <Graph(root) id=564840>,
-	    564560: <Graph(a) id=564800>}
-	  COPYING TO <Graph(b) id=9439992>
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'copy_recursion.py'))
+.. }}}
+.. {{{end}}}
 
 Notice that the second time the root node is encountered, while the a node is
 being copied, the recursion is detected and the existing copy is used instead

@@ -22,13 +22,6 @@ The module-level function ``open()`` creates an instance of the file-like class 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'gzip_write.py'))
 .. }}}
-
-::
-
-	$ python gzip_write.py
-	application/x-gzip
-	example.txt.gz contains 68 bytes of compressed data
-
 .. {{{end}}}
 
 Different compression levels can be used by passing a *compresslevel* argument.  Valid values range from 1 to 9, inclusive.  Lower values are faster and result in less compression.  Higher values are slower and compress more, up to a point.
@@ -39,23 +32,10 @@ Different compression levels can be used by passing a *compresslevel* argument. 
 
 The center column of numbers in the output of the script is the size in bytes of the files produced.  As you see, for this input data, the higher compression values do not necessarily pay off in decreased storage space.  Results will vary, depending on the input data.
 
-.. Cannot cog this because the file contains data that changes for some reason (update timestamp?)
-
-::
-
-	$ python gzip_compresslevel.py
-	Level  Size        Checksum
-	-----  ----------  ---------------------------------
-	data       754688  e4c0f9433723971563f08a458715119c
-	    1        9839  c4088de2afeb9d4be8dd0ecc95a419c7
-	    2        8260  621e3b156084161ccc48599218617cd8
-	    3        8221  e59f000f53b82c0243026d85c7c13a6f
-	    4        4160  f3af98abbbc554fe829d75ff97321d4a
-	    5        4160  3d81fbcb438ee96688e599783877599b
-	    6        4160  ebfbb8101820abdc4b3e59f1642e8f25
-	    7        4160  93b62c79406e44fcb8d2d2de27c50663
-	    8        4160  a115438bd119453c1908e826b47fc092
-	    9        4160  95fc9dca4ee590c6d85c1e4048ea84cb
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'gzip_compresslevel.py'))
+.. }}}
+.. {{{end}}}
 
 
 A GzipFile instance also includes a ``writelines()`` method that can be used to write a sequence of strings.
@@ -67,21 +47,6 @@ A GzipFile instance also includes a ``writelines()`` method that can be used to 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'gzip_writelines.py'))
 .. }}}
-
-::
-
-	$ python gzip_writelines.py
-	The same line, over and over.
-	The same line, over and over.
-	The same line, over and over.
-	The same line, over and over.
-	The same line, over and over.
-	The same line, over and over.
-	The same line, over and over.
-	The same line, over and over.
-	The same line, over and over.
-	The same line, over and over.
-
 .. {{{end}}}
 
 
@@ -99,13 +64,6 @@ This example reads the file written by ``gzip_write.py`` from the previous secti
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'gzip_read.py'))
 .. }}}
-
-::
-
-	$ python gzip_read.py
-	Contents of the example file go here.
-	
-
 .. {{{end}}}
     
 While reading a file, it is also possible to seek and read only part of the data.
@@ -119,18 +77,6 @@ The ``seek()`` position is relative to the *uncompressed* data, so the caller do
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'gzip_seek.py'))
 .. }}}
-
-::
-
-	$ python gzip_seek.py
-	Entire file:
-	Contents of the example file go here.
-	
-	Starting at position 5 for 10 bytes:
-	nts of the
-	
-	True
-
 .. {{{end}}}
 
 
@@ -151,38 +97,10 @@ It is possible to use the GzipFile class directly to compress or uncompress a da
     working with streams of compressed data, you may want to prefix the data with
     an integer representing the actual amount of data to be read.
 
-.. Compressed data changes between runs, do not use cog.
-
-::
-
-	$ python gzip_StringIO.py
-	UNCOMPRESSED: 300
-	The same line, over and over.
-	The same line, over and over.
-	The same line, over and over.
-	The same line, over and over.
-	The same line, over and over.
-	The same line, over and over.
-	The same line, over and over.
-	The same line, over and over.
-	The same line, over and over.
-	The same line, over and over.
-	
-	COMPRESSED: 48
-	1f8b080093eaa14902ff0ac94855284ecc4d55c8c9cc4bd551c82f4b2d5248cc4b0133f4b8424665916401000000ffff
-	
-	RE-READ: 300
-	The same line, over and over.
-	The same line, over and over.
-	The same line, over and over.
-	The same line, over and over.
-	The same line, over and over.
-	The same line, over and over.
-	The same line, over and over.
-	The same line, over and over.
-	The same line, over and over.
-	The same line, over and over.
-	
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'gzip_StringIO.py'))
+.. }}}
+.. {{{end}}}
 
 
 .. seealso::

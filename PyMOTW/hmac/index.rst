@@ -36,12 +36,6 @@ it:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'hmac_simple.py'))
 .. }}}
-
-::
-
-	$ python hmac_simple.py
-	4bcb287e284f8c21e87e14ba2dc40b16
-
 .. {{{end}}}
 
 If I haven't changed the file by the time I release the example source for
@@ -70,12 +64,6 @@ default is hashlib.md5. The previous example substitutes hashlib.sha1.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'hmac_sha.py'))
 .. }}}
-
-::
-
-	$ python hmac_sha.py
-	228e895a6e962927927e17693eecf93acfc0644b
-
 .. {{{end}}}
 
 Binary Digests
@@ -99,13 +87,6 @@ formatting-sensitive contexts.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'hmac_base64.py'))
 .. }}}
-
-::
-
-	$ python hmac_base64.py
-	olW2DoXHGJEKGU0aE9fOwSVE/o4=
-	
-
 .. {{{end}}}
 
 
@@ -232,23 +213,6 @@ The output shows that the first object is verified and the second is deemed
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'hmac_pickle.py'))
 .. }}}
-
-::
-
-	$ python hmac_pickle.py
-	
-	WRITING: 387632cfa3d18cd19bdfe72b61ac395dfcdc87c9 124
-	
-	WRITING: b01b209e28d7e053408ebe23b90fe5c33bc6a0ec 131
-	
-	READ: 387632cfa3d18cd19bdfe72b61ac395dfcdc87c9 124
-	ACTUAL: 387632cfa3d18cd19bdfe72b61ac395dfcdc87c9
-	OK: digest matches
-	
-	READ: b01b209e28d7e053408ebe23b90fe5c33bc6a0ec 131
-	ACTUAL: dec53ca1ad3f4b657dd81d514f17f735628b6828
-	WARNING: Data corruption
-
 .. {{{end}}}
 
 

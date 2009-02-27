@@ -25,15 +25,6 @@ Notice that if the file does not exist, is_tarfile() raises an IOError.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'tarfile_is_tarfile.py'))
 .. }}}
-
-::
-
-	$ python tarfile_is_tarfile.py
-	          README.txt  False
-	         example.tar  True
-	     bad_example.tar  False
-	        notthere.tar  [Errno 2] No such file or directory: 'notthere.tar'
-
 .. {{{end}}}
 
 Reading Meta-data from an Archive
@@ -52,12 +43,6 @@ The return value is a list of strings with the names of the archive contents:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'tarfile_getnames.py'))
 .. }}}
-
-::
-
-	$ python tarfile_getnames.py
-	['README.txt']
-
 .. {{{end}}}
 
 In addition to names, meta-data about the archive members is available as instances of TarInfo objects.  Load the meta-data via getmembers() and getmember().
@@ -69,17 +54,6 @@ In addition to names, meta-data about the archive members is available as instan
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'tarfile_getmembers.py'))
 .. }}}
-
-::
-
-	$ python tarfile_getmembers.py
-	README.txt
-		Modified:	Sun Feb 22 11:13:55 2009
-		Mode    :	0644
-		Type    :	0
-		Size    :	75 bytes
-	
-
 .. {{{end}}}
 
 
@@ -94,13 +68,6 @@ If the archive member is not present, getmember() raises a KeyError.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'tarfile_getmember.py'))
 .. }}}
-
-::
-
-	$ python tarfile_getmember.py
-	README.txt is 75 bytes
-	ERROR: Did not find notthere.txt in tar archive
-
 .. {{{end}}}
 
 Extracting Files From an Archive
@@ -115,14 +82,6 @@ To access the data from an archive member within your program, use the extractfi
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'tarfile_extractfile.py'))
 .. }}}
-
-::
-
-	$ python tarfile_extractfile.py
-	README.txt : The examples for the tarfile module use this file and example.tar as data.
-	
-	ERROR: Did not find notthere.txt in tar archive
-
 .. {{{end}}}
 
 If you just want to unpack the archive and write the files to the filesystem, use extract() or extractall() instead.
@@ -137,12 +96,6 @@ If you just want to unpack the archive and write the files to the filesystem, us
 .. outdir.rmtree()
 .. cog.out(run_script(cog.inFile, 'tarfile_extract.py'))
 .. }}}
-
-::
-
-	$ python tarfile_extract.py
-	['README.txt']
-
 .. {{{end}}}
 
 .. note:: The standard library documentation includes a note stating that extractall() is safer than extract(), and it should be used in most cases.
@@ -157,12 +110,6 @@ If you just want to unpack the archive and write the files to the filesystem, us
 .. outdir.rmtree()
 .. cog.out(run_script(cog.inFile, 'tarfile_extractall.py'))
 .. }}}
-
-::
-
-	$ python tarfile_extractall.py
-	['README.txt']
-
 .. {{{end}}}
 
 If you only want to extract certain files from the archive, their names can be passed to extractall().
@@ -177,12 +124,6 @@ If you only want to extract certain files from the archive, their names can be p
 .. outdir.rmtree()
 .. cog.out(run_script(cog.inFile, 'tarfile_extractall_members.py'))
 .. }}}
-
-::
-
-	$ python tarfile_extractall_members.py
-	['README.txt']
-
 .. {{{end}}}
 
 Creating New Archives
@@ -199,17 +140,6 @@ To create a new archive, simply open the TarFile with a mode of ``'w'``. Any exi
 .. outfile.remove()
 .. cog.out(run_script(cog.inFile, 'tarfile_add.py'))
 .. }}}
-
-::
-
-	$ python tarfile_add.py
-	creating archive
-	adding README.txt
-	closing
-	
-	Contents:
-	README.txt
-
 .. {{{end}}}
 
 Using Alternate Archive Member Names
@@ -226,17 +156,6 @@ The archive includes only the changed filename:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'tarfile_addfile.py'))
 .. }}}
-
-::
-
-	$ python tarfile_addfile.py
-	creating archive
-	adding README.txt as RENAMED.txt
-	closing
-	
-	Contents:
-	RENAMED.txt
-
 .. {{{end}}}
 
 Writing Data from Sources Other Than Files
@@ -253,15 +172,6 @@ By first constructing a TarInfo object ourselves, we can give the archive member
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'tarfile_addfile_string.py'))
 .. }}}
-
-::
-
-	$ python tarfile_addfile_string.py
-	
-	Contents:
-	made_up_file.txt
-	This is the data to write to the archive.
-
 .. {{{end}}}
 
 Appending to Archives
@@ -278,15 +188,6 @@ The resulting archive ends up with 2 members:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'tarfile_append.py'))
 .. }}}
-
-::
-
-	$ python tarfile_append.py
-	creating archive
-	contents: ['README.txt']
-	adding index.rst
-	contents: ['README.txt', 'index.rst']
-
 .. {{{end}}}
 
 Working with Compressed Archives
@@ -303,16 +204,6 @@ When opening an existing archive for reading, you can specify ``"r:*"`` to have 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'tarfile_compression.py'))
 .. }}}
-
-::
-
-	$ python tarfile_compression.py
-	FILENAME                       SIZE      
-	README.txt                     75        
-	tarfile_compression.tar        10240      ['README.txt']
-	tarfile_compression.tar.gz     213        ['README.txt']
-	tarfile_compression.tar.bz2    186        ['README.txt']
-
 .. {{{end}}}
 
 
