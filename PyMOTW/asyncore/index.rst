@@ -74,8 +74,8 @@ Here we see that the client is only asked to read or data once per call into ``a
 .. }}}
 .. {{{end}}}
 
-Treating Files as Sockets
-=========================
+Working with Files
+==================
 
 Normally you would want to use asyncore with sockets, but there are times when it is useful to read files asynchronously, too (to use files when testing network servers without requiring the network setup, or to read or write large data files in parts).  For these situations, asyncore provides the :class:`file_dispatcher` and :class:`file_wrapper` classes.
 
