@@ -162,11 +162,7 @@ different namespaces are different, of course.
 UUID 4 - Random Values
 ======================
 
-Sometimes host-based and namespace-based UUID values are not
-"different enough". In cases where you want to use the UUID as a
-lookup key, a more random sequence of values with more differentiation
-is desirable. In these situations, use `uuid4()` to generate UUIDs
-from random values.
+Sometimes host-based and namespace-based UUID values are not "different enough". For example, in cases where you want to use the UUID as a lookup key, a more random sequence of values with more differentiation is desirable to avoid collisions in a hash table. Having values with fewer common digits also makes it easier to find them in log files. To add greater differentiation in your UUIDs, use `uuid4()` to generate UUIDs from random values.
 
 .. include:: uuid_uuid4.py
     :literal:

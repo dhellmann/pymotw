@@ -1,6 +1,9 @@
 History
 =======
 
+1.86
+  - Updated description of ``uuid4()`` in :mod:`uuid` based on feedback via O'Reilly blog comment.
+
 1.85
   - 1 Mar 2009, :mod:`asyncore`
   - Continue converting older articles to use cog.
