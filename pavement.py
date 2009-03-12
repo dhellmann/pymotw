@@ -4,13 +4,7 @@
 # Copyright (c) 2008 Doug Hellmann All rights reserved.
 #
 """
-TODO
-
- - make sure all of the files from the manifests are included
- 
 """
-
-__version__ = "$Id$"
 
 # Standard library
 import os
