@@ -131,7 +131,6 @@ class EchoClient(asyncore.dispatcher):
 
 if __name__ == '__main__':
     import socket
-    import threading
 
     logging.basicConfig(level=logging.DEBUG,
                         format='%(name)s: %(message)s',
