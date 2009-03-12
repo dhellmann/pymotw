@@ -4,7 +4,7 @@ About Python Module of the Week
 
 PyMOTW is a series of blog posts written by `Doug Hellmann <http://www.doughellmann.com/>`_.  It was started as a way to build the habit of writing something on a regular basis.  The focus of the series is building a set of example code for the modules in the `Python <http://www.python.org/>`_ standard library.
 
-See the project home page at http://www.doughellmann.com/PyMOTW/ for updates and the latest release.
+See the project home page at http://www.doughellmann.com/PyMOTW/ for updates and the latest release.  Source code is available from http://bitbucket.org/dhellmann/pymotw/.
 
 Complete documentation for the standard library can be found on the Python web site at http://docs.python.org/library/contents.html.
 

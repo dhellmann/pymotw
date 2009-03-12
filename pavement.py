@@ -30,7 +30,9 @@ import sphinx
 PROJECT = 'PyMOTW'
 
 # What version is this? (take from path in svn tree)
-VERSION = path(os.getcwd()).name
+VERSION = '1.85.1'
+
+# The sphinx templates expect the VERSION in the shell environment
 os.environ['VERSION'] = VERSION
 
 # What is the current module being documented?
@@ -103,7 +105,6 @@ options(
 
     website=Bunch(
         templates = 'web',
-        #outdir = 'web',
         builddir = 'web',
         
         # What server hosts the website?
@@ -116,7 +117,6 @@ options(
 
     pdf=Bunch(
         templates='pkg',
-        #outdir='pdf_output',
         builddir='web',
         builder='latex',
     ),

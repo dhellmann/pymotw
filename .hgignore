@@ -1,0 +1,20 @@
+syntax: glob
+*.gz
+*.pyc
+*.tar
+*.bz2
+hg.prof
+paver-minilib.zip
+setup.py
+
+syntax: re
+^PyMOTW/csv/testout.*\.csv
+^PyMOTW/.*/example
+^PyMOTW/.*/Example
+^PyMOTW/tarfile/outdir
+^PyMOTW/glob/dir
+^PyMOTW.egg-info
+^sphinx/doctrees
+^web/.*
+^docs/.*
+^blog_posts/.*
