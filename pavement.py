@@ -23,7 +23,7 @@ import sphinx
 # What project are we building?
 PROJECT = 'PyMOTW'
 
-# What version is this? (take from path in svn tree)
+# What version is this?
 VERSION = '1.85.1'
 
 # The sphinx templates expect the VERSION in the shell environment
