@@ -16,19 +16,16 @@ class EchoServer(asyncore.dispatcher):
     """
     
     def __init__(self, address):
-        self.logger = logging.getLogger('EchoServer')
         asyncore.dispatcher.__init__(self)
         self.create_socket(socket.AF_INET, socket.SOCK_STREAM)
         self.bind(address)
         self.address = self.socket.getsockname()
-        self.logger.debug('binding to %s', self.address)
         self.listen(1)
         return
 
     def handle_accept(self):
         # Called when a client connects to our socket
         client_info = self.accept()
-        self.logger.debug('handle_accept() -> %s', client_info[1])
         EchoHandler(sock=client_info[0])
         # We only want to deal with one client at a time,
         # so close as soon as we set up the handler.
@@ -39,9 +36,8 @@ class EchoServer(asyncore.dispatcher):
         return
     
     def handle_close(self):
-        self.logger.debug('handle_close()')
         self.close()
-        return
+
 
 class EchoHandler(asynchat.async_chat):
     """Handles echoing messages from a single client.
@@ -51,7 +47,7 @@ class EchoHandler(asynchat.async_chat):
         self.received_data = []
         self.logger = logging.getLogger('EchoHandler%s' % str(sock.getsockname()))
         asynchat.async_chat.__init__(self, sock)
-        # Start looking for the echo command
+        # Start looking for the ECHO command
         self.waiting_for_command = True
         self.set_terminator('\n')
         return
@@ -64,30 +60,30 @@ class EchoHandler(asynchat.async_chat):
     def found_terminator(self):
         if self.waiting_for_command:
             # Have the full ECHO command
-            self.logger.debug('found_terminator() have command "%s"', self.received_data)
             command = ''.join(self.received_data)
-            expected_data_len = int(command.split(' ')[-1].strip())
+            self.logger.debug('found_terminator() have command "%s"', command)
+            command_verb, command_arg = command.strip().split(' ')
+            expected_data_len = int(command_arg)
             self.set_terminator(expected_data_len)
             self.waiting_for_command = False
             self.received_data = []
         else:
-            self.logger.debug('found_terminator() echoing "%s"', self.received_data)
-            self.push(''.join(self.received_data))
+            to_echo = ''.join(self.received_data)
+            self.logger.debug('found_terminator() echoing "%s"', to_echo)
+            self.push(to_echo)
             # Disconnect after sending the entire response
             self.close_when_done()
             
 
-class EchoClient(asyncore.dispatcher):
+class EchoClient(asynchat.async_chat):
     """Sends messages to the server and receives responses.
     """
     
-    def __init__(self, host, port, message, chunk_size=512):
+    def __init__(self, host, port, message):
         self.message = message
-        self.to_send = message
         self.received_data = []
-        self.chunk_size = chunk_size
         self.logger = logging.getLogger('EchoClient')
-        asyncore.dispatcher.__init__(self)
+        asynchat.async_chat.__init__(self)
         self.create_socket(socket.AF_INET, socket.SOCK_STREAM)
         self.logger.debug('connecting to %s', (host, port))
         self.connect((host, port))
@@ -95,11 +91,21 @@ class EchoClient(asyncore.dispatcher):
         
     def handle_connect(self):
         self.logger.debug('handle_connect()')
-        self.send('ECHO %d\n' % len(self.to_send))
+        # Send the command
+        self.push('ECHO %d\n' % len(self.message))
+        # Send the data
+        self.push_with_producer(EchoProducer(self.message))
+        # We expect the data to come back as-is, 
+        # so set a length-based terminator
+        self.set_terminator(len(self.message))
     
-    def handle_close(self):
-        self.logger.debug('handle_close()')
-        self.close()
+    def collect_incoming_data(self, data):
+        """Read an incoming message from the client and put it into our outgoing queue."""
+        self.logger.debug('collect_incoming_data() -> (%d) "%s"', len(data), data)
+        self.received_data.append(data)
+
+    def found_terminator(self):
+        self.logger.debug('found_terminator()')
         received_message = ''.join(self.received_data)
         if received_message == self.message:
             self.logger.debug('RECEIVED COPY OF MESSAGE')
@@ -108,22 +114,17 @@ class EchoClient(asyncore.dispatcher):
             self.logger.debug('EXPECTED "%s"', self.message)
             self.logger.debug('RECEIVED "%s"', received_message)
         return
+
+
+class EchoProducer(asynchat.simple_producer):
     
-    def writable(self):
-        self.logger.debug('writable() -> %s', bool(self.to_send))
-        return bool(self.to_send)
+    logger = logging.getLogger('EchoProducer')
+    
+    def more(self):
+        response = asynchat.simple_producer.more(self)
+        self.logger.debug('more() -> (%s) "%s"', len(response), response)
+        return response
 
-    def handle_write(self):
-        data = self.to_send[:self.chunk_size]
-        sent = self.send(data)
-        self.logger.debug('handle_write() -> (%d) "%s"', sent, data)
-        self.to_send = self.to_send[sent:]
-
-    def handle_read(self):
-        data = self.recv(self.chunk_size)
-        self.logger.debug('handle_read() -> (%d) "%s"', len(data), data)
-        self.received_data.append(data)
-        
 
 if __name__ == '__main__':
     import socket
