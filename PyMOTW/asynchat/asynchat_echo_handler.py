@@ -20,7 +20,7 @@ class EchoHandler(asynchat.async_chat):
         self.logger = logging.getLogger('EchoHandler%s' % str(sock.getsockname()))
         asynchat.async_chat.__init__(self, sock)
         # Start looking for the ECHO command
-        self.waiting_for_command = True
+        self.process_data = self._process_command
         self.set_terminator('\n')
         return
 
@@ -30,18 +30,25 @@ class EchoHandler(asynchat.async_chat):
         self.received_data.append(data)
 
     def found_terminator(self):
-        if self.waiting_for_command:
-            # Have the full ECHO command
-            command = ''.join(self.received_data)
-            self.logger.debug('found_terminator() have command "%s"', command)
-            command_verb, command_arg = command.strip().split(' ')
-            expected_data_len = int(command_arg)
-            self.set_terminator(expected_data_len)
-            self.waiting_for_command = False
-            self.received_data = []
-        else:
-            to_echo = ''.join(self.received_data)
-            self.logger.debug('found_terminator() echoing "%s"', to_echo)
-            self.push(to_echo)
-            # Disconnect after sending the entire response
-            self.close_when_done()
+        """The end of a command or message has been seen."""
+        self.logger.debug('found_terminator()')
+        self.process_data()
+    
+    def _process_command(self):        
+        """We have the full ECHO command"""
+        command = ''.join(self.received_data)
+        self.logger.debug('_process_command() "%s"', command)
+        command_verb, command_arg = command.strip().split(' ')
+        expected_data_len = int(command_arg)
+        self.set_terminator(expected_data_len)
+        self.process_data = self._process_message
+        self.received_data = []
+    
+    def _process_message(self):
+        """We have read the entire message to be sent back to the client"""
+        to_echo = ''.join(self.received_data)
+        self.logger.debug('_process_message() echoing "%s"', to_echo)
+        self.push(to_echo)
+        # Disconnect after sending the entire response
+        # since we only want to do one thing at a time
+        self.close_when_done()
