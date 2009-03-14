@@ -33,7 +33,7 @@ __module_id__ = "$Id$"
 
 import logging
 
-LOG_FILENAME = '/tmp/logging_example.out'
+LOG_FILENAME = 'logging_example.out'
 logging.basicConfig(filename=LOG_FILENAME,
                     level=logging.DEBUG,
                     )
@@ -48,4 +48,3 @@ finally:
 
 print 'FILE:'
 print body
-print

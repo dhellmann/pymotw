@@ -6,6 +6,7 @@ syntax: glob
 hg.prof
 paver-minilib.zip
 setup.py
+*.out*
 
 syntax: re
 ^PyMOTW/csv/testout.*\.csv

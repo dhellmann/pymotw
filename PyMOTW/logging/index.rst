@@ -35,11 +35,13 @@ handler so that debug messages are written to a file.
 And now if we run the script and look at what we have, we should find the log
 message:
 
-::
-
-    $ python logging_file_example.py
-    FILE:
-    DEBUG:root:This message should go to the log file
+.. {{{cog
+.. from paver.runtime import path
+.. outfile = path(cog.inFile).parent / 'logging_example.out'
+.. outfile.unlink()
+.. cog.out(run_script(cog.inFile, 'logging_file_example.py'))
+.. }}}
+.. {{{end}}}
 
 
 Rotating Log Files
@@ -57,15 +59,13 @@ yourself, though, it is simpler to use a RotatingFileHandler:
 The result should be 6 separate files, each with part of the log history for
 the application:
 
-::
-
-    $ python logging_rotatingfile_example.py
-    /tmp/logging_rotatingfile_example.out
-    /tmp/logging_rotatingfile_example.out.1
-    /tmp/logging_rotatingfile_example.out.2
-    /tmp/logging_rotatingfile_example.out.3
-    /tmp/logging_rotatingfile_example.out.4
-    /tmp/logging_rotatingfile_example.out.5
+.. {{{cog
+.. from paver.runtime import path
+.. outfile = path(cog.inFile).parent / 'logging_rotatingfile_example.out'
+.. deleted = [ f.unlink() for f in outfile.glob('*') ]
+.. cog.out(run_script(cog.inFile, 'logging_rotatingfile_example.py'))
+.. }}}
+.. {{{end}}}
 
 The most current file is always ``/tmp/logging_rotatingfile_example.out``, and
 each time it reaches the size limit it is renamed with the suffix ``.1``. Each of
@@ -107,20 +107,11 @@ and the logger is set to produce only ERRORs, the message is not emitted.
 Run the script with an argument like 'debug' or 'warning' to see which
 messages show up at different levels:
 
-::
-
-    $ python logging_level_example.py debug
-    DEBUG:root:This is a debug message
-    INFO:root:This is an info message
-    WARNING:root:This is a warning message
-    ERROR:root:This is an error message
-    CRITICAL:root:This is a critical error message
-
-    $ python logging_level_example.py info
-    INFO:root:This is an info message
-    WARNING:root:This is a warning message
-    ERROR:root:This is an error message
-    CRITICAL:root:This is a critical error message
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'logging_level_example.py debug'))
+.. cog.out(run_script(cog.inFile, 'logging_level_example.py info'))
+.. }}}
+.. {{{end}}}
 
 Naming Logger Instances
 =======================
@@ -142,11 +133,10 @@ trace the source of the message:
 
 And the output:
 
-::
-
-    $ python logging_modules_example.py
-    WARNING:package1.module1:This message comes from one module
-    WARNING:package2.module2:And this message comes from another module
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'logging_modules_example.py'))
+.. }}}
+.. {{{end}}}
 
 There are many, many, more options for configuring logging, including
 different log message formatting options, having messages delivered to
