@@ -9,11 +9,12 @@ setup.py
 *.out*
 
 syntax: re
-^PyMOTW/csv/testout.*\.csv
 ^PyMOTW/.*/example
 ^PyMOTW/.*/Example
-^PyMOTW/tarfile/outdir
+^PyMOTW/csv/testout.*\.csv
 ^PyMOTW/glob/dir
+^PyMOTW/mmap/lorem_copy.txt
+^PyMOTW/tarfile/outdir
 ^PyMOTW.egg-info
 ^sphinx/doctrees
 ^web/.*

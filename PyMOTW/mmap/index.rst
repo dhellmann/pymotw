@@ -59,12 +59,10 @@ pointer is reset. The file pointer tracks the last access, so after using the
 slice operation to give us the first 10 bytes for the second time, calling
 read gives the next 10 bytes in the file.
 
-::
-
-    $ python mmap_read.py
-    First 10 bytes via read : Lorem ipsu
-    First 10 bytes via slice: Lorem ipsu
-    2nd   10 bytes via read : m dolor si
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'mmap_read.py'))
+.. }}}
+.. {{{end}}}
 
 Writing
 =======
@@ -82,13 +80,12 @@ to a slice to modify part of a line in place:
     :start-after: #end_pymotw_header
 
 As you can see here, the word shown in bold is replaced in the middle of the
-first line::
+first line:
 
-    $ python mmap_write_slice.py
-    Looking for    : consectetuer
-    Replacing with : reutetcesnoc
-    Before: Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
-    After : Lorem ipsum dolor sit amet, reutetcesnoc adipiscing elit. Donec
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'mmap_write_slice.py'))
+.. }}}
+.. {{{end}}}
 
 ACCESS_COPY Mode
 ================
@@ -102,14 +99,10 @@ Using the ACCESS_COPY mode does not write changes to the file on disk.
 Note, in this example, that it was necessary to rewind the file handle
 separately from the mmap handle.
 
-::
-
-    $ python mmap_write_copy.py 
-    Memory Before: Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
-    File Before  : Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
-
-    Memory After : Lorem ipsum dolor sit amet, reutetcesnoc adipiscing elit. Donec
-    File After   : Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'mmap_write_copy.py'))
+.. }}}
+.. {{{end}}}
 
 Regular Expressions
 ===================
@@ -127,11 +120,10 @@ Since the pattern includes two groups, the return value from findall() is a
 sequence of tuples. The print statement pulls out the sentence match and
 replaces newlines with spaces so the result prints on a single line.
 
-::
-
-    $ python mmap_regex.py
-    Nulla facilisi.
-    Nulla feugiat augue eleifend nulla.
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'mmap_regex.py'))
+.. }}}
+.. {{{end}}}
 
 
 .. seealso::
