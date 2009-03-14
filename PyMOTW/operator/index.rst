@@ -26,15 +26,10 @@ objects to see if they are identical.
     :literal:
     :start-after: #end_pymotw_header
 
-::
-
-    $ python operator_boolean.py
-    a = -1
-    b = 5
-    not_(a): False
-    truth(a): True
-    is_(a, b): False
-    is_not(a, b): True
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'operator_boolean.py'))
+.. }}}
+.. {{{end}}}
 
 
 Comparison Operators
@@ -46,17 +41,10 @@ All of the rich comparison operators are supported:
     :literal:
     :start-after: #end_pymotw_header
 
-::
-
-    $ python operator_comparisons.py
-    a = 1
-    b = 5.0
-    lt(a, b): True
-    le(a, b): True
-    eq(a, b): False
-    ne(a, b): True
-    ge(a, b): False
-    gt(a, b): False
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'operator_comparisons.py'))
+.. }}}
+.. {{{end}}}
 
 
 Arithmetic Operators
@@ -73,41 +61,11 @@ The arithmetic operators for manipulating numerical values are also supported.
   There are separate two division operators: ``floordiv`` (pre-3.0 integer division) 
   and ``truediv`` (floating point division).
 
-::
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'operator_math.py'))
+.. }}}
+.. {{{end}}}
 
-    $ python operator_math.py
-    a = -1
-    b = 5.0
-    c = 2
-    d = 6
-
-    Positive/Negative:
-    abs(a): 1
-    neg(a): 1
-    neg(b): -5.0
-    pos(a): -1
-    pos(b): 5.0
-
-    Arithmetic:
-    add(a, b): 4.0
-    div(a, b): -0.2
-    div(d, c): 3
-    floordiv(a, b): -1.0
-    floordiv(d, c): 3
-    mod(a, b): 4.0
-    mul(a, b): -5.0
-    pow(c, d): 64
-    sub(b, a): 6.0
-    truediv(a, b): -0.2
-    truediv(d, c): 3.0
-
-    Bitwise:
-    and_(c, d): 2
-    invert(c): -3
-    lshift(c, d): 128
-    or_(c, d): 6
-    rshift(d, c): 1
-    xor(c, d): 4
 
 
 Sequence Operators
@@ -121,32 +79,11 @@ from sequences.
     :literal:
     :start-after: #end_pymotw_header
 
-::
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'operator_sequences.py'))
+.. }}}
+.. {{{end}}}
 
-    $ python operator_sequences.py
-    a = [1, 2, 3]
-    b = ['a', 'b', 'c']
-
-    Constructive:
-    concat(a, b): [1, 2, 3, 'a', 'b', 'c']
-    repeat(a, 3): [1, 2, 3, 1, 2, 3, 1, 2, 3]
-
-    Searching:
-    contains(a, 1): True
-    contains(b, "d"): False
-    countOf(a, 1): 1
-    countOf(b, "d"): 0
-    indexOf(a, 5): 0
-
-    Access Items:
-    getitem(b, 1): b
-    getslice(a, 1, 3) [2, 3]
-    setitem(b, 1, "d"): None ,after b = ['a', 'd', 'c']
-    setslice(a, 1, 3, [4, 5]): None , after a = [1, 4, 5]
-
-    Destructive:
-    delitem(b, 1): None ,after b = ['a', 'c']
-    delslice(a, 1, 3): None , after a = [1]
 
 
 In-place Operators
@@ -163,17 +100,10 @@ equivalent functions for in-place modifications, too:
 These examples only demonstrate a couple of the functions. Refer to the stdlib
 documentation for complete details.
 
-::
-
-    $ python operator_inplace.py
-    a = -1
-    b = 5.0
-    c = [1, 2, 3]
-    d = ['a', 'b', 'c']
-    iadd(a, b): 4.0
-    a = iadd(a, b) => 4.0
-    iconcat(c, d): [1, 2, 3, 'a', 'b', 'c']
-    c = iconcat(c, d) => [1, 2, 3, 'a', 'b', 'c', 'a', 'b', 'c']
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'operator_inplace.py'))
+.. }}}
+.. {{{end}}}
 
 
 Attribute and Item "Getters"
@@ -191,11 +121,10 @@ Attribute getters work like ``lambda x, n='attrname': getattr(x, n)``:
     :literal:
     :start-after: #end_pymotw_header
 
-::
-
-    $ python operator_attrgetter.py
-    [MyObj(0), MyObj(1), MyObj(2), MyObj(3), MyObj(4)]
-    [0, 1, 2, 3, 4]
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'operator_attrgetter.py'))
+.. }}}
+.. {{{end}}}
 
 While item getters work like ``lambda x, y=5: x[y]``:
 
@@ -206,15 +135,11 @@ While item getters work like ``lambda x, y=5: x[y]``:
 
 Item getters work with mappings as well as sequences.
 
-::
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'operator_itemgetter.py'))
+.. }}}
+.. {{{end}}}
 
-    $ python operator_itemgetter.py
-    Dictionaries:
-    [{'val': 0}, {'val': 1}, {'val': 2}, {'val': 3}, {'val': 4}]
-    [0, 1, 2, 3, 4]
-    Tuples:
-    [(0, 0), (1, 2), (2, 4), (3, 6), (4, 8)]
-    [0, 2, 4, 6, 8]
 
 
 Working With Your Own Classes
@@ -228,13 +153,11 @@ types.
     :literal:
     :start-after: #end_pymotw_header
 
-::
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'operator_classes.py'))
+.. }}}
+.. {{{end}}}
 
-    $ python operator_classes.py
-    Testing MyObj(1) < MyObj(2)
-    True
-    Adding MyObj(1) + MyObj(2)
-    MyObj(3)
 
 
 Type Checking
@@ -249,15 +172,11 @@ supported.
     :literal:
     :start-after: #end_pymotw_header
 
-::
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'operator_typechecking.py'))
+.. }}}
+.. {{{end}}}
 
-    $ python operator_typechecking.py
-    isMappingType(o): False
-    isMappingType(t): True
-    isNumberType(o): False
-    isNumberType(t): True
-    isSequenceType(o): False
-    isSequenceType(t): True
 
 
 .. seealso::
