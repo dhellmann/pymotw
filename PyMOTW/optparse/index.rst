@@ -85,10 +85,10 @@ The options on the command line are parsed with the same rules that
 ``getopt.gnu_getopt()`` uses, so there are two ways to pass values to single
 character options. The example above uses both forms, ``-bval`` and ``-c val``.
 
-::
-
-    $ python optparse_short.py 
-    (<Values at 0xe29b8: {'a': True, 'c': 3, 'b': 'val'}>, [])
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'optparse_short.py'))
+.. }}}
+.. {{{end}}}
 
 Notice that the type of the value associated with 'c' in the output is an
 integer, since the OptionParser was told to convert the argument before
@@ -103,10 +103,10 @@ optparse:
 
 And the results are similar:
 
-::
-
-    $ python optparse_long.py
-    (<Values at 0xd3ad0: {'noarg': True, 'witharg': 'val', 'witharg2': 3}>, [])
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'optparse_long.py'))
+.. }}}
+.. {{{end}}}
 
 Comparing with getopt
 =====================
@@ -121,31 +121,19 @@ about :mod:`getopt`:
 Notice how the options ``-o`` and ``--output`` are aliased by being added at the same
 time. Either option can be used on the command line:
 
-::
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'optparse_getoptcomparison.py -o output.txt'))
+.. cog.out(run_script(cog.inFile, 'optparse_getoptcomparison.py --output output.txt'))
+.. }}}
+.. {{{end}}}
 
-    $ python optparse_getoptcomparison.py -o output.txt
-    ARGV      : ['-o', 'output.txt']
-    VERSION   : 1.0
-    VERBOSE   : False
-    OUTPUT    : output.txt
-    REMAINING : []
-    $ python optparse_getoptcomparison.py --output output.txt
-    ARGV      : ['--output', 'output.txt']
-    VERSION   : 1.0
-    VERBOSE   : False
-    OUTPUT    : output.txt
-    REMAINING : []
 
 And, any unique prefix of the long option can also be used:
 
-::
-
-    $ python optparse_getoptcomparison.py --out output.txt
-    ARGV      : ['--out', 'output.txt']
-    VERSION   : 1.0
-    VERBOSE   : False
-    OUTPUT    : output.txt
-    REMAINING : []
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'optparse_getoptcomparison.py --out output.txt'))
+.. }}}
+.. {{{end}}}
 
 
 Option Callbacks
@@ -165,19 +153,10 @@ the parsing work.
 In this example, the ``--with`` option is configured to take a string argument
 (other types are support as well, of course).
 
-::
-
-    $ python optparse_callback.py
-    with_callback:
-            option: <Option at 0x78b98: --with>
-            opt_str: --with
-            value: foo
-            parser: <optparse.OptionParser instance at 0x78b48>
-    flag_callback:
-            option: <Option at 0x7c620: --flag>
-            opt_str: --flag
-            value: None
-            parser: <optparse.OptionParser instance at 0x78b48>
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'optparse_callback.py'))
+.. }}}
+.. {{{end}}}
 
 
 Help Messages
@@ -199,15 +178,10 @@ same line. When the option takes an argument, the dest value is included as an
 argument name in the help output. The help text is printed in the right
 column.
 
-::
-
-    $ python optparse_help.py --help
-    Usage: optparse_help.py [options]
-
-    Options:
-      -h, --help   show this help message and exit
-      --no-foo     Turn off foo
-      --with=WITH  Include optional feature
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'optparse_help.py --help'))
+.. }}}
+.. {{{end}}}
 
 Callbacks can be configured to take multiple arguments using the nargs option.
 
@@ -219,14 +193,10 @@ Callbacks can be configured to take multiple arguments using the nargs option.
 In this case, the arguments are passed to the callback function as a tuple via
 the value argument.
 
-::
-
-    $ python optparse_callback_nargs.py 
-    with_callback:
-            option: <Option at 0x7c4e0: --with>
-            opt_str: --with
-            value: ('foo', 'bar')
-            parser: <optparse.OptionParser instance at 0x78a08>
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'optparse_callback-nargs.py'))
+.. }}}
+.. {{{end}}}
 
 .. seealso::
 
