@@ -22,6 +22,7 @@ address = ('localhost', 0) # let the kernel give us a port
 server = EchoServer(address)
 ip, port = server.address # find out what port we were given
 
-client = EchoClient(ip, port, message=open('lorem.txt', 'r').read())
+message_data = open('lorem.txt', 'r').read() * 2
+client = EchoClient(ip, port, message=message_data)
 
 asyncore.loop()
