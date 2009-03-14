@@ -2,6 +2,8 @@ History
 =======
 
 1.86
+  - 14 Mar 2009, :mod:`asynchat`
+  - Move to bitbucket.org for DVCS hosting
   - Updated description of ``uuid4()`` in :mod:`uuid` based on feedback via O'Reilly blog comment.
 
 1.85

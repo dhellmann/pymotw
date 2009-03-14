@@ -38,7 +38,7 @@ class EchoClient(asynchat.async_chat):
     
     def collect_incoming_data(self, data):
         """Read an incoming message from the client and put it into our outgoing queue."""
-        self.logger.debug('collect_incoming_data() -> (%d) "%s"', len(data), data)
+        self.logger.debug('collect_incoming_data() -> (%d)\n"""%s"""', len(data), data)
         self.received_data.append(data)
 
     def found_terminator(self):
@@ -58,5 +58,5 @@ class EchoProducer(asynchat.simple_producer):
 
     def more(self):
         response = asynchat.simple_producer.more(self)
-        self.logger.debug('more() -> (%s) "%s"', len(response), response)
+        self.logger.debug('more() -> (%s)\n"""%s"""', len(response), response)
         return response

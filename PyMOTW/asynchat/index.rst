@@ -5,15 +5,15 @@ asynchat -- Asynchronous protocol handler
 .. module:: asynchat
     :synopsis: Asynchronous protocol handler
 
-:Purpose: Asynchronous protocol handler
+:Purpose: Asynchronous network communication protocol handler
 :Python Version: 1.5.2 and later
 
-The asynchat module builds on :mod:`asyncore` to make it easier to implement protocols based on passing messages back and forth between server and client. The ``async_chat`` class is an ``asyncore.dispatcher`` subclass that receives data and looks for a message terminator. Your subclass only needs to specify what to do when data comes in and the terminator is found. Outgoing data is queued for transmission via FIFO objects managed by ``async_chat``.
+The asynchat module builds on :mod:`asyncore` to make it easier to implement protocols based on passing messages back and forth between server and client. The ``async_chat`` class is an ``asyncore.dispatcher`` subclass that receives data and looks for a message terminator. Your subclass only needs to specify what to do when data comes in and how to respond once the terminator is found. Outgoing data is queued for transmission via FIFO objects managed by ``async_chat``.
 
 Message Terminators
 ===================
 
-Incoming messages are broken up based on *terminators*, controlled on the instance via ``set_terminator()``. There are three possible configurations:
+Incoming messages are broken up based on *terminators*, controlled for each instance via ``set_terminator()``. There are three possible configurations:
 
  1. If a string argument is passed to ``set_terminator()``, the message is considered complete when that string appears in the input data.
  2. If a numeric argument is passed, the message is considered complete when that many bytes have been read.
@@ -64,11 +64,13 @@ The client expects just the message data in response, so it sets an integer term
 Putting It All Together
 =======================
 
-The main program for this example sets up the client and server in the same asyncore main loop. Normally you would have them in separate processes, of course, but this makes it easier to show the combined output.
+The main program for this example sets up the client and server in the same asyncore main loop. 
 
 .. include:: asynchat_echo_main.py
     :literal:
     :start-after: #end_pymotw_header
+
+Normally you would have them in separate processes, of course, but this makes it easier to show the combined output.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'asynchat_echo_main.py'))

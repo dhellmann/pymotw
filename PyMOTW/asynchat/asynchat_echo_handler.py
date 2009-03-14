@@ -26,7 +26,7 @@ class EchoHandler(asynchat.async_chat):
 
     def collect_incoming_data(self, data):
         """Read an incoming message from the client and put it into our outgoing queue."""
-        self.logger.debug('collect_incoming_data() -> (%d) "%s"', len(data), data)
+        self.logger.debug('collect_incoming_data() -> (%d)\n"""%s"""', len(data), data)
         self.received_data.append(data)
 
     def found_terminator(self):
@@ -47,7 +47,7 @@ class EchoHandler(asynchat.async_chat):
     def _process_message(self):
         """We have read the entire message to be sent back to the client"""
         to_echo = ''.join(self.received_data)
-        self.logger.debug('_process_message() echoing "%s"', to_echo)
+        self.logger.debug('_process_message() echoing\n"""%s"""', to_echo)
         self.push(to_echo)
         # Disconnect after sending the entire response
         # since we only want to do one thing at a time
