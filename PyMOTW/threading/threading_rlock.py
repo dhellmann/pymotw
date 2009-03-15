@@ -5,8 +5,7 @@
 #
 """Re-entrant locks
 """
-
-__version__ = "$Id$"
+#end_pymotw_header
 
 import threading
 

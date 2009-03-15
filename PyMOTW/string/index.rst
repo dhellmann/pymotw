@@ -102,7 +102,7 @@ If the default syntax for string.Template is not to your liking, you can change 
 In this example, variable ids must include an underscore somewhere in the middle, so ``%notunderscored`` is not replaced by anything.
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'string_template_advance.py'))
+.. cog.out(run_script(cog.inFile, 'string_template_advanced.py'))
 .. }}}
 .. {{{end}}}
 

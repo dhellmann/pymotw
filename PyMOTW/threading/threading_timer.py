@@ -5,8 +5,7 @@
 #
 """Starting a thread after an initial delay
 """
-
-__version__ = "$Id$"
+#end_pymotw_header
 
 import threading
 import time

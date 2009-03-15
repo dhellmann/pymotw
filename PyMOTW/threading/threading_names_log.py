@@ -5,8 +5,7 @@
 #
 """Using thread names in logs
 """
-
-__version__ = "$Id$"
+#end_pymotw_header
 
 import logging
 import threading

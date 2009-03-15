@@ -5,8 +5,7 @@
 #
 """Using enumerate() to find the active threads.
 """
-
-__version__ = "$Id$"
+#end_pymotw_header
 
 import random
 import threading

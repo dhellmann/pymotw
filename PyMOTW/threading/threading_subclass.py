@@ -5,8 +5,7 @@
 #
 """Subclassing Thread to create your own thread types.
 """
-
-__version__ = "$Id$"
+#end_pymotw_header
 
 import threading
 

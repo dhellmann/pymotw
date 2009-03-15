@@ -5,8 +5,7 @@
 #
 """Naming threads
 """
-
-__version__ = "$Id$"
+#end_pymotw_header
 
 import threading
 import time

@@ -5,8 +5,7 @@
 #
 """Using a Lock without blocking
 """
-
-__version__ = "$Id$"
+#end_pymotw_header
 
 import logging
 import random
@@ -14,7 +13,7 @@ import threading
 import time
 
 logging.basicConfig(level=logging.DEBUG,
-                    format='%(asctime)s (%(threadName)-8s) %(message)s',
+                    format='(%(threadName)-8s) %(message)s',
                     )
                     
 def random_pause():

@@ -5,15 +5,12 @@
 #
 """Using a Condition to control sequencing between threads.
 """
-
-
+#end_pymotw_header
 
 from __future__ import with_statement
 import logging
 import threading
 import time
-
-__version__ = "$Id$"
 
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s (%(threadName)-2s) %(message)s',

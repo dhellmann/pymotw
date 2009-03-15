@@ -5,8 +5,7 @@
 #
 """Timing out join() for busy daemon threads
 """
-
-__version__ = "$Id$"
+#end_pymotw_header
 
 import threading
 import time

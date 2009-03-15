@@ -31,15 +31,10 @@ The ``fill()`` convenience function takes text as input and produces formatted t
 
 The results are something less than what we want:
 
-::
-
-    $ python textwrap_fill.py
-    No dedent:
-
-             The textwrap module can be used to format text for output in
-    situations         where pretty-printing is desired.  It offers
-    programmatic functionality similar         to the paragraph wrapping
-    or filling features found in many text editors.
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'textwrap_fill.py'))
+.. }}}
+.. {{{end}}}
 
 
 Removing Existing Indentation
@@ -53,14 +48,10 @@ Notice the embedded tabs and extra spaces mixed into the middle of the output. I
 
 The results are starting to look better:
 
-::
-
-    $ python textwrap_dedent.py
-    Dedented:
-    
-    The textwrap module can be used to format text for output in situations
-    where pretty-printing is desired.  It offers programmatic functionality similar
-    to the paragraph wrapping or filling features found in many text editors.
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'textwrap_dedent.py'))
+.. }}}
+.. {{{end}}}
 
 Since "dedent" is the opposite of "indent", the result is a block of text with
 the common initial whitespace from each line removed. If one line is already
@@ -94,39 +85,10 @@ fill() with a few different width values.
 
 This gives several sets of output in the specified widths:
 
-::
-
-    $ python textwrap_fill_width.py
-
-    20 Columns:
-
-    The textwrap module
-    can be used to
-    format text for
-    output in situations
-    where pretty-
-    printing is desired.
-    It offers
-    programmatic
-    functionality
-    similar to the
-    paragraph wrapping
-    or filling features
-    found in many text
-    editors.
-
-    60 Columns:
-
-    The textwrap module can be used to format text for output in
-    situations where pretty-printing is desired.  It offers
-    programmatic functionality similar to the paragraph wrapping
-    or filling features found in many text editors.
-
-    80 Columns:
-
-    The textwrap module can be used to format text for output in situations where
-    pretty-printing is desired.  It offers programmatic functionality similar to the
-    paragraph wrapping or filling features found in many text editors.
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'textwrap_fill_width.py'))
+.. }}}
+.. {{{end}}}
 
 
 Hanging Indents
@@ -140,18 +102,16 @@ Besides the width of the output, you can control the indent of the first line in
 
 This makes it relatively easy to produce a hanging indent, where the first line is indented less than the other lines.
 
-::
-
-    $ python textwrap_hanging_indent.py
-    The textwrap module can be used to format text for output in
-        situations where pretty-printing is desired.  It offers
-        programmatic functionality similar to the paragraph wrapping or
-        filling features found in many text editors.
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'textwrap_hanging_indent.py'))
+.. }}}
+.. {{{end}}}
 
 The indent values can include non-whitespace characters, too, so the hanging indent can be prefixed with ``*`` to produce bullet points, etc. That came in handy when I converted my old zwiki content so I could import it into trac. I used the StructuredText package from Zope to parse the zwiki data, then created a formatter to produce trac's wiki markup as output. Using :mod:`textwrap`, I was able to format the output pages so almost no manual tweaking was needed after the conversion.
 
-References
-==========
+.. seealso::
 
-Standard library documentation: `textwrap <http://docs.python.org/lib/module-textwrap.html>`_
+    `textwrap <http://docs.python.org/lib/module-textwrap.html>`_
+        Standard library documentation for this module.
+
 

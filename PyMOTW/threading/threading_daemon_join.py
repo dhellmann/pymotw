@@ -5,8 +5,7 @@
 #
 """Joining daemon threads to prevent premature exit
 """
-
-__version__ = "$Id$"
+#end_pymotw_header
 
 import threading
 import time

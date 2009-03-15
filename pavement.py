@@ -182,7 +182,9 @@ def run_script(input_file, script_name,
     try:
         output_text = sh(cmd, capture=True, ignore_error=ignore_error)
     except Exception, err:
+        print '*' * 50
         print 'ERROR run_script(%s) => %s' % (cmd, err)
+        print '*' * 50
         output_text = sh(cmd, capture=True, ignore_error=True)
     if include_prefix:
         response = '\n::\n\n'

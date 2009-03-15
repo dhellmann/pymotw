@@ -5,8 +5,7 @@
 #
 """Keeping thread-local values
 """
-
-__version__ = "$Id$"
+#end_pymotw_header
 
 import random
 import threading

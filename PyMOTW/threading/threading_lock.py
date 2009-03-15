@@ -5,8 +5,7 @@
 #
 """Controlling access to a resource using a Lock
 """
-
-__version__ = "$Id$"
+#end_pymotw_header
 
 import logging
 import random

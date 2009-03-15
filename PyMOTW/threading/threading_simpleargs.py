@@ -5,8 +5,7 @@
 #
 """Passing arguments to threads when they are created
 """
-
-__version__ = "$Id$"
+#end_pymotw_header
 
 import threading
 

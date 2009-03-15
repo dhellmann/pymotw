@@ -5,8 +5,7 @@
 #
 """Normal locks cannot be acquired more than once, even by the same thread
 """
-
-__version__ = "$Id$"
+#end_pymotw_header
 
 import threading
 

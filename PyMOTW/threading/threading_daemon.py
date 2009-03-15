@@ -5,8 +5,7 @@
 #
 """Daemon vs. non-daemon threads.
 """
-
-__version__ = "$Id$"
+#end_pymotw_header
 
 import threading
 import time

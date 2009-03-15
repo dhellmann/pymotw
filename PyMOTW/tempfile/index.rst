@@ -34,16 +34,10 @@ This example illustrates the difference in creating a temporary file using a
 common pattern for making up a name, versus using the TemporaryFile()
 function. Notice that the file returned by TemporaryFile has no name.
 
-::
-
-    $ python tempfile_TemporaryFile.py
-    Building a file name yourself:
-    temp: <open file '/tmp/guess_my_name.7297.txt', mode 'w+b' at 0x5c338>
-    temp.name: /tmp/guess_my_name.7297.txt
-
-    TemporaryFile:
-    temp: <open file '<fdopen>', mode 'w+b' at 0x5c410>
-    temp.name: <fdopen>
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'tempfile_TemporaryFile.py'))
+.. }}}
+.. {{{end}}}
 
 By default, the file handle is created with mode 'w+b' so it behaves
 consistently on all platforms and your program can write to it and read from
@@ -56,10 +50,10 @@ it.
 After writing, you have to rewind the file handle using seek() in order to
 read the data back from it.
 
-::
-
-    $ python tempfile_TemporaryFile_binary.py
-    Some data
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'tempfile_TemporaryFile_binary.py'))
+.. }}}
+.. {{{end}}}
 
 If you want the file to work in text mode, pass mode='w+t' when you create it:
 
@@ -69,11 +63,10 @@ If you want the file to work in text mode, pass mode='w+t' when you create it:
 
 The file handle treats the data as text:
 
-::
-
-    $ python tempfile_TemporaryFile_text.py
-    first
-    second
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'tempfile_TemporaryFile_text.py'))
+.. }}}
+.. {{{end}}}
 
 NamedTemporaryFile
 ==================
@@ -90,12 +83,10 @@ name attribute.
 
 Even though the file is named, it is still removed after the handle is closed.
 
-::
-
-    $ python tempfile_NamedTemporaryFile.py
-    temp: <open file '<fdopen>', mode 'w+b' at 0x5c338>
-    temp.name: /var/folders/9R/9R1t+tR02Raxzk+F71Q50U+++Uw/-Tmp-/tmplBKZMv
-    Exists after close: False
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'tempfile_NamedTemporaryFile.py'))
+.. }}}
+.. {{{end}}}
 
 mkdtemp
 =======
@@ -111,10 +102,10 @@ To create a temporary directory, use mkdtemp().
 Since the directory is not "opened" per se, you have to remove it yourself
 when you are done with it.
 
-::
-
-    $ python tempfile_mkdtemp.py
-    /var/folders/9R/9R1t+tR02Raxzk+F71Q50U+++Uw/-Tmp-/tmp0OsHPg
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'tempfile_mkdtemp.py'))
+.. }}}
+.. {{{end}}}
 
 Predicting Names
 ================
@@ -139,11 +130,10 @@ The prefix and suffix arguments are combined with a random string of
 characters to build the file name, and the dir argument is taken as-is and
 used as the location of the new file.
 
-::
-
-    $ python tempfile_NamedTemporaryFile_args.py
-    temp: <open file '<fdopen>', mode 'w+b' at 0x5c338>
-    temp.name: /tmp/prefix_zy-7H3_suffix
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'tempfile_NamedTemporaryFile_args.py'))
+.. }}}
+.. {{{end}}}
 
 Temporary File Location
 =======================
@@ -161,11 +151,10 @@ gettempdir() returns the default directory that will hold all of the temporary
 files and gettempprefix() returns the string prefix for new file and directory
 names.
 
-::
-
-    $ python tempfile_settings.py
-    gettempdir(): /var/folders/9R/9R1t+tR02Raxzk+F71Q50U+++Uw/-Tmp-
-    gettempprefix(): tmp
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'tempfile_settings.py'))
+.. }}}
+.. {{{end}}}
 
 The value returned by gettempdir() is set based on a straightforward algorithm
 of looking through a list of locations for the first place the current process
@@ -199,10 +188,10 @@ environment variables, you can set tempfile.tempdir directly.
     :literal:
     :start-after: #end_pymotw_header
 
-::
-
-    $ python tempfile_tempdir.py
-    gettempdir(): /I/changed/this/path
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'tempfile_tempdir.py'))
+.. }}}
+.. {{{end}}}
 
 .. seealso::
 

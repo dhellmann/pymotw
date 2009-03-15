@@ -5,8 +5,7 @@
 #
 """Creating and waiting for a thread.
 """
-
-__version__ = "$Id$"
+#end_pymotw_header
 
 import threading
 

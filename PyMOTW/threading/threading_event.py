@@ -5,15 +5,14 @@
 #
 """Using Events to synchronize threads.
 """
-
-__version__ = "$Id$"
+#end_pymotw_header
 
 import logging
 import threading
 import time
 
 logging.basicConfig(level=logging.DEBUG,
-                    format='%(asctime)s (%(threadName)-10s) %(message)s',
+                    format='(%(threadName)-10s) %(message)s',
                     )
                     
 def wait_for_event(e):

@@ -5,13 +5,10 @@
 #
 """Locking via the 'with' statement
 """
-
-
+#end_pymotw_header
 
 from __future__ import with_statement
 import threading
-
-__version__ = "$Id$"
 
 def worker_with(lock):
     with lock:

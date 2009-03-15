@@ -1,18 +1,12 @@
-====
-time
-====
+=============================================
+time -- Functions for manipulating clock time
+=============================================
+
 .. module:: time
-    :synopsis: Functions for manipulating times.
+    :synopsis: Functions for manipulating clock time
 
-:Module: time
-:Purpose: Functions for manipulating times.
+:Purpose: Functions for manipulating clock time.
 :Python Version: 1.4 or earlier
-:Abstract:
-
-    The time module provides functions for working with dates and times.
-
-Description
-===========
 
 The time module exposes C library functions for manipulating dates and times.
 Since it is tied to the underlying C implementation, some details (such as the
@@ -25,11 +19,9 @@ Wall Clock Time
 One of the core functions of the time module is time.time(), which returns the
 number of seconds since the start of the epoch as a floating point value. 
 
-::
-
-    import time
-
-    print 'The time is:', time.time()
+.. include:: time_time.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 Although the value is always a float, actual precision is platform-dependent.
 
@@ -42,13 +34,9 @@ The float representation is useful when storing or comparing dates, but not as
 useful for producing human readable representations. For logging or printing
 time time.ctime() can be more useful.
 
-::
-
-    import time
-
-    print 'The time is      :', time.ctime()
-    later = time.time() + 15
-    print '15 secs from now :', time.ctime(later)
+.. include:: time_ctime.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 Here the second output line shows how to use ctime() to format a time value
 other than the current time.
@@ -67,20 +55,9 @@ The values returned from clock() should be used for performance testing,
 benchmarking, etc. since they reflect the actual time used by the program, and
 can be more precise than the values from time().
 
-::
-
-    import hashlib
-    import time
-
-    # Data to use to calculate md5 checksums
-    data = open(__file__, 'rt').read()
-
-    for i in range(5):
-        h = hashlib.sha1()
-        print time.ctime(), ': %0.3f %0.3f' % (time.time(), time.clock())
-        for i in range(100000):
-            h.update(data)
-        cksum = h.digest()
+.. include:: time_clock.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 
 In this example, the formatted ctime() is printed along with the floating
@@ -101,15 +78,9 @@ difference.
 Typically, the processor clock doesn't tick if your program isn't doing
 anything.
 
-::
-
-    import time
-
-    for i in range(6, 1, -1):
-        print '%s %0.2f %0.2f' % (time.ctime(), time.time(), time.clock())
-        print 'Sleeping', i
-        time.sleep(i)
-
+.. include:: time_clock_sleep.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 In this example, the loop does very little work by going to sleep after each
 iteration. The time.time() value increases even while the app is asleep, but
@@ -142,19 +113,9 @@ month, etc.). The time module defines struct_time for holding date and time
 values with components broken out so they are easy to access. There are
 several functions that work with struct_time values instead of floats.
 
-::
-
-    import time
-
-    print 'gmtime   :', time.gmtime()
-    print 'localtime:', time.localtime()
-    print 'mktime   :', time.mktime(time.localtime())
-
-    print
-    t = time.localtime()
-    print 'Day of month:', t.tm_mday
-    print ' Day of week:', t.tm_wday
-    print ' Day of year:', t.tm_yday
+.. include:: time_struct.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 gmtime() returns the current time in UTC. localtime() returns the current time
 with the current time zone applied. mktime() takes a struct_time and converts
@@ -183,15 +144,9 @@ complete list is documented in the library documentation for the time module.
 This example converts the current time from a string, to a struct_time
 instance, and back to a string.
 
-::
-
-    import time
-
-    now = time.ctime()
-    print now
-    parsed = time.strptime(now)
-    print parsed
-    print time.strftime("%a %b %d %H:%M:%S %Y", parsed)
+.. include:: time_strptime.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 The output string is not exactly like the input, since the day of the month is
 prefixed with a zero.
@@ -220,27 +175,9 @@ information, though.
 This example program changes the time zone to a few different values and shows
 how the changes affect other settings in the time module.
 
-::
-
-    import time
-    import os
-
-    def show_zone_info():
-        print '\tTZ    :', os.environ.get('TZ', '(not set)')
-        print '\ttzname:', time.tzname
-        print '\tZone  : %d (%d)' % (time.timezone, (time.timezone / 3600))
-        print '\tDST   :', time.daylight
-        print '\tTime  :', time.ctime()
-        print
-
-    print 'Default :'
-    show_zone_info()
-
-    for zone in [ 'US/Eastern', 'US/Pacific', 'GMT', 'Europe/Amsterdam' ]:
-        os.environ['TZ'] = zone
-        time.tzset()
-        print zone, ':'
-        show_zone_info()
+.. include:: time_timezone.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 My default time zone is US/Eastern, so setting TZ to that has no effect. The
 other zones used change the tzname, daylight flag, and timezone offset value.
@@ -283,4 +220,10 @@ other zones used change the tzname, daylight flag, and timezone offset value.
         DST   : 1
         Time  : Sun Mar  9 18:06:53 2008
 
+.. seealso::
 
+    `time <http://docs.python.org/lib/module-time.html>`_
+        Standard library documentation for this module.
+
+    :mod:`datetime`
+        The datetime module includes other classes for doing calculations with dates and times.
