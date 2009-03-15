@@ -26,8 +26,7 @@
 """Parsing URLs
 
 """
-
-__version__ = "$Id$"
+#end_pymotw_header
 
 from urlparse import urlparse
 parsed = urlparse('http://user:pass@NetLoc:80/path;parameters?query=argument#fragment')

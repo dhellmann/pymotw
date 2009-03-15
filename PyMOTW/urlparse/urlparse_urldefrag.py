@@ -26,8 +26,7 @@
 """Remove fragment portion of URL
 
 """
-
-__version__ = "$Id$"
+#end_pymotw_header
 
 from urlparse import urldefrag
 original = 'http://netloc/path;parameters?query=argument#fragment'
