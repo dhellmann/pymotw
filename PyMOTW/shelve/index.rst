@@ -32,11 +32,12 @@ To access the data again, open the shelf and use it like a dictionary:
 
 If you run both sample scripts, you should see:
 
-::
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'shelve_create.py', trailing_newlines=False))
+.. cog.out(run_script(cog.inFile, 'shelve_existing.py', include_prefix=False))
+.. }}}
+.. {{{end}}}
 
-    $ python shelve_create.py
-    $ python shelve_existing.py 
-    {'int': 10, 'float': 9.5, 'string': 'Sample data'}
 
 The :mod:`dbm` module does not support multiple applications writing to the same
 database at the same time. If you know your client will not be modifying the
@@ -65,12 +66,11 @@ shelf explicitly by storing the item again.
 In this example, the dictionary at 'key1' is not stored again, so when the
 shelf is re-opened, the changes have not been preserved.
 
-::
-
-    $ python shelve_create.py
-    $ python shelve_withoutwriteback.py
-    {'int': 10, 'float': 9.5, 'string': 'Sample data'}
-    {'int': 10, 'float': 9.5, 'string': 'Sample data'}
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'shelve_create.py', trailing_newlines=False))
+.. cog.out(run_script(cog.inFile, 'shelve_withoutwriteback.py', include_prefix=False))
+.. }}}
+.. {{{end}}}
 
 To automatically catch changes to volatile objects stored in the shelf, open
 the shelf with writeback enabled. The writeback flag causes the shelf to
@@ -90,13 +90,11 @@ can take extra time. Since there is no way to tell if the cached objects have
 been modified, they are all written back. If your application reads data more
 than it writes, writeback will add more overhead than you might want.
 
-::
-
-    $ python shelve_create.py
-    $ python shelve_writeback.py
-    {'int': 10, 'float': 9.5, 'string': 'Sample data'}
-    {'int': 10, 'new_value': 'this was not here before', 'float': 9.5, 'string': 'Sample data'}
-    {'int': 10, 'new_value': 'this was not here before', 'float': 9.5, 'string': 'Sample data'}
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'shelve_create.py', trailing_newlines=False))
+.. cog.out(run_script(cog.inFile, 'shelve_writeback.py', include_prefix=False))
+.. }}}
+.. {{{end}}}
 
 
 ====================

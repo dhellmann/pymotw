@@ -8,17 +8,15 @@ sched -- Generic event scheduler.
 :Purpose: Generic event scheduler.
 :Python Version: 1.4
 
-The sched module implements a generic event scheduler for running tasks at
-specific times.  The scheduler class uses a
-time function to learn the current time, and a delay function to wait for a
-specific period of time. The actual units of time are not important, which
-makes the interface flexible enough to be used for many purposes.
+The :mod:`sched` module implements a generic event scheduler for running tasks at specific
+times. The scheduler class uses a *time* function to learn the current time, and a *delay*
+function to wait for a specific period of time. The actual units of time are not important,
+which makes the interface flexible enough to be used for many purposes.
 
-The time function is called without any arguments, and should return a number
-representing the current time. The delay function is called with a single
-integer argument, using the same scale as the time function, and should wait
-that many time units before returning. For example, the time.time() and
-time.sleep() functions meet these requirements.
+The *time* function is called without any arguments, and should return a number representing
+the current time. The *delay* function is called with a single integer argument, using the
+same scale as the time function, and should wait that many time units before returning. For
+example, the ``time.time()`` and ``time.sleep()`` functions meet these requirements.
 
 To support multi-threaded applications, the delay function is called with
 argument 0 after each event is generated, to ensure that other threads also
@@ -45,12 +43,10 @@ prints the current time and the name argument passed to the event.
 
 The output will look something like this:
 
-::
-
-    $ python sched_basic.py
-    START: 1190727943.36
-    EVENT: 1190727945.36 first
-    EVENT: 1190727946.36 second
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'sched_basic.py'))
+.. }}}
+.. {{{end}}}
 
 The time printed for the first event is 2 seconds after start, and the time
 for the second event is 3 seconds after start.
@@ -74,14 +70,10 @@ The result is the second event is run immediately after the first finishes,
 since the first event took long enough to push the clock past the desired
 start time of the second event.
 
-::
-
-    $ python sched_overlap.py 
-    START: 1190728573.16
-    BEGIN EVENT : 1190728575.16 first
-    FINISH EVENT: 1190728577.16 first
-    BEGIN EVENT : 1190728577.16 second
-    FINISH EVENT: 1190728579.16 second
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'sched_overlap.py'))
+.. }}}
+.. {{{end}}}
 
 
 Event Priorities
@@ -98,12 +90,10 @@ In order to ensure that they are scheduled for the exact same time, the
 enterabs() method is used instead of enter(). The first argument to enterabs()
 is the time to run the event, instead of the amount of time to delay.
 
-::
-
-    $ python sched_priority.py 
-    START: 1190728789.4
-    EVENT: 1190728791.4 second
-    EVENT: 1190728791.4 first
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'sched_priority.py'))
+.. }}}
+.. {{{end}}}
 
 
 Canceling Events
@@ -121,13 +111,10 @@ and the main processing thread is used to cancel the event.
 Two events were scheduled, but the first was later canceled. Only the second
 event runs, so the counter variable is only incremented one time.
 
-::
-
-    $ python sched_cancel.py
-    START: 1190729094.13
-    EVENT: 1190729097.13 E2
-    NOW: 1
-    FINAL: 1
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'sched_cancel.py'))
+.. }}}
+.. {{{end}}}
 
 
 .. seealso::
