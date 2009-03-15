@@ -31,7 +31,7 @@ paver.setuputils.install_distutils_tasks()
 PROJECT = 'PyMOTW'
 
 # What version is this?
-VERSION = '1.86'
+VERSION = '1.86.1'
 
 # The sphinx templates expect the VERSION in the shell environment
 os.environ['VERSION'] = VERSION
