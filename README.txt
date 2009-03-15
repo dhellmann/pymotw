@@ -16,27 +16,7 @@ As new articles are written, they are posted to `my blog <http://blog.doughellma
 Translations and Other Versions
 ===============================
 
-Chinese
--------
-
-Junjie Cai (蔡俊杰) and Yan Sheng (盛艳) have started a google code project called PyMOTWCN (http://code.google.com/p/pymotwcn/) and posted the completed translations at http://www.vbarter.cn/pymotw/.
-
-German
-------
-
-Ralf Schönian is translating PyMOTW into German, following an alphabetical order.  The results are available on his web site, http://schoenian-online.de/pymotw.html.  Ralf is an active member of the `pyCologne <http://wiki.python.de/User_Group_K%C3%B6ln?action=show&redirect=pyCologne>`_ user group in Germany and author of pyVoc, the open source English/German vocabulary trainer (http://code.google.com/p/pyvoc/).
-
-
-Spanish
--------
-
-`Ernesto Rico Schmidt <http://denklab.org/>`_ provides a Spanish translation that follows the English version posts. Ernesto is in Bolivia, and is translating these examples as a way to contribute to the members of the `Bolivian Free Software <http://www.softwarelibre.org.bo/>`_ community who use Python.   The full list of articles available in Spanish can be found at http://denklab.org/articles/category/pymotw/, and there is an `RSS feed <http://denklab.org/feeds/articles/category/pymotw/>`_.
-
-
-Compendiums
------------
-
-Gerard Flanagan is working on a "Python compendium" called `The Hazel Tree <http://www.thehazeltree.org/>`_.  He is converting a collection of old and new of Python-related reference material into reStructuredText and then building a single searchable repository from the results.  I am very pleased to have PyMOTW included with works from authors like Mark Pilgrim, Fredrik Lundh, Andrew Kuchling, and a growing list of others.
+For information about translations and other versions of this document see the project information page, http://www.doughellmann.com/PyMOTW/about.html.
 
 
 Copyright and Licensing
