@@ -55,19 +55,10 @@ By default, the pickle will use only ASCII characters. A more efficient binary
 format is also available, but I will be sticking with the ASCII version for
 these examples.
 
-::
-
-    $ python pickle_string.py
-    DATA:[{'a': 'A', 'b': 2, 'c': 3.0}]
-    PICKLE: (lp1
-    (dp2
-    S'a'
-    S'A'
-    sS'c'
-    F3
-    sS'b'
-    I2
-    sa.
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'pickle_string.py'))
+.. }}}
+.. {{{end}}}
 
 Once the data is serialized, you can write it to a file, socket, pipe, etc.
 Then later you can read the file and unpickle the data to construct a new
@@ -80,13 +71,10 @@ object with the same values.
 As you see, the newly constructed object is the equal to but not the same
 object as the original. No surprise there.
 
-::
-
-    $ python pickle_unpickle.py
-    BEFORE:[{'a': 'A', 'b': 2, 'c': 3.0}]
-    AFTER:[{'a': 'A', 'b': 2, 'c': 3.0}]
-    SAME?: False
-    EQUAL?: True
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'pickle_unpickle.py'))
+.. }}}
+.. {{{end}}}
 
 
 Working with Streams
@@ -107,18 +95,13 @@ little trickery to establish the readable stream. A simple database format
 might use pickles to store objects, too, though using the shelve module might
 be easier to work with.
 
-::
-
-    $ python pickle_stream.py
-    WRITING: pickle (elkcip)
-    WRITING: cPickle (elkciPc)
-    WRITING: last (tsal)
-    READ: pickle (elkcip)
-    READ: cPickle (elkciPc)
-    READ: last (tsal)
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'pickle_stream.py'))
+.. }}}
+.. {{{end}}}
 
 Besides storing data, pickles are very handy for inter-process
-communication. For example, using os.fork() and os.pipe(), one can establish
+communication. For example, using ``os.fork()`` and ``os.pipe()``, one can establish
 worker processes which read job instructions from one pipe and write the
 results to another pipe. The core code for managing the worker pool and
 sending jobs in and receiving responses can be reused, since the job and
@@ -144,12 +127,10 @@ this example, which writes instances of a class to a file:
 When I run the script, it will create a file I name as an argument on the
 command line:
 
-::
-
-    $ python pickle_dump_to_file_1.py test.dat
-    WRITING: pickle (elkcip)
-    WRITING: cPickle (elkciPc)
-    WRITING: last (tsal)
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'pickle_dump_to_file_1.py test.dat'))
+.. }}}
+.. {{{end}}}
 
 A simplistic attempt to load the resulting pickled objects might look like:
 
@@ -159,13 +140,10 @@ A simplistic attempt to load the resulting pickled objects might look like:
 
 This version fails because there is no SimpleObject class available:
 
-::
-
-    $ python pickle_load_from_file_1.py test.dat
-    Traceback (most recent call last):
-     File "pickle_load_from_file_1.py", line 52, in 
-       o = pickle.load(in_s)
-    AttributeError: 'module' object has no attribute 'SimpleObject'
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'pickle_load_from_file_1.py test.dat', ignore_error=True))
+.. }}}
+.. {{{end}}}
 
 A corrected version, which imports SimpleObject from the script which dumps
 the data, succeeds.
@@ -178,12 +156,10 @@ Add:
 
 to the end of the import list, then run the script:
 
-::
-
-    $ python pickle_load_from_file_2.py test.dat
-    READ: pickle (elkcip)
-    READ: cPickle (elkciPc)
-    READ: last (tsal)
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'pickle_load_from_file_2.py test.dat'))
+.. }}}
+.. {{{end}}}
 
 There are some special considerations when pickling data types with values
 that cannot be pickled (sockets, file handles, database connections, etc.).
