@@ -6,8 +6,7 @@
 """Example using weakref.ref to manage a reference to an object
 with a callback.
 """
-
-__version__ = "$Id$"
+#end_pymotw_header
 
 import weakref
 

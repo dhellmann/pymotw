@@ -5,8 +5,7 @@
 #
 """Demonstrate WeakValueDictionary.
 """
-
-__version__ = "$Id$"
+#end_pymotw_header
 
 import gc
 from pprint import pprint

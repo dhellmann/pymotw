@@ -5,8 +5,7 @@
 #
 """Using proxy instead of ref.
 """
-
-__version__ = "$Id$"
+#end_pymotw_header
 
 import weakref
 

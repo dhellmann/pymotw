@@ -1,16 +1,12 @@
-======================
-warnings
-======================
+============================
+warnings -- Non-fatal alerts
+============================
+
 .. module:: warnings
     :synopsis: Deliver non-fatal alerts to the user about issues encountered when running a program.
 
-:Module: warnings
 :Purpose: Deliver non-fatal alerts to the user about issues encountered when running a program.
 :Python Version: 2.1 and later
-:Abstract: Manage non-error alerts through the warnings module.
-
-Description
-===========
 
 The warnings module was introduced in `PEP 230`_ as a way to warn programmers
 about changes in language or library features in anticipation of backwards
@@ -63,71 +59,42 @@ Generating Warnings
 The simplest way to emit a warning from your own code is to just call
 warnings.warn() with the message as an argument:
 
-::
-
-    import warnings
-
-    print 'Before the warning'
-    warnings.warn('This is a warning message')
-    print 'After the warning'
+.. include:: warnings_warn.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 Then when your program runs, the message is printed:
 
-::
-
-    $ python warnings_warn.py
-    /Users/dhellmann/Documents/PyMOTW/in_progress/warnings/warnings_warn.py:14: UserWarning: This is a warning message
-      warnings.warn('This is a warning message')
-    Before the warning
-    After the warning
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'warnings_warn.py'))
+.. }}}
+.. {{{end}}}
 
 Even though the warning is printed, the default behavior is to continue past
 the warning and run the rest of the program. We can change that behavior with
 a filter:
 
-::
-
-    import warnings
-
-    warnings.simplefilter('error', UserWarning)
-
-    print 'Before the warning'
-    warnings.warn('This is a warning message')
-    print 'After the warning'
+.. include:: warnings_warn_raise.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 This filter tells the warnings module to raise an exception when the warning
 is issued.
 
-::
-
-    $ python warnings_warn_raise.py
-    Before the warning
-    Traceback (most recent call last):
-      File "/Users/dhellmann/Documents/PyMOTW/in_progress/warnings/warnings_warn_raise.py", line 16, in <module>
-        warnings.warn('This is a warning message')
-      File "/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/warnings.py", line 62, in warn
-        globals)
-      File "/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/warnings.py", line 102, in warn_explicit
-        raise message
-    UserWarning: This is a warning message
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'warnings_warn_raise.py', ignore_error=True))
+.. }}}
+.. {{{end}}}
 
 
 We can, of course, also control the filter behavior from the command line. For
 example, if we go back to warnings_warn.py and set the filter to raise an
 error on UserWarning, we see the exception:
 
-::
-
-    $ python -W 'error::UserWarning::0' warnings_warn.py 
-    Before the warning
-    Traceback (most recent call last):
-      File "warnings_warn.py", line 14, in 
-        warnings.warn('This is a warning message')
-      File "/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/warnings.py", line 62, in warn
-        globals)
-      File "/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/warnings.py", line 102, in warn_explicit
-        raise message
-    UserWarning: This is a warning message
+.. {{{cog
+.. cog.out(run_script(cog.inFile, '-W "error::UserWarning::0" warnings_warn.py', ignore_error=True))
+.. }}}
+.. {{{end}}}
 
 Since I left the fields for message and module blank, they were interpreted as
 matching anything.
@@ -138,73 +105,57 @@ Filtering with Patterns
 To filter on more complex rules programmatically, use filterwarnings(). For
 example, to filter based on the content of the message text:
 
-::
-
-    import warnings
-
-    warnings.filterwarnings('ignore', '.*do not.*',)
-
-    warnings.warn('Show this message')
-    warnings.warn('Do not show this message')
+.. include:: warnings_filterwarnings_message.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 Notice that I used "do not" in the pattern, but "Do not" in the warning. The
 regular expression is always compiled to look for case insensitive matches.
 
-::
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'warnings_filterwarnings_message.py'))
+.. }}}
+.. {{{end}}}
 
-    $ python warnings_filterwarnings_message.py
-    /Users/dhellmann/Documents/PyMOTW/in_progress/warnings/warnings_filterwarnings_message.py:15: UserWarning: Show this message
-      warnings.warn('Show this message')
+Running this source from the command line:
 
-Running this source from the command line::
+.. include:: warnings_filtering.py
+    :literal:
+    :start-after: #end_pymotw_header
 
-    import warnings
+yields:
 
-    warnings.warn('Show this message')
-    warnings.warn('Do not show this message')
-
-yields::
-
-    $ python -W 'ignore:do not:UserWarning::0' warnings_filtering.py 
-    warnings_filtering.py:13: UserWarning: Show this message
-      warnings.warn('Show this message')
+.. {{{cog
+.. cog.out(run_script(cog.inFile, '-W "ignore:do not:UserWarning::0" warnings_filtering.py'))
+.. }}}
+.. {{{end}}}
 
 The same pattern matching rules apply to the name of the source module
 containing the warning call. To suppress all warnings from the
-warnings_filtering module::
+warnings_filtering module:
 
-    import warnings
-
-    warnings.filterwarnings('ignore', 
-                            '.*', 
-                            UserWarning,
-                            'warnings_filtering',
-                            )
-
-    import warnings_filtering
+.. include:: warnings_filterwarnings_module.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 Since the filter is in place, no warnings are emitted when warnings_filtering
-is imported::
+is imported:
 
-    $ python warnings_filterwarnings_module.py
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'warnings_filterwarnings_module.py'))
+.. }}}
+.. {{{end}}}
 
-To suppress only the warning on line 14 of warnings_filtering::
+To suppress only the warning on line 14 of warnings_filtering:
 
-    import warnings
+.. include:: warnings_filterwarnings_lineno.py
+    :literal:
+    :start-after: #end_pymotw_header
 
-    warnings.filterwarnings('ignore', 
-                            '.*', 
-                            UserWarning,
-                            'warnings_filtering',
-                            14)
-
-    import warnings_filtering
-
-::
-
-    $ python warnings_filterwarnings_lineno.py
-    /Users/dhellmann/Documents/PyMOTW/in_progress/warnings/warnings_filtering.py:13: UserWarning: Show this message
-      warnings.warn('Show this message')
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'warnings_filterwarnings_lineno.py'))
+.. }}}
+.. {{{end}}}
 
 
 Repeated Warnings
@@ -214,41 +165,27 @@ By default, most types of warnings are only printed the first time they occur
 in a given location, where location is defined as the combination of module
 and line number.
 
-::
+.. include:: warnings_repeated.py
+    :literal:
+    :start-after: #end_pymotw_header
 
-    import warnings
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'warnings_repeated.py'))
+.. }}}
+.. {{{end}}}
 
-    def function_with_warning():
-        warnings.warn('This is a warning!')
-        
-    function_with_warning()
-    function_with_warning()
-    function_with_warning()
-
-::
-
-    $ python warnings_repeated.py
-    /Users/dhellmann/Documents/PyMOTW/in_progress/warnings/warnings_repeated.py:14: UserWarning: This is a warning!
-      warnings.warn('This is a warning!')
 
 The "once" action can be used to suppress instances of the same message from
 different locations.
 
-::
+.. include:: warnings_once.py
+    :literal:
+    :start-after: #end_pymotw_header
 
-    import warnings
-
-    warnings.simplefilter('once', UserWarning)
-
-    warnings.warn('This is a warning!')
-    warnings.warn('This is a warning!')
-    warnings.warn('This is a warning!')
-
-::
-
-    $ python warnings_once.py
-    /Users/dhellmann/Documents/PyMOTW/in_progress/warnings/warnings_once.py:15: UserWarning: This is a warning!
-      warnings.warn('This is a warning!')
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'warnings_once.py'))
+.. }}}
+.. {{{end}}}
 
 Similarly, "module" will suppress repeated messages from the same module, no
 matter what line number.
@@ -261,31 +198,17 @@ replacing the showwarning() function inside the warnings module. For example,
 if you wanted warnings to go to a log file instead of stderr, you could
 replace showwarning() with a function like this:
 
-::
-
-    import warnings
-    import logging
-
-    logging.basicConfig(level=logging.INFO)
-
-    def send_warnings_to_log(message, category, filename, lineno, file=None):
-        logging.warning(
-            '%s:%s: %s:%s' % 
-            (filename, lineno, category.__name__, message))
-        return
-
-    old_showwarning = warnings.showwarning
-    warnings.showwarning = send_warnings_to_log
-
-    warnings.warn('This is a warning message')
+.. include:: warnings_showwarning.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 So that when warnings.warn() is called, the warnings are emitted with the rest
 of the log messages.
 
-::
-
-    $ python warnings_showwarning.py
-    WARNING:root:/Users/dhellmann/Documents/PyMOTW/in_progress/warnings/warnings_showwarning.py:25: UserWarning:This is a warning message
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'warnings_showwarning.py'))
+.. }}}
+.. {{{end}}}
 
 Formatting
 ==========
@@ -293,21 +216,14 @@ Formatting
 If it is OK for warnings to go to stderr, but you don't like the formatting,
 you can replace formatwarning() instead.
 
-::
+.. include:: warnings_formatwarning.py
+    :literal:
+    :start-after: #end_pymotw_header
 
-    import warnings
-
-    def warning_on_one_line(message, category, filename, lineno):
-        return '%s:%s: %s:%s' % (filename, lineno, category.__name__, message)
-
-    warnings.warn('This is a warning message, before')
-    warnings.formatwarning = warning_on_one_line
-    warnings.warn('This is a warning message, after')
-
-    $ python warnings_formatwarning.py
-    /Users/dhellmann/Documents/PyMOTW/in_progress/warnings/warnings_formatwarning.py:16: UserWarning: This is a warning message, before
-      warnings.warn('This is a warning message, before')
-    /Users/dhellmann/Documents/PyMOTW/in_progress/warnings/warnings_formatwarning.py:18: UserWarning:This is a warning message, after
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'warnings_formatwarning.py'))
+.. }}}
+.. {{{end}}}
 
 Stack Level in Warnings
 =======================
@@ -320,32 +236,23 @@ the function containing the warning. That way users of a deprecated function
 see where the function is called, instead of the implementation of the
 function.
 
-::
-
-    import warnings
-
-    def old_function():
-        warnings.warn(
-            'old_function() is deprecated, use new_function() instead', 
-            stacklevel=2)
-
-    def caller_of_old_function():
-        old_function()
-        
-    caller_of_old_function()
+.. include:: warnings_warn_stacklevel.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 
 Notice that in this example warnings.warn() needs to go up the stack 2 levels,
 one for itself and one for old_function().
 
-::
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'warnings_warn_stacklevel.py'))
+.. }}}
+.. {{{end}}}
 
-    $ python warnings_warn_stacklevel.py
-    /Users/dhellmann/Documents/PyMOTW/in_progress/warnings/warnings_warn_stacklevel.py:19: UserWarning: old_function() is deprecated, use new_function() instead
-      old_function()
+.. seealso::
 
+    `warnings <http://docs.python.org/lib/module-warnings.html>`_
+        Standard library documentation for this module.
 
-References
-==========
-
-`PEP 230 <http://www.python.org/peps/pep-0230.html>`_ -- Warning Framework
+    `PEP 230 <http://www.python.org/peps/pep-0230.html>`_
+        Warning Framework

@@ -80,7 +80,7 @@ When a test fails or generates an error, the traceback is included in the
 output.
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'unittest_outcomes.py'))
+.. cog.out(run_script(cog.inFile, 'unittest_outcomes.py', ignore_error=True))
 .. }}}
 .. {{{end}}}
 
@@ -97,7 +97,7 @@ more detailed error message.
     :start-after: #end_pymotw_header
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'unittest_failwithmessage.py -v'))
+.. cog.out(run_script(cog.inFile, 'unittest_failwithmessage.py -v', ignore_error=True))
 .. }}}
 .. {{{end}}}
 
@@ -149,7 +149,7 @@ failure message when a test fails.
 And when these tests are run:
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'unittest_notequal.py -v'))
+.. cog.out(run_script(cog.inFile, 'unittest_notequal.py -v', ignore_error=True))
 .. }}}
 .. {{{end}}}
 

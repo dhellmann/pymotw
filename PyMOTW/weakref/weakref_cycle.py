@@ -6,8 +6,7 @@
 """Using proxy to prevent cycles.
 """
 
-__version__ = "$Id$"
-
+# [[[section gc_setup]]]
 import gc
 from pprint import pprint
 import weakref
@@ -19,7 +18,9 @@ def collect_and_show_garbage():
     print 'Unreachable:', gc.collect()
     print 'Garbage:', 
     pprint(gc.garbage)
-    
+# [[[endsection]]]
+
+# [[[section demo]]]
 def demo(graph_factory):
     print 'Set up graph:'
     one = graph_factory('one')
@@ -47,8 +48,9 @@ def demo(graph_factory):
     print 'Removing last reference:'
     one = None
     collect_and_show_garbage()
+# [[[endsection]]]
 
-
+# [[[section graph]]]
 class Graph(object):
     def __init__(self, name):
         self.name = name
@@ -73,11 +75,15 @@ class Graph(object):
     def __del__(self):
         print '(Deleting %s)' % self.name
         self.set_next(None)
+# [[[endsection]]]
 
+# [[[section without_proxy]]]
 print 'WITHOUT PROXY'
 print
 demo(Graph)
+# [[[endsection]]]
 
+# [[[section break_cycle]]]
 print
 print 'BREAKING CYCLE AND CLEARING GARBAGE'
 print
@@ -85,7 +91,9 @@ gc.garbage[0].set_next(None)
 while gc.garbage:
     del gc.garbage[0]
 collect_and_show_garbage()
+# [[[endsection]]]
 
+# [[[section with_proxy]]]
 print
 print 'WITH PROXY'
 print
@@ -101,4 +109,4 @@ class WeakGraph(Graph):
         return
                 
 demo(WeakGraph)
-
+# [[[endsection]]]

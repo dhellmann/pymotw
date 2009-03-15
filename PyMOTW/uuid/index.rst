@@ -38,10 +38,10 @@ given system:
     :literal:
     :start-after: #end_pymotw_header
 
-::
-
-    $ python uuid_getnode.py
-    0x1ec200d9e0L
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'uuid_getnode.py'))
+.. }}}
+.. {{{end}}}
 
 If a system has more than one network card, and so more than one MAC,
 any one of the values may be returned.
@@ -60,26 +60,10 @@ The components of the UUID object returned can be accessed through
 read-only instance attributes. Some attributes, such as hex, int, and
 urn, are different representations of the UUID value.
 
-::
-
-    $ python uuid_uuid1.py
-    6e1680de-8c15-11dd-82d9-001ec200d9e0
-    <class 'uuid.UUID'>
-    bytes   : 'n\x16\x80\xde\x8c\x15\x11\xdd\x82\xd9\x00\x1e\xc2\x00\xd9\xe0'
-    hex     : 6e1680de8c1511dd82d9001ec200d9e0
-    int     : 146331923847663230991333091899900746208
-    urn     : urn:uuid:6e1680de-8c15-11dd-82d9-001ec200d9e0
-    variant : specified in RFC 4122
-    version : 1
-    fields  : (1846968542L, 35861L, 4573L, 130L, 217L, 132103854560L)
-    	time_low            :  1846968542
-    	time_mid            :  35861
-    	time_hi_version     :  4573
-    	clock_seq_hi_variant:  130
-    	clock_seq_low       :  217
-    	node                :  132103854560
-    	time                :  134417587560153310
-    	clock_seq           :  729
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'uuid_uuid1.py'))
+.. }}}
+.. {{{end}}}
 
 Because of the time component, each time `uuid1()` is called a new
 value is returned.
@@ -92,12 +76,10 @@ value is returned.
 Notice in this output that only the time component (at the beginning
 of the string) changes.
 
-::
-
-    $ python uuid_uuid1_repeat.py
-    834a7582-8c15-11dd-8bf2-001ec200d9e0
-    834a7c30-8c15-11dd-8bf2-001ec200d9e0
-    834a7dd4-8c15-11dd-8bf2-001ec200d9e0
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'uuid_uuid1_repeat.py'))
+.. }}}
+.. {{{end}}}
 
 Of course, since your computer has a different MAC address than mine,
 you will see entirely different values if you run the examples,
@@ -107,11 +89,10 @@ because the node identifier at the end of the UUID will change, too.
     :literal:
     :start-after: #end_pymotw_header
 
-::
-
-    $ python uuid_uuid1_othermac.py
-    0x1ec200d9e0L 9c3a7d11-8c15-11dd-a8be-001ec200d9e0
-    0x1e5274040eL 9c3b0407-8c15-11dd-8ea5-001e5274040e
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'uuid_uuid1_othermac.py'))
+.. }}}
+.. {{{end}}}
 
 
 UUID 3 and 5 - Name-Based Values
@@ -133,15 +114,10 @@ namespace argument to `uuid3()` or `uuid5()`:
     :literal:
     :start-after: #end_pymotw_header
 
-::
-
-    $ python uuid_uuid3_uuid5.py
-    www.doughellmann.com
-    	MD5   : bcd02e22-68f0-3046-a512-327cca9def8f
-    	SHA-1 : e3329b12-30b7-57c4-8117-c2cd34a87ce9
-    blog.doughellmann.com
-    	MD5   : 9bdabfce-dfd6-37ab-8a3f-7f7293bcf111
-    	SHA-1 : fa829736-7ef8-5239-9906-b4775a5abacb
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'uuid_uuid3_uuid5.py'))
+.. }}}
+.. {{{end}}}
 
 The UUID value for the same name in a namespace is always the same, no
 matter when or where it is calculated. Values for the same name in
@@ -151,12 +127,10 @@ different namespaces are different, of course.
     :literal:
     :start-after: #end_pymotw_header
 
-::
-
-    $ python uuid_uuid3_repeat.py
-    bcd02e22-68f0-3046-a512-327cca9def8f
-    bcd02e22-68f0-3046-a512-327cca9def8f
-    bcd02e22-68f0-3046-a512-327cca9def8f
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'uuid_uuid3_repeat.py'))
+.. }}}
+.. {{{end}}}
 
 
 UUID 4 - Random Values
@@ -168,12 +142,10 @@ Sometimes host-based and namespace-based UUID values are not "different enough".
     :literal:
     :start-after: #end_pymotw_header
 
-::
-
-    $ python uuid_uuid4.py
-    31326f00-92cd-42a8-a85d-ab94e77eb1ee
-    a16102fc-a87e-4eb9-a479-746f3ecb3a62
-    1a7bc5a2-b6d5-4049-be9a-86638dc1a6eb
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'uuid_uuid4.py'))
+.. }}}
+.. {{{end}}}
 
 
 Working with UUID Objects
@@ -187,29 +159,15 @@ compare them, sort them, etc.
     :literal:
     :start-after: #end_pymotw_header
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'uuid_uuid_objects.py'))
+.. }}}
+.. {{{end}}}
 
-::
+.. seealso::
 
-    $ python uuid_uuid_objects.py
-    input_values
-    	urn:uuid:f2f84497-b3bf-493a-bba9-7c68e6def80b
-    	{417a5ebb-01f7-4ed5-aeac-3d56cd5037b0}
-    	2115773a-5bf1-11dd-ab48-001ec200d9e0
-    
-    converted to uuids
-    	f2f84497-b3bf-493a-bba9-7c68e6def80b
-    	417a5ebb-01f7-4ed5-aeac-3d56cd5037b0
-    	2115773a-5bf1-11dd-ab48-001ec200d9e0
-    
-    sorted
-    	2115773a-5bf1-11dd-ab48-001ec200d9e0
-    	417a5ebb-01f7-4ed5-aeac-3d56cd5037b0
-    	f2f84497-b3bf-493a-bba9-7c68e6def80b
-    
+    `uuid <http://docs.python.org/lib/module-uuid.html>`_
+        Standard library documentation for this module.
 
-References
-==========
-
-`RFC 4122: A Universally Unique IDentifier (UUID) URN Namespace <http://www.faqs.org/rfcs/rfc4122.html>`_
-
-Standard library documentation: `uuid <http://docs.python.org/lib/module-uuid.html>`_
+    `RFC 4122 <http://www.faqs.org/rfcs/rfc4122.html>`_
+        RFC-4122: A Universally Unique IDentifier (UUID) URN Namespace
