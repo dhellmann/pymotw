@@ -1,19 +1,12 @@
-=========
-traceback
-=========
+====================================================================
+traceback -- Extract, format, and print exceptions and stack traces.
+====================================================================
+
 .. module:: traceback
     :synopsis: Extract, format, and print exceptions and stack traces.
 
-:Module: traceback
 :Purpose: Extract, format, and print exceptions and stack traces.
 :Python Version: 1.4 and later, with modifications over time
-:Abstract:
-
-    The traceback module contains functions for producing error messages with
-    stack traces.
-
-Description
-===========
 
 The traceback module works with the call stack to produce error messages. A
 traceback is a stack trace from the point of an exception handler down the
@@ -46,23 +39,9 @@ Supporting Functions
 The examples below use the module traceback_example.py (provided in the source
 package for PyMOTW). The contents are:
 
-::
-
-    import traceback
-    import sys
-
-    def produce_exception(recursion_level=2):
-        sys.stdout.flush()
-        if recursion_level:
-            produce_exception(recursion_level-1)
-        else:
-            raise RuntimeError()
-
-    def call_function(f, recursion_level=2):
-        if recursion_level:
-            return call_function(f, recursion_level-1)
-        else:
-            return f()
+.. include:: traceback_example.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 
 Working With Exceptions
@@ -73,222 +52,93 @@ sys.exc_info() to obtain the exception information for the current thread,
 formats the results, and prints the text to a file handle (sys.stderr, by
 default).
 
-::
-
-    import traceback
-    import sys
-
-    from traceback_example import produce_exception
-
-    print 'print_exc() with no exception:'
-    traceback.print_exc(file=sys.stdout)
-    print
-
-    try:
-        produce_exception()
-    except Exception, err:
-        print 'print_exc():'
-        traceback.print_exc(file=sys.stdout)
-        print
-        print 'print_exc(1):'
-        traceback.print_exc(limit=1, file=sys.stdout)
+.. include:: traceback_print_exc.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 
 In this example, the file handle for sys.stdout is substituted so the
 informational and traceback messages are mingled correctly:
 
-::
-
-    $ python traceback_print_exc.py
-    print_exc() with no exception:
-    None
-
-    print_exc():
-    Traceback (most recent call last):
-      File "/Users/dhellmann/Documents/PyMOTW/in_progress/traceback/traceback_print_exc.py", line 21, in <module>
-        produce_exception()
-      File "/Users/dhellmann/Documents/PyMOTW/in_progress/traceback/traceback_example.py", line 17, in produce_exception
-        produce_exception(recursion_level-1)
-      File "/Users/dhellmann/Documents/PyMOTW/in_progress/traceback/traceback_example.py", line 17, in produce_exception
-        produce_exception(recursion_level-1)
-      File "/Users/dhellmann/Documents/PyMOTW/in_progress/traceback/traceback_example.py", line 19, in produce_exception
-        raise RuntimeError()
-    RuntimeError
-
-    print_exc(1):
-    Traceback (most recent call last):
-      File "/Users/dhellmann/Documents/PyMOTW/in_progress/traceback/traceback_print_exc.py", line 21, in <module>
-        produce_exception()
-    RuntimeError
-
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'traceback_print_exc.py'))
+.. }}}
+.. {{{end}}}
 
 print_exc() is just a shortcut for print_exception(), which requires explicit
 arguments:
 
-::
+.. include:: traceback_print_exception.py
+    :literal:
+    :start-after: #end_pymotw_header
 
-    import traceback
-    import sys
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'traceback_print_exception.py'))
+.. }}}
+.. {{{end}}}
 
-    from traceback_example import produce_exception
-
-    try:
-        produce_exception()
-    except Exception, err:
-        print 'print_exception():'
-        exc_type, exc_value, exc_tb = sys.exc_info()
-        traceback.print_exception(exc_type, exc_value, exc_tb)
-
-
-
-    $ python traceback_print_exception.py
-    Traceback (most recent call last):
-      File "/Users/dhellmann/Documents/PyMOTW/in_progress/traceback/traceback_print_exception.py", line 17, in <module>
-        produce_exception()
-      File "/Users/dhellmann/Documents/PyMOTW/in_progress/traceback/traceback_example.py", line 17, in produce_exception
-        produce_exception(recursion_level-1)
-      File "/Users/dhellmann/Documents/PyMOTW/in_progress/traceback/traceback_example.py", line 17, in produce_exception
-        produce_exception(recursion_level-1)
-      File "/Users/dhellmann/Documents/PyMOTW/in_progress/traceback/traceback_example.py", line 19, in produce_exception
-        raise RuntimeError()
-    RuntimeError
-    print_exception():
 
 And print_exception() uses format_exception():
 
-::
+.. include:: traceback_format_exception.py
+    :literal:
+    :start-after: #end_pymotw_header
 
-    import traceback
-    import sys
-    from pprint import pprint
-
-    from traceback_example import produce_exception
-
-    try:
-        produce_exception()
-    except Exception, err:
-        print 'format_exception():'
-        exc_type, exc_value, exc_tb = sys.exc_info()
-        pprint(traceback.format_exception(exc_type, exc_value, exc_tb))
-
-
-
-    $ python traceback_format_exception.py
-    format_exception():
-    ['Traceback (most recent call last):\n',
-     '  File "/Users/dhellmann/Documents/PyMOTW/in_progress/traceback/traceback_format_exception.py", line 18, in <module>\n    produce_exception()\n',
-     '  File "/Users/dhellmann/Documents/PyMOTW/in_progress/traceback/traceback_example.py", line 17, in produce_exception\n    produce_exception(recursion_level-1)\n',
-     '  File "/Users/dhellmann/Documents/PyMOTW/in_progress/traceback/traceback_example.py", line 17, in produce_exception\n    produce_exception(recursion_level-1)\n',
-     '  File "/Users/dhellmann/Documents/PyMOTW/in_progress/traceback/traceback_example.py", line 19, in produce_exception\n    raise RuntimeError()\n',
-     'RuntimeError\n']
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'traceback_format_exception.py'))
+.. }}}
+.. {{{end}}}
 
 
 Working With the Stack
 ======================
 
 There are a similar set of functions for performing the same operations with
-the current call stack instead of a traceback. print_stack(), format_stack(),
-and extract_stack().
+the current call stack instead of a traceback. 
 
-::
+print_stack()
+-------------
 
-    import traceback
-    import sys
+.. include:: traceback_print_stack.py
+    :literal:
+    :start-after: #end_pymotw_header
 
-    from traceback_example import call_function
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'traceback_print_stack.py'))
+.. }}}
+.. {{{end}}}
 
-    def f():
-        traceback.print_stack(file=sys.stdout)
+format_stack()
+--------------
 
-    print 'Calling f() directly:'
-    f()
+.. include:: traceback_format_stack.py
+    :literal:
+    :start-after: #end_pymotw_header
 
-    print
-    print 'Calling f() from 3 levels deep:'
-    call_function(f)
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'traceback_format_stack.py'))
+.. }}}
+.. {{{end}}}
 
-::
+extract_stack()
+---------------
 
-    $ python traceback_print_stack.py
-    Calling f() directly:
-      File "/Users/dhellmann/Documents/PyMOTW/in_progress/traceback/traceback_print_stack.py", line 20, in <module>
-        f()
-      File "/Users/dhellmann/Documents/PyMOTW/in_progress/traceback/traceback_print_stack.py", line 17, in f
-        traceback.print_stack(file=sys.stdout)
+.. include:: traceback_extract_stack.py
+    :literal:
+    :start-after: #end_pymotw_header
 
-    Calling f() from 3 levels deep:
-      File "/Users/dhellmann/Documents/PyMOTW/in_progress/traceback/traceback_print_stack.py", line 24, in <module>
-        call_function(f)
-      File "/Users/dhellmann/Documents/PyMOTW/in_progress/traceback/traceback_example.py", line 23, in call_function
-        return call_function(f, recursion_level-1)
-      File "/Users/dhellmann/Documents/PyMOTW/in_progress/traceback/traceback_example.py", line 23, in call_function
-        return call_function(f, recursion_level-1)
-      File "/Users/dhellmann/Documents/PyMOTW/in_progress/traceback/traceback_example.py", line 25, in call_function
-        return f()
-      File "/Users/dhellmann/Documents/PyMOTW/in_progress/traceback/traceback_print_stack.py", line 17, in f
-        traceback.print_stack(file=sys.stdout)
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'traceback_extract_stack.py'))
+.. }}}
+.. {{{end}}}
 
-::
+.. seealso::
 
-    import traceback
-    import sys
-    from pprint import pprint
+    `traceback <http://docs.python.org/lib/module-traceback.html>`_
+        Standard library documentation for this module.
 
-    from traceback_example import call_function
+    :mod:`sys`
+        The sys module includes singletons that hold the current exception.
 
-    def f():
-        return traceback.format_stack()
-
-    formatted_stack = call_function(f)
-    pprint(formatted_stack)
-
-::
-
-    $ python traceback_format_stack.py
-    ['  File "/Users/dhellmann/Documents/PyMOTW/in_progress/traceback/traceback_format_stack.py", line 20, in <module>\n    formatted_stack = call_function(f)\n',
-     '  File "/Users/dhellmann/Documents/PyMOTW/in_progress/traceback/traceback_example.py", line 23, in call_function\n    return call_function(f, recursion_level-1)\n',
-     '  File "/Users/dhellmann/Documents/PyMOTW/in_progress/traceback/traceback_example.py", line 23, in call_function\n    return call_function(f, recursion_level-1)\n',
-     '  File "/Users/dhellmann/Documents/PyMOTW/in_progress/traceback/traceback_example.py", line 25, in call_function\n    return f()\n',
-     '  File "/Users/dhellmann/Documents/PyMOTW/in_progress/traceback/traceback_format_stack.py", line 18, in f\n    return traceback.format_stack()\n']
-
-
-::
-
-    import traceback
-    import sys
-    from pprint import pprint
-
-    from traceback_example import call_function
-
-    def f():
-        return traceback.extract_stack()
-
-    stack = call_function(f)
-    pprint(stack)
-
-
-::
-
-    $ python traceback_extract_stack.py
-    [('/Users/dhellmann/Documents/PyMOTW/in_progress/traceback/traceback_extract_stack.py',
-      20,
-      '<module>',
-      'stack = call_function(f)'),
-     ('/Users/dhellmann/Documents/PyMOTW/in_progress/traceback/traceback_example.py',
-      23,
-      'call_function',
-      'return call_function(f, recursion_level-1)'),
-     ('/Users/dhellmann/Documents/PyMOTW/in_progress/traceback/traceback_example.py',
-      23,
-      'call_function',
-      'return call_function(f, recursion_level-1)'),
-     ('/Users/dhellmann/Documents/PyMOTW/in_progress/traceback/traceback_example.py',
-      25,
-      'call_function',
-      'return f()'),
-     ('/Users/dhellmann/Documents/PyMOTW/in_progress/traceback/traceback_extract_stack.py',
-      18,
-      'f',
-      'return traceback.extract_stack()')]
-
-
+    :mod:`inspect`
+        The inspect module includes other functions for probing the frames on the stack.
