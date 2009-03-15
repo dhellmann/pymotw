@@ -87,6 +87,9 @@ options(
         ),
     
     sdist = Bunch(
+    ),
+    
+    sdistext = Bunch(
         outdir='~/Desktop',
     ),
     
@@ -218,7 +221,8 @@ def remake_directories(*dirnames):
     return
 
 @task
-@needs(['generate_setup', 'minilib', 'html_clean', 
+@needs(['generate_setup', 'minilib', 
+        'html_clean', 
         'setuptools.command.sdist'
         ])
 def sdist():
@@ -226,7 +230,7 @@ def sdist():
     """
     # Copy the output file to the desktop
     dist_files = path('dist').glob('*.tar.gz')
-    dest_dir = path(options.sdist.outdir).expanduser()
+    dest_dir = path(options.sdistext.outdir).expanduser()
     for f in dist_files:
         f.move(dest_dir)
     return
