@@ -26,8 +26,7 @@
 """A test that fails with a custom message.
 
 """
-
-__module_id__ = "$Id$"
+#end_pymotw_header
 
 import unittest
 

@@ -26,8 +26,7 @@
 """Test for truth
 
 """
-
-__module_id__ = "$Id$"
+#end_pymotw_header
 
 import unittest
 

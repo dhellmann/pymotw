@@ -26,8 +26,7 @@
 """Demonstrate possible test outcomes
 
 """
-
-__module_id__ = "$Id$"
+#end_pymotw_header
 
 import unittest
 

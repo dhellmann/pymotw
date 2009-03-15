@@ -26,8 +26,7 @@
 """Unit tests to verify exceptions.
 
 """
-
-__module_id__ = "$Id$"
+#end_pymotw_header
 
 import unittest
 

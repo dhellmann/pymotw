@@ -26,8 +26,7 @@
 """Test for near equality
 
 """
-
-__module_id__ = "$Id$"
+#end_pymotw_header
 
 import unittest
 
