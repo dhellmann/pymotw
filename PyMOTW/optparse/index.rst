@@ -194,7 +194,7 @@ In this case, the arguments are passed to the callback function as a tuple via
 the value argument.
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'optparse_callback-nargs.py'))
+.. cog.out(run_script(cog.inFile, 'optparse_callback_nargs.py'))
 .. }}}
 .. {{{end}}}
 

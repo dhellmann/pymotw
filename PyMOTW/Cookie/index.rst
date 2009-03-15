@@ -90,7 +90,7 @@ the value to the client. Both values are always strings. Values saved to a
 cookie that are not strings are converted automatically.
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'Cookie_coded_values.py'))
+.. cog.out(run_script(cog.inFile, 'Cookie_coded_value.py'))
 .. }}}
 .. {{{end}}}
 

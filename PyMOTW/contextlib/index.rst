@@ -35,7 +35,7 @@ re-raised inside the generator, so you can handle them there.
     :start-after: #end_pymotw_header
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'contextlib_contextmanager.py'))
+.. cog.out(run_script(cog.inFile, 'contextlib_contextmanager.py', ignore_error=True))
 .. }}}
 .. {{{end}}}
 

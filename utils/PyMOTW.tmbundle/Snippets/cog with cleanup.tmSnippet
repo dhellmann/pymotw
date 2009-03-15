@@ -4,8 +4,6 @@
 <dict>
 	<key>content</key>
 	<string>.. {{{cog
-.. from paver.path import path
-.. from paver.runtime import sh
 .. workdir = path(cog.inFile).dirname()
 .. sh("cd %s; $1" % workdir)
 .. cog.out(run_script(cog.inFile, '`basename $TM_DIRECTORY`_$2.py'))

@@ -138,7 +138,7 @@ unique prefix is provided:
 If a unique prefix is not provided, an exception is raised.
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'getopt_example.py --ver 2.0'))
+.. cog.out(run_script(cog.inFile, 'getopt_example.py --ver 2.0', ignore_error=True))
 .. }}}
 .. {{{end}}}
 

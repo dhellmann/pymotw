@@ -22,8 +22,6 @@ Compiling One Directory
 By default, all of the subdirectories are scanned to a depth of 10.  When using a version control system such as subversion, this can lead to unnecessary scanning, as seen here:
 
 .. {{{cog
-.. from paver.path import path
-.. from paver.runtime import sh
 .. workdir = path(cog.inFile).dirname()
 .. cog.msg('Removing .pyc files from %s' % workdir)
 .. sh("cd %s; find . -name '*.pyc' | xargs rm -f" % workdir)
@@ -38,8 +36,6 @@ To filter directories out, use the ``rx`` argument to provide a regular expressi
     :start-after: #end_pymotw_header
 
 .. {{{cog
-.. from paver.path import path
-.. from paver.runtime import sh
 .. workdir = path(cog.inFile).dirname()
 .. sh("cd %s; find . -name '*.pyc' | xargs rm -f" % workdir)
 .. cog.out(run_script(cog.inFile, 'compileall_exclude_dirs.py'))
@@ -54,8 +50,6 @@ The maxlevels argument controls the depth of recursion.  For example, to avoid r
 
 
 .. {{{cog
-.. from paver.path import path
-.. from paver.runtime import sh
 .. workdir = path(cog.inFile).dirname()
 .. sh("cd %s; find . -name '*.pyc' | xargs rm -f" % workdir)
 .. cog.out(run_script(cog.inFile, 'compileall_recursion_depth.py'))
@@ -75,8 +69,6 @@ All of the Python source files found in sys.path can be compiled with a single c
 This example replaces the default contents of sys.path to avoid permission errors while running the script, but still illustrates the default behavior.  Note that the maxlevels value defaults to ``0``.
 
 .. {{{cog
-.. from paver.path import path
-.. from paver.runtime import sh
 .. workdir = path(cog.inFile).dirname()
 .. sh("cd %s; find . -name '*.pyc' | xargs rm -f" % workdir)
 .. cog.out(run_script(cog.inFile, 'compileall_path.py'))
@@ -90,15 +82,13 @@ From the Command Line
 It is also possible to invoke :mod:`compileall` from the command line, as you might when integrating it with a build system via a Makefile.  For example:
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, '-m compileall -h'))
+.. cog.out(run_script(cog.inFile, '-m compileall -h', ignore_error=True))
 .. }}}
 .. {{{end}}}
 
 To recreate the example above, skipping ``.svn`` directories, one would run:
 
 .. {{{cog
-.. from paver.path import path
-.. from paver.runtime import sh
 .. workdir = path(cog.inFile).dirname()
 .. sh("cd %s; find . -name '*.pyc' | xargs rm -f" % workdir)
 .. cog.out(run_script(cog.inFile, "-m compileall -x '/\.svn' examples"))

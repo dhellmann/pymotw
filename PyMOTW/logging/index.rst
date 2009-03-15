@@ -36,7 +36,6 @@ And now if we run the script and look at what we have, we should find the log
 message:
 
 .. {{{cog
-.. from paver.runtime import path
 .. outfile = path(cog.inFile).parent / 'logging_example.out'
 .. outfile.unlink()
 .. cog.out(run_script(cog.inFile, 'logging_file_example.py'))
@@ -60,7 +59,6 @@ The result should be 6 separate files, each with part of the log history for
 the application:
 
 .. {{{cog
-.. from paver.runtime import path
 .. outfile = path(cog.inFile).parent / 'logging_rotatingfile_example.out'
 .. deleted = [ f.unlink() for f in outfile.glob('*') ]
 .. cog.out(run_script(cog.inFile, 'logging_rotatingfile_example.py'))

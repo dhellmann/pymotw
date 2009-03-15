@@ -19,12 +19,10 @@ The examples in the discussion below use a set of test files created by ``filecm
 
 .. We don't care about the output of the script that creates the example files.
 .. {{{cog
-.. from paver.path import path
 .. workdir = path(cog.inFile).dirname()
 .. examples = workdir / 'example'
 .. examples.rmtree()
 .. examples.mkdir()
-.. from paver.runtime import sh
 .. mkexamples = workdir / 'filecmp_mkexamples.py'
 .. sh('python %s' % mkexamples)
 .. }}}

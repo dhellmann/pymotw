@@ -91,7 +91,6 @@ If you just want to unpack the archive and write the files to the filesystem, us
     :start-after: #end_pymotw_header
 
 .. {{{cog
-.. from paver.runtime import path
 .. outdir = path(cog.inFile).dirname() / 'outdir'
 .. outdir.rmtree()
 .. cog.out(run_script(cog.inFile, 'tarfile_extract.py'))
@@ -105,7 +104,6 @@ If you just want to unpack the archive and write the files to the filesystem, us
     :start-after: #end_pymotw_header
 
 .. {{{cog
-.. from paver.runtime import path
 .. outdir = path(cog.inFile).dirname() / 'outdir'
 .. outdir.rmtree()
 .. cog.out(run_script(cog.inFile, 'tarfile_extractall.py'))
@@ -119,7 +117,6 @@ If you only want to extract certain files from the archive, their names can be p
     :start-after: #end_pymotw_header
 
 .. {{{cog
-.. from paver.runtime import path
 .. outdir = path(cog.inFile).dirname() / 'outdir'
 .. outdir.rmtree()
 .. cog.out(run_script(cog.inFile, 'tarfile_extractall_members.py'))

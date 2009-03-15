@@ -204,8 +204,6 @@ The BZ2File class can be used to write to and read from bzip2-compressed files u
     :start-after: #end_pymotw_header
 
 .. {{{cog
-.. from paver.path import path
-.. from paver.runtime import sh
 .. workdir = path(cog.inFile).dirname()
 .. sh("cd %s; rm -f example.txt.bzw" % workdir)
 .. cog.out(run_script(cog.inFile, 'bz2_file_write.py'))
@@ -222,11 +220,9 @@ Different compression levels can be used by passing a *compresslevel* argument. 
 The center column of numbers in the output of the script is the size in bytes of the files produced.  As you see, for this input data, the higher compression values do not always pay off in decreased storage space for the same input data.  Results will vary, of course.
 
 .. {{{cog
-.. from paver.path import path
-.. from paver.runtime import sh
 .. workdir = path(cog.inFile).dirname()
 .. sh("cd %s; rm -f compress-level*.gz2" % workdir)
-.. cog.out(run_script(cog.inFile, 'bz2_.py'))
+.. cog.out(run_script(cog.inFile, 'bz2_file_compresslevel.py'))
 .. }}}
 .. {{{end}}}
 
@@ -237,8 +233,6 @@ A BZ2File instance also includes a ``writelines()`` method that can be used to w
     :start-after: #end_pymotw_header
 
 .. {{{cog
-.. from paver.path import path
-.. from paver.runtime import sh
 .. workdir = path(cog.inFile).dirname()
 .. sh("cd %s; rm -f example_lines.txt.bz2" % workdir)
 .. cog.out(run_script(cog.inFile, 'bz2_file_writelines.py'))

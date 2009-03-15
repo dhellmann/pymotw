@@ -8,12 +8,19 @@
 
 # Standard library
 import os
+import types
 
 # Third-party
-import cog
+import sphinx
+
+# Set up Paver
 import paver
 import paver.doctools
-import sphinx
+import paver.misctasks
+from paver.path import path
+from paver.easy import *
+import paver.setuputils
+paver.setuputils.install_distutils_tasks()
 
 # TODO
 # - move these variables to options?
@@ -39,10 +46,10 @@ README = path('README.txt').text()
 # Scan the input for package information
 # to grab any data files (text, images, etc.) 
 # associated with sub-packages.
-PACKAGE_DATA = setuputils.find_package_data(PROJECT, 
-                                            package=PROJECT,
-                                            only_in_packages=True,
-                                            )
+PACKAGE_DATA = paver.setuputils.find_package_data(PROJECT, 
+                                                  package=PROJECT,
+                                                  only_in_packages=True,
+                                                  )
 
 options(
     setup=Bunch(
@@ -129,20 +136,23 @@ options(
         beginspec='{{{cog',
         endspec='}}}',
         endoutput='{{{end}}}',
+        includedir='PyMOTW',
     ),
 
 )
 
-def run_script(input_file, script_name, interpreter='python', include_prefix=True):
+def run_script(input_file, script_name, interpreter='python', include_prefix=True, ignore_error=False):
     """Run a script in the context of the input_file's directory, 
     return the text output formatted to be included as an rst
     literal text block.
     """
-    from paver.runtime import sh
-    from paver.path import path
     rundir = path(input_file).dirname()
-    output_text = sh('cd %(rundir)s; %(interpreter)s %(script_name)s 2>&1' % vars(),
-                    capture=True)
+    cmd = 'cd %(rundir)s; %(interpreter)s %(script_name)s 2>&1' % vars()
+    try:
+        output_text = sh(cmd, capture=True, ignore_error=ignore_error)
+    except Exception, err:
+        print 'ERROR run_script(%s) => %s' % (cmd, err)
+        output_text = sh(cmd, capture=True, ignore_error=True)
     if include_prefix:
         response = '\n::\n\n'
     else:
@@ -152,9 +162,12 @@ def run_script(input_file, script_name, interpreter='python', include_prefix=Tru
     while not response.endswith('\n\n'):
         response += '\n'
     return response
-# Stuff run_script() into the builtins so we don't have to
-# import it in all of the cog blocks where we want to use it.
+
+# Stuff commonly used symbols into the builtins so we don't have to
+# import them in all of the cog blocks where we want to use them.
+__builtins__['path'] = path
 __builtins__['run_script'] = run_script
+__builtins__['sh'] = sh
 
 def remake_directories(*dirnames):
     """Remove the directories and recreate them.

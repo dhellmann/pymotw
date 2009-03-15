@@ -27,8 +27,6 @@ The ``open()`` function takes *flags* to control how the database file is manage
     :start-after: #end_pymotw_header
 
 .. {{{cog
-.. from paver.path import path
-.. from paver.runtime import sh
 .. workdir = path(cog.inFile).dirname()
 .. sh("cd %s; rm -f /tmp/example.db" % workdir)
 .. cog.out(run_script(cog.inFile, 'anydbm_new.py'))
@@ -78,7 +76,7 @@ The keys of the database need to be strings.
 Passing another type results in a TypeError.
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'anydbm_intkeys.py'))
+.. cog.out(run_script(cog.inFile, 'anydbm_intkeys.py', ignore_error=True))
 .. }}}
 .. {{{end}}}
 
@@ -91,7 +89,7 @@ Values must be strings or ``None``.
 A similar TypeError is raised if a value is not a string.
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'anydbm_intvalue.py'))
+.. cog.out(run_script(cog.inFile, 'anydbm_intvalue.py', ignore_error=True))
 .. }}}
 .. {{{end}}}
 

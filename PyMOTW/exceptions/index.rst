@@ -68,7 +68,7 @@ An AssertionError is raised by a failed ``assert`` statement.
     :start-after: #end_pymotw_header
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'exceptions_AssertionError_assert.py'))
+.. cog.out(run_script(cog.inFile, 'exceptions_AssertionError_assert.py', ignore_error=True))
 .. }}}
 .. {{{end}}}
 
@@ -79,7 +79,7 @@ It is also used in the :mod:`unittest` module in methods like ``failIf()``.
     :start-after: #end_pymotw_header
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'exceptions_AssertionError_unittest.py'))
+.. cog.out(run_script(cog.inFile, 'exceptions_AssertionError_unittest.py', ignore_error=True))
 .. }}}
 .. {{{end}}}
 
@@ -96,7 +96,7 @@ For example, when trying to reference an attribute that does not exist:
     :start-after: #end_pymotw_header
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'exceptions_AttributeError.py'))
+.. cog.out(run_script(cog.inFile, 'exceptions_AttributeError.py', ignore_error=True))
 .. }}}
 .. {{{end}}}
 
@@ -107,7 +107,7 @@ Or when trying to modify a read-only attribute:
     :start-after: #end_pymotw_header
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'exceptions_AttributeError_assignment.py'))
+.. cog.out(run_script(cog.inFile, 'exceptions_AttributeError_assignment.py', ignore_error=True))
 .. }}}
 .. {{{end}}}
 
@@ -166,7 +166,7 @@ Raised when input or output fails, for example if a disk fills up or an input fi
     :start-after: #end_pymotw_header
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'exceptions_IOError.py'))
+.. cog.out(run_script(cog.inFile, 'exceptions_IOError.py', ignore_error=True))
 .. }}}
 .. {{{end}}}
 
@@ -183,7 +183,7 @@ Raised when a module, or member of a module, cannot be imported.  There are a fe
     :start-after: #end_pymotw_header
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'exceptions_ImportError_nomodule.py'))
+.. cog.out(run_script(cog.inFile, 'exceptions_ImportError_nomodule.py', ignore_error=True))
 .. }}}
 .. {{{end}}}
 
@@ -194,7 +194,7 @@ Raised when a module, or member of a module, cannot be imported.  There are a fe
     :start-after: #end_pymotw_header
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'exceptions_ImportError_missingname.py'))
+.. cog.out(run_script(cog.inFile, 'exceptions_ImportError_missingname.py', ignore_error=True))
 .. }}}
 .. {{{end}}}
 
@@ -209,7 +209,7 @@ An IndexError is raised when a sequence reference is out of range.
     :start-after: #end_pymotw_header
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'exceptions_IndexError.py'))
+.. cog.out(run_script(cog.inFile, 'exceptions_IndexError.py', ignore_error=True))
 .. }}}
 .. {{{end}}}
 
@@ -224,7 +224,7 @@ Similarly, a KeyError is raised when a value is not found as a key of a dictiona
     :start-after: #end_pymotw_header
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'exceptions_KeyError.py'))
+.. cog.out(run_script(cog.inFile, 'exceptions_KeyError.py', ignore_error=True))
 .. }}}
 .. {{{end}}}
 
@@ -293,7 +293,7 @@ NameErrors are raised when your code refers to a name that does not exist in the
     :start-after: #end_pymotw_header
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'exceptions_NameError.py'))
+.. cog.out(run_script(cog.inFile, 'exceptions_NameError.py', ignore_error=True))
 .. }}}
 .. {{{end}}}
 
@@ -308,7 +308,7 @@ User-defined base classes can raise NotImplementedError to indicate that a metho
     :start-after: #end_pymotw_header
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'exceptions_NotImplementedError.py'))
+.. cog.out(run_script(cog.inFile, 'exceptions_NotImplementedError.py', ignore_error=True))
 .. }}}
 .. {{{end}}}
 
@@ -323,7 +323,7 @@ OSError serves as the error class for the :mod:`os` module, and is raised when a
     :start-after: #end_pymotw_header
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'exceptions_OSError.py'))
+.. cog.out(run_script(cog.inFile, 'exceptions_OSError.py', ignore_error=True))
 .. }}}
 .. {{{end}}}
 
@@ -338,7 +338,7 @@ When an arithmetic operation exceeds the limits of the variable type, an Overflo
     :start-after: #end_pymotw_header
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'exceptions_OverflowError.py'))
+.. cog.out(run_script(cog.inFile, 'exceptions_OverflowError.py', ignore_error=True))
 .. }}}
 .. {{{end}}}
 
@@ -353,7 +353,7 @@ When a :mod:`weakref` proxy is used to access an object that has already been ga
     :start-after: #end_pymotw_header
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'exceptions_ReferenceError.py'))
+.. cog.out(run_script(cog.inFile, 'exceptions_ReferenceError.py', ignore_error=True))
 .. }}}
 .. {{{end}}}
 
@@ -374,7 +374,7 @@ When an iterator is done, it's ``next()`` method raises StopIteration.  This exc
     :start-after: #end_pymotw_header
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'exceptions_StopIteration.py'))
+.. cog.out(run_script(cog.inFile, 'exceptions_StopIteration.py', ignore_error=True))
 .. }}}
 .. {{{end}}}
 
@@ -389,7 +389,7 @@ A SyntaxError occurs any time the parser finds source code it does not understan
     :start-after: #end_pymotw_header
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'exceptions_SyntaxError.py'))
+.. cog.out(run_script(cog.inFile, 'exceptions_SyntaxError.py', ignore_error=True))
 .. }}}
 .. {{{end}}}
 
@@ -416,7 +416,7 @@ TypeErrors are caused by combining the wrong type of objects, or calling a funct
     :start-after: #end_pymotw_header
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'exceptions_TypeError.py'))
+.. cog.out(run_script(cog.inFile, 'exceptions_TypeError.py', ignore_error=True))
 .. }}}
 .. {{{end}}}
 
@@ -433,7 +433,7 @@ An UnboundLocalError is a type of NameError specific to local variable names.
 The difference between the global NameError and the UnboundLocal is the way the name is used.  Because the name "local_val" appears on the left side of an expression, it is interpreted as a local variable name.
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'exceptions_UnboundLocalError.py'))
+.. cog.out(run_script(cog.inFile, 'exceptions_UnboundLocalError.py', ignore_error=True))
 .. }}}
 .. {{{end}}}
 
@@ -454,7 +454,7 @@ A ValueError is used when a function receives a value that has the right type bu
     :start-after: #end_pymotw_header
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'exceptions_ValueError.py'))
+.. cog.out(run_script(cog.inFile, 'exceptions_ValueError.py', ignore_error=True))
 .. }}}
 .. {{{end}}}
 
@@ -469,7 +469,7 @@ When zero shows up in the denominator of a division operation, a ZeroDivisionErr
     :start-after: #end_pymotw_header
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'exceptions_ZeroDivisionError.py'))
+.. cog.out(run_script(cog.inFile, 'exceptions_ZeroDivisionError.py', ignore_error=True))
 .. }}}
 .. {{{end}}}
 
