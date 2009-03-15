@@ -176,21 +176,22 @@ def run_script(input_file, script_name,
     """
     rundir = path(input_file).dirname()
     if interpreter:
-        cmd = 'cd %(rundir)s; %(interpreter)s %(script_name)s 2>&1' % vars()
+        cmd = '%(interpreter)s %(script_name)s' % vars()
     else:
-        cmd = 'cd %(rundir)s; %(script_name)s 2>&1' % vars()
+        cmd = script_name
+    real_cmd = 'cd %(rundir)s; %(cmd)s 2>&1' % vars()
     try:
-        output_text = sh(cmd, capture=True, ignore_error=ignore_error)
+        output_text = sh(real_cmd, capture=True, ignore_error=ignore_error)
     except Exception, err:
         print '*' * 50
-        print 'ERROR run_script(%s) => %s' % (cmd, err)
+        print 'ERROR run_script(%s) => %s' % (real_cmd, err)
         print '*' * 50
-        output_text = sh(cmd, capture=True, ignore_error=True)
+        output_text = sh(real_cmd, capture=True, ignore_error=True)
     if include_prefix:
         response = '\n::\n\n'
     else:
         response = ''
-    response += '\t$ %(interpreter)s %(script_name)s\n\t' % vars()
+    response += '\t$ %(cmd)s\n\t' % vars()
     response += '\n\t'.join(output_text.splitlines())
     if trailing_newlines:
         while not response.endswith('\n\n'):

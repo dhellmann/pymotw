@@ -38,31 +38,16 @@ example which prints an identifying value when each statement is executed:
 
 When run, the output is:
 
-::
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'timeit_example.py'))
+.. }}}
+.. {{{end}}}
 
-    $ python timeit_example.py
-    TIMEIT:
-    setup
-    main statement
-    main statement
-    0.000208854675293
-    REPEAT:
-    setup
-    main statement
-    main statement
-    setup
-    main statement
-    main statement
-    setup
-    main statement
-    main statement
-    [0.00019812583923339844, 0.00019383430480957031, 0.00019383430480957031]
-
-When called, timeit() runs the setup statement one time, then calls the main
+When called, ``timeit()`` runs the setup statement one time, then calls the main
 statement count times. It returns a single floating point value representing
 the amount of time it took to run the main statement count times.
 
-When repeat() is used, it calls timeit() severeal times (3 in this case) and
+When ``repeat()`` is used, it calls ``timeit()`` severeal times (3 in this case) and
 all of the responses are returned in a list.
 
 Storing Values in a Dictionary
@@ -76,13 +61,8 @@ storing the integers in a dictionary using the strings as keys.
 
 ::
 
-    import timeit
-    import sys
-
-    # A few constants
-    range_size=1000
-    count=1000
-    setup_statement="l = [ (str(x), x) for x in range(%d) ]; d = {}" % range_size
+    # {{{cog include('timeit/timeit_dictionary.py', 'header')}}}
+    # {{{end}}}
 
 Next, we can define a short utility function to print the results in a useful
 format. The timeit() method returns the amount of time it takes to execute the
@@ -93,18 +73,8 @@ of course).
 
 ::
 
-    def show_results(result):
-        "Print results in terms of microseconds per pass and per item."
-        global count, range_size
-        per_pass = 1000000 * (result / count)
-        print '%.2f usec/pass' % per_pass,
-        per_item = per_pass / range_size
-        print '%.2f usec/item' % per_item
-
-    print "%d items" % range_size
-    print "%d iterations" % count
-    print
-
+    # {{{cog include('timeit/timeit_dictionary.py', 'show_results')}}}
+    # {{{end}}}
 
 To establish a baseline, the first configuration tested will use __setitem__.
 All of the other variations avoid overwriting values already in the
@@ -117,117 +87,52 @@ dictionary.
 
 ::
 
-    # Using __setitem__ without checking for existing values first
-    print '__setitem__:\t',
-    sys.stdout.flush()
-    # using setitem
-    t = timeit.Timer("""
-    for s, i in l:
-        d[s] = i
-    """, 
-    setup_statement)
-    show_results(t.timeit(number=count))
-
+    # {{{cog include('timeit/timeit_dictionary.py', 'setitem')}}}
+    # {{{end}}}
 
 The next variation uses setdefault() to ensure that values already in the
 dictionary are not overwritten.
 
 ::
 
-    # Using setdefault
-    print 'setdefault:\t',
-    sys.stdout.flush()
-    t = timeit.Timer("""
-    for s, i in l:
-        d.setdefault(s, i)
-    """,
-    setup_statement)
-    show_results(t.timeit(number=count))
-
+    # {{{cog include('timeit/timeit_dictionary.py', 'setdefault')}}}
+    # {{{end}}}
 
 Another way to avoid overwriting existing values is to use has_key() to check
 the contents of the dictionary explicitly.
 
 ::
 
-    # Using has_key
-    print 'has_key:\t',
-    sys.stdout.flush()
-    # using setitem
-    t = timeit.Timer("""
-    for s, i in l:
-        if not d.has_key(s):
-            d[s] = i
-    """, 
-    setup_statement)
-    show_results(t.timeit(number=count))
+    # {{{cog include('timeit/timeit_dictionary.py', 'has_key')}}}
+    # {{{end}}}
 
 Or by adding the value only if we receive a KeyError exception when looking
 for the existing value.
 
 ::
 
-    # Using exceptions
-    print 'KeyError:\t',
-    sys.stdout.flush()
-    # using setitem
-    t = timeit.Timer("""
-    for s, i in l:
-        try:
-            existing = d[s]
-        except KeyError:
-            d[s] = i
-    """, 
-    setup_statement)
-    show_results(t.timeit(number=count))
+    # {{{cog include('timeit/timeit_dictionary.py', 'exception')}}}
+    # {{{end}}}
 
 And the last method we will test is the (relatively) new form using "in" to
 determine if a dictionary has a particular key.
 
 ::
 
-    # Using "not in"
-    print '"in":\t',
-    sys.stdout.flush()
-    # using setitem
-    t = timeit.Timer("""
-    for s, i in l:
-        if s not in d:
-            d[s] = i
-    """, 
-    setup_statement)
-    show_results(t.timeit(number=count))
+    # {{{cog include('timeit/timeit_dictionary.py', 'in')}}}
+    # {{{end}}}
 
 
 When run, the script produces output similar to this:
 
-::
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'timeit_dictionary.py'))
+.. }}}
+.. {{{end}}}
 
-    $ python timeit_dictionary.py 
-    1000 items
-    1000 iterations
-
-    __setitem__:    848.35 usec/pass 0.85 usec/item
-    setdefault:     2050.21 usec/pass 2.05 usec/item
-    has_key:        1554.51 usec/pass 1.55 usec/item
-    KeyError:       1040.11 usec/pass 1.04 usec/item
-    "not in":       707.38 usec/pass 0.71 usec/item
-
-Those times are for a G4 PowerBook running Python 2.5. Your times will be
+Those times are for a MacBook Pro running Python 2.5. Your times will be
 different. Experiment with the range_size and count variables, since different
-combinations will produce different results. For example:
-
-::
-
-    $ python timeit_dictionary.py 
-    10000 items
-    1000 iterations
-
-    __setitem__:    11227.27 usec/pass 1.12 usec/item
-    setdefault:     24125.01 usec/pass 2.41 usec/item
-    has_key:        19145.40 usec/pass 1.91 usec/item
-    KeyError:       24127.39 usec/pass 2.41 usec/item
-    "not in":       16064.97 usec/pass 1.61 usec/item
+combinations will produce different results.
 
 From the Command Line
 =====================
@@ -244,55 +149,34 @@ main:
 
 For example, to get help:
 
-::
-
-    $ python -m timeit -h
-    Tool for measuring execution time of small code snippets.
-
-    This module avoids a number of common traps for measuring execution times.
-    See also Tim Peters' introduction to the Algorithms chapter in the Python
-    Cookbook, published by O'Reilly.
-
-    Library usage: see the Timer class.
-
-    Command line usage:
-        python timeit.py [-n N] [-r N] [-s S] [-t] [-c] [-h] [statement]
-
-    Options:
-      -n/--number N: how many times to execute 'statement' (default: see below)
-      -r/--repeat N: how many times to repeat the timer (default 3)
-      -s/--setup S: statement to be executed once initially (default 'pass')
-      -t/--time: use time.time() (default on Unix)
-      -c/--clock: use time.clock() (default on Windows)
-      -v/--verbose: print raw timing results; repeat for more digits precision
-      -h/--help: print this usage message and exit
-      statement: statement to be timed (default 'pass')
+.. {{{cog
+.. cog.out(run_script(cog.inFile, '-m timeit -h', ignore_error=True))
+.. }}}
+.. {{{end}}}
 
 The statement argument works a little differently than the argument to Timer.
 Instead of one long string, you pass each line of the instructions as a
 separate command line argument. To indent lines (such as inside a loop), embed
 spaces in the string by enclosing the whole thing in quotes. For example:
 
-::
-
-    $ python -m timeit -s "d={}" "for i in range(1000):" "  d[str(i)] = i"
-    10 loops, best of 3: 16.7 msec per loop
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'python -m timeit -s "d={}" "for i in range(1000):" "  d[str(i)] = i"', interpreter=None))
+.. }}}
+.. {{{end}}}
 
 It is also possible to define a function with more complex code, then import
 the module and call the function from the command line:
 
-::
+.. include:: timeit_setitem.py
+    :literal:
+    :start-after: #end_pymotw_header
 
-    def test_setitem(range_size=1000):
-        l = [ (str(x), x) for x in range(range_size) ]
-        d = {}
-        for s, i in l:
-            d[s] = i
+Then to run the test:
 
-Then to run the test::
-
-    $ python -m timeit "import timeit_setitem; timeit_setitem.test_setitem()"
-    100 loops, best of 3: 3.56 msec per loop
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'python -m timeit "import timeit_setitem; timeit_setitem.test_setitem()"', interpreter=None))
+.. }}}
+.. {{{end}}}
 
 
 .. seealso::

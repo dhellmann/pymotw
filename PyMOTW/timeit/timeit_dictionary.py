@@ -32,6 +32,7 @@ of strings and integers.
 __version__ = "$Id$"
 #end_pymotw_header
 
+# [[[section header]]]
 import timeit
 import sys
 
@@ -39,8 +40,9 @@ import sys
 range_size=1000
 count=1000
 setup_statement="l = [ (str(x), x) for x in range(%d) ]; d = {}" % range_size
+# [[[endsection]]]
 
-
+# [[[section show_results]]]
 def show_results(result):
     "Print results in terms of microseconds per pass and per item."
     global count, range_size
@@ -52,7 +54,9 @@ def show_results(result):
 print "%d items" % range_size
 print "%d iterations" % count
 print
-    
+# [[[endsection]]]
+
+# [[[section setitem]]]
 # Using __setitem__ without checking for existing values first
 print '__setitem__:\t',
 sys.stdout.flush()
@@ -63,7 +67,9 @@ for s, i in l:
 """, 
 setup_statement)
 show_results(t.timeit(number=count))
+# [[[endsection]]]
 
+# [[[section setdefault]]]
 # Using setdefault
 print 'setdefault:\t',
 sys.stdout.flush()
@@ -73,7 +79,9 @@ for s, i in l:
 """,
 setup_statement)
 show_results(t.timeit(number=count))
+# [[[endsection]]]
 
+# [[[section has_key]]]
 # Using has_key
 print 'has_key:\t',
 sys.stdout.flush()
@@ -85,7 +93,9 @@ for s, i in l:
 """, 
 setup_statement)
 show_results(t.timeit(number=count))
+# [[[endsection]]]
 
+# [[[section exception]]]
 # Using exceptions
 print 'KeyError:\t',
 sys.stdout.flush()
@@ -99,7 +109,9 @@ for s, i in l:
 """, 
 setup_statement)
 show_results(t.timeit(number=count))
+# [[[endsection]]]
 
+# [[[section in]]]
 # Using "in"
 print '"not in":\t',
 sys.stdout.flush()
@@ -111,3 +123,4 @@ for s, i in l:
 """, 
 setup_statement)
 show_results(t.timeit(number=count))
+# [[[endsection]]]
