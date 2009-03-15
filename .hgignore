@@ -14,6 +14,7 @@ syntax: re
 ^PyMOTW/csv/testout.*\.csv
 ^PyMOTW/glob/dir
 ^PyMOTW/mmap/lorem_copy.txt
+^PyMOTW/ospath/broken_link
 ^PyMOTW/tarfile/outdir
 ^PyMOTW.egg-info
 ^sphinx/doctrees

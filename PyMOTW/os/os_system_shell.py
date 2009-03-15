@@ -33,4 +33,4 @@ __module_id__ = "$Id$"
 import os
 
 # Command with shell expansion
-os.system('ls -l $HOME')
+os.system('ls -ld $TMPDIR')

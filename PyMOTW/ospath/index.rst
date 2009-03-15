@@ -42,14 +42,10 @@ Path parsing depends on a few variable defined in the os module:
     :literal:
     :start-after: #end_pymotw_header
 
-::
-
-    $ python ospath_split.py
-    "/one/two/three" : "('/one/two', 'three')"
-    "/one/two/three/" : "('/one/two/three', '')"
-    "/" : "('/', '')"
-    "." : "('', '.')"
-    "" : "('', '')"
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'ospath_split.py'))
+.. }}}
+.. {{{end}}}
 
 basename() returns a value equivalent to the second part of the split() value.
 
@@ -57,14 +53,10 @@ basename() returns a value equivalent to the second part of the split() value.
     :literal:
     :start-after: #end_pymotw_header
 
-::
-
-    $ python ospath_basename.py
-    "/one/two/three" : "three"
-    "/one/two/three/" : ""
-    "/" : ""
-    "." : "."
-    "" : ""
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'ospath_basename.py'))
+.. }}}
+.. {{{end}}}
 
 dirname() returns the first path of the split path:
 
@@ -72,14 +64,10 @@ dirname() returns the first path of the split path:
     :literal:
     :start-after: #end_pymotw_header
 
-::
-
-    $ python ospath_dirname.py
-    "/one/two/three" : "/one/two"
-    "/one/two/three/" : "/one/two/three"
-    "/" : "/"
-    "." : ""
-    "" : ""
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'ospath_dirname.py'))
+.. }}}
+.. {{{end}}}
 
 splitext() works like split() but divides the path on the extension separator,
 rather than the directory names.
@@ -88,14 +76,10 @@ rather than the directory names.
     :literal:
     :start-after: #end_pymotw_header
 
-::
-
-    $ python ospath_splitext.py
-    "filename.txt" : ('filename', '.txt')
-    "filename" : ('filename', '')
-    "/path/to/filename.txt" : ('/path/to/filename', '.txt')
-    "/" : ('/', '')
-    "" : ('', '')
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'ospath_splitext.py'))
+.. }}}
+.. {{{end}}}
 
 commonprefix() takes a list of paths as an argument and returns a single
 string that represents a common prefix present in all of the paths. The value
@@ -107,11 +91,10 @@ boundary.
     :literal:
     :start-after: #end_pymotw_header
 
-::
-
-    $ python ospath_commonprefix.py
-    ['/one/two/three/four', '/one/two/threefold', '/one/two/three/']
-    /one/two/three
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'ospath_commonprefix.py'))
+.. }}}
+.. {{{end}}}
 
 Building Paths
 ==============
@@ -125,12 +108,10 @@ To combine several path components into a single value, use join():
     :literal:
     :start-after: #end_pymotw_header
 
-::
-
-    $ python ospath_join.py
-    ('one', 'two', 'three') : one/two/three
-    ('/', 'one', 'two', 'three') : /one/two/three
-    ('/one', '/two', '/three') : /three
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'ospath_join.py'))
+.. }}}
+.. {{{end}}}
 
 It's also easy to work with paths that include "variable" components that can
 be expanded automatically. For example, expanduser() converts the tilde (~)
@@ -140,12 +121,10 @@ character to a user's home directory.
     :literal:
     :start-after: #end_pymotw_header
 
-::
-
-    $ python ospath_expanduser.py
-    ~ : /Users/dhellmann
-    ~dhellmann : /Users/dhellmann
-    ~postgres : /var/empty
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'ospath_expanduser.py'))
+.. }}}
+.. {{{end}}}
 
 expandvars() is more general, and expands any shell environment variables
 present in the path.
@@ -154,10 +133,10 @@ present in the path.
     :literal:
     :start-after: #end_pymotw_header
 
-::
-
-    $ python ospath_expandvars.py
-    /path/to/VALUE
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'ospath_expandvars.py'))
+.. }}}
+.. {{{end}}}
 
 Normalizing Paths
 =================
@@ -170,12 +149,10 @@ to clean them up:
     :literal:
     :start-after: #end_pymotw_header
 
-::
-
-    $ python ospath_normpath.py
-    one//two//three : one/two/three
-    one/./two/./three : one/two/three
-    one/../one/two/three : one/two/three
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'ospath_normpath.py'))
+.. }}}
+.. {{{end}}}
 
 To convert a relative path to a complete absolute filename, use abspath().
 
@@ -183,13 +160,10 @@ To convert a relative path to a complete absolute filename, use abspath().
     :literal:
     :start-after: #end_pymotw_header
 
-::
-
-    $ python ospath_abspath.py
-    "." : "/Users/dhellmann/Documents/PyMOTW/in_progress/ospath"
-    ".." : "/Users/dhellmann/Documents/PyMOTW/in_progress"
-    "./one/two/three" : "/Users/dhellmann/Documents/PyMOTW/in_progress/ospath/one/two/three"
-    "../one/two/three" : "/Users/dhellmann/Documents/PyMOTW/in_progress/one/two/three"
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'ospath_abspath.py'))
+.. }}}
+.. {{{end}}}
 
 File Times
 ==========
@@ -202,14 +176,10 @@ os.stat():
     :literal:
     :start-after: #end_pymotw_header
 
-::
-
-    $ python ospath_properties.py
-    File         : /Users/dhellmann/Documents/PyMOTW/in_progress/ospath/ospath_properties.py
-    Access time  : Sun Jan 27 15:40:20 2008
-    Modified time: Sun Jan 27 15:39:06 2008
-    Change time  : Sun Jan 27 15:39:06 2008
-    Size         : 478
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'ospath_properties.py'))
+.. }}}
+.. {{{end}}}
 
 Testing Files
 =============
@@ -224,45 +194,13 @@ os.path provides functions to test all of these conditions.
     :literal:
     :start-after: #end_pymotw_header
 
-::
+.. {{{cog
+.. run_script(cog.inFile, 'rm -f broken_link', interpreter='')
+.. cog.out(run_script(cog.inFile, 'ln -s /does/not/exist broken_link', interpreter='', trailing_newlines=False))
+.. cog.out(run_script(cog.inFile, 'ospath_tests.py', include_prefix=False))
+.. }}}
+.. {{{end}}}
 
-    $ ln -s /does/not/exist broken_link
-    $ python ospath_tests.py
-    File        : /Users/dhellmann/Documents/PyMOTW/in_progress/ospath/ospath_tests.py
-    Absolute    : True
-    Is File?    : True
-    Is Dir?     : False
-    Is Link?    : False
-    Mountpoint? : False
-    Exists?     : True
-    Link Exists?: True
-
-    File        : /Users/dhellmann/Documents/PyMOTW/in_progress/ospath
-    Absolute    : True
-    Is File?    : False
-    Is Dir?     : True
-    Is Link?    : False
-    Mountpoint? : False
-    Exists?     : True
-    Link Exists?: True
-
-    File        : /
-    Absolute    : True
-    Is File?    : False
-    Is Dir?     : True
-    Is Link?    : False
-    Mountpoint? : True
-    Exists?     : True
-    Link Exists?: True
-
-    File        : ./broken_link
-    Absolute    : False
-    Is File?    : False
-    Is Dir?     : False
-    Is Link?    : True
-    Mountpoint? : False
-    Exists?     : False
-    Link Exists?: True
 
 Traversing a Directory Tree
 ===========================
@@ -276,29 +214,12 @@ directories.
     :literal:
     :start-after: #end_pymotw_header
 
-::
+.. {{{cog
+.. run_script(cog.inFile, 'rm -rf example', interpreter='')
+.. cog.out(run_script(cog.inFile, 'ospath_walk.py'))
+.. }}}
+.. {{{end}}}
 
-    $ python ospath_walk.py
-    .. (User data)
-      .svn/
-      ospath/
-
-    ../ospath (User data)
-      .svn/
-      __init__.py
-      ospath_abspath.py
-      ospath_basename.py
-      ospath_commonprefix.py
-      ospath_dirname.py
-      ospath_expanduser.py
-      ospath_expandvars.py
-      ospath_join.py
-      ospath_normpath.py
-      ospath_properties.py
-      ospath_split.py
-      ospath_splitext.py
-      ospath_tests.py
-      ospath_walk.py
 
 .. seealso::
 

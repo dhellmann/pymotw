@@ -46,29 +46,10 @@ TEST_UID values to match your user.
 
 When run as myself (527, 501) on OS X, I see this output:
 
-::
-
-    $ python os_process_user_example.py
-    BEFORE CHANGE:
-    Effective User  : 527
-    Effective Group : 501
-    Actual User      : 527 dhellmann
-    Actual Group    : 501
-    Actual Groups   : [501, 81, 79, 80]
-
-    CHANGED GROUP:
-    Effective User  : 527
-    Effective Group : 501
-    Actual User      : 527 dhellmann
-    Actual Group    : 501
-    Actual Groups   : [501, 81, 79, 80]
-
-    CHANGE USER:
-    Effective User  : 527
-    Effective Group : 501
-    Actual User      : 527 dhellmann
-    Actual Group    : 501
-    Actual Groups   : [501, 81, 79, 80]
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'os_process_user_example.py'))
+.. }}}
+.. {{{end}}}
 
 Notice that the values do not change. Since I am not running as root,
 processes I start cannot change their effective owner values. If I do try to
@@ -78,31 +59,32 @@ OSError is raised.
 Now let's look at what happens when we run the same script using ``sudo`` to start
 out with root privileges:
 
+.. Don't use cog here because sudo sometimes asks for a password.
+
 ::
 
-    $ sudo python os_process_user_example.py
-    Password:
-    BEFORE CHANGE:
-    Effective User  : 0
-    Effective Group : 0
-    Actual User      : 0 dhellmann
-    Actual Group    : 0
-    Actual Groups   : [0, 262, 1, 2, 3, 31, 4, 29, 5, 80, 20]
-
-    CHANGED GROUP:
-    Effective User  : 0
-    Effective Group : 501
-    Actual User      : 0 dhellmann
-    Actual Group    : 0
-    Actual Groups   : [501, 262, 1, 2, 3, 31, 4, 29, 5, 80, 20]
-
-    CHANGE USER:
-    Effective User  : 527
-    Effective Group : 501
-    Actual User      : 0 dhellmann
-    Actual Group    : 0
-    Actual Groups   : [501, 262, 1, 2, 3, 31, 4, 29, 5, 80, 20]
-
+	$ sudo python os_process_user_example.py
+	BEFORE CHANGE:
+	Effective User  : 0
+	Effective Group : 0
+	Actual User	 : 0 dhellmann
+	Actual Group	: 0
+	Actual Groups   : [0, 1, 2, 8, 29, 3, 9, 4, 5, 80, 20]
+	
+	CHANGED GROUP:
+	Effective User  : 0
+	Effective Group : 501
+	Actual User	 : 0 dhellmann
+	Actual Group	: 0
+	Actual Groups   : [501, 1, 2, 8, 29, 3, 9, 4, 5, 80, 20]
+	
+	CHANGE USER:
+	Effective User  : 527
+	Effective Group : 501
+	Actual User	 : 0 dhellmann
+	Actual Group	: 0
+	Actual Groups   : [501, 1, 2, 8, 29, 3, 9, 4, 5, 80, 20]
+	
 
 In this case, since we start as root, we can change the effective user and
 group for the process. Once we change the effective UID, the process is
@@ -133,19 +115,10 @@ environment variable, and passing a value through to a child process.
 The os.environ object follows the standard Python mapping API for retrieving
 and setting values. Changes to os.environ are exported for child processes.
 
-::
-
-    $ python os_environ_example.py
-    Initial value: None
-    Child process:
-
-
-    Changed value: THIS VALUE WAS CHANGED
-    Child process:
-    THIS VALUE WAS CHANGED
-
-    Removed value: None
-    Child process:
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'os_environ_example.py'))
+.. }}}
+.. {{{end}}}
 
 
 Process Working Directory
@@ -163,16 +136,10 @@ paths.
 Note the use of os.curdir and os.pardir to refer to the current and parent
 directories in a portable manner. The output should not be surprising:
 
-::
-
-    $ python os_cwd_example.py
-    Starting: /Users/dhellmann/Documents/PyMOTW/PyMOTW/os
-    ['.svn', '__init__.py', 'os_cwd_example.py', 'os_environ_example.py',
-    'os_process_id_example.py', 'os_process_user_example.py']
-    Moving up one: ..
-    After move: /Users/dhellmann/Documents/PyMOTW/PyMOTW
-    ['.svn', '__init__.py', 'bisect', 'ConfigParser', 'fileinput', 'linecache',
-    'locale', 'logging', 'os', 'Queue', 'StringIO', 'textwrap']
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'os_cwd_example.py'))
+.. }}}
+.. {{{end}}}
 
 
 Pipes
@@ -205,14 +172,10 @@ descriptions of the streams also assume Unix-like terminology:
     :literal:
     :start-after: #end_pymotw_header
 
-::
-
-    $ python os_popen.py 
-    popen, read:
-            stdout: 'to stdout\n'
-
-    popen, write:
-            stdin: to stdin
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'os_popen.py'))
+.. }}}
+.. {{{end}}}
 
 The caller can only read from OR write to the streams associated with the
 child process, which limits the usefulness. The other popen variants provide
@@ -232,11 +195,10 @@ written to stdin is read by ``cat`` (because of the '-' argument), then written
 back to stdout. Obviously a more complicated process could pass other types of
 messages back and forth through the pipe; even serialized objects.
 
-::
-
-    $ python os_popen2.py 
-    popen2:
-            pass through: 'through stdin to stdout'
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'os_popen2.py'))
+.. }}}
+.. {{{end}}}
 
 In most cases, it is desirable to have access to both stdout and stderr. The
 stdout stream is used for message passing and the stderr stream is used for
@@ -255,12 +217,10 @@ all of the data from a stream then the child process must close that stream to
 indicate the end-of-file. For more information on these issues, refer to the
 Flow Control Issues section of the Python library documentation.
 
-::
-
-    $ python os_popen3.py 
-    popen3:
-            pass through: 'through stdin to stdout'
-            stderr: ';to stderr\n'
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'os_popen3.py'))
+.. }}}
+.. {{{end}}}
 
 And finally, popen4() returns 2 streams, stdin and a merged stdout/stderr.
 This is useful when the results of the command need to be logged, but not
@@ -270,11 +230,10 @@ parsed directly.
     :literal:
     :start-after: #end_pymotw_header
 
-::
-
-    $ python os_popen4.py 
-    popen4:
-            combined output: 'through stdin to stdout;to stderr\n'
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'os_popen4.py'))
+.. }}}
+.. {{{end}}}
 
 Besides accepting a single string command to be given to the shell for
 parsing, popen2(), popen3(), and popen4() also accept a sequence of strings
@@ -285,21 +244,20 @@ processed by the shell.
     :literal:
     :start-after: #end_pymotw_header
 
-::
-
-    $ python os_popen2_seq.py 
-    popen2, cmd as sequence:
-            pass through: 'through stdin to stdout'
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'os_popen2_seq.py'))
+.. }}}
+.. {{{end}}}
 
 
 File Descriptors
 ================
 
-The os module includes the standard set of functions for working with low-level *file descriptors* (integers
-representing open files owned by the current process). This is a lower-level API than is provided by
-file() objects. I am going to skip over describing them here, since it is generally easier to work
-directly with file() objects. Refer to the library documentation for details if you do need to use file
-descriptors.
+The os module includes the standard set of functions for working with low-level *file
+descriptors* (integers representing open files owned by the current process). This is a
+lower-level API than is provided by file() objects. I am going to skip over describing them
+here, since it is generally easier to work directly with file() objects. Refer to the library
+documentation for details if you do need to use file descriptors.
 
 Filesystem Permissions
 ======================
@@ -314,14 +272,10 @@ for a file.
 Your results will vary depending on how you install the example code, but it
 should look something like this:
 
-::
-
-    $ python os_access.py
-    Testing: os_access.py
-    Exists: True
-    Readable: True
-    Writable: True
-    Executable: False
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'os_access.py'))
+.. }}}
+.. {{{end}}}
 
 
 The library documentation for os.access() includes 2 special warnings. First,
@@ -346,15 +300,10 @@ link).
 Once again, your results will vary depending on how the example code was
 installed. Try passing different filenames on the command line to os_stat.py.
 
-::
-
-    $ python os_stat.py
-    os.stat(os_stat.py):
-          Size: 1547
-          Permissions: 0100644
-          Owner: 527
-          Device: 234881026
-          Last modified: Sun Jun 10 08:13:26 2007
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'os_stat.py'))
+.. }}}
+.. {{{end}}}
 
 
 On Unix-like systems, file permissions can be changed using os.chmod(),
@@ -370,12 +319,10 @@ execute permission bit:
 The script assumes you have the right permissions to modify the mode of the
 file to begin with:
 
-::
-
-    $ python os_stat_chmod.py
-    Adding execute permission
-    $ python os_stat_chmod.py
-    Removing execute permission
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'os_stat_chmod.py'))
+.. }}}
+.. {{{end}}}
 
 Directories
 ===========
@@ -387,14 +334,10 @@ including creating, listing contents, and removing them.
     :literal:
     :start-after: #end_pymotw_header
 
-::
-
-    $ python os_directories.py
-    Creating os_directories_example
-    Creating os_directories_example/example.txt
-    Listing os_directories_example
-    ['example.txt']
-    Cleaning up
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'os_directories.py'))
+.. }}}
+.. {{{end}}}
 
 
 There are 2 sets of functions for creating and deleting directories. When
@@ -421,12 +364,10 @@ filenames, it is not as secure as the tempfile module and produces a
 RuntimeWarning message when it is used. In general it is better to use the
 tempfile module.
 
-::
-
-    $ python os_symlinks.py
-    Creating link /tmp/tmpRxRiHn->os_symlinks.py
-    Permissions: 0120755
-    Points to: os_symlinks.py
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'os_symlinks.py'))
+.. }}}
+.. {{{end}}}
 
 
 Walking a Directory Tree
@@ -441,39 +382,10 @@ This example shows a simplistic recursive directory listing.
     :literal:
     :start-after: #end_pymotw_header
 
-::
-
-    $ python os_walk.py
-
-    /tmp
-          .KerberosLogin-0--1074266944 (inited,root,local)/
-          .KerberosLogin-527-4839472 (inited,gui,tty,local)/
-          527/
-          cs_cache_lock_527
-          cs_cache_lock_92
-          emacs527/
-          fry.log
-          hsperfdata_dhellmann/
-          objc_sharing_ppc_4294967294
-          objc_sharing_ppc_527
-          objc_sharing_ppc_92
-          svn.arg.1835l59
-          var_backups/
-
-    /tmp/.KerberosLogin-527-4839472 (inited,gui,tty,local)
-          KLLCCache.lock
-
-    /tmp/527
-
-    /tmp/emacs527
-          server
-
-    /tmp/hsperfdata_dhellmann
-          976
-
-    /tmp/var_backups
-          infodir.bak
-          local.nidump
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'os_walk.py'))
+.. }}}
+.. {{{end}}}
 
 
 Running External Command
@@ -493,23 +405,10 @@ executed by a sub-process running a shell.
     :literal:
     :start-after: #end_pymotw_header
 
-::
-
-    $ python os_system_example.py
-    total 168
-    -rw-r--r--   1 dhellman  dhellman     0 May 27 06:58 __init__.py
-    -rw-r--r--   1 dhellman  dhellman  1391 Jun 10 09:36 os_access.py
-    -rw-r--r--   1 dhellman  dhellman  1383 May 27 09:23 os_cwd_example.py
-    -rw-r--r--   1 dhellman  dhellman  1535 Jun 10 09:36 os_directories.py
-    -rw-r--r--   1 dhellman  dhellman  1613 May 27 09:23 os_environ_example.py
-    -rw-r--r--   1 dhellman  dhellman  2816 Jun  3 08:34 os_popen_examples.py
-    -rw-r--r--   1 dhellman  dhellman  1438 May 27 09:23 os_process_id_example.py
-    -rw-r--r--   1 dhellman  dhellman  1887 May 27 09:23 os_process_user_example.py
-    -rw-r--r--   1 dhellman  dhellman  1545 Jun 10 09:36 os_stat.py
-    -rw-r--r--   1 dhellman  dhellman  1638 Jun 10 09:36 os_stat_chmod.py
-    -rw-r--r--   1 dhellman  dhellman  1452 Jun 10 09:36 os_symlinks.py
-    -rw-r--r--   1 dhellman  dhellman  1279 Jun 17 12:17 os_system_example.py
-    -rw-r--r--   1 dhellman  dhellman  1672 Jun 10 09:36 os_walk.py
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'os_system_example.py'))
+.. }}}
+.. {{{end}}}
 
 
 Since the command is passed directly to the shell for processing, it can even
@@ -519,23 +418,10 @@ include shell syntax such as globbing or environment variables:
     :literal:
     :start-after: #end_pymotw_header
 
-::
-
-    total 40
-    -rwx------    1 dhellman  dhellman  1328 Dec 13  2005 %backup%~
-    drwx------   11 dhellman  dhellman   374 Jun 17 12:11 Desktop
-    drwxr-xr-x   15 dhellman  dhellman   510 May 27 07:50 Devel
-    drwx------   29 dhellman  dhellman   986 May 31 17:01 Documents
-    drwxr-xr-x   45 dhellman  dhellman  1530 Jun 17 12:12 DownloadedApps
-    drwx------   55 dhellman  dhellman  1870 May 22 14:53 Library
-    drwx------    8 dhellman  dhellman   272 Mar  4  2006 Movies
-    drwx------   10 dhellman  dhellman   340 Feb 14 10:54 Music
-    drwx------   12 dhellman  dhellman   408 Jun 17 01:00 Pictures
-    drwxr-xr-x    5 dhellman  dhellman   170 Oct  1  2006 Public
-    drwxr-xr-x   15 dhellman  dhellman   510 May 12 15:19 Sites
-    drwxr-xr-x    4 dhellman  dhellman   136 Jan 23  2006 iPod
-    -rw-r--r--    1 dhellman  dhellman   105 Mar  7 11:48 pgadmin.log
-    drwxr-xr-x    3 dhellman  dhellman   102 Apr 29 16:32 tmp
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'os_system_shell.py'))
+.. }}}
+.. {{{end}}}
 
 
 Unless you explicitly run the command in the background, the call to
@@ -551,13 +437,10 @@ by default, but can be redirected using shell syntax.
 This is getting into shell trickery, though, and there are better ways to
 accomplish the same thing.
 
-::
-
-    $ python os_system_background.py
-    Calling...
-    Sun Jun 17 12:27:20 EDT 2007
-    Sleeping...
-    Sun Jun 17 12:27:23 EDT 2007
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'os_system_background.py'))
+.. }}}
+.. {{{end}}}
 
 .. _creating-processes-with-os-fork:
 
@@ -578,11 +461,10 @@ To create a new process as a clone of the current process, use os.fork():
 Your output will vary based on the state of your system each time you run the
 example, but it should look something like:
 
-::
-
-    $ python os_fork_example.py
-    Child process id: 5883
-    I am the child
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'os_fork_example.py'))
+.. }}}
+.. {{{end}}}
 
 After the fork, you end up with 2 processes running the same code. To tell
 which one you are in, check the return value. If it is 0, you are inside the
@@ -633,15 +515,10 @@ the parent time to send us the signal:
 In a real app, you probably wouldn't need to (or want to) call sleep, of
 course.
 
-::
-
-    $ python os_kill_example.py
-    Forking...
-    PARENT: Pausing before sending signal...
-    CHILD: Setting up signal handler
-    CHILD: Pausing to wait for signal
-    PARENT: Signaling 6053
-    Received USR1 in process 6053
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'os_kill_example.py'))
+.. }}}
+.. {{{end}}}
 
 
 As you see, a simple way to handle separate behavior in the child process is
@@ -656,18 +533,10 @@ existing process.
     :literal:
     :start-after: #end_pymotw_header
 
-::
-
-    $ python os_exec_example.py       
-    total 40
-    drwxr-xr-x   2 dhellman  wheel      68 Jun 17 14:35 527
-    prw-------   1 root      wheel       0 Jun 15 19:24 afpserver_PIPE
-    drwx------   3 dhellman  wheel     102 Jun 17 12:13 emacs527
-    drwxr-xr-x   2 dhellman  wheel      68 Jun 16 05:01 hsperfdata_dhellmann
-    -rw-------   1 nobody    wheel      12 Jun 17 13:55 objc_sharing_ppc_4294967294
-    -rw-------   1 dhellman  wheel     144 Jun 17 14:32 objc_sharing_ppc_527
-    -rw-------   1 security  wheel      24 Jun 17 07:09 objc_sharing_ppc_92
-    drwxr-xr-x   4 dhellman  dhellman  136 Jun  8 03:16 var_backups
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'os_exec_example.py'))
+.. }}}
+.. {{{end}}}
 
 
 There are many variations of exec*(), depending on what form you might have
@@ -701,24 +570,10 @@ Notice that the return value from os.wait() is a tuple containing the process
 id and exit status ("a 16-bit number, whose low byte is the signal number that
 killed the process, and whose high byte is the exit status").
 
-::
-
-    $ python os_wait_example.py
-    PARENT: Forking 0
-    PARENT: Forking 1
-    PARENT: Forking 2
-    PARENT: Waiting for 0
-    WORKER 0: Starting
-    WORKER 1: Starting
-    WORKER 2: Starting
-    WORKER 0: Finishing
-    PARENT: (6501, 0)
-    PARENT: Waiting for 1
-    WORKER 1: Finishing
-    PARENT: (6502, 256)
-    PARENT: Waiting for 2
-    WORKER 2: Finishing
-    PARENT: (6503, 512)
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'os_wait_example.py'))
+.. }}}
+.. {{{end}}}
 
 If you want a specific process, use os.waitpid().
 
@@ -726,25 +581,10 @@ If you want a specific process, use os.waitpid().
     :literal:
     :start-after: #end_pymotw_header
 
-
-::
-
-    $ python os_waitpid_example.py
-    PARENT: Forking 0
-    WORKER 0: Starting
-    PARENT: Forking 1
-    WORKER 1: Starting
-    PARENT: Forking 2
-    WORKER 2: Starting
-    PARENT: Waiting for 6547
-    WORKER 0: Finishing
-    PARENT: (6547, 0)
-    PARENT: Waiting for 6548
-    WORKER 1: Finishing
-    PARENT: (6548, 256)
-    PARENT: Waiting for 6549
-    WORKER 2: Finishing
-    PARENT: (6549, 512)
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'os_waitpid_example.py'))
+.. }}}
+.. {{{end}}}
 
 wait3() and wait4() work in a similar manner, but return more detailed
 information about the child process with the pid, exit status, and resource
@@ -760,19 +600,10 @@ exec*() calls for you in one statement:
     :literal:
     :start-after: #end_pymotw_header
 
-
-::
-
-    $ python os_spawn_example.py
-    total 112
-    drwx------  3 dhellmann  dhellmann   102 Nov 25 11:11 527
-    -rw-------  1 _www       wheel         0 Nov 24 18:26 aprZUFiBL
-    -rw-------  1 _www       wheel         0 Nov 24 18:26 aprrI2NMa
-    srwxrwxrwx  1 dhellmann  wheel         0 Nov 24 18:26 com.hp.launchport
-    drwx------  3 dhellmann  wheel       102 Nov 24 18:26 launchd-120.tTqeBv
-    drwx------  2 dhellmann  wheel        68 Nov 25 09:06 ssh-15RWPs917O
-    -rwx------  1 dhellmann  wheel       143 Nov 28 13:10 temp_textmate.PWLSvd
-    drwxr-xr-x  2 dhellmann  dhellmann    68 Nov 25 03:15 var_backups
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'os_spawn_example.py'))
+.. }}}
+.. {{{end}}}
 
 
 .. seealso::

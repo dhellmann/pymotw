@@ -9,6 +9,7 @@
 __version__ = "$Id$"
 #end_pymotw_header
 
+import os
 import os.path
 import pprint
 
@@ -20,9 +21,14 @@ def visit(arg, dirname, names):
             print '  %s/' % name
         else:
             print '  %s' % name
-    # Do not recurse into .svn directory
-    if '.svn' in names:
-        names.remove('.svn')
     print
 
-os.path.walk('..', visit, '(User data)')
+os.mkdir('example')
+os.mkdir('example/one')
+f = open('example/one/file.txt', 'wt')
+f.write('contents')
+f.close()
+f = open('example/two.txt', 'wt')
+f.write('contents')
+f.close()
+os.path.walk('example', visit, '(User data)')
