@@ -6,7 +6,7 @@
        """
     1: """
        
-       #__version__ = "$Id: main.py 1729 2008-10-12 14:14:02Z dhellmann $"
+       #__version__ = "$Id$"
        #end_pymotw_header
        
     1: from recurse import recurse

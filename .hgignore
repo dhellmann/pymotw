@@ -20,6 +20,7 @@ syntax: re
 ^PyMOTW/shutil/file_to_change.txt
 ^PyMOTW/shutil/shutil_copyfile.py.copy
 ^PyMOTW/tarfile/outdir
+^PyMOTW/trace/trace_report.dat
 ^PyMOTW.egg-info
 ^sphinx/doctrees
 ^web/.*
