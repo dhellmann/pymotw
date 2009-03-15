@@ -1,22 +1,26 @@
-=======================
-xmlrpclib
-=======================
+==========================================================
+xmlrpclib -- Client-side library for XML-RPC communication
+==========================================================
+
 .. module:: xmlrpclib
     :synopsis: Client-side library for XML-RPC communication.
 
-:Module: xmlrpclib
 :Purpose: Client-side library for XML-RPC communication.
 :Python Version: 2.2 and later
-:Abstract: As a follow-up to last week's article on SimpleXMLRPCServer, this week covers the client-side library xmlrpclib.
 
-Description
-===========
+We have already looked at :mod:`SimpleXMLRPCServer`, the library for creating an XML-RPC
+server. The xmlrpclib module lets you communicate from Python with any XML-RPC server written
+in any language. 
 
-Last week we looked at the library for creating an XML-RPC server. The
-xmlrpclib module lets you communicate from Python with any XML-RPC server
-written in any language. All of the examples below use the server defined in
-xmlrpclib_server.py, available in the source distribution and repeated here for
-reference:
+.. note::
+
+    All of the examples below use the server defined in ``xmlrpclib_server.py``, available in
+    the source distribution and repeated here for reference:
+
+.. include:: xmlrpclib_server.py
+    :literal:
+    :start-after: #end_pymotw_header
+
 
 Connecting to a Server
 ======================
@@ -25,12 +29,9 @@ The simplest way to connect a client to a server is to instantiate a
 ServerProxy object, giving it the URI of the server. For example, the demo
 server runs on port 9000 of localhost:
 
-::
-
-    import xmlrpclib
-
-    server = xmlrpclib.ServerProxy('http://localhost:9000')
-    print 'Ping:', server.ping()
+.. include:: xmlrpclib_ServerProxy.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 In this case, the ping() method of the service takes no arguments and returns a
 single boolean value.
@@ -50,12 +51,9 @@ XML-RPC over SMTP. Not terribly useful, but interesting.
 The verbose option gives you debugging information useful for working out where
 communication errors might be happening.
 
-::
-
-    import xmlrpclib
-
-    server = xmlrpclib.ServerProxy('http://localhost:9000', verbose=True)
-    print 'Ping:', server.ping()
+.. include:: xmlrpclib_ServerProxy_verbose.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -78,12 +76,9 @@ communication errors might be happening.
 You can change the default encoding from UTF-8 if you need to use an alternate
 system.
 
-::
-
-    import xmlrpclib
-
-    server = xmlrpclib.ServerProxy('http://localhost:9000', encoding='ISO-8859-1')
-    print 'Ping:', server.ping()
+.. include:: xmlrpclib_ServerProxy_encoding.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 The server should automatically detect the correct encoding.
 
@@ -96,15 +91,9 @@ The server should automatically detect the correct encoding.
 The allow_none option controls whether Python's None value is automatically
 translated to a nil value or if it causes an error.
 
-::
-
-    import xmlrpclib
-
-    server = xmlrpclib.ServerProxy('http://localhost:9000', allow_none=True)
-    print 'Allowed:', server.show_type(None)
-
-    server = xmlrpclib.ServerProxy('http://localhost:9000', allow_none=False)
-    print 'Not allowed:', server.show_type(None)
+.. include:: xmlrpclib_ServerProxy_allow_none.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 Note that the error is raised locally if the client does not allow None, but
 can also be raised from within the server if it is not configured to allow
@@ -133,7 +122,7 @@ None.
     TypeError: cannot marshal None unless allow_none is enabled
 
 
-The use_datetime option lets you pass datetime.datetime and related objects in
+The use_datetime option lets you pass :mod:`datetime` and related objects in
 to the proxy or receive them from the server. If use_datetime is False, the
 internal DateTime class is used to represent dates instead.
 
@@ -144,23 +133,9 @@ The XML-RPC protocol recognizes a limited set of common data types. The types
 can be passed as arguments or return values and combined to create more complex
 data structures.
 
-::
-
-    import xmlrpclib
-    import datetime
-
-    server = xmlrpclib.ServerProxy('http://localhost:9000')
-
-    for t, v in [ ('boolean', True), 
-                  ('integer', 1),
-                  ('floating-point number', 2.5),
-                  ('string', 'some text'), 
-                  ('datetime', datetime.datetime.now()),
-                  ('array', ['a', 'list']),
-                  ('array', ('a', 'tuple')),
-                  ('structure', {'a':'dictionary'}),
-                ]:
-        print '%-22s:' % t, server.show_type(v)
+.. include:: xmlrpclib_types.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 
 The simple types::
@@ -176,36 +151,11 @@ The simple types::
     structure             : ["{'a': 'dictionary'}", "<type 'dict'>", {'a': 'dictionary'}]
 
 
-And of course, they can be nested to create values of arbitrary complexity::
+And of course, they can be nested to create values of arbitrary complexity:
 
-    import xmlrpclib
-    import datetime
-    import pprint
-
-    server = xmlrpclib.ServerProxy('http://localhost:9000')
-
-    data = { 'boolean':True, 
-             'integer': 1,
-             'floating-point number': 2.5,
-             'string': 'some text',
-             'datetime': datetime.datetime.now(),
-             'array': ['a', 'list'],
-             'array': ('a', 'tuple'),
-             'structure': {'a':'dictionary'},
-             }
-    arg = []
-    for i in range(3):
-        d = {}
-        d.update(data)
-        d['integer'] = i
-        arg.append(d)
-
-    print 'Before:'
-    pprint.pprint(arg)
-
-    print
-    print 'After:'
-    pprint.pprint(server.show_type(arg)[-1])
+.. include:: xmlrpclib_types_nested.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -263,26 +213,9 @@ Passing Objects
 Instances of Python classes are treated as structures and passed as a
 dictionary, with the attributes of the object as values in the dictionary.
 
-::
-
-    import xmlrpclib
-
-    class MyObj:
-        def __init__(self, a, b):
-            self.a = a
-            self.b = b
-        def __repr__(self):
-            return 'MyObj(%s, %s)' % (repr(self.a), repr(self.b))
-
-    server = xmlrpclib.ServerProxy('http://localhost:9000')
-
-    o = MyObj(1, 'b goes here')
-    print 'o=', o
-    print server.show_type(o)
-
-    o2 = MyObj(2, o)
-    print 'o2=', o2
-    print server.show_type(o2)
+.. include:: xmlrpclib_types_object.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 
 Round-tripping the value gives a dictionary on the client, since there is
@@ -307,19 +240,9 @@ binary image data may include byte values in the ASCII control range 0 to 31.
 If you need to pass binary data, it is best to use the Binary class to encode
 it for transport.
 
-::
-
-    import xmlrpclib
-
-    server = xmlrpclib.ServerProxy('http://localhost:9000')
-
-    s = 'This is a string with control characters' + '\0'
-    print 'Local string:', s
-
-    data = xmlrpclib.Binary(s)
-    print 'As binary:', server.send_back_binary(data)
-
-    print 'As string:', server.show_type(s)
+.. include:: xmlrpclib_Binary.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 If we pass the string containing a NULL byte to show_type(), an exception is
 raised in the XML parser:
@@ -351,31 +274,10 @@ issues related to sending what amounts to executable code over the wire apply
 here (i.e., don't do this unless you're sure your communication channel is
 secure).
 
-::
+.. include:: xmlrpclib_Binary_pickle.py
+    :literal:
+    :start-after: #end_pymotw_header
 
-    import xmlrpclib
-    import cPickle as pickle
-
-    class MyObj:
-        def __init__(self, a, b):
-            self.a = a
-            self.b = b
-        def __repr__(self):
-            return 'MyObj(%s, %s)' % (repr(self.a), repr(self.b))
-
-    server = xmlrpclib.ServerProxy('http://localhost:9000')
-
-    o = MyObj(1, 'b goes here')
-    print 'Local:', o, id(o)
-
-    print 'As object:', server.show_type(o)
-
-    p = pickle.dumps(o)
-    b = xmlrpclib.Binary(p)
-    r = server.send_back_binary(b)
-
-    o2 = pickle.loads(r.data)
-    print 'From pickle:', o2, id(o2)
 
 Remember, the data attribute of the Binary instance contains the pickled
 version of the object, so it has to be unpickled before it can be used. That
@@ -396,16 +298,10 @@ Since the XML-RPC server might be written in any language, exception classes
 cannot be transmitted directly. Instead, exceptions raised in the server are
 converted to Fault objects and raised as exceptions locally.
 
-::
+.. include:: xmlrpclib_exception.py
+    :literal:
+    :start-after: #end_pymotw_header
 
-    import xmlrpclib
-
-    server = xmlrpclib.ServerProxy('http://localhost:9000')
-    try:
-        server.raises_exception('A message')
-    except Exception, err:
-        print 'Fault code:', err.faultCode
-        print 'Message   :', err.faultString
 
 ::
 
@@ -423,20 +319,9 @@ caller. The MultiCall class was added to xmlrpclib in Python 2.4. To use a
 MultiCall instance, invoke the methods on it as with a ServerProxy, then call
 the object with no arguments. The result is an iterator with the results.
 
-::
-
-    import xmlrpclib
-
-    server = xmlrpclib.ServerProxy('http://localhost:9000')
-
-    multicall = xmlrpclib.MultiCall(server)
-    multicall.ping()
-    multicall.show_type(1)
-    multicall.show_type('string')
-
-    for i, r in enumerate(multicall()):
-        print i, r
-
+.. include:: xmlrpclib_MultiCall.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -450,20 +335,9 @@ If one of the calls causes a Fault or otherwise raises an exception, the
 exception is raised when the result is produced from the iterator and no more
 results are available.
 
-::
-
-    import xmlrpclib
-
-    server = xmlrpclib.ServerProxy('http://localhost:9000')
-
-    multicall = xmlrpclib.MultiCall(server)
-    multicall.ping()
-    multicall.show_type(1)
-    multicall.raises_exception('Next to last call stops execution')
-    multicall.show_type('string')
-
-    for i, r in enumerate(multicall()):
-        print i, r
+.. include:: xmlrpclib_MultiCall_exception.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 ::
 
@@ -477,4 +351,10 @@ results are available.
         raise Fault(item['faultCode'], item['faultString'])
     xmlrpclib.Fault: <Fault 1: "<type 'exceptions.RuntimeError'>:Next to last call stops execution">
 
+.. seealso::
 
+    `xmlrpclib <http://docs.python.org/lib/module-xmlrpclib.html>`_
+        Standard library documentation for this module.
+
+    :mod:`SimpleXMLRPCServer`
+        An XML-RPC server implementation.

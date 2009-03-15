@@ -16,15 +16,19 @@ The :mod:`whichdb` module contains one function, ``whichdb()``.  It can be used 
 
 Your results will vary, depending on what modules are available in your PYTHONPATH.
 
-::
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'whichdb_whichdb.py'))
+.. }}}
+.. {{{end}}}
 
-    $ python whichdb_whichdb.py
-    dbhash
 
+.. seealso::
 
-References
-==========
+    `whichdb <http://docs.python.org/lib/module-whichdb.html>`_
+        Standard library documentation for this module.
 
-See also: :mod:`anydbm`, :mod:`shelve`
-
-Standard library documentation: `whichdb <http://docs.python.org/lib/module-whichdb.html>`_
+    :mod:`anydbm`
+        The anydbm module uses the best available DBM implementation when creating new databases.
+    
+    :mod:`shelve`
+        The shelve module provides a mapping-style API for DBM databases.
