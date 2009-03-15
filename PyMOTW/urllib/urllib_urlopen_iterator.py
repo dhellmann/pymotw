@@ -5,8 +5,7 @@
 #
 """Simple example with urllib.urlopen().
 """
-
-__version__ = "$Id$"
+#end_pymotw_header
 
 import urllib
 
