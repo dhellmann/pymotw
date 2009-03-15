@@ -21,32 +21,10 @@ The constants in the string module can be used to specify categories of characte
 
 Most of the names for the constants are self-explanatory.
 
-::
-
-    $ python string_constants.py
-    ascii_letters='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-
-    ascii_lowercase='abcdefghijklmnopqrstuvwxyz'
-
-    ascii_uppercase='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-
-    digits='0123456789'
-
-    hexdigits='0123456789abcdefABCDEF'
-
-    letters='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-
-    lowercase='abcdefghijklmnopqrstuvwxyz'
-
-    octdigits='01234567'
-
-    printable='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~ \t\n\r\x0b\x0c'
-
-    punctuation='!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'
-
-    uppercase='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-
-    whitespace='\t\n\x0b\x0c\r '
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'string_constants.py'))
+.. }}}
+.. {{{end}}}
 
 
 Functions
@@ -60,11 +38,10 @@ There are two functions not moving from the string module. ``capwords()`` capita
 
 The results are the same as if you called ``split()``, capitalized the words in the resulting list, then called ``join()`` to combine the results.
 
-::
-
-    $ python string_capwords.py
-    The quick brown fox jumped over the lazy dog.
-    The Quick Brown Fox Jumped Over The Lazy Dog.
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'string_capwords.py'))
+.. }}}
+.. {{{end}}}
 
 The other function creates translation tables that can be used with the ``translate()`` method to change one set of characters to another.
 
@@ -74,11 +51,10 @@ The other function creates translation tables that can be used with the ``transl
 
 In this example, some letters are replaced by their `l33t <http://en.wikipedia.org/wiki/Leet>`_ number alternatives.
 
-::
-
-    $ python string_maketrans.py
-    The quick brown fox jumped over the lazy dog.
-    Th3 qu1ck 620wn f0x jum93d 0v32 7h3 142y d06.
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'string_maketrans.py'))
+.. }}}
+.. {{{end}}}
 
 Templates
 =========
@@ -94,18 +70,10 @@ setup.
 
 As you see, in both cases the trigger character (``$`` or ``%``) is escaped by repeating it twice.
 
-::
-
-    $ python string_template.py
-    TEMPLATE: 
-    foo
-    $
-    fooiable
-
-    INTERPLOATION: 
-    foo
-    %
-    fooiable
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'string_template.py'))
+.. }}}
+.. {{{end}}}
 
 One key difference between templates and standard string interpolation is that the type of the arguments is not taken into account. The values are converted to strings and the strings are inserted. No formatting options are available. For example, there is no way to control the number of digits used to represent a floating point value.
 
@@ -117,11 +85,10 @@ A benefit, though, is that by using the ``safe_substitute()`` method, it is poss
 
 Since there is no value for missing in the values dictionary, a KeyError is raised by ``substitute()``. Instead of raising the error, ``safe_substitute()`` catches it and leaves the variable expression alone in the text.
 
-::
-
-    $ python string_template_missing.py
-    TEMPLATE: ERROR: 'missing'
-    TEMPLATE: foo is here but $missing is not provided
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'string_template_missing.py'))
+.. }}}
+.. {{{end}}}
 
 Advanced Templates
 ==================
@@ -134,10 +101,10 @@ If the default syntax for string.Template is not to your liking, you can change 
 
 In this example, variable ids must include an underscore somewhere in the middle, so ``%notunderscored`` is not replaced by anything.
 
-::
-
-    $ python string_template_advanced.py
-    % replaced %notunderscored
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'string_template_advance.py'))
+.. }}}
+.. {{{end}}}
 
 For more complex changes, you can override the pattern attribute and define an entirely new regular expression. The pattern provided must contain 4 named groups for capturing the escaped delimiter, the named variable, a braced version of the variable name, and invalid delimiter patterns.
 
@@ -149,16 +116,10 @@ Let's look at the default pattern:
 
 Since ``t.pattern`` is a compiled regular expression, we have to access its pattern attribute to see the actual string.
 
-::
-
-    $ python string_template_defaultpattern.py
-
-        \$(?:
-          (?P<escaped>\$) |   # Escape sequence of two delimiters
-          (?P<named>[_a-z][_a-z0-9]*)      |   # delimiter and a Python identifier
-          {(?P<braced>[_a-z][_a-z0-9]*)}   |   # delimiter and a braced identifier
-          (?P<invalid>)              # Other ill-formed delimiter exprs
-        )
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'string_template_defaultpattern.py'))
+.. }}}
+.. {{{end}}}
 
 If we wanted to create a new type of template using, for example, ``{{var}}`` as the variable syntax, we could use a pattern like this:
 
@@ -168,13 +129,10 @@ If we wanted to create a new type of template using, for example, ``{{var}}`` as
 
 We still have to provide both the named and braced patterns, even though they are the same. Here's the output:
 
-::
-
-    $ python string_template_newsyntax.py
-    MATCHES: [('{{', '', '', ''), ('', 'var', '', '')]
-    SUBSTITUTED: 
-    {{
-    replacement
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'string_template_newsyntax.py'))
+.. }}}
+.. {{{end}}}
 
 Deprecated Functions
 ====================

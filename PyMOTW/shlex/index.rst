@@ -38,26 +38,10 @@ input file:
 When run on data with embedded quotes, the parser produces the list of tokens
 we expect:
 
-::
-
-    $ python shlex_example.py quotes.txt
-    ORIGINAL: 'This string has embedded "double quotes" and \'single quotes\' in it, and even "a \'nested example\'".'
-
-    TOKENS:
-    'This'
-    'string'
-    'has'
-    'embedded'
-    '"double quotes"'
-    'and'
-    "'single quotes'"
-    'in'
-    'it'
-    ','
-    'and'
-    'even'
-    '"a \'nested example\'"'
-    '.'
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'shlex_example.py quotes.txt'))
+.. }}}
+.. {{{end}}}
 
 Isolated quotes such as apostrophes are also handled.  Given this input file:
 
@@ -66,23 +50,10 @@ Isolated quotes such as apostrophes are also handled.  Given this input file:
 
 The token with the embedded apostrophe is no problem:
 
-::
-
-    $ python shlex_example.py apostrophe.txt
-    ORIGINAL: "This string has an embedded apostrophe, doesn't it?"
-
-    TOKENS:
-    'This'
-    'string'
-    'has'
-    'an'
-    'embedded'
-    'apostrophe'
-    ','
-    "doesn't"
-    'it'
-    '?'
-
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'shlex_example.py apostrophe.txt'))
+.. }}}
+.. {{{end}}}
 
 Embedded Comments
 =================
@@ -93,24 +64,10 @@ comment, and ignored. Due to the nature of the parser, only single character
 comment prefixes are supported. The set of comment characters used can be
 configured through the commenters property.
 
-::
-
-    $ python shlex_example.py comments.txt
-    ORIGINAL: 'This line is recognized.\n# But this line is ignored.\nAnd this line is processed.'
-
-    TOKENS:
-    'This'
-    'line'
-    'is'
-    'recognized'
-    '.'
-    'And'
-    'this'
-    'line'
-    'is'
-    'processed'
-    '.'
-
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'shlex_example.py comments.txt'))
+.. }}}
+.. {{{end}}}
 
 Split
 =====
@@ -124,13 +81,10 @@ convenience function split() is a simple wrapper around the parser.
 
 The result is a list:
 
-::
-
-    $ python shlex_split.py 
-    ORIGINAL: 'This text has "quoted parts" inside it.'
-
-    TOKENS:
-    ['This', 'text', 'has', 'quoted parts', 'inside', 'it.']
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'shlex_split.py'))
+.. }}}
+.. {{{end}}}
 
 
 Including Other Sources of Tokens
@@ -153,32 +107,10 @@ character needs to be added to the list of characters which are included in
 words (otherwise "quotes.txt" becomes three tokens, "quotes", ".", "txt"). The
 output looks like:
 
-::
-
-    $ python shlex_source.py 
-    ORIGINAL: 'This text says to source quotes.txt before continuing.'
-
-    TOKENS:
-    'This'
-    'text'
-    'says'
-    'to'
-    'This'
-    'string'
-    'has'
-    'embedded'
-    '"double quotes"'
-    'and'
-    "'single quotes'"
-    'in'
-    'it'
-    ','
-    'and'
-    'even'
-    '"a \'nested example\'"'
-    '.'
-    'before'
-    'continuing.'
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'shlex_source.py'))
+.. }}}
+.. {{{end}}}
 
 The "source" feature uses a method called sourcehook() to load the additional
 input source, so you can subclass shlex to provide your own implementation to
@@ -199,15 +131,10 @@ parsing on parentheses, for example).
 
 In this example, each table cell is wrapped in vertical bars:
 
-::
-
-    $ python shlex_table.py 
-    ORIGINAL: '|Col 1||Col 2||Col 3|'
-
-    TOKENS:
-    '|Col 1|'
-    '|Col 2|'
-    '|Col 3|'
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'shlex_table.py'))
+.. }}}
+.. {{{end}}}
 
 It is also possible to control the whitespace characters used to split words.
 If we modify the example in shlex_example.py to include period and comma, as
@@ -219,24 +146,11 @@ follows:
 
 The results change to:
 
-::
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'shlex_whitespace.py quotes.txt'))
+.. }}}
+.. {{{end}}}
 
-    $ python shlex_whitespace.py quotes.txt 
-    ORIGINAL: 'This string has embedded "double quotes" and \'single quotes\' in it, and even "a \'nested example\'".'
-
-    TOKENS:
-    'This'
-    'string'
-    'has'
-    'embedded'
-    '"double quotes"'
-    'and'
-    "'single quotes'"
-    'in'
-    'it'
-    'and'
-    'even'
-    '"a \'nested example\'"'
 
 Error Handling
 ==============
@@ -259,22 +173,10 @@ user directly to the invalid line.
 
 The example above produces this output:
 
-::
-
-    $ python shlex_errors.py 
-    ORIGINAL: 'This line is ok.\nThis line has an "unfinished quote.\nThis line is ok, too.\n'
-
-    TOKENS:
-    'This'
-    'line'
-    'is'
-    'ok'
-    '.'
-    'This'
-    'line'
-    'has'
-    'an'
-    ERROR: "None", line 4:  No closing quotation following ""unfinished quote."
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'shlex_errors.py', ignore_error=True))
+.. }}}
+.. {{{end}}}
 
 
 POSIX vs. Non-POSIX Parsing
@@ -290,40 +192,10 @@ constructing the parser.
 
 Here are a few examples of the differences in parsing behavior:
 
-::
-
-    $ python shlex_posix.py
-    ORIGINAL : 'Do"Not"Separate'
-    non-POSIX: ['Do"Not"Separate']
-    POSIX    : ['DoNotSeparate']
-
-    ORIGINAL : '"Do"Separate'
-    non-POSIX: ['"Do"', 'Separate']
-    POSIX    : ['DoSeparate']
-
-    ORIGINAL : 'Escaped \\e Character not in quotes'
-    non-POSIX: ['Escaped', '\\', 'e', 'Character', 'not', 'in', 'quotes']
-    POSIX    : ['Escaped', 'e', 'Character', 'not', 'in', 'quotes']
-
-    ORIGINAL : 'Escaped "\\e" Character in double quotes'
-    non-POSIX: ['Escaped', '"\\e"', 'Character', 'in', 'double', 'quotes']
-    POSIX    : ['Escaped', '\\e', 'Character', 'in', 'double', 'quotes']
-
-    ORIGINAL : "Escaped '\\e' Character in single quotes"
-    non-POSIX: ['Escaped', "'\\e'", 'Character', 'in', 'single', 'quotes']
-    POSIX    : ['Escaped', '\\e', 'Character', 'in', 'single', 'quotes']
-
-    ORIGINAL : 'Escaped \'\\\'\' \\"\\\'\\" single quote'
-    non-POSIX: error(No closing quotation)
-    POSIX    : ['Escaped', '\\ \\"\\"', 'single', 'quote']
-
-    ORIGINAL : 'Escaped "\\"" \\\'\\"\\\' double quote'
-    non-POSIX: error(No closing quotation)
-    POSIX    : ['Escaped', '"', '\'"\'', 'double', 'quote']
-
-    ORIGINAL : '"\'Strip extra layer of quotes\'"'
-    non-POSIX: ['"\'Strip extra layer of quotes\'"']
-    POSIX    : ["'Strip extra layer of quotes'"]
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'shlex_posix.py'))
+.. }}}
+.. {{{end}}}
 
 
 .. seealso::

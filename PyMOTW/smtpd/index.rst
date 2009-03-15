@@ -30,13 +30,14 @@ rcpttos
 data
   The full `RFC 2822`_ message body.
 
-Since the default implementation of ``process_message()`` raises NotImplementedError, to demonstrate using SMTPServer we need to create a subclass and provide a useful implementation.  Let's create a simple server to print information about the messages recieved.
+Since the default implementation of ``process_message()`` raises NotImplementedError, to demonstrate using SMTPServer we need to create a subclass and provide a useful implementation.  Let's create a simple server to print information about the messages received.
 
 .. include:: smtpd_custom.py
     :literal:
     :start-after: #end_pymotw_header
 
-Since SMTPServer uses asyncore, to run the server we run the ``asyncore.loop()`` function.
+Since SMTPServer uses :mod:`asyncore`, to run the server we run the ``asyncore.loop()``
+function.
 
 Now, we need a client to send data.  By adapting one of the examples from the :mod:`smtplib` page, we can set up a client to send data to our test server running locally on port 1025.
 

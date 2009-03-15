@@ -31,8 +31,8 @@ __version__ = "$Id$"
 #end_pymotw_header
 
 from shutil import *
-import os
+from glob import glob
 
-print 'BEFORE:', os.listdir(os.getcwd())
+print 'BEFORE:', glob('shutil_copyfile.*')
 copyfile('shutil_copyfile.py', 'shutil_copyfile.py.copy')
-print 'AFTER:', os.listdir(os.getcwd())
+print 'AFTER:', glob('shutil_copyfile.*')

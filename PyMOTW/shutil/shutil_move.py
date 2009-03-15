@@ -31,8 +31,12 @@ __version__ = "$Id$"
 #end_pymotw_header
 
 from shutil import *
-import os
+from glob import glob
 
-print 'BEFORE: example : ', os.listdir('example')
-move('example', 'example2')
-print 'AFTER : example2: ', os.listdir('example2')
+f = open('example.txt', 'wt')
+f.write('contents')
+f.close()
+
+print 'BEFORE: ', glob('example*')
+move('example.txt', 'example.out')
+print 'AFTER : ', glob('example*')

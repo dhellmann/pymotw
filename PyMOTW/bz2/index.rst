@@ -219,12 +219,19 @@ Different compression levels can be used by passing a *compresslevel* argument. 
 
 The center column of numbers in the output of the script is the size in bytes of the files produced.  As you see, for this input data, the higher compression values do not always pay off in decreased storage space for the same input data.  Results will vary, of course.
 
-.. {{{cog
-.. workdir = path(cog.inFile).dirname()
-.. sh("cd %s; rm -f compress-level*.gz2" % workdir)
-.. cog.out(run_script(cog.inFile, 'bz2_file_compresslevel.py'))
-.. }}}
-.. {{{end}}}
+::
+
+	$ python bz2_file_compresslevel.py
+	3018243926 8771 compress-level-1.bz2
+	1942389165 4949 compress-level-2.bz2
+	2596054176 3708 compress-level-3.bz2
+	1491394456 2705 compress-level-4.bz2
+	1425874420 2705 compress-level-5.bz2
+	2232840816 2574 compress-level-6.bz2
+	447681641 2394 compress-level-7.bz2
+	3699654768 1137 compress-level-8.bz2
+	3103658384 1137 compress-level-9.bz2
+	Input contains 754688 bytes
 
 A BZ2File instance also includes a ``writelines()`` method that can be used to write a sequence of strings.
 

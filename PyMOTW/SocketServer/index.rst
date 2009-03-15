@@ -107,32 +107,10 @@ and connects to it to illustrate which methods are called as the data is echoed 
 
 The output for the program should look something like this:
 
-::
-
-    $ python SocketServer_echo.py
-    EchoServer: __init__
-    EchoServer: server_activate
-    EchoServer: waiting for request
-    EchoServer: Handling requests, press  to quit
-    EchoServer: handle_request
-    client: Server on 127.0.0.1:53477
-    client: creating socket
-    client: connecting to server
-    EchoServer: verify_request(, ('127.0.0.1', 53478))
-    EchoServer: process_request(, ('127.0.0.1', 53478))
-    EchoServer: finish_request(, ('127.0.0.1', 53478))
-    EchoRequestHandler: __init__
-    EchoRequestHandler: setup
-    EchoRequestHandler: handle
-    client: sending data: "Hello, world"
-    EchoRequestHandler: recv()->"Hello, world"
-    EchoRequestHandler: finish
-    EchoServer: close_request()
-    EchoServer: handle_request
-    client: waiting for response
-    client: response from server: "Hello, world"
-    client: closing socket
-    client: done
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'SocketServer_echo.py'))
+.. }}}
+.. {{{end}}}
 
 The port number used will change each time you run it, as the kernel allocates
 an available port automatically. If you want the server to listen on a
@@ -148,11 +126,10 @@ A simpler version of the same thing, without the logging, would look like:
 Notice in that case, no special server class is required since the TCPServer
 does what we need.
 
-::
-
-    $ python SocketServer_echo_simple.py
-    Sending : "Hello, world"
-    Received: "Hello, world"
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'SocketServer_echo_simple.py'))
+.. }}}
+.. {{{end}}}
 
 Threading and Forking
 =====================
@@ -171,12 +148,10 @@ For threads, use the ThreadingMixIn:
 The response from the server includes the id of the thread where the request
 is handled:
 
-::
-
-    $ python SocketServer_threaded.py
-    Server loop running in thread: Thread-1
-    Sending : "Hello, world"
-    Received: "Thread-2: Hello, world"
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'SocketServer_threaded.py'))
+.. }}}
+.. {{{end}}}
 
 To use separate processes, use the ForkingMixIn:
 
@@ -187,12 +162,10 @@ To use separate processes, use the ForkingMixIn:
 In this case, the process id of the child is included in the response from the
 server:
 
-::
-
-    $ python SocketServer_forking.py
-    Server loop running in process: 20173
-    Sending : "Hello, world"
-    Received: "20175: Hello, world"
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'SocketServer_forking.py'))
+.. }}}
+.. {{{end}}}
 
 
 .. seealso::

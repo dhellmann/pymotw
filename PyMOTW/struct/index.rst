@@ -28,13 +28,10 @@ In this example, the format specifier calls for an integer or long value, a 2 ch
 
 The packed value is converted to a sequence of hex bytes for printing, since some of the characters are nulls.
 
-::
-
-    $ python struct_pack.py
-    Original values: (1, 'ab', 2.7000000000000002)
-    Format string  : I 2s f
-    Uses           : 12 bytes
-    Packed Value   : 0100000061620000cdcc2c40
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'struct_pack.py'))
+.. }}}
+.. {{{end}}}
 
 If we pass the packed value to :func:`unpack`, we get basically the same values back (note the discrepancy in the floating point value).
 
@@ -42,10 +39,10 @@ If we pass the packed value to :func:`unpack`, we get basically the same values 
     :literal:
     :start-after: #end_pymotw_header
 
-::
-
-    $ python struct_unpack.py
-    Unpacked Values: (1, 'ab', 2.7000000476837158)
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'struct_unpack.py'))
+.. }}}
+.. {{{end}}}
 
 
 Endianness
@@ -57,35 +54,10 @@ By default values are encoded using the native C library notion of "endianness".
     :literal:
     :start-after: #end_pymotw_header
 
-::
-
-    $ python struct_endianness.py
-    Original values: (1, 'ab', 2.7000000000000002)
-
-    Format string  : @ I 2s f for native, native
-    Uses           : 12 bytes
-    Packed Value   : 0100000061620000cdcc2c40
-    Unpacked Value : (1, 'ab', 2.7000000476837158)
-
-    Format string  : = I 2s f for native, standard
-    Uses           : 10 bytes
-    Packed Value   : 010000006162cdcc2c40
-    Unpacked Value : (1, 'ab', 2.7000000476837158)
-
-    Format string  : < I 2s f for little-endian
-    Uses           : 10 bytes
-    Packed Value   : 010000006162cdcc2c40
-    Unpacked Value : (1, 'ab', 2.7000000476837158)
-
-    Format string  : > I 2s f for big-endian
-    Uses           : 10 bytes
-    Packed Value   : 000000016162402ccccd
-    Unpacked Value : (1, 'ab', 2.7000000476837158)
-
-    Format string  : ! I 2s f for network
-    Uses           : 10 bytes
-    Packed Value   : 000000016162402ccccd
-    Unpacked Value : (1, 'ab', 2.7000000476837158)
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'struct_endianness.py'))
+.. }}}
+.. {{{end}}}
 
 Buffers
 =======
@@ -96,20 +68,10 @@ Working with binary packed data is typically reserved for highly performance sen
     :literal:
     :start-after: #end_pymotw_header
 
-::
-
-    $ python struct_buffers.py
-    Original: (1, 'ab', 2.7000000000000002)
-    
-    ctypes string buffer
-    Before  : 000000000000000000000000
-    After   : 0100000061620000cdcc2c40
-    Unpacked: (1, 'ab', 2.7000000476837158)
-    
-    array
-    Before  : 000000000000000000000000
-    After   : 0100000061620000cdcc2c40
-    Unpacked: (1, 'ab', 2.7000000476837158)
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'struct_buffers.py'))
+.. }}}
+.. {{{end}}}
 
 
 .. seealso::
