@@ -26,8 +26,7 @@
 """Retrieving the data for a module within a zip archive.
 
 """
-
-__version__ = "$Id$"
+#end_pymotw_header
 
 import sys
 sys.path.insert(0, 'zipimport_example.zip')

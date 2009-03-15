@@ -26,8 +26,7 @@
 """Create a sample zipfile with modules in it that can be imported.
 
 """
-
-__version__ = "$Id$"
+#end_pymotw_header
 
 import sys
 import zipfile

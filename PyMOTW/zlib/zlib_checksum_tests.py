@@ -11,7 +11,7 @@ __version__ = "$Id$"
 
 import timeit
 
-iterations = 1000000
+iterations = 1000
 
 def show_results(title, result, iterations):
     "Print results in terms of microseconds per pass and per item."

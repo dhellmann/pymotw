@@ -26,8 +26,7 @@
 """Retrieving data when there is no ZIP archive involved.
 
 """
-
-__version__ = "$Id$"
+#end_pymotw_header
 
 import os
 import example_package

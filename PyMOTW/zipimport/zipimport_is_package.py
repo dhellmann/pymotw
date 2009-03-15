@@ -26,8 +26,7 @@
 """Determine whether a module within a ZIP archive is a package or a regular module.
 
 """
-
-__version__ = "$Id$"
+#end_pymotw_header
 
 import zipimport
 

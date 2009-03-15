@@ -26,8 +26,7 @@
 """Retrieving the code for a module within a zip archive.
 
 """
-
-__version__ = "$Id$"
+#end_pymotw_header
 
 import zipimport
 
