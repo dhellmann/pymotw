@@ -5,6 +5,7 @@ History
   - Updated working environment to use Paver 1.0b1.
   - Corrected errors in *.rst files identified by update to new version of Paver that doesn't let cog errors slide.
   - Added ignore_error option to run_script() in pavement.py so scripts with errors I'm expecting can be quietly ignored.
+  - Finished converting all articles to use cog, where appropriate.
 
 1.86
   - 14 Mar 2009, :mod:`asynchat`
