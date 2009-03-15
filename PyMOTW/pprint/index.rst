@@ -32,41 +32,10 @@ by default).
     :literal:
     :start-after: #end_pymotw_header
 
-::
-
-    $ python pprint_pprint.py
-    PRINT:
-    [(0, {'a': 'A', 'c': 'C', 'b': 'B', 'e': 'E', 'd': 'D', 'g': 'G', 'f': 'F', 'h': 'H'}), (1, {'a': 'A', 'c': 'C', 'b': 'B', 'e': 'E', 'd': 'D', 'g': 'G', 'f': 'F', 'h': 'H'}), (2, {'a': 'A', 'c': 'C', 'b': 'B', 'e': 'E', 'd': 'D', 'g': 'G', 'f': 'F', 'h': 'H'})]
-
-    PPRINT:
-    [(0,
-      {'a': 'A',
-       'b': 'B',
-       'c': 'C',
-       'd': 'D',
-       'e': 'E',
-       'f': 'F',
-       'g': 'G',
-       'h': 'H'}),
-     (1,
-      {'a': 'A',
-       'b': 'B',
-       'c': 'C',
-       'd': 'D',
-       'e': 'E',
-       'f': 'F',
-       'g': 'G',
-       'h': 'H'}),
-     (2,
-      {'a': 'A',
-       'b': 'B',
-       'c': 'C',
-       'd': 'D',
-       'e': 'E',
-       'f': 'F',
-       'g': 'G',
-       'h': 'H'})]
-
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'pprint_pprint.py'))
+.. }}}
+.. {{{end}}}
 
 Formatting
 ==========
@@ -79,38 +48,10 @@ a string representation that can then be passed to another function.
     :literal:
     :start-after: #end_pymotw_header
 
-::
-
-    $ python pprint_pformat.py
-    2007-10-21 18:10:32,881 DEBUG    Logging pformatted data
-    2007-10-21 18:10:32,884 DEBUG    [(0,
-      {'a': 'A',
-       'b': 'B',
-       'c': 'C',
-       'd': 'D',
-       'e': 'E',
-       'f': 'F',
-       'g': 'G',
-       'h': 'H'}),
-     (1,
-      {'a': 'A',
-       'b': 'B',
-       'c': 'C',
-       'd': 'D',
-       'e': 'E',
-       'f': 'F',
-       'g': 'G',
-       'h': 'H'}),
-     (2,
-      {'a': 'A',
-       'b': 'B',
-       'c': 'C',
-       'd': 'D',
-       'e': 'E',
-       'f': 'F',
-       'g': 'G',
-       'h': 'H'})]
-
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'pprint_pformat.py'))
+.. }}}
+.. {{{end}}}
 
 Arbitrary Classes
 =================
@@ -122,12 +63,10 @@ if they define a __repr__ method.
     :literal:
     :start-after: #end_pymotw_header
 
-::
-
-    $ python pprint_arbitrary_object.py
-    [node('node-1', []),
-     node('node-2', [node('node-2-1', [])]),
-     node('node-3', [node('node-3-1', [])])]
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'pprint_arbitrary_object.py'))
+.. }}}
+.. {{{end}}}
 
 
 Recursion
@@ -141,11 +80,10 @@ example:
     :literal:
     :start-after: #end_pymotw_header
 
-::
-
-    $ python pprint_recursion.py
-    id(local_data) => 486936
-    ['a', 'b', 1, 2, <Recursion on list with id=486936>]
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'pprint_recursion.py'))
+.. }}}
+.. {{{end}}}
 
 
 Limiting Nested Output
@@ -161,10 +99,10 @@ pretty printer goes.
     :literal:
     :start-after: #end_pymotw_header
 
-::
-
-     $ python pprint_depth.py 
-    [(0, {...}), (1, {...}), (2, {...})]
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'pprint_depth.py'))
+.. }}}
+.. {{{end}}}
 
 
 Controlling Output Width
@@ -182,41 +120,10 @@ Notice that when the width is too low to accommodate the formatted data
 structure, the lines are not truncated or wrapped if that would introduce
 invalid syntax.
 
-::
-
-    $ python pprint_width.py 
-    WIDTH = 80
-    [(0, {'a': 'A', 'b': 'B', 'c': 'C'}),
-     (1, {'a': 'A', 'b': 'B', 'c': 'C'}),
-     (2, {'a': 'A', 'b': 'B', 'c': 'C'})]
-
-    WIDTH = 20
-    [(0,
-      {'a': 'A',
-       'b': 'B',
-       'c': 'C'}),
-     (1,
-      {'a': 'A',
-       'b': 'B',
-       'c': 'C'}),
-     (2,
-      {'a': 'A',
-       'b': 'B',
-       'c': 'C'})]
-
-    WIDTH = 5
-    [(0,
-      {'a': 'A',
-       'b': 'B',
-       'c': 'C'}),
-     (1,
-      {'a': 'A',
-       'b': 'B',
-       'c': 'C'}),
-     (2,
-      {'a': 'A',
-       'b': 'B',
-       'c': 'C'})]
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'pprint_width.py'))
+.. }}}
+.. {{{end}}}
 
 .. seealso::
 

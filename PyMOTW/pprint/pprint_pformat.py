@@ -35,7 +35,7 @@ from pprint import pformat
 from pprint_data import data
 
 logging.basicConfig(level=logging.DEBUG,
-                    format='%(asctime)s %(levelname)-8s %(message)s',
+                    format='%(levelname)-8s %(message)s',
                     )
 
 logging.debug('Logging pformatted data')
