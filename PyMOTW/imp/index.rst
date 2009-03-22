@@ -132,12 +132,8 @@ Instead of a creating a new module, the contents of the existing module are simp
     `imp <http://docs.python.org/library/imp.html>`_
         The standard library documentation for this module.
 
-    `PEP 302`_
+    :pep:`302`
         New import hooks.
 
-        .. _PEP 302: http://www.python.org/dev/peps/pep-0302/
-
-    `PEP 369`_
+    :pep:`369`
         Post import hooks.
-
-        .. _PEP 369: http://www.python.org/dev/peps/pep-0369/

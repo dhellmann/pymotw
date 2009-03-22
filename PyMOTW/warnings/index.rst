@@ -8,7 +8,7 @@ warnings -- Non-fatal alerts
 :Purpose: Deliver non-fatal alerts to the user about issues encountered when running a program.
 :Python Version: 2.1 and later
 
-The warnings module was introduced in `PEP 230`_ as a way to warn programmers
+The warnings module was introduced in :pep:`230` as a way to warn programmers
 about changes in language or library features in anticipation of backwards
 incompatible changes coming with Python 3.0. Since warnings are not fatal, a
 program may encounter the same warn-able situation many times in the course of
@@ -254,5 +254,5 @@ one for itself and one for old_function().
     `warnings <http://docs.python.org/lib/module-warnings.html>`_
         Standard library documentation for this module.
 
-    `PEP 230 <http://www.python.org/peps/pep-0230.html>`_
+    :pep:`230`
         Warning Framework

@@ -59,7 +59,7 @@ In this example, some letters are replaced by their `l33t <http://en.wikipedia.o
 Templates
 =========
 
-String templates were added in Python 2.4 as part of `PEP 292`_ and are intended as an alternative to the built-in interpolation syntax. With string.Template interpolation, variables are identified by name prefixed with $ (e.g., ``$var``) or, if necessary to set them off from surrounding text, they can also be wrapped with curly braces (e.g., ``${var}``).
+String templates were added in Python 2.4 as part of :pep:`292` and are intended as an alternative to the built-in interpolation syntax. With string.Template interpolation, variables are identified by name prefixed with $ (e.g., ``$var``) or, if necessary to set them off from surrounding text, they can also be wrapped with curly braces (e.g., ``${var}``).
 
 This example compares a simple template with a similar string interpolation
 setup.
@@ -144,5 +144,5 @@ For information on the deprecated functions moved to the string and unicode clas
     `string <http://docs.python.org/lib/module-string.html>`_
         Standard library documentation for this module.
 
-    `PEP 292 <http://www.python.org/peps/pep-0292.html>`_
+    :pep:`292`
         Simpler String Substitutions

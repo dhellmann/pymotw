@@ -170,7 +170,5 @@ should be ordered in the output.
     `csv <http://docs.python.org/library/csv.html>`_
         The standard library documentation for this module.
 
-    `PEP 305`_
-        PEP 305 -- CSV File API
-        
-        .. _PEP 305: http://www.python.org/peps/pep-0305.html
+    :pep:`305`
+        CSV File API

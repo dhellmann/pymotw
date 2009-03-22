@@ -89,8 +89,5 @@ The handle is closed whether there is an error in the with block or not.
     `contextlib <http://docs.python.org/library/contextlib.html>`_
         The standard library documentation for this module.
 
-    `PEP 343`_
+    :pep:`343`
         The ``with`` statement.
-        
-        .. _PEP 343: http://www.python.org/peps/pep-0343.html
-

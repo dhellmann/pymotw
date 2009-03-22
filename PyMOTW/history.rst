@@ -1,6 +1,10 @@
 History
 =======
 
+?
+  - Converted PEP links to use ``pep`` role.
+  
+
 1.86.1
   - Updated working environment to use Paver 1.0b1.
   - Corrected errors in *.rst files identified by update to new version of Paver that doesn't let cog errors slide.
