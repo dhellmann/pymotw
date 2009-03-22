@@ -14,7 +14,7 @@ programmer almost never has to worry about how to format them or make sure the
 headers are sent properly. It can be instructive to understand how cookies
 work, though, and the options available.
 
-The Cookie module implements a parser for cookies that is mostly RFC 2109
+The Cookie module implements a parser for cookies that is mostly :rfc:`2109`
 compliant. It is a little less strict than the standard because MSIE 3.0x does
 not support the entire standard.
 
@@ -153,7 +153,5 @@ session key instead.
     :mod:`cookielib`
         The :mod:`cookielib` module, for working with cookies on the client-side.
 
-    `RFC 2109`_
-        RFC 2109 -- HTTP State Management Mechanism
-        
-        .. _RFC 2109: http://www.ietf.org/rfc/rfc2109.txt
+    :rfc:`2109`
+        HTTP State Management Mechanism

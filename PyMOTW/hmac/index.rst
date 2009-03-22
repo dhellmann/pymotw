@@ -7,7 +7,7 @@ hmac -- Cryptographic signature and verification of messages.
 
 :Purpose: 
     The hmac module implements keyed-hashing for message authentication, as
-    described in RFC-2104.
+    described in :rfc:`2104`.
 :Python Version: 2.2
 
 The HMAC algorithm can be used to verify the integrity of information passed
@@ -18,7 +18,7 @@ transmitted or stored message to determine a level of trust, without
 transmitting the secret key.
 
 Disclaimer: I'm not a security expert. For the full details on HMAC, check out
-`RFC 2104`_.
+:rfc:`2104`.
 
 Example
 =======
@@ -221,10 +221,8 @@ The output shows that the first object is verified and the second is deemed
     `hmac <http://docs.python.org/library/hmac.html>`_
         The standard library documentation for this module.
     
-    `RFC 2104`_
+    :rfc:`2104`
         HMAC: Keyed-Hashing for Message Authentication
-
-        .. _RFC 2104: http://www.faqs.org/rfcs/rfc2104.html
 
     :mod:`hashlib`
         The :mod:`hashlib` module.

@@ -51,7 +51,7 @@ And the port is converted to an integer when present and None when not.
 .. {{{end}}}
 
 The urlsplit function is an alternative to urlparse. It does not split the
-parameters from the URL. This is useful for URLs following RFC 2396, which
+parameters from the URL. This is useful for URLs following :rfc:`2396`, which
 supports parameters for each segment of the path. 
 
 .. include:: urlparse_urlsplit.py

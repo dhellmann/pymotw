@@ -91,8 +91,5 @@ The base 16 functions work with the hexadecimal alphabet.
     `base64 <http://docs.python.org/library/base64.html>`_
         The standard library documentation for this module.
 
-    `RFC 3548`_ 
-        RFC 3548 -- The Base16, Base32, and Base64 Data Encodings
-        
-        .. _RFC 3548: http://www.faqs.org/rfcs/rfc3548.html
-
+    :rfc:`3548`
+        The Base16, Base32, and Base64 Data Encodings

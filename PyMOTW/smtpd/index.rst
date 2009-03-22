@@ -28,7 +28,7 @@ rcpttos
   The list of recipients from the message envelope.  Again, this does not always match the ``To`` header, especially if someone is blind carbon copied.
 
 data
-  The full `RFC 2822`_ message body.
+  The full :rfc:`2822` message body.
 
 Since the default implementation of ``process_message()`` raises NotImplementedError, to demonstrate using SMTPServer we need to create a subclass and provide a useful implementation.  Let's create a simple server to print information about the messages received.
 
@@ -159,10 +159,8 @@ MailmanProxy
     :mod:`asyncore`
         Base module for writing asynchronous servers.
 
-    `RFC 2822`_
+    :rfc:`2822`
         Defines the email message format.
 
     `GNU Mailman mailing list software <http://www.gnu.org/software/mailman/index.html>`_
         An excellent example of Python software that works with email messages.
-
-.. _RFC 2822: http://rfc.net/rfc2822.html

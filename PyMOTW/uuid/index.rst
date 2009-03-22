@@ -5,10 +5,10 @@ uuid -- Universally unique identifiers
 .. module:: uuid
     :synopsis: Universally unique identifiers
 
-:Purpose: The `uuid` module implements Universally Unique Identifiers as described in RFC 4122.
+:Purpose: The `uuid` module implements Universally Unique Identifiers as described in :rfc:`4122`.
 :Python Version: 2.5 and later
 
-RFC 4122 defines a system for creating universally unique identifiers
+:rfc:`4122` defines a system for creating universally unique identifiers
 for resources in a way that does not require a central registrar. UUID
 values are 128 bits long and "can guarantee uniqueness across space
 and time". They are useful for ids for documents, hosts, application
@@ -169,5 +169,5 @@ compare them, sort them, etc.
     `uuid <http://docs.python.org/lib/module-uuid.html>`_
         Standard library documentation for this module.
 
-    `RFC 4122 <http://www.faqs.org/rfcs/rfc4122.html>`_
-        RFC-4122: A Universally Unique IDentifier (UUID) URN Namespace
+    :rfc:`4122`
+        A Universally Unique IDentifier (UUID) URN Namespace

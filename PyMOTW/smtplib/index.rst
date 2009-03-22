@@ -20,7 +20,7 @@ smtplib -- Simple Mail Transfer Protocol client
 Sending an Email Message
 ========================
 
-The most common use of :class:`SMTP` is to connect to a mail server and send a message.  The mail server host name and port can be passed to the constructor, or you can use ``connect()`` explicitly.  Once connected, just call ``sendmail()`` with the envelope parameters and body of the message.  The message text should be a fully formed RFC2822-compliant message, since smtplib does not modify the contents or headers at all.  That means you need to add the ``From`` and ``To`` headers yourself.
+The most common use of :class:`SMTP` is to connect to a mail server and send a message.  The mail server host name and port can be passed to the constructor, or you can use ``connect()`` explicitly.  Once connected, just call ``sendmail()`` with the envelope parameters and body of the message.  The message text should be a fully formed :rfc:`2882`-compliant message, since smtplib does not modify the contents or headers at all.  That means you need to add the ``From`` and ``To`` headers yourself.
 
 .. include:: smtplib_sendmail.py
     :literal:
@@ -174,17 +174,18 @@ As the last 2 lines of output here show, the address ``dhellmann`` is valid but 
     `smtplib <http://docs.python.org/lib/module-smtplib.html>`_
         Standard library documentation for this module.
 
-    `RFC 821: Simple Mail Transfer Protocol <http://www.faqs.org/rfcs/rfc821.html>`_
-        The SMTP specification.
+    :rfc:`821`
+        The Simple Mail Transfer Protocol (SMTP) specification.
 
-    `RFC 1869: SMTP Service Extensions <http://www.faqs.org/rfcs/rfc1869.html>`_
-        Extensions to the base protocol.
+    :rfc:`1869`
+        SMTP Service Extensions to the base protocol.
 
-    `RFC 822: Standard for the Format of ARPA Internet Text Messages <http://www.faqs.org/rfcs/rfc822.html>`_
-        The original email message format specification.
+    :rfc:`822`
+        "Standard for the Format of ARPA Internet Text Messages", the original email message
+        format specification.
 
-    `RFC 2822: Internet Message Format <http://www.faqs.org/rfcs/rfc2822.html>`_
-        Updates to the email message format.
+    :rfc:`2822`
+        "Internet Message Format", updates to the email message format.
 
     :mod:`email`
         Standard library module for parsing email messages.
