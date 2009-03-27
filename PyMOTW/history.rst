@@ -4,6 +4,7 @@ History
 forthcoming
   - Converted PEP links to use ``pep`` role.
   - Converted RFC references to use ``rfc`` role.
+  - Updated examples in :mod:`warnings` and :mod:`string` to work with changes in Python 2.6.1.
 
 1.86.1
   - Updated working environment to use Paver 1.0b1.
