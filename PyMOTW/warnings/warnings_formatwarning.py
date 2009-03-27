@@ -9,8 +9,8 @@
 
 import warnings
 
-def warning_on_one_line(message, category, filename, lineno):
-    return '%s:%s: %s:%s' % (filename, lineno, category.__name__, message)
+def warning_on_one_line(message, category, filename, lineno, file=None, line=None):
+    return ' %s:%s: %s:%s' % (filename, lineno, category.__name__, message)
 
 warnings.warn('This is a warning message, before')
 warnings.formatwarning = warning_on_one_line

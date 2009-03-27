@@ -14,14 +14,14 @@ import string
 
 class MyTemplate(string.Template):
     delimiter = '{{'
-    pattern = re.compile(r'''
+    pattern = r'''
     \{\{(?:
     (?P<escaped>\{\{)|
     (?P<named>[_a-z][_a-z0-9]*)\}\}|
     (?P<braced>[_a-z][_a-z0-9]*)\}\}|
     (?P<invalid>)
     )
-    ''', re.VERBOSE | re.DOTALL)
+    '''
     
 t = MyTemplate('''
 {{{{

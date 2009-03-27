@@ -8,6 +8,8 @@
 
 # Standard library
 import os
+import sys
+import traceback
 import types
 
 # Third-party
@@ -190,6 +192,8 @@ def run_script(input_file, script_name,
         print 'ERROR run_script(%s) => %s' % (real_cmd, err)
         print '*' * 50
         output_text = sh(real_cmd, capture=True, ignore_error=True)
+        print output_text
+        print '*' * 50
     if include_prefix:
         response = '\n::\n\n'
     else:

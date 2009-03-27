@@ -23,9 +23,11 @@ syntax: re
 ^PyMOTW/tarfile/outdir
 ^PyMOTW/trace/trace_report.dat
 ^PyMOTW/trace/coverdir
+^PyMOTW/zipfile/zipfile_append.zip
 ^PyMOTW/zipimport/zipimport_example.zip
 ^PyMOTW.egg-info
 ^sphinx/doctrees
 ^web/.*
 ^docs/.*
 ^blog_posts/.*
+^trace.txt
