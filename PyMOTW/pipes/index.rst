@@ -120,6 +120,19 @@ If the input to your pipeline already exists in a file on disk, there's no need 
 Cloning Templates
 =================
 
+Once you have a pipeline template, you may want to use it multiple times or create variants without re-constructing the entire object.  The ``clone()`` method makes both of these operations easy.  This example constructs a simple word-counter pipeline, then prepends commands to a couple of clones to make it look for different words.
+
+.. include:: pipes_clone.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+By prepending a custom command to each clone, we can create separate pipelines that perform the same basic function with small variations.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'pipes_clone.py'))
+.. }}}
+.. {{{end}}}
+
 
 
 .. seealso::
