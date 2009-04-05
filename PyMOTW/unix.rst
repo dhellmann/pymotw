@@ -7,4 +7,5 @@ Unix-specific Services
 
     commands/index
     grp/index
+    pipes/index
     pwd/index
