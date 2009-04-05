@@ -419,7 +419,7 @@ def clean_blog_html(body):
     [l.extract() for l in links]
 
     # Get BeautifulSoup's version of the string
-    s = soup.__str__(prettyPrint=False)
+    s = str(soup)
 
     # Remove extra newlines.  This depends on the fact that
     # code blocks are passed through pygments, which wraps each part of the line
