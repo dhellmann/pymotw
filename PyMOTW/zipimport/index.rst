@@ -51,6 +51,8 @@ If the module is found, the zipimporter instance is returned. Otherwise, None
 is returned.
 
 .. {{{cog
+.. (path(cog.inFile).parent / 'zipimport_example.zip').unlink()
+.. run_script(cog.inFile, 'zipimport_make_example.py')
 .. cog.out(run_script(cog.inFile, 'zipimport_find_module.py'))
 .. }}}
 .. {{{end}}}
@@ -67,6 +69,8 @@ The get_code() method loads the code object for a module from the archive.
 The code object is not the same as a module object.
 
 .. {{{cog
+.. (path(cog.inFile).parent / 'zipimport_example.zip').unlink()
+.. run_script(cog.inFile, 'zipimport_make_example.py')
 .. cog.out(run_script(cog.inFile, 'zipimport_get_code.py'))
 .. }}}
 .. {{{end}}}
@@ -81,6 +85,8 @@ The result is a module object as though the code had been loaded from a
 regular import:
 
 .. {{{cog
+.. (path(cog.inFile).parent / 'zipimport_example.zip').unlink()
+.. run_script(cog.inFile, 'zipimport_make_example.py')
 .. cog.out(run_script(cog.inFile, 'zipimport_load_module.py'))
 .. }}}
 .. {{{end}}}
@@ -100,6 +106,8 @@ of the example, only zipimport_get_source.py is added to zipimport_example.zip
 If the source for a module is not available, get_source() returns None.
 
 .. {{{cog
+.. (path(cog.inFile).parent / 'zipimport_example.zip').unlink()
+.. run_script(cog.inFile, 'zipimport_make_example.py')
 .. cog.out(run_script(cog.inFile, 'zipimport_get_source.py'))
 .. }}}
 .. {{{end}}}
@@ -118,6 +126,8 @@ In this case, zipimport_is_package came from a module and the example_package
 is, well, a package.
 
 .. {{{cog
+.. (path(cog.inFile).parent / 'zipimport_example.zip').unlink()
+.. run_script(cog.inFile, 'zipimport_make_example.py')
 .. cog.out(run_script(cog.inFile, 'zipimport_is_package.py'))
 .. }}}
 .. {{{end}}}
@@ -141,6 +151,8 @@ The output will look something like this, with the path changed based on where
 the PyMOTW sample code is on your filesystem.
 
 .. {{{cog
+.. (path(cog.inFile).parent / 'zipimport_example.zip').unlink()
+.. run_script(cog.inFile, 'zipimport_make_example.py')
 .. cog.out(run_script(cog.inFile, 'zipimport_get_data_nozip.py'))
 .. }}}
 .. {{{end}}}
@@ -156,6 +168,8 @@ The ``__file__`` of the package refers to the ZIP archive, and not a directory. 
 we cannot just build up the path to the README.txt file.
 
 .. {{{cog
+.. (path(cog.inFile).parent / 'zipimport_example.zip').unlink()
+.. run_script(cog.inFile, 'zipimport_make_example.py')
 .. cog.out(run_script(cog.inFile, 'zipimport_get_data_zip.py', ignore_error=True))
 .. }}}
 .. {{{end}}}
@@ -169,6 +183,8 @@ imported module:
     :start-after: #end_pymotw_header
 
 .. {{{cog
+.. (path(cog.inFile).parent / 'zipimport_example.zip').unlink()
+.. run_script(cog.inFile, 'zipimport_make_example.py')
 .. cog.out(run_script(cog.inFile, 'zipimport_get_data.py'))
 .. }}}
 .. {{{end}}}
