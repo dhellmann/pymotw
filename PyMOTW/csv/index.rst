@@ -121,16 +121,33 @@ QUOTE_NONE
 Dialects
 ========
 
-There are many parameters to control how the csv module parses or writes data.
-Rather than passing each of these parameters to the reader and writer
-separately, they are grouped together conveniently into a "dialect" object.
-Dialect classes can be registered by name, so that callers of the csv module
-do not need to know the parameter settings in advance. The standard library
-includes two dialects: excel, and excel-tabs. The "excel" dialect is for
-working with data in the default export format for Microsoft Excel, and also
-works with OpenOffice or NeoOffice. For details on the dialect parameters and
-how they are used, refer to section 9.1.2 the the standard library
-documentation for the csv module.
+There are many parameters to control how the csv module parses or writes data. Rather than
+passing each of these parameters to the reader and writer separately, they are grouped
+together conveniently into a "dialect" object. Dialect classes can be registered by name, so
+that callers of the csv module do not need to know the parameter settings in advance. The
+standard library includes two dialects: ``excel``, and ``excel-tabs``. The ``excel`` dialect
+is for working with data in the default export format for Microsoft Excel, and also works
+with OpenOffice or NeoOffice.
+
+Suppose instead of using commas to delimit fields, the input file uses ``|``, like this:
+
+.. include:: testdata.pipes
+    :literal:
+
+A new dialect can be registered using the appropriate delimiter:
+
+.. include:: csv_dialect.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+and the file can be read just as with the comma-delimited file:
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'csv_dialect.py'))
+.. }}}
+.. {{{end}}}
+
+For details on the dialect parameters and how they are used, refer to `the standard library documentation for the csv module <http://docs.python.org/library/csv.html#dialects-and-formatting-parameters>`_.
 
 DictReader and DictWriter
 =========================
