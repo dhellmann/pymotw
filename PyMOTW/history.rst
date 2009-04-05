@@ -1,7 +1,8 @@
 History
 =======
 
-forthcoming
+1.87
+  - 5 Apr 2009, :mod:`pipes`
   - Converted PEP links to use ``pep`` role.
   - Converted RFC references to use ``rfc`` role.
   - Updated examples in :mod:`warnings` and :mod:`string` to work with changes in Python 2.6.1.

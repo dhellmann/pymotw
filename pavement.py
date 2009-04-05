@@ -459,4 +459,11 @@ def blog():
     if 'EDITOR' in os.environ:
         sh('$EDITOR %s' % blog_file)
     return
-    
+
+@task
+@needs(['uncog'])
+def commit():
+    """Commit the changes to hg.
+    """
+    sh('hg commit')
+    return
