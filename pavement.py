@@ -116,11 +116,17 @@ options(
         # What server hosts the website?
         server = 'www.doughellmann.com',
         server_path = '/var/www/doughellmann/DocumentRoot/PyMOTW/',
+
         # What template should be used for the web site HTML?
         template_source = '~/Devel/personal/doughellmann/templates/base.html',
-        template_dest = 'sphinx/templates/web/base.html',
+        template_dest = 'sphinx/templates/web/base.html',        
     ),
-
+    
+    sitemap_gen=Bunch(
+        # Where is the config file for sitemap_gen.py?
+        config='sitemap_gen_config.xml',
+    ),
+    
     pdf=Bunch(
         templates='pkg',
         builddir='web',
@@ -395,12 +401,18 @@ def webtemplatebase():
     return
 
 @task
-@needs(['webtemplatebase', 'cog'])
+@needs(['webtemplatebase', 'cog', 'sitemap_gen'])
 def webhtml():
     """Generate HTML files for website.
     """
     set_templates(options.website.templates)
     run_sphinx('website')
+    sitemap_gen()
+    return
+
+@task
+def sitemap_gen():
+    sh('sitemap_gen.py --testing --config=%s' % options.sitemap_gen.config)
     return
 
 def clean_blog_html(body):
