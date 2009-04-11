@@ -7,5 +7,6 @@ Optional Operating System Services
     
     threading/index
     mmap/index
+    multiprocessing/index
     readline/index
     rlcompleter/index

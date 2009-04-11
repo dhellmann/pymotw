@@ -30,7 +30,7 @@ The output, is unsurprisingly, 5 lines with "Worker" on each:
 .. {{{end}}}
 
 It useful to be able to spawn a thread and pass it arguments to tell it what
-work to do. For example, in PyMOTW: Queue, I created a simple program to
+work to do. For example, in :mod:`Queue`, I created a simple program to
 illustrate how to download enclosures from RSS/Atom feeds. Each downloader
 thread needed to know where to find the URLs, and the Queue instance was
 passed as an argument when the thread was created. Here, we'll just pass the
