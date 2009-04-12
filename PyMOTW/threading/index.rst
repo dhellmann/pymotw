@@ -419,3 +419,6 @@ value), once in each thread.
     
     :mod:`Queue`
         Thread-safe Queue, useful for passing messages between threads.
+
+    :mod:`multiprocessing`
+        An API for working with processes that mirrors the :mod:`threading` API.
