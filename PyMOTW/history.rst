@@ -1,6 +1,9 @@
 History
 =======
 
+1.88
+  - Added namedtuple example to :mod:`collections`.
+
 1.87.1
   - Added dialect example to :mod:`csv` to show how to parse files with ``|``-delimited fields.
 
