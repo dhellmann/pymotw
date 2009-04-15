@@ -68,14 +68,97 @@ and produces output like the first example above:
 .. }}}
 .. {{{end}}}
 
-Process ID
-==========
+Determining the Current Process
+===============================
+
+Passing arguments to identify or name the process is cumbersome, and unnecessary.
+Each Process instance has a name with a default value that you can change as
+the process is created. Naming processes is useful if you have a server
+with multiple service children handling different operations. 
+
+.. include:: multiprocessing_names.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+The debug output includes the name of the current process on each line. The
+lines with "Process-3" in the name column correspond to the unnamed
+process w2.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'multiprocessing_names.py'))
+.. }}}
+.. {{{end}}}
+
+
+Daemon Processes
+================
+
+By default the main program will not exit until all of the children have exited. There are
+times when you want to start a background process and let it run without blocking the main
+program from exiting. Using daemon processes like this is useful for services where there may
+not be an easy way to interrupt the worker or where letting it die in the middle of its work
+does not lose or corrupt data (for example, a task that generates "heart beats" for a service
+monitoring tool). To mark a process as a daemon, set its ``daemon`` attribute with a boolean
+value. The default is for processes to not be daemons, so passing True turns the daemon mode
+on.
+
+.. include:: multiprocessing_daemon.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+Notice that the output does not include the "Exiting" message from the daemon
+process, since all of the non-daemon processes (including the main program) exit
+before the daemon process wakes up from its 2 second sleep.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'multiprocessing_daemon.py'))
+.. }}}
+.. {{{end}}}
+
+The daemon process is terminated before the main program exits, to avoid leaving orphaned processes running.
+
 
 
 Waiting for Processes
 =====================
 
+To wait until a process has completed its work and exited, use the ``join()`` method.
 
+.. include:: multiprocessing_daemon_join.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+Since we wait for the daemon to exit using ``join()``, we do see its
+"Exiting" message.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'multiprocessing_daemon_join.py'))
+.. }}}
+.. {{{end}}}
+
+By default, ``join()`` blocks indefinitely. It is also possible to pass a timeout
+argument (a float representing the number of seconds to wait for the process to
+become inactive). If the process does not complete within the timeout period,
+``join()`` returns anyway.
+
+.. include:: multiprocessing_daemon_join_timeout.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+Since the timeout passed is less than the amount of time the daemon
+sleeps, the process is still "alive" after ``join()`` returns.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'multiprocessing_daemon_join_timeout.py'))
+.. }}}
+.. {{{end}}}
+
+Process Exit Status
+===================
+
+- exitcode property (good, error)
+- terminate() method
+- exitcode with signal value
 
 Logging
 =======
@@ -99,6 +182,9 @@ Controlling concurrent access to resources with a Semaphore
 
 Pool.map
 ========
+
+Map/Reduce
+==========
 
 Manager
 =======
