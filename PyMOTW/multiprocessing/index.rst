@@ -199,6 +199,23 @@ Passing Messages to Processes
 
 As with threads, a common use pattern for multiple processes is to divide a job up among several workers to run in parallel.  A simple way to do that with :mod:`multiprocessing` is to use Queues to pass messages back and forth.  Any pickle-able object can pass through a :mod:`multiprocessing` Queue.
 
+.. include:: multiprocessing_queue.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+This short example only passes a single message to a single worker, then the main process waits for the worker to finish.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'multiprocessing_queue.py'))
+.. }}}
+.. {{{end}}}
+
+A more complex example uses several workers consuming data from the queue and passing results back to the parent process.
+
+.. include:: multiprocessing_producer_consumer.py
+    :literal:
+    :start-after: #end_pymotw_header
+
 
 
 Logging
