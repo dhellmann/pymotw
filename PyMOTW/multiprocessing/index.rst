@@ -117,8 +117,6 @@ before the daemon process wakes up from its 2 second sleep.
 
 The daemon process is terminated before the main program exits, to avoid leaving orphaned processes running.
 
-
-
 Waiting for Processes
 =====================
 
@@ -153,12 +151,55 @@ sleeps, the process is still "alive" after ``join()`` returns.
 .. }}}
 .. {{{end}}}
 
+Terminating Processes
+=====================
+
+Although it is better to use the *poison pill* method of signaling to a process that it should exit (see :ref:`multiprocessing-queues`), if a process appears hung or deadlocked it can be useful to be able to kill it forcibly.  Calling ``terminate()`` on a process object kills the child process.
+
+.. include:: multiprocessing_terminate.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+.. note::
+
+    It is important to ``join()`` the process after terminating it in order to give the background machinery time to update the status of the object to reflect the termination.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'multiprocessing_terminate.py'))
+.. }}}
+.. {{{end}}}
+
+
 Process Exit Status
 ===================
 
-- exitcode property (good, error)
-- terminate() method
-- exitcode with signal value
+The status code produced when the process exits can be accessed via the ``exitcode`` attribute.
+
+For ``exitcode`` values
+
+* ``== 0`` -- no error was produced
+* ``> 0`` -- the process had an error, and exited with that code
+* ``< 0`` -- the process was killed with a signal of ``-1 * exitcode``
+
+.. include:: multiprocessing_exitcode.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+Processes that raise an exception automatically get an ``exitcode`` of 1.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'multiprocessing_exitcode.py'))
+.. }}}
+.. {{{end}}}
+
+.. _multiprocessing-queues:
+
+Passing Messages to Processes
+=============================
+
+As with threads, a common use pattern for multiple processes is to divide a job up among several workers to run in parallel.  A simple way to do that with :mod:`multiprocessing` is to use Queues to pass messages back and forth.  Any pickle-able object can pass through a :mod:`multiprocessing` Queue.
+
+
 
 Logging
 =======
