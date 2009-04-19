@@ -188,5 +188,32 @@ Processes that raise an exception automatically get an ``exitcode`` of 1.
 Logging
 =======
 
+When debugging concurrency issues, it can be useful to have access to the internals of the objects provided by :mod:`multiprocessing`.  There is a convenient module-level function to enable logging called :func:`log_to_stderr`.  It sets up a logger object using :mod:`logging` and adds a handler so that log messages are sent to the standard error channel.
+
+.. include:: multiprocessing_log_to_stderr.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+By default the logging level is set to ``NOTSET`` so no messages are produced.  Pass a different level to initialize the logger to the level of detail you want.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'multiprocessing_log_to_stderr.py'))
+.. }}}
+.. {{{end}}}
+
+To manipulate the logger directly (change its level setting or add handlers), use :func:`get_logger`.
+
+.. include:: multiprocessing_get_logger.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+The logger can also be configured through the :mod:`logging` configuration file API, using the name ``multiprocessing``.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'multiprocessing_get_logger.py'))
+.. }}}
+.. {{{end}}}
+
+
 Subclassing Process
 ===================
