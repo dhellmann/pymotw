@@ -1,6 +1,6 @@
-###########################################################
-Communication between processes with :mod:`multiprocessing`
-###########################################################
+####################################################
+Communication between processes with multiprocessing
+####################################################
 
 .. _multiprocessing-queues:
 
