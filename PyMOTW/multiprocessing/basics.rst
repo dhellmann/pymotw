@@ -217,3 +217,14 @@ The logger can also be configured through the :mod:`logging` configuration file 
 
 Subclassing Process
 ===================
+
+Although the simplest way to start a job in a separate process is to use :class:`Process` and pass a target function, it is also possible to use a custom subclass.  The derived class should override :meth:`run` to do its work.
+
+.. include:: multiprocessing_subclass.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'multiprocessing_subclass.py'))
+.. }}}
+.. {{{end}}}
