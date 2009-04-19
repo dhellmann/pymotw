@@ -139,6 +139,8 @@ options(
         outdir='blog_posts',
         confdir='sphinx/blog',
         doctrees='blog_posts/doctrees',
+        in_file='index.html',
+        out_file='blog.html',
     ),
     
     # Some of the files include [[[ as part of a nested list data structure,
@@ -453,6 +455,10 @@ def gen_blog_post(index_file, blog_file):
 
 @task
 @needs(['cog'])
+@cmdopts([
+    ('in-file=', 'b', 'Blog input filename'),
+    ('out-file=', 'B', 'Blog output filename'),    
+])
 def blog():
     """Generate the blog post version of the HTML for the current module.
     """
@@ -463,8 +469,8 @@ def blog():
     # Generate html from sphinx
     run_sphinx('blog')
     
-    index_file = outdir / 'index.html'
-    blog_file = outdir / 'blog.html'
+    index_file = outdir / options.blog.in_file
+    blog_file = outdir / options.blog.out_file
     dry("Write blog post body to %s" % blog_file, 
         gen_blog_post, index_file=index_file, blog_file=blog_file)
     

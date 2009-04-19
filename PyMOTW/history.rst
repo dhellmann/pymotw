@@ -4,6 +4,7 @@ History
 1.88
   - 19 April 2009, :mod:`multiprocessing` (part 1, basic usage)
   - Upgraded to Python 2.6.2.
+  - Add options to blog command in pavement.py to let the user specify alternate input and output file names for the blog HTML.
 
 1.87.1
   - Added dialect example to :mod:`csv` to show how to parse files with ``|``-delimited fields.
