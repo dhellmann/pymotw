@@ -75,6 +75,13 @@
     {%- endif %}
 {% endif %}
 
+    {%- if show_source and has_source and sourcename %}
+      <h3>{{ _('This Page') }}</h3>
+      <a href="{{ pathto('_sources/' + sourcename, true)|e }}"
+               rel="nofollow">{{ _('Show Source') }}</a>
+      </ul>
+    {%- endif %}
+
     <h3>Navigation</h3>
     <p><a href="{{ pathto("contents") }}">Table of Contents</a><br/>
     <a href="{{ pathto("modindex") }}">All Modules</a><br/>
