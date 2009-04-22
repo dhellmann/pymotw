@@ -12,7 +12,7 @@ and call start() to let it begin working.
     :literal:
     :start-after: #end_pymotw_header
 
-The output includes the word "Worker" printed five times, although it may not be entirely clean depending on the order of execution.  A later example illustrates using a lock to ensure that only one worker can print to stdout at a time.
+The output includes the word "Worker" printed five times, although it may not be entirely clean depending on the order of execution.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_simple.py'))
