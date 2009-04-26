@@ -3,6 +3,7 @@ syntax: glob
 *.pyc
 *.tar
 *.bz2
+*.tmproj
 hg.prof
 paver-minilib.zip
 setup.py

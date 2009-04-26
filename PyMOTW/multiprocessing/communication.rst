@@ -51,15 +51,28 @@ When ``wait()`` times out it returns without an error.  The caller is responsibl
 .. }}}
 .. {{{end}}}
 
-This simple facility lets you synchronize parts of a workflow so that some run in parallel but others run sequentially.
-
 Controlling access to resources with Lock
 =========================================
 
-.. just use with
+In situations when a single resource needs to be shared between multiple processes, a Lock can be used to avoid conflicting accesses.  
+
+.. include:: multiprocessing_lock.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+In this example, the messages printed to stdout may be jumbled together if the two processes do not synchronize their access of the output stream with the lock.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'multiprocessing_lock.py'))
+.. }}}
+.. {{{end}}}
+
 
 Synchronizing threads with a Condition object
 =============================================
+
+Condition objects let you synchronize parts of a workflow so that some run in parallel but others run sequentially, even if they are in separate processes.  In this example, two process run stage two of a job in parallel once the first stage is done.
+
 
 Controlling concurrent access to resources with a Semaphore
 ===========================================================
@@ -72,6 +85,9 @@ Map/Reduce
 
 Manager
 =======
+
+Namespaces
+==========
 
 Parallel Evaluation of a List Comprehension
 ===========================================

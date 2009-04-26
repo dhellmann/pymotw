@@ -6,8 +6,6 @@
 """Multiple concurrent access to a resource
 """
 #end_pymotw_header
-
-from __future__ import with_statement
 import logging
 import random
 import threading

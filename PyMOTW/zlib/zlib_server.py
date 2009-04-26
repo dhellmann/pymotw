@@ -8,7 +8,6 @@
 
 #__version__ = "$Id$"
 #end_pymotw_header
-from __future__ import with_statement
 import zlib
 import logging
 import SocketServer

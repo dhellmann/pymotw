@@ -6,8 +6,6 @@
 """Locking via the 'with' statement
 """
 #end_pymotw_header
-
-from __future__ import with_statement
 import threading
 
 def worker_with(lock):
