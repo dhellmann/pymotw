@@ -352,7 +352,7 @@ using Python 2.5.
 Controlling concurrent access to resources with a Semaphore
 ===========================================================
 
-Sometimes it is useful to allow more than one access to a resource at a time,
+Sometimes it is useful to allow more than one worker access to a resource at a time,
 while still limiting the overall number. For example, a connection pool might
 support a fixed number of simultaneous connections, or a network application
 might support a fixed number of concurrent downloads. A Semaphore is one way

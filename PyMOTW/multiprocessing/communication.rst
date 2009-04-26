@@ -71,26 +71,95 @@ In this example, the messages printed to stdout may be jumbled together if the t
 Synchronizing threads with a Condition object
 =============================================
 
-Condition objects let you synchronize parts of a workflow so that some run in parallel but others run sequentially, even if they are in separate processes.  In this example, two process run stage two of a job in parallel once the first stage is done.
+Condition objects let you synchronize parts of a workflow so that some run in parallel but others run sequentially, even if they are in separate processes.  
+
+.. include:: multiprocessing_condition.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+In this example, two process run stage two of a job in parallel once the first stage is done.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'multiprocessing_condition.py'))
+.. }}}
+.. {{{end}}}
 
 
 Controlling concurrent access to resources with a Semaphore
 ===========================================================
 
-Pool.map
+Sometimes it is useful to allow more than one worker access to a resource at a time,
+while still limiting the overall number. For example, a connection pool might
+support a fixed number of simultaneous connections, or a network application
+might support a fixed number of concurrent downloads. A Semaphore is one way
+to manage those connections.
+
+.. include:: multiprocessing_semaphore.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+In this example, the ActivePool class simply serves as a convenient way to
+track which process are running at a given moment. A real resource pool
+would probably allocate a connection or some other value to the newly active
+process, and reclaim the value when the task is done. Here, it is just used to
+hold the names of the active processes to show that only 3 are running
+concurrently.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'multiprocessing_semaphore.py'))
+.. }}}
+.. {{{end}}}
+
+Managers
 ========
 
-Map/Reduce
-==========
+In the previous example, the list of active processes is maintained centrally in the ActivePool instance via a special type of list object created by a Manager.  The Manager is responsible for coordinating shared information state between all of its users.  By creating the list through the manager, the list is updated in all processes when anyone modifies it.  In addition to lists, dictionaries are also supported.
 
-Manager
-=======
+.. include:: multiprocessing_manager_dict.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'multiprocessing_manager_dict.py'))
+.. }}}
+.. {{{end}}}
 
 Namespaces
 ==========
 
-Parallel Evaluation of a List Comprehension
-===========================================
+In addition to dictionaries and lists, a Manager can create a shared Namespace.  Any named value added to the Namespace is visible across all of the clients.
 
-MORE
-====
+.. include:: multiprocessing_namespaces.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'multiprocessing_namespaces.py'))
+.. }}}
+.. {{{end}}}
+
+It is important to know that *updates* to mutable values in the namespace are *not* propagated.
+
+.. include:: multiprocessing_namespaces_mutable.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'multiprocessing_namespaces_mutable.py'))
+.. }}}
+.. {{{end}}}
+
+
+Pool.map
+========
+
+For simple cases where the work to be done can be broken up and distributed between workers, you do not have to manage the queue and worker processes yourself.  The Pool class maintains a fixed number of workers and passes them jobs.  The return values are collected and returned as a list.  The result is functionally equivalent to the built-in ``map()``, except that individual tasks run in parallel.
+
+.. include:: multiprocessing_pool.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'multiprocessing_pool.py'))
+.. }}}
+.. {{{end}}}

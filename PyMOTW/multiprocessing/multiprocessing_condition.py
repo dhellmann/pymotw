@@ -3,7 +3,7 @@
 #
 # Copyright (c) 2008 Doug Hellmann All rights reserved.
 #
-"""Using a Condition to control sequencing between threads.
+"""Using a Condition to control sequencing between workers.
 """
 #end_pymotw_header
 import multiprocessing
