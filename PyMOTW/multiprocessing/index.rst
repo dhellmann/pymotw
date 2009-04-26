@@ -14,8 +14,7 @@ The multiprocessing module includes a relatively simple API for dividing work up
     :maxdepth: 2
     
     basics
-
-..    communication
+    communication
 
 
 .. seealso::
