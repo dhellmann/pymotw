@@ -7,10 +7,11 @@
 """
 #end_pymotw_header
 import collections
+import functools
 import multiprocessing
-import string
 
 # TODO - Count lines of code and average them instead of counting words?
+
 class SimpleMapReduce(object):
     
     def __init__(self, map_func, reduce_func, num_workers=None):
@@ -31,31 +32,31 @@ class SimpleMapReduce(object):
         return reduced_values
         
 
-def file_to_words(filename):
-    """Read a file and put individual words on the output queue.
-    """
-    output = []
-    
-    TR = string.maketrans(string.punctuation, ' ' * len(string.punctuation))
-    with open(filename, 'rt') as f:
-        for line in f:
-            # Strip punctuation
-            line = line.translate(TR)
-            for word in line.split():
-                if word.isalpha():
-                    output.append( (word.lower(), 1) )
-    return output
-
-
-def count_words(item):
-    """Returns a tuple with the word and number of occurances.
-    """
-    word, occurances = item
-    return (word, sum(occurances))
-
-
-
 if __name__ == '__main__':
+    import string
+
+    def file_to_words(filename):
+        """Read a file and put individual words on the output queue.
+        """
+        output = []
+    
+        TR = string.maketrans(string.punctuation, ' ' * len(string.punctuation))
+        with open(filename, 'rt') as f:
+            for line in f:
+                # Strip punctuation
+                line = line.translate(TR)
+                for word in line.split():
+                    if word.isalpha():
+                        output.append( (word.lower(), 1) )
+        return output
+
+
+    def count_words(item):
+        """Returns a tuple with the word and number of occurances.
+        """
+        word, occurances = item
+        return (word, sum(occurances))
+
     input_files = ['basics.rst', 'communication.rst']
     mapper = SimpleMapReduce(file_to_words, count_words)
     counts = mapper.map(input_files)
