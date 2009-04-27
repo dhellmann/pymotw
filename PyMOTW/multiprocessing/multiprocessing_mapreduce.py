@@ -17,15 +17,18 @@ class SimpleMapReduce(object):
     def __init__(self, map_func, reduce_func, num_workers=None):
         """
         map_func
-          Function to map inputs to intermediate data.
+
+          Function to map inputs to intermediate data. Takes as argument one input value and
+          returns a tuple with the key and a value to be reduced.
         
         reduce_func
-          Function to reduce partitioned version of intermediate
-          data to final output
+          Function to reduce partitioned version of intermediate data to final output. Takes
+          as argument a key as produced by map_func and a sequence of the values associated
+          with that key.
          
         num_workers
-          The number of workers to create in the pool.  Defaults
-          to the number of CPUs available on the current host.
+          The number of workers to create in the pool. Defaults to the number of CPUs
+          available on the current host.
         """
         self.map_func = map_func
         self.reduce_func = reduce_func
@@ -68,6 +71,7 @@ if __name__ == '__main__':
         with open(filename, 'rt') as f:
             for line in f:
                 if line.lstrip().startswith('..'):
+                    # Skip rst comment lines
                     continue
                 # Strip punctuation
                 line = line.translate(TR)
