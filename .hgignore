@@ -8,6 +8,7 @@ hg.prof
 paver-minilib.zip
 setup.py
 *.out*
+.DS_Store
 
 syntax: re
 ^PyMOTW/.*/example

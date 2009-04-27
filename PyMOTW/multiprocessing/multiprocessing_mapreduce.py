@@ -7,10 +7,7 @@
 """
 #end_pymotw_header
 import collections
-import functools
 import multiprocessing
-
-# TODO - Count lines of code and average them instead of counting words?
 
 class SimpleMapReduce(object):
     
@@ -34,63 +31,27 @@ class SimpleMapReduce(object):
         self.reduce_func = reduce_func
         self.pool = multiprocessing.Pool(num_workers)
     
-    def __call__(self, inputs):
-        """Process the inputs through the map and reduce functions given.
+    def partition(self, mapped_values):
+        """Organize the mapped values by their key.
+        Returns a dictionary mapping each key to a sequence of values.
         """
-        # Convert inputs to mapped values
-        mapped_values = self.pool.map(self.map_func, inputs)
-
-        # Partition the results
         partitioned_data = collections.defaultdict(list)
         for sublist in mapped_values:
             for key, value in sublist:
                 partitioned_data[key].append(value)
-
-        # Reduce the partitioned values to the final result
+        return partitioned_data
+    
+    def __call__(self, inputs, chunksize=1):
+        """Process the inputs through the map and reduce functions given.
+        
+        inputs
+          An iterable containing the input data to be processed.
+        
+        chunksize=1
+          The portion of the input data to hand to each worker.  This
+          can be used to tune performance during the mapping phase.
+        """
+        mapped_values = self.pool.map(self.map_func, inputs, chunksize=chunksize)
+        partitioned_data = self.partition(mapped_values)
         reduced_values = self.pool.map(self.reduce_func, partitioned_data.items())
         return reduced_values
-        
-
-if __name__ == '__main__':
-    import glob
-    import operator
-    
-    def file_to_words(filename):
-        """Read a file and put individual words on the output queue.
-        """
-        import string
-        STOP_WORDS = set([
-            'a', 'and', 'are', 'as', 'be', 'for', 'if', 'in', 
-            'is', 'it', 'of', 'or', 'the', 'to', 'with',
-            ])
-        TR = string.maketrans(string.punctuation, ' ' * len(string.punctuation))
-
-        print multiprocessing.current_process().name, 'reading', filename
-        output = []
-    
-        with open(filename, 'rt') as f:
-            for line in f:
-                if line.lstrip().startswith('..'):
-                    # Skip rst comment lines
-                    continue
-                # Strip punctuation
-                line = line.translate(TR)
-                for word in line.split():
-                    word = word.lower()
-                    if word.isalpha() and word not in STOP_WORDS:
-                        output.append( (word, 1) )
-        return output
-
-    def count_words(item):
-        """Returns a tuple with the word and number of occurances.
-        """
-        word, occurances = item
-        return (word, sum(occurances))
-
-    input_files = glob.glob('../*/*.rst')
-    mapper = SimpleMapReduce(file_to_words, count_words)
-    counts = mapper(input_files)
-    counts.sort(key=operator.itemgetter(1))
-    counts.reverse()
-    for word, count in counts[:20]:
-        print '%15s: %5s' % (word, count)

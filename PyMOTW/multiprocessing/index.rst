@@ -15,6 +15,7 @@ The multiprocessing module includes a relatively simple API for dividing work up
     
     basics
     communication
+    mapreduce
 
 
 .. seealso::
