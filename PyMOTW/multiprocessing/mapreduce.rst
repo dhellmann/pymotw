@@ -38,4 +38,4 @@ Each input filename is converted to a sequence of ``(word, 1)`` pairs by ``file_
         Google Labs presentation and paper on MapReduce.
 
 
-*Special thanks to Jesse Noller for helping review this section*
+*Special thanks to Jesse Noller for helping review this information.*
