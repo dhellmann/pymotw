@@ -12,7 +12,7 @@ import string
 from multiprocessing_mapreduce import SimpleMapReduce
 
 def file_to_words(filename):
-    """Read a file and put individual words on the output queue.
+    """Read a file and return a sequence of (word, occurances) values.
     """
     STOP_WORDS = set([
         'a', 'an', 'and', 'are', 'as', 'be', 'for', 'if', 'in', 
@@ -25,11 +25,9 @@ def file_to_words(filename):
 
     with open(filename, 'rt') as f:
         for line in f:
-            if line.lstrip().startswith('..'):
-                # Skip rst comment lines
+            if line.lstrip().startswith('..'): # Skip rst comment lines
                 continue
-            # Strip punctuation
-            line = line.translate(TR)
+            line = line.translate(TR) # Strip punctuation
             for word in line.split():
                 word = word.lower()
                 if word.isalpha() and word not in STOP_WORDS:
@@ -38,7 +36,8 @@ def file_to_words(filename):
 
 
 def count_words(item):
-    """Returns a tuple with the word and number of occurances.
+    """Convert the partitioned data for a word to a
+    tuple containing the word and the number of occurances.
     """
     word, occurances = item
     return (word, sum(occurances))
@@ -55,9 +54,7 @@ if __name__ == '__main__':
     word_counts.sort(key=operator.itemgetter(1))
     word_counts.reverse()
     
-    print
-    print 'TOP 20 WORDS BY FREQUENCY'
-    print
+    print '\nTOP 20 WORDS BY FREQUENCY\n'
     top20 = word_counts[:20]
     longest = max(len(word) for word, count in top20)
     for word, count in top20:
