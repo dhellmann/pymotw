@@ -2,7 +2,7 @@
 Implementing MapReduce with multiprocessing
 ###########################################
 
-The Pool class can be used to create a simple single-server MapReduce implementation.  Although it does not give the full benefits of distributed processing, it does illustrate how easy it is to break problems down into distributable components.
+The Pool class can be used to create a simple single-server MapReduce implementation.  Although it does not give the full benefits of distributed processing, it does illustrate how easy it is to break some problems down into distributable units of work.
 
 SimpleMapReduce
 ===============
