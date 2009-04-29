@@ -529,3 +529,6 @@ This example explicitly calls :meth:`expunge()` to remove the messages, but call
 
     :mod:`email`
         The :mod:`email` module for parsing email messages.
+
+    `IMAPClient <http://freshfoo.com/wiki/CodeIndex>`_
+        A higher-level client for talking to IMAP servers, written by Menno Smits.
