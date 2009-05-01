@@ -107,7 +107,7 @@ before the daemon process wakes up from its 2 second sleep.
 .. }}}
 .. {{{end}}}
 
-The daemon process is terminated before the main program exits, to avoid leaving orphaned processes running.
+The daemon process is terminated automatically before the main program exits, to avoid leaving orphaned processes running.  You can verify this by looking for the process id value printed when you run the program, and then checking for that process with a command like ``ps``.
 
 Waiting for Processes
 =====================

@@ -12,16 +12,18 @@ import time
 import sys
 
 def daemon():
-    print 'Starting:', multiprocessing.current_process().name
+    p = multiprocessing.current_process()
+    print 'Starting:', p.name, p.pid
     sys.stdout.flush()
     time.sleep(2)
-    print 'Exiting :', multiprocessing.current_process().name
+    print 'Exiting :', p.name, p.pid
     sys.stdout.flush()
 
 def non_daemon():
-    print 'Starting:', multiprocessing.current_process().name
+    p = multiprocessing.current_process()
+    print 'Starting:', p.name, p.pid
     sys.stdout.flush()
-    print 'Exiting :', multiprocessing.current_process().name
+    print 'Exiting :', p.name, p.pid
     sys.stdout.flush()
 
 if __name__ == '__main__':
