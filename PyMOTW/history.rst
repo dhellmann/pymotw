@@ -1,6 +1,12 @@
 History
 =======
 
+Working
+  - updated daemon process examples in :mod:`multiprocessing`
+  
+1.89
+  - 28 April 2009, :mod:`multiprocessing` (part 2, communication and MapReduce example)
+
 1.88
   - 19 April 2009, :mod:`multiprocessing` (part 1, basic usage)
   - Upgraded to Python 2.6.2.

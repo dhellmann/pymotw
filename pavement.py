@@ -443,12 +443,22 @@ def clean_blog_html(body):
     
     return s
 
-def gen_blog_post(index_file, blog_file):
+def gen_blog_post(outdir, input_base, blog_base):
     """Generate the blog post body.
     """
-    # Add link to project home page at the end
-    body = index_file.text().strip()
-    output_body = clean_blog_html(body) + '''<p><a class="reference external" href="http://www.doughellmann.com/PyMOTW/">PyMOTW Home</a></p>'''
+    outdir = path(outdir)
+    input_file = outdir / input_base
+    blog_file = outdir/ blog_base
+    
+    canonical_url = "http://www.doughellmann.com/PyMOTW/" + MODULE + "/"
+    if input_base != "index.html":
+        canonical_url += input_base
+    home_page_reference = '''<p><a class="reference external" href="http://www.doughellmann.com/PyMOTW/">PyMOTW Home</a></p>'''
+    canonical_reference = '''<p>The <a class="reference external" href="%(canonical_url)s">canonical version</a> of this article</p>''' % locals()
+    
+    # Add links to project pages at the end
+    body = input_file.text().strip()
+    output_body = clean_blog_html(body) + home_page_reference + canonical_reference
     
     blog_file.write_text(output_body)
     return
@@ -464,15 +474,17 @@ def blog():
     """
     # Clean and recreate output directory
     remake_directories(options.blog.outdir)
-    outdir = path(options.blog.outdir)
     
     # Generate html from sphinx
     run_sphinx('blog')
     
-    index_file = outdir / options.blog.in_file
-    blog_file = outdir / options.blog.out_file
+    blog_file = path(options.blog.outdir) / options.blog.out_file
     dry("Write blog post body to %s" % blog_file, 
-        gen_blog_post, index_file=index_file, blog_file=blog_file)
+        gen_blog_post, 
+        outdir=options.blog.outdir, 
+        input_base=options.blog.in_file, 
+        blog_base=options.blog.out_file,
+        )
     
     if 'EDITOR' in os.environ:
         sh('$EDITOR %s' % blog_file)
