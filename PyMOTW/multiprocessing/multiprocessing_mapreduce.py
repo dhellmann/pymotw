@@ -7,6 +7,7 @@
 """
 #end_pymotw_header
 import collections
+import itertools
 import multiprocessing
 
 class SimpleMapReduce(object):
@@ -33,13 +34,12 @@ class SimpleMapReduce(object):
     
     def partition(self, mapped_values):
         """Organize the mapped values by their key.
-        Returns a dictionary mapping each key to a sequence of values.
+        Returns an unsorted sequence of tuples with a key and a sequence of values.
         """
         partitioned_data = collections.defaultdict(list)
-        for sublist in mapped_values:
-            for key, value in sublist:
-                partitioned_data[key].append(value)
-        return partitioned_data
+        for key, value in mapped_values:
+            partitioned_data[key].append(value)
+        return partitioned_data.items()
     
     def __call__(self, inputs, chunksize=1):
         """Process the inputs through the map and reduce functions given.
@@ -51,7 +51,7 @@ class SimpleMapReduce(object):
           The portion of the input data to hand to each worker.  This
           can be used to tune performance during the mapping phase.
         """
-        mapped_values = self.pool.map(self.map_func, inputs, chunksize=chunksize)
-        partitioned_data = self.partition(mapped_values)
-        reduced_values = self.pool.map(self.reduce_func, partitioned_data.items())
+        map_responses = self.pool.map(self.map_func, inputs, chunksize=chunksize)
+        partitioned_data = self.partition(itertools.chain(*map_responses))
+        reduced_values = self.pool.map(self.reduce_func, partitioned_data)
         return reduced_values
