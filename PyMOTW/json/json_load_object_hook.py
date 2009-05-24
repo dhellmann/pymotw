@@ -8,7 +8,6 @@
 #end_pymotw_header
 
 import json
-import imp
 
 def dict_to_object(d):
     if '__class__' in d:
@@ -25,7 +24,7 @@ def dict_to_object(d):
         inst = d
     return inst
 
-encoded_object = '{"s": "instance value goes here", "__module__": "json_myobj", "__class__": "MyObj"}'
+encoded_object = '[{"s": "instance value goes here", "__module__": "json_myobj", "__class__": "MyObj"}]'
 
 myobj_instance = json.loads(encoded_object, object_hook=dict_to_object)
 print myobj_instance

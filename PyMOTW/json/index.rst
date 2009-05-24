@@ -121,7 +121,9 @@ In ``convert_to_builtin_type()``, instances of classes not recognized by :mod:`j
 .. }}}
 .. {{{end}}}
 
-To decode the results and create a ``MyObj`` instance, we need to tie in to the decoder so we can import the class from the module and create the instance.  For that, we use the ``object_hook`` argument to ``loads()``.
+To decode the results and create a ``MyObj`` instance, we need to tie in to the decoder so we can import the class from the module and create the instance.  For that, we use the ``object_hook`` argument to ``loads()``.  
+
+The object_hook is called for each dictionary decoded from the incoming data stream, giving us a chance to convert the dictionary to another type of object.  The hook function should return the object it wants the calling application to receive instead of the dictionary.
 
 .. include:: json_load_object_hook.py
     :literal:
@@ -134,21 +136,96 @@ Since :mod:`json` converts string values to unicode objects, we need to re-encod
 .. }}}
 .. {{{end}}}
 
-Subclassing the Encoder
-=======================
+Similar hooks are available for the built-in types integers (``parse_int``), floating point numbers (``parse_float``), and constants (``parse_constant``).
+
+Encoder and Decoder Classes
+===========================
+
+Besides the convenience functions we have already examined, the :mod:`json` module provides classes for encoding and decoding.  By using the classes directly, you have access to extra APIs and can create subclasses to customize their behavior.
+
+The JSONEncoder provides an iterable interface for producing "chunks" of encoded data, making it easier for you to write to files or network sockets without having to represent an entire data structure in memory.
+
+.. include:: json_encoder_iterable.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+As you can see, the output is generated in logical units, rather than being based on any size value.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'json_encoder_iterable.py'))
+.. }}}
+.. {{{end}}}
+
+The ``encode()`` method is basically equivalent to ``''.join(encoder.iterencode())``, with some extra error checking up front.
+
+To encode arbitrary objects, we can override the ``default()`` method with an implementation similar to what we used above in ``convert_to_builtin_type()``.
+
+.. include:: json_encoder_default.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+The output is the same as the previous implementation.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'json_encoder_default.py'))
+.. }}}
+.. {{{end}}}
+
+Decoding text, then converting the dictionary into an object takes a little more work to set up than our previous implementation, but not much.
+
+.. include:: json_decoder_object_hook.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+And the output is the same as the earlier example.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'json_decoder_object_hook.py'))
+.. }}}
+.. {{{end}}}
+
+Working with Streams and Files
+==============================
+
+In all of the examples so far, we have assumed that we could (and should) hold the encoded version of the entire data structure in memory at one time.  With large data structures it may be preferable to write the encoding directly to a file-like object.  The convenience functions ``load()`` and ``dump()`` accept references to a file-like object to use for reading or writing.
+
+.. include:: json_dump_file.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+A socket would work in much the same way as the normal file handle used here.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'json_dump_file.py'))
+.. }}}
+.. {{{end}}}
+
+Although it isn't optimized to read only part of the data at a time, the ``load()`` function still offers the benefit of encapsulating the logic of generating objects from stream input.
+
+.. include:: json_load_file.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'json_load_file.py'))
+.. }}}
+.. {{{end}}}
 
 
+Mixed Data Streams
+==================
+
+The JSONDecoder includes a method for decoding a data structure followed by more data.  
+
+Non-ASCII Strings
+=================
+
+As we already saw, :mod:`json` converts decodes input strings to unicode objects.  
+
+- ensure_ascii arg to dumps()
 
 Encoding from the Command Line
 ==============================
-
-Working with Streams
-====================
-
-Non-ASCII Output
-================
-
-- ensure_ascii arg to dumps()
 
 
 .. seealso::
