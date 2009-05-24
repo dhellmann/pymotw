@@ -215,17 +215,18 @@ Although it isn't optimized to read only part of the data at a time, the ``load(
 Mixed Data Streams
 ==================
 
-The JSONDecoder includes a method for decoding a data structure followed by more data.  
+The JSONDecoder includes the ``raw_decode()`` method for decoding a data structure followed by more data, such as JSON data with trailing text.  The return value is the object created by decoding the input data, and an index into that data indicating where decoding left off.
 
-Non-ASCII Strings
-=================
+.. include:: json_mixed_data.py
+    :literal:
+    :start-after: #end_pymotw_header
 
-As we already saw, :mod:`json` converts decodes input strings to unicode objects.  
+Unfortunately, this only works if the object appears at the beginning of the input.
 
-- ensure_ascii arg to dumps()
-
-Encoding from the Command Line
-==============================
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'json_mixed_data.py'))
+.. }}}
+.. {{{end}}}
 
 
 .. seealso::
