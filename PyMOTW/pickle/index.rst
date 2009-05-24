@@ -45,7 +45,7 @@ and the portable implementation otherwise.
 Encoding and Decoding Data in Strings
 =====================================
 
-This first example of pickle encodes a data structure as a string, then prints the string to the console. It defines a data structure made up of entirely native types. Instances of any class can be pickled, as will be illustrated in a later example. I chose native data types to start to keep the example simple. And now we can use pickle.dumps() to create a string representation of the value of data.
+This first example of pickle encodes a data structure as a string, then prints the string to the console. It defines a data structure made up of entirely native types. Instances of any class can be pickled, as will be illustrated in a later example. I chose native data types to start to keep this first example simple. And now we can use pickle.dumps() to create a string representation of the value of data.
 
 .. include:: pickle_string.py
     :literal:

@@ -1,7 +1,8 @@
 History
 =======
 
-Working
+1.90
+  - 24 May 2009, :mod:`json`
   - updated daemon process examples in :mod:`multiprocessing`
   
 1.89
