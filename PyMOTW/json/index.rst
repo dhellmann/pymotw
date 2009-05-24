@@ -42,8 +42,44 @@ For example, tuples are converted to JSON lists.
 Human-consumable vs. Compact Output
 ===================================
 
-- show sorting keys and indenting output vs. tight output used for RPC
-- separators
+Another benefit of JSON over pickle is that the results are human-readable.  The ``dumps()`` function accepts several arguments to make the output even nicer.  For example, ``sort_keys`` tells the encoder to output the keys of a dictionary in sorted, instead of random, order.  
+
+.. include:: json_sort_keys.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+Sorting makes it easier to scan the results by eye, and also makes it possible to compare JSON output in tests.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'json_sort_keys.py'))
+.. }}}
+.. {{{end}}}
+
+For highly-nested data structures, you will want to specify a value for ``indent``, so the output is formatted nicely as well.
+
+.. include:: json_indent.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+When indent is a non-negative integer, the output more closely resembles that of :mod:`pprint`, with leading spaces for each level of the data structure matching the indent level.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'json_indent.py'))
+.. }}}
+.. {{{end}}}
+
+Verbose output like this increases the number of bytes needed to transmit the same amount of data, however, so it isn't the sort of thing you necessarily want to use in a production environment.  In fact, you may want to adjust the settings for separating data in the encoded output to make it even more compact than the default.
+
+.. include:: json_compact_encoding.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+The ``separators`` argument to ``dumps()`` should be a tuple containing the strings to separate items in a list and keys from values in a dictionary.  The default is ``(', ', ': ')``. By removing the whitespace, we can produce a more compact output.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'json_compact_encoding.py'))
+.. }}}
+.. {{{end}}}
 
 Encoding Your Own Types
 =======================
