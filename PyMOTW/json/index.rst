@@ -8,7 +8,7 @@ json -- JavaScript Object Notation Serializer
 :Purpose: Encode Python objects as JSON strings, and decode JSON strings into Python objects.
 :Python Version: 2.6
 
-The :mod:`json` module provides an API similar to :mod:`pickle` for converting in-memory Python objects to a serialized representation.  Unlike pickle, JSON has the benefit of being implemented in many languages (especially JavaScript), making it suitable for inter-application communication.  JSON is probably most widely used for communicating between the web server and client in an AJAX application, but is not limited to that problem domain.
+The :mod:`json` module provides an API similar to :mod:`pickle` for converting in-memory Python objects to a serialized representation known as "JavaScript Object Notation".  Unlike pickle, JSON has the benefit of being implemented in many languages (especially JavaScript), making it suitable for inter-application communication.  JSON is probably most widely used for communicating between the web server and client in an AJAX application, but is not limited to that problem domain.
 
 Encoding and Decoding Simple Data Types
 =======================================
@@ -81,15 +81,63 @@ The ``separators`` argument to ``dumps()`` should be a tuple containing the stri
 .. }}}
 .. {{{end}}}
 
-Encoding Your Own Types
+Encoding Dictionaries
+=====================
+
+The JSON format expects the keys to a dictionary to be strings.  If you have other types as keys in your dictionary, trying to encode the object will produce a TypeError.  One way to work around that limitation is to skip over non-string keys using the ``skipkeys`` argument:
+
+.. include:: json_skipkeys.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+Rather than raising an exception, the non-string key is simply ignored.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'json_skipkeys.py'))
+.. }}}
+.. {{{end}}}
+
+Working with Your Own Types
+===========================
+
+All of the examples so far have used Pythons built-in types because those are supported by :mod:`json` natively.  It isn't uncommon, of course, to have your own types that you want to be able to encode as well.  There are two ways to do that.
+
+First, we'll need a class to encode:
+
+.. include:: json_myobj.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+The simple way of encoding a ``MyObj`` instance is to define a function to convert an unknown type to a known type.  You don't have to do the encoding yourself, just convert one object to another.
+
+.. include:: json_dump_default.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+In ``convert_to_builtin_type()``, instances of classes not recognized by :mod:`json` are converted to dictionaries with enough information to re-create the object if a program has access to the Python modules necessary.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'json_dump_default.py'))
+.. }}}
+.. {{{end}}}
+
+To decode the results and create a ``MyObj`` instance, we need to tie in to the decoder so we can import the class from the module and create the instance.  For that, we use the ``object_hook`` argument to ``loads()``.
+
+.. include:: json_load_object_hook.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+Since :mod:`json` converts string values to unicode objects, we need to re-encode them as ASCII strings before using them as keyword arguments to the class constructor.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'json_load_object_hook.py'))
+.. }}}
+.. {{{end}}}
+
+Subclassing the Encoder
 =======================
 
-- skipkeys arg to dumps
-- default function
-- subclassing encoder
 
-Decoding Your Own Types
-=======================
 
 Encoding from the Command Line
 ==============================
@@ -110,3 +158,6 @@ Non-ASCII Output
 
     http://json.org/
         JavaScript Object Notation (JSON)
+
+    http://code.google.com/p/simplejson/
+        simplejson, from Bob Ippolito, et al, is the externally maintained development version of the json library included with Python 2.6 and Python 3.0. It maintains backwards compatibility with Python 2.4 and Python 2.5.
