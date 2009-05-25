@@ -26,6 +26,7 @@ html_additional_pages = {
     'index':'index.html',
     }
 html_use_modindex = True
+html_last_updated_fmt = '%b %d, %Y'
 
 # The TEMPLATES variable is set by the Makefile before sphinx-build is called.
 templates_path = ['../sphinx/templates/%s' % os.environ['TEMPLATES'],
@@ -35,8 +36,6 @@ latex_documents = [
     ('pdf_contents', 'PyMOTW-%s.tex' % version, 
      'Python Module of the Week', 'Doug Hellmann', 'manual', False),
     ]
-
-html_last_updated_fmt = '%b %d, %Y'
 
 #latex_preamble = r'''
 #'''
