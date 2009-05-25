@@ -1,6 +1,11 @@
 History
 =======
 
+Working
+  - Correct link to library table of contents on python.org from about page.  Thanks to Tetsuya Morimoto for pointing out the broken link.
+  - Add information about Tetsuya Morimoto's Japanese translation.
+  - Add link to jsonpickle on :mod:`json` article, courtesy of Sebastien Binet.
+
 1.90
   - 24 May 2009, :mod:`json`
   - updated daemon process examples in :mod:`multiprocessing`

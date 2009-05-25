@@ -6,7 +6,7 @@ PyMOTW is a series of blog posts written by `Doug Hellmann <http://www.doughellm
 
 See the project home page at http://www.doughellmann.com/PyMOTW/ for updates and the latest release.  Source code is available from http://bitbucket.org/dhellmann/pymotw/.
 
-Complete documentation for the standard library can be found on the Python web site at http://docs.python.org/library/contents.html.
+Complete documentation for the standard library can be found on the Python web site at http://docs.python.org/library/.
 
 Tools
 =====
@@ -36,6 +36,11 @@ Spanish
 -------
 
 `Ernesto Rico Schmidt <http://denklab.org/>`_ provides a Spanish translation that follows the English version posts. Ernesto is in Bolivia, and is translating these examples as a way to contribute to the members of the `Bolivian Free Software <http://www.softwarelibre.org.bo/>`_ community who use Python.   The full list of articles available in Spanish can be found at http://denklab.org/articles/category/pymotw/, and there is an `RSS feed <http://denklab.org/feeds/articles/category/pymotw/>`_.
+
+Japanese
+--------
+
+`Tetsuya Morimoto <http://d.hatena.ne.jp/t2y-1979/>`_ is creating a Japanese translation. Tetsuya has used Python for 1.5 years. He has worked at a Linux Distributor, and used Python with yum, anaconda, and rpm-tools while building RPM packages. Now, he uses it to make useful tools for himself, and is interested in application frameworks such as Django, mercurial and wxPython. Tetsuya is a member of `Python Japan User's Group <http://www.python.jp/Zope/>`_ and `Python Code Reading <http://groups.google.co.jp/group/python-code-reading>`_. The home page for his translation is http://d.hatena.ne.jp/t2y-1979/20090525/1243227350.
 
 
 Compendiums
