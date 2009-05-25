@@ -36,5 +36,7 @@ latex_documents = [
      'Python Module of the Week', 'Doug Hellmann', 'manual', False),
     ]
 
+html_last_updated_fmt = '%b %d, %Y'
+
 #latex_preamble = r'''
 #'''
