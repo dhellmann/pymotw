@@ -239,3 +239,6 @@ Unfortunately, this only works if the object appears at the beginning of the inp
 
     http://code.google.com/p/simplejson/
         simplejson, from Bob Ippolito, et al, is the externally maintained development version of the json library included with Python 2.6 and Python 3.0. It maintains backwards compatibility with Python 2.4 and Python 2.5.
+
+    `jsonpickle <http://code.google.com/p/jsonpickle/>`_
+        jsonpickle allows for any Python object to be serialized into JSON. 
