@@ -6,6 +6,7 @@ Working
   - Add information about Tetsuya Morimoto's Japanese translation.
   - Add link to jsonpickle on :mod:`json` article, courtesy of Sebastien Binet.
   - Add time-stamps to HTML output
+  - Remove extraneous javascript file from web html template to avoid 404 errors
 
 1.90
   - 24 May 2009, :mod:`json`
