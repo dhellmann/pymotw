@@ -40,7 +40,7 @@ Spanish
 Japanese
 --------
 
-`Tetsuya Morimoto <http://d.hatena.ne.jp/t2y-1979/>`_ is creating a Japanese translation. Tetsuya has used Python for 1.5 years. He has worked at a Linux Distributor, and used Python with yum, anaconda, and rpm-tools while building RPM packages. Now, he uses it to make useful tools for himself, and is interested in application frameworks such as Django, mercurial and wxPython. Tetsuya is a member of `Python Japan User's Group <http://www.python.jp/Zope/>`_ and `Python Code Reading <http://groups.google.co.jp/group/python-code-reading>`_. The home page for his translation is http://d.hatena.ne.jp/t2y-1979/20090525/1243227350.
+`Tetsuya Morimoto <http://d.hatena.ne.jp/t2y-1979/>`_ is creating a Japanese translation. Tetsuya has used Python for 1.5 years. He has as experience at a Linux Distributor using Python with yum, anaconda, and rpm-tools while building RPM packages. Now, he uses it to make useful tools for himself, and is interested in application frameworks such as Django, mercurial and wxPython. Tetsuya is a member of `Python Japan User's Group <http://www.python.jp/Zope/>`_ and `Python Code Reading <http://groups.google.co.jp/group/python-code-reading>`_. The home page for his translation is http://d.hatena.ne.jp/t2y-1979/20090525/1243227350.
 
 
 Compendiums
