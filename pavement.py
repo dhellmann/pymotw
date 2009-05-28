@@ -101,6 +101,7 @@ options(
         builder = 'html',
         doctrees='sphinx/doctrees',
         confdir = 'sphinx',
+        template_args = { 'module':MODULE }
     ),
 
     html = Bunch(
@@ -307,11 +308,16 @@ def run_sphinx(*option_sets):
     kwds = dict(add_rest=False)
     options.order(*option_sets, **kwds)
     paths = _get_paths()
+    template_args = [ '-A{0}={1}'.format(name, value)
+                      for (name, value) in getattr(options, 'template_args', {}).items() 
+                      ]
     sphinxopts = ['', 
                   '-b', options.get('builder', 'html'), 
                   '-d', paths.doctrees, 
                   '-c', paths.confdir,
-                  paths.srcdir, paths.outdir]
+                  ]
+    sphinxopts.extend(template_args)
+    sphinxopts.extend([paths.srcdir, paths.outdir])
     dry("sphinx-build %s" % (" ".join(sphinxopts),), sphinx.main, sphinxopts)
     return
 

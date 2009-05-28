@@ -26,8 +26,6 @@ html_use_modindex = True
 
 master_doc = 'index' #os.environ['MODULE']
 
-print os.getcwd()
-
 templates_path = ['../../sphinx/blog',
                   ]
 
