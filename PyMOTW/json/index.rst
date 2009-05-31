@@ -242,3 +242,5 @@ Unfortunately, this only works if the object appears at the beginning of the inp
 
     `jsonpickle <http://code.google.com/p/jsonpickle/>`_
         jsonpickle allows for any Python object to be serialized into JSON. 
+
+    :ref:`article-data-persistence`

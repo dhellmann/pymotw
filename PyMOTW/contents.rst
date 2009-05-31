@@ -6,6 +6,7 @@ Python Module of the Week
     :maxdepth: 2
     
     about
+    articles/index
     history
     builtins
     string_services

@@ -189,3 +189,5 @@ should be ordered in the output.
 
     :pep:`305`
         CSV File API
+
+    :ref:`article-data-persistence`

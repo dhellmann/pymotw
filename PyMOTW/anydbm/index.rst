@@ -100,3 +100,5 @@ A similar TypeError is raised if a value is not a string.
 
     `anydbm <http://docs.python.org/library/anydbm.html>`_
         The standard library documentation for this module.
+
+    :ref:`article-data-persistence`

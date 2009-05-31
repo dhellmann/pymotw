@@ -97,6 +97,8 @@ than it writes, writeback will add more overhead than you might want.
 .. {{{end}}}
 
 
+.. _shelve-shelf-types:
+
 ====================
 Specific Shelf Types
 ====================
@@ -121,3 +123,5 @@ even subclass Shelf for a custom solution.
 
     `shove <http://pypi.python.org/pypi/shove/>`_
         Shove implements a similar API with more backend formats.
+
+    :ref:`article-data-persistence`

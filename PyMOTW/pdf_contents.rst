@@ -50,6 +50,7 @@ The source code included here is copyright Doug Hellmann and licensed under the 
 .. toctree::
     :maxdepth: 2
     
+    articles/index
     builtins
     string_services
     data_types

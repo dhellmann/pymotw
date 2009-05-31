@@ -1,7 +1,8 @@
 History
 =======
 
-Working
+1.91
+  - Add :ref:`article-data-persistence` article.
   - Correct link to library table of contents on python.org from about page.  Thanks to Tetsuya Morimoto for pointing out the broken link.
   - Add information about Tetsuya Morimoto's Japanese translation.
   - Add link to jsonpickle on :mod:`json` article, courtesy of Sebastien Binet.
