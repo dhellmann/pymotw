@@ -23,6 +23,11 @@ from paver.path import path
 from paver.easy import *
 import paver.setuputils
 paver.setuputils.install_distutils_tasks()
+try:
+    import docpaver
+except:
+    import warnings
+    warnings.warn('Could not find docpaver, will not be able to build HTML or PDF output.')
 
 # TODO
 # - move these variables to options?
@@ -234,11 +239,18 @@ def remake_directories(*dirnames):
     return
 
 @task
+@needs(['cog'])
+def html(options):
+    set_templates(options.html.templates)
+    docpaver.html(options)
+    return
+
+@task
 @needs(['generate_setup', 'minilib', 
         'html_clean', 
         'setuptools.command.sdist'
         ])
-def sdist():
+def sdist(options):
     """Create a source distribution.
     """
     # Copy the output file to the desktop
@@ -249,111 +261,12 @@ def sdist():
     return
 
 @task
-def html_clean():
+def html_clean(options):
     """Remove sphinx output directories before building the HTML.
     """
     remake_directories(options.sphinx.doctrees, options.html.outdir)
-    call_task('html')
+    html(options)
     return
-
-###########################
-# Adapted from paver source
-
-def _get_paths():
-    """look up the options that determine where all of the files are."""
-    opts = options
-    
-    docroot = path(opts.get('docroot', 'docs'))
-    if not docroot.exists():
-        raise BuildFailure("Sphinx documentation root (%s) does not exist."
-                           % docroot)
-    
-    builddir = docroot / opts.get("builddir", ".build")
-    builddir.mkdir()
-    
-    srcdir = docroot / opts.get("sourcedir", "")
-    if not srcdir.exists():
-        raise BuildFailure("Sphinx source file dir (%s) does not exist" 
-                            % srcdir)
-    
-    # Where is the sphinx conf.py file?
-    confdir = path(opts.get('confdir', srcdir))
-    
-    # Where should output files be generated?
-    outdir = opts.get('outdir', '')
-    if outdir:
-        outdir = path(outdir)
-    else:
-        outdir = builddir / opts.get('builder', 'html')
-    outdir.mkdir()
-    
-    # Where are doctrees cached?
-    doctrees = opts.get('doctrees', '')
-    if not doctrees:
-        doctrees = builddir / "doctrees"
-    else:
-        doctrees = path(doctrees)
-    doctrees.mkdir()
-
-    return Bunch(locals())
-
-def run_sphinx(*option_sets):
-    """Helper function to run sphinx with common options.
-    
-    Pass the names of namespaces to be used in the search path
-    for options.
-    """
-    if 'sphinx' not in option_sets:
-        option_sets += ('sphinx',)
-    kwds = dict(add_rest=False)
-    options.order(*option_sets, **kwds)
-    paths = _get_paths()
-    template_args = [ '-A{0}={1}'.format(name, value)
-                      for (name, value) in getattr(options, 'template_args', {}).items() 
-                      ]
-    sphinxopts = ['', 
-                  '-b', options.get('builder', 'html'), 
-                  '-d', paths.doctrees, 
-                  '-c', paths.confdir,
-                  ]
-    sphinxopts.extend(template_args)
-    sphinxopts.extend([paths.srcdir, paths.outdir])
-    dry("sphinx-build %s" % (" ".join(sphinxopts),), sphinx.main, sphinxopts)
-    return
-
-@task
-@needs(['cog'])
-def html():
-    """Build HTML documentation using Sphinx. This uses the following
-    options in a "sphinx" section of the options.
-    
-    docroot
-      the root under which Sphinx will be working.
-      default: docs
-    builddir
-      directory under the docroot where the resulting files are put.
-      default: build
-    sourcedir
-      directory under the docroot for the source files
-      default: (empty string)
-    doctrees
-      the location of the cached doctrees
-      default: $builddir/doctrees
-    confdir
-      the location of the sphinx conf.py
-      default: $sourcedir
-    outdir
-      the location of the generated output files
-      default: $builddir/$builder
-    builder
-      the name of the sphinx builder to use
-      default: html
-    """
-    set_templates(options.html.templates)
-    run_sphinx('html')
-    return
-
-###########################
 
 def set_templates(template_name):
     """Set the TEMPLATES environment variable, used by sphinx/conf.py.
@@ -368,16 +281,15 @@ def pdf():
     """Generate the PDF book.
     """
     set_templates(options.pdf.templates)
-    run_sphinx('pdf')
-    latex_dir = path(options.pdf.builddir) / 'latex'
-    sh('cd %s; make' % latex_dir)
+    docpaver.pdf(options)
     return
 
 @task
-@needs([ 'webhtml', 'pdf'])
-def website():
+def website(options):
     """Create local copy of website files.
     """
+    pdf(options) # this also calls cog
+    webhtml(options) # this does not call cog
     # Copy the PDF to the files to be copied to the directory to install
     pdf_file = path(options.pdf.builddir) / 'latex' / (PROJECT + '-' + VERSION + '.pdf')
     pdf_file.copy(path(options.website.builddir) / 'html')
@@ -409,12 +321,12 @@ def webtemplatebase():
     return
 
 @task
-@needs(['webtemplatebase', 'cog', 'sitemap_gen'])
-def webhtml():
+@needs(['webtemplatebase', 'sitemap_gen'])
+def webhtml(options):
     """Generate HTML files for website.
     """
     set_templates(options.website.templates)
-    run_sphinx('website')
+    docpaver.run_sphinx(options, 'website')
     sitemap_gen()
     return
 
@@ -475,14 +387,14 @@ def gen_blog_post(outdir, input_base, blog_base):
     ('in-file=', 'b', 'Blog input filename'),
     ('out-file=', 'B', 'Blog output filename'),    
 ])
-def blog():
+def blog(options):
     """Generate the blog post version of the HTML for the current module.
     """
     # Clean and recreate output directory
     remake_directories(options.blog.outdir)
     
     # Generate html from sphinx
-    run_sphinx('blog')
+    docpaver.run_sphinx(options, 'blog')
     
     blog_file = path(options.blog.outdir) / options.blog.out_file
     dry("Write blog post body to %s" % blog_file, 

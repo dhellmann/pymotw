@@ -62,17 +62,20 @@
 {%- endif %}
 {%- endblock %}
 
-{% if next or prev %}
-    {%- if prev %}
-      <h3>Previous topic</h3>
-      <a href="{{ prev.link|e }}" title="previous chapter">{{ prev.title }}</a>
-    {%- endif %}
+    <h3>Navigation</h3>
+    <p><a href="{{ pathto("contents") }}">Table of Contents</a><br/>
+    {% if next or prev %}
+        {%- if prev %}
+          <a href="{{ prev.link|e }}" title="previous chapter">Previous: {{ prev.title }}</a><br/>
+        {%- endif %}
 
-    {%- if next %}
-      <h3>Next topic</h3>
-      <a href="{{ next.link|e }}" title="next chapter">{{ next.title }}</a>
-    {%- endif %}
-{% endif %}
+        {%- if next %}
+          <a href="{{ next.link|e }}" title="next chapter">Next: {{ next.title }}</a><br/>
+        {%- endif %}
+    {% endif %}
+    <a href="{{ pathto("modindex") }}">All Modules</a><br/>
+    <a href="{{ pathto("genindex") }}">Index</a><br/>
+    <a href="/PyMOTW/">Home</a><br/>
 
     {%- if show_source and has_source and sourcename %}
       <h3>{{ _('This Page') }}</h3>
@@ -81,12 +84,6 @@
       </ul>
     {%- endif %}
 
-    <h3>Navigation</h3>
-    <p><a href="{{ pathto("contents") }}">Table of Contents</a><br/>
-    <a href="{{ pathto("modindex") }}">All Modules</a><br/>
-    <a href="{{ pathto("genindex") }}">Index</a><br/>
-    <a href="/PyMOTW/">Home</a><br/>
-    </p>
 
     <p>
   <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/us/" rel="license"><img alt="Creative Commons License" style="border-width:0; align: center;" src="http://i.creativecommons.org/l/by-nc-sa/3.0/us/88x31.png"/></a>
