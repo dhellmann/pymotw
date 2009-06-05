@@ -24,21 +24,19 @@ from paver.easy import *
 import paver.setuputils
 paver.setuputils.install_distutils_tasks()
 try:
-    import docpaver
+    from sphinxcontrib import paverutils
 except:
     import warnings
-    warnings.warn('Could not find docpaver, will not be able to build HTML or PDF output.')
+    warnings.warn('Could not find sphinxcontrib.paverutils, will not be able to build HTML or PDF output.')
 
 # TODO
 # - move these variables to options?
-# - see about adding more args to sphinx runner to avoid having to write my own
-# 
 
 # What project are we building?
 PROJECT = 'PyMOTW'
 
 # What version is this?
-VERSION = '1.91'
+VERSION = '1.91.1'
 
 # The sphinx templates expect the VERSION in the shell environment
 os.environ['VERSION'] = VERSION
@@ -158,6 +156,12 @@ options(
         includedir='PyMOTW',
     ),
 
+    # Tell Paver to include extra parts that we use
+    # but it doesn't ship in the minilib by default.
+    minilib = Bunch(
+        extra_files=['doctools'],
+    ),
+
 )
 
 def run_script(input_file, script_name, 
@@ -242,7 +246,7 @@ def remake_directories(*dirnames):
 @needs(['cog'])
 def html(options):
     set_templates(options.html.templates)
-    docpaver.html(options)
+    paverutils.html(options)
     return
 
 @task
@@ -281,7 +285,7 @@ def pdf():
     """Generate the PDF book.
     """
     set_templates(options.pdf.templates)
-    docpaver.pdf(options)
+    paverutils.pdf(options)
     return
 
 @task
@@ -326,7 +330,7 @@ def webhtml(options):
     """Generate HTML files for website.
     """
     set_templates(options.website.templates)
-    docpaver.run_sphinx(options, 'website')
+    paverutils.run_sphinx(options, 'website')
     sitemap_gen()
     return
 
@@ -394,7 +398,7 @@ def blog(options):
     remake_directories(options.blog.outdir)
     
     # Generate html from sphinx
-    docpaver.run_sphinx(options, 'blog')
+    paverutils.run_sphinx(options, 'blog')
     
     blog_file = path(options.blog.outdir) / options.blog.out_file
     dry("Write blog post body to %s" % blog_file, 
