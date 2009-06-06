@@ -167,5 +167,8 @@
 
   <!-- Exclude URLs within UNIX-style hidden files or directories       -->
   <filter  action="drop"  type="regexp"    pattern="/\.[^/]*"     />
+  <filter  action="drop"  type="regexp"    pattern="/.*/_sources/.*"     />
+  <filter  action="drop"  type="regexp"    pattern="/.*/_images/.*"     />
+  <filter  action="drop"  type="regexp"    pattern="/.*/_static/.*"     />
 
 </site>
