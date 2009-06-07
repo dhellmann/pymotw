@@ -15,7 +15,7 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 
 
-#: gettext_example.py:20
+#: gettext_example.py:16
 msgid "This message is in the script."
 msgstr "This message is in the catalog."
 
