@@ -17,5 +17,5 @@ msgstr ""
 
 #: gettext_example.py:16
 msgid "This message is in the script."
-msgstr "This message is in the en_US catalog."
+msgstr "This message is in the en_CA catalog."
 
