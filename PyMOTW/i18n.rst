@@ -5,6 +5,7 @@ Internationalization
 .. toctree::
     :maxdepth: 1
     
+    gettext/index
     locale/index
 
 
