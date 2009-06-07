@@ -9,6 +9,7 @@ paver-minilib.zip
 setup.py
 *.out*
 .DS_Store
+*.mo
 
 syntax: re
 ^PyMOTW/.*/example

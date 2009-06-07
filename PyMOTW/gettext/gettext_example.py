@@ -11,7 +11,7 @@ import gettext
 import os
 
 localedir = os.path.join(os.path.dirname(__file__), 'locale')
-catalogs = gettext.find('gettext_example', all=True)
+catalogs = gettext.find('gettext_example', localedir, all=True)
 print 'Catalog files:', catalogs
 
 t = gettext.translation('gettext_example', localedir, fallback=True)
