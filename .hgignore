@@ -14,6 +14,7 @@ syntax: re
 ^PyMOTW/.*/example
 ^PyMOTW/.*/Example
 ^PyMOTW/csv/testout.*\.csv
+^PyMOTW/gettext/messages.pot
 ^PyMOTW/glob/dir
 ^PyMOTW/mmap/lorem_copy.txt
 ^PyMOTW/os/os_stat_chmod_example.txt
