@@ -35,15 +35,22 @@ import signal
 import time
 import sys
 
+pid = os.getpid()
+received = False
+
 def signal_usr1(signum, frame):
     "Callback invoked when a signal is received"
-    pid = os.getpid()
-    print 'CHILD: Received USR1'
+    global received
+    received = True
+    print 'CHILD %s: Received USR1' % pid
     sys.stdout.flush()
 
-print 'CHILD: Setting up signal handler'
+print 'CHILD %s: Setting up signal handler' % pid
 sys.stdout.flush()
 signal.signal(signal.SIGUSR1, signal_usr1)
-print 'CHILD: Pausing to wait for signal'
+print 'CHILD %s: Pausing to wait for signal' % pid
 sys.stdout.flush()
-time.sleep(5)
+time.sleep(3)
+
+if not received:
+    print 'CHILD %s: Never received signal' % pid

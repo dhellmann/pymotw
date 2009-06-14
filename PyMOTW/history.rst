@@ -4,6 +4,7 @@ History
 1.92
   - 14 June 2009, :mod:`gettext`
   - Added Windows info to :mod:`platform`, courtesy of Scott Lyons.
+  - Added process group example to :mod:`subprocess`, courtesy of Scott Leerssen.
 
 1.91
   - Add :ref:`article-data-persistence` article.

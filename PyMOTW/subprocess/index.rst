@@ -168,11 +168,10 @@ loop:
 Signaling Between Processes
 ===========================
 
-In part 4 of the series on the os module I included an example of signaling
-between processes using os.fork() and os.kill(). Since each Popen instance
-provides a pid attribute with the process id of the child process, it is
-possible to do something similar with subprocess. For this example, I will
-again set up a separate script for the child process to be executed by the
+In the article on :mod:`os`, I included an example of signaling between processes using
+os.fork() and os.kill(). Since each Popen instance provides a pid attribute with the process
+id of the child process, it is possible to do something similar with subprocess. For this
+example, I will again set up a separate script for the child process to be executed by the
 parent process.
 
 .. include:: signal_child.py
@@ -190,6 +189,41 @@ And the output should look something like this:
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'signal_parent.py'))
+.. }}}
+.. {{{end}}}
+
+.. _subprocess-process-groups:
+
+Process Groups / Sessions
+-------------------------
+
+Because of the way the process tree works under Unix, if the process created by Popen spawns sub-processes, those children will not receive any signals sent to the parent.  That means, for example, that it will be difficult to cause them to terminate by sending SIGINT or SIGTERM.
+
+.. include:: subprocess_signal_parent_shell.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+Notice that the pid used to send the signal is different from the pid of the child of the shell script waiting for the signal because in this example, there are three separate processes interacting:
+
+1. subprocess_signal_parent_shell.py
+2. a Unix shell process running the script created by the main python program
+3. signal_child.py
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'subprocess_signal_parent_shell.py'))
+.. }}}
+.. {{{end}}}
+
+The solution to this problem is to use a *process group* to associate the children so they can be signaled together.  The process group is created with ``os.setsid()``, setting the "session id" to the process id of the current process.  All child processes inherit the session id, and since we only want it set in the shell created by Popen and its descendants we don't call it in the parent process.  Instead, we pass it to Popen as the *preexec_fn* argument so it is run inside the new process before it calls ``exec()``.
+
+.. include:: subprocess_signal_setsid.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+To signal the entire process group, we use ``os.killpg()`` with the pid value from our Popen instance.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'subprocess_signal_setsid.py'))
 .. }}}
 .. {{{end}}}
 
@@ -211,5 +245,13 @@ of being handled by your code separately.
         Standard library documentation for this module.
 
     :mod:`os`
-        Although deprecated, the functions for working with processes
+        Although many are deprecated, the functions for working with processes
         found in the os module are still widely used in existing code.
+
+    `UNIX SIgnals and Process Groups <http://www.frostbytes.com/~jimf/papers/signals/signals.html>`_
+        A good description of UNIX signaling and how process groups work.
+
+
+    `Advanced Programming in the UNIX(R) Environment <http://www.amazon.com/Programming-Environment-Addison-Wesley-Professional-Computing/dp/0201433079/ref=pd_bbs_3/002-2842372-4768037?ie=UTF8&s=books&amp;qid=1182098757&sr=8-3>`_
+        Covers working with multiple processes, such as handling signals, closing duplicated
+        file descriptors, etc.
