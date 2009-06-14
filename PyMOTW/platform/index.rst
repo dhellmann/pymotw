@@ -60,6 +60,14 @@ Linux::
 
 (It looks like I need to upgrade that system...)
 
+Windows::
+
+    C:> python.exe platform_python.py
+    Version : 2.5.4
+    Version tuple: ['2', '5', '4']
+    Compiler : MSC v.1310 32 bit (Intel)
+    Build : ('r254:67916', 'Dec 23 2008 15:10:54')
+
 Platform
 ========
 
@@ -86,6 +94,14 @@ Linux::
     Normal : Linux-2.6.9-67.0.4.ELsmp-i686-with-redhat-4.6-Final
     Aliased: Linux-2.6.9-67.0.4.ELsmp-i686-with-redhat-4.6-Final
     Terse  : Linux-2.6.9-67.0.4.ELsmp-i686-with-glibc2.3
+
+Windows::
+
+    C:> python.exe platform_platform.py
+    Normal : Windows-XP-5.1.2600
+    Aliased: Windows-XP-5.1.2600
+    Terse : Windows-XP
+    
 
 Operating System and Hardware Info
 ==================================
@@ -130,6 +146,18 @@ Linux::
     machine  : i686
     processor: i686
 
+Windows::
+
+    C:> python.exe platform_os_info.py
+    uname: ('Windows', 'argent', 'XP', '5.1.2600', '', '')
+
+    system : Windows
+    node : argent
+    release : XP
+    version : 5.1.2600
+    machine :
+    processor:
+    
 
 Executable Architecture
 =======================
@@ -156,6 +184,11 @@ Linux::
     interpreter: ('32bit', 'ELF')
     /bin/ls    : ('32bit', 'ELF')
 
+Windows::
+
+    C:> python.exe platform_architecture.py
+    interpreter: ('32bit', 'WindowsPE')
+    explorer.exe : ('32bit', '')
 
 .. seealso::
 
