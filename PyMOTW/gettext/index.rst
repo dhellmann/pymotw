@@ -156,35 +156,56 @@ While simple message substitution will handle most of your translation needs, on
 .. }}}
 .. {{{end}}}
 
-Since there are alternate forms to be translated, the replacements are listed in an array.  The array index is the count value, allowing translations for languages with multiple plural forms (Polish, `for example <http://www.gnu.org/software/gettext/manual/gettext.html#Plural-forms>`_, has multiple forms indicating the relative quantity).
+Since there are alternate forms to be translated, the replacements are listed in an array.  Using an array allows translations for languages with multiple plural forms (Polish, `for example <http://www.gnu.org/software/gettext/manual/gettext.html#Plural-forms>`_, has different forms indicating the relative quantity).
 
 .. include:: gettext_plural.pot
     :literal:
 
+In addition to filling in the translation strings, you will also need to describe the way plurals are formed so the library knows how to index into the array for any given count value.  The line ``"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"`` includes two values to replace manually.  ``nplurals`` is an integer indicating the size of the array (the number of translations used) and ``plural`` is a C language expression for converting the incoming quantity to an index in the array when looking up the translation.  The literal string ``n`` is replaced with the quantity passed to ``ungettext()``.
 
+For example, English includes two plural forms.  A quantity of ``0`` is treated as plural ("0 bananas").  The Plural-Forms entry should look like::
 
-- simple substitution
-- handling plurals
+    Plural-Forms: nplurals=2; plural=n != 1;
 
-Applying Application-wide Translation
-=====================================
+The singular translation would then go in position 0, and the plural translation in position 1.
 
-- using _() globally
+.. include:: locale/en_US/LC_MESSAGES/gettext_plural.po
+    :literal:
 
-Applying Module-level Translation
-=================================
+If we run the test script a few times after the catalog is compiled, you can see how different values of N are converted to indexes for the translation strings.
+    
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'cd locale/en_US/LC_MESSAGES/; msgfmt -o gettext_plural.mo gettext_plural.po', trailing_newlines=False, interpreter=None))
+.. cog.out(run_script(cog.inFile, 'gettext_plural.py 0', include_prefix=False, trailing_newlines=False))
+.. cog.out(run_script(cog.inFile, 'gettext_plural.py 1', include_prefix=False, trailing_newlines=False))
+.. cog.out(run_script(cog.inFile, 'gettext_plural.py 2', include_prefix=False))
+.. }}}
+.. {{{end}}}
 
-- using _() within a module
+Application vs. Module Localization
+===================================
 
-Switching Message Catalogs at Runtime
-=====================================
+The scope of your translation effort defines how you install and use the :mod:`gettext` functions in your code.  
 
-- different messages for different users of web app
+Application Localization
+------------------------
 
-Translation and the Interactive Interpreter
-===========================================
+For application-wide translations, it would be acceptable to install a function like ``ungettext()`` globally using the ``__builtins__`` namespace because you have control over the top-level of the application's code.  
 
-- competing definitions of _()
+.. include:: gettext_app_builtin.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+The ``install()`` function binds ``gettext()`` to the name ``_()`` in the ``__builtins__`` namespace.  It also adds ``ngettext()`` and other functions listed in *names*.  If *unicode* is true, the Unicode versions of the functions are used instead of the default ASCII versions.
+
+Module Localization
+-------------------
+
+For a library, or individual module, modifying ``__builtins__`` is not a good idea because you don't know what conflicts you might introduce with an application global value.  You can import or re-bind the names of translation functions by hand at the top of your module.
+
+.. include:: gettext_module_global.py
+    :literal:
+    :start-after: #end_pymotw_header
 
 
 .. seealso::

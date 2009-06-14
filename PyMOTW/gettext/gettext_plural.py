@@ -7,12 +7,12 @@
 """
 #end_pymotw_header
 
-from gettext import translation, ungettext
+from gettext import translation
 import sys
 
 t = translation('gettext_plural', 'locale', fallback=True)
 num = int(sys.argv[1])
-msg = ungettext('%(num)d means singular.', '%(num)d means plural.', num)
+msg = t.ungettext('%(num)d means singular.', '%(num)d means plural.', num)
 
 # Still need to add the values to the message ourself.
 print msg % {'num':num}
