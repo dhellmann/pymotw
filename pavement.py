@@ -419,3 +419,26 @@ def commit():
     """
     sh('hg commit')
     return
+
+@task
+def checklist(options):
+    """Show the release checklist.
+    """
+    print """
+Checklist
+=========    
+
+- hg pull into src sandbox
+- Change version in pavement.py
+- Update history file
+- hg commit
+- hg tag
+- paver sdist
+- Upload package
+- paver installwebsite
+- paver register
+- paver blog
+- Post to blog
+- Post to O'Reilly
+- hg push from src to bitbucket
+    """

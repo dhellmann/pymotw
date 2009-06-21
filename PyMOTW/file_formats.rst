@@ -7,3 +7,4 @@ File Formats
     
     csv/index
     ConfigParser/index
+    robotparser/index
