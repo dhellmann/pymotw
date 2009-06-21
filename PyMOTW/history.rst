@@ -1,6 +1,9 @@
 History
 =======
 
+1.93
+  - 21 Jun 2009, :mod:`robotparser`
+
 1.92
   - 14 June 2009, :mod:`gettext`
   - Added Windows info to :mod:`platform`, courtesy of Scott Lyons.
