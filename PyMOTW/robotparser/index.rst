@@ -8,7 +8,7 @@ robotparser -- Internet spider access control
 :Purpose: Parse robots.txt file used to control Internet spiders
 :Python Version: 2.1.3 and later
 
-:mod:`robotparser` implements a parser for the ``robots.txt`` file format, including a simple function for checking if a given user agent can access a resource.  It is intended for use in well-behaved spiders or other crawler applications that need to either be throttled or 
+:mod:`robotparser` implements a parser for the ``robots.txt`` file format, including a simple function for checking if a given user agent can access a resource.  It is intended for use in well-behaved spiders or other crawler applications that need to either be throttled or otherwise restricted.
 
 .. note::
 
