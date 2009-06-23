@@ -1,6 +1,9 @@
 History
 =======
 
+working
+  - Moved ``run_script()`` from pavement.py to `sphinxcontrib-paverutils <http://pypi.python.org/pypi/sphinxcontrib-paverutils>`_ 1.1.
+
 1.93
   - 21 Jun 2009, :mod:`robotparser`
 
