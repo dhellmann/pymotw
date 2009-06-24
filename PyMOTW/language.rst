@@ -6,3 +6,4 @@ Python Language Services
     :maxdepth: 1
     
     compileall/index
+    pyclbr/index
