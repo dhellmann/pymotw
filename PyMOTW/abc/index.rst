@@ -107,28 +107,83 @@ Since ``ABCWithConcreteImplementation`` is an abstract base class, it isn't poss
 Abstract Properties
 ===================
 
-- cover basic property API first, then show how abstract property is useful
+If your API specification includes attributes in addition to methods, you can require the attributes in concrete classes by defining them with ``@abstractproperty``.
+
+.. include:: abc_abstractproperty.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+The ``Base`` class in the example cannot be instantiated because it has only an abstract version of the property getter method.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'abc_abstractproperty.py'))
+.. }}}
+.. {{{end}}}
+
+You can also define abstract read/write properties.
+
+.. include:: abc_abstractproperty_rw.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+Notice that the concrete property must be defined the same way as the abstract property.  Trying to override a read/write property in ``PartialImplementation`` with one that is read-only does not work.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'abc_abstractproperty_rw.py'))
+.. }}}
+.. {{{end}}}
+
+Unfortunately, the decorator syntax does not work for read/write abstract properties the way it does with concrete properties.
+
+.. include:: abc_abstractproperty_rw_deco.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+Notice that the caller cannot set the property value.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'abc_abstractproperty_rw_deco.py', ignore_error=True))
+.. }}}
+.. {{{end}}}
+
 
 Collection Types
 ================
 
-- abcs from :mod:`collections`
-  - Hashable
-  - Iterable
-  - Iterator
-  - Sized
-  - Container
-  - Set
-  - Mapping
-  - MutableMapping
-  - Sequence
-  - MutableSequence
-- are these abcs registered for the built-in types automatically?
+The :mod:`collections` module defines several abstract base classes related to container (and containable) types.
 
-Numeric Types
-=============
+General container classes:
 
-- abcs for numbers
+- Container
+- Sized
+
+Iterator and Sequence classes:
+
+- Iterable
+- Iterator
+- Sequence
+- MutableSequence
+
+Unique values:
+
+- Hashable
+- Set
+- MutableSet
+
+Mappings:
+
+- Mapping
+- MutableMapping
+- MappingView
+- KeysView
+- ItemsView
+- ValuesView
+
+Miscelaneous:
+
+- Callable
+
+In addition to serving as detailed real-world examples of abstract base classes, Python's built-in types are automatically registered to these classes when you import :mod:`collections`. This means you can safely use ``isinstance()`` to check parameters in your code to ensure that they support the API you need.  The base classes can also be used to define your own collection types, since many of them provide concrete implementations of the internals and only need a few methods overridden.  Refer to the standard library docs for collections for more details.
 
 .. seealso::
 
@@ -140,6 +195,9 @@ Numeric Types
     
     :mod:`collections`
         The collections module includes abstract base classes for several collection types.
+
+    `collections <http://docs.python.org/library/collections.html>`_
+        The standard library documentation for collections.
 
     :pep:`3141`
         A Type Hierarchy for Numbers
