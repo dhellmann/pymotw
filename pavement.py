@@ -309,14 +309,16 @@ def clean_blog_html(body):
     
     return s
 
-def gen_blog_post(outdir, input_base, blog_base):
+def gen_blog_post(outdir, input_base, blog_base, url_base):
     """Generate the blog post body.
     """
     outdir = path(outdir)
     input_file = outdir / input_base
     blog_file = outdir/ blog_base
     
-    canonical_url = "http://www.doughellmann.com/PyMOTW/" + MODULE + "/"
+    canonical_url = "http://www.doughellmann.com/" + url_base
+    if not canonical_url.endswith('/'):
+        canonical_url += '/'
     if input_base != "index.html":
         canonical_url += input_base
     home_page_reference = '''<p><a class="reference external" href="http://www.doughellmann.com/PyMOTW/">PyMOTW Home</a></p>'''
@@ -366,6 +368,7 @@ def blog(options):
         outdir=options.blog.outdir, 
         input_base=options.blog.in_file, 
         blog_base=options.blog.out_file,
+        url_base=options.blog.sourcedir,
         )
     
     if 'EDITOR' in os.environ:
