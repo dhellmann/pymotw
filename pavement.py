@@ -12,9 +12,6 @@ import sys
 import traceback
 import types
 
-# Third-party
-import sphinx
-
 # Set up Paver
 import paver
 import paver.doctools
@@ -87,6 +84,8 @@ options(
         packages = sorted(PACKAGE_DATA.keys()),
         package_data=PACKAGE_DATA,
         zip_safe=False,
+        
+        scripts=['motw'],
 
         ),
     
@@ -107,8 +106,8 @@ options(
     ),
 
     html = Bunch(
-        builddir='docs',
-        outdir='docs',
+        builddir='%s/docs' % PROJECT,
+        outdir='%s/docs' % PROJECT,
         templates='pkg',
     ),
 
@@ -198,7 +197,11 @@ def sdist(options):
     dist_files = path('dist').glob('*.tar.gz')
     dest_dir = path(options.sdistext.outdir).expanduser()
     for f in dist_files:
-        f.move(dest_dir)
+        dest_file = dest_dir / f.basename()
+        dest_file.unlink()
+        f.copy(dest_dir)
+    
+    sh('growlnotify -m "package built"')
     return
 
 @task

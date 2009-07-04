@@ -1,0 +1,86 @@
+#!/usr/bin/env python
+# encoding: utf-8
+#
+# Copyright (c) 2009 Doug Hellmann All rights reserved.
+#
+"""
+"""
+#end_pymotw_header
+
+import optparse
+import os
+import sys
+import webbrowser
+
+import PyMOTW
+
+def main(args):
+    try:
+        _main(args)
+    except Exception, err:
+        sys.stderr.write(str(err))
+        sys.stderr.write('\n')
+        return 1
+    return 0
+
+def show_text(module_name):
+    package_path = PyMOTW.__path__[0]
+    filename = os.path.join(package_path, module_name, 'index.rst')
+    with open(filename, 'rt') as f:
+        print f.read()
+    return
+
+def show_html(module_name):
+    package_path = PyMOTW.__path__[0]
+    module_path = os.path.join(package_path, PyMOTW.DOCS_DIR, module_name)
+    url = 'file://localhost' + module_path + '/index.html'
+    webbrowser.open(url)
+    return
+
+def show_webpage(module_name):
+    url = 'http://www.doughellmann.com/PyMOTW/' + module_name + '/'
+    webbrowser.open(url)
+    return
+
+OUTPUT_HANDLERS = {
+    'text':show_text,
+    'html':show_html,
+    'web':show_webpage,
+    }
+    
+
+def _main(args):
+    parser = optparse.OptionParser(
+        usage='usage: %prog [options] <module_name>',
+        )
+    parser.add_option('-t', '--text', 
+                      help="Print plain-text version of help to stdout", 
+                      action='store_const', 
+                      const='text',
+                      dest='mode', 
+                      )
+    parser.add_option('-w', '--web', 
+                      help="Open HTML version of help from web", 
+                      action='store_const', 
+                      const='web',
+                      dest='mode', 
+                      )
+    parser.add_option('--html', 
+                      help="Open HTML version of help from installed file", 
+                      action='store_const', 
+                      const='html',
+                      dest='mode',
+                      default='html', 
+                      )
+    options, args = parser.parse_args(args)
+    if len(args) != 1:
+        raise ValueError('Please provide the name of exactly one module from the Python standard library.')
+    module_name = args[0]
+    
+    handler = OUTPUT_HANDLERS[options.mode]
+    handler(module_name)
+    
+    return 0
+
+if __name__ == '__main__':
+    sys.exit(main(sys.argv[1:]))

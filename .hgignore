@@ -15,6 +15,7 @@ syntax: re
 ^PyMOTW/.*/example
 ^PyMOTW/.*/Example
 ^PyMOTW/csv/testout.*\.csv
+^PyMOTW/docs/.*
 ^PyMOTW/gettext/.*\.pot
 ^PyMOTW/glob/dir
 ^PyMOTW/mmap/lorem_copy.txt
@@ -32,6 +33,5 @@ syntax: re
 ^PyMOTW.egg-info
 ^sphinx/doctrees
 ^web/.*
-^docs/.*
 ^blog_posts/.*
 ^trace.txt
