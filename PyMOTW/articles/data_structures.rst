@@ -4,12 +4,12 @@
 In-Memory Data Structures
 #########################
 
-Python includes several standard programming data structures as built-in types (list, tuple, dictionary, and set).  Most applications won't need any other structures, but when they do the standard library comes through.
+Python includes several standard programming data structures as `built-in types <http://docs.python.org/library/stdtypes.html>`_ (list, tuple, dictionary, and set).  Most applications won't need any other structures, but when they do the standard library delivers.
 
 array
 =====
 
-For large amounts of data, it may be more efficient to use a :mod:`array` instead of a ``list``.  Since the array is limited to a single data type, it can use a more compact memory representation than a general purpose list.  As an added benefit, arrays can be manipulated using many of the same methods as a list, so it may be possible to replaces lists with arrays in to your application without a lot of other changes.
+For large amounts of data, it may be more efficient to use an :mod:`array` instead of a ``list``.  Since the array is limited to a single data type, it can use a more compact memory representation than a general purpose list.  As an added benefit, arrays can be manipulated using many of the same methods as a list, so it may be possible to replaces lists with arrays in to your application without a lot of other changes.
 
 Sorting
 =======
@@ -37,20 +37,3 @@ Custom Variations
 =================
 
 And finally, if the available types don't give you what you need, you may want to subclass one of the native types and customize it.  You can also start from scratch by using the abstract base classes defined in :mod:`collections`.
-
-.. seealso::
-
-    `Builtin Types <http://docs.python.org/library/stdtypes.html>`_
-        The standard library documentation for Python types such as list, tuple, dict, and set.
-    
-    :mod:`array`
-        Homogeneous sequence data structure.
-    
-    :mod:`collections`
-        More esoteric collection types and abstract base classes that define the API of built-in types.
-        
-    :mod:`Queue`
-        Thread-safe FIFO.
-    
-    :mod:`struct`
-        Decode binary data into native types for processing.
