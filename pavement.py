@@ -332,12 +332,26 @@ def gen_blog_post(outdir, input_base, blog_base):
 @task
 @needs(['cog'])
 @cmdopts([
-    ('in-file=', 'b', 'Blog input filename'),
-    ('out-file=', 'B', 'Blog output filename'),    
+    ('in-file=', 'b', 'Blog input filename (e.g., "-b index.html")'),
+    ('out-file=', 'B', 'Blog output filename (e.g., "-B blog.html")'),
+    ('sourcedir=', 's', 'Source directory name (e.g., "-s PyMOTW/articles")'),
 ])
 def blog(options):
     """Generate the blog post version of the HTML for the current module.
-    """
+    
+    The default behavior generates the post for the current module using 
+    its index.html file as input.
+    
+    To use a different file within the module directory, use the 
+    --in-file or -b option::
+    
+      paver blog -b communication.html
+      
+    To run against a directory other than a module, use the 
+    -s or --sourcedir option::
+    
+      paver blog -s PyMOTW/articles -b text_processing.html
+    """    
     # Clean and recreate output directory
     remake_directories(options.blog.outdir)
     
