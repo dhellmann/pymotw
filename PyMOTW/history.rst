@@ -2,9 +2,7 @@ History
 =======
 
 Working
-  - 5 July 2009, :mod:`abc`
-  - Rearrange packaging to install the HTML files.
-  - Add ``motw`` command line app to show PyMOTW article on a given module, similar to pydoc.
+  - Add :ref:`article-data-structures` article.
 
 1.94
   - Moved ``run_script()`` from pavement.py to `sphinxcontrib-paverutils <http://pypi.python.org/pypi/sphinxcontrib-paverutils>`_ 1.1.
