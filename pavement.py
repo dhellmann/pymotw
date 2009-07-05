@@ -193,13 +193,13 @@ def html(options):
 def sdist(options):
     """Create a source distribution.
     """
-    # Copy the output file to the desktop
+    # Move the output file to the desktop
     dist_files = path('dist').glob('*.tar.gz')
     dest_dir = path(options.sdistext.outdir).expanduser()
     for f in dist_files:
         dest_file = dest_dir / f.basename()
         dest_file.unlink()
-        f.copy(dest_dir)
+        f.move(dest_dir)
     
     sh('growlnotify -m "package built"')
     return
@@ -309,6 +309,28 @@ def clean_blog_html(body):
     
     return s
 
+def get_post_title(filename):
+    f = open(filename, 'rt')
+    try:
+        body = f.read()
+    finally:
+        f.close()
+
+    # Clean up the HTML
+    from BeautifulSoup import BeautifulSoup
+
+    # The post body is passed to stdin.
+    soup = BeautifulSoup(body)
+
+    # Get the heading(s)
+    h1 = soup.findAll('h1')[0]
+
+    # Get BeautifulSoup's version of the string
+    title = ' '.join(h1.contents)
+
+    return title
+
+
 def gen_blog_post(outdir, input_base, blog_base):
     """Generate the blog post body.
     """
@@ -368,7 +390,13 @@ def blog(options):
         blog_base=options.blog.out_file,
         )
     
-    if 'EDITOR' in os.environ:
+    if os.path.exists('bin/SendToMarsEdit.scpt'):
+        title = get_post_title(blog_file)
+        sh('osascript bin/SendToMarsEdit.scpt "%s" "%s"' % 
+            (blog_file, "PyMOTW: %s" % title)
+            )
+    
+    elif 'EDITOR' in os.environ:
         sh('$EDITOR %s' % blog_file)
     return
 
