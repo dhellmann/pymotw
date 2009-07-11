@@ -87,3 +87,5 @@ Working with binary packed data is typically reserved for highly performance sen
 
     `WikiPedia: Endianness <http://en.wikipedia.org/wiki/Endianness>`_
         Explanation of byte order and endianness in encoding.
+
+    :ref:`article-data-structures`

@@ -190,3 +190,5 @@ As the example illustrates, it is possible to access the fields of the namedtupl
 
     `James Tauber: Evolution of Default Dictionaries in Python <http://jtauber.com/blog/2008/02/27/evolution_of_default_dictionaries_in_python/>`_
         Discussion of how defaultdict relates to other means of initializing dictionaries.
+
+    :ref:`article-data-structures`

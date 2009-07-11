@@ -104,5 +104,7 @@ account on http://www.CastSampler.com.
 
     `feedparser`_
         Mark Pilgrim's feedparser module (http://www.feedparser.org/).
+    
+    :ref:`article-data-structures`
 
 .. _feedparser: http://www.feedparser.org/
