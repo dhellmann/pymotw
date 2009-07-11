@@ -127,3 +127,5 @@ unbroken range of sequential characters. The same range value could be written
 
     :mod:`fnmatch`
         Filename matching implementation.
+
+    :ref:`article-file-access`

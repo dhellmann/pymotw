@@ -197,3 +197,5 @@ environment variables, you can set tempfile.tempdir directly.
 
     `tempfile <http://docs.python.org/lib/module-tempfile.html>`_
         Standard library documentation for this module.
+
+    :ref:`article-file-access`

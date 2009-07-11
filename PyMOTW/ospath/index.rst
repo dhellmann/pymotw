@@ -229,3 +229,4 @@ directories.
     :mod:`os`
         The os module is a parent of os.path.
 
+    :ref:`article-file-access`

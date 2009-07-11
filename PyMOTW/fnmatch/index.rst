@@ -90,3 +90,5 @@ Notice that some of the characters are escaped to make a valid expression.
 
     :mod:`glob`
         The glob module combines :mod:`fnmatch` matching with os.listdir() to produce lists of files and directories matching patterns.
+
+    :ref:`article-file-access`
