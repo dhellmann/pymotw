@@ -114,4 +114,5 @@ The indent values can include non-whitespace characters, too, so the hanging ind
     `textwrap <http://docs.python.org/lib/module-textwrap.html>`_
         Standard library documentation for this module.
 
+    :ref:`article-text-processing`
 

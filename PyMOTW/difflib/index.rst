@@ -205,3 +205,5 @@ You can use SequenceMatcher with your own classes, as well as built-in types.
 
     `Pattern Matching: The Gestalt Approach <http://www.ddj.com/documents/s=1103/ddj8807c/>`_
         Discussion of a similar algorithm by John W. Ratcliff and D. E. Metzener published in Dr. Dobb’s Journal in July, 1988.
+
+    :ref:`article-text-processing`
