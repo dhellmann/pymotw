@@ -95,7 +95,7 @@ command line as well as from within your Python program.
         -t: open new tab
 
 
-References
-==========
+.. seealso::
 
-Standard library documentation: `webbrowser <http://docs.python.org/lib/module-webbrowser.html>`_
+    `webbrowser <http://docs.python.org/lib/module-webbrowser.html>`_
+        Standard library documentation for this module.
