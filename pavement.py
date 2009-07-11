@@ -177,8 +177,14 @@ def remake_directories(*dirnames):
     return
 
 @task
-@needs(['cog'])
+@needs(['cog', 'htmlquick'])
 def html(options):
+    "Run cog to produce example output and then generate HTML files."
+    return
+    
+@task
+def htmlquick(options):
+    "Generate HTML output without running cog first."
     set_templates(options.html.templates)
     if paverutils is None:
         raise RuntimeError('Could not find sphinxcontrib.paverutils, will not be able to build HTML output.')
