@@ -50,3 +50,5 @@ fileinput module includes functions for accessing that information
 
     `Patrick Bryant <http://events.mediumloud.com/>`_
         Atlanta-based singer/song-writer.
+
+    :ref:`article-file-access`

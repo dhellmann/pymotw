@@ -1,6 +1,9 @@
 History
 =======
 
+1.96
+  - 12 Jully 2009, :ref:`article-file-access`
+
 1.95
   - 5 July 2009, :mod:`abc`
   - Rearrange packaging to install the HTML files.

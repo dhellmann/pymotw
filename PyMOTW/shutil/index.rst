@@ -173,3 +173,5 @@ removed.
 
     `shutil <http://docs.python.org/lib/module-shutil.html>`_
         Standard library documentation for this module.
+
+    :ref:`article-file-access`

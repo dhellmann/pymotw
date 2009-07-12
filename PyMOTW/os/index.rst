@@ -640,3 +640,5 @@ exec*() calls for you in one statement:
     `Advanced Programming in the UNIX(R) Environment <http://www.amazon.com/Programming-Environment-Addison-Wesley-Professional-Computing/dp/0201433079/ref=pd_bbs_3/002-2842372-4768037?ie=UTF8&s=books&amp;qid=1182098757&sr=8-3>`_
         Covers working with multiple processes, such as handling signals, closing duplicated
         file descriptors, etc.
+
+    :ref:`article-file-access`
