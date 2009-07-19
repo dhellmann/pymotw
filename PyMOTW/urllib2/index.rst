@@ -289,12 +289,49 @@ with attached files.
     
 
 
-HTTP Error Handling
-===================
-
-
 Custom Protocol Handlers
 ========================
+
+urllib2 has built-in support for HTTP(S), FTP, and local file access. If you need to add
+support for other URL types, you can register your own protocol handler to be invoked as
+needed. For example, if you want to support URLs pointing to arbitrary files on remote NFS
+servers, without requiring your users to mount the path manually, would create a
+class derived from BaseHandler and with a method ``nfs_open()``.  
+
+The protocol open method takes a single argument, the Request instance, and it should return
+an object with a read() method that can be used to read the data, an info() method to return
+the response headers, and geturl() to return the actual URL of the file being read. A simple
+way to achieve that is to create an instance of ``urllib.addurlinfo``, passing the headers,
+URL, and open file handle in to the constructor.
+
+.. include:: urllib2_nfs_handler.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+The FauxNFSHandler and NFSFile classes print messages to illustrate where a real
+implementation would add mount and unmount calls. Since this is just a simulation,
+FauxNFSHandler is primed with the name of a temporary directory where it should look for all
+of its files.
+
+::
+
+    $ python urllib2_nfs_handler.py
+    
+    FauxNFSHandler simulating mount:
+      Remote path: /path/to/the
+      Server     : remote_server
+      Local path : /var/folders/9R/9R1t+tR02Raxzk+F71Q50U+++Uw/-Tmp-/tmppv5Efn
+      File name  : file.txt
+    
+    READ CONTENTS: Contents of file.txt
+    URL          : nfs://remote_server/path/to/the/file.txt
+    HEADERS:
+      Content-length  = 20
+      Content-type    = text/plain
+    
+    NFSFile:
+      unmounting /var/folders/9R/9R1t+tR02Raxzk+F71Q50U+++Uw/-Tmp-/tmppv5Efn
+      when file.txt is closed
 
 
 .. seealso::
