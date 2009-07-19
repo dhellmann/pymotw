@@ -24,10 +24,7 @@ class MultiPartForm(object):
         return
     
     def get_content_type(self):
-        if self.files:
-            return 'multipart/form-data; boundary=%s' % self.boundary
-        else:
-            return 'application/x-www-form-urlencoded'
+        return 'multipart/form-data; boundary=%s' % self.boundary
 
     def add_field(self, name, value):
         """Add a simple field to the form data."""
@@ -44,16 +41,6 @@ class MultiPartForm(object):
         return
     
     def __str__(self):
-        if self.files:
-            return self._str_multipart()
-        else:
-            return self._str_simple()
-
-    def _str_simple(self):
-        """Return a string representing the form data, without attached files."""
-        return urllib.urlencode(self.form_fields)
-        
-    def _str_multipart(self):
         """Return a string representing the form data, including attached files."""
         # Build a list of lists, each containing "lines" of the
         # request.  Each part is separated by a boundary string.
