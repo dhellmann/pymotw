@@ -36,17 +36,17 @@ resource via methods like read() and readlines().
     $ python urllib2_urlopen.py
     RESPONSE: <addinfourl at 11940488 whose fp = <socket._fileobject object at 0xb573f0>>
     URL     : http://localhost:8080/
-    DATE    : Sun, 19 Jul 2009 13:11:54 GMT
+    DATE    : Sun, 19 Jul 2009 14:01:31 GMT
     HEADERS :
     ---------
     Server: BaseHTTP/0.3 Python/2.6.2
-    Date: Sun, 19 Jul 2009 13:11:54 GMT
+    Date: Sun, 19 Jul 2009 14:01:31 GMT
     
-    LENGTH  : 221
+    LENGTH  : 349
     DATA    :
     ---------
     CLIENT VALUES:
-    client_address=('127.0.0.1', 55406) (localhost)
+    client_address=('127.0.0.1', 55836) (localhost)
     command=GET
     path=/
     real path=/
@@ -57,6 +57,13 @@ resource via methods like read() and readlines().
     server_version=BaseHTTP/0.3
     sys_version=Python/2.6.2
     protocol_version=HTTP/1.0
+    
+    HEADERS RECEIVED:
+    accept-encoding=identity
+    connection=close
+    host=localhost:8080
+    user-agent=Python-urllib/2.6
+    
 
 The file-like object returned by urlopen() is iterable:
 
@@ -70,17 +77,23 @@ This example strips the trailing newlines and carriage returns before printing t
 
     $ python urllib2_urlopen_iterator.py
     CLIENT VALUES:
-    client_address=('127.0.0.1', 55423) (localhost)
+    client_address=('127.0.0.1', 55840) (localhost)
     command=GET
     path=/
     real path=/
     query=
     request_version=HTTP/1.1
-
+    
     SERVER VALUES:
     server_version=BaseHTTP/0.3
     sys_version=Python/2.6.2
     protocol_version=HTTP/1.0
+    
+    HEADERS RECEIVED:
+    accept-encoding=identity
+    connection=close
+    host=localhost:8080
+    user-agent=Python-urllib/2.6
 
 Encoding Arguments
 ------------------
@@ -100,7 +113,7 @@ arguments.
     $ python urllib2_http_get_args.py
     Encoded: q=query+string&foo=bar
     CLIENT VALUES:
-    client_address=('127.0.0.1', 55463) (localhost)
+    client_address=('127.0.0.1', 55849) (localhost)
     command=GET
     path=/?q=query+string&foo=bar
     real path=/
@@ -112,7 +125,11 @@ arguments.
     sys_version=Python/2.6.2
     protocol_version=HTTP/1.0
     
-
+    HEADERS RECEIVED:
+    accept-encoding=identity
+    connection=close
+    host=localhost:8080
+    user-agent=Python-urllib/2.6
 
 
 HTTP POST
@@ -123,9 +140,6 @@ HTTP POST
     The test server for these examples is in BaseHTTPServer_POST.py, from the
     PyMOTW examples for the :mod:`BaseHTTPServer`. Start the server in one
     terminal window, then run these examples in another.
-
-Posting form data
------------------
 
 To POST form-encoded data to the remote server, instead of using GET, simply pass the encoded
 query arguments as data to urlopen().
@@ -142,17 +156,64 @@ The server can decode the form data and access the individual values by name.
     Client: ('127.0.0.1', 55479)
     Path: /
     Form data:
-    	q=query string
-    	foo=bar
+        q=query string
+        foo=bar
+
+Working with Requests Directly
+==============================
+
+urlopen() is a convenience function that hides some of the details of how the request is made
+and handled for you. For more precise control, you may want to instantiate and use a Request
+object directly.
+
+Adding Outgoing Headers
+-----------------------
+
+As the examples above illustrate, the default *User-agent* header value is made up of the
+constant ``Python-urllib``, followed by the Python interpreter version. If you are creating
+an application that will access other people's web resources, it is a courtesy to include
+real user agent information in your requests, so they can identify the source of the hits
+more easily. Using a custom agent also allows them to control crawlers using a robots.txt
+file (see :mod:`robotparser`).
+
+.. include:: urllib2_request_header.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+After creating a Request object, it is easy to use ``add_header()`` to set the user agent
+value before opening the request.  The last line of the output shows our custom
+value.
+
+::
+
+    $ python urllib2_request_header.py
+    CLIENT VALUES:
+    client_address=('127.0.0.1', 55876) (localhost)
+    command=GET
+    path=/
+    real path=/
+    query=
+    request_version=HTTP/1.1
+    
+    SERVER VALUES:
+    server_version=BaseHTTP/0.3
+    sys_version=Python/2.6.2
+    protocol_version=HTTP/1.0
+    
+    HEADERS RECEIVED:
+    accept-encoding=identity
+    connection=close
+    host=localhost:8080
+    user-agent=PyMOTW (http://www.doughellmann.com/PyMOTW/)
+    
+    
 
 
-Uploading file data
--------------------
+Posting Form Data
+-----------------
 
-
-
-Adding Headers
-==============
+Uploading Files
+---------------
 
 
 HTTP Error Handling
@@ -175,4 +236,12 @@ Custom Protocol Handlers
         Work with the URL string itself.
 
     `urllib2 -- The Missing Manual <http://www.voidspace.org.uk/python/articles/urllib2.shtml>`_
-        Michael Foord's write-up on using urllib2 to 
+        Michael Foord's write-up on using urllib2.
+    
+    `Upload Scripts <http://www.voidspace.org.uk/python/cgi.shtml#upload>`_
+        Example scripts from Michael Foord that illustrate how to upload a file
+        using HTTP and then receive the data on the server.
+
+    `HTTP client to POST using multipart/form-data <http://code.activestate.com/recipes/146306/>`_
+        Python cookbook recipe showing how to encode and post data, including files,
+        over HTTP.
