@@ -254,7 +254,7 @@ distinguish incoming form fields from uploaded files.
     :literal:
     :start-after: #end_pymotw_header
 
-The MultiPartForm class can represent either a simple form or a multi-part MIME message
+The MultiPartForm class can represent an arbitrary form as a multi-part MIME message
 with attached files.
 
 ::
