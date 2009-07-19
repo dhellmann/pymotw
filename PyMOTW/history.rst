@@ -1,8 +1,11 @@
 History
 =======
 
+1.97
+  - 19 July 2009, :mod:`urllib2`
+
 1.96
-  - 12 Jully 2009, :ref:`article-file-access`
+  - 12 July 2009, :ref:`article-file-access`
 
 1.95
   - 5 July 2009, :mod:`abc`
