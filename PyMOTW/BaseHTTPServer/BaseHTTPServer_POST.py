@@ -60,9 +60,8 @@ class PostHandler(BaseHTTPRequestHandler):
                 file_data = field_item.file.read()
                 file_len = len(file_data)
                 del file_data
-                self.wfile.write('\tUploaded %s "%s" (%d bytes)\n' % (field, 
-                                                                      field_item.filename,
-                                                                      file_len))
+                self.wfile.write('\tUploaded %s as "%s" (%d bytes)\n' % \
+                        (field, field_item.filename, file_len))
             else:
                 # Regular form value
                 self.wfile.write('\t%s=%s\n' % (field, form[field].value))

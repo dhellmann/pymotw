@@ -62,7 +62,7 @@ class MultiPartForm(object):
         # Add the files to upload
         parts.extend(
             [ part_boundary,
-              'Content-Disposition: form-data; name="%s"; filename="%s"' % \
+              'Content-Disposition: file; name="%s"; filename="%s"' % \
                  (field_name, filename),
               'Content-Type: %s' % content_type,
               '',

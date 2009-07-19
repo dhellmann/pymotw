@@ -255,36 +255,36 @@ distinguish incoming form fields from uploaded files.
     :start-after: #end_pymotw_header
 
 The MultiPartForm class can represent either a simple form or a multi-part MIME message
-with attache files.
+with attached files.
 
 ::
 
     $ python urllib2_upload_files.py
     
     OUTGOING DATA:
-    --192.168.1.17.527.28832.1248017900.172.1
+    --192.168.1.17.527.30074.1248020372.206.1
     Content-Disposition: form-data; name="firstname"
     
     Doug
-    --192.168.1.17.527.28832.1248017900.172.1
+    --192.168.1.17.527.30074.1248020372.206.1
     Content-Disposition: form-data; name="lastname"
     
     Hellmann
-    --192.168.1.17.527.28832.1248017900.172.1
-    Content-Disposition: form-data; name="biography"; filename="bio.txt"
+    --192.168.1.17.527.30074.1248020372.206.1
+    Content-Disposition: file; name="biography"; filename="bio.txt"
     Content-Type: text/plain
     
     Python developer and blogger.
-    --192.168.1.17.527.28832.1248017900.172.1--
+    --192.168.1.17.527.30074.1248020372.206.1--
     
     
     SERVER RESPONSE:
-    Client: ('127.0.0.1', 56825)
+    Client: ('127.0.0.1', 57126)
     User-agent: PyMOTW (http://www.doughellmann.com/PyMOTW/)
     Path: /
     Form data:
     	lastname=Hellmann
-    	Uploaded biography "bio.txt" (29 bytes)
+    	Uploaded biography as "bio.txt" (29 bytes)
     	firstname=Doug
     
 
