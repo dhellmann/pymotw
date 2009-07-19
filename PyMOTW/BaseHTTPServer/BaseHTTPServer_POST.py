@@ -48,6 +48,7 @@ class PostHandler(BaseHTTPRequestHandler):
         self.send_response(200)
         self.end_headers()
         self.wfile.write('Client: %s\n' % str(self.client_address))
+        self.wfile.write('User-agent: %s\n' % str(self.headers['user-agent']))
         self.wfile.write('Path: %s\n' % self.path)
         self.wfile.write('Form data:\n')
 

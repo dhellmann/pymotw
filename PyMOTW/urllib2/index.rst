@@ -144,7 +144,7 @@ HTTP POST
 To POST form-encoded data to the remote server, instead of using GET, simply pass the encoded
 query arguments as data to urlopen().
 
-.. include:: urllib_urlopen_post.py
+.. include:: urllib2_urlopen_post.py
     :literal:
     :start-after: #end_pymotw_header
 
@@ -153,11 +153,13 @@ The server can decode the form data and access the individual values by name.
 ::
 
     $ python urllib2_urlopen_post.py
-    Client: ('127.0.0.1', 55479)
+    Client: ('127.0.0.1', 55943)
+    User-agent: Python-urllib/2.6
     Path: /
     Form data:
-        q=query string
-        foo=bar
+    	q=query string
+    	foo=bar
+
 
 Working with Requests Directly
 ==============================
@@ -205,12 +207,41 @@ value.
     connection=close
     host=localhost:8080
     user-agent=PyMOTW (http://www.doughellmann.com/PyMOTW/)
-    
-    
 
 
 Posting Form Data
 -----------------
+
+You can set the outgoing data on the Request to post it to the server.
+
+.. include:: urllib2_request_post.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+The HTTP method used by the Request changes from GET to POST after the data is added.
+
+::
+
+    $ python urllib2_request_post.py
+    Request method before data: GET
+    Request method after data : POST
+    
+    OUTGOING DATA:
+    q=query+string&foo=bar
+    
+    SERVER RESPONSE:
+    Client: ('127.0.0.1', 56044)
+    User-agent: PyMOTW (http://www.doughellmann.com/PyMOTW/)
+    Path: /
+    Form data:
+    	q=query string
+    	foo=bar
+    
+.. note::
+
+    Although the method is ``add_data()``, its effect is *not* cumulative.  Each call
+    replaces the previous data.
+
 
 Uploading Files
 ---------------
