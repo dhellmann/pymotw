@@ -34,10 +34,14 @@ class MultiPartForm(object):
     def add_file(self, fieldname, filename, fileHandle=None, mimetype=None):
         """Add a file to be uploaded."""
         if fileHandle is None:
-            fileHandle = open(filename, 'rb')
+            with open(filename, 'rb') as fileHandle:
+                body = fileHandle.read()
+        else:
+            # The caller will close the file, so just read from it.
+            body = fileHandle.read()
         if mimetype is None:
             mimetype = mimetypes.guess_type(filename)[0] or 'application/octet-stream'
-        self.files.append((fieldname, filename, mimetype, fileHandle.read()))
+        self.files.append((fieldname, filename, mimetype, body))
         return
     
     def __str__(self):
