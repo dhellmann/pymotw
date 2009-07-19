@@ -246,6 +246,48 @@ The HTTP method used by the Request changes from GET to POST after the data is a
 Uploading Files
 ---------------
 
+Encoding files for upload requires a little more work than simple forms.  A complete MIME
+message needs to be constructed in the body of the request, so that the server can
+distinguish incoming form fields from uploaded files.
+
+.. include:: urllib2_upload_files.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+The MultiPartForm class can represent either a simple form or a multi-part MIME message
+with attache files.
+
+::
+
+    $ python urllib2_upload_files.py
+    
+    OUTGOING DATA:
+    --192.168.1.17.527.28832.1248017900.172.1
+    Content-Disposition: form-data; name="firstname"
+    
+    Doug
+    --192.168.1.17.527.28832.1248017900.172.1
+    Content-Disposition: form-data; name="lastname"
+    
+    Hellmann
+    --192.168.1.17.527.28832.1248017900.172.1
+    Content-Disposition: form-data; name="biography"; filename="bio.txt"
+    Content-Type: text/plain
+    
+    Python developer and blogger.
+    --192.168.1.17.527.28832.1248017900.172.1--
+    
+    
+    SERVER RESPONSE:
+    Client: ('127.0.0.1', 56825)
+    User-agent: PyMOTW (http://www.doughellmann.com/PyMOTW/)
+    Path: /
+    Form data:
+    	lastname=Hellmann
+    	Uploaded biography "bio.txt" (29 bytes)
+    	firstname=Doug
+    
+
 
 HTTP Error Handling
 ===================
@@ -276,3 +318,12 @@ Custom Protocol Handlers
     `HTTP client to POST using multipart/form-data <http://code.activestate.com/recipes/146306/>`_
         Python cookbook recipe showing how to encode and post data, including files,
         over HTTP.
+
+    `Form content types <http://www.w3.org/TR/REC-html40/interact/forms.html#h-17.13.4>`_
+        W3C specification for posting files or large amounts of data via HTTP forms.
+
+    :mod:`mimetypes`
+        Map filenames to mimetype.
+    
+    :mod:`mimetools`
+        Tools for parsing MIME messages.
