@@ -143,7 +143,7 @@ to standard output:
     :literal:
     :start-after: #end_pymotw_header
 
-Make note of the fact that repeater.py writes to stderr when it starts and
+Make note of the fact that repeater.py writes to stdout when it starts and
 stops. We can use that to show the lifetime of the subprocess in the next
 example. The following interaction example uses the stdin and stdout file
 handles owned by the Popen instance in different ways. In the first example, a
