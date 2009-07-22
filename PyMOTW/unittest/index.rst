@@ -241,7 +241,7 @@ multiple files and directories.
         An alternate means of running tests embedded in docstrings or 
         external documentation files.
 
-    `Proctor <http://www.doughellmann/projects/Proctor/>`_
+    `Proctor <http://www.doughellmann.com/projects/Proctor/>`_
         A simple test discovery and runner tool.
 
     `nose <http://somethingaboutorange.com/mrl/projects/nose/>`_
