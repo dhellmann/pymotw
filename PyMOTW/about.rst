@@ -31,6 +31,11 @@ German
 
 Ralf Schönian is translating PyMOTW into German, following an alphabetical order.  The results are available on his web site, http://schoenian-online.de/pymotw.html.  Ralf is an active member of the `pyCologne <http://wiki.python.de/User_Group_K%C3%B6ln?action=show&redirect=pyCologne>`_ user group in Germany and author of pyVoc, the open source English/German vocabulary trainer (http://code.google.com/p/pyvoc/).
 
+Italian
+-------
+
+Roberto Pauletto is working on `an Italian translation <http://robyp.freesitespace.net/>`_.  Roberto creates Windows applications with C# by day, and tinkers with Linux and Python at home.  He has recently moved to Python from Perl for all of his system-administration scripting.
+
 
 Spanish
 -------

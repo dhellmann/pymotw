@@ -1,6 +1,9 @@
 History
 =======
 
+working
+  - Added link to Roberto Pauletto's Italian translation.
+
 1.97
   - 19 July 2009, :mod:`urllib2`
 
