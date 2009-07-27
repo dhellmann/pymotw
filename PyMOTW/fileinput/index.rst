@@ -52,3 +52,5 @@ fileinput module includes functions for accessing that information
         Atlanta-based singer/song-writer.
 
     :ref:`article-file-access`
+
+    :ref:`article-text-processing`

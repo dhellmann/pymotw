@@ -146,3 +146,5 @@ For information on the deprecated functions moved to the string and unicode clas
 
     :pep:`292`
         Simpler String Substitutions
+
+    :ref:`article-text-processing`
