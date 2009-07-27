@@ -3,7 +3,7 @@ History
 
 1.98
   - Added link to Roberto Pauletto's Italian translation.
-  - Add :ref:`article-text-processing` article.
+  - 27 July 2009, Add :ref:`article-text-processing` article.
 
 1.97
   - 19 July 2009, :mod:`urllib2`
