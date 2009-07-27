@@ -226,7 +226,6 @@ def set_templates(template_name):
     return
 
 @task
-@needs(['cog'])
 def pdf():
     """Generate the PDF book.
     """
@@ -248,17 +247,23 @@ def website(options):
     return
 
 @task
-def installwebsite():
+def installwebsite(options):
     """Rebuild and copy website files to the remote server.
     """
     # Clean up
     remake_directories(options.pdf.builddir, options.website.builddir)
     # Rebuild
-    call_task('website')
+    website(options)
+    # Install
+    rsyncwebsite(options)
+    return
+    
+@task
+def rsyncwebsite(options):
     # Copy to the server
     os.environ['RSYNC_RSH'] = '/usr/bin/ssh'
     src_path = path(options.website.builddir) / 'html'
-    sh('cd %s; rsync --archive --delete --verbose . %s:%s' % 
+    sh('(cd %s; rsync --archive --delete --verbose . %s:%s)' % 
         (src_path, options.website.server, options.website.server_path))
     return
 
@@ -360,7 +365,6 @@ def gen_blog_post(outdir, input_base, blog_base, url_base):
     return
 
 @task
-@needs(['cog'])
 @cmdopts([
     ('in-file=', 'b', 'Blog input filename (e.g., "-b index.html")'),
     ('out-file=', 'B', 'Blog output filename (e.g., "-B blog.html")'),
@@ -415,6 +419,22 @@ def commit():
     """Commit the changes to hg.
     """
     sh('hg commit')
+    return
+
+@task
+@needs(['uncog'])
+def bitbucket_push(options):
+    sh('hg push')
+    return
+
+@task
+def release(options):
+    """Run the automatable steps of the release process."""
+    sdist(options)
+    installwebsite(options)
+    blog(options)
+    bitbucket_push(options)
+    print 'NEXT: upload package, "paver register", post to blog'
     return
 
 @task
