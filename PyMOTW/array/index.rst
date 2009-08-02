@@ -84,3 +84,5 @@ If the data in the array is not in the native byte order, or needs to be swapped
 
     `Numerical Python <http://www.scipy.org>`_
         NumPy is a Python library for working with large datasets efficiently.
+
+    :ref:`article-data-structures`

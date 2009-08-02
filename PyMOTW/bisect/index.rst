@@ -73,3 +73,5 @@ Python implementation automatically when you import the bisect module.
 
     `WikiPedia: Insertion Sort <http://en.wikipedia.org/wiki/Insertion_sort>`_
         A description of the insertion sort algorithm.
+
+    :ref:`article-data-structures`

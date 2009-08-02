@@ -1,6 +1,9 @@
 History
 =======
 
+1.99
+  - 2 Aug 2009, Add :ref:`article-data-structures` article.
+
 1.98
   - Added link to Roberto Pauletto's Italian translation.
   - 27 July 2009, Add :ref:`article-text-processing` article.

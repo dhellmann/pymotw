@@ -118,3 +118,5 @@ in handy in a few cases.
 
     `WikiPedia: Heap (data structure) <http://en.wikipedia.org/wiki/Heap_(data_structure)>`_
         A general description of heap data structures.
+
+    :ref:`article-data-structures`
