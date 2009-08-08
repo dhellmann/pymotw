@@ -1,6 +1,10 @@
 History
 =======
 
+1.100 (in development)
+  - Add pipes example to :mod:`subprocess`.
+  
+
 1.99
   - 2 Aug 2009, Add :ref:`article-data-structures` article.
 

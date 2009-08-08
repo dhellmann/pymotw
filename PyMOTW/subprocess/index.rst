@@ -128,6 +128,23 @@ Merged stdout and stderr, as with popen4:
 .. }}}
 .. {{{end}}}
 
+Connecting Segments of a Pipe
+=============================
+
+By creating separate Popen instances and chaining their inputs and outputs
+together, you can create your own pipeline of commands just as with the
+Unix shell.
+
+.. include:: subprocess_pipes.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'subprocess_pipes.py'))
+.. }}}
+.. {{{end}}}
+
+
 
 Interacting with Another Command
 ================================
@@ -255,3 +272,6 @@ of being handled by your code separately.
     `Advanced Programming in the UNIX(R) Environment <http://www.amazon.com/Programming-Environment-Addison-Wesley-Professional-Computing/dp/0201433079/ref=pd_bbs_3/002-2842372-4768037?ie=UTF8&s=books&amp;qid=1182098757&sr=8-3>`_
         Covers working with multiple processes, such as handling signals, closing duplicated
         file descriptors, etc.
+
+    :mod:`pipes`
+        Unix shell command pipeline templates in the standard library.
