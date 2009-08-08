@@ -3,7 +3,7 @@ History
 
 1.100 (in development)
   - Add pipes example to :mod:`subprocess`.
-  
+  - Add circular reference example to :mod:`pickle`.
 
 1.99
   - 2 Aug 2009, Add :ref:`article-data-structures` article.

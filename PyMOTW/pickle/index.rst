@@ -161,14 +161,37 @@ to the end of the import list, then run the script:
 .. }}}
 .. {{{end}}}
 
-There are some special considerations when pickling data types with values
-that cannot be pickled (sockets, file handles, database connections, etc.).
-Classes which use values which cannot be pickled can define ``__getstate__()`` and
-``__setstate__()`` to return a subset of the state of the instance to be pickled.
-New-style classes can also define ``__getnewargs__()``, which should return
-arguments to be passed to the class memory allocator (``C.__new__()``). Use of
-these features is covered in more detail in the standard library
+There are some special considerations when pickling data types with values that
+cannot be pickled (sockets, file handles, database connections, etc.). Classes
+which use values which cannot be pickled can define ``__getstate__()`` and
+``__setstate__()`` to return a subset of the state of the instance to be
+pickled. New-style classes can also define ``__getnewargs__()``, which should
+return arguments to be passed to the class memory allocator (``C.__new__()``).
+Use of these features is covered in more detail in the standard library
 documentation.
+
+Circular References
+===================
+
+The pickle protocol automatically handles circular references between objects,
+so you don't need to do anything special with complex data structures.  For
+example, in the digraph example below, the graph includes several cycles but
+the correct structure is reloaded from the pickled version.
+
+.. include:: pickle_cycle.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+Even though the reloaded nodes are not the same object, the relationship between
+the nodes is maintained and only one copy of the object with multiple reference
+is reloaded. Both of these statements can be verified by examining the ``id()``
+values for the nodes before and after being passed through pickle.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'pickle_cycle.py'))
+.. }}}
+.. {{{end}}}
+
 
 .. seealso::
 
