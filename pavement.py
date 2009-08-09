@@ -173,6 +173,70 @@ options(
 # import them in all of the cog blocks where we want to use them.
 __builtins__['path'] = path
 
+# Modified from paver.doctools._runcog
+from paver.doctools import Includer, _cogsh
+def _runcog(options, files, uncog=False):
+    """Common function for the cog and runcog tasks."""
+    
+    from paver.cog import Cog
+    options.order('cog', 'sphinx', add_rest=True)
+    c = Cog()
+    if uncog:
+        c.options.bNoGenerate = True
+    c.options.bReplace = True
+    c.options.bDeleteCode = options.get("delete_code", False)
+    includedir = options.get('includedir', None)
+    if includedir:
+        include = Includer(includedir, cog=c, 
+                           include_markers=options.get("include_markers"))
+        # load cog's namespace with our convenience functions.
+        c.options.defines['include'] = include
+        c.options.defines['sh'] = _cogsh(c)
+    
+    c.sBeginSpec = options.get('beginspec', '[[[cog')
+    c.sEndSpec = options.get('endspec', ']]]')
+    c.sEndOutput = options.get('endoutput', '[[[end]]]')
+    
+    basedir = options.get('basedir', None)
+    if basedir is None:
+        basedir = path(options.get('docroot', "docs")) / options.get('sourcedir', "")
+    basedir = path(basedir)
+        
+    if not files:
+        pattern = options.get("pattern", "*.rst")
+        if pattern:
+            files = basedir.walkfiles(pattern)
+        else:
+            files = basedir.walkfiles()
+    for f in files:
+        dry("cog %s" % f, c.processOneFile, f)
+#
+
+@task
+@consume_args
+def cog(options):
+    """Run cog against all or a subset of the input source files.
+    
+    Examples::
+    
+      $ paver cog PyMOTW/atexit
+      $ paver cog PyMOTW/atexit/index.rst
+      $ paver cog
+    
+    See help on paver.doctools.cog for details on the standard
+    options.
+    """
+    options.order('cog', 'sphinx', add_rest=True)
+    # Figure out if we were given a filename or
+    # directory, and scan the directory for files
+    # if we need to.
+    files_to_cog = options.args
+    if files_to_cog and os.path.isdir(files_to_cog[0]):
+        dir_to_scan = path(files_to_cog[0])
+        files_to_cog = dir_to_scan.walkfiles(options.get("pattern", "*.rst"))
+    _runcog(options, files_to_cog)
+    return
+
 def remake_directories(*dirnames):
     """Remove the directories and recreate them.
     """
