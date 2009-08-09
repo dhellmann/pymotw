@@ -20,8 +20,8 @@ As new articles are written, they are posted to my blog (http://blog.doughellman
 
 .. _motw-cli:
 
-Command Line Interface
-======================
+The motw Command Line Interface
+===============================
 
 PyMOTW includes a command line program, ``motw``, to make it even easier to
 access the examples while you are developing. Simply run ``motw module`` to open
@@ -39,8 +39,8 @@ Options:
 
 .. _motw-interactive:
 
-Using with the Interactive Interpreter
-======================================
+Using PyMOTW with the Interactive Interpreter
+=============================================
 
 PyMOTW articles are at your fingertips while you're working with the Python
 interactive interpreter.  Importing ``PyMOTW`` adds the function ``motw()`` to

@@ -1,7 +1,8 @@
 History
 =======
 
-1.100 (in development)
+1.100
+  - 9 Aug 2009, :mod:`pydoc`
   - Add pipes example to :mod:`subprocess`.
   - Add circular reference example to :mod:`pickle`.
   - Use the Sphinx text builder to create clean plaintext files for use with motw command line app.
