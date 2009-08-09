@@ -230,7 +230,7 @@ def cog(options):
     # Figure out if we were given a filename or
     # directory, and scan the directory for files
     # if we need to.
-    files_to_cog = options.args
+    files_to_cog = getattr(options, 'args', [])
     if files_to_cog and os.path.isdir(files_to_cog[0]):
         dir_to_scan = path(files_to_cog[0])
         files_to_cog = dir_to_scan.walkfiles(options.get("pattern", "*.rst"))
