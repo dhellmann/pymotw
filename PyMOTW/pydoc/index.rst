@@ -8,9 +8,9 @@ pydoc -- Online help for Python modules
 :Purpose: Generates help for Python modules and classes from the code.
 :Python Version: 2.1 and later
 
-The pydoc module imports a Python module and uses the contents to generate
-help text at runtime.  The output includes docstrings for any objects that
-have them, and all of the documentable contents of the module are described.
+The pydoc module imports a Python module and uses the contents to generate help
+text at runtime. The output includes docstrings for any objects that have them,
+and all of the documentable contents of the module are described.
 
 Plain Text Help
 ===============
@@ -24,9 +24,8 @@ Produces plaintext help on the console, using your pager if one is configured.
 HTML Help
 =========
 
-You can also cause pydoc to generate HTML output, either writing a static
-file to a local directory or starting a web server to browse documentation
-online.
+You can also cause pydoc to generate HTML output, either writing a static file to
+a local directory or starting a web server to browse documentation online.
 
 ::
 
@@ -38,14 +37,14 @@ Creates ``atexit.html`` in the current directory.
 
     $ pydoc -p 5000
 
-Starts a web server listening at http://localhost:5000/.  The server generates
+Starts a web server listening at http://localhost:5000/. The server generates
 documentation as you browse through the available modules.
 
 Interactive Help
 ================
 
-pydoc also adds a function ``help()`` to the ``__builtins__`` so you can
-access the same information from the Python interpreter prompt.
+pydoc also adds a function ``help()`` to the ``__builtins__`` so you can access
+the same information from the Python interpreter prompt.
 
 ::
 
