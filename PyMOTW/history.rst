@@ -4,6 +4,9 @@ History
 1.100 (in development)
   - Add pipes example to :mod:`subprocess`.
   - Add circular reference example to :mod:`pickle`.
+  - Use the Sphinx text builder to create clean plaintext files for use with motw command line app.
+  - Use :mod:`pydoc` ``pager()`` to show plaintext help from :ref:`motw-cli`.
+  - Add built-in function ``motw()`` so that importing PyMOTW into your interactive session makes it easy to get to the examples interactively.  See :ref:`motw-interactive`.
 
 1.99
   - 2 Aug 2009, Add :ref:`article-data-structures` article.

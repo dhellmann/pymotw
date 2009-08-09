@@ -111,6 +111,13 @@ options(
         templates='pkg',
     ),
 
+    text = Bunch(
+        builddir='%s/docs' % PROJECT,
+        outdir='%s/docs' % PROJECT,
+        templates='pkg',
+        builder='text',
+    ),
+
     website=Bunch(
         templates = 'web',
         builddir = 'web',
@@ -177,14 +184,8 @@ def remake_directories(*dirnames):
     return
 
 @task
-@needs(['cog', 'htmlquick'])
 def html(options):
-    "Run cog to produce example output and then generate HTML files."
-    return
-    
-@task
-def htmlquick(options):
-    "Generate HTML output without running cog first."
+    "Generate HTML files."
     set_templates(options.html.templates)
     if paverutils is None:
         raise RuntimeError('Could not find sphinxcontrib.paverutils, will not be able to build HTML output.')
@@ -192,9 +193,20 @@ def htmlquick(options):
     return
 
 @task
-@needs(['generate_setup', 'minilib', 
+def text(options):
+    "Generate text files from rst input."
+    if paverutils is None:
+        raise RuntimeError('Could not find sphinxcontrib.paverutils, will not be able to build text output.')
+    paverutils.run_sphinx(options, 'text')
+    return
+
+@task
+@needs(['generate_setup', 
+        'minilib', 
+        'cog',
         'html_clean', 
-        'setuptools.command.sdist'
+        'text',
+        'setuptools.command.sdist',
         ])
 def sdist(options):
     """Create a source distribution.
@@ -236,11 +248,12 @@ def pdf():
     return
 
 @task
+@needs(['cog'])
 def website(options):
     """Create local copy of website files.
     """
-    pdf(options) # this also calls cog
-    webhtml(options) # this does not call cog
+    pdf(options)
+    webhtml(options)
     # Copy the PDF to the files to be copied to the directory to install
     pdf_file = path(options.pdf.builddir) / 'latex' / (PROJECT + '-' + VERSION + '.pdf')
     pdf_file.copy(path(options.website.builddir) / 'html')

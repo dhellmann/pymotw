@@ -18,6 +18,50 @@ Subscribe
 
 As new articles are written, they are posted to my blog (http://blog.doughellmann.com/).  Updates are available by RSS from http://feeds.doughellmann.com/PyMOTW and `email <http://feedburner.google.com/fb/a/mailverify?uri=PyMOTW&amp;loc=en_US>`_.
 
+.. _motw-cli:
+
+Command Line Interface
+======================
+
+PyMOTW includes a command line program, ``motw``, to make it even easier to
+access the examples while you are developing. Simply run ``motw module`` to open
+the local copy of the HTML text for the named module. There are also options
+to view the articles in different formats (see the ``-h`` output for details).
+
+Usage: ``motw [options] <module_name>``
+
+Options:
+
+-h, --help  show this help message and exit
+-t, --text  Print plain-text version of help to stdout
+-w, --web   Open HTML version of help from web
+--html      Open HTML version of help from installed file
+
+.. _motw-interactive:
+
+Using with the Interactive Interpreter
+======================================
+
+PyMOTW articles are at your fingertips while you're working with the Python
+interactive interpreter.  Importing ``PyMOTW`` adds the function ``motw()`` to
+the ``__builtins__`` namespace.  Run ``motw(module)`` to see the help for
+an imported module.  Enclose the name in quotes for a module that you haven't
+already imported.
+
+::
+
+    $ python
+    Python 2.6.2 (r262:71600, Apr 16 2009, 09:17:39) 
+    [GCC 4.0.1 (Apple Computer, Inc. build 5250)] on darwin
+    Type "help", "copyright", "credits" or "license" for more information.
+    >>> import PyMOTW
+    >>> motw('atexit')
+    
+    atexit -- Call functions when a program is closing down
+    *******************************************************
+    ...
+
+
 Translations and Other Versions
 ===============================
 
