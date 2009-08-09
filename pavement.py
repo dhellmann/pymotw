@@ -312,7 +312,6 @@ def pdf():
     return
 
 @task
-@needs(['cog'])
 def website(options):
     """Create local copy of website files.
     """
