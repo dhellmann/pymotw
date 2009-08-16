@@ -63,19 +63,19 @@
 {%- endblock %}
 
     <h3>Navigation</h3>
-    <p><a href="{{ pathto("contents") }}">Table of Contents</a><br/>
+    <p><a href="{{ pathto("contents") }}"><strong>Table of Contents</strong></a><br/>
     {% if next or prev %}
         {%- if prev %}
-          <a href="{{ prev.link|e }}" title="previous chapter">Previous: {{ prev.title }}</a><br/>
+          <a href="{{ prev.link|e }}" title="previous chapter"><strong>Previous:</strong> {{ prev.title }}</a><br/>
         {%- endif %}
 
         {%- if next %}
-          <a href="{{ next.link|e }}" title="next chapter">Next: {{ next.title }}</a><br/>
+          <a href="{{ next.link|e }}" title="next chapter"><strong>Next:</strong> {{ next.title }}</a><br/>
         {%- endif %}
     {% endif %}
-    <a href="{{ pathto("modindex") }}">All Modules</a><br/>
-    <a href="{{ pathto("genindex") }}">Index</a><br/>
-    <a href="/PyMOTW/">Home</a><br/>
+    <a href="{{ pathto("modindex") }}"><strong>All Modules</strong></a><br/>
+    <a href="{{ pathto("genindex") }}"><strong>Index</strong></a><br/>
+    <a href="/PyMOTW/"><strong>Home</strong></a><br/>
 
     {%- if show_source and has_source and sourcename %}
       <h3>{{ _('This Page') }}</h3>
