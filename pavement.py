@@ -267,9 +267,10 @@ def update(options):
     """
     options.order('update', 'sphinx', add_rest=True)
     args = getattr(options, 'args', [])
-    if not args:
-        raise ValueError('Please specify a module to update.')
-    module = args[0]
+    if args:
+        module = args[0]
+    else:
+        module = MODULE
     options.order('cog', 'sphinx', add_rest=True)
     options.args = ['PyMOTW/' + module]
     cog(options)
