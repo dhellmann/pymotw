@@ -1,6 +1,9 @@
 History
 =======
 
+1.101
+  - 16 Aug 2009, :mod:`dis`
+
 1.100
   - 9 Aug 2009, :mod:`pydoc`
   - Add pipes example to :mod:`subprocess`.
@@ -71,7 +74,7 @@ History
 
 1.86.1
   - Updated working environment to use Paver 1.0b1.
-  - Corrected errors in *.rst files identified by update to new version of Paver that doesn't let cog errors slide.
+  - Corrected errors in ``*.rst`` files identified by update to new version of Paver that doesn't let cog errors slide.
   - Added ignore_error option to run_script() in pavement.py so scripts with errors I'm expecting can be quietly ignored.
   - Finished converting all articles to use cog, where appropriate.
 

@@ -13,6 +13,7 @@ Internet Protocols and Support
     smtplib/index
     SocketServer/index
     urllib/index
+    urllib2/index
     urlparse/index
     uuid/index
     webbrowser/index
