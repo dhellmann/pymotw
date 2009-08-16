@@ -257,6 +257,26 @@ def html(options):
     return
 
 @task
+@consume_args
+def update(options):
+    """Run cog against the named module, then re-build the HTML.
+    
+    Examples::
+    
+      $ paver update atexit
+    """
+    options.order('update', 'sphinx', add_rest=True)
+    module = getattr(options, 'args', [None])[0]
+    if module is None:
+        raise ValueError('Please specify a module to update.')
+    options.order('cog', 'sphinx', add_rest=True)
+    options.args = ['PyMOTW/' + module]
+    cog(options)
+    html(options)
+    return
+    
+
+@task
 def text(options):
     "Generate text files from rst input."
     if paverutils is None:
