@@ -266,9 +266,10 @@ def update(options):
       $ paver update atexit
     """
     options.order('update', 'sphinx', add_rest=True)
-    module = getattr(options, 'args', [None])[0]
-    if module is None:
+    args = getattr(options, 'args', [])
+    if not args:
         raise ValueError('Please specify a module to update.')
+    module = args[0]
     options.order('cog', 'sphinx', add_rest=True)
     options.args = ['PyMOTW/' + module]
     cog(options)
