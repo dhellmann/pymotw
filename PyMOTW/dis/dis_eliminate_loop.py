@@ -14,5 +14,5 @@ class Dictionary(object):
         # Arrange by letter
         grouped = itertools.groupby(words, key=operator.itemgetter(0))
         # Save arranged sets of words
-        self.by_letter = dict( (group[0][0], group) for group in grouped)
+        self.by_letter = dict((group[0][0], group) for group in grouped)
         

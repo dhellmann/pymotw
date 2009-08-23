@@ -111,7 +111,7 @@ The bad value is easy to spot when it is loaded onto the stack in the disassembl
 Performance Analysis of Loops
 =============================
 
-Aside from debugging errors, dis can also help you identify performance issues in your code, especially in tight loops.  We can see how the disassembly is helpful by examining a few different implementations of a class, ``Dictionary``, that reads a list of words and groups them by their first letter.
+Aside from debugging errors, dis can also help you identify performance issues in your code. Examining the disassembled code is especially useful with tight loops where the number of exposed Python instructions is low but they translate to an inefficient set of bytecodes.  We can see how the disassembly is helpful by examining a few different implementations of a class, ``Dictionary``, that reads a list of words and groups them by their first letter.
 
 First, the test driver application:
 
@@ -127,6 +127,8 @@ A straightforward implementation of ``Dictionary`` might look something like:
     :linenos:
 
 The output shows this version taking 0.1074 seconds to load the 234936 words in my copy of ``/usr/share/dict/words`` on OS X.  That's not too bad, but as you can see from the disassembly below, the loop is doing more work than it needs to.  As it enters the loop in opcode 13, it sets up an exception context (``SETUP_EXCEPT``).  Then it takes 6 opcodes to find ``self.by_letter[word[0]]`` before appending ``word`` to the list.  If there is an exception because ``word[0]`` isn't in the dictionary yet, the exception handler does all of the same work to determine ``word[0]`` (3 opcodes) and sets ``self.by_letter[word[0]]`` to a new list containing the word.
+
+.. timing values are sensitive to other operations, so don't cog
 
 ::
 
@@ -181,10 +183,13 @@ The output shows this version taking 0.1074 seconds to load the 234936 words in 
 
 One technique to eliminate the exception setup is to pre-populate ``self.by_letter`` with one list for each letter of the alphabet.  That means we should always find the list we want for the new word, and can just do the lookup and save the value.
 
+
 .. literalinclude:: dis_faster_loop.py
     :linenos:
 
 The change cuts the number of opcodes in half, but only shaves the time down to 0.0984 seconds.  Obviously the exception handling had some overhead, but not a huge amount.
+
+.. timing values are sensitive to other operations, so don't cog
 
 ::
 
@@ -218,6 +223,8 @@ We can further improve the performance by moving the lookup for ``self.by_letter
     :linenos:
 
 Opcodes 0-6 now find the value of ``self.by_letter`` and save it as a local variable ``by_letter``.  Using a local variable only takes a single opcode, instead of 2 (statement 22 uses ``LOAD_FAST`` to place the dictionary onto the stack).  After this change, the run time is down to 0.0842 seconds.
+
+.. timing values are sensitive to other operations, so don't cog
 
 ::
 
@@ -255,6 +262,8 @@ A further optimization, suggested by Brandon Rhodes, is to eliminate the Python 
 
 The :mod:`itertools` version takes only 0.0543 seconds to run, just over half of the original time.
 
+.. timing values are sensitive to other operations, so don't cog
+
 ::
 
 	$ python dis_test_loop.py dis_eliminate_loop
@@ -287,7 +296,18 @@ The :mod:`itertools` version takes only 0.0543 seconds to run, just over half of
 Compiler Optimizations
 ======================
 
-literal constant expression folding (d = {'a':1+2})
+Disassembling compiled source also exposes some of the optimizations made by the compiler.  For example, literal expressions are folded during compilation, when possible.
+
+.. literalinclude:: dis_constant_folding.py
+    :linenos:
+
+The expressions on lines 5-7 can be computed at compilation time and collapsed into single LOAD_CONST instructions because nothing in the expression can change the way the operation is performed.  That isn't true about lines 10-12. Because a variable is involved in those expressions, and the variable might refer to an object that overloads the operator involved, the evaluation has to be delayed to runtime.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, '-m dis dis_constant_folding.py'))
+.. }}}
+.. {{{end}}}
+
 
 .. seealso::
 
