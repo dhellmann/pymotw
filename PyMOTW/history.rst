@@ -2,7 +2,7 @@ History
 =======
 
 1.101
-  - 16 Aug 2009, :mod:`dis`
+  - 23 Aug 2009, :mod:`dis`
 
 1.100
   - 9 Aug 2009, :mod:`pydoc`
