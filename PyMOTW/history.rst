@@ -1,6 +1,9 @@
 History
 =======
 
+1.102
+  - 30 Aug 2009, :mod:`decimal`
+
 1.101
   - 23 Aug 2009, :mod:`dis`
 
