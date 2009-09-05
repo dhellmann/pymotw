@@ -48,11 +48,59 @@ Strings can also use the more usual decimal or floating point notation of ``[<di
 .. }}}
 .. {{{end}}}
 
+There are class methods for creating Fraction instances directly from other representations of rational values such as float or :mod:`decimal`.
 
-Rational Math
-=============
+.. include:: fractions_from_float.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+Notice that for floating point values that cannot be expressed exactly the rational representation may yield unexpected results.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'fractions_from_float.py'))
+.. }}}
+.. {{{end}}}
+
+Using :mod:`decimal` representations of the values gives the expected results.
+
+.. include:: fractions_from_decimal.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'fractions_from_decimal.py'))
+.. }}}
+.. {{{end}}}
 
 
+
+Arithmetic
+==========
+
+Once the fractions are instantiated, they can be used in mathematical expressions as you would expect.
+
+.. include:: fractions_arithmetic.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'fractions_arithmetic.py'))
+.. }}}
+.. {{{end}}}
+
+Approximating Values
+====================
+
+A useful feature of Fraction is the ability to convert a floating point number to an approximate rational value by limiting the size of the denominator.
+
+.. include:: fractions_limit_denominator.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'fractions_limit_denominator.py'))
+.. }}}
+.. {{{end}}}
 
 
 .. seealso::
