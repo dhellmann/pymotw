@@ -1,6 +1,9 @@
 History
 =======
 
+working
+  - 5 Sept 2009, :mod:`fractions`
+
 1.102
   - 30 Aug 2009, :mod:`decimal`
 

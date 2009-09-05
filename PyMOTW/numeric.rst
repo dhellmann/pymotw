@@ -6,6 +6,7 @@ Numeric and Mathematical Modules
     :maxdepth: 1
     
     decimal/index
-    itertools/index
+    fractions/index
     functools/index
+    itertools/index
     operator/index
