@@ -1,6 +1,9 @@
 History
 =======
 
+1.104
+  - 20 Sept 2009, :mod:`resource`
+
 1.103
   - 5 Sept 2009, :mod:`fractions`
 
