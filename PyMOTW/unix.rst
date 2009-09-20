@@ -9,3 +9,4 @@ Unix-specific Services
     grp/index
     pipes/index
     pwd/index
+    resource/index
