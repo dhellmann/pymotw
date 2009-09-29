@@ -26,9 +26,5 @@ class ExpressionCounter(object):
         self.previous_value = value
         sys.__displayhook__(value)
 
-    @classmethod
-    def install(cls):
-        print 'installing'
-        sys.displayhook = cls()
-
-ExpressionCounter.install()
+print 'installing'
+sys.displayhook = ExpressionCounter()
