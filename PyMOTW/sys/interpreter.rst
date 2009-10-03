@@ -4,8 +4,8 @@
 Runtime Interpreter Settings
 ============================
 
-Version Information
-===================
+Build-time Version Information
+==============================
 
 The version used to build the C interpreter is available in a few forms.  ``sys.version`` is a human-readable string that usually includes the full version number as well as information about the build date, compiler, and platform.  ``sys.hexversion`` is easier to use for checking the interpreter version since it is a simple integer.  When formatted using ``hex()``, it is clear that parts of ``sys.hexversion`` come from the version information also visible in the more readable ``sys.version_info`` (a 5-part tuple representing just the version number).  More specific information about the source that went into the build can be found in the ``sys.subversion`` tuple, which includes the actual branch and subversion revision that was checked out and built.  The separate C API version used by the current interpreter is saved in ``sys.api_version``.
 
@@ -18,9 +18,20 @@ The version used to build the C interpreter is available in a few forms.  ``sys.
 .. }}}
 .. {{{end}}}
 
+The operating system platform used to build the interpreter is saved as ``sys.platform``.  For most Unix systems, the value comes from combining the output of ``uname -s`` with the first part of the version in ``uname -r``. For other operating systems there is a `hard-coded table of values <http://docs.python.org/library/sys.html#sys.platform>`_.
 
-Executable Location
-===================
+.. include:: sys_platform.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'sys_platform.py'))
+.. }}}
+.. {{{end}}}
+
+
+Install Location
+================
 
 The path to the actual interpreter program is available in ``sys.executable`` on all systems for which having a path to the interpreter makes sense.  This can be useful for ensuring that the *right* interpreter is being used, and also gives clues about paths that might be set based on the interpreter location.
 
@@ -64,14 +75,17 @@ Some of these are available for programs to check through ``sys.flags``.
 Unicode Defaults
 ================
 
-.. note:: getdefaultencoding, getfilesystemencoding,
+You can ask for the default Unicode encoding being used by the interpreter with ``getdefaultencoding()``.   The value is set during startup by :mod:`site`, which calls ``sys.setdefaultencoding()`` and then removes it from the namespace in :mod:`sys` to avoid having it called again.  
 
+The internal encoding default and the filesystem encoding may be different for some operating systems, so there is a separate way to retrieve the filesystem setting.  ``getfilesystemencoding()`` returns an OS-specific (*not* filesystem-specific) value.
 
-Operating System
-================
+.. include:: sys_unicode.py
+    :literal:
+    :start-after: #end_pymotw_header
 
-.. note:: platform
+.. note::  Rather than changing the global default encoding, most Unicode experts recommend making your application explicitly Unicode-aware.  This gives you two benefits: It lets you handle different Unicode encodings, and ensures there are no assumptions about encodings in your application code.
 
-.. note:: getwindowsversion
-
-
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'sys_unicode.py'))
+.. }}}
+.. {{{end}}}
