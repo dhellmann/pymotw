@@ -9,4 +9,5 @@
 
 import sys
 
-print sys.executable
+print 'Interpreter executable:', sys.executable
+print 'Installation prefix   :', sys.prefix

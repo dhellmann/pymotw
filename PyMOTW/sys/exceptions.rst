@@ -19,14 +19,16 @@ Many applications are structured with a main loop that wraps execution in a glob
 Current Exception
 =================
 
-exc_info, exc_type, exc_value, exc_traceback, exc_clear
+.. note:: exc_info, exc_type, exc_value, exc_traceback, exc_clear
 
 Previous Exception
 ==================
 
-sys.last_type
-sys.last_value
-sys.last_traceback
+.. note:: 
+
+    sys.last_type
+    sys.last_value
+    sys.last_traceback
 
 .. seealso::
 

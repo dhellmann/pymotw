@@ -19,23 +19,24 @@ The version used to build the C interpreter is available in a few forms.  ``sys.
 .. {{{end}}}
 
 
-Executable and DLL References
-=============================
+Executable Location
+===================
 
-Under Windows, ``sys.dllhandle`` is an integer that refers to the Python DLL loaded by the system.
+The path to the actual interpreter program is available in ``sys.executable`` on all systems for which having a path to the interpreter makes sense.  This can be useful for ensuring that the *right* interpreter is being used, and also gives clues about paths that might be set based on the interpreter location.
 
-The path to the actual interpreter program is available in ``sys.executable`` on all systems for which having a path to the interpreter makes sense.
+``sys.prefix`` refers to the parent directory of the interpreter installation.  It usually includes  ``bin`` and ``lib`` directories for 
 
-.. include:: sys_executable.py
+.. include:: sys_locations.py
     :literal:
     :start-after: #end_pymotw_header
 
-This can be useful for ensuring that the *right* interpreter is being used, and also gives clues about paths that might be set based on the interpreter location.
+.. note:: The build for PyMOTW uses a `virtualenv <http://pypi.python.org/pypi/virtualenv>`_, so these paths do not match the defaults.
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'sys_executable.py'))
+.. cog.out(run_script(cog.inFile, 'sys_locations.py'))
 .. }}}
 .. {{{end}}}
+
 
 Command Line Options
 ====================
@@ -57,3 +58,20 @@ Some of these are available for programs to check through ``sys.flags``.
 .. cog.out(run_script(cog.inFile, '-3 -S -E sys_flags.py'))
 .. }}}
 .. {{{end}}}
+
+
+
+Unicode Defaults
+================
+
+.. note:: getdefaultencoding, getfilesystemencoding,
+
+
+Operating System
+================
+
+.. note:: platform
+
+.. note:: getwindowsversion
+
+

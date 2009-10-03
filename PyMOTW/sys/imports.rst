@@ -5,15 +5,15 @@ Modules / Imports
 Builtin Modules
 ===============
 
-builtin modules
+.. note:: builtin modules
 
 Imported Modules
 ================
 
-modules, path
+.. note:: modules, path
 
 Import Controls
 ===============
 
-path_hooks, path_importer_cache, prefix, 
+.. note:: path_hooks, path_importer_cache, prefix, 
 

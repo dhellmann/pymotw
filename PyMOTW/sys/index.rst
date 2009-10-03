@@ -20,12 +20,7 @@ The :mod:`sys` module includes a collection of services for probing or changing 
     profiling
     limits
     imports
-
-.. note::
-
-    type cache, frames, get/set checkinterval, getdefaultencoding, getfilesystemencoding,
-    getwindowsversion, platform,
-
+    threads
 
 
 .. seealso::

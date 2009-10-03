@@ -5,10 +5,10 @@ Memory Management and Limits
 Memory and Stack
 ================
 
-getrefcount, getrecursionlimit, getsizeof, _getframe, 
+.. note:: getrefcount, getrecursionlimit, getsizeof, _getframe, 
 
 Limits
 ======
 
-maxint, maxsize, maxunicode, tracebacklimit, float_info
+.. note:: maxint, maxsize, maxunicode, tracebacklimit, float_info
 

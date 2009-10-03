@@ -5,9 +5,9 @@ Profiling
 Profile Hook
 ============
 
-get / set
+.. note:: get / set
 
 Trace Hook
 ==========
 
-get / set
+.. note:: get / set
