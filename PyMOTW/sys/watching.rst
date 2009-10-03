@@ -1,0 +1,73 @@
+=========================
+Watching Your Program Run
+=========================
+
+There are two ways to inject code to watch your program run: tracing and profiling.  They are similar, but intended for different purposes and so have different constraints.
+
+Trace Hook
+==========
+
+The easiest, but least efficient, way to monitor your program is through a trace hook.  This can be used for writing a debugger, code coverage monitoring, or many other purposes.
+
+The trace hook is modified by passing a callback function to ``sys.settrace()``.  The callback is passed three arguments, frame (the stack frame from the code being run), event (a string naming the type of notification), and arg (an event-specific value).
+
+There are 7 event types for different levels of information that occur as your program is being executed.
+
++-------------------+-------------------------------------+------------------------------------------+
+| Event             | When                                | arg value                                |
++===================+=====================================+==========================================+
+| ``'call'``        | Before a function is executed.      | ``None``                                 |
++-------------------+-------------------------------------+------------------------------------------+
+| ``'line'``        | Before a line is executed.          | ``None``                                 |
++-------------------+-------------------------------------+------------------------------------------+
+| ``'return'``      | Before a function returns.          | The value being returned.                |
++-------------------+-------------------------------------+------------------------------------------+
+| ``'exception'``   | After an exception occurs.          | The (exception, value, traceback) tuple. |
++-------------------+-------------------------------------+------------------------------------------+
+| ``'c_call'``      | Before a C function is called.      | The C function object.                   |
++-------------------+-------------------------------------+------------------------------------------+
+| ``'c_return'``    | After a C function returns.         | ``None``                                 |
++-------------------+-------------------------------------+------------------------------------------+
+| ``'c_exception'`` | After a C function throws an error. | ``None``                                 |
++-------------------+-------------------------------------+------------------------------------------+
+
+Tracing Function Calls
+----------------------
+
+A call event is generated before every function call.  This example ignores calls to ``write()``, as used by ``print`` to write to sys.stdout.
+
+.. include:: sys_settrace_call.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'sys_settrace_call.py'))
+.. }}}
+.. {{{end}}}
+
+Tracing Inside Functions
+------------------------
+
+The trace hook can return a new hook to be used inside the new scope (the *local* trace function). It is possible, for instance, to control tracing to only run line-by-line within certain modules or functions.
+
+
+
+Exception Propagation
+---------------------
+
+exception event for each level of handler(s)
+
+
+.. note:: multiple line events for one line?
+
+.. note:: get / set
+
+Profile Hook
+============
+
+.. note:: get / set
+
+.. seealso::
+
+    `Types and Members <http://docs.python.org/library/inspect.html#types-and-members>`_
+        The descriptions of frame and code objects and their attributes.

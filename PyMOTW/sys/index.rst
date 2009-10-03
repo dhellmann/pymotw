@@ -17,7 +17,7 @@ The :mod:`sys` module includes a collection of services for probing or changing 
     interactive
     runtime
     exceptions
-    profiling
+    watching
     limits
     imports
     threads
