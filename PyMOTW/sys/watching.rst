@@ -36,9 +36,8 @@ Tracing Function Calls
 
 A call event is generated before every function call.  This example ignores calls to ``write()``, as used by ``print`` to write to sys.stdout.
 
-.. include:: sys_settrace_call.py
-    :literal:
-    :start-after: #end_pymotw_header
+.. literalinclude:: sys_settrace_call.py
+    :linenos:
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_settrace_call.py'))
@@ -50,6 +49,13 @@ Tracing Inside Functions
 
 The trace hook can return a new hook to be used inside the new scope (the *local* trace function). It is possible, for instance, to control tracing to only run line-by-line within certain modules or functions.
 
+.. literalinclude:: sys_settrace_line.py
+    :linenos:
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'sys_settrace_line.py'))
+.. }}}
+.. {{{end}}}
 
 
 Exception Propagation
@@ -71,3 +77,6 @@ Profile Hook
 
     `Types and Members <http://docs.python.org/library/inspect.html#types-and-members>`_
         The descriptions of frame and code objects and their attributes.
+
+    `Tracing python code <http://www.dalkescientific.com/writings/diary/archive/2005/04/20/tracing_python_code.html>`_
+        Another ``settrace()`` tutorial.
