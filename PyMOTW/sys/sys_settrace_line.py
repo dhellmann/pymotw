@@ -28,15 +28,17 @@ def trace_calls(frame, event, arg):
         return trace_lines
     return
 
-def c():
+def c(input):
+    print 'input =', input
     print 'Leaving c()'
 
-def b():
-    c()
+def b(arg):
+    val = arg * 5
+    c(val)
     print 'Leaving b()'
 
 def a():
-    b()
+    b(2)
     print 'Leaving a()'
     
 TRACE_INTO = ['b']
