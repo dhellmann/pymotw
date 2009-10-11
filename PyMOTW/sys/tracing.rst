@@ -73,12 +73,23 @@ The local trace function is used for watching returns, so we need to return ``tr
 Exception Propagation
 =====================
 
-exception event for each level of handler(s)
+Exceptions can be monitored by looking for the ``exception`` event in a local trace function.  When an exception occurs, the trace hook is called with the ``(type, instance, traceback)`` triple passed as ``arg``.
+
+.. literalinclude:: sys_settrace_exception.py
+    :linenos:
+
+Take care to limit where the local function is applied because some of the internals of
+formatting error messages generate, and ignore, their own exceptions.  **Every** exception is
+seen by the trace hook, whether the caller catches and ignores it or not.
+
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'sys_settrace_exception.py'))
+.. }}}
+.. {{{end}}}
 
 
 .. note:: multiple line events for one line?
-
-.. note:: get / set
 
 .. seealso::
 
