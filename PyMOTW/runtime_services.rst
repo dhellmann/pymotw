@@ -9,5 +9,6 @@ Python Runtime Services
     atexit/index
     contextlib/index
     inspect/index
+    sys/index
     traceback/index
     warnings/index
