@@ -54,6 +54,7 @@ Here the global list of functions is kept in the variable ``TRACE_INTO``, so whe
 .. }}}
 .. {{{end}}}
 
+
 Watching the Stack
 ==================
 
@@ -88,8 +89,6 @@ seen by the trace hook, whether the caller catches and ignores it or not.
 .. }}}
 .. {{{end}}}
 
-
-.. note:: multiple line events for one line?
 
 .. seealso::
 
