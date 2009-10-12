@@ -1,6 +1,9 @@
 History
 =======
 
+1.105
+  - 12 Oct 2009, :mod:`sys` started with :ref:`sys-interpreter`
+
 1.104
   - 20 Sept 2009, :mod:`resource`
 
