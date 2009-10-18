@@ -14,9 +14,9 @@ The :mod:`sys` module includes a collection of services for probing or changing 
     :maxdepth: 2
     
     interpreter
-    limits
+    runtime
 
-..    runtime
+..    limits
 ..    exceptions
 ..    tracing
 ..    imports
