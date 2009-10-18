@@ -1,6 +1,9 @@
 History
 =======
 
+1.106
+  - 18 Oct 2009, :mod:`sys`, continued with :ref:`sys-runtime`
+
 1.105
   - 12 Oct 2009, :mod:`sys` started with :ref:`sys-interpreter`
 
