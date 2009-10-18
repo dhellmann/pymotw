@@ -2,6 +2,8 @@
 Runtime Environment
 ===================
 
+:mod:`sys` provides low-level APIs for interacting with the system outside of your application, by accepting command line arguments, accessing user input, and passing messages and status values to the user.
+
 Arguments to Your Program
 =========================
 
@@ -38,6 +40,11 @@ Following the Unix paradigm, Python programs can access three file descriptors b
 .. {{{end}}}
 
 
+.. seealso::
+
+    :mod:`subprocess`, :mod:`pipes`
+        Both subprocess and pipes have features for pipelining programs together.
+
 Returning Status
 ================
 
@@ -52,4 +59,3 @@ To return an exit code from your program, pass an integer value to ``sys.exit()`
 .. cog.out(run_script(cog.inFile, 'sys_exit.py 1 ; echo "Exited $?"', include_prefix=False, ignore_error=True))
 .. }}}
 .. {{{end}}}
-
