@@ -15,8 +15,8 @@ The :mod:`sys` module includes a collection of services for probing or changing 
     
     interpreter
     runtime
+    limits
 
-..    limits
 ..    exceptions
 ..    tracing
 ..    imports
