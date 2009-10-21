@@ -2,6 +2,9 @@
 Exception Handling
 ==================
 
+.. note:: tracebacklimit
+
+
 Unhandled Exceptions
 ====================
 
