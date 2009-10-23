@@ -4,9 +4,7 @@ Tracing Your Program As It Runs
 
 There are two ways to inject code to watch your program run: tracing and profiling.  They are similar, but intended for different purposes and so have different constraints.  The easiest, but least efficient, way to monitor your program is through a *trace hook*, which can be used for writing a debugger, code coverage monitoring, or many other purposes.
 
-The trace hook is modified by passing a callback function to ``sys.settrace()``.  The callback is passed three arguments, frame (the stack frame from the code being run), event (a string naming the type of notification), and arg (an event-specific value).
-
-There are 7 event types for different levels of information that occur as your program is being executed.
+The trace hook is modified by passing a callback function to ``sys.settrace()``.  The callback is passed three arguments, frame (the stack frame from the code being run), event (a string naming the type of notification), and arg (an event-specific value).  There are 7 event types for different levels of information that occur as your program is being executed.
 
 +-------------------+-------------------------------------+------------------------------------------+
 | Event             | When                                | arg value                                |
@@ -29,10 +27,12 @@ There are 7 event types for different levels of information that occur as your p
 Tracing Function Calls
 ======================
 
-A call event is generated before every function call.  This example ignores calls to ``write()``, as used by ``print`` to write to sys.stdout.
+A call event is generated before every function call.  The frame passed to the callback can be used to find out which function is being called and from where.
 
 .. literalinclude:: sys_settrace_call.py
     :linenos:
+
+This example ignores calls to ``write()``, as used by ``print`` to write to sys.stdout.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_settrace_call.py'))
