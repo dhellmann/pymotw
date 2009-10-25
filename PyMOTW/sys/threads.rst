@@ -115,9 +115,27 @@ This example is modified from the first so that the thread prints directly to ``
 Debugging
 =========
 
-.. note:: sys._current_frames()
+Identifying deadlocks can be on of the most difficult aspects of working with threads.  ``sys._current_frames()`` can help by showing exactly where a thread is stopped.
+
+.. include:: sys_current_frames.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+The dictionary returned by ``sys._current_frames()`` is keyed on the thread identifier, rather than its name.  We have to do a little work to map those identifiers back to the thread object we created.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'sys_current_frames.py'))
+.. }}}
+.. {{{end}}}
+
 
 .. seealso::
+
+    :mod:`threading`
+        The threading module includes classes for creating Python threads.
+
+    :mod:`Queue`
+        The Queue module provides a thread-safe implementation of a FIFO data structure.
 
     `Python Threads and the Global Interpreter Lock <http://jessenoller.com/2009/02/01/python-threads-and-the-global-interpreter-lock/>`_
         Jesse Noller's article from the December 2007 issue of Python Magazine.
