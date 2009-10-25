@@ -1,6 +1,9 @@
 History
 =======
 
+1.107
+  - 25 Oct 2009, :mod:`sys`, continued with :ref:`sys-limits`
+
 1.106
   - 18 Oct 2009, :mod:`sys`, continued with :ref:`sys-runtime`
 
