@@ -1,3 +1,5 @@
+.. _sys-exceptions:
+
 ==================
 Exception Handling
 ==================

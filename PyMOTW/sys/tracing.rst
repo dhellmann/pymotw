@@ -1,3 +1,5 @@
+.. _sys-tracing:
+
 ===============================
 Tracing Your Program As It Runs
 ===============================

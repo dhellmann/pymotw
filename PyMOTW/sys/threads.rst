@@ -1,3 +1,5 @@
+.. _sys-threads:
+
 =======
 Threads
 =======
