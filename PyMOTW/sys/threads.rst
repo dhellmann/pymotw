@@ -117,11 +117,12 @@ Debugging
 
 Identifying deadlocks can be on of the most difficult aspects of working with threads.  ``sys._current_frames()`` can help by showing exactly where a thread is stopped.
 
-.. include:: sys_current_frames.py
-    :literal:
-    :start-after: #end_pymotw_header
+.. literalinclude:: sys_current_frames.py
+    :linenos:
 
 The dictionary returned by ``sys._current_frames()`` is keyed on the thread identifier, rather than its name.  We have to do a little work to map those identifiers back to the thread object we created.
+
+Since Thread-1 does not sleep, it finishes before we check its status.  Since it is no longer active, it does not appear in the output.  Thread-2 acquires the lock "blocker", then sleeps for a short period.  Meanwhile Thread-3 tries to acquire blocker but cannot because Thread-2 already has it.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_current_frames.py'))
