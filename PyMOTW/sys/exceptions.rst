@@ -2,8 +2,7 @@
 Exception Handling
 ==================
 
-.. note:: tracebacklimit
-
+:mod:`sys` includes features for trapping and working with exceptions.
 
 Unhandled Exceptions
 ====================
