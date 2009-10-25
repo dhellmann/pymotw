@@ -32,7 +32,7 @@ except:
 PROJECT = 'PyMOTW'
 
 # What version is this?
-VERSION = '1.106'
+VERSION = '1.107'
 
 # The sphinx templates expect the VERSION in the shell environment
 os.environ['VERSION'] = VERSION
@@ -376,7 +376,7 @@ def webtemplatebase():
     return
 
 @task
-@needs(['webtemplatebase', 'sitemap_gen'])
+@needs(['webtemplatebase'])
 def webhtml(options):
     """Generate HTML files for website.
     """
