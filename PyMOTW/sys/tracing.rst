@@ -102,3 +102,6 @@ seen by the trace hook, whether the caller catches and ignores it or not.
 
     `Tracing python code <http://www.dalkescientific.com/writings/diary/archive/2005/04/20/tracing_python_code.html>`_
         Another ``settrace()`` tutorial.
+
+    `Wicked hack: Python bytecode tracing <http://nedbatchelder.com/blog/200804/wicked_hack_python_bytecode_tracing.html>`_
+        Ned Batchelder's experiments with tracing with more granularity than source line level.
