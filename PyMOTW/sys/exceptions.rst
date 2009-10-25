@@ -2,6 +2,8 @@
 Exception Handling
 ==================
 
+:mod:`sys` includes features for trapping and working with exceptions.
+
 Unhandled Exceptions
 ====================
 

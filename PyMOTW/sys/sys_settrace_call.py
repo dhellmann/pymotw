@@ -11,9 +11,14 @@ def trace_calls(frame, event, arg):
     if func_name == 'write':
         # Ignore write() calls from print statements
         return
-    line_no = frame.f_lineno
-    filename = co.co_filename
-    print 'Call to %s on line %s of %s' % (func_name, line_no, filename)
+    func_line_no = frame.f_lineno
+    func_filename = co.co_filename
+    caller = frame.f_back
+    caller_line_no = caller.f_lineno
+    caller_filename = caller.f_code.co_name
+    print 'Call to %s on line %s of %s from line %s of %s' % \
+        (func_name, func_line_no, func_filename,
+         caller_line_no, caller_filename)
     return
 
 def b():
