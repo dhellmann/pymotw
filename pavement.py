@@ -376,7 +376,7 @@ def webtemplatebase():
     return
 
 @task
-@needs(['webtemplatebase', 'sitemap_gen'])
+@needs(['webtemplatebase'])
 def webhtml(options):
     """Generate HTML files for website.
     """
