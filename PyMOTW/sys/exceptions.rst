@@ -1,3 +1,5 @@
+.. _sys-exceptions:
+
 ==================
 Exception Handling
 ==================
@@ -12,6 +14,8 @@ Many applications are structured with a main loop that wraps execution in a glob
 .. include:: sys_excepthook.py
     :literal:
     :start-after: #end_pymotw_header
+
+Since there is no try:except block around the line where the exception is raised the following print statement is not run, even though the except hook is set.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_excepthook.py', ignore_error=True))
