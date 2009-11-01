@@ -1,6 +1,9 @@
 History
 =======
 
+1.108
+  - 1 Nov 2009, :mod:`sys`, continued with :ref:`sys-exceptions`
+
 1.107
   - 25 Oct 2009, :mod:`sys`, continued with :ref:`sys-limits`
 
