@@ -39,3 +39,5 @@ latex_documents = [
 
 #latex_preamble = r'''
 #'''
+
+extensions = [ 'sphinx.ext.todo' ]
