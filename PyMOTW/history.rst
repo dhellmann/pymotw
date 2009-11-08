@@ -1,6 +1,9 @@
 History
 =======
 
+1.109
+  - 8 Nov 2009, :mod:`sys`, continued with :ref:`sys-tracing`
+
 1.108
   - 1 Nov 2009, :mod:`sys`, continued with :ref:`sys-exceptions`
 
