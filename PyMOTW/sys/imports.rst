@@ -126,6 +126,9 @@ This example illustrates how the finders are instantiated and queried.  The Nois
 .. }}}
 .. {{{end}}}
 
+Importing from a Shelve
+-----------------------
+
 When the finder locates a module, it should return a loader capable of importing that module.  This example illustrates a custom importer that saves its module contents in a shelve file.
 
 First, a script to populate the shelve file with a package containing 2 sub-modules.
@@ -156,7 +159,11 @@ Finally, a short demo script to pull the pieces together and use the ShelveFinde
 .. }}}
 .. {{{end}}}
 
+.. todo::
 
+    1. Expand on the prose in this section.
+    2. Read docs for Py 3 importlib
+    3. demonstrate features that require get_code()
 
 Importer Cache
 --------------
@@ -178,7 +185,7 @@ A cache value of ``None`` means to use the default filesystem loader.  Each miss
 Meta Path
 ---------
 
-
+.. todo:: write this section
 
 .. seealso::
 
@@ -196,6 +203,9 @@ Meta Path
     
     `Import this, that, and the other thing: custom importers <http://us.pycon.org/2010/conference/talks/?filter=core>`_
         Brett Cannon's PyCon 2010 presentation.
+        
+    `Python 3 stdlib module "importlib" <http://docs.python.org/py3k/library/importlib.html>`_
+        Python 3.x includes abstract base classes that makes it easier to create custom importers.
 
 Prefix
 ======

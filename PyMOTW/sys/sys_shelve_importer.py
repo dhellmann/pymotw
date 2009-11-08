@@ -59,6 +59,9 @@ class ShelveLoader(object):
         self.path_entry = path_entry
         return
         
+    def _get_filename(self, fullname):
+        return '<%s "%s"[%s]>' % (self.__class__.__name__, self.path_entry, fullname)
+        
     def get_source(self, fullname):
         print 'loading source for "%s" from shelve file' % fullname
         try:
@@ -67,6 +70,11 @@ class ShelveLoader(object):
         except Exception, e:
             print 'could not load source:', e
             raise ImportError(str(e))
+            
+    def get_code(self, fullname):
+        print 'compiling code for "%s"' % fullname
+        source = self.get_source(fullname)
+        return compile(source, self._get_filename(fullname), 'exec', dont_inherit=True)
             
     def is_package(self, fullname):
         # This trivial example does not support nested packages.
@@ -83,10 +91,11 @@ class ShelveLoader(object):
             mod = sys.modules.setdefault(fullname, imp.new_module(fullname))
 
         # Set a few properties required by PEP 302
-        mod.__file__ = '<%s "%s">' % (self.__class__.__name__, self.path_entry)
+        mod.__file__ = self._get_filename(fullname)
         mod.__name__ = fullname
         mod.__path__ = self.path_entry
         mod.__loader__ = self
+        mod.__package__ = '.'.join(fullname.split('.')[:-1])
         
         if self.is_package(fullname):
             # Set __path__ for packages

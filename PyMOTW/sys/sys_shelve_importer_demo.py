@@ -10,6 +10,14 @@
 import sys
 import sys_shelve_importer
 
+def show_module_details(module):
+    print '  message:', module.message
+    print '  __name__:', module.__name__
+    print '  __package__:', module.__package__
+    print '  __file__:', module.__file__
+    print '  __path__:', module.__path__
+    print '  __loader__:', module.__loader__
+
 filename = '/tmp/pymotw_import_example.shelve'
 sys.path_hooks.append(sys_shelve_importer.ShelveFinder)
 sys.path.insert(0, filename)
@@ -18,12 +26,8 @@ print 'First import of "package":'
 import package
 
 print
-print 'Examine package contents:'
-print 'package.message:', package.message
-print 'package.__name__:', package.__name__
-print 'package.__file__:', package.__file__
-print 'package.__path__:', package.__path__
-print 'package.__loader__:', package.__loader__
+print 'Examine package details:'
+show_module_details(package)
 
 print
 print 'Global settings:'
@@ -36,7 +40,10 @@ reload(package)
 print
 print 'First import of "package.module1":'
 import package.module1
-print 'package.module1.message:', package.module1.message
+
+print
+print 'Examine package.module1 details:'
+show_module_details(package.module1)
 
 print
 print 'Trying to import a module that does not exist:'
