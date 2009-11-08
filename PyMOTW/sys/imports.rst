@@ -126,6 +126,36 @@ This example illustrates how the finders are instantiated and queried.  The Nois
 .. }}}
 .. {{{end}}}
 
+When the finder locates a module, it should return a loader capable of importing that module.  This example illustrates a custom importer that saves its module contents in a shelve file.
+
+First, a script to populate the shelve file with a package containing 2 sub-modules.
+
+.. include:: sys_shelve_importer_create.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'sys_shelve_importer_create.py'))
+.. }}}
+.. {{{end}}}
+
+Next, finder and loader classes that know how to look in a shelve file for the source of a module or package:
+
+.. include:: sys_shelve_importer.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+Finally, a short demo script to pull the pieces together and use the ShelveFinder and ShelveLoader to import code from a shelve.
+
+.. include:: sys_shelve_importer_demo.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'sys_shelve_importer_demo.py'))
+.. }}}
+.. {{{end}}}
+
 
 
 Importer Cache
