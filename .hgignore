@@ -12,12 +12,12 @@ setup.py
 *.mo
 
 syntax: re
-^PyMOTW/.*/example
-^PyMOTW/.*/Example
+^PyMOTW/.*/[eE]xample/
 ^PyMOTW/csv/testout.*\.csv
 ^PyMOTW/docs/.*
 ^PyMOTW/gettext/.*\.pot
 ^PyMOTW/glob/dir
+^PyMOTW/mailbox/[eE]xample.mbox
 ^PyMOTW/mmap/lorem_copy.txt
 ^PyMOTW/os/os_stat_chmod_example.txt
 ^PyMOTW/ospath/broken_link
