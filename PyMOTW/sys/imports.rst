@@ -113,6 +113,18 @@ Modifying the search path lets you control how standard Python modules are found
 Hooks
 -----
 
+Custom importers are implemented in two separate phases.  The *finder* is responsible for locating a module and providing a *loader* to manage the actual import.  Adding a custom module finder is as simple as appending a factory to the ``sys.path_hooks`` list.  On import, each part of the path is given to a finder until one claims support (by not raising ImportError).  That finder is then responsible for searching data storage represented by its path entry for named modules.
+
+.. include:: sys_path_hooks_noisy.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+This example illustrates how the finders are instantiated and queried.  The NoisyImportFinder raises ImportError when instantiated with a path entry that does not match its special trigger value, which is obviously not a real path on the filesystem.  This test prevents the NoisyImportFinder from breaking imports of real modules.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'sys_path_hooks_noisy.py'))
+.. }}}
+.. {{{end}}}
 
 
 
@@ -151,6 +163,9 @@ Meta Path
         
     `The Quick Guide to Python Eggs <http://peak.telecommunity.com/DevCenter/PythonEggs>`_
         PEAK documentation for working with EGGs.
+    
+    `Import this, that, and the other thing: custom importers <http://us.pycon.org/2010/conference/talks/?filter=core>`_
+        Brett Cannon's PyCon 2010 presentation.
 
 Prefix
 ======
