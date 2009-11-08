@@ -1,30 +1,157 @@
-=================
-Modules / Imports
-=================
+.. _sys-imports:
 
-:mod:`sys` includes information about the modules available to your application, either as built-ins or after being imported.
+===================
+Modules and Imports
+===================
+
+Most Python programs end up as a combination of several modules with a main application importing them.  Whether you are using the features of the standard library, or organizing your own code in separate files to make it easier to maintain, understanding and managing the dependencies for your program is an important aspect of development.  :mod:`sys` includes information about the modules available to your application, either as built-ins or after being imported.
 
 Imported Modules
 ================
 
+``sys.modules`` is a dictionary mapping the names of imported modules to the module object holding the code.
 
+.. include:: sys_modules.py
+    :literal:
+    :start-after: #end_pymotw_header
 
-.. note:: modules, path
+The contents of ``sys.modules`` change as new modules are imported.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'sys_modules.py'))
+.. }}}
+.. {{{end}}}
+
+.. seealso::
+
+    :mod:`textwrap`
+        Pretty-printing for plain text.
+
+.. todo:: modules
 
 Built-in Modules
 ================
 
-The Python interpreter can be compiled with some C modules built right in, so you don't need to distribute them as separate shared libraries.  These modules don't appear in the 
+The Python interpreter can be compiled with some C modules built right in, so you don't need to distribute them as separate shared libraries.  These modules don't appear in the list of imported modules managed in ``sys.modules`` because they weren't technically imported.  The only way to find the available built-in modules is through ``sys.builtin_module_names``.
+
+.. include:: sys_builtins.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+.. note::
+
+    Your results may vary, especially if you have built a custom version of the interpreter.
+    This script was run using a copy of the interpreter installed from the standard python.org
+    installer for the platform.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'sys_builtins.py'))
+.. }}}
+.. {{{end}}}
+
 
 .. seealso::
 
     `Build instructions <http://svn.python.org/view/python/trunk/README?view=markup>`_
         Instructions for building Python, from the README distributed with the source.
 
-.. note:: builtin modules
+Import Path
+===========
 
-Import Controls
-===============
+The search path for modules is managed as a Python list saved in ``sys.path``.  The default contents of the path include the directory of the script used to start the application and the current working directory.  
 
-.. note:: path_hooks, path_importer_cache, prefix, 
+.. include:: sys_path_show.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+As you can see here, the first directory in the search path is the home for the sample script itself.  That is followed by a series of platform-specific paths where compiled extension modules (written in C) might be installed, and then the global ``site-packages`` directory is listed last.
+
+::
+
+	$ python sys_path_show.py
+	/Users/dhellmann/Documents/PyMOTW/src/PyMOTW/sys
+	/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6
+	/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-darwin
+	/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/lib-tk
+	/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac
+	/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/lib-scriptpackages
+	/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages
+
+
+The import search path list can be modified before starting the interpreter by setting the shell variable ``PYTHONPATH`` to a colon-separated list of directories.
+
+::
+
+	$ PYTHONPATH=/my/private/site-packages:/my/shared/site-packages python sys_path_show.py
+	/Users/dhellmann/Documents/PyMOTW/src/PyMOTW/sys
+	/my/private/site-packages
+	/my/shared/site-packages
+	/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6
+	/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-darwin
+	/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/lib-tk
+	/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac
+	/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/lib-scriptpackages
+	/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages
+
+A program can also modify its path by adding elements to ``sys.path`` directly.
+
+.. include:: sys_path_modify.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'sys_path_modify.py'))
+.. }}}
+.. {{{end}}}
+
+
+Custom Importers
+================
+
+Modifying the search path lets you control how standard Python modules are found, but what if you need to import code from somewhere other than a text file on the filesystem?  :pep:`302` introduces the idea of *import hooks*, which let you trap an attempt to find a module on the search path and take alternative measures to load the code from somewhere else or apply pre-processing to it.
+
+Hooks
+-----
+
+
+
+
+Importer Cache
+--------------
+
+Searching through all of the hooks each time a module is imported can become expensive.  To save time, ``sys.path_importer_cache`` is maintained as a mapping between a path entry and the *loader* that can use the value to find modules.
+
+.. include:: sys_path_importer_cache.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+A cache value of ``None`` means to use the default filesystem loader.  Each missing directory is associated with an ``imp.NullImporter`` instance, since modules cannot be imported from directories that do not exist.  In the example output below, several ``zipimport.zipimporter`` instances are used to manage EGG files found on the path.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'sys_path_importer_cache.py'))
+.. }}}
+.. {{{end}}}
+
+
+Meta Path
+---------
+
+
+
+.. seealso::
+
+    :pep:`302`
+        Import Hooks
+
+    :mod:`imp`
+        The imp module provides tools used by importers.
+        
+    :mod:`zipimport`
+        Implements importing Python modules from inside ZIP archives.
+        
+    `The Quick Guide to Python Eggs <http://peak.telecommunity.com/DevCenter/PythonEggs>`_
+        PEAK documentation for working with EGGs.
+
+Prefix
+======
 
