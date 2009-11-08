@@ -58,29 +58,49 @@ Import Path
 
 The search path for modules is managed as a Python list saved in ``sys.path``.  The default contents of the path include the directory of the script used to start the application and the current working directory.  
 
-.. include:: sys_path_default.py
+.. include:: sys_path_show.py
     :literal:
     :start-after: #end_pymotw_header
 
-As you can see here, the first directory in the search path is the home for the sample script itself.  That is followed by a series of platform-specific paths where ``.so`` extension modules might be installed, and then the global ``site-packages`` directory is listed last.
+As you can see here, the first directory in the search path is the home for the sample script itself.  That is followed by a series of platform-specific paths where compiled extension modules (written in C) might be installed, and then the global ``site-packages`` directory is listed last.
 
 ::
 
-	$ python sys_path_default.py
+	$ python sys_path_show.py
 	/Users/dhellmann/Documents/PyMOTW/src/PyMOTW/sys
-    /Library/Frameworks/Python.framework/Versions/2.6/lib/python26.zip
-    /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6
-    /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-darwin
-    /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac
-    /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/lib-scriptpackages
-    /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/lib-tk
-    /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/lib-old
-    /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/lib-dynload
-    /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages
+	/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6
+	/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-darwin
+	/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/lib-tk
+	/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac
+	/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/lib-scriptpackages
+	/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages
 
 
-The import search path list can be modified before starting the interpreter by setting ``PYTHONPATH``, or during program execution by manipulating the list directly.
+The import search path list can be modified before starting the interpreter by setting the shell variable ``PYTHONPATH`` to a colon-separated list of directories.
 
+::
+
+	$ PYTHONPATH=/my/private/site-packages:/my/shared/site-packages python sys_path_show.py
+	/Users/dhellmann/Documents/PyMOTW/src/PyMOTW/sys
+	/my/private/site-packages
+	/my/shared/site-packages
+	/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6
+	/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-darwin
+	/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/lib-tk
+	/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac
+	/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/lib-scriptpackages
+	/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages
+
+A program can also modify its path by adding elements to ``sys.path`` directly.
+
+.. include:: sys_path_modify.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'sys_path_modify.py'))
+.. }}}
+.. {{{end}}}
 
 
 Path Hooks
