@@ -1,3 +1,5 @@
+.. _sys-imports:
+
 ===================
 Modules and Imports
 ===================
@@ -7,13 +9,13 @@ Most Python programs end up as a combination of several modules with a main appl
 Imported Modules
 ================
 
-
 ``sys.modules`` is a dictionary mapping the names of imported modules to the module object holding the code.
 
 .. include:: sys_modules.py
     :literal:
     :start-after: #end_pymotw_header
 
+The contents of ``sys.modules`` change as new modules are imported.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_modules.py'))
@@ -103,11 +105,52 @@ A program can also modify its path by adding elements to ``sys.path`` directly.
 .. {{{end}}}
 
 
-Path Hooks
-==========
+Custom Importers
+================
+
+Modifying the search path lets you control how standard Python modules are found, but what if you need to import code from somewhere other than a text file on the filesystem?  :pep:`302` introduces the idea of *import hooks*, which let you trap an attempt to find a module on the search path and take alternative measures to load the code from somewhere else or apply pre-processing to it.
+
+Hooks
+-----
+
+
+
 
 Importer Cache
-==============
+--------------
+
+Searching through all of the hooks each time a module is imported can become expensive.  To save time, ``sys.path_importer_cache`` is maintained as a mapping between a path entry and the *loader* that can use the value to find modules.
+
+.. include:: sys_path_importer_cache.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+A cache value of ``None`` means to use the default filesystem loader.  Each missing directory is associated with an ``imp.NullImporter`` instance, since modules cannot be imported from directories that do not exist.  In the example output below, several ``zipimport.zipimporter`` instances are used to manage EGG files found on the path.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'sys_path_importer_cache.py'))
+.. }}}
+.. {{{end}}}
+
+
+Meta Path
+---------
+
+
+
+.. seealso::
+
+    :pep:`302`
+        Import Hooks
+
+    :mod:`imp`
+        The imp module provides tools used by importers.
+        
+    :mod:`zipimport`
+        Implements importing Python modules from inside ZIP archives.
+        
+    `The Quick Guide to Python Eggs <http://peak.telecommunity.com/DevCenter/PythonEggs>`_
+        PEAK documentation for working with EGGs.
 
 Prefix
 ======

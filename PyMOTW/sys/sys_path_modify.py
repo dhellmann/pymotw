@@ -22,9 +22,9 @@ import example
 print 'Imported example from:', example.__file__
 print '\t', example.DATA
 
-# Replace package_dir_a with package_dir_b
+# Make package_dir_b the first directory in the search path
 package_dir_b = os.path.join(base_dir, 'package_dir_b')
-sys.path[0] = package_dir_b
+sys.path.insert(0, package_dir_b)
 
 # Reload the module to get the other version
 reload(example)
