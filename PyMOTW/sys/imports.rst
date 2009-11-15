@@ -108,7 +108,7 @@ A program can also modify its path by adding elements to ``sys.path`` directly.
 Custom Importers
 ================
 
-Modifying the search path lets you control how standard Python modules are found, but what if you need to import code from somewhere other than a text file on the filesystem?  :pep:`302` introduces the idea of *import hooks*, which let you trap an attempt to find a module on the search path and take alternative measures to load the code from somewhere else or apply pre-processing to it.
+Modifying the search path lets you control how standard Python modules are found, but what if you need to import code from somewhere other than the usual ``.py`` or ``.pyc`` files on the filesystem?  :pep:`302` solves this problem by introducing the idea of *import hooks* thatr let you trap an attempt to find a module on the search path and take alternative measures to load the code from somewhere else or apply pre-processing to it.
 
 Hooks
 -----
