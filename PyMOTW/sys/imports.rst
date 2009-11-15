@@ -168,26 +168,75 @@ package:
     :literal:
     :start-after: #end_pymotw_header
 
-Finally, a demo script to pull the pieces together and use the ``ShelveFinder`` and ``ShelveLoader`` to import code from a shelf.
+Now we can use ``ShelveFinder`` and ``ShelveLoader`` to import code from a shelf. For example, importing the
+``package`` created above:
 
-.. include:: sys_shelve_importer_demo.py
+.. include:: sys_shelve_importer_package.py
     :literal:
     :start-after: #end_pymotw_header
 
 The shelf is added to the import path the first time an import occurs after the path is modified. The finder
 recognizes the shelf and returns a loader, which is used for all imports from that shelf. The initial
 package-level import creates a new module object and then execs the source loaded from the shelf, using the new
-module as the namespace so that names defined in the source are preserved as module-level attributes. The loading
-of other modules and sub-packages proceeds in the same way.
+module as the namespace so that names defined in the source are preserved as module-level attributes. 
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'sys_shelve_importer_demo.py'))
+.. cog.out(run_script(cog.inFile, 'sys_shelve_importer_package.py'))
 .. }}}
 .. {{{end}}}
 
-.. todo::
+The loading of other modules and sub-packages proceeds in the same way.
 
-    3. demonstrate features that require get_code()
+.. include:: sys_shelve_importer_module.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'sys_shelve_importer_module.py'))
+.. }}}
+.. {{{end}}}
+
+Reloading a module is handled slightly differently. Instead of creating a new module object, the existing module
+is re-used.
+
+.. include:: sys_shelve_importer_reload.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+By re-using the same object, existing references to the module are preserved even if class or function
+definitions are modified by the reload.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'sys_shelve_importer_reload.py'))
+.. }}}
+.. {{{end}}}
+
+When a module cannot be imported, ``ImportError`` is raised.
+
+.. include:: sys_shelve_importer_missing.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'sys_shelve_importer_missing.py'))
+.. }}}
+.. {{{end}}}
+
+In addition to defining the API loading executable Python code, :pep:`302` defines an optional API for retrieving
+package data intended for distributing data files, documentation, and other non-code resources used by a package. By implementing ``get_data()``, a loader can allow calling applications to support retrieval of data associated with the package without considering how the package is actually installed (especially without assuming that the package is stored as files on a filesystem).
+
+.. include:: sys_shelve_importer_get_data.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+``get_data()`` takes a path based on the module or package that owns the data, and returns the contents of the
+resource "file" as a string, or raises IOError if the resource does not exist.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'sys_shelve_importer_get_data.py', ignore_error=True))
+.. }}}
+.. {{{end}}}
+
 
 Importer Cache
 --------------

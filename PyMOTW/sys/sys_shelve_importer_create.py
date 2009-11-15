@@ -16,6 +16,13 @@ if os.path.exists(filename):
     os.unlink(filename)
 db = shelve.open(filename)
 try:
+    db['data:README'] = """
+==============
+package README
+==============
+
+This is the README for ``package``.
+"""
     db['package.__init__'] = """
 print 'package imported'
 message = 'This message is in package.__init__'

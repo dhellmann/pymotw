@@ -97,6 +97,18 @@ class ShelveLoader(object):
         source = self.get_source(fullname)
         print 'compiling code for "%s"' % fullname
         return compile(source, self._get_filename(fullname), 'exec', dont_inherit=True)
+    
+    def get_data(self, path):
+        print 'looking for data for "%s"' % path
+        if not path.startswith(self.path_entry):
+            raise IOError
+        path = path[len(self.path_entry)+1:]
+        key_name = 'data:' + path
+        with shelve_context(self.path_entry) as db:
+            try:
+                return db[key_name]
+            except Exception, e:
+                raise IOError
         
     def is_package(self, fullname):
         init_name = _mk_init_name(fullname)
