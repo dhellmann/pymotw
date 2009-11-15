@@ -262,7 +262,23 @@ example output below, several ``zipimport.zipimporter`` instances are used to ma
 Meta Path
 ---------
 
-.. todo:: write this section
+The ``sys.meta_path`` further extends the sources of potential imports by allowing a finder to be searched
+*before* the regular ``sys.path`` is scanned. The API for a finder on the meta-path is the same as for a regular
+path. The difference is that the meta-finder is not limited to a single entry in ``sys.path``, it can search
+anywhere at all.
+
+.. include:: sys_meta_path.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+Each finder on the meta-path is interrogated before ``sys.path`` is searched, so there is always an opportunity to have a central importer load modules without explicitly modifying ``sys.path``.  Once the module is "found", the loader API works in the same way as for regular loaders (although this example is truncated for simplicity).
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'sys_meta_path.py'))
+.. }}}
+.. {{{end}}}
+
+
 
 .. seealso::
 
@@ -283,7 +299,3 @@ Meta Path
         
     `Python 3 stdlib module "importlib" <http://docs.python.org/py3k/library/importlib.html>`_
         Python 3.x includes abstract base classes that makes it easier to create custom importers.
-        
-Prefix
-======
-

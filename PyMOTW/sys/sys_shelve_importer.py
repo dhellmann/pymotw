@@ -61,12 +61,13 @@ class ShelveFinder(object):
         return '<%s for "%s">' % (self.__class__.__name__, self.path_entry)
         
     def find_module(self, fullname, path=None):
-        print 'looking for "%s" in %s ...' % (fullname, self.path_entry),
-        with shelve_context(self.path_entry) as db:
+        path = path or self.path_entry
+        print 'looking for "%s" in %s ...' % (fullname, path),
+        with shelve_context(path) as db:
             key_name = _get_key_name(fullname, db)
             if key_name:
                 print 'found it as %s' % key_name
-                return ShelveLoader(self.path_entry)
+                return ShelveLoader(path)
         print 'not found'
         return None
 
