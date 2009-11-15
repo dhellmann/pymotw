@@ -1,8 +1,8 @@
 .. _sys-threads:
 
-=======
-Threads
-=======
+========================
+Low-level Thread Support
+========================
 
 :mod:`sys` includes low-level functions for controlling and debugging thread behavior.
 

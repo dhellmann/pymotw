@@ -108,13 +108,62 @@ A program can also modify its path by adding elements to ``sys.path`` directly.
 Custom Importers
 ================
 
-Modifying the search path lets you control how standard Python modules are found, but what if you need to import code from somewhere other than a text file on the filesystem?  :pep:`302` introduces the idea of *import hooks*, which let you trap an attempt to find a module on the search path and take alternative measures to load the code from somewhere else or apply pre-processing to it.
+Modifying the search path lets you control how standard Python modules are found, but what if you need to import code from somewhere other than the usual ``.py`` or ``.pyc`` files on the filesystem?  :pep:`302` solves this problem by introducing the idea of *import hooks* thatr let you trap an attempt to find a module on the search path and take alternative measures to load the code from somewhere else or apply pre-processing to it.
 
 Hooks
 -----
 
+Custom importers are implemented in two separate phases.  The *finder* is responsible for locating a module and providing a *loader* to manage the actual import.  Adding a custom module finder is as simple as appending a factory to the ``sys.path_hooks`` list.  On import, each part of the path is given to a finder until one claims support (by not raising ImportError).  That finder is then responsible for searching data storage represented by its path entry for named modules.
 
+.. include:: sys_path_hooks_noisy.py
+    :literal:
+    :start-after: #end_pymotw_header
 
+This example illustrates how the finders are instantiated and queried.  The NoisyImportFinder raises ImportError when instantiated with a path entry that does not match its special trigger value, which is obviously not a real path on the filesystem.  This test prevents the NoisyImportFinder from breaking imports of real modules.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'sys_path_hooks_noisy.py'))
+.. }}}
+.. {{{end}}}
+
+Importing from a Shelve
+-----------------------
+
+When the finder locates a module, it should return a loader capable of importing that module.  This example illustrates a custom importer that saves its module contents in a shelve file.
+
+First, a script to populate the shelve file with a package containing 2 sub-modules.
+
+.. include:: sys_shelve_importer_create.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'sys_shelve_importer_create.py'))
+.. }}}
+.. {{{end}}}
+
+Next, finder and loader classes that know how to look in a shelve file for the source of a module or package:
+
+.. include:: sys_shelve_importer.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+Finally, a short demo script to pull the pieces together and use the ShelveFinder and ShelveLoader to import code from a shelve.
+
+.. include:: sys_shelve_importer_demo.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'sys_shelve_importer_demo.py'))
+.. }}}
+.. {{{end}}}
+
+.. todo::
+
+    1. Expand on the prose in this section.
+    2. Read docs for Py 3 importlib
+    3. demonstrate features that require get_code()
 
 Importer Cache
 --------------
@@ -136,7 +185,7 @@ A cache value of ``None`` means to use the default filesystem loader.  Each miss
 Meta Path
 ---------
 
-
+.. todo:: write this section
 
 .. seealso::
 
@@ -151,6 +200,12 @@ Meta Path
         
     `The Quick Guide to Python Eggs <http://peak.telecommunity.com/DevCenter/PythonEggs>`_
         PEAK documentation for working with EGGs.
+    
+    `Import this, that, and the other thing: custom importers <http://us.pycon.org/2010/conference/talks/?filter=core>`_
+        Brett Cannon's PyCon 2010 presentation.
+        
+    `Python 3 stdlib module "importlib" <http://docs.python.org/py3k/library/importlib.html>`_
+        Python 3.x includes abstract base classes that makes it easier to create custom importers.
 
 Prefix
 ======
