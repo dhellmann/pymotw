@@ -19,8 +19,10 @@ print uncompressed_data
 
 buf = StringIO()
 f = gzip.GzipFile(mode='wb', fileobj=buf)
-f.write(uncompressed_data)
-f.flush()
+try:
+    f.write(uncompressed_data)
+finally:
+    f.close()
 
 compressed_data = buf.getvalue()
 print 'COMPRESSED:', len(compressed_data)
@@ -28,8 +30,10 @@ print binascii.hexlify(compressed_data)
 
 inbuffer = StringIO(compressed_data)
 f = gzip.GzipFile(mode='rb', fileobj=inbuffer)
-reread_data = f.read(len(uncompressed_data))
-f.close()
+try:
+    reread_data = f.read(len(uncompressed_data))
+finally:
+    f.close()
 
 print
 print 'RE-READ:', len(reread_data)
