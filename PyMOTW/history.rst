@@ -1,6 +1,9 @@
 History
 =======
 
+1.110
+  - 15 Nov 2009, :mod:`sys`, continued with :ref:`sys-threads`
+
 1.109
   - 8 Nov 2009, :mod:`sys`, continued with :ref:`sys-tracing`
 
