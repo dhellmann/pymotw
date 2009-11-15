@@ -80,7 +80,7 @@ This example is modified from the first so that the thread prints directly to ``
 
     Default T2
     Default T2
-     Default T1
+    Default T1
     Default T2
     Default T1
     Default T1

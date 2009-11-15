@@ -132,7 +132,7 @@ Instead of a creating a new module, the contents of the existing module are simp
     `imp <http://docs.python.org/library/imp.html>`_
         The standard library documentation for this module.
         
-    :ref:`sys-import`
+    :ref:`sys-imports`
         Import hooks, the module search path, and other related machinery.
 
     :pep:`302`
