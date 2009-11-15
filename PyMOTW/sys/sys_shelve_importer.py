@@ -24,13 +24,14 @@ def shelve_context(filename, flag='r'):
 
     
 def _mk_init_name(fullname):
+    """Return the name of the __init__ module for a given package name."""
     if fullname.endswith('.__init__'):
         return fullname
     return fullname + '.__init__'
 
 
 def _get_key_name(fullname, db):
-    "Look in an open shelf for fullname or fullname.__init__, return the name found."
+    """Look in an open shelf for fullname or fullname.__init__, return the name found."""
     if fullname in db:
         return fullname
     init_name = _mk_init_name(fullname)
@@ -46,7 +47,7 @@ class ShelveFinder(object):
         if not os.path.isfile(path_entry):
             raise ImportError
         try:
-            # Test the path_entry to see if it is a valid shelve file
+            # Test the path_entry to see if it is a valid shelf
             with shelve_context(path_entry):
                 pass
         except Exception, e:
@@ -81,7 +82,7 @@ class ShelveLoader(object):
         return '<%s "%s"[%s]>' % (self.__class__.__name__, self.path_entry, fullname)
         
     def get_source(self, fullname):
-        print 'loading source for "%s" from shelve file' % fullname
+        print 'loading source for "%s" from shelf' % fullname
         try:
             with shelve_context(self.path_entry) as db:
                 key_name = _get_key_name(fullname, db)
@@ -93,8 +94,8 @@ class ShelveLoader(object):
             raise ImportError(str(e))
             
     def get_code(self, fullname):
-        print 'compiling code for "%s"' % fullname
         source = self.get_source(fullname)
+        print 'compiling code for "%s"' % fullname
         return compile(source, self._get_filename(fullname), 'exec', dont_inherit=True)
         
     def is_package(self, fullname):

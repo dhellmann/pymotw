@@ -28,6 +28,10 @@ message = 'This message is in package.module1'
 print 'package.subpackage imported'
 message = 'This message is in package.subpackage.__init__'
 """
+    db['package.subpackage.module2'] = """
+print 'package.subpackage.module2 imported'
+message = 'This message is in package.subpackage.module2'
+"""
     print 'Created %s with:' % filename
     for key in sorted(db.keys()):
         print '\t', key

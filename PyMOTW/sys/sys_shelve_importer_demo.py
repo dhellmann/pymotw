@@ -46,8 +46,12 @@ print 'Examine package.module1 details:'
 show_module_details(package.module1)
 
 print
-print 'First import of "package.subpackage":'
-import package.subpackage
+print 'Import of "package.subpackage.module2":'
+import package.subpackage.module2
+
+print
+print 'Examine package.subpackage.module2 details:'
+show_module_details(package.subpackage.module2)
 
 print
 print 'Trying to import a module that does not exist:'

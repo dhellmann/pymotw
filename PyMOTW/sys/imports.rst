@@ -146,14 +146,15 @@ Importing from a Shelve
 When the finder locates a module, it is responsible for returning a loader capable of importing that module. This
 example illustrates a custom importer that saves its module contents in a database created by :mod:`shelve`.
 
-First, a script to populate the shelf with a package containing a sub-module and sub-package.
+The first step is to create a script to populate the shelf with a package containing a sub-module and
+sub-package.
 
 .. include:: sys_shelve_importer_create.py
     :literal:
     :start-after: #end_pymotw_header
 
-A real packaging script would probably read the contents from the filesystem, but using hard-coded values is
-sufficient for a simple example like this.
+A real packaging script would read the contents from the filesystem, but using hard-coded values is sufficient
+for a simple example like this.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_shelve_importer_create.py'))
@@ -167,11 +168,17 @@ package:
     :literal:
     :start-after: #end_pymotw_header
 
-Finally, a short demo script to pull the pieces together and use the ``ShelveFinder`` and ``ShelveLoader`` to import code from a shelf.
+Finally, a demo script to pull the pieces together and use the ``ShelveFinder`` and ``ShelveLoader`` to import code from a shelf.
 
 .. include:: sys_shelve_importer_demo.py
     :literal:
     :start-after: #end_pymotw_header
+
+The shelf is added to the import path the first time an import occurs after the path is modified. The finder
+recognizes the shelf and returns a loader, which is used for all imports from that shelf. The initial
+package-level import creates a new module object and then execs the source loaded from the shelf, using the new
+module as the namespace so that names defined in the source are preserved as module-level attributes. The loading
+of other modules and sub-packages proceeds in the same way.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_shelve_importer_demo.py'))
@@ -180,8 +187,6 @@ Finally, a short demo script to pull the pieces together and use the ``ShelveFin
 
 .. todo::
 
-    1. Expand on the prose in this section.
-    2. Read docs for Py 3 importlib
     3. demonstrate features that require get_code()
 
 Importer Cache
