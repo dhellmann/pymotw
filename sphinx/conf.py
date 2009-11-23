@@ -41,3 +41,5 @@ latex_documents = [
 #'''
 
 extensions = [ 'sphinx.ext.todo' ]
+
+unused_docs = [ 'copyright', 'pdf_contents' ]
