@@ -16,6 +16,7 @@ import sys
 
 @contextlib.contextmanager
 def shelve_context(filename, flag='r'):
+    """Context manager to make shelves work with 'with' statement."""
     db = shelve.open(filename, flag)
     try:
         yield db
@@ -105,11 +106,12 @@ class ShelveLoader(object):
             raise IOError
         path = path[len(self.path_entry)+1:]
         key_name = 'data:' + path
-        with shelve_context(self.path_entry) as db:
-            try:
+        try:
+            with shelve_context(self.path_entry) as db:
                 return db[key_name]
-            except Exception, e:
-                raise IOError
+        except Exception, e:
+            # Convert all errors to IOError
+            raise IOError
         
     def is_package(self, fullname):
         init_name = _mk_init_name(fullname)
@@ -137,7 +139,7 @@ class ShelveLoader(object):
             print 'adding path for package'
             # Set __path__ for packages
             # so we can find the sub-modules.
-            mod.__path__ = [self.path_entry]
+            mod.__path__ = [ self.path_entry ]
         else:
             print 'imported as regular module'
         

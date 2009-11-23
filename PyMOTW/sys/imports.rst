@@ -8,7 +8,7 @@ Most Python programs end up as a combination of several modules with a main appl
 you are using the features of the standard library, or organizing your own code in separate files to make it
 easier to maintain, understanding and managing the dependencies for your program is an important aspect of
 development. :mod:`sys` includes information about the modules available to your application, either as built-ins
-or after being imported.
+or after being imported.  It also defines hooks for overriding the standard import behavior for special cases.
 
 Imported Modules
 ================
@@ -118,8 +118,8 @@ code from somewhere other than the usual ``.py`` or ``.pyc`` files on the filesy
 problem by introducing the idea of *import hooks* that let you trap an attempt to find a module on the search
 path and take alternative measures to load the code from somewhere else or apply pre-processing to it.
 
-Hooks
------
+Finders
+-------
 
 Custom importers are implemented in two separate phases. The *finder* is responsible for locating a module and
 providing a *loader* to manage the actual import. Adding a custom module finder is as simple as appending a
@@ -143,8 +143,8 @@ path on the filesystem. This test prevents the NoisyImportFinder from breaking i
 Importing from a Shelve
 -----------------------
 
-When the finder locates a module, it is responsible for returning a loader capable of importing that module. This
-example illustrates a custom importer that saves its module contents in a database created by :mod:`shelve`.
+When the finder locates a module, it is responsible for returning a *loader* capable of importing that module.
+This example illustrates a custom importer that saves its module contents in a database created by :mod:`shelve`.
 
 The first step is to create a script to populate the shelf with a package containing a sub-module and
 sub-package.
@@ -185,6 +185,9 @@ module as the namespace so that names defined in the source are preserved as mod
 .. }}}
 .. {{{end}}}
 
+Packages
+--------
+
 The loading of other modules and sub-packages proceeds in the same way.
 
 .. include:: sys_shelve_importer_module.py
@@ -195,6 +198,9 @@ The loading of other modules and sub-packages proceeds in the same way.
 .. cog.out(run_script(cog.inFile, 'sys_shelve_importer_module.py'))
 .. }}}
 .. {{{end}}}
+
+Reloading
+---------
 
 Reloading a module is handled slightly differently. Instead of creating a new module object, the existing module
 is re-used.
@@ -211,6 +217,9 @@ definitions are modified by the reload.
 .. }}}
 .. {{{end}}}
 
+Import Errors
+-------------
+
 When a module cannot be imported, ``ImportError`` is raised.
 
 .. include:: sys_shelve_importer_missing.py
@@ -221,6 +230,9 @@ When a module cannot be imported, ``ImportError`` is raised.
 .. cog.out(run_script(cog.inFile, 'sys_shelve_importer_missing.py'))
 .. }}}
 .. {{{end}}}
+
+Package Data
+------------
 
 In addition to defining the API loading executable Python code, :pep:`302` defines an optional API for retrieving
 package data intended for distributing data files, documentation, and other non-code resources used by a package. By implementing ``get_data()``, a loader can allow calling applications to support retrieval of data associated with the package without considering how the package is actually installed (especially without assuming that the package is stored as files on a filesystem).
@@ -239,7 +251,7 @@ resource "file" as a string, or raises IOError if the resource does not exist.
 
 
 Importer Cache
---------------
+==============
 
 Searching through all of the hooks each time a module is imported can become expensive. To save time,
 ``sys.path_importer_cache`` is maintained as a mapping between a path entry and the loader that can use the
@@ -260,7 +272,7 @@ example output below, several ``zipimport.zipimporter`` instances are used to ma
 
 
 Meta Path
----------
+=========
 
 The ``sys.meta_path`` further extends the sources of potential imports by allowing a finder to be searched
 *before* the regular ``sys.path`` is scanned. The API for a finder on the meta-path is the same as for a regular

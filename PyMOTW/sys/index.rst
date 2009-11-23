@@ -19,8 +19,7 @@ The :mod:`sys` module includes a collection of services for probing or changing 
     exceptions
     tracing
     threads
-
-..    imports
+    imports
 
 
 .. seealso::
