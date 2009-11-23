@@ -1,6 +1,9 @@
 History
 =======
 
+1.111
+  - 23 Nov 2009, :mod:`sys`, continued with :ref:`sys-imports`
+
 1.110
   - 15 Nov 2009, :mod:`sys`, continued with :ref:`sys-threads`
 
