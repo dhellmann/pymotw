@@ -156,7 +156,7 @@ In this case, both ``Archive`` and ``Archive.2008`` are included in the response
 Mailbox Status
 ==============
 
-Use :meth:`status()` to ask for aggregated information about the contents.  The standard defines these :term:`status conditions`:
+Use :meth:`status()` to ask for aggregated information about the contents.  The standard defines these *status conditions*:
 
 MESSAGES
     The number of messages in the mailbox.

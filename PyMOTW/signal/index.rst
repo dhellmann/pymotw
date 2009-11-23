@@ -22,7 +22,7 @@ Signals are identified by integers and are defined in the operating system C hea
 Receiving Signals
 =================
 
-As with other forms of event-based programming, signals are received by establishing a callback function, called a :term:`signal handler`, that is invoked when the signal occurs.  The arguments to your signal handler are the signal number and the stack frame from the point in your program that was interrupted by the signal.
+As with other forms of event-based programming, signals are received by establishing a callback function, called a *signal handler*, that is invoked when the signal occurs.  The arguments to your signal handler are the signal number and the stack frame from the point in your program that was interrupted by the signal.
 
 .. include:: signal_signal.py
     :literal:
