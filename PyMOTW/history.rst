@@ -1,6 +1,11 @@
 History
 =======
 
+1.111.1
+  - Clarify memory example based on comment from tartley.
+  - Fix core dump detection in commands_getstatusoutput.py.  
+    Thanks to Felix Labrecque for pointing out that it was wrong.
+
 1.111
   - 23 Nov 2009, :mod:`sys`, continued with :ref:`sys-imports`
 

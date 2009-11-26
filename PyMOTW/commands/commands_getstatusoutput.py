@@ -35,15 +35,16 @@ from commands import *
 def run_command(cmd):
     print 'Running: "%s"' % cmd
     status, text = getstatusoutput(cmd)
-    exit_code = status >> 8
-    signal_num = status % 256
+    exit_code = status >> 8 # high byte
+    signal_num = status % 256 # low byte
     print 'Signal: %d' % signal_num
     print 'Exit  : %d' % exit_code
-    print 'Core? : %s' % bool(exit_code / 256)
+    print 'Core? : %s' % bool(exit_code >> 7) # high bit
     print 'Output:'
     print text
     print
 
 run_command('ls -l *.py')
 run_command('ls -l *.notthere')
+run_command('./dumpscore')
 run_command('echo "WAITING TO BE KILLED"; read input')

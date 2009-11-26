@@ -30,10 +30,9 @@ file was produced, the high bit of the low byte is set.
     :literal:
     :start-after: #end_pymotw_header
 
-This example runs 2 commands which exit normally, and a third which blocks
-waiting to be killed from another shell. (Don't simply use Ctrl-C as the
-interpreter will intercept that signal. Use ps and grep in another window to
-find the read process and send it a signal with kill.)
+This example runs two commands that exit normally, a third meant to generate a core dump, and a fourth that
+blocks waiting to be killed from another shell. (Don't simply use Ctrl-C as the interpreter will intercept that
+signal. Use ps and grep in another window to find the read process and send it a signal with kill.)
 
 ::
 
@@ -55,6 +54,13 @@ find the read process and send it a signal with kill.)
     Output:
     ls: *.notthere: No such file or directory
 
+    Running: "./dumpscore"
+    Signal: 0
+    Exit  : 138
+    Core? : True
+    Output:
+    sh: line 1: 42237 Bus error               ./dumpscore
+
     Running: "echo "WAITING TO BE KILLED"; read input"
     Signal: 1
     Exit  : 0
@@ -62,7 +68,8 @@ find the read process and send it a signal with kill.)
     Output:
     WAITING TO BE KILLED
 
-In this example, I used ``kill -HUP $PID`` to kill the read process.
+In this example, I used ``kill -HUP $PID`` to kill the reading process from a separate shell window, so the
+signal is reported as ``1``.
 
 getoutput()
 ===========
@@ -113,3 +120,6 @@ call is escaped so the environment variable name is not expanded.
 
     `commands <http://docs.python.org/library/commands.html>`_
         The standard library documentation for this module.
+
+    :mod:`signal`
+        Defines constants for signals such as HUP (``1``).
