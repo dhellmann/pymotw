@@ -43,7 +43,21 @@ The size is reported in bytes.
 .. }}}
 .. {{{end}}}
 
-For a more accurate estimate of the space used by a class, you can provide a ``__sizeof__()`` method to compute the value by aggregating the sizes of attributes of an object.
+The reported size for your own classes does not include the size of the attribute values.
+
+.. include:: sys_getsizeof_object.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+This can give a false impression of the amount of memory being consumed.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'sys_getsizeof_object.py'))
+.. }}}
+.. {{{end}}}
+
+
+For a more complete estimate of the space used by a class, you can provide a ``__sizeof__()`` method to compute the value by aggregating the sizes of attributes of an object.
 
 .. include:: sys_getsizeof_custom.py
     :literal:
