@@ -38,32 +38,36 @@ signal. Use ps and grep in another window to find the read process and send it a
 
     $ python commands_getstatusoutput.py
     Running: "ls -l *.py"
-    Signal: 0
-    Exit  : 0
+    Status: x0000
+    Signal: x00 (0)
+    Exit  : x00 (0)
     Core? : False
     Output:
-    -rw-r--r--   1 dhellman  dhellman  1191 Oct 21 09:41 __init__.py
-    -rw-r--r--   1 dhellman  dhellman  1321 Oct 21 09:48 commands_getoutput.py
-    -rw-r--r--   1 dhellman  dhellman  1265 Oct 21 09:50 commands_getstatus.py
-    -rw-r--r--   1 dhellman  dhellman  1626 Oct 21 10:10 commands_getstatusoutput.py
+    -rw-r--r--  1 dhellmann  dhellmann  1140 Mar 12  2009 __init__.py
+    -rw-r--r--  1 dhellmann  dhellmann  1297 Mar 12  2009 commands_getoutput.py
+    -rw-r--r--@ 1 dhellmann  dhellmann  1355 Mar 12  2009 commands_getstatus.py
+    -rw-r--r--@ 1 dhellmann  dhellmann  1739 Nov 26 12:52 commands_getstatusoutput.py
 
     Running: "ls -l *.notthere"
-    Signal: 0
-    Exit  : 1
+    Status: x0100
+    Signal: x00 (0)
+    Exit  : x01 (1)
     Core? : False
     Output:
     ls: *.notthere: No such file or directory
 
     Running: "./dumpscore"
-    Signal: 0
-    Exit  : 138
-    Core? : True
+    Status: x8600
+    Signal: x00 (0)
+    Exit  : x86 (134)
+    Core? : False
     Output:
-    sh: line 1: 42237 Bus error               ./dumpscore
+    sh: line 1: 47021 Abort trap              (core dumped) ./dumpscore
 
     Running: "echo "WAITING TO BE KILLED"; read input"
-    Signal: 1
-    Exit  : 0
+    Status: x0001
+    Signal: x01 (1)
+    Exit  : x00 (0)
     Core? : False
     Output:
     WAITING TO BE KILLED

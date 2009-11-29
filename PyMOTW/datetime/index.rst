@@ -209,3 +209,6 @@ Within datetime, time zones are represented by subclasses of datetime.tzinfo. Si
 
     `WikiPedia: Proleptic Gregorian calendar <http://en.wikipedia.org/wiki/Proleptic_Gregorian_calendar>`_
         A description of the Gregorian calendar system.
+
+    `pytz <http://pytz.sourceforge.net/>`_
+        World Time Zone database
