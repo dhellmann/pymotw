@@ -1,6 +1,9 @@
 History
 =======
 
+1.112
+  - 29 Nov 2009, :mod:`plistlib`
+
 1.111.1
   - Clarify memory example based on comment from tartley.
   - Fix core dump detection in commands_getstatusoutput.py.  
