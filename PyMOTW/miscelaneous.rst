@@ -6,4 +6,4 @@ Miscelaneous
     :maxdepth: 1
 
     EasyDialogs/index
-    
+    plistlib/index

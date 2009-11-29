@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AlarmsDisabled</key>
+	<false/>
+	<key>Availability</key>
+	<false/>
+	<key>Checked</key>
+	<integer>1</integer>
+	<key>Color</key>
+	<string>#2952A3FF</string>
+	<key>Delegate</key>
+	<false/>
+	<key>Editable</key>
+	<true/>
+	<key>Enabled</key>
+	<true/>
+	<key>Key</key>
+	<string>C9055B68-9105-47A4-8AB9-8A1CF425D594</string>
+	<key>Order</key>
+	<integer>7</integer>
+	<key>Renameable</key>
+	<true/>
+	<key>Title</key>
+	<string>Doug Hellmann</string>
+	<key>Type</key>
+	<string>CalDAV</string>
+</dict>
+</plist>
