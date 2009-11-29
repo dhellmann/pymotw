@@ -26,23 +26,19 @@ about objects they manage.  For example, iCal stores the definitions
 of all of your calendars as a series of plist files in the Library
 directory.  
 
-.. include:: Info.plist
-   :literal:
-
-.. note::
-
-   I've removed some personal information from the sample.
+.. literalinclude:: Info.plist
+   :language: xml
 
 This sample script finds the calendar defintions, reads
 them, and prints the titles of any calendars being displayed by iCal
-(having the property "Checked" set to a true value).
+(having the property ``Checked`` set to a true value).
 
 .. include:: plistlib_checked_calendars.py
    :literal:
    :start-after: #end_pymotw_header
 
 The type of the ``Checked`` property is defined by the plist file, so
-our script does not need to do the conversion.
+our script does not need to convert the string to an integer.
 
 ::
 
@@ -59,15 +55,60 @@ our script does not need to do the conversion.
 	Meetup: Django
 	Meetup: Python
 
-
 Writing plist Files
 ===================
 
-Accessing plist Data in Resource Forks
-======================================
+If you want to use plist files to save your own settings, use
+``writePlist()`` to serialize the data and write it to the filesystem.
 
-Binary Data
-===========
+.. include:: plistlib_write_plist.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+The first argument is the data structure to write out, and the second
+is an open file handle or the name of a file.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'plistlib_write_plist.py'))
+.. }}}
+.. {{{end}}}
+
+
+Binary Property Data
+====================
+
+Serializing binary data or strings that may include control characters
+using a plist is not immune to the typical challenges for an XML
+format.  To work around the issues, plist files can store binary data
+in :mod:`base64` format if the object is wrapped with a ``Data``
+instance.
+
+.. include:: plistlib_binary_write.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+This example uses the ToString version of the write function to create
+an in-memory string instead of writing to a file.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'plistlib_binary_write.py'))
+.. }}}
+.. {{{end}}}
+
+Binary data is automatically converted to a ``Data`` instance when
+read.
+
+.. include:: plistlib_binary_read.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+The ``data`` attribute of the object contains the decoded data.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'plistlib_binary_read.py'))
+.. }}}
+.. {{{end}}}
+
 
 
 .. seealso::
@@ -80,3 +121,10 @@ Binary Data
 
     `Weather Underground <http://www.wunderground.com/>`_
         Free weather information, including ICS and RSS feeds.
+
+    `Convert plist between XML and Binary formats <http://www.macosxhints.com/article.php?story=20050430105126392>`_
+        Some plist files are stored in a binary format instead of XML
+        because the binary format is faster to parse using Apple's
+        libraries.  Python's plistlib module does not handle the
+        binary format, so you may need to convert binary files to XML
+        using ``plutil`` before reading them.
