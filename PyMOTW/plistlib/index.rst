@@ -128,3 +128,9 @@ The ``data`` attribute of the object contains the decoded data.
         libraries.  Python's plistlib module does not handle the
         binary format, so you may need to convert binary files to XML
         using ``plutil`` before reading them.
+
+    `Using Python for System Administration <http://docs.google.com/present/view?id=0AW0cyKASCypUZGczODJ6YjdfMjRobW16dG5mNQ&hl=en>`_
+        Presentation from Nigel Kersten and Chris Adams, including
+        details of using PyObjC to load plists using the native Cocoa
+        API, which transparently handles both the XML and binary
+        formats.  See slice 27, especially.

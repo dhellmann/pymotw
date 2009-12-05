@@ -1,6 +1,10 @@
 History
 =======
 
+working
+  - Added reference to presentation about using PyObjC to read/write
+    binary plist files to :mod:`plist`.
+
 1.112
   - 29 Nov 2009, :mod:`plistlib`
 
