@@ -1,5 +1,29 @@
 {% extends "base.html" %}
 
+{%- set reldelim1 = reldelim1 is not defined and ' &raquo;' or reldelim1 %}
+{%- set reldelim2 = reldelim2 is not defined and ' |' or reldelim2 %}
+
+{%- macro relbar() %}
+    <div class="related">
+      <h3>{{ _('Navigation') }}</h3>
+      <ul>
+        {%- for rellink in rellinks %}
+        <li class="right" {% if loop.first %}style="margin-right: 10px"{% endif %}>
+          <a href="{{ pathto(rellink[0]) }}" title="{{ rellink[1]|striptags }}"
+             {{ accesskey(rellink[2]) }}>{{ rellink[3] }}</a>
+          {%- if not loop.first %}{{ reldelim2 }}{% endif %}</li>
+        {%- endfor %}
+        {%- block rootrellink %}
+        <li><a href="{{ pathto(master_doc) }}">PyMOTW</a>{{ reldelim1 }}</li>
+        {%- endblock %}
+        {%- for parent in parents %}
+          <li><a href="{{ parent.link|e }}" {% if loop.last %}{{ accesskey("U") }}{% endif %}>{{ parent.title }}</a>{{ reldelim1 }}</li>
+        {%- endfor %}
+        {%- block relbaritems %} {% endblock %}
+      </ul>
+    </div>
+{%- endmacro %}
+
 {% block title %}{{ title }} - Python Module of the Week{% endblock %}
 
 {% block head_before_css %}
@@ -73,9 +97,6 @@
           <a href="{{ next.link|e }}" title="next chapter"><strong>Next:</strong> {{ next.title }}</a><br/>
         {%- endif %}
     {% endif %}
-    <a href="{{ pathto("modindex") }}"><strong>All Modules</strong></a><br/>
-    <a href="{{ pathto("genindex") }}"><strong>Index</strong></a><br/>
-    <a href="/PyMOTW/"><strong>Home</strong></a><br/>
 
     {%- if show_source and has_source and sourcename %}
       <h3>{{ _('This Page') }}</h3>
@@ -94,7 +115,9 @@
 {% endblock %}
 
 {% block content %}
+{%- block relbar1 %}{{ relbar() }}{% endblock %}
 {% block body %}{% endblock %}
+{%- block relbar2 %}{{ relbar() }}{% endblock %}
 {% endblock %}
 
 {% block footer %}
