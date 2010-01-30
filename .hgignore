@@ -13,6 +13,7 @@ setup.py
 
 syntax: re
 ^PyMOTW/.*/[eE]xample/
+^PyMOTW/cgitb/LOGS
 ^PyMOTW/commands/dumpscore$
 ^PyMOTW/csv/testout.*\.csv
 ^PyMOTW/docs/.*
