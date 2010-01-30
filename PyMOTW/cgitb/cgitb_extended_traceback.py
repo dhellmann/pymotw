@@ -3,7 +3,7 @@
 #
 # Copyright (c) 2009 Doug Hellmann.  All rights reserved.
 #
-"""Generate a traceback
+"""Generate a traceback with more details.
 """
 #end_pymotw_header
 
