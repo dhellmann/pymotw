@@ -6,6 +6,7 @@ Internet Protocols and Support
     :maxdepth: 1
     
     BaseHTTPServer/index
+    cgitb/index
     Cookie/index
     imaplib/index
     SimpleXMLRPCServer/index
