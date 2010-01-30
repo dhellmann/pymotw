@@ -11,7 +11,8 @@ cgitb -- Detailed traceback reports
 cgitb was originally designed for showing errors and debugging
 information in web applications.  It was later updated to include
 plain-text output as well, but unfortunately wasn't renamed.  This
-obscurity has led to it being under used.
+obscurity has led to it being under used, but it is a valuable
+debugging tool in the standard library.
 
 Standard Traceback Dumps
 ========================
@@ -36,7 +37,8 @@ Enabling Detailed Tracebacks
 ============================
 
 While the basic traceback includes enough information for us to spot
-the error, enabling extended tracebacks gives even more detail.
+the error, enabling cgitb replaces ``sys.excepthook`` with a function
+that gives extended tracebacks with even more detail.
 
 .. include:: cgitb_extended_traceback.py
    :literal:
@@ -131,8 +133,52 @@ the problem in the code, again.
 Exception Properties
 ====================
 
+In addition to the local variables from each stack frame, cgitb shows
+all properties of the exception object.  If you have a custom
+exception type with extra properties, they are printed as part of the
+error report.
+
+.. include:: cgitb_exception_properties.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+In this example, the ``bad_value`` property is included along with the
+standard ``message`` and ``args`` values.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'cgitb_exception_properties.py', ignore_error=True))
+.. }}}
+.. {{{end}}}
+
+
+
 Logging Tracebacks
 ==================
+
+For many situations, printing the traceback details to standard error
+is the best resolution.  In a production system, however, logging the
+errors is even better.  ``cgitb.enable()`` includes an optional
+argument, ``logdir``, to enable error logging.  When a directory name
+is provided, each exception is logged to its own file in the given
+directory.
+
+.. include:: cgitb_log_exception.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+Event with the error display suppressed, a message is printed
+describing where to go to find the error log.
+
+.. {{{cog
+.. path('PyMOTW/cgitb/LOGS').rmtree()
+.. sh('mkdir -p PyMOTW/cgitb/LOGS')
+.. cog.out(run_script(cog.inFile, 'cgitb_log_exception.py', ignore_error=True))
+.. cog.out(run_script(cog.inFile, 'ls LOGS', interpreter=None, include_prefix=False))
+.. cog.out(run_script(cog.inFile, 'cat LOGS/*.txt', interpreter=None, include_prefix=False))
+.. }}}
+.. {{{end}}}
+
+
 
 HTML Output
 ===========
@@ -151,8 +197,9 @@ HTML Output
         stack.
 
     :mod:`sys`
-        The sys module provides access to the current exception
-        value.
+        The sys module provides access to the current exception value
+        and the ``excepthook`` handler invoked when an exception
+        occurs.
 
     `Improved traceback module <http://thread.gmane.org/gmane.comp.python.devel/110326>`_
         Python-dev discussion of improvements to the traceback module
