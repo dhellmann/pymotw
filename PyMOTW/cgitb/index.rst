@@ -11,7 +11,7 @@ cgitb -- Detailed traceback reports
 cgitb was originally designed for showing errors and debugging
 information in web applications.  It was later updated to include
 plain-text output as well, but unfortunately wasn't renamed.  This has
-lead to obscurity and the module is not used as often as it should be.
+led to obscurity and the module is not used as often as it should be.
 Nonetheless, cgitb is a valuable debugging tool in the standard
 library.
 
