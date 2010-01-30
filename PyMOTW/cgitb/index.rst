@@ -183,6 +183,19 @@ describing where to go to find the error log.
 HTML Output
 ===========
 
+Of course, since cgitb was originally developed for handling
+exceptions in web apps, no discussion would be complete without an
+example of the HTML output it produces.
+
+.. include:: cgitb_html_output.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+By leaving out the ``format`` argument (or specifying ``html``), the
+traceback format changes to HTML output.
+
+.. image:: html_error.png
+
 
 .. seealso::
 
