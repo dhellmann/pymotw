@@ -123,7 +123,7 @@ Either or both prompt can be changed to a different string
     0
     1
     2
-    :::
+    ::: 
 
 Alternately, any object that can be converted to a string (via ``__str__``) can be used for the prompt.
 

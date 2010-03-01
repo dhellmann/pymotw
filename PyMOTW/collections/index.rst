@@ -8,8 +8,8 @@ collections -- Container data types
 :Purpose: Container data types.
 :Python Version: 2.4 and later
 
-The collections module includes container data types beyond the builtin
-types list and dict.
+The collections module includes container data types beyond the
+built-in types list and dict.
 
 Deque
 =====

@@ -1,11 +1,11 @@
-===================================
-exceptions -- Builtin error classes
-===================================
+====================================
+exceptions -- Built-in error classes
+====================================
 
 .. module:: exceptions
-    :synopsis: Builtin error classes
+    :synopsis: Built-in error classes
 
-:Purpose: The exceptions module defines the builtin errors used throughout the standard library and by the interpreter.
+:Purpose: The exceptions module defines the built-in errors used throughout the standard library and by the interpreter.
 :Python Version: 1.5 and later
 
 
@@ -36,7 +36,7 @@ All user-defined exceptions should use Exception as a base class.
 StandardError
 -------------
 
-Base class for builtin exceptions used in the standard library.
+Base class for built-in exceptions used in the standard library.
 
 ArithmeticError
 ---------------
@@ -115,7 +115,10 @@ Or when trying to modify a read-only attribute:
 EOFError
 --------
 
-An EOFError is raised when a builtin function like ``input()`` or ``raw_input()`` do not read any data before encountering the end of their input stream.  The file methods like ``read()`` return an empty string at the end of the file.
+An EOFError is raised when a built-in function like ``input()`` or
+``raw_input()`` do not read any data before encountering the end of
+their input stream.  The file methods like ``read()`` return an empty
+string at the end of the file.
 
 .. include:: exceptions_EOFError.py
     :literal:

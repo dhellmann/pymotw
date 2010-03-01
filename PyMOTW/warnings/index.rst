@@ -21,7 +21,7 @@ code.
 Categories and Filtering
 ========================
 
-Warnings are categorized using subclasses of the builtin exception class
+Warnings are categorized using subclasses of the built-in exception class
 Warning. Several standard values are described in the documentation, and you
 can add your own by subclassing from Warning to create a new class.
 

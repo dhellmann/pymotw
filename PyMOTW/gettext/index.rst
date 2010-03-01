@@ -190,18 +190,28 @@ The scope of your translation effort defines how you install and use the :mod:`g
 Application Localization
 ------------------------
 
-For application-wide translations, it would be acceptable to install a function like ``ungettext()`` globally using the ``__builtins__`` namespace because you have control over the top-level of the application's code.  
+For application-wide translations, it would be acceptable to install a
+function like ``ungettext()`` globally using the ``__builtins__``
+namespace because you have control over the top-level of the
+application's code.
 
 .. include:: gettext_app_builtin.py
     :literal:
     :start-after: #end_pymotw_header
 
-The ``install()`` function binds ``gettext()`` to the name ``_()`` in the ``__builtins__`` namespace.  It also adds ``ngettext()`` and other functions listed in *names*.  If *unicode* is true, the Unicode versions of the functions are used instead of the default ASCII versions.
+The ``install()`` function binds ``gettext()`` to the name ``_()`` in
+the ``__builtins__`` namespace.  It also adds ``ngettext()`` and other
+functions listed in *names*.  If *unicode* is true, the Unicode
+versions of the functions are used instead of the default ASCII
+versions.
 
 Module Localization
 -------------------
 
-For a library, or individual module, modifying ``__builtins__`` is not a good idea because you don't know what conflicts you might introduce with an application global value.  You can import or re-bind the names of translation functions by hand at the top of your module.
+For a library, or individual module, modifying ``__builtins__`` is not
+a good idea because you don't know what conflicts you might introduce
+with an application global value.  You can import or re-bind the names
+of translation functions by hand at the top of your module.
 
 .. include:: gettext_module_global.py
     :literal:

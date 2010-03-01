@@ -1,6 +1,6 @@
-===============
-Builtin Objects
-===============
+================
+Built-in Objects
+================
 
 .. toctree::
     :maxdepth: 1

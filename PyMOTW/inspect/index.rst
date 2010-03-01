@@ -79,9 +79,10 @@ methods and attributes; and so on.
     :literal:
     :start-after: #end_pymotw_header
 
-This sample prints the members of the example module. Modules have a set of
-__builtins__, which are ignored in the output for this example because they
-are not actually part of the module and the list is long.
+This sample prints the members of the example module. Modules have a
+set of ``__builtins__``, which are ignored in the output for this
+example because they are not actually part of the module and the list
+is long.
 
 .. No cog, the memory addresses and paths change.
 
