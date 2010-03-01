@@ -43,3 +43,5 @@ latex_documents = [
 extensions = [ 'sphinx.ext.todo' ]
 
 unused_docs = [ 'copyright' ]
+
+html_theme = 'sphinxdoc'
