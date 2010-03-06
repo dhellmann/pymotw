@@ -9,6 +9,7 @@
 # Standard library
 import os
 import sys
+import tabnanny
 import traceback
 import types
 
@@ -258,6 +259,22 @@ def html(options):
 
 @task
 @consume_args
+def tabcheck(options):
+    """Run tabnanny against the current module.
+    """
+    args = getattr(options, 'args', [])
+    if args:
+        module = args[0]
+    else:
+        module = MODULE
+    module_dir = 'PyMOTW/' + module
+    tabnanny.verbose = 1
+    tabnanny.check(module_dir)
+    return
+
+@task
+@consume_args
+@needs(['tabcheck'])
 def update(options):
     """Run cog against the named module, then re-build the HTML.
     
@@ -271,8 +288,9 @@ def update(options):
         module = args[0]
     else:
         module = MODULE
+    module_dir = 'PyMOTW/' + module
     options.order('cog', 'sphinx', add_rest=True)
-    options.args = ['PyMOTW/' + module]
+    options.args = [module_dir]
     cog(options)
     html(options)
     return

@@ -8,3 +8,4 @@ Python Language Services
     compileall/index
     dis/index
     pyclbr/index
+    tabnanny/index

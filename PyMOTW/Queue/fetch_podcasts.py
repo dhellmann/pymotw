@@ -75,9 +75,9 @@ for url in feed_urls:
     response = feedparser.parse(url, agent='fetch_podcasts.py')
     #print response
     for entry in response['entries']:
-		for enclosure in entry.get('enclosures', []):
-		    print 'Queuing:', enclosure['url']
-		    enclosure_queue.put(enclosure['url'])
+        for enclosure in entry.get('enclosures', []):
+            print 'Queuing:', enclosure['url']
+            enclosure_queue.put(enclosure['url'])
         
 # Now wait for the queue to be empty, indicating that we have
 # processed all of the downloads.
