@@ -17,7 +17,7 @@ does take more memory than an event-based parsing approach since the
 entire document must be loaded.
 
 The memory footprint of small, simple documents such as this list of
-podcasts is not significant:
+podcasts represented as an OPML_ outline is not significant:
 
 .. literalinclude:: podcasts.opml
 
@@ -47,3 +47,11 @@ Watching Events While Parsing
 
 Creating Your Own Tree Builder
 ==============================
+
+.. seealso::
+
+   Outline Processor Markup Language, OPML_
+       Dave Winer's OPML specification and documentation.
+
+
+.. _OPML: http://www.opml.org/
