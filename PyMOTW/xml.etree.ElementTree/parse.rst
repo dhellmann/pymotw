@@ -205,11 +205,9 @@ level of outline nodes.
 
 This version is limited to our existing structure, though, so if the
 outline nodes are ever rearranged into a deeper tree it will stop
-working.  It would be better to provide an XPath expression to find
-outline nodes anywhere in the document as long as they include the URL
-we want.
+working.
 
-.. HERE
+
 
 Searching by Text Content
 -------------------------
