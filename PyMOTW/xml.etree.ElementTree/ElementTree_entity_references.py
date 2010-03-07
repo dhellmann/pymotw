@@ -13,5 +13,6 @@ with open('data.xml', 'rt') as f:
     tree = ElementTree.parse(f)
 
 node = tree.find('entity_expansion')
-print 'Entity in attribute:', node.attrib['attribute']
-print 'Entity in text     :', node.text
+print node.tag
+print '  in attribute:', node.attrib['attribute']
+print '  in text     :', node.text
