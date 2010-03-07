@@ -23,6 +23,7 @@ Python Module of the Week
     unix
     ipc
     internet_protocols
+    markup
     i18n
     frameworks
     dev_tools
