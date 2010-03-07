@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<top>
+  <child>This child contains text.</child>
+  <child_with_tail>This child has regular text.</child_with_tail>And "tail" text.
+  <with_attributes name="value" foo="bar" />
+  <entity_expansion attribute="This &#38; That">That &#38; This</entity_expansion>
+</top>

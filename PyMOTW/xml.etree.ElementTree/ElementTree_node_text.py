@@ -1,0 +1,18 @@
+#!/usr/bin/env python
+# encoding: utf-8
+#
+# Copyright (c) 2009 Doug Hellmann.  All rights reserved.
+#
+"""Dump the OPML in plain text
+"""
+#end_pymotw_header
+
+from xml.etree import ElementTree
+
+with open('data.xml', 'rt') as f:
+    tree = ElementTree.parse(f)
+
+for path in [ './child', './child_with_tail' ]:
+    node = tree.find(path)
+    print 'child node text:', node.text
+    print 'and tail text  :', node.tail

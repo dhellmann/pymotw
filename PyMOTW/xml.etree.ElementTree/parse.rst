@@ -20,6 +20,8 @@ The memory footprint of small, simple documents such as this list of
 podcasts represented as an OPML_ outline is not significant:
 
 .. literalinclude:: podcasts.opml
+   :language: xml
+   :linenos:
 
 To parse the file, pass an open file handle to ``parse()``.  It will
 read the data, parse the XML, and return an ElementTree object.
@@ -207,18 +209,88 @@ This version is limited to our existing structure, though, so if the
 outline nodes are ever rearranged into a deeper tree it will stop
 working.
 
-
-
-Searching by Text Content
--------------------------
-
 Parsed Node Attributes
 ======================
 
-- arbitrary attributes
-- text content
-- child nodes
-- tail
+The items returned by ``findall()`` and ``getiterator()`` are
+ElementTree objects, each representing a node in the XML parse tree.
+Each ElementTree has attributes for accessing data pulled out of the
+XML.  This can be illustrated with a somewhat more contrived example
+input file, ``data.xml``:
+
+.. literalinclude:: data.xml
+   :language: xml
+   :linenos:
+
+The "attributes" of a node are available in the ``attrib`` property,
+which acts like a dictionary.
+
+.. include:: ElementTree_node_attributes.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+The node on line 5 of the input file has 2 attributes, ``name`` and ``foo``.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'ElementTree_node_attributes.py'))
+.. }}}
+
+::
+
+	$ python ElementTree_node_attributes.py
+	foo  = "bar"
+	name = "value"
+
+.. {{{end}}}
+
+The text content of the nodes is available, along with the "tail" text
+that comes after the end of a close tag.
+
+.. include:: ElementTree_node_text.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+The ``child`` node on line 3 contains embedded text, and the node on
+line 4 has text with a tail.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'ElementTree_node_text.py'))
+.. }}}
+
+::
+
+	$ python ElementTree_node_text.py
+	child node text: This child contains text.
+	and tail text  : 
+	  
+	child node text: This child has regular text.
+	and tail text  : And "tail" text.
+	  
+
+.. {{{end}}}
+
+Conveniently, XML entity references embedded in the document are
+converted to the appropriate characters before values are returned.
+
+.. include:: ElementTree_entity_references.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+The conversion saves you from having to worry about an implementation
+detail of representing certain characters in an XML document.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'ElementTree_entity_references.py'))
+.. }}}
+
+::
+
+	$ python ElementTree_entity_references.py
+	Entity in attribute: This & That
+	Entity in text     : That & This
+
+.. {{{end}}}
+
 
 Watching Events While Parsing
 =============================
