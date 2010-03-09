@@ -13,15 +13,14 @@ When you parse an entire document with ``parse()``, an ElementTree
 instance is returned.  The tree knows about all of the data in the
 input document, and can be searched or manipulated in place.  While
 this can make working with the parsed document a little easier, it
-does take more memory than an event-based parsing approach since the
-entire document must be loaded.
+typically takes more memory than an event-based parsing approach since
+the entire document must be loaded.
 
 The memory footprint of small, simple documents such as this list of
 podcasts represented as an OPML_ outline is not significant:
 
 .. literalinclude:: podcasts.opml
    :language: xml
-   :linenos:
 
 To parse the file, pass an open file handle to ``parse()``.  It will
 read the data, parse the XML, and return an ElementTree object.
@@ -175,6 +174,43 @@ detail of representing certain characters in an XML document.
 
 Watching Events While Parsing
 =============================
+
+The other API useful for processing XML documents is event-based.  The
+parser generates start events for opening tags and end events for
+closing tags.  Iterating over the event stream lets you extract data
+from the document while parsing it, which is convenient if you don't
+need to manipulate the entire document afterwards and if you want to
+avoid holding the entire parsed document in memory.
+
+``iterparse()`` returns an iterable that produces tuples containing
+the name of the event and the node triggering the event.  Events can
+be one of:
+
+``start``
+  A new tag has been encountered.  The closing angle bracket of the
+  tag was processed, but not the contents.
+``end``
+  The closing angle bracket of a closing tag has been processed.  All
+  of the children were already processed.
+``start-ns``
+  Start a namespace declaration.
+``end-ns``
+  End a namespace declaration.
+
+.. include:: ElementTree_show_all_events.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+By default, only ``end`` events are generated.  To see other events,
+pass the list of event names you want to receive to ``iterparse()``,
+as in this example:
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'ElementTree_show_all_events.py'))
+.. }}}
+.. {{{end}}}
+
+
 
 .. convert to csv as we see each outline node
 
