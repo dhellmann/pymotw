@@ -233,6 +233,36 @@ be imported into another application.
 Creating Your Own Tree Builder
 ==============================
 
+A potentially more efficient means of handling parse events is to
+replace the standard tree builder behavior with your own.  The
+ElementTree parser uses an XMLTreeBuilder to process the XML and call
+methods on a target class.  The usual output is an ElementTree
+instance created by the default TreeBuilder class.  By replacing
+TreeBuilder with your own class, you can receive the events before the
+Element nodes are instantiated, saving that portion of the overhead.
+
+The XML-to-CSV app from the previous section can be translated to a
+tree builder.
+
+.. include:: ElementTree_podcast_csv_treebuilder.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+``PodcastListToCSV`` implements the TreeBuilder protocol.  Each time a
+new XML tag is encountered, ``start()`` is called with the tag name
+and attributes.  When a closing tag is seen ``end()`` is called with
+the name.  In between, ``data()`` is called when a node has content
+(the tree builder is expected to keep up with the "current" node).
+When all of the input is processed, ``close()`` is called.  It can
+return a value, which will be returned to the user of the
+XMLTreeBuilder.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'ElementTree_podcast_csv_treebuilder.py'))
+.. }}}
+.. {{{end}}}
+
+
 
 Parsing Strings
 ===============
