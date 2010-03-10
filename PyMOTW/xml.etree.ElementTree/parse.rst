@@ -117,11 +117,11 @@ working.
 Parsed Node Attributes
 ======================
 
-The items returned by ``findall()`` and ``getiterator()`` are
-ElementTree objects, each representing a node in the XML parse tree.
-Each ElementTree has attributes for accessing data pulled out of the
-XML.  This can be illustrated with a somewhat more contrived example
-input file, ``data.xml``:
+The items returned by ``findall()`` and ``getiterator()`` are Element
+objects, each representing a node in the XML parse tree.  Each
+Element has attributes for accessing data pulled out of the XML.
+This can be illustrated with a somewhat more contrived example input
+file, ``data.xml``:
 
 .. literalinclude:: data.xml
    :language: xml
@@ -210,12 +210,45 @@ as in this example:
 .. }}}
 .. {{{end}}}
 
+The event-style of processing may be more natural for some operations,
+such as converting XML input to some other format.  For example,
+suppose we want to convert the list of podcasts we have been working
+with from an XML file to a data file we can load into a spreadsheet or
+database application.  We don't need to hold the entire data set in
+memory at a time, since we're simply changing the format.
 
+.. include:: ElementTree_write_podcast_csv.py
+   :literal:
+   :start-after: #end_pymotw_header
 
-.. convert to csv as we see each outline node
+This example program converts our podcast list to a CSV file, ready to
+be imported into another application.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'ElementTree_write_podcast_csv.py'))
+.. }}}
+.. {{{end}}}
+
 
 Creating Your Own Tree Builder
 ==============================
+
+
+Parsing Strings
+===============
+
+.. XML, XMLID
+
+
+Beyond the Basics
+=================
+
+.. QName
+
+   http://www.w3.org/2001/tag/doc/qnameids
+
+.. namespace events
+
 
 .. seealso::
 
@@ -224,5 +257,8 @@ Creating Your Own Tree Builder
 
    `XPath Support in ElementTree <http://effbot.org/zone/element-xpath.htm>`_
        Part of Fredrick Lundh's original documentation for ElementTree.
+
+   :mod:`csv`
+       Read and write comma-separated-value files
 
 .. _OPML: http://www.opml.org/
