@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 #
-# Copyright (c) 2009 Doug Hellmann.  All rights reserved.
+# Copyright (c) 2010 Doug Hellmann.  All rights reserved.
 #
 """Parse the input OPML file and show something about the results.
 """
