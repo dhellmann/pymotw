@@ -267,17 +267,39 @@ XMLTreeBuilder.
 Parsing Strings
 ===============
 
-.. XML, XMLID
+To work with smaller bits of XML text, especially string literals as
+might be embedded in the source of a program, use
+xml.etree.ElementTree.XML.  Pass a single argument, the string
+containing the XML to be parsed
 
+.. include:: ElementTree_XML.py
+   :literal:
+   :start-after: #end_pymotw_header
 
-Beyond the Basics
-=================
+Notice that unlike with ``parse()``, the return value is an Element
+instance instead of an ElementTree.
 
-.. QName
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'ElementTree_XML.py'))
+.. }}}
+.. {{{end}}}
 
-   http://www.w3.org/2001/tag/doc/qnameids
+For structured XML that uses the "id" attribute to identify unique
+nodes of interest, ``XMLID()`` is a convenient way to access the parse
+results.  
 
-.. namespace events
+.. include:: ElementTree_XMLID.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+``XMLID()`` returns the parsed tree as an Element object,
+along with a dictionary mapping the id attribute strings to the
+individual nodes in the tree.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'ElementTree_XMLID.py'))
+.. }}}
+.. {{{end}}}
 
 
 .. seealso::
