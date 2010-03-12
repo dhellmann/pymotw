@@ -1,6 +1,9 @@
 History
 =======
 
+1.115
+  - 14 Mar 2010, :ref:`xml.etree.ElementTree.parsing`
+
 1.114
   - 7 Mar 2010, :mod:`tabnanny`
 

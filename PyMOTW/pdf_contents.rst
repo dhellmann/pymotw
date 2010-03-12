@@ -66,6 +66,7 @@ The source code included here is copyright Doug Hellmann and licensed under the 
     unix
     ipc
     internet_protocols
+    markup
     i18n
     frameworks
     dev_tools
@@ -73,3 +74,4 @@ The source code included here is copyright Doug Hellmann and licensed under the 
     runtime_services
     importing
     miscelaneous
+    history
