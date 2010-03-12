@@ -7,7 +7,6 @@ Python Module of the Week
     
     about
     articles/index
-    history
     builtins
     string_services
     data_types
@@ -32,3 +31,4 @@ Python Module of the Week
     language
     importing
     miscelaneous
+    history

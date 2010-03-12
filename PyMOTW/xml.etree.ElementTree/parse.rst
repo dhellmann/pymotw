@@ -1,6 +1,8 @@
-=======================
- Parsing XML Documents
-=======================
+.. _xml.etree.ElementTree.parsing:
+
+========================================
+ Parsing XML Documents with ElementTree
+========================================
 
 Parsed XML documents are represented in memory by ElementTree and
 Element objects connected into a tree structure based on the way the
