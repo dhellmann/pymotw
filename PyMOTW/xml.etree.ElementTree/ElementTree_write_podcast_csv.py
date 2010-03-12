@@ -24,4 +24,8 @@ for (event, node) in iterparse('podcasts.opml', events=['start']):
         group_name = node.attrib['text']
     else:
         # Output a podcast entry
-        writer.writerow( (group_name, node.attrib['text'], node.attrib['xmlUrl']) )
+        writer.writerow( (group_name, node.attrib['text'],
+                          node.attrib['xmlUrl'],
+                          node.attrib.get('htmlUrl', ''),
+                          )
+                         )

@@ -1,0 +1,24 @@
+#!/usr/bin/env python
+# encoding: utf-8
+#
+# Copyright (c) 2010 Doug Hellmann.  All rights reserved.
+#
+"""Creating XML documents
+"""
+#end_pymotw_header
+
+from xml.etree.ElementTree import Element, SubElement, Comment
+from ElementTree_pretty import prettify
+
+top = Element('top')
+
+comment = Comment('Generated for PyMOTW')
+top.append(comment)
+
+child = SubElement(top, 'child')
+child.text = 'This child contains text.'
+child_with_tail = SubElement(top, 'child_with_tail')
+child_with_tail.text = 'This child has regular text.'
+child_with_tail.tail = 'And "tail" text.'
+
+print prettify(top)

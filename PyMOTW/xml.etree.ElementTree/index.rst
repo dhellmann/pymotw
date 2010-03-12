@@ -20,8 +20,7 @@ ElementTree for simplicity, but there is also a C implementation in
 .. toctree::
 
    parse
-
-..   create
+   create
 
 
 .. seealso::
@@ -36,3 +35,5 @@ ElementTree for simplicity, but there is also a C implementation in
     `Process XML in Python with ElementTree <http://www.ibm.com/developerworks/library/x-matters28/>`_
         IBM DeveloperWorks article by David Mertz.
 
+    `lxml.etree <http://codespeak.net/lxml/>`_
+        A separate implementation of the ElementTree API based on libxml2 with more complete XPath support.

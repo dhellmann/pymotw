@@ -27,7 +27,11 @@ class PodcastListToCSV(object):
             self.group_name = attrib['text']
         else:
             # Output a podcast entry
-            self.writer.writerow( (self.group_name, attrib['text'], attrib['xmlUrl']) )
+            self.writer.writerow( (self.group_name, attrib['text'],
+                                   attrib['xmlUrl'],
+                                   attrib.get('htmlUrl', ''),
+                                   )
+                                  )
 
     def end(self, tag):
         # Ignore closing tags
