@@ -7,10 +7,7 @@
 """
 #end_pymotw_header
 
-try:
-    from xml.etree import cElementTree as ElementTree
-except:
-    from xml.etree import ElementTree
+from xml.etree import ElementTree
 
 with open('podcasts.opml', 'rt') as f:
     tree = ElementTree.parse(f)
