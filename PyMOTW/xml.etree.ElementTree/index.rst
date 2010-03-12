@@ -13,6 +13,10 @@ Fredrick Lundh.  It includes tools for parsing XML using event-based
 and document-based APIs, searching parsed documents with XPath
 expressions, and creating new or modifying existing documents.
 
+All of the examples in this section use the Python implementation of
+ElementTree for simplicity, but there is also a C implementation in
+``xml.etree.cElementTree``.
+
 .. toctree::
 
    parse
