@@ -22,8 +22,8 @@ creates a node that serializes using XML's comment syntax.
    :literal:
    :start-after: #end_pymotw_header
 
-The output contains only the XML nodes in the tree, not the header
-with XML version and encoding.
+The output contains only the XML nodes in the tree, not the XML declaration
+with version and encoding.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ElementTree_create.py'))
@@ -59,8 +59,8 @@ and the output is easier to read:
 .. {{{end}}}
 
 In addition to the extra whitespace for formatting, the
-:mod:`xml.dom.minidom` pretty-printer also adds an XML version header
-to the output.
+:mod:`xml.dom.minidom` pretty-printer also adds an XML declaration to
+the output.
 
 
 Setting Element Properties
