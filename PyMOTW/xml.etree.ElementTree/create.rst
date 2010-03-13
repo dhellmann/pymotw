@@ -30,13 +30,17 @@ with version and encoding.
 .. }}}
 .. {{{end}}}
 
+Notice that the ``&`` character in the text of
+``child_with_entity_ref`` is converted to the entity reference
+``&amp;`` automatically.
+
 Pretty-Printing XML
 ===================
 
-No effort is made to "pretty print" the output produced by
-``tostring()``, since adding extra whitespace changes the contents of
-the document.  To make them easier to follow for human readers, the
-rest of the examples below will use `a tip I found online
+No effort is made by ElementTree to "pretty print" the output produced
+by ``tostring()``, since adding extra whitespace changes the contents
+of the document.  To make the output easier to follow for human
+readers, the rest of the examples below will use `a tip I found online
 <http://renesd.blogspot.com/2007/05/pretty-print-xml-with-python.html>`_
 and re-parse the XML with :mod:`xml.dom.minidom` then use its
 ``toprettyxml()`` method.
@@ -87,14 +91,27 @@ the node factory (as with each group and podcast node).
 .. }}}
 .. {{{end}}}
 
-Setting Processing Instructions
-===============================
+Serializing XML to a Stream
+===========================
 
-Converting to a String
-======================
+``tostring()`` actually writes to an in-memory file-like object and
+then returns a string representing the entire element tree.  When
+working with large amounts of data, it will take less memory and make
+more efficient use of the I/O libraries to write directly to a file
+handle using the ``write()`` method of ElementTree.
 
-QName
-=====
+.. include:: ElementTree_write.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+The example uses ``sys.stdout`` to write to the console, but it could
+also write to an open file or socket.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'ElementTree_write.py'))
+.. }}}
+.. {{{end}}}
+
 
 
 .. seealso::
