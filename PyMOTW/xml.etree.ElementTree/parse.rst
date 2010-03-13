@@ -56,9 +56,9 @@ Here we print the entire tree, one tag at a time.
 .. {{{end}}}
 
 If we wanted to print only the groups of names and feed URLs for the
-podcasts, leaving out of all of the data in the header, we could
-iterate over only just the ``outline`` nodes and print the ``text``
-and ``xmlUrl`` attributes.
+podcasts, leaving out of all of the data in the header section, we
+could iterate over only just the ``outline`` nodes and print the
+``text`` and ``xmlUrl`` attributes.
 
 .. include:: ElementTree_show_feed_urls.py
    :literal:
