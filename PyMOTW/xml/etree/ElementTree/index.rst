@@ -20,7 +20,8 @@ ElementTree for simplicity, but there is also a C implementation in
 .. toctree::
 
    parse
-   create
+
+..   create
 
 
 .. seealso::
