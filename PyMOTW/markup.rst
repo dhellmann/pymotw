@@ -5,4 +5,4 @@
 .. toctree::
    :maxdepth: 1
 
-   xml.etree.ElementTree/index
+   xml/etree/ElementTree/index
