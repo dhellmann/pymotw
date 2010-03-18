@@ -17,7 +17,7 @@ class Base(object):
         return 'Should never see this'
     
     @value.setter
-    def value_setter(self, newvalue):
+    def value(self, newvalue):
         return
 
 
@@ -30,7 +30,7 @@ class Implementation(Base):
         return self._value
 
     @value.setter
-    def value_setter(self, newvalue):
+    def value(self, newvalue):
         self._value = newvalue
 
 

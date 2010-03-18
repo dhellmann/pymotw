@@ -103,6 +103,7 @@ Since ``ABCWithConcreteImplementation`` is an abstract base class, it isn't poss
 .. }}}
 .. {{{end}}}
 
+.. _abc-abstract-properties:
 
 Abstract Properties
 ===================
@@ -133,16 +134,19 @@ Notice that the concrete property must be defined the same way as the abstract p
 .. }}}
 .. {{{end}}}
 
-Unfortunately, the decorator syntax does not work for read/write abstract properties the way it does with concrete properties.
+To use the decorator syntax does with read/write abstract properties,
+the methods to get and set the value should be named the same.
 
 .. include:: abc_abstractproperty_rw_deco.py
     :literal:
     :start-after: #end_pymotw_header
 
-Notice that the caller cannot set the property value.
+Notice that both methods in the ``Base`` and ``Implementation``
+classes are named ``value()``, although they have different
+signatures.
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'abc_abstractproperty_rw_deco.py', ignore_error=True))
+.. cog.out(run_script(cog.inFile, 'abc_abstractproperty_rw_deco.py'))
 .. }}}
 .. {{{end}}}
 
