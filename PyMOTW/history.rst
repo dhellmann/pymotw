@@ -2,6 +2,7 @@ History
 =======
 
 Latest
+  - Added LifoQueue and PriorityQueue examples to :mod:`Queue`.
   - Fixed example in :ref:`abc-abstract-properties` so both the setter
     and getter work.  Thanks to Rune Hansen for pointing out the error
     in the original version.
