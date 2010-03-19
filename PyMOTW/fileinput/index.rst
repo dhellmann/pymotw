@@ -1,9 +1,12 @@
-================
-fileinput
-================
-.. module:: fileinput
-    :synopsis: Create command-line filter programs.
+=============================================
+fileinput -- Process lines from input streams
+=============================================
 
+.. module:: fileinput
+    :synopsis: Process lines from input streams.
+
+:Purpose: Create command-line filter programs to process lines from input streams.
+:Python Version: 1.5.2 and later
 
 To start this series, let's take a look at the fileinput module, a very useful
 module for creating command line programs for processing text files in a
@@ -31,12 +34,13 @@ that. I just write something like:
     :literal:
     :start-after: #end_pymotw_header
 
-The relevant bit in that snippet is the for loop. The fileinput.input()
-function takes as argument a list of filenames to examine. If the list is
-empty, the module reads data from standard input. The function returns an
-iterator which returns individual lines from the text files being processed.
-So, all I have to do is loop over each line, skipping blanks and comments, to
-find the references to mp3 files.
+The relevant bit in that snippet is the ``for`` loop. The
+``fileinput.input()`` function takes as argument a list of filenames
+to examine. If the list is empty, the module reads data from standard
+input. The function returns an iterator which returns individual lines
+from the text files being processed.  So, all I have to do is loop
+over each line, skipping blanks and comments, to find the references
+to mp3 files.
 
 In this example, I don't care what file or line number we are processing in
 the input. For other tools (grep-like searching, for example) you might. The
