@@ -17,6 +17,7 @@ syntax: re
 ^PyMOTW/commands/dumpscore$
 ^PyMOTW/csv/testout.*\.csv
 ^PyMOTW/docs/.*
+^PyMOTW/fileinput/etc_hosts\.txt.*
 ^PyMOTW/gettext/.*\.pot
 ^PyMOTW/glob/dir
 ^PyMOTW/mailbox/[eE]xample.mbox
