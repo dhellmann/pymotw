@@ -1,7 +1,8 @@
 History
 =======
 
-Latest
+1.116
+  - 21 Mar 2010, :ref:`xml.etree.ElementTree.creating`
   - Fixed example in :ref:`abc-abstract-properties` so both the setter
     and getter work.  Thanks to Rune Hansen for pointing out the error
     in the original version.
