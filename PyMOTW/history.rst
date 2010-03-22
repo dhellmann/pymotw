@@ -1,6 +1,9 @@
 History
 =======
 
+1.117
+  - Added LifoQueue and PriorityQueue examples to :mod:`Queue`.
+
 1.116
   - 21 Mar 2010, :ref:`xml.etree.ElementTree.creating`
   - Fixed example in :ref:`abc-abstract-properties` so both the setter
