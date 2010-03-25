@@ -6,6 +6,9 @@ History
   - Fixed example in :ref:`abc-abstract-properties` so both the setter
     and getter work.  Thanks to Rune Hansen for pointing out the error
     in the original version.
+  - Updated :mod:`fileinput` example to use
+    :mod:`xml.etree.ElementTree`.  Added an example to show how to get
+    the filename and line number being processed.
 
 1.115
   - 14 Mar 2010, :ref:`xml.etree.ElementTree.parsing`
