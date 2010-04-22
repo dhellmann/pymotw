@@ -8,18 +8,26 @@ array -- Sequence of fixed-type data
 :Purpose: Manage sequences of fixed-type numerical data efficiently.
 :Python Version: 1.4 and later
 
-The :mod:`array` module defines a sequence data structure that looks very much like a ``list`` except that all of the members have to be of the same type.  The types supported are listed in the `standard library documentation <http://docs.python.org/library/array.html>`_.  They are all numeric or other fixed-size primitive types such as bytes.
+The :mod:`array` module defines a sequence data structure that looks
+very much like a ``list`` except that all of the members have to be of
+the same type.  The types supported are listed in the `standard
+library documentation <http://docs.python.org/library/array.html>`_.
+They are all numeric or other fixed-size primitive types such as
+bytes.
 
 array Initialization
 ====================
 
-An :class:`array` is instantiated with an argument describing the type of data to be allowed, and possibly an initialization sequence.
+An :class:`array` is instantiated with an argument describing the type
+of data to be allowed, and possibly an initial sequence of data to
+store in the array.
 
 .. include:: array_string.py
     :literal:
     :start-after: #end_pymotw_header
 
-In this example, the array is configured to hold a sequence of bytes and is initialized with a simple string.
+In this example, the array is configured to hold a sequence of bytes
+and is initialized with a simple string.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'array_string.py'))
@@ -30,7 +38,8 @@ In this example, the array is configured to hold a sequence of bytes and is init
 Manipulating Arrays
 ===================
 
-An :class:`array` can be extended and otherwise manipulated in the same ways as other Python sequences.
+An :class:`array` can be extended and otherwise manipulated in the
+same ways as other Python sequences.
 
 .. include:: array_sequence.py
     :literal:
@@ -45,13 +54,16 @@ An :class:`array` can be extended and otherwise manipulated in the same ways as 
 Arrays and Files
 ================
 
-The contents of an array can be written to and read from files using built-in methods coded efficiently for that purpose.
+The contents of an array can be written to and read from files using
+built-in methods coded efficiently for that purpose.
 
 .. include:: array_file.py
     :literal:
     :start-after: #end_pymotw_header
 
-This example illustrates reading the data "raw", directly from the binary file, versus reading it into a new array and converting the bytes to the appropriate types.
+This example illustrates reading the data "raw", directly from the
+binary file, versus reading it into a new array and converting the
+bytes to the appropriate types.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'array_file.py'))
@@ -62,7 +74,10 @@ This example illustrates reading the data "raw", directly from the binary file, 
 Alternate Byte Ordering
 =======================
 
-If the data in the array is not in the native byte order, or needs to be swapped before being written to a file intended for a system with a different byte order, it is easy to convert the entire array without iterating over the elements from Python.
+If the data in the array is not in the native byte order, or needs to
+be swapped before being written to a file intended for a system with a
+different byte order, it is easy to convert the entire array without
+iterating over the elements from Python.
 
 .. include:: array_byteswap.py
     :literal:

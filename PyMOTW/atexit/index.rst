@@ -39,10 +39,10 @@ we can just register a clean up function more than once.
     :literal:
     :start-after: #end_pymotw_header
 
-Notice that order in which the exit functions are called is not the reverse of
+Notice that order in which the exit functions are called is the reverse of
 the order they are registered. This allows modules to be cleaned up in the
 reverse order from which they are imported (and therefore register their
-atexit functions), which should reduce dependencies.
+atexit functions), which should reduce dependency conflicts.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'atexit_multiple.py'))
@@ -60,10 +60,10 @@ The callbacks registered with atexit are not invoked if:
 
 * a Python fatal error is detected (in the interpreter)
 
-To illustrate a program being killed via a signal, we can modify one of the
-examples from the subprocess summary last week. There are 2 files involved,
-the parent and the child programs. The parent starts the child, pauses, then
-kills it:
+To illustrate a program being killed via a signal, we can modify one
+of the examples from the :mod:`subprocess` article. There are 2 files
+involved, the parent and the child programs. The parent starts the
+child, pauses, then kills it:
 
 .. include:: atexit_signal_parent.py
     :literal:
@@ -115,7 +115,7 @@ If we had instead used sys.exit(), the callbacks would still have been called.
 .. {{{end}}}
 
 Simulating a fatal error in the Python interpreter is left as an exercise to
-the reader. :-)
+the reader.
 
 Exceptions in atexit Callbacks
 ==============================

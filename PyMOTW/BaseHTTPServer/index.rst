@@ -9,10 +9,10 @@ BaseHTTPServer -- base classes for implementing web servers
 :Python Version: 1.4 and later
 
 
-BaseHTTPServer uses classes from SocketServer to create base classes for
-making HTTP servers. HTTPServer can be used directly, but the
-BaseHTTPRequestHandler is intended to be extended to handle each protocol
-method (GET, POST, etc.).
+BaseHTTPServer uses classes from :mod:`SocketServer` to create base
+classes for making HTTP servers. HTTPServer can be used directly, but
+the BaseHTTPRequestHandler is intended to be extended to handle each
+protocol method (GET, POST, etc.).
 
 Simple GET Example
 ==================
@@ -99,9 +99,10 @@ using separate processes instead of threads.
 POST
 ====
 
-Supporting POST requests is a little more work, because the base class does
-not parse the form data for us. The cgi module provides the FieldStorage class
-which knows how to parse the form, if we give it the correct inputs.
+Supporting POST requests is a little more work, because the base class
+does not parse the form data for us. The :mod:`cgi` module provides
+the FieldStorage class which knows how to parse the form, if we give
+it the correct inputs.
 
 .. include:: BaseHTTPServer_POST.py
     :literal:
@@ -160,3 +161,7 @@ In this case, a 404 error is always returned.
 
     `BaseHTTPServer <http://docs.python.org/library/basehttpserver.html>`_
         The standard library documentation for this module.
+
+    :mod:`SocketServer`
+        The SocketServer module provides the base class which handles
+        the raw socket connection.

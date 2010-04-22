@@ -23,7 +23,6 @@ a list in sorted order.
     :literal:
     :start-after: #end_pymotw_header
 
-
 The output for that script is:
 
 .. {{{cog

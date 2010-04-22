@@ -12,7 +12,7 @@ Cookies have been a part of the HTTP protocol for a long time. All of the
 modern web development frameworks provide easy access to cookies so a
 programmer almost never has to worry about how to format them or make sure the
 headers are sent properly. It can be instructive to understand how cookies
-work, though, and the options available.
+work, though, and the options they support.
 
 The Cookie module implements a parser for cookies that is mostly :rfc:`2109`
 compliant. It is a little less strict than the standard because MSIE 3.0x does
