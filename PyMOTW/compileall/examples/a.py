@@ -6,7 +6,7 @@
 """
 """
 
-__version__ = "$Id$"
+__version__ = "$Id: a.py 1 2010-04-23 12:11:22Z dhellmann $"
 #end_pymotw_header
 
 print 'running %s' % __file__

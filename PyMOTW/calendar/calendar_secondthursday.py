@@ -35,7 +35,7 @@ import calendar
 # Show every month
 for month in range(1, 13):
 
-    # Compute the dates for each week which overlaps the month
+    # Compute the dates for each week that overlaps the month
     c = calendar.monthcalendar(2007, month)
     first_week = c[0]
     second_week = c[1]

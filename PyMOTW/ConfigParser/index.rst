@@ -8,10 +8,10 @@ ConfigParser -- Work with configuration files
 :Purpose: Read/write configuration files similar to Windows INI files
 :Python Version: 1.5
 
-The ConfigParser module is very useful for creating user-editable
-configuration files for your applications. The configuration files are
-broken up into sections, and each section can contain name-value pairs
-for configuration data. Value interpolation using Python formatting
+Use the ConfigParser module to manage user-editable configuration
+files for your applications. The configuration files are broken up
+into sections, and each section can contain name-value pairs for
+configuration data. Value interpolation using Python formatting
 strings is also supported, to build values which depend on one another
 (this is especially handy for paths or URLs).
 

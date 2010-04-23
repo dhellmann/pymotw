@@ -20,7 +20,7 @@ Standard Traceback Dumps
 
 Python's default exception handling behavior is to print a *traceback*
 to standard error with the call stack leading up to the error
-position.  This basic output is frequently enough information to
+position.  This basic output frequently contains enough information to
 understand the cause of the exception and permit a fix.
 
 .. include:: cgitb_basic_traceback.py
@@ -167,7 +167,7 @@ directory.
    :literal:
    :start-after: #end_pymotw_header
 
-Event with the error display suppressed, a message is printed
+Even though the error display is suppressed, a message is printed
 describing where to go to find the error log.
 
 .. {{{cog

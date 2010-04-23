@@ -10,23 +10,26 @@ cmd -- Create line-oriented command processors
 :Purpose: Create line-oriented command processors.
 :Python Version: 1.4 and later, with some additions in 2.3
 
-The cmd module contains one public class, Cmd, designed to be used as a base
-class for command processors such as interactive shells and other command
-interpreters. By default it uses readline for interactive prompt handling,
-command line editing, and command completion.
+The cmd module contains one public class, Cmd, designed to be used as
+a base class for command processors such as interactive shells and
+other command interpreters. By default it uses :mod:`readline` for
+interactive prompt handling, command line editing, and command
+completion.
 
 Processing Commands
 ===================
 
-The interpreter uses a loop to read all lines from its input, parse them, and
-then dispatch the command to an appropriate command handler. Input lines are
-parsed into two parts. The command, and any other text on the line. If the
-user enters a command foo bar, and your class includes a method named
-do_foo(), it is called with "bar" as the only argument. 
+The interpreter uses a loop to read all lines from its input, parse
+them, and then dispatch the command to an appropriate command
+handler. Input lines are parsed into two parts. The command, and any
+other text on the line. If the user enters a command ``foo bar``, and
+your class includes a method named do_foo(), it is called with
+``"bar"`` as the only argument.
 
-The end-of-file marker is dispatched to do_EOF(). If a command handler returns
-a true value, the program will exit cleanly. So to give a clean way to exit
-your interpreter, make sure to implement do_EOF() and have it return True.
+The end-of-file marker is dispatched to ``do_EOF()``. If a command
+handler returns a true value, the program will exit cleanly. So to
+give a clean way to exit your interpreter, make sure to implement
+``do_EOF()`` and have it return True.
 
 This simple example program supports the "greet" command:
 
@@ -58,22 +61,23 @@ The help command is built into Cmd. With no arguments, it shows the list of
 commands available. If you include a command you want help on, the output is
 more verbose and restricted to details of that command, when available.
 
-If we use the greet command, do_greet() is invoked to handle it:
+If we use the greet command, ``do_greet()`` is invoked to handle it:
 
 ::
 
     (Cmd) greet
     hello
 
-If your class does not include a specific command processor for "foo", the
-method default() is called with the entire input line as an argument. The
-built-in implementation of default() reports an error.
+If your class does not include a specific command processor for "foo",
+the method ``default()`` is called with the entire input line as an
+argument. The built-in implementation of ``default()`` reports an
+error.
 
 ::
 
     (Cmd) foo *** Unknown syntax: foo
 
-Since do_EOF() returns True, hitting Ctrl-D will drop us out of the
+Since ``do_EOF()`` returns True, typing Ctrl-D will drop us out of the
 interpreter.
 
 ::
@@ -92,8 +96,8 @@ the annoyances and add help for the greet command.
     :literal:
     :start-after: #end_pymotw_header
 
-First, let's look at the help. The docstring added to do_greet() becomes the
-help text for the command:
+First, let's look at the help. The docstring added to ``do_greet()``
+becomes the help text for the command:
 
 ::
 
@@ -162,10 +166,10 @@ simply return the help text for handling elsewhere.
 Auto-Completion
 ===============
 
-Cmd includes support for command completion based on the names of the commands
-with processor methods. Completion is triggered by hitting the tab key on a
-line. When multiple completions are possible, pressing tab twice prints a list
-of the options.
+Cmd includes support for command completion based on the names of the
+commands with processor methods. Completion is triggered by hitting
+the tab key at an input prompt. When multiple completions are
+possible, pressing tab twice prints a list of the options.
 
 ::
 
@@ -259,14 +263,15 @@ Configuring Cmd Through Attributes
 In addition to the methods described above, there are several attributes for
 controlling command interpreters.
 
-prompt can be set to a string to be printed each time the user is asked for a
+``prompt`` can be set to a string to be printed each time the user is asked for a
 new command.
 
-intro is the "welcome" message printed at the start of the program. cmdloop()
+``intro`` is the "welcome" message printed at the start of the program. cmdloop()
 takes an argument for this value, or you can set it on the class directly.
 
-When printing help, the doc_header, misc_header, undoc_header, and ruler
-attributes are used to format the output.
+When printing help, the ``doc_header``, ``misc_header``,
+``undoc_header``, and ``ruler`` attributes are used to format the
+output.
 
 This example class shows a command processor to let the user control the
 prompt for the interactive session.
@@ -296,10 +301,11 @@ prompt for the interactive session.
 Shelling Out
 ============
 
-To supplement the standard command processing, Cmd includes 2 special command
-prefixes. A question mark (?) is equivalent to the built-in help command, and
-can be used in the same way. An exclamation point (!) maps to do_shell(), and
-is intended for shelling out to run other commands, as in this example.
+To supplement the standard command processing, Cmd includes 2 special
+command prefixes. A question mark (?) is equivalent to the built-in
+help command, and can be used in the same way. An exclamation point
+(!) maps to ``do_shell()``, and is intended for shelling out to run
+other commands, as in this example.
 
 .. include:: cmd_do_shell.py
     :literal:
@@ -339,9 +345,9 @@ is intended for shelling out to run other commands, as in this example.
 Alternative Inputs
 ==================
 
-While the default mode for Cmd is to interact with the user through the
-readline library, it is also possible to pass a series of commands in to
-standard input using standard Unix shell redirection.
+While the default mode for Cmd is to interact with the user through
+the :mod:`readline` library, it is also possible to pass a series of
+commands in to standard input using standard Unix shell redirection.
 
 ::
 
@@ -357,20 +363,20 @@ standard input using standard Unix shell redirection.
 
     (Cmd) 
 
-If you would rather have your program read the script file directly, a few
-other changes may be needed. Since readline interacts with the terminal/tty
-device, rather than the standard input stream, you should disable it if you
-know your script is going to be reading from a file. Also, to avoid printing
-superfluous prompts, you can set the prompt to an empty string. This example
-shows how to open a file and pass it as input to a modified version of the
-HelloWorld example.
+If you would rather have your program read the script file directly, a
+few other changes may be needed. Since :mod:`readline` interacts with
+the terminal/tty device, rather than the standard input stream, you
+should disable it if you know your script is going to be reading from
+a file. Also, to avoid printing superfluous prompts, you can set the
+prompt to an empty string. This example shows how to open a file and
+pass it as input to a modified version of the HelloWorld example.
 
 .. include:: cmd_file.py
     :literal:
     :start-after: #end_pymotw_header
 
-With use_rawinput set to False and prompt set to an empty string, we can all
-the script on this input file:
+With ``use_rawinput`` set to False and ``prompt`` set to an empty
+string, we can call the script on this input file:
 
 .. include:: cmd_file.txt
     :literal:
@@ -386,17 +392,17 @@ to produce output like:
 Commands from sys.argv
 ======================
 
-If, instead of reading commands from stdin or a file, you want to process
-command line arguments to the program as a command for your interpreter class,
-that is also possible. In that case, you can call onecmd() directly, as in
-this example.
+You can also process command line arguments to the program as a
+command for your interpreter class, instead of reading commands from
+stdin or a file.  To use the command line arguments, you can call
+``onecmd()`` directly, as in this example.
 
 .. include:: cmd_argv.py
     :literal:
     :start-after: #end_pymotw_header
 
-Since onecmd() takes a single string as input, the arguments to the program
-need to be joined together before being passed in.
+Since ``onecmd()`` takes a single string as input, the arguments to
+the program need to be joined together before being passed in.
 
 ::
 
@@ -411,3 +417,15 @@ need to be joined together before being passed in.
 
     `cmd <http://docs.python.org/library/cmd.html>`_
         The standard library documentation for this module.
+
+    `cmd2 <http://pypi.python.org/pypi/cmd2>`__
+        Drop-in replacement for cmd with additional features.
+
+    `GNU readline`_
+         The GNU Readline library provides functions that allow users
+         to edit input lines as they are typed.
+
+    :mod:`readline`
+         The Python standard library interface to readline.
+
+.. _GNU readline: http://tiswww.case.edu/php/chet/readline/rltop.html

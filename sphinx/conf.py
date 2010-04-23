@@ -40,7 +40,9 @@ latex_documents = [
 #latex_preamble = r'''
 #'''
 
-extensions = [ 'sphinx.ext.todo' ]
+extensions = [ 'sphinx.ext.todo',
+               'sphinx.ext.graphviz',
+               ]
 
 unused_docs = [ 'copyright' ]
 

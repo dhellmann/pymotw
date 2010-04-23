@@ -8,7 +8,8 @@ bz2 -- bzip2 compression
 :Purpose: bzip2 compression
 :Python Version: 2.3 and later
 
-The bz2 module is an interface for the bzip2 library, used to compress data for storage or transmission.  There are three APIs provided:
+The bz2 module is an interface for the bzip2 library, used to compress
+data for storage or transmission.  There are three APIs provided:
 
 - "one shot" compression/decompression functions for operating on a blob of data
 - iterative compression/decompression objects for working with streams of data
@@ -17,7 +18,9 @@ The bz2 module is an interface for the bzip2 library, used to compress data for 
 One-shot Operations in Memory
 =============================
 
-The simplest way to work with bz2 requires holding all of the data to be compressed or decompressed in memory, and then using ``compress()`` and ``decompress()``.
+The simplest way to work with bz2 requires holding all of the data to
+be compressed or decompressed in memory, and then using ``compress()``
+and ``decompress()``.
 
 .. include:: bz2_memory.py
     :literal:
@@ -28,7 +31,10 @@ The simplest way to work with bz2 requires holding all of the data to be compres
 .. }}}
 .. {{{end}}}
 
-Notice that for short text, the compressed version can be significantly longer.  While the actual results depend on the input data, for short bits of text it is interesting to observe the compression overhead.
+Notice that for short text, the compressed version can be
+significantly longer.  While the actual results depend on the input
+data, for short bits of text it is interesting to observe the
+compression overhead.
 
 .. include:: bz2_lengths.py
     :literal:
@@ -43,14 +49,24 @@ Notice that for short text, the compressed version can be significantly longer. 
 Working with Streams
 ====================
 
-The in-memory approach is not practical for real-world use cases, since you rarely want to hold both the entire compressed and uncompressed data sets in memory at the same time.  The alternative is to use BZ2Compressor and BZ2Decompressor objects to work with streams of data, so that the entire data set does not have to fit into memory.  
+The in-memory approach is not practical for real-world use cases,
+since you rarely want to hold both the entire compressed and
+uncompressed data sets in memory at the same time.  The alternative is
+to use BZ2Compressor and BZ2Decompressor objects to work with streams
+of data, so that the entire data set does not have to fit into memory.
 
-The simple server below responds to requests consisting of filenames by writing a compressed version of the file to the socket used to communicate with the client.  It has some artificial chunking in place to illustrate the buffering behavior that happens when the data passed to ``compress()`` or ``decompress()`` doesn't result in a complete block of compressed or uncompressed output.
+The simple server below responds to requests consisting of filenames
+by writing a compressed version of the file to the socket used to
+communicate with the client.  It has some artificial chunking in place
+to illustrate the buffering behavior that happens when the data passed
+to ``compress()`` or ``decompress()`` doesn't result in a complete
+block of compressed or uncompressed output.
 
 .. warning::
 
-    This server has obvious security implications.  Do not run it on a server on the
-    open internet or in any environment where security might be an issue.
+    This implementation has obvious security implications.  Do not run
+    it on a server on the open internet or in any environment where
+    security might be an issue.
 
 .. include:: bz2_server.py
     :literal:
@@ -182,7 +198,10 @@ The simple server below responds to requests consisting of filenames by writing 
 Mixed Content Streams
 =====================
 
-The BZ2Decompressor class can also be used in situations where compressed and uncompressed data is mixed together.  After decompressing all of the data, the ``unused_data`` attribute contains any data not used.
+The BZ2Decompressor class can also be used in situations where
+compressed and uncompressed data is mixed together.  After
+decompressing all of the data, the ``unused_data`` attribute contains
+any data not used.
 
 .. include:: bz2_mixed.py
     :literal:
@@ -197,7 +216,10 @@ The BZ2Decompressor class can also be used in situations where compressed and un
 Writing Compressed Files
 ========================
 
-The BZ2File class can be used to write to and read from bzip2-compressed files using the usual methods for writing and reading data.  To write data into a compressed file, open the file with mode ``'w'``.
+The BZ2File class can be used to write to and read from
+bzip2-compressed files using the usual methods for writing and reading
+data.  To write data into a compressed file, open the file with mode
+``'w'``.
 
 .. include:: bz2_file_write.py
     :literal:
@@ -211,13 +233,19 @@ The BZ2File class can be used to write to and read from bzip2-compressed files u
 .. {{{end}}}
 
 
-Different compression levels can be used by passing a *compresslevel* argument.  Valid values range from 1 to 9, inclusive.  Lower values are faster and result in less compression.  Higher values are slower and compress more, up to a point.
+Different compression levels can be used by passing a *compresslevel*
+argument.  Valid values range from 1 to 9, inclusive.  Lower values
+are faster and result in less compression.  Higher values are slower
+and compress more, up to a point.
 
 .. include:: bz2_file_compresslevel.py
     :literal:
     :start-after: #end_pymotw_header
 
-The center column of numbers in the output of the script is the size in bytes of the files produced.  As you see, for this input data, the higher compression values do not always pay off in decreased storage space for the same input data.  Results will vary, of course.
+The center column of numbers in the output of the script is the size
+in bytes of the files produced.  As you see, for this input data, the
+higher compression values do not always pay off in decreased storage
+space for the same input data.  Results will vary, of course.
 
 ::
 
@@ -233,7 +261,8 @@ The center column of numbers in the output of the script is the size in bytes of
 	3103658384 1137 compress-level-9.bz2
 	Input contains 754688 bytes
 
-A BZ2File instance also includes a ``writelines()`` method that can be used to write a sequence of strings.
+A BZ2File instance also includes a ``writelines()`` method that can be
+used to write a sequence of strings.
 
 .. include:: bz2_file_writelines.py
     :literal:
@@ -250,26 +279,30 @@ A BZ2File instance also includes a ``writelines()`` method that can be used to w
 Reading Compressed Files
 ========================
 
-To read data back from previously compressed files, simply open the file with mode ``'r'``.
+To read data back from previously compressed files, simply open the
+file with mode ``'r'``.
 
 .. include:: bz2_file_read.py
     :literal:
     :start-after: #end_pymotw_header
 
-This example reads the file written by ``bz2_file_write.py`` from the previous section.
+This example reads the file written by ``bz2_file_write.py`` from the
+previous section.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'bz2_file_read.py'))
 .. }}}
 .. {{{end}}}
     
-While reading a file, it is also possible to seek and read only part of the data.
+While reading a file, it is also possible to seek and read only part
+of the data.
 
 .. include:: bz2_file_seek.py
     :literal:
     :start-after: #end_pymotw_header
 
-The ``seek()`` position is relative to the *uncompressed* data, so the caller does not even need to know that the data file is compressed.
+The ``seek()`` position is relative to the *uncompressed* data, so the
+caller does not even need to know that the data file is compressed.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'bz2_file_seek.py'))
@@ -287,3 +320,9 @@ The ``seek()`` position is relative to the *uncompressed* data, so the caller do
 
     :mod:`zlib`
         The zlib module for GNU zip compression.
+
+    :mod:`gzip`
+        A file-like interface to GNU zip compressed files.
+
+    :mod:`SocketServer`
+        Base classes for creating your own network servers.

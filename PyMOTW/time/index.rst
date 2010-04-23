@@ -227,3 +227,7 @@ other zones used change the tzname, daylight flag, and timezone offset value.
 
     :mod:`datetime`
         The datetime module includes other classes for doing calculations with dates and times.
+
+    :mod:`calendar`
+        Work with higher-level date functions to produce calendars or
+        calculate recurring events.

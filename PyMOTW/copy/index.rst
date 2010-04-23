@@ -65,10 +65,10 @@ __deepcopy__ hooks.
 * __copy__() is called without any arguments and should return a shallow copy
   of the object.
 
-* __deepcopy__() is called with a memo dictionary, and should return a deep
-  copy of the object. Any member attributes which need to be deep-copied should
-  be passed to copy.deepcopy(), along with the memo dictionary, to control for
-  recursion (see below).
+* __deepcopy__() is called with a memo dictionary, and should return a
+  deep copy of the object. Any member attributes that need to be
+  deep-copied should be passed to copy.deepcopy(), along with the memo
+  dictionary, to control for recursion (see below).
 
 This example illustrates how the methods are called:
 
@@ -86,7 +86,7 @@ Recursion in Deep Copy
 ======================
 
 To avoid problems with duplicating recursive data structures, ``deepcopy()`` uses
-a dictionary to track objects which have already been copied. This dictionary
+a dictionary to track objects that have already been copied. This dictionary
 is passed to the ``__deepcopy__()`` method so it can be used there as well.
 
 This example shows how an interconnected data structure such as a Digraph
@@ -99,7 +99,7 @@ recursion cases correctly.
     :literal:
     :start-after: #end_pymotw_header
 
-First some basic directed graph methods. A graph can be initialized with a
+First, some basic directed graph methods: A graph can be initialized with a
 name and a list of existing nodes to which it is connected. The
 addConnection() method is used to set up bi-directional connections. It is
 also used by the deepcopy operator.
@@ -111,10 +111,20 @@ individual connections to it. That ensures that the memo dictionary is updated
 as each new node is duplicated, and avoids recursion issues or extra copies of
 nodes. As before, it returns the copied object when it is done.
 
-Next we can set up a graph with a nodes root, a, and b. The edges are a->root,
-b->a, b->root, root->a, root->b.
+Next we can set up a graph with a nodes root, a, and b. The graph
+looks like:
 
-When the root node is copied, we see:
+.. digraph:: copy_example
+
+   "root";
+   "a" -> "root";
+   "b" -> "root";
+   "b" -> "a";
+   "root" -> "a";
+   "root" -> "b";
+
+There are several recursion paths through the graph.  When the root
+node is copied, we see:
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'copy_recursion.py'))

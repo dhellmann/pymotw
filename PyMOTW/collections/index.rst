@@ -158,15 +158,39 @@ this way.
 namedtuple
 ==========
 
-The standard tuple class uses numerical indexes to access its members.  A :class:`namedtuple` lets you assign names to each member instead.  Namedtuple instances are just as memory efficient as regular tuples because they do not have per-instance dictionaries.
+The standard tuple class uses numerical indexes to access its members.
 
-Each kind of namedtuple you want to create is represented by its own class, created by using the ``namedtuple()`` factory function.  The arguments are the name of the new class and a string containing the names of the elements.
+.. include:: collections_tuple.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+This makes tuples convenient containers for simple uses.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'collections_tuple.py'))
+.. }}}
+.. {{{end}}}
+
+On the other hand, remembering which index should be used for each
+value can be error prone, especially if the tuple has a lot of fields
+and is constructed far from where it is used.  A :class:`namedtuple`
+lets you assign names to each member as well, so users of the tuples
+can refer to values by name instead of a numerical index.
+
+Namedtuple instances are just as memory efficient as regular tuples
+because they do not have per-instance dictionaries.  Each kind of
+namedtuple you want to create is represented by its own class, created
+by using the ``namedtuple()`` factory function.  The arguments are the
+name of the new class and a string containing the names of the
+elements.
 
 .. include:: collections_namedtuple_person.py
     :literal:
     :start-after: #end_pymotw_header
 
-As the example illustrates, it is possible to access the fields of the namedtuple by name using dotted notation (obj.attr) as well as using the positional indexes of standard tuples.
+As the example illustrates, it is possible to access the fields of the
+namedtuple by name using dotted notation (obj.attr) as well as using
+the positional indexes of standard tuples.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'collections_namedtuple_person.py'))

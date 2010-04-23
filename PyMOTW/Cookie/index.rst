@@ -103,10 +103,10 @@ incoming header will look like::
 
     Cookie: integer=5; string_with_quotes="He said, \"Hello, World!\""
 
-The cookies are either available directly from the headers or, depending on
-your web server/framework, the HTTP_COOKIE environment variable. To decode
-them, pass the string without the header prefix to the SimpleCookie when
-instantiating it, or use the load() method.
+Depending on your web server and framework, the cookies are either
+available directly from the headers or the ``HTTP_COOKIE`` environment
+variable. To decode them, pass the string without the header prefix to
+the SimpleCookie when instantiating it, or use the load() method.
 
 .. include:: Cookie_parse.py
     :literal:
