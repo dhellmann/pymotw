@@ -111,8 +111,8 @@ individual connections to it. That ensures that the memo dictionary is updated
 as each new node is duplicated, and avoids recursion issues or extra copies of
 nodes. As before, it returns the copied object when it is done.
 
-Next we can set up a graph with a nodes root, a, and b. The graph
-looks like:
+Next we can set up a graph with a nodes *root*, *a*, and *b*. The
+graph looks like:
 
 .. digraph:: copy_example
 
@@ -123,17 +123,19 @@ looks like:
    "root" -> "a";
    "root" -> "b";
 
-There are several recursion paths through the graph.  When the root
-node is copied, we see:
+There are several cycles in the graph, but by handling the recursion
+with the memo dictionary we can avoid having the traversal cause a
+stack overflow error.  When the *root* node is copied, we see:
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'copy_recursion.py'))
 .. }}}
 .. {{{end}}}
 
-Notice that the second time the root node is encountered, while the a node is
-being copied, the recursion is detected and the existing copy is used instead
-of a new one.
+The second time the *root* node is encountered, while the *a* node is
+being copied, ``__deepcopy__`` detects the recursion and re-uses the
+existing value from the memo dictionary instead of creating a new
+object.
 
 .. seealso::
 

@@ -20,10 +20,10 @@ contents = dircache.listdir(path)
 annotated = contents[:]
 dircache.annotate(path, annotated)
 
-fmt = '%20s\t%20s'
+fmt = '%25s\t%25s'
 
 print fmt % ('ORIGINAL', 'ANNOTATED')
-print fmt % (('-' * 20,)*2)
+print fmt % (('-' * 25,)*2)
 
 for o, a in zip(contents, annotated):
     print fmt % (o, a)

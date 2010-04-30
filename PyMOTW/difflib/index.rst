@@ -8,19 +8,19 @@ difflib -- Compute differences between sequences
 :Purpose: Library of tools for computing and working with differences between sequences, especially of lines in text files.
 :Python Version: 2.1
 
-
-The SequenceMatcher class compares any 2 sequences of values, as long as the
-values are hashable. It uses a recursive algorithm to identify the longest
-contiguous matching blocks from the sequences, eliminating "junk" values. The
-Differ class works on sequences of text lines and produces human-readable
-deltas, including differences within individual lines. The HtmlDiff class
-produces similar results formatted as an HTML table.
+The SequenceMatcher class compares any 2 sequences of values, as long
+as the values are hashable. It uses a recursive algorithm to identify
+the longest contiguous matching blocks from the sequences, eliminating
+"junk" values. The Differ class works on sequences of text lines and
+produces human-readable deltas, including differences within
+individual lines. The HtmlDiff class produces similar results
+formatted as an HTML table.
 
 Test Data
 =========
 
-The examples below will all use this common test data in the difflib_data
-module:
+The examples below will all use this common test data in the
+``difflib_data.py`` module:
 
 .. include:: difflib_data.py
     :literal:
@@ -29,22 +29,23 @@ module:
 Differ Example
 ==============
 
-Reproducing output similar to the diff command line tool is simple with the
-Differ class:
+Reproducing output similar to the diff command line tool is simple
+with the Differ class:
 
 .. include:: difflib_differ.py
     :literal:
     :start-after: #end_pymotw_header
 
-The output includes the original input values from both lists, including
-common values, and markup data to indicate what changes were made. Lines may
-be prefixed with - to indicate that they were in the first sequence, but not
-the second. Lines prefixed with + were in the second sequence, but not the
-first. If a line has an incremental change between versions, an extra line
-prefixed with ? is used to try to indicate where the change occurred within
-the line. If a line has not changed, it is printed with an extra blank space
-on the left column to let it line up with the other lines which may have other
-markup.
+The output includes the original input values from both lists,
+including common values, and markup data to indicate what changes were
+made. Lines may be prefixed with ``-`` to indicate that they were in
+the first sequence, but not the second. Lines prefixed with ``+`` were
+in the second sequence, but not the first. If a line has an
+incremental change between versions, an extra line prefixed with ``?``
+is used to indicate where the change occurred within the line. If a
+line has not changed, it is printed with an extra blank space on the
+left column to make it line up with the other lines which may have
+other markup.
 
 The beginning of both text segments is the same.
 
@@ -52,10 +53,10 @@ The beginning of both text segments is the same.
 
      1:   Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Integer
 
-The second line has been changed to include a comma in the modified text. Both
-versions of the line are printed, with the extra information on line 4 showing
-the column where the text was modified, including the fact that the ,
-character was added.
+The second line has been changed to include a comma in the modified
+text. Both versions of the line are printed, with the extra
+information on line 4 showing the column where the text was modified,
+including the fact that the ``,`` character was added.
 
 ::
 
@@ -158,10 +159,10 @@ produces a fully-formed HTML file as output.
 Junk Data
 =========
 
-All of the functions which produce diff sequences accept arguments to indicate
-which lines should be ignored, and which characters within a line should be
-ignored. This can be used to ignore markup or whitespace changes in two
-versions of file, for example.
+All of the functions that produce diff sequences accept arguments to
+indicate which lines should be ignored, and which characters within a
+line should be ignored. This can be used to ignore markup or
+whitespace changes in two versions of file, for example.
 
 .. include:: difflib_junk.py
     :literal:

@@ -12,9 +12,9 @@ Listing Directory Contents
 ==========================
 
 The main function in the dircache API is listdir(), a wrapper around
-os.listdir() that caches the results and returns the same list each time it is
-called with the a path unless the modification date of the named directory
-changes.
+os.listdir() that caches the results and returns the same list each
+time it is called with the same path unless the modification date of
+the named directory changes.
 
 .. include:: dircache_listdir.py
     :literal:
@@ -28,7 +28,7 @@ so it should not be modified in place.
 .. }}}
 .. {{{end}}}
 
-Of course, if the contents of the directory changes it is rescanned.
+If the contents of the directory changes, it is rescanned.
 
 .. include:: dircache_listdir_file_added.py
     :literal:
@@ -61,7 +61,7 @@ The other interesting function provided by the dircache module is annotate().
 When called, annotate() modifies a list such as is returned by listdir(),
 adding a '/' to the end of the names that represent directories. (Sorry
 Windows users, although it uses os.path.join() to construct names to test, it
-always appends a '/', not os.sep.)
+always appends a ``'/'``, not os.sep.)
 
 .. include:: dircache_annotate.py
     :literal:

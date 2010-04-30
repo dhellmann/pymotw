@@ -231,6 +231,9 @@ The arguments to ``print_callers()`` and ``print_callees()`` work the same as th
     `pstats <http://docs.python.org/lib/profile-stats.html>`_
         Standard library documentation for pstats.
 
+    `Gprof2Dot <http://code.google.com/p/jrfonseca/wiki/Gprof2Dot>`_
+        Visualization tool for profile output data.
+
     .. [#fibonacci] *Fibonacci numbers (Python) - LiteratePrograms* via http://en.literateprograms.org/Fibonacci_numbers_(Python)
 
     .. [#memoize] *Python Decorators: Syntactic Sugar | avinash.vora* from http://avinashv.net/2008/04/python-decorators-syntactic-sugar/

@@ -8,11 +8,13 @@ csv -- Comma-separated value files
 :Purpose: Read and write comma separated value files.
 :Python Version: 2.3 and later
 
-The csv module is very useful for working with data exported from spreadsheets
-and databases into text files. There is no well-defined standard, so the csv
-module uses "dialects" to support parsing using different parameters. Along
-with a generic reader and writer, the module includes a dialect for working
-with Microsoft Excel.
+The csv module is useful for working with data exported from
+spreadsheets and databases into text files using a "comma-separated
+value" format. There is no well-defined standard for comma-separated
+value files, so the csv module uses *dialects* to support parsing
+using different parameters. Along with a generic reader and writer,
+the module includes a dialect for working with data exported from
+Microsoft Excel.
 
 Limitations
 ===========
@@ -24,34 +26,37 @@ recommended.
 Reading
 =======
 
-To read data from a csv file, use the reader() function to create a reader
-object. The reader can be used as an iterator to process the rows of the file
-in order. For example:
+Use ``reader()`` to create a an object for reading data from a csv
+file.  The reader can be used as an iterator to process the rows of
+the file in order. For example:
 
 .. include:: csv_reader.py
     :literal:
     :start-after: #end_pymotw_header
 
-The first argument to reader() is the source of text lines. In this case, it
-is a file, but any iterable is accepted (StringIO instances, lists, etc.).
-Other optional arguments can be given to control how the input data is parsed.
+The first argument to ``reader()`` is the source of text lines. In
+this case, it is a file, but any iterable is accepted (:mod:`StringIO`
+instances, lists, etc.).  Other optional arguments can be given to
+control how the input data is parsed.
 
-The example file "testdata.csv" was exported from NeoOffice.
+The example file ``testdata.csv`` was exported from NeoOffice_.
 
 .. include:: testdata.csv
     :literal:
 
-As it is read, each row of the input data is converted to a list of strings.
+As it is read, each row of the input data is parsed and converted to a
+list of strings.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'csv_reader.py testdata.csv'))
 .. }}}
 .. {{{end}}}
 
-If you know that certain columns have specific types, you can convert the
-strings yourself, but csv does not automatically convert the input. It does
-handle line breaks embedded within strings in a row (which is why a "row" is
-not always the same as a "line" of input from the file).
+If you know that certain columns have specific types, you can convert
+the strings to that type, but csv does not automatically convert the
+input. It does handle line breaks embedded within strings in a row
+(which is why a "row" is not always the same as a "line" of input from
+the file).
 
 .. include:: testlinebreak.csv
     :literal:
@@ -64,9 +69,10 @@ not always the same as a "line" of input from the file).
 Writing
 =======
 
-When you have data to be imported into some other application, writing CSV
-files is just as easy as reading them. Use the writer() function to create a
-writer object. For each row, use writerow() to print the row.
+When you have data to be imported into some other application, writing
+CSV files is just as easy as reading them. Use ``writer()`` to create
+an object for writing, then iterate over the rows, using
+``writerow()`` to print them.
 
 .. include:: csv_writer.py
     :literal:
@@ -121,15 +127,18 @@ QUOTE_NONE
 Dialects
 ========
 
-There are many parameters to control how the csv module parses or writes data. Rather than
-passing each of these parameters to the reader and writer separately, they are grouped
-together conveniently into a "dialect" object. Dialect classes can be registered by name, so
-that callers of the csv module do not need to know the parameter settings in advance. The
-standard library includes two dialects: ``excel``, and ``excel-tabs``. The ``excel`` dialect
-is for working with data in the default export format for Microsoft Excel, and also works
-with OpenOffice or NeoOffice.
+There are many parameters to control how the csv module parses or
+writes data. Rather than passing each of these parameters to the
+reader and writer separately, they are grouped together conveniently
+into a "dialect" object. Dialect classes can be registered by name, so
+that callers of the csv module do not need to know the parameter
+settings in advance. The standard library includes two dialects:
+``excel``, and ``excel-tabs``. The ``excel`` dialect is for working
+with data in the default export format for Microsoft Excel, and also
+works with OpenOffice or NeoOffice.
 
-Suppose instead of using commas to delimit fields, the input file uses ``|``, like this:
+Suppose instead of using commas to delimit fields, the input file uses
+``|``, like this:
 
 .. include:: testdata.pipes
     :literal:
@@ -147,31 +156,35 @@ and the file can be read just as with the comma-delimited file:
 .. }}}
 .. {{{end}}}
 
-For details on the dialect parameters and how they are used, refer to `the standard library documentation for the csv module <http://docs.python.org/library/csv.html#dialects-and-formatting-parameters>`_.
+For details on the dialect parameters and how they are used, refer to
+`the standard library documentation for the csv module
+<http://docs.python.org/library/csv.html#dialects-and-formatting-parameters>`_.
 
 DictReader and DictWriter
 =========================
 
-In addition to working with sequences of data, the csv module includes classes
-for working with rows as dictionaries. The DictReader and DictWriter classes
-translate rows to dictionaries. Keys for the dictionary can be passed in, or
-inferred from the first row in the input (when the row contains headers). 
+In addition to working with sequences of data, the csv module includes
+classes for working with rows as dictionaries. The DictReader and
+DictWriter classes translate rows to dictionaries instead of
+lists. Keys for the dictionary can be passed in, or inferred from the
+first row in the input (when the row contains headers).
 
 .. include:: csv_dictreader.py
     :literal:
     :start-after: #end_pymotw_header
 
-The dictionary-based reader and writer are implemented as wrappers around the
-sequence-based classes, and use the same arguments and API. The only
-difference is that rows are dictionaries instead of lists or tuples.
+The dictionary-based reader and writer are implemented as wrappers
+around the sequence-based classes, and use the same methods and
+arguments. The only difference in the reader API is that rows are
+returned as dictionaries instead of lists or tuples.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'csv_dictreader.py testdata.csv'))
 .. }}}
 .. {{{end}}}
 
-The DictWriter must be given a list of field names so it knows how the columns
-should be ordered in the output.
+The DictWriter must be given a list of field names so it knows how to
+order the columns in the output.
 
 .. include:: csv_dictwriter.py
     :literal:
@@ -191,3 +204,5 @@ should be ordered in the output.
         CSV File API
 
     :ref:`article-data-persistence`
+
+.. _NeoOffice: http://www.neooffice.org/
