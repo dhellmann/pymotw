@@ -1,6 +1,11 @@
 History
 =======
 
+Dev
+
+  - Added LifoQueue and PriorityQueue examples to :mod:`Queue`.
+
+
 1.117
   - Updated :mod:`fileinput` example to use
     :mod:`xml.etree.ElementTree`.  Added an example to show how to get

@@ -20,8 +20,72 @@ memory usage or processing.
     This discussion assumes you already understand the general nature of a queue. If you
     don't, you may want to read some of the references before continuing.
 
-Example
-=======
+Basic FIFO Queue
+================
+
+The ``Queue`` class implements a basic first-in, first-out container.
+Elements are added to one "end" of the sequence using ``put()``, and
+removed from the other end using ``get()``.
+
+.. include:: Queue_fifo.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+This example uses a single thread to illustrate that elements are
+removed from the queue in the same order they are inserted.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'Queue_fifo.py'))
+.. }}}
+.. {{{end}}}
+
+LIFO Queue
+==========
+
+In contrast to the standard FIFO implementation of ``Queue``, the
+``LifoQueue`` uses last-in, first-out ordering (normally associated
+with a stack data structure).
+
+.. include:: Queue_lifo.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+The item most recently ``put()`` into the queue is removed by
+``get()``.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'Queue_lifo.py'))
+.. }}}
+.. {{{end}}}
+
+Priority Queue
+==============
+
+Sometimes the processing order of the items in a queue needs to be
+based on characteristics of those items, rather than just the order
+they are created or added to the queue.  For example, print jobs from
+the payroll department may take precedence over a code listing printed
+by a developer.  ``PriorityQueue`` uses the sort order of the contents
+of the queue to decide which to retrieve.
+
+.. include:: Queue_priority.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+In this single-threaded example, the jobs are pulled out of the queue
+in strictly priority order.  If there were multiple threads consuming
+the jobs, they would be processed based on the priority of items in
+the queue at the time ``get()`` was called.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'Queue_priority.py'))
+.. }}}
+.. {{{end}}}
+
+
+
+Using Queues with Threads
+=========================
 
 As an example of how to use the Queue class with multiple threads, we can
 create a very simplistic podcasting client. This client reads one or more RSS
@@ -38,16 +102,17 @@ First, we establish some operating parameters. Normally these would come from
 user inputs (preferences, a database, whatever). For our example we hard code
 the number of threads to use and the list of URLs to fetch.
 
-Next, we need to define the function ``downloadEnclosures()`` that will run in the worker thread,
-processing the downloads. Again, for illustration purposes this only simulates
-the download. To actually download the enclosure, check out the urllib module,
-which we will cover in a later episode. In our example, we sleep a variable
-amount of time, depending on the thread id.
+Next, we need to define the function ``downloadEnclosures()`` that
+will run in the worker thread, processing the downloads. Again, for
+illustration purposes this only simulates the download. To actually
+download the enclosure, you might use :mod:`urllib` or
+:mod:`urllib2`. In this example, we simulate a download delay by
+sleeping a variable amount of time, depending on the thread id.
 
-Once this target function is defined, we can start the worker threads. Notice
-that downloadEnclosures() will block on the statement ``url = q.get()`` until
-the queue has something to return, so it is safe to start the threads before
-there is anything in the queue.
+Once the threads' target function is defined, we can start the worker
+threads. Notice that downloadEnclosures() will block on the statement
+``url = q.get()`` until the queue has something to return, so it is
+safe to start the threads before there is anything in the queue.
 
 The next step is to retrieve the feed contents (using Mark Pilgrim's `feedparser`_ module)
 and enqueue the URLs of the enclosures. As soon as the first URL is added to
@@ -55,7 +120,8 @@ the queue, one of the worker threads should pick it up and start downloading
 it. The loop below will continue to add items until the feed is exhausted, and
 the worker threads will take turns dequeuing URLs to download them.
 
-And the only thing left to do is wait for the queue to empty out again, using join().
+And the only thing left to do is wait for the queue to empty out
+again, using ``join()``.
 
 If you run the sample script, you should see output something like this:
 
@@ -87,8 +153,8 @@ If you run the sample script, you should see output something like this:
     1: Looking for the next enclosure
     *** Done
 
-YMMV, depending on whether anyone modifies the subscriptions in the guest
-account on http://www.CastSampler.com.
+The actual output will depend on whether anyone modifies the
+subscriptions in the guest account on http://www.CastSampler.com.
 
 
 .. seealso::
