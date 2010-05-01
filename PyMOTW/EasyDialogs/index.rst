@@ -8,11 +8,11 @@ EasyDialogs -- Carbon dialogs for Mac OS X
 :Purpose: Provides simple interfaces to Carbon dialogs from Python.
 :Python Version: At least 2.0, Macintosh-only (see References below for a Windows implementation)
 
-The EasyDialogs module includes classes and functions for working with simple
-message and prompt dialogs, as well as stock dialogs for querying the user for
-file or directory names. The dialogs use the Carbon API. See Apple's
-Navigation Services Reference for more details about some of the options not
-covered in detail here.
+The EasyDialogs module includes classes and functions for working with
+simple message and prompt dialogs, as well as stock dialogs for
+querying the user for file or directory names. The dialogs use the
+Carbon API. See Apple's `Navigation Services Reference`_ for more
+details about some of the options not covered in detail here.
 
 Messages
 ========
@@ -26,7 +26,8 @@ the user.
 
 .. image:: MessageDialog.png
 
-It is easy to change the label of the "OK" button using the ok argument.
+It is easy to change the label of the "OK" button using the ``ok``
+argument.
 
 .. include:: EasyDialogs_Message_ok.py
     :literal:
@@ -76,11 +77,11 @@ to maxval.
     The dialog should be gone now
 
 
-Explicitly deleting the ProgressBar instance using del removes it from the
-screen.
+Explicitly deleting the ProgressBar instance using ``del`` removes it
+from the screen.
 
-If you are measuring progress in uneven steps, you can use set() to change the
-progress meter instead of incr().
+If you are measuring progress in uneven steps, use ``set()`` to change
+the progress meter instead of ``incr()``.
 
 .. include:: EasyDialogs_ProgressBar_set.py
     :literal:
@@ -272,7 +273,7 @@ like sys.argv.
     `EasyDialogs <http://docs.python.org/library/easydialogs.html>`_
         The standard library documentation for this module.
 
-    `Navigation Services Reference <http://developer.apple.com/documentation/Carbon/Reference/Navigation_Services_Ref/Reference/reference.html>`_
+    `Navigation Services Reference`_
         Documentation for Apple's API for working with file objects under Mac OS X.
 
     `EasyDialogs for Windows <http://www.averdevelopment.com/python/EasyDialogs.html>`_
@@ -283,3 +284,5 @@ like sys.argv.
 
     `EasyGui <http://easygui.sourceforge.net/>`_
         A similar portable library for creating simple graphical user interfaces.
+
+.. _Navigation Services Reference: http://developer.apple.com/documentation/Carbon/Reference/Navigation_Services_Ref/Reference/reference.html

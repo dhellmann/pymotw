@@ -11,6 +11,8 @@ collections -- Container data types
 The collections module includes container data types beyond the
 built-in types list and dict.
 
+.. _deque:
+
 Deque
 =====
 

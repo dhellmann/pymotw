@@ -89,7 +89,7 @@ be the same if their contents are not compared.
 To compare a set of files in two directories without recursing, use
 filecmp.cmpfiles(). The arguments are the names of the directories and a list
 of files to be checked in the two locations. The list of common files should
-contain only filenames (directories always seem to result in a mismatch) and
+contain only filenames (directories always result in a mismatch) and
 the files must be present in both locations. The code below shows a simple way
 to build the common list. If you have a shorter formula, post it in the
 comments. The comparison also takes the shallow flag, just as with cmp().
@@ -120,11 +120,11 @@ print a report comparing two directories with the report() method:
     :literal:
     :start-after: #end_pymotw_header
 
-The output is a plain-text report showing the results of just the contents of
-the directories given, without recursing. In this case, the file
-"not_the_same" is thought to be the same because the contents are not being
-compared. There doesn't seem to be a way to have dircmp compare the contents
-of files like cmp() can.
+The output is a plain-text report showing the results of just the
+contents of the directories given, without recursing. In this case,
+the file "not_the_same" is thought to be the same because the contents
+are not being compared. There is no way to have dircmp compare the
+contents of files like cmp() can.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'filecmp_dircmp_report.py'))
@@ -238,3 +238,8 @@ attribute subdirs to allow easy recursive comparison.
     `filecmp <http://docs.python.org/library/filecmp.html>`_
         The standard library documentation for this module.
 
+    :ref:`os-directories` from :mod:`os`
+        Listing the contents of a directory.
+
+    :mod:`difflib`
+        Computing the differences between two sequences.

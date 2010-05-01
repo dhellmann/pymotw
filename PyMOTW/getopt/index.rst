@@ -8,10 +8,11 @@ getopt -- Command line option parsing
 :Purpose: Command line option parsing
 :Python Version: 1.4
 
-The getopt module is the *old-school* command line option parser which supports
-the conventions established by the Unix function getopt(). It parses an
-argument sequence, such as sys.argv and returns a sequence of (option,
-argument) pairs and a sequence of non-option arguments.
+The getopt module is the *old-school* command line option parser that
+supports the conventions established by the Unix function
+``getopt()``. It parses an argument sequence, such as ``sys.argv`` and
+returns a sequence of (option, argument) pairs and a sequence of
+non-option arguments.
 
 Supported option syntax includes:
 
@@ -30,26 +31,27 @@ Function Arguments
 
 The getopt function takes three arguments:
 
-* The first argument is the sequence of arguments to be parsed. This usually
-  comes from sys.argv[1:] (ignoring the program name in sys.arg[0]).
+* The first argument is the sequence of arguments to be parsed. This
+  usually comes from ``sys.argv[1:]`` (ignoring the program name in
+  ``sys.arg[0]``).
 
 * The second argument is the option definition string for single character
   options. If one of the options requires an argument, its letter is followed
   by a colon. 
 
-* The third argument, if used, should be a sequence of the long-style option
-  names. Long style options can be more than a single character, such as
-  --noarg or --witharg. The option names in the sequence should not include
-  the -- prefix. If any long option requires an argument, its name should have
-  a suffix of =.
+* The third argument, if used, should be a sequence of the long-style
+  option names. Long style options can be more than a single
+  character, such as ``--noarg`` or ``--witharg``. The option names in
+  the sequence should not include the ``--`` prefix. If any long
+  option requires an argument, its name should have a suffix of ``=``.
 
 Short and long form options can be combined in a single call.
 
 Short Form Options
 ==================
 
-If a program wants to take 2 options, -a, and -b with the b option requiring
-an argument, the value should be "ab:".
+If a program wants to take 2 options, ``-a``, and ``-b`` with the b
+option requiring an argument, the value should be ``"ab:"``.
 
 .. include:: getopt_short.py
     :literal:
@@ -64,8 +66,8 @@ an argument, the value should be "ab:".
 Long Form Options
 =================
 
-If a program wants to take 2 options, --noarg and --witharg the sequence
-should be [ 'noarg', 'witharg=' ].
+If a program wants to take 2 options, ``--noarg`` and ``--witharg``
+the sequence should be ``[ 'noarg', 'witharg=' ]``.
 
 .. include:: getopt_long.py
     :literal:
@@ -80,9 +82,10 @@ should be [ 'noarg', 'witharg=' ].
 Example
 =======
 
-Below is a more complete example program which takes 5 options: -o, -v,
---output, --verbose, and --version. The -o, --output, and --version options
-require an argument.
+Below is a more complete example program which takes 5 options:
+``-o``, ``-v``, ``--output``, ``--verbose``, and ``--version``. The
+``-o``, ``--output``, and ``--version`` options each require an
+argument.
 
 .. include:: getopt_example.py
     :literal:
@@ -116,7 +119,7 @@ A long form option can similarly be separate:
 .. }}}
 .. {{{end}}}
 
-or combined, with =:
+or combined, with ``=``:
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'getopt_example.py --output=foo'))
@@ -154,8 +157,9 @@ encountered.
 GNU-style Option Parsing
 ========================
 
-New in Python 2.3, an additional function gnu_getopt() was added. It allows
-option and non-option arguments to be mixed on the command line in any order.
+New in Python 2.3, an additional function ``gnu_getopt()`` was
+added. It allows option and non-option arguments to be mixed on the
+command line in any order.
 
 .. include:: getopt_gnu.py
     :literal:
@@ -172,7 +176,8 @@ After changing the call in the previous example, the difference becomes clear:
 Special Case: ``--``
 ====================
 
-If getopt encounters ``--`` in the input arguments, it stops processing the remaining arguments as options.
+If ``getopt`` encounters ``--`` in the input arguments, it stops
+processing the remaining arguments as options.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'getopt_example.py -v -- --output foo'))

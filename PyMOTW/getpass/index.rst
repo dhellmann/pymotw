@@ -10,16 +10,17 @@ getpass -- Prompt the user for a password without echoing.
 :Purpose: Prompt the user for a value, usually a password, without echoing what they type to the console.
 :Python Version: 1.5.2
 
-Many programs which interact with the user via the terminal need to ask the
-user for password values without showing what the user types on the screen.
-The getpass module provides a portable way to handle such password prompts
-securely.
+Many programs that interact with the user via the terminal need to ask
+the user for password values without showing what the user types on
+the screen.  The :mod:`getpass` module provides a portable way to
+handle such password prompts securely.
 
 Example
 =======
 
-The getpass() function prints a prompt then reads input from the user until
-they press return. The input is passed back as a string to the caller.
+The ``getpass()`` function prints a prompt then reads input from the
+user until they press return. The input is passed back as a string to
+the caller.
 
 .. include:: getpass_defaults.py
     :literal:
@@ -51,9 +52,10 @@ the point.
     What is your favorite color?
     Auuuuugh!
 
-By default, getpass() uses stdout to print the prompt string. For a program
-which may produce useful output on sys.stdout, it is useful to send the prompt
-to another stream such as sys.stderr.
+By default, ``getpass()`` uses stdout to print the prompt string. For
+a program which may produce useful output on ``sys.stdout``, it is
+frequently better to send the prompt to another stream such as
+``sys.stderr``.
 
 .. include:: getpass_stream.py
     :literal:
@@ -71,9 +73,9 @@ the screen.
 Using getpass Without a Terminal
 ================================
 
-Under Unix, getpass() always requires a tty it can control via termios, so
-echo can be disabled. This means values will not be read from a non-terminal
-stream redirected to standard input.
+Under Unix, ``getpass()`` always requires a tty it can control via
+termios, so echo can be disabled. This means values will not be read
+from a non-terminal stream redirected to standard input.
 
 ::
 
@@ -112,4 +114,6 @@ Without a tty:
 
     `getpass <http://docs.python.org/library/getpass.html>`_
         The standard library documentation for this module.
-    
+
+    :mod:`readline`
+        Interactive prompt library.

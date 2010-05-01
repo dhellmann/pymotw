@@ -35,17 +35,23 @@ complicated, and with some testing I'm sure I could even get the error
 handling right. But with the fileinput module, I don't need to worry about
 that. I just write something like:
 
+.. literalinclude:: fileinput_example.py
+   :lines: 30-37
+
+The ``fileinput.input()`` function takes as argument a list of
+filenames to examine. If the list is empty, the module reads data from
+standard input. The function returns an iterator which returns
+individual lines from the text files being processed.  So, all I have
+to do is loop over each line, skipping blanks and comments, to find
+the references to mp3 files.
+
+Here's the complete program:
+
 .. include:: fileinput_example.py
    :literal:
    :start-after: #end_pymotw_header
 
-The relevant bit in that snippet is the ``for`` loop. The
-``fileinput.input()`` function takes as argument a list of filenames
-to examine. If the list is empty, the module reads data from standard
-input. The function returns an iterator which returns individual lines
-from the text files being processed.  So, all I have to do is loop
-over each line, skipping blanks and comments, to find the references
-to mp3 files.
+and its output:
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'fileinput_example.py sample_data.m3u'))
@@ -138,8 +144,13 @@ closed.
         Script to convert m3u files listing MP3s to an RSS file
         suitable for use as a podcast feed.
 
+    :ref:`xml.etree.ElementTree.creating`
+        More details of using ElementTree to produce XML.
+
     :ref:`article-file-access`
+        Other modules for working with files.
 
     :ref:`article-text-processing`
+        Other modules for working with text.
 
 .. _m3utorss: http://www.doughellmann.com/projects/m3utorss

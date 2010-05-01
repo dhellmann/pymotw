@@ -14,10 +14,10 @@ such as used by Unix shells.
 Simple Matching
 ===============
 
-fnmatch() compares a single filename against a pattern and returns a boolean
-indicating whether or not they match. If the operating system uses a
-case-insensitive filesystem, the comparison is not case sensitive. Otherwise
-it is.
+``fnmatch()`` compares a single filename against a pattern and returns
+a boolean indicating whether or not they match. The comparison is
+case-sensitive when the operating system uses a case-sensitive
+filesystem.
 
 .. include:: fnmatch_fnmatch.py
     :literal:
@@ -33,7 +33,7 @@ ending in '.py'.
 .. {{{end}}}
 
 To force a case-sensitive comparison, regardless of the filesystem and
-operating system settings, use fnmatchcase().
+operating system settings, use ``fnmatchcase()``.
 
 .. include:: fnmatch_fnmatchcase.py
     :literal:
@@ -50,15 +50,15 @@ pattern.
 Filtering
 =========
 
-To test a sequence of filenames, you can use filter(). It returns a list of
-the names that match the pattern argument.
+To test a sequence of filenames, you can use ``filter()``. It returns
+a list of the names that match the pattern argument.
 
 .. include:: fnmatch_filter.py
     :literal:
     :start-after: #end_pymotw_header
 
-In this example, filter() returns the list of names of the example source
-files associated with this post.
+In this example, ``filter()`` returns the list of names of the example
+source files associated with this post.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'fnmatch_filter.py'))
@@ -68,9 +68,10 @@ files associated with this post.
 Translating Patterns
 ====================
 
-Internally, fnmatch converts the glob pattern to a regular expression and uses
-the re module to compare the name and pattern. The translate() function is the
-public API for converting glob patterns to regular expressions.
+Internally, fnmatch converts the glob pattern to a regular expression
+and uses the :mod:`re` module to compare the name and pattern. The
+``translate()`` function is the public API for converting glob patterns to
+regular expressions.
 
 .. include:: fnmatch_translate.py
     :literal:
@@ -89,6 +90,9 @@ Notice that some of the characters are escaped to make a valid expression.
         The standard library documentation for this module.
 
     :mod:`glob`
-        The glob module combines :mod:`fnmatch` matching with os.listdir() to produce lists of files and directories matching patterns.
+        The glob module combines :mod:`fnmatch` matching with
+        ``os.listdir()`` to produce lists of files and directories
+        matching patterns.
 
     :ref:`article-file-access`
+        More modules for working with files.

@@ -145,7 +145,7 @@ disassembled version.  The bad operation is highlighted with the
 Performance Analysis of Loops
 =============================
 
-Aside from debugging errors, :mod:`dis`can also help you identify
+Aside from debugging errors, :mod:`dis` can also help you identify
 performance issues in your code. Examining the disassembled code is
 especially useful with tight loops where the number of exposed Python
 instructions is low but they translate to an inefficient set of

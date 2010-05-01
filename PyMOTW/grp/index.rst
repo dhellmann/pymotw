@@ -8,7 +8,10 @@ grp -- Unix Group Database
 :Purpose: Read group data from Unix group database.
 :Python Version: 1.4 and later
 
-The grp module can be used to read information about Unix groups from the group database (usually ``/etc/group``).  The read-only interface returns tuple-like objects with named attributes for the standard fields of a group record.
+The grp module can be used to read information about Unix groups from
+the group database (usually ``/etc/group``).  The read-only interface
+returns tuple-like objects with named attributes for the standard
+fields of a group record.
 
 ===== ========= =======
 Index Attribute Meaning
@@ -19,12 +22,18 @@ Index Attribute Meaning
  3    gr_mem    Names of group members
 ===== ========= =======
 
-The name and password values are both strings, the GID is an integer, and the members are reported as a list of strings.
+The name and password values are both strings, the GID is an integer,
+and the members are reported as a list of strings.
 
 Querying All Groups
 ===================
 
-Suppose you need to print a report of all of the "real" groups on a system, including their members  (for our purposes, "real" is defined as having a name not starting with "_").  To load the entire password database, you would use getgrall().  The return value is a list with an undefined order, so you probably want to sort it before printing the report.
+Suppose you need to print a report of all of the "real" groups on a
+system, including their members (for our purposes, "real" is defined
+as having a name not starting with "``_``").  To load the entire
+password database, you would use ``getgrall()``.  The return value is
+a list with an undefined order, so you probably want to sort it before
+printing the report.
 
 .. include:: grp_getgrall.py
     :literal:
@@ -38,7 +47,8 @@ Suppose you need to print a report of all of the "real" groups on a system, incl
 Group Memberships for a User
 ============================
 
-Another common task might be to print a list of all the groups for a given user:
+Another common task might be to print a list of all the groups for a
+given user:
 
 .. include:: grp_groups_for_user.py
     :literal:
@@ -52,7 +62,8 @@ Another common task might be to print a list of all the groups for a given user:
 Finding a Group By Name
 =======================
 
-As with :mod:`pwd`, it is also possible to query for information about a specific group, either by name or numeric id.
+As with :mod:`pwd`, it is also possible to query for information about
+a specific group, either by name or numeric id.
 
 .. include:: grp_getgrnam.py
     :literal:
@@ -66,7 +77,8 @@ As with :mod:`pwd`, it is also possible to query for information about a specifi
 Finding a Group by ID
 =====================
 
-To identify the group running the current process, combine getgrgid() with os.getgid().
+To identify the group running the current process, combine
+``getgrgid()`` with ``os.getgid()``.
 
 .. include:: grp_getgrgid_process.py
     :literal:
@@ -77,7 +89,8 @@ To identify the group running the current process, combine getgrgid() with os.ge
 .. }}}
 .. {{{end}}}
 
-And to get the group name based on the permissions on a file, look up the group returned by os.stat().
+And to get the group name based on the permissions on a file, look up
+the group returned by ``os.stat()``.
 
 .. include:: grp_getgrgid_fileowner.py
     :literal:

@@ -161,6 +161,9 @@ subscriptions in the guest account on http://www.CastSampler.com.
 
     `Queue <http://docs.python.org/lib/module-Queue.html>`_
         Standard library documentation for this module.
+
+    :ref:`deque` from :mod:`collections`
+        collections includes a deque (double-ended queue) class
     
     *Wikipedia: Queue data structures*
         http://en.wikipedia.org/wiki/Queue_(data_structure)

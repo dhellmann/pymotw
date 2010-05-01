@@ -59,21 +59,22 @@ def downloadEnclosures(i, q):
         print '%s: Looking for the next enclosure' % i
         url = q.get()
         print '%s: Downloading:' % i, url
-        time.sleep(i + 2) # instead of really downloading the URL, we just pretend
+        # instead of really downloading the URL,
+        # we just pretend and sleep
+        time.sleep(i + 2)
         q.task_done()
 
 
 # Set up some threads to fetch the enclosures
 for i in range(num_fetch_threads):
-	worker = Thread(target=downloadEnclosures, args=(i, enclosure_queue,))
-	worker.setDaemon(True)
-	worker.start()
+    worker = Thread(target=downloadEnclosures, args=(i, enclosure_queue,))
+    worker.setDaemon(True)
+    worker.start()
 
 # Download the feed(s) and put the enclosure URLs into
 # the queue.
 for url in feed_urls:
     response = feedparser.parse(url, agent='fetch_podcasts.py')
-    #print response
     for entry in response['entries']:
         for enclosure in entry.get('enclosures', []):
             print 'Queuing:', enclosure['url']

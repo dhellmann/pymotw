@@ -10,25 +10,26 @@ functools -- Tools for making decorators and other function wrappers.
     callable objects.
 :Python Version: new in 2.5
 
-The primary tool supplied by the functools module is the class partial, which
-can be used to "wrap" a callable with default arguments. The resulting object
-is itself callable and can be treated as though it is the original function.
-It takes all of the same arguments as the original callable and can be invoked
-with extra positional or named arguments as well.
+The primary tool supplied by the functools module is the class
+``partial``, which can be used to "wrap" a callable with default
+arguments. The resulting object is itself callable and can be treated
+as though it is the original function.  It takes all of the same
+arguments as the original callable and can be invoked with extra
+positional or named arguments as well.
 
 partial
 =======
 
-This example shows two simple partial objects for the function myfunc().
-Notice that show_details() prints the func, args, and keywords attributes of
-the partial object.
+This example shows two simple partial objects for the function
+``myfunc()``.  Notice that ``show_details()`` prints the func, args,
+and keywords attributes of the partial object.
 
 .. include:: functools_partial.py
     :literal:
     :start-after: #end_pymotw_header
 
 At the end of the example, the first partial created is invoked without
-passing a value for a, causing an exception.
+passing a value for *a*, causing an exception.
 
 ::
 
@@ -67,19 +68,19 @@ passing a value for a, causing an exception.
 update_wrapper
 ==============
 
-As illustrated in the previous example, the partial object does not have a
-__name__ or __doc__ attributes by default. Losing those attributes for
-decorated functions makes them more difficult to debug. By using
-update_wrapper, you can copy or add attributes from the original function to
-the partial object.
+The partial object does not have ``__name__`` or ``__doc__``
+attributes by default. Losing those attributes for decorated functions
+makes them more difficult to debug. By using ``update_wrapper``, you
+can copy or add attributes from the original function to the partial
+object.
 
 .. include:: functools_update_wrapper.py
     :literal:
     :start-after: #end_pymotw_header
 
 The attributes added to the wrapper are defined in
-functools.WRAPPER_ASSIGNMENTS, while functools.WRAPPER_UPDATES lists values to
-be modified.
+``functools.WRAPPER_ASSIGNMENTS``, while ``functools.WRAPPER_UPDATES``
+lists values to be modified.
 
 ::
 
@@ -154,10 +155,11 @@ Partials work with any callable object, including methods and instances.
 wraps
 =====
 
-As mentioned earlier, these capabilities are especially useful when used in
-decorators, since the decorated function ends up with properties of the
-original, "raw", function. functools provides a convenience function, wraps(),
-to be used as a decorator itself and to apply update_wrapper() automatically.
+Updating the properties of a wrapped callable is especially useful
+when used in a decorator, since the decorated function ends up with
+properties of the original, "raw", function. :mod:`functools` provides
+a convenience function, ``wraps()``, to be used as a decorator itself
+and to apply ``update_wrapper()`` automatically.
 
 .. include:: functools_wraps.py
     :literal:

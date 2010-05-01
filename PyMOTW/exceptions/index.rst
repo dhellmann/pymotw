@@ -51,7 +51,8 @@ Base class for errors raised when something can't be found.
 EnvironmentError
 ----------------
 
-Base class for errors that come from outside of Python (the operating system, filesystem, etc.).
+Base class for errors that come from outside of Python (the operating
+system, filesystem, etc.).
 
 
 Raised Exceptions
@@ -87,9 +88,9 @@ It is also used in the :mod:`unittest` module in methods like ``failIf()``.
 AttributeError
 --------------
 
-When an attribute reference or assignment fails, AttributeError is raised.
-
-For example, when trying to reference an attribute that does not exist:
+When an attribute reference or assignment fails, AttributeError is
+raised.  For example, when trying to reference an attribute that does
+not exist:
 
 .. include:: exceptions_AttributeError.py
     :literal:
@@ -137,7 +138,11 @@ string at the end of the file.
 FloatingPointError
 ------------------
 
-Raised by floating point operations that result in errors, when floating point exception control (fpectl) is turned on.  Enabling :mod:`fpectl` requires an interpreter compiled with the ``--with-fpectl`` flag.  Using :mod:`fpectl` is `discouraged in the stdlib docs <http://docs.python.org/lib/module-fpectl.html>`_.
+Raised by floating point operations that result in errors, when
+floating point exception control (fpectl) is turned on.  Enabling
+:mod:`fpectl` requires an interpreter compiled with the
+``--with-fpectl`` flag.  Using :mod:`fpectl` is `discouraged in the
+stdlib docs <http://docs.python.org/lib/module-fpectl.html>`_.
 
 .. include:: exceptions_FloatingPointError.py
     :literal:
@@ -162,7 +167,8 @@ Raised inside a generator the generator's ``close()`` method is called.
 IOError
 -------
 
-Raised when input or output fails, for example if a disk fills up or an input file does not exist.
+Raised when input or output fails, for example if a disk fills up or
+an input file does not exist.
 
 .. include:: exceptions_IOError.py
     :literal:
@@ -177,7 +183,8 @@ Raised when input or output fails, for example if a disk fills up or an input fi
 ImportError
 -----------
 
-Raised when a module, or member of a module, cannot be imported.  There are a few conditions where an ImportError might be raised.
+Raised when a module, or member of a module, cannot be imported.
+There are a few conditions where an ImportError might be raised.
 
 1. If a module does not exist.
 
@@ -190,7 +197,8 @@ Raised when a module, or member of a module, cannot be imported.  There are a fe
 .. }}}
 .. {{{end}}}
 
-2. If ``from X import Y`` is used and Y cannot be found inside the module X, an ImportError is raised.
+2. If ``from X import Y`` is used and Y cannot be found inside the
+module X, an ImportError is raised.
 
 .. include:: exceptions_ImportError_missingname.py
     :literal:
@@ -235,7 +243,10 @@ Similarly, a KeyError is raised when a value is not found as a key of a dictiona
 KeyboardInterrupt
 -----------------
 
-A KeyboardInterrupt occurs whenever the user presses Ctrl-C (or Delete) to stop a running program.  Unlike most of the other exceptions, KeyboardInterrupt inherits directly from BaseException to avoid being caught by global exception handlers that catch Exception.
+A KeyboardInterrupt occurs whenever the user presses Ctrl-C (or
+Delete) to stop a running program.  Unlike most of the other
+exceptions, KeyboardInterrupt inherits directly from BaseException to
+avoid being caught by global exception handlers that catch Exception.
 
 .. include:: exceptions_KeyboardInterrupt.py
     :literal:
@@ -252,7 +263,8 @@ Pressing Ctrl-C at the prompt causes a KeyboardInterrupt exception.
 MemoryError
 -----------
 
-If your program runs out of memory and it is possible to recover (by deleting some objects, for example), a MemoryError is raised.
+If your program runs out of memory and it is possible to recover (by
+deleting some objects, for example), a MemoryError is raised.
 
 .. include:: exceptions_MemoryError.py
     :literal:
@@ -289,7 +301,9 @@ If your program runs out of memory and it is possible to recover (by deleting so
 NameError
 ---------
 
-NameErrors are raised when your code refers to a name that does not exist in the current scope.  For example, an unqualified variable name.
+NameErrors are raised when your code refers to a name that does not
+exist in the current scope.  For example, an unqualified variable
+name.
 
 .. include:: exceptions_NameError.py
     :literal:
@@ -304,7 +318,9 @@ NameErrors are raised when your code refers to a name that does not exist in the
 NotImplementedError
 -------------------
 
-User-defined base classes can raise NotImplementedError to indicate that a method or behavior needs to be defined by a subclass, simulating an *interface*.
+User-defined base classes can raise NotImplementedError to indicate
+that a method or behavior needs to be defined by a subclass,
+simulating an *interface*.
 
 .. include:: exceptions_NotImplementedError.py
     :literal:
@@ -315,11 +331,15 @@ User-defined base classes can raise NotImplementedError to indicate that a metho
 .. }}}
 .. {{{end}}}
 
+.. seealso::
+
+   :mod:`abc` - Abstract base classes
 
 OSError
 -------
 
-OSError serves as the error class for the :mod:`os` module, and is raised when an error comes back from an os-specific function.
+OSError serves as the error class for the :mod:`os` module, and is
+raised when an error comes back from an os-specific function.
 
 .. include:: exceptions_OSError.py
     :literal:
@@ -334,7 +354,11 @@ OSError serves as the error class for the :mod:`os` module, and is raised when a
 OverflowError
 -------------
 
-When an arithmetic operation exceeds the limits of the variable type, an OverflowError is raise.  Long integers allocate more space as values grow, so they end up raising MemoryError.  Floating point exception handling is not standardized, so floats are not checked.  Regular integers are converted to long values as needed.
+When an arithmetic operation exceeds the limits of the variable type,
+an OverflowError is raise.  Long integers allocate more space as
+values grow, so they end up raising MemoryError.  Floating point
+exception handling is not standardized, so floats are not checked.
+Regular integers are converted to long values as needed.
 
 .. include:: exceptions_OverflowError.py
     :literal:
@@ -349,7 +373,8 @@ When an arithmetic operation exceeds the limits of the variable type, an Overflo
 ReferenceError
 --------------
 
-When a :mod:`weakref` proxy is used to access an object that has already been garbage collected, a ReferenceError occurs.
+When a :mod:`weakref` proxy is used to access an object that has
+already been garbage collected, a ReferenceError occurs.
 
 .. include:: exceptions_ReferenceError.py
     :literal:
@@ -364,13 +389,16 @@ When a :mod:`weakref` proxy is used to access an object that has already been ga
 RuntimeError
 ------------
 
-A RuntimeError exception is used when no other more specific exception applies.  The interpreter does not raise this exception itself very often, but some user code does.
+A RuntimeError exception is used when no other more specific exception
+applies.  The interpreter does not raise this exception itself very
+often, but some user code does.
 
 
 StopIteration
 -------------
 
-When an iterator is done, it's ``next()`` method raises StopIteration.  This exception is not considered an error.
+When an iterator is done, it's ``next()`` method raises StopIteration.
+This exception is not considered an error.
 
 .. include:: exceptions_StopIteration.py
     :literal:
@@ -385,7 +413,10 @@ When an iterator is done, it's ``next()`` method raises StopIteration.  This exc
 SyntaxError
 -----------
 
-A SyntaxError occurs any time the parser finds source code it does not understand.  This can be while importing a module, invoking exec, or calling eval().  Attributes of the exception can be used to find exactly what part of the input text caused the exception.
+A SyntaxError occurs any time the parser finds source code it does not
+understand.  This can be while importing a module, invoking ``exec``,
+or calling ``eval()``.  Attributes of the exception can be used to
+find exactly what part of the input text caused the exception.
 
 .. include:: exceptions_SyntaxError.py
     :literal:
@@ -400,19 +431,26 @@ A SyntaxError occurs any time the parser finds source code it does not understan
 SystemError
 -----------
 
-When an error occurs in the interpreter itself and there is some chance of continuing to run successfully, it raises a SystemError.  SystemErrors probably indicate a bug in the interpreter and should be reported to the maintainer.
+When an error occurs in the interpreter itself and there is some
+chance of continuing to run successfully, it raises a SystemError.
+SystemErrors probably indicate a bug in the interpreter and should be
+reported to the maintainer.
 
 
 SystemExit
 ----------
 
-When sys.exit() is called, it raises SystemExit instead of exiting immediately.  This allows cleanup code in ``try:finally`` blocks to run and callers (like debuggers and test frameworks) to catch the exception and avoid exiting.
+When ``sys.exit()`` is called, it raises SystemExit instead of exiting
+immediately.  This allows cleanup code in ``try:finally`` blocks to
+run and special environments (like debuggers and test frameworks) to
+catch the exception and avoid exiting.
 
 
 TypeError
 ---------
 
-TypeErrors are caused by combining the wrong type of objects, or calling a function with the wrong type of object.
+TypeErrors are caused by combining the wrong type of objects, or
+calling a function with the wrong type of object.
 
 .. include:: exceptions_TypeError.py
     :literal:
@@ -427,13 +465,17 @@ TypeErrors are caused by combining the wrong type of objects, or calling a funct
 UnboundLocalError
 -------------------
 
-An UnboundLocalError is a type of NameError specific to local variable names.
+An UnboundLocalError is a type of NameError specific to local variable
+names.
 
 .. include:: exceptions_UnboundLocalError.py
     :literal:
     :start-after: #end_pymotw_header
 
-The difference between the global NameError and the UnboundLocal is the way the name is used.  Because the name "local_val" appears on the left side of an expression, it is interpreted as a local variable name.
+The difference between the global NameError and the UnboundLocal is
+the way the name is used.  Because the name "local_val" appears on the
+left side of an expression, it is interpreted as a local variable
+name.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'exceptions_UnboundLocalError.py', ignore_error=True))
@@ -444,13 +486,16 @@ The difference between the global NameError and the UnboundLocal is the way the 
 UnicodeError
 ------------
 
-UnicodeError is a subclass of ValueError and is raised when a Unicode problem occurs.  There are separate subclasses for UnicodeEncodeError, UnicodeDecodeError, and UnicodeTranslateError.
+UnicodeError is a subclass of ValueError and is raised when a Unicode
+problem occurs.  There are separate subclasses for UnicodeEncodeError,
+UnicodeDecodeError, and UnicodeTranslateError.
 
 
 ValueError
 ----------
 
-A ValueError is used when a function receives a value that has the right type but an invalid value.
+A ValueError is used when a function receives a value that has the
+right type but an invalid value.
 
 .. include:: exceptions_ValueError.py
     :literal:
@@ -465,7 +510,8 @@ A ValueError is used when a function receives a value that has the right type bu
 ZeroDivisionError
 -----------------
 
-When zero shows up in the denominator of a division operation, a ZeroDivisionError is raised.
+When zero shows up in the denominator of a division operation, a
+ZeroDivisionError is raised.
 
 .. include:: exceptions_ZeroDivisionError.py
     :literal:
@@ -514,3 +560,6 @@ UnicodeWarning
 
     `exceptions <http://docs.python.org/library/exceptions.html>`_
         The standard library documentation for this module.
+
+    :mod:`warnings`
+        Non-error warning messages.

@@ -324,6 +324,8 @@ file to begin with:
 .. }}}
 .. {{{end}}}
 
+.. _os-directories:
+
 Directories
 ===========
 

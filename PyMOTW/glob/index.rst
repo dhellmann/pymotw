@@ -8,25 +8,26 @@ glob -- Filename pattern matching
 :Purpose: Use Unix shell rules to fine filenames matching a pattern.
 :Python Version: 1.4
 
-Even though the glob API is very simple, the module packs a lot of power. It
-is useful in any situation where your program needs to look for a list of
-files on the filesystem with names matching a pattern. If you need a list of
-filenames that all have a certain extension, prefix, or any common string in
-the middle, use glob instead of writing code to scan the directory contents
-yourself.
+Even though the glob API is very simple, the module packs a lot of
+power. It is useful in any situation where your program needs to look
+for a list of files on the filesystem with names matching a
+pattern. If you need a list of filenames that all have a certain
+extension, prefix, or any common string in the middle, use :mod:`glob`
+instead of writing code to scan the directory contents yourself.
 
-The pattern rules for glob are not regular expressions. Instead, they follow
-standard Unix path expansion rules. Shell variable names and tilde (~) are not
-expanded. There are only a few special characters: two different wild-cards,
-and character ranges are supported. The patterns rules are applied to segments
-of the filename (stopping at /), but paths in the pattern can be relative or
-absolute.
+The pattern rules for glob are not regular expressions. Instead, they
+follow standard Unix path expansion rules. There are only a few
+special characters: two different wild-cards, and character ranges are
+supported. The patterns rules are applied to segments of the filename
+(stopping at the path separator, ``/``). Paths in the pattern can be
+relative or absolute. Shell variable names and tilde (``~``) are not
+expanded.
 
 Example Data
 ============
 
-The examples below assume the following test files are present in the current
-working directory:
+The examples below assume the following test files are present in the
+current working directory:
 
 .. {{{cog
 .. from paver.path import path
@@ -36,14 +37,16 @@ working directory:
 .. }}}
 .. {{{end}}}
 
-Use the glob_maketestdata.py script in the sample code to create these files
-if you want to run the examples.
+.. note::
+
+   Use ``glob_maketestdata.py`` in the sample code to create these
+   files if you want to run the examples.
 
 Wildcards
 =========
 
-An asterisk (`*`) matches zero or more characters in a segment of a name. For
-example, `dir/*`.
+An asterisk (``*``) matches zero or more characters in a segment of a
+name. For example, ``dir/*``.
 
 .. include:: glob_asterisk.py
     :literal:
@@ -79,8 +82,9 @@ both.
 Single Character Wildcard
 =========================
 
-The other wildcard character supported is the question mark (?). It matches
-any single character in that position in the name. For example,
+The other wildcard character supported is the question mark
+(``?``). It matches any single character in that position in the
+name. For example,
 
 .. include:: glob_question.py
     :literal:
@@ -106,10 +110,10 @@ the name before the extension:
     :literal:
     :start-after: #end_pymotw_header
 
-The character range [0-9] matches any single digit. The range is ordered based
-on the character code for each letter/digit, and the dash indicates an
-unbroken range of sequential characters. The same range value could be written
-[0123456789], in this case.
+The character range ``[0-9]`` matches any single digit. The range is
+ordered based on the character code for each letter/digit, and the
+dash indicates an unbroken range of sequential characters. The same
+range value could be written ``[0123456789]``.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'glob_charrange.py'))
@@ -129,3 +133,4 @@ unbroken range of sequential characters. The same range value could be written
         Filename matching implementation.
 
     :ref:`article-file-access`
+        Other tools for working with files.

@@ -8,12 +8,16 @@ gzip -- Read and write GNU zip files
 :Purpose: Read and write gzip files.
 :Python Version: 1.5.2 and later
 
-The gzip module provides a file-like interface to GNU zip files, using :mod:`zlib` to compress and uncompress the data.
+The gzip module provides a file-like interface to GNU zip files, using
+:mod:`zlib` to compress and uncompress the data.
 
 Writing Compressed Files
 ========================
 
-The module-level function ``open()`` creates an instance of the file-like class GzipFile.  The usual methods for writing and reading data are provided.  To write data into a compressed file, open the file with mode ``'w'``.
+The module-level function ``open()`` creates an instance of the
+file-like class GzipFile.  The usual methods for writing and reading
+data are provided.  To write data into a compressed file, open the
+file with mode ``'w'``.
 
 .. include:: gzip_write.py
     :literal:
@@ -24,13 +28,19 @@ The module-level function ``open()`` creates an instance of the file-like class 
 .. }}}
 .. {{{end}}}
 
-Different compression levels can be used by passing a *compresslevel* argument.  Valid values range from 1 to 9, inclusive.  Lower values are faster and result in less compression.  Higher values are slower and compress more, up to a point.
+Different amounts of compression can be used by passing a
+*compresslevel* argument.  Valid values range from 1 to 9, inclusive.
+Lower values are faster and result in less compression.  Higher values
+are slower and compress more, up to a point.
 
 .. include:: gzip_compresslevel.py
     :literal:
     :start-after: #end_pymotw_header
 
-The center column of numbers in the output of the script is the size in bytes of the files produced.  As you see, for this input data, the higher compression values do not necessarily pay off in decreased storage space.  Results will vary, depending on the input data.
+The center column of numbers in the output of the script is the size
+in bytes of the files produced.  As you see, for this input data, the
+higher compression values do not necessarily pay off in decreased
+storage space.  Results will vary, depending on the input data.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'gzip_compresslevel.py'))
@@ -38,7 +48,8 @@ The center column of numbers in the output of the script is the size in bytes of
 .. {{{end}}}
 
 
-A GzipFile instance also includes a ``writelines()`` method that can be used to write a sequence of strings.
+A GzipFile instance also includes a ``writelines()`` method that can
+be used to write a sequence of strings.
 
 .. include:: gzip_writelines.py
     :literal:
@@ -53,26 +64,30 @@ A GzipFile instance also includes a ``writelines()`` method that can be used to 
 Reading Compressed Data
 =======================
 
-To read data back from previously compressed files, simply open the file with mode ``'r'``.
+To read data back from previously compressed files, simply open the
+file with mode ``'r'``.
 
 .. include:: gzip_read.py
     :literal:
     :start-after: #end_pymotw_header
 
-This example reads the file written by ``gzip_write.py`` from the previous section.
+This example reads  the file  written by  ``gzip_write.py``  from the
+previous section.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'gzip_read.py'))
 .. }}}
 .. {{{end}}}
     
-While reading a file, it is also possible to seek and read only part of the data.
+While reading a file, it is also possible to seek and read only part
+of the data.
 
 .. include:: gzip_seek.py
     :literal:
     :start-after: #end_pymotw_header
 
-The ``seek()`` position is relative to the *uncompressed* data, so the caller does not even need to know that the data file is compressed.
+The ``seek()`` position is relative to the *uncompressed* data, so the
+caller does not even need to know that the data file is compressed.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'gzip_seek.py'))
@@ -83,7 +98,10 @@ The ``seek()`` position is relative to the *uncompressed* data, so the caller do
 Working with Streams
 ====================
 
-It is possible to use the GzipFile class directly to compress or uncompress a data stream, instead of an entire file.  This is useful for working with data being transmitted over a socket or from an existing (open) file handle.  A StringIO buffer can also be used.
+When working with a data stream instead of a file, use the GzipFile
+class directly to compress or uncompress it.  This is useful when the
+data is being transmitted over a socket or from read an existing
+(already open) file handle.  A StringIO buffer can also be used.
 
 .. include:: gzip_StringIO.py
     :literal:

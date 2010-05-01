@@ -12,11 +12,8 @@ __version__ = "$Id$"
 import os
 
 def mkfile(filename, body=None):
-    f = open(filename, 'w')
-    try:
+    with open(filename, 'w') as f:
         f.write(body or filename)
-    finally:
-        f.close()
     return
 
 def make_example_dir(top):

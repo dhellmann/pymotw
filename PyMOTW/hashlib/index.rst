@@ -8,10 +8,11 @@ hashlib -- Cryptographic hashes and message digests
 :Purpose: Cryptographic hashes and message digests
 :Python Version: 2.5
 
-The hashlib module deprecates the separate md5 and sha modules and makes their
-API consistent. To work with a specific hash algorithm, use the appropriate
-constructor function to create a hash object. Then you can use the same API to
-interact with the hash no matter what algorithm is being used.
+The hashlib module deprecates the separate :mod:`md5` and :mod:`sha`
+modules and makes their API consistent. To work with a specific hash
+algorithm, use the appropriate constructor function to create a hash
+object. Then you can use the same API to interact with the hash no
+matter what algorithm is being used.
 
 Since hashlib is "backed" by OpenSSL, all of of the algorithms provided by
 that library should be available, including:
@@ -72,10 +73,11 @@ Of course, the digest value is different because of the different algorithm.
 new()
 =====
 
-Sometimes it is more convenient to refer to the algorithm by name in a string
-rather than by using the constructor function directly. It is useful, for
-example, to be able to store the hash type in a configuration file. In those
-cases, use the new() function directly to create a new hash calculator.
+Sometimes it is more convenient to refer to the algorithm by name in a
+string rather than by using the constructor function directly. It is
+useful, for example, to be able to store the hash type in a
+configuration file. In those cases, use ``new()`` to create a hash
+calculator.
 
 .. include:: hashlib_new.py
     :literal:
@@ -85,9 +87,9 @@ When run with a variety of arguments:
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'hashlib_new.py sha1'))
-.. cog.out(run_script(cog.inFile, 'hashlib_new.py sha256'))
-.. cog.out(run_script(cog.inFile, 'hashlib_new.py sha512'))
-.. cog.out(run_script(cog.inFile, 'hashlib_new.py md5'))
+.. cog.out(run_script(cog.inFile, 'hashlib_new.py sha256', include_prefix=False))
+.. cog.out(run_script(cog.inFile, 'hashlib_new.py sha512', include_prefix=False))
+.. cog.out(run_script(cog.inFile, 'hashlib_new.py md5', include_prefix=False))
 .. }}}
 .. {{{end}}}
 
@@ -95,9 +97,10 @@ When run with a variety of arguments:
 Calling update() more than once
 ===============================
 
-The update() method of the hash calculators can be called repeatedly. Each
-time, the digest is updated based on the additional text fed in. This can be
-much more efficient than reading an entire file into memory, for example.
+The ``update()`` method of the hash calculators can be called
+repeatedly. Each time, the digest is updated based on the additional
+text fed in. This can be much more efficient than reading an entire
+file into memory, for example.
 
 .. include:: hashlib_update.py
     :literal:
