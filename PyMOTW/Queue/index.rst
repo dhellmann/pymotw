@@ -58,6 +58,8 @@ The item most recently ``put()`` into the queue is removed by
 .. }}}
 .. {{{end}}}
 
+.. _Queue-PriorityQueue:
+
 Priority Queue
 ==============
 

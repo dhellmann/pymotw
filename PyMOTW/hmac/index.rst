@@ -10,56 +10,61 @@ hmac -- Cryptographic signature and verification of messages.
     described in :rfc:`2104`.
 :Python Version: 2.2
 
-The HMAC algorithm can be used to verify the integrity of information passed
-between applications or stored in a potentially vulnerable location. The basic
-idea is to generate a cryptographic hash of the actual data combined with a
-shared secret key. The resulting hash can then be used to check the
-transmitted or stored message to determine a level of trust, without
-transmitting the secret key.
+The HMAC algorithm can be used to verify the integrity of information
+passed between applications or stored in a potentially vulnerable
+location. The basic idea is to generate a cryptographic hash of the
+actual data combined with a shared secret key. The resulting hash can
+then be used to check the transmitted or stored message to determine a
+level of trust, without transmitting the secret key.
 
-Disclaimer: I'm not a security expert. For the full details on HMAC, check out
-:rfc:`2104`.
+Disclaimer: I'm not a security expert. For the full details on HMAC,
+check out :rfc:`2104`.
 
 Example
 =======
 
-Creating the hash is not complex. Here's a simple example which uses the
-default MD5 hash algorithm:
+Creating the hash is not complex. Here's a simple example which uses
+the default MD5 hash algorithm:
 
 .. include:: hmac_simple.py
     :literal:
     :start-after: #end_pymotw_header
 
-When run, the code reads its source file and computes an HMAC signature for
-it:
+When run, the code reads its source file and computes an HMAC
+signature for it:
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'hmac_simple.py'))
 .. }}}
 .. {{{end}}}
 
-If I haven't changed the file by the time I release the example source for
-this week, the copy you download should produce the same hash.
+.. note::
+
+   If I haven't changed the file by the time I release the example
+   source for this week, the copy you download should produce the same
+   hash.
 
 SHA vs. MD5
 ===========
 
-Although the default cryptographic algorithm for hmac is MD5, that is not the
-most secure method to use. MD5 hashes have some weaknesses, such as collisions
-(where two different messages produce the same hash). The SHA-1 algorithm is
-considered to be stronger, and should be used instead.
+Although the default cryptographic algorithm for :mod:`hmac` is MD5,
+that is not the most secure method to use. MD5 hashes have some
+weaknesses, such as collisions (where two different messages produce
+the same hash). The SHA-1 algorithm is considered to be stronger, and
+should be used instead.
 
 .. include:: hmac_sha.py
     :literal:
     :start-after: #end_pymotw_header
 
-hmac.new() takes 3 arguments. The first is the secret key, which should be
-shared between the two endpoints which are communicating so both ends can use
-the same value. The second value is an initial message. If the message content
-that needs to be authenticated is small, such as a timestamp or HTTP POST, the
-entire body of the message can be passed to new() instead of using the
-update() method. The last argument is the digest module to be used. The
-default is hashlib.md5. The previous example substitutes hashlib.sha1.
+``hmac.new()`` takes 3 arguments. The first is the secret key, which
+should be shared between the two endpoints which are communicating so
+both ends can use the same value. The second value is an initial
+message. If the message content that needs to be authenticated is
+small, such as a timestamp or HTTP POST, the entire body of the
+message can be passed to ``new()`` instead of using the update()
+method. The last argument is the digest module to be used. The default
+is ``hashlib.md5``. The previous example substitutes ``hashlib.sha1``.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'hmac_sha.py'))
@@ -69,12 +74,13 @@ default is hashlib.md5. The previous example substitutes hashlib.sha1.
 Binary Digests
 ==============
 
-The first few examples used the hexdigest() method to produce printable
-digests. The hexdigest is is a different representation of the value
-calculated by the digest() method, which is a binary value that may include
-unprintable or non-ASCII characters, including NULs. Some web services (Google
-checkout, Amazon S3) use the base64 encoded version of the binary digest
-instead of the hexdigest.
+The first few examples used the ``hexdigest()`` method to produce
+printable digests. The hexdigest is is a different representation of
+the value calculated by the ``digest()`` method, which is a binary
+value that may include unprintable or non-ASCII characters, including
+NULs. Some web services (Google checkout, Amazon S3) use the
+``base64`` encoded version of the binary digest instead of the
+hexdigest.
 
 .. include:: hmac_base64.py
     :literal:
@@ -93,14 +99,16 @@ formatting-sensitive contexts.
 Applications
 ============
 
-HMAC authentication should be used for any public network service, and any
-time data is stored where security is important. For example, when sending
-data through a pipe or socket, that data should be signed and then the
-signature should be tested before the data is used. The extended example below
-is available in the hmac_pickle.py file as part of the PyMOTW source package.
+HMAC authentication should be used for any public network service, and
+any time data is stored where security is important. For example, when
+sending data through a pipe or socket, that data should be signed and
+then the signature should be tested before the data is used. The
+extended example below is available in the ``hmac_pickle.py`` file as
+part of the PyMOTW source package.
 
-First, let's establish a function to calculate a digest for a string, and a
-simple class to be instantiated and passed through a communication channel.
+First, let's establish a function to calculate a digest for a string,
+and a simple class to be instantiated and passed through a
+communication channel.
 
 ::
 
@@ -126,13 +134,14 @@ simple class to be instantiated and passed through a communication channel.
         def __str__(self):
             return self.name
 
-Next, create StringIO buffer to represent the socket or pipe. We will using a
-naive, but easy to parse, format for the data stream. The digest and length of
-the pickled data are written, followed by a new line. The pickled
-representation of the object follows. In a real system, we would not want to
-depend on a length value, since if the digest is wrong the length is probably
-wrong as well. Some sort of terminator sequence not likely to appear in the
-real data would be more appropriate.
+Next, create a :mod:`StringIO` buffer to represent the socket or
+pipe. We will using a naive, but easy to parse, format for the data
+stream. The digest and length of the data are written, followed by a
+new line. The serialized representation of the object, generated by
+:mod:`pickle`, follows. In a real system, we would not want to depend
+on a length value, since if the digest is wrong the length is probably
+wrong as well. Some sort of terminator sequence not likely to appear
+in the real data would be more appropriate.
 
 For this example, we will write two objects to the stream. The first is
 written using the correct digest value. 
@@ -169,13 +178,14 @@ calculating the digest for some other data instead of the pickle.
     out_s.flush()
 
 
-Now that the data is in the StringIO buffer, we can read it back out again.
-The first step is to read the line of data with the digest and data length.
-Then the remaining data is read (using the length value). We could use
-pickle.load() to read directly from the stream, but that assumes a trusted
-data stream and we do not yet trust the data enough to unpickle it. Reading
-the pickle as a string collect the data from the stream, without actually
-unpickling the object.
+Now that the data is in the :mod:`StringIO` buffer, we can read it
+back out again.  The first step is to read the line of data with the
+digest and data length.  Then the remaining data is read (using the
+length value). We could use ``pickle.load()`` to read directly from
+the stream, but that assumes a trusted data stream and we do not yet
+trust the data enough to unpickle it. Reading the pickle as a string
+collect the data from the stream, without actually unpickling the
+object.
 
 ::
 
@@ -192,9 +202,9 @@ unpickling the object.
         print '\nREAD:', incoming_digest, incoming_length
         incoming_pickled_data = in_s.read(incoming_length)
 
-Once we have the pickled data, we can recalculate the digest value and compare
-it against what we read. If the digests match, we assume it is safe to trust
-the data and unpickle it.
+Once we have the pickled data, we can recalculate the digest value and
+compare it against what we read. If the digests match, we know it is
+safe to trust the data and unpickle it.
 
 ::
 
@@ -226,6 +236,9 @@ The output shows that the first object is verified and the second is deemed
 
     :mod:`hashlib`
         The :mod:`hashlib` module.
+
+    :mod:`pickle`
+        Serialization library.
 
     `WikiPedia: MD5 <http://en.wikipedia.org/wiki/MD5>`_
         Description of the MD5 hashing algorithm.

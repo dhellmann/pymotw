@@ -44,9 +44,9 @@ the hash, add the data, and compute the digest.
     :literal:
     :start-after: #end_pymotw_header
 
-This example uses the hexdigest() method instead of digest() because the
-output is formatted to be printed. If a binary digest value is acceptable, you
-can use digest().
+This example uses the ``hexdigest()`` method instead of ``digest()``
+because the output is formatted to be printed. If a binary digest
+value is acceptable, you can use ``digest()``.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'hashlib_md5.py'))

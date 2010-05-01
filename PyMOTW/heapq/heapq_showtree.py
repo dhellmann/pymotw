@@ -31,9 +31,3 @@ def show_tree(tree, total_width=36, fill=' '):
     print '-' * total_width
     print
     return
-
-if __name__ == '__main__':
-    print 'With dot as fill character:'
-    show_tree([ 0, 1, 2, 3, 4, 5, 6 ], fill='.')
-    print 'Wider:'
-    show_tree([ 0, 1, 2, 3, 4, 5, 6 ], total_width=60)
