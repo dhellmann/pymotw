@@ -179,6 +179,7 @@ an input file does not exist.
 .. }}}
 .. {{{end}}}
 
+.. _exceptions-ImportError:
 
 ImportError
 -----------
@@ -445,6 +446,7 @@ immediately.  This allows cleanup code in ``try:finally`` blocks to
 run and special environments (like debuggers and test frameworks) to
 catch the exception and avoid exiting.
 
+.. _exceptions-TypeError:
 
 TypeError
 ---------

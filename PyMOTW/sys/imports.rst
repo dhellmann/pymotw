@@ -4,11 +4,17 @@
 Modules and Imports
 ===================
 
-Most Python programs end up as a combination of several modules with a main application importing them. Whether
-you are using the features of the standard library, or organizing your own code in separate files to make it
-easier to maintain, understanding and managing the dependencies for your program is an important aspect of
-development. :mod:`sys` includes information about the modules available to your application, either as built-ins
-or after being imported.  It also defines hooks for overriding the standard import behavior for special cases.
+Most Python programs end up as a combination of several modules with a
+main application importing them. Whether you are using the features of
+the standard library, or organizing your own code in separate files to
+make it easier to maintain, understanding and managing the
+dependencies for your program is an important aspect of
+development. :mod:`sys` includes information about the modules
+available to your application, either as built-ins or after being
+imported.  It also defines hooks for overriding the standard import
+behavior for special cases.
+
+.. _sys-modules:
 
 Imported Modules
 ================

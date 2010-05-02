@@ -30,24 +30,25 @@ and module called submodule containing:
     :literal:
     :start-after: #end_pymotw_header
 
-Watch for the output of the print statements in the sample output when the
-package or module are imported.
+Watch for the text from the print statements in the sample output when
+the package or module are imported.
 
 Module Types
 ============
 
 Python supports several styles of modules. Each requires its own handling when
 opening the module and adding it to the namespace. Some of the supported types
-and those parameters can be listed by the get_suffixes() function.
+and those parameters can be listed by the ``get_suffixes()`` function.
 
 .. include:: imp_get_suffixes.py
     :literal:
     :start-after: #end_pymotw_header
 
-get_suffixes() returns a sequence of tuples containing the file extension,
-mode to use for opening the file, and a type code from a constant defined in
-the module. This table is incomplete, because some of the importable module or
-package types do not correspond to single files.
+``get_suffixes()`` returns a sequence of tuples containing the file
+extension, mode to use for opening the file, and a type code from a
+constant defined in the module. This table is incomplete, because some
+of the importable module or package types do not correspond to single
+files.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'imp_get_suffixes.py'))
@@ -57,28 +58,30 @@ package types do not correspond to single files.
 Finding Modules
 ===============
 
-The first step to loading a module is finding. The find_module() function
-scans the import search path looking for a package or module with the given
-name. It returns an open file handle (if appropriate for the type), filename
-where the module was found, and "description" (a tuple such as those returned
-by get_suffixes()).
+The first step to loading a module is finding it. ``find_module()``
+scans the import search path looking for a package or module with the
+given name. It returns an open file handle (if appropriate for the
+type), filename where the module was found, and "description" (a tuple
+such as those returned by ``get_suffixes()``).
 
 .. include:: imp_find_module.py
     :literal:
     :start-after: #end_pymotw_header
 
-find_module() does not pay attention to dotted package names
-(example.submodule), so the caller has to take care to pass the correct path
-for any nested modules. That means that when importing the submodule from the
-package, you need to give a path that points to the package directory for
-find_module() to locate the module you're looking for. 
+``find_module()`` does not pay attention to dotted package names
+("example.submodule"), so the caller has to take care to pass the
+correct path for any nested modules. That means that when importing
+the submodule from the package, you need to give a path that points to
+the package directory for ``find_module()`` to locate the module
+you're looking for.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'imp_find_module.py'))
 .. }}}
 .. {{{end}}}
 
-If find_module() cannot locate the module, it raises an ImportError.
+If ``find_module()`` cannot locate the module, it raises an
+:ref:`ImportError <exceptions-ImportError>`.
 
 .. include:: imp_find_module_error.py
     :literal:
@@ -92,16 +95,18 @@ If find_module() cannot locate the module, it raises an ImportError.
 Loading Modules
 ===============
 
-Once you have found the module, use load_module() to actually import it.
-load_module() takes the full dotted path module name and the values returned
-by find_module() (the open file handle, filename, and description tuple).
+Once you have found the module, use ``load_module()`` to actually
+import it.  ``load_module()`` takes the full dotted path module name
+and the values returned by ``find_module()`` (the open file handle,
+filename, and description tuple).
 
 .. include:: imp_load_module.py
     :literal:
     :start-after: #end_pymotw_header
 
-load_module() creates a new module object with the name given, loads the code
-for it, and adds it to sys.modules.
+``load_module()`` creates a new module object with the name given,
+loads the code for it, and adds it to :ref:`sys.modules
+<sys-modules>`.
 
 .. Do not use cog for this example because the path changes.
 
@@ -113,14 +118,16 @@ for it, and adds it to sys.modules.
 	Importing submodule
 	Sub-module: <module 'example.module' from '/Users/dhellmann/Documents/PyMOTW/trunk/PyMOTW/imp/example/submodule.py'>
 
-If you call load_module() for a module which has already been imported, the
-effect is like calling reload() on the existing module object.
+If you call ``load_module()`` for a module which has already been
+imported, the effect is like calling ``reload()`` on the existing
+module object.
 
 .. include:: imp_load_module_reload.py
     :literal:
     :start-after: #end_pymotw_header
 
-Instead of a creating a new module, the contents of the existing module are simply replaced.
+Instead of a creating a new module, the contents of the existing
+module are simply replaced.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'imp_load_module_reload.py'))
@@ -134,6 +141,9 @@ Instead of a creating a new module, the contents of the existing module are simp
         
     :ref:`sys-imports`
         Import hooks, the module search path, and other related machinery.
+
+    :mod:`inspect`
+        Load information from a module programmatically.
 
     :pep:`302`
         New import hooks.

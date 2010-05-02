@@ -18,6 +18,6 @@ print module_types[description[2]], filename
 print
 
 print 'Sub-module:'
-f, filename, description = imp.find_module('submodule', ['./example'])
+f, filename, description = imp.find_module('submodule', [filename])
 print module_types[description[2]], filename
 if f: f.close()

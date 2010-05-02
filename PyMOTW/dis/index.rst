@@ -319,10 +319,10 @@ down to 0.0842 seconds.
 
 A further optimization, suggested by Brandon Rhodes, is to eliminate
 the Python version of the ``for`` loop entirely. If we use
-``groupby()`` from :mod:`itertools` to arrange the input, the
-iteration is moved to C.  We can do this safely because we know the
-inputs are already sorted.  If you didn't know they were sorted you
-would need to sort them first.
+:ref:`itertools.groupby() <itertools-groupby>` to arrange the input,
+the iteration is moved to C.  We can do this safely because we know
+the inputs are already sorted.  If you didn't know they were sorted
+you would need to sort them first.
 
 .. literalinclude:: dis_eliminate_loop.py
     :linenos:
