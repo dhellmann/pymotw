@@ -8,7 +8,8 @@ mailbox -- Access and manipulate email archives
 :Purpose: Work with email messages in various local file formats.
 :Python Version: 1.4 and later
 
-The :mod:`mailbox` module defines a common API for accessing email messages stored in local disk formats, including:
+The :mod:`mailbox` module defines a common API for accessing email
+messages stored in local disk formats, including:
 
 - Maildir
 - mbox
@@ -16,17 +17,27 @@ The :mod:`mailbox` module defines a common API for accessing email messages stor
 - Babyl
 - MMDF
 
-There are base classes for :class:`Mailbox` and :class:`Message`, and each mailbox format includes a corresponding pair of subclasses to implement the details for that format.
+There are base classes for :class:`Mailbox` and :class:`Message`, and
+each mailbox format includes a corresponding pair of subclasses to
+implement the details for that format.
 
 mbox
 ====
 
-The mbox format is the simplest to illustrate in documentation, since it is entirely plain text.  Each mailbox is stored as a single file, with all of the messages concatenated together.  Each time a line starting with "From " (``From`` followed by a single space) is encountered it is treated as the beginning of a new message.  Any time those characters appear at the beginning of a line in the message body, they are escaped by prefixing the line with ">".
+The mbox format is the simplest to illustrate in documentation, since
+it is entirely plain text.  Each mailbox is stored as a single file,
+with all of the messages concatenated together.  Each time a line
+starting with "From " (``From`` followed by a single space) is
+encountered it is treated as the beginning of a new message.  Any time
+those characters appear at the beginning of a line in the message
+body, they are escaped by prefixing the line with "``>``".
 
 Creating an mbox mailbox
 ------------------------
 
-Instantiate the ``email.mbox`` class by passing the filename to the constructor.  If the file does not exist, it is created when you add messages to it using ``add()``.
+Instantiate the ``email.mbox`` class by passing the filename to the
+constructor.  If the file does not exist, it is created when you add
+messages to it using ``add()``.
 
 .. include:: mailbox_mbox_create.py
     :literal:
@@ -44,13 +55,18 @@ The result of this script is a new mailbox file with 2 email messages.
 Reading an mbox Mailbox
 -----------------------
 
-To read an existing mailbox, open it and treat the mbox object like a dictionary.  They keys are arbitrary values defined by the mailbox instance and are not necessary meaningful other than as internal identifiers for message objects.
+To read an existing mailbox, open it and treat the mbox object like a
+dictionary.  They keys are arbitrary values defined by the mailbox
+instance and are not necessary meaningful other than as internal
+identifiers for message objects.
 
 .. include:: mailbox_mbox_read.py
     :literal:
     :start-after: #end_pymotw_header
 
-You can iterate over the open mailbox but notice that, unlike with dictionaries, the default iterator for a mailbox works on the *values* instead of the *keys*.
+You can iterate over the open mailbox but notice that, unlike with
+dictionaries, the default iterator for a mailbox works on the *values*
+instead of the *keys*.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'mailbox_mbox_read.py'))
@@ -60,13 +76,16 @@ You can iterate over the open mailbox but notice that, unlike with dictionaries,
 Removing Messages from an mbox Mailbox
 --------------------------------------
 
-To remove an existing message from an mbox file, use its key with ``remove()`` or use ``del``.
+To remove an existing message from an mbox file, use its key with
+``remove()`` or use ``del``.
 
 .. include:: mailbox_mbox_remove.py
     :literal:
     :start-after: #end_pymotw_header
 
-Notice the use of ``lock()`` and ``unlock()`` to prevent issues from simultaneous access to the file, and ``flush()`` to force the changes to be written to disk.
+Notice the use of ``lock()`` and ``unlock()`` to prevent issues from
+simultaneous access to the file, and ``flush()`` to force the changes
+to be written to disk.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'mailbox_mbox_remove.py'))
@@ -76,21 +95,36 @@ Notice the use of ``lock()`` and ``unlock()`` to prevent issues from simultaneou
 Maildir
 =======
 
-The Maildir format was created to eliminate the problem of concurrent modification to an mbox file.  Instead of using a single file, each mailbox is a directory and each message is contained in its own file.  This also allows mailboxes to be nested, and so the API for a Maildir mailbox is extended with methods to work with sub-folders.
+The Maildir format was created to eliminate the problem of concurrent
+modification to an mbox file.  Instead of using a single file, the
+mailbox is organized as directory where each message is contained in
+its own file.  This also allows mailboxes to be nested, and so the API
+for a Maildir mailbox is extended with methods to work with
+sub-folders.
 
 Creating a Maildir Mailbox
 --------------------------
 
-The only real difference between using a Maildir and mbox is that to instantiate the ``email.Maildir`` object we need to pass the directory containing the mailbox to the constructor.  As before, if it does not exist, the mailbox is created when you add messages to it using ``add()``.
+The only real difference between using a Maildir and mbox is that to
+instantiate the ``email.Maildir`` object we need to pass the directory
+containing the mailbox to the constructor.  As before, if it does not
+exist, the mailbox is created when you add messages to it using
+``add()``.
 
 .. include:: mailbox_maildir_create.py
     :literal:
     :start-after: #end_pymotw_header
 
-Since we have added messages to the mailbox, they go to the "new" subdirectory.  Once they are "read" a client could move them to the "cur" subdirectory.
+Since we have added messages to the mailbox, they go to the "new"
+subdirectory.  Once they are "read" a client could move them to the
+"cur" subdirectory.
 
 .. warning::
-    Although it is safe to write to the same maildir from multiple processes, ``add()`` is not thread-safe, so make sure you use a semaphore or other locking device to prevent simultaneous modifications to the mailbox from multiple threads of the same process.
+    Although it is safe to write to the same maildir from multiple
+    processes, ``add()`` is not thread-safe, so make sure you use a
+    semaphore or other locking device to prevent simultaneous
+    modifications to the mailbox from multiple threads of the same
+    process.
 
 .. {{{cog
 .. from paver.path import path
@@ -109,7 +143,8 @@ Reading from an existing Maildir mailbox works just like with mbox.
     :literal:
     :start-after: #end_pymotw_header
 
-Notice that the messages are not guaranteed to be read in any particular order.
+Notice that the messages are not guaranteed to be read in any
+particular order.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'mailbox_maildir_read.py'))
@@ -120,7 +155,8 @@ Notice that the messages are not guaranteed to be read in any particular order.
 Removing Messages from a Maildir Mailbox
 ----------------------------------------
 
-To remove an existing message from a Maildir mailbox, use its key with ``remove()`` or use ``del``.
+To remove an existing message from a Maildir mailbox, use its key with
+``remove()`` or use ``del``.
 
 .. include:: mailbox_maildir_remove.py
     :literal:
@@ -135,13 +171,16 @@ To remove an existing message from a Maildir mailbox, use its key with ``remove(
 Maildir folders
 ---------------
 
-Subdirectories or *folders* of a Maildir mailbox can be managed directly through the methods of the Maildir class.  Callers can list, retrieve, create, and remove sub-folders for a given mailbox.
+Subdirectories or *folders* of a Maildir mailbox can be managed
+directly through the methods of the Maildir class.  Callers can list,
+retrieve, create, and remove sub-folders for a given mailbox.
 
 .. include:: mailbox_maildir_folders.py
     :literal:
     :start-after: #end_pymotw_header
 
-The directory name for the folder is constructed by prefixing the folder name with ``.``.
+The directory name for the folder is constructed by prefixing the
+folder name with ``.``.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'mailbox_maildir_folders.py'))
@@ -152,7 +191,11 @@ The directory name for the folder is constructed by prefixing the folder name wi
 Other Formats
 =============
 
-MH is another multi-file mailbox format used by some mail handlers.  Babyl and MMDF are single-file formats with different message separators than mbox.  None seem to be as popular as mbox or Maildir.  The single-file formats support the same API as mbox, and MH includes the folder-related methods found in the Maildir class.
+MH is another multi-file mailbox format used by some mail handlers.
+Babyl and MMDF are single-file formats with different message
+separators than mbox.  None seem to be as popular as mbox or Maildir.
+The single-file formats support the same API as mbox, and MH includes
+the folder-related methods found in the Maildir class.
 
 .. seealso::
 

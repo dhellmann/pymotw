@@ -8,11 +8,12 @@ locale -- POSIX cultural localization API
 :Purpose: POSIX cultural localization API
 :Python Version: 1.5, with extensions through 2.5 (this discussion assumes 2.5)
 
-The locale module is part of Python's internationalization and localization
-support library. It provides a standard way to handle operations that may
-depend on the language or location of your users. For example, formatting
-numbers as currency, comparing strings for sorting, and working with dates. It
-does not cover translation (see the gettext module) or Unicode encoding.
+The locale module is part of Python's internationalization and
+localization support library. It provides a standard way to handle
+operations that may depend on the language or location of your
+users. For example, formatting numbers as currency, comparing strings
+for sorting, and working with dates. It does not cover translation
+(see the :mod:`gettext` module) or Unicode encoding.
 
 Changing the locale can have application-wide ramifications, so the
 recommended practice is to avoid changing the value in a library and to let
@@ -33,7 +34,7 @@ used.
     :literal:
     :start-after: #end_pymotw_header
 
-On my Mac, this produces output like:
+On my Mac running OS X 10.5, this produces output like:
 
 ::
 
@@ -213,11 +214,11 @@ The output is this small table:
                Portugal: 1234.56 Eu
                  Poland: zł 1234,56
 
-Besides generating output in different formats, the locale module helps with
-parsing input. Different cultures use different conventions for formatting
-numbers (as illustrated above). The locale module provides atoi() and atof()
-functions for converting the strings to integer and floating point values
-respectively.
+Besides generating output in different formats, the locale module
+helps with parsing input. Different cultures use different conventions
+for formatting numbers (as illustrated above). The locale module
+provides ``atoi()`` and ``atof()`` functions for converting the
+strings to integer and floating point values respectively.
 
 Numerical Formatting
 ====================
@@ -262,3 +263,6 @@ want to refer to the Python library documentation for more details.
 
     `locale <http://docs.python.org/library/locale.html>`_
         The standard library documentation for this module.
+
+    :mod:`gettext`
+        Message catalogs for translations.

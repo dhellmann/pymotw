@@ -52,9 +52,9 @@ def make_tempfile():
     os.close(fd)
     f = open(temp_file_name, 'wt')
     try:
-    	f.write(lorem)
+        f.write(lorem)
     finally:
-    	f.close()
+        f.close()
     return temp_file_name
 
 def cleanup(filename):

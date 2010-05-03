@@ -62,6 +62,8 @@ through ``sys.builtin_module_names``.
     `Build instructions <http://svn.python.org/view/python/trunk/README?view=markup>`_
         Instructions for building Python, from the README distributed with the source.
 
+.. _sys-path:
+
 Import Path
 ===========
 

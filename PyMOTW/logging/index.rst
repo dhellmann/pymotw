@@ -24,9 +24,10 @@ the built-in classes.
 Logging to a File
 =================
 
-Most applications are probably going to want to log to a file, so let's start
-with that case. Using the basicConfig() function, we can set up the default
-handler so that debug messages are written to a file.
+Most applications are probably going to want to log to a file, so
+let's start with that case. Using the ``basicConfig()`` function, we
+can set up the default handler so that debug messages are written to a
+file.
 
 .. include:: logging_file_example.py
     :literal:
@@ -65,13 +66,13 @@ the application:
 .. }}}
 .. {{{end}}}
 
-The most current file is always ``/tmp/logging_rotatingfile_example.out``, and
+The most current file is always ``logging_rotatingfile_example.out``, and
 each time it reaches the size limit it is renamed with the suffix ``.1``. Each of
 the existing backup files is renamed to increment the suffix (``.1`` becomes ``.2``,
 etc.) and the ``.5`` file is erased.
 
 Obviously this example sets the log length much much too small as an extreme
-example. You would want to set maxBytes to an appropriate value.
+example. You would want to set ``maxBytes`` to an appropriate value.
 
 Verbosity Levels
 ================
@@ -92,11 +93,12 @@ DEBUG     10
 UNSET      0
 ========  =====
 
-The logger, handler, and log message call each specify a level. The log
-message is only emitted if the handler and logger are configured to emit
-messages of that level or lower. For example, if a message is CRITICAL, and
-the logger is set to ERROR, the message is emitted. If a message is a WARNING,
-and the logger is set to produce only ERRORs, the message is not emitted.
+The logger, handler, and log message call each specify a level. The
+log message is only emitted if the handler and logger are configured
+to emit messages of that level or higher. For example, if a message is
+CRITICAL, and the logger is set to ERROR, the message is emitted (50 >
+40). If a message is a WARNING, and the logger is set to produce only
+ERRORs, the message is not emitted (30 < 40).
 
 .. include:: logging_level_example.py
     :literal:
@@ -107,7 +109,7 @@ messages show up at different levels:
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'logging_level_example.py debug'))
-.. cog.out(run_script(cog.inFile, 'logging_level_example.py info'))
+.. cog.out(run_script(cog.inFile, 'logging_level_example.py info', include_prefix=False))
 .. }}}
 .. {{{end}}}
 
@@ -117,7 +119,7 @@ Naming Logger Instances
 You will notice that these log messages all have 'root' embedded in them. The
 logging module supports a hierarchy of loggers with different names. An easy
 way to tell where a specific log message comes from is to use a separate
-logger object for each of your modules. Each new logger "inherits" the
+logger object for each of your modules. Each new logger inherits the
 configuration of its parent, and log messages sent to a logger include the
 name of that logger. Optionally, each logger can be configured differently, so
 that messages from different modules are handled in different ways. Let's look

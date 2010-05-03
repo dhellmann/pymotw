@@ -87,11 +87,11 @@ The module never raises an exception, even if the file does not exist:
 Python Source
 =============
 
-Since the linecache module is used so heavily when producing tracebacks, one
-of the key features is the ability to find Python source modules in sys.path
-by specifying the base name of the module. The cache population code in
-linecache searches sys.path for the module if it cannot find the file
-directly.
+Since :mod:`linecache` is used so heavily when producing tracebacks,
+one of the key features is the ability to find Python source modules
+in the :ref:`import path <sys-path>` by specifying the base name of
+the module. The cache population code in :mod:`linecache` searches
+``sys.path`` for the module if it cannot find the file directly.
 
 .. include:: linecache_path_search.py
     :literal:
@@ -111,3 +111,4 @@ directly.
         Lorem Ipsum generator.
 
     :ref:`article-file-access`
+        Other tools for working with files.

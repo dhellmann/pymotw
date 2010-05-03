@@ -37,5 +37,9 @@ Each input filename is converted to a sequence of ``(word, 1)`` pairs by ``file_
     `MapReduce: Simplified Data Processing on Large Clusters <http://labs.google.com/papers/mapreduce.html>`_
         Google Labs presentation and paper on MapReduce.
 
+    :mod:`operator`
+        Operator tools such as ``itemgetter()``.
+
+    
 
 *Special thanks to Jesse Noller for helping review this information.*

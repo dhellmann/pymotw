@@ -15,9 +15,9 @@ def file_to_words(filename):
     """Read a file and return a sequence of (word, occurances) values.
     """
     STOP_WORDS = set([
-        'a', 'an', 'and', 'are', 'as', 'be', 'for', 'if', 'in', 
-        'is', 'it', 'of', 'or', 'py', 'rst', 'the', 'to', 'with',
-        ])
+            'a', 'an', 'and', 'are', 'as', 'be', 'by', 'for', 'if', 'in', 
+            'is', 'it', 'of', 'or', 'py', 'rst', 'that', 'the', 'to', 'with',
+            ])
     TR = string.maketrans(string.punctuation, ' ' * len(string.punctuation))
 
     print multiprocessing.current_process().name, 'reading', filename
