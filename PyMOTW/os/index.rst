@@ -472,12 +472,14 @@ accomplish the same thing.
 Creating Processes with os.fork()
 =================================
 
-The POSIX functions fork() and exec*() (available under Mac OS X, Linux, and
-other UNIX variants) are available through the os module. Entire books have
-been written about reliably using these functions, so check your library or
-bookstore for more details than I will present here.
+The POSIX functions ``fork()`` and ``exec*()`` (available under Mac OS
+X, Linux, and other UNIX variants) are exposed via the :mod:`os`
+module. Entire books have been written about reliably using these
+functions, so check your library or bookstore for more details than I
+will present here.
 
-To create a new process as a clone of the current process, use os.fork():
+To create a new process as a clone of the current process, use
+``os.fork()``:
 
 .. include:: os_fork_example.py
     :literal:
@@ -487,58 +489,40 @@ Your output will vary based on the state of your system each time you run the
 example, but it should look something like:
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'os_fork_example.py'))
+.. cog.out(run_script(cog.inFile, '-u os_fork_example.py'))
 .. }}}
 .. {{{end}}}
 
-After the fork, you end up with 2 processes running the same code. To tell
-which one you are in, check the return value. If it is 0, you are inside the
-child process. If it is not 0, you are in the parent process and the return
-value is the process id of the child process.
+After the fork, you end up with 2 processes running the same code. To
+tell which one you are in, check the return value of ``fork()``. If it
+is ``0``, you are inside the child process. If it is not ``0``, you
+are in the parent process and the return value is the process id of
+the child process.
 
 From the parent process, it is possible to send the child signals. This is a
 bit more complicated to set up, and uses the :mod:`signal` module, so let's walk
 through the code. First we can define a signal handler to be invoked when the
 signal is received.
 
-::
+.. literalinclude:: os_kill_example.py
+   :lines: 33-40
 
-    import os
-    import signal
-    import time
+Then we fork, and in the parent pause a short amount of time before
+sending a ``USR1`` signal using ``os.kill()``. The short pause gives
+the child process time to set up the signal handler.
 
-    def signal_usr1(signum, frame):
-       pid = os.getpid()
-       print 'Received USR1 in process %s' % pid
-
-Then we fork, and in the parent pause a short amount of time before sending a
-USR1 signal using os.kill(). The short pause gives the child process time to
-set up the signal handler.
-
-::
-
-    print 'Forking...'
-    child_pid = os.fork()
-    if child_pid:
-       print 'PARENT: Pausing before sending signal...'
-       time.sleep(1)
-       print 'PARENT: Signaling %s' % child_pid
-       os.kill(child_pid, signal.SIGUSR1)
+.. literalinclude:: os_kill_example.py
+   :lines: 42-48
 
 In the child, we set up the signal handler and go to sleep for a while to give
 the parent time to send us the signal:
 
-::
+.. literalinclude:: os_kill_example.py
+   :language: python
+   :lines: 49-53
 
-    else:
-       print 'CHILD: Setting up signal handler'
-       signal.signal(signal.SIGUSR1, signal_usr1)
-       print 'CHILD: Pausing to wait for signal'
-       time.sleep(5)
-
-
-In a real app, you probably wouldn't need to (or want to) call sleep, of
-course.
+In a real app, you probably wouldn't need to (or want to) call
+``sleep()``, of course.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'os_kill_example.py'))
@@ -546,13 +530,14 @@ course.
 .. {{{end}}}
 
 
-As you see, a simple way to handle separate behavior in the child process is
-to check the return value of fork() and branch. For more complex behavior, you
-may want more code separation than a simple branch. In other cases, you may
-have an existing program you have to wrap. For both of these situations, you
-can use the os.exec*() series of functions to run another program. When you
-"exec" a program, the code from that program replaces the code from your
-existing process.
+As you see, a simple way to handle separate behavior in the child
+process is to check the return value of ``fork()`` and branch. For
+more complex behavior, you may want more code separation than a simple
+branch. In other cases, you may have an existing program you have to
+wrap. For both of these situations, you can use the ``os.exec*()``
+series of functions to run another program. When you "exec" a program,
+the code from that program replaces the code from your existing
+process.
 
 .. include:: os_exec_example.py
     :literal:
@@ -564,10 +549,10 @@ existing process.
 .. {{{end}}}
 
 
-There are many variations of exec*(), depending on what form you might have
-the arguments in, whether you want the path and environment of the parent
-process to be copied to the child, etc. Have a look at the library
-documentation to for details.
+There are many variations of ``exec*()``, depending on what form you
+might have the arguments in, whether you want the path and environment
+of the parent process to be copied to the child, etc. Have a look at
+the library documentation to for complete details.
 
 For all variations, the first argument is a path or filename and the remaining
 arguments control how that program runs. They are either passed as command
@@ -578,29 +563,31 @@ Waiting for a Child
 ===================
 
 Suppose you are using multiple processes to work around the threading
-limitations of Python and the Global Interpreter Lock. If you start several
-processes to run separate tasks, you will want to wait for one or more of them
-to finish before starting new ones, to avoid overloading the server. There are
-a few different ways to do that using wait() and related functions.
+limitations of Python and the Global Interpreter Lock. If you start
+several processes to run separate tasks, you will want to wait for one
+or more of them to finish before starting new ones, to avoid
+overloading the server. There are a few different ways to do that
+using ``wait()`` and related functions.
 
-If you don't care, or know, which child process might exit first os.wait()
-will return as soon as any exits:
+If you don't care, or know, which child process might exit first
+``os.wait()`` will return as soon as any exits:
 
 .. include:: os_wait_example.py
     :literal:
     :start-after: #end_pymotw_header
 
 
-Notice that the return value from os.wait() is a tuple containing the process
-id and exit status ("a 16-bit number, whose low byte is the signal number that
-killed the process, and whose high byte is the exit status").
+Notice that the return value from ``os.wait()`` is a tuple containing
+the process id and exit status ("a 16-bit number, whose low byte is
+the signal number that killed the process, and whose high byte is the
+exit status").
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'os_wait_example.py'))
 .. }}}
 .. {{{end}}}
 
-If you want a specific process, use os.waitpid().
+If you want a specific process, use ``os.waitpid()``.
 
 .. include:: os_waitpid_example.py
     :literal:
@@ -611,15 +598,15 @@ If you want a specific process, use os.waitpid().
 .. }}}
 .. {{{end}}}
 
-wait3() and wait4() work in a similar manner, but return more detailed
-information about the child process with the pid, exit status, and resource
-usage.
+``wait3()`` and ``wait4()`` work in a similar manner, but return more
+detailed information about the child process with the pid, exit
+status, and resource usage.
 
 Spawn
 =====
 
-As a convenience, the os.spawn*() family of functions handles the fork() and
-exec*() calls for you in one statement:
+As a convenience, the ``os.spawn*()`` family of functions handles the
+``fork()`` and ``exec*()`` calls for you in one statement:
 
 .. include:: os_spawn_example.py
     :literal:
@@ -638,6 +625,10 @@ exec*() calls for you in one statement:
 
     :mod:`subprocess`
         The subprocess module supersedes os.popen().
+
+    :mod:`multiprocessing` 
+        The multiprocessing module makes working with extra processes
+        easier than doing all of the work yourself.
 
     :mod:`tempfile`
         The tempfile module for working with temporary files.
