@@ -34,7 +34,7 @@ import os, tempfile
 
 link_name = tempfile.mktemp()
 
-print 'Creating link %s->%s' % (link_name, __file__)
+print 'Creating link %s -> %s' % (link_name, __file__)
 os.symlink(__file__, link_name)
 
 stat_info = os.lstat(link_name)

@@ -163,6 +163,7 @@ Raised inside a generator the generator's ``close()`` method is called.
 .. }}}
 .. {{{end}}}
 
+.. _exceptions-IOError:
 
 IOError
 -------

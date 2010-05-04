@@ -27,7 +27,9 @@
 
 """
 
-__module_id__ = "$Id$"
+# Ignore deprecation warnings
+import warnings
+warnings.filterwarnings('ignore', 'os.popen.* is deprecated.*',)
 #end_pymotw_header
 
 import os

@@ -8,12 +8,12 @@ operator -- Functional interface to built-in operators.
 :Purpose: Functional interface to built-in operators.
 :Python Version: 1.4 and later
 
-Functional programming using iterators occasionally requires you to create
-small functions for simple expressions. Sometimes these can be expressed as
-lambda functions. But for some operations, you don't need to define your own
-function at all. The operator module defines functions that correspond to
-built-in operations for arithmetic, and comparison as well as sequence and
-dictionary operations.
+Functional programming using iterators occasionally requires you to
+create small functions for simple expressions. Sometimes these can be
+expressed as lambda functions, but for some operations you don't need
+to define your own function at all. The :mod:`operator` module defines
+functions that correspond to built-in operations for arithmetic and
+comparison, as well as sequence and dictionary operations.
 
 Logical Operations
 ==================
@@ -177,9 +177,17 @@ supported.
 .. }}}
 .. {{{end}}}
 
+:mod:`abc` includes :ref:`abstract base classes
+<abc-collection-types>` for collection types.
 
 
 .. seealso::
 
     `operator <http://docs.python.org/lib/module-operator.html>`_
         Standard library documentation for this module.
+
+    :mod:`functools`
+        Functional programming tools.
+
+    :mod:`itertools`
+        Iterator operations.
