@@ -8,6 +8,7 @@
 #end_pymotw_header
 
 import pipes
+import pprint
 import tempfile
 
 p = pipes.Template()
@@ -24,4 +25,5 @@ try:
 finally:
     f.close()
 
-print 'SANDBOXES:', sandboxes
+print 'SANDBOXES:'
+pprint.pprint(sandboxes)

@@ -8,35 +8,36 @@ os.path -- Platform-independent manipulation of file names.
 :Purpose: Parse, build, test, and otherwise work on file names and paths.
 :Python Version: 1.4 and later
 
-Writing code to work with files on multiple platforms is easy using the
-functions included in the os.path module. Even programs not intended to be
-ported between platforms should use os.path to make parsing path names
-reliable.
+Writing code to work with files on multiple platforms is easy using
+the functions included in the :mod:`os.path` module. Even programs not
+intended to be ported between platforms should use :mod:`os.path` for
+reliable filename parsing.
 
 Parsing Paths
 =============
 
 The first set of functions in os.path can be used to parse strings
-representing filenames into their component parts. It is important to realize
-that these functions do not depend on the paths actually existing. They
-operate solely on the strings.
+representing filenames into their component parts. It is important to
+realize that these functions do not depend on the paths actually
+existing; they operate solely on the strings.
 
-Path parsing depends on a few variable defined in the os module:
+Path parsing depends on a few variable defined in :mod:`os`:
 
-* os.sep - The separator between portions of the path (e.g., "/").
+* ``os.sep`` - The separator between portions of the path (e.g.,
+  "``/``" or "``\``").
 
-* os.extsep - The separator between a filename and the file "extension" (e.g.,
-  ".").
+* ``os.extsep`` - The separator between a filename and the file
+  "extension" (e.g., "``.``").
 
-* os.pardir - The path component that means traverse the directory tree up one
-  level (e.g., "..").
+* ``os.pardir`` - The path component that means traverse the directory
+  tree up one level (e.g., "``..``").
 
-* os.curdir - The path component that refers to the current directory (e.g.,
-  ".").
+* ``os.curdir`` - The path component that refers to the current
+  directory (e.g., "``.``").
 
-* split() breaks the path into 2 separate parts and returns the tuple. The
-  second element is the last component of the path, and the first element is
-  everything that comes before it.
+``split()`` breaks the path into 2 separate parts and returns the
+tuple. The second element is the last component of the path, and the
+first element is everything that comes before it.
 
 .. include:: ospath_split.py
     :literal:
@@ -47,7 +48,8 @@ Path parsing depends on a few variable defined in the os module:
 .. }}}
 .. {{{end}}}
 
-basename() returns a value equivalent to the second part of the split() value.
+``basename()`` returns a value equivalent to the second part of the
+``split()`` value.
 
 .. include:: ospath_basename.py
     :literal:
@@ -58,7 +60,7 @@ basename() returns a value equivalent to the second part of the split() value.
 .. }}}
 .. {{{end}}}
 
-dirname() returns the first path of the split path:
+``dirname()`` returns the first part of the split path:
 
 .. include:: ospath_dirname.py
     :literal:
@@ -69,8 +71,8 @@ dirname() returns the first path of the split path:
 .. }}}
 .. {{{end}}}
 
-splitext() works like split() but divides the path on the extension separator,
-rather than the directory names.
+``splitext()`` works like ``split()`` but divides the path on the
+extension separator, rather than the directory separator.
 
 .. include:: ospath_splitext.py
     :literal:
@@ -81,15 +83,18 @@ rather than the directory names.
 .. }}}
 .. {{{end}}}
 
-commonprefix() takes a list of paths as an argument and returns a single
-string that represents a common prefix present in all of the paths. The value
-may represent a path that does not actually exist, and the path separator is
-not included in the consideration, so the prefix might not stop on a separator
-boundary.
+``commonprefix()`` takes a list of paths as an argument and returns a
+single string that represents a common prefix present in all of the
+paths. The value may represent a path that does not actually exist,
+and the path separator is not included in the consideration, so the
+prefix might not stop on a separator boundary.
 
 .. include:: ospath_commonprefix.py
     :literal:
     :start-after: #end_pymotw_header
+
+In this example the common prefix string is ``/one/two/three``, even
+though one path does not include a directory named ``three``.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ospath_commonprefix.py'))
@@ -102,7 +107,7 @@ Building Paths
 Besides taking existing paths apart, you will frequently need to build paths
 from other strings.
 
-To combine several path components into a single value, use join():
+To combine several path components into a single value, use ``join()``:
 
 .. include:: ospath_join.py
     :literal:
@@ -113,9 +118,9 @@ To combine several path components into a single value, use join():
 .. }}}
 .. {{{end}}}
 
-It's also easy to work with paths that include "variable" components that can
-be expanded automatically. For example, expanduser() converts the tilde (~)
-character to a user's home directory.
+It's also easy to work with paths that include "variable" components
+that can be expanded automatically. For example, ``expanduser()``
+converts the tilde (``~``) character to a user's home directory.
 
 .. include:: ospath_expanduser.py
     :literal:
@@ -126,8 +131,8 @@ character to a user's home directory.
 .. }}}
 .. {{{end}}}
 
-expandvars() is more general, and expands any shell environment variables
-present in the path.
+``expandvars()`` is more general, and expands any shell environment
+variables present in the path.
 
 .. include:: ospath_expandvars.py
     :literal:
@@ -141,9 +146,9 @@ present in the path.
 Normalizing Paths
 =================
 
-Paths assembled from separate strings using join() or with embedded variables
-might end up with extra separators or relative path components. Use normpath()
-to clean them up:
+Paths assembled from separate strings using ``join()`` or with
+embedded variables might end up with extra separators or relative path
+components. Use ``normpath()`` to clean them up:
 
 .. include:: ospath_normpath.py
     :literal:
@@ -154,7 +159,8 @@ to clean them up:
 .. }}}
 .. {{{end}}}
 
-To convert a relative path to a complete absolute filename, use abspath().
+To convert a relative path to a complete absolute filename, use
+``abspath()``.
 
 .. include:: ospath_abspath.py
     :literal:
@@ -170,7 +176,7 @@ File Times
 
 Besides working with paths, os.path also includes some functions for
 retrieving file properties, which can be more convenient than calling
-os.stat():
+``os.stat()``:
 
 .. include:: ospath_properties.py
     :literal:
@@ -184,11 +190,12 @@ os.stat():
 Testing Files
 =============
 
-When your program encounters a path name, it often needs to know whether the
-path refers to a file or directory. If you are working on a platform that
-supports it, you may need to know if the path refers to a symbolic link or
-mount point. You will also want to test whether the path exists or not.
-os.path provides functions to test all of these conditions.
+When your program encounters a path name, it often needs to know
+whether the path refers to a file or directory. If you are working on
+a platform that supports it, you may need to know if the path refers
+to a symbolic link or mount point. You will also want to test whether
+the path exists or not.  :mod:`os.path` provides functions to test all
+of these conditions.
 
 .. include:: ospath_tests.py
     :literal:
@@ -205,10 +212,10 @@ os.path provides functions to test all of these conditions.
 Traversing a Directory Tree
 ===========================
 
-os.path.walk() traverses all of the directories in a tree and calls a function
-you provide passing the directory name and the names of the contents of that
-directory. This example produces a recursive directory listing, ignoring .svn
-directories.
+``os.path.walk()`` traverses all of the directories in a tree and
+calls a function you provide passing the directory name and the names
+of the contents of that directory. This example produces a recursive
+directory listing, ignoring ``.svn`` directories.
 
 .. include:: ospath_walk.py
     :literal:
@@ -230,3 +237,4 @@ directories.
         The os module is a parent of os.path.
 
     :ref:`article-file-access`
+        Other tools for working with files.
