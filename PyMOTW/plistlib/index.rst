@@ -8,11 +8,11 @@ plistlib -- Manipulate OS X property list files
 :Purpose: Read and write OS X property list files
 :Python Version: 2.6
 
-plistlib provides an interface for working with property list files
-used under OS X.  plist files are typically XML, sometimes compressed.
-They are used by the operating system and applications to store
-preferences or other configuration settings.  The contents are usually
-structured as a dictionary containing key value pairs of basic
+:mod:`plistlib` provides an interface for working with property list
+files used under OS X.  plist files are typically XML, sometimes
+compressed.  They are used by the operating system and applications to
+store preferences or other configuration settings.  The contents are
+usually structured as a dictionary containing key value pairs of basic
 built-in types (unicode strings, integers, dates, etc.).  Values can
 also be nested data structures such as other dictionaries or lists.
 Binary data, or strings with control characters, can be encoded using
@@ -87,8 +87,8 @@ instance.
    :literal:
    :start-after: #end_pymotw_header
 
-This example uses the ToString version of the write function to create
-an in-memory string instead of writing to a file.
+This example uses the ``writePlistToString()`` to create an in-memory
+string, instead of writing to a file.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'plistlib_binary_write.py'))

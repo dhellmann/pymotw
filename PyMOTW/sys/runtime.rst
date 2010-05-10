@@ -26,6 +26,7 @@ The arguments captured by the interpreter are processed there and not passed alo
     :mod:`getopt`, :mod:`optparse`
         Modules for parsing command line arguments.
 
+.. _sys-input-output:
 
 Input and Output Steams
 =======================

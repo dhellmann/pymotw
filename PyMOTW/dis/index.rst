@@ -26,8 +26,8 @@ We can disassemble a module such as:
 .. literalinclude:: dis_simple.py
     :linenos:
 
-by running :mod:`dis`from the command line.  The output is organized into
-columns with the original source line number, the instruction
+by running :mod:`dis` from the command line.  The output is organized
+into columns with the original source line number, the instruction
 "address" within the code object, the opcode name, and any arguments
 passed to the opcode.
 

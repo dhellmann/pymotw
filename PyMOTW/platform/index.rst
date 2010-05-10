@@ -8,33 +8,36 @@ platform -- Access system hardware, OS, and interpreter version information.
 :Purpose: Probe the underlying platform's architecture and version information with the platform module.
 :Python Version: 2.3+
 
-Although Python is often used as a cross-platform language, it is occasionally
-necessary to know what sort of system you're running on. Build tools obviously
-need that information, but you might also know that some libraries or external
-commands have different interfaces on different operating systems. For
-example, if you are writing a tool to manage the network configuration of an
-operating system, you can have a portable representation of network
-interfaces, aliases, IP addresses, etc. But once you get down to actually
-editing the configuration files, you need to know more about your host and how
-it is configured. The platform module gives you some tools for learning about
-the interpreter, operating system, and hardware platform where your program is
-running.
+Although Python is often used as a cross-platform language, it is
+occasionally necessary to know what sort of system you're running
+on. Build tools need that information, but you might also know that
+some of the libraries or external commands you use have different
+interfaces on different operating systems. For example, if you are
+writing a tool to manage the network configuration of an operating
+system, you can define your own portable representation of network
+interfaces, aliases, IP addresses, etc. But once you get down to
+actually editing the configuration files, you need to know more about
+your host and how it is configured. The :mod:`platform` module gives
+you the tools for learning about the interpreter, operating system,
+and hardware platform where your program is running.
 
 .. note::
 
-    The example output below was generated on a MacBook Pro running OS X 10.5.2
-    and a VMware VM running CentOS 4.6. I don't have ready access to Windows, but
-    these functions all work there, too. (If someone wants to run the scripts on
-    Windows and post the output in the comments, I would appreciate it!)
+    The example output below was generated on a MacBook Pro running OS
+    X 10.5.2, a VMware VM running CentOS 4.6, and a PC running
+    Microsoft Vista SP1 (contributed by `christof
+    <http://christof.myopenid.com/>`__).
 
 Interpreter
 ===========
 
-There are four functions for getting information about the current Python
-interpreter. python_version() and python_version_tuple() return different
-forms of the interpreter version with major, minor, and patchlevel components.
-python_compiler() reports on the compiler used to build the interpreter. And
-python_build() gives a version string for the build of the interpreter.
+There are four functions for getting information about the current
+Python interpreter. ``python_version()`` and
+``python_version_tuple()`` return different forms of the interpreter
+version with major, minor, and patchlevel components.
+``python_compiler()`` reports on the compiler used to build the
+interpreter. And ``python_build()`` gives a version string for the
+build of the interpreter.
 
 .. include:: platform_python.py
     :literal:
@@ -58,7 +61,7 @@ Linux::
     Compiler     : GCC 3.4.6 20060404 (Red Hat 3.4.6-9)
     Build        : (1, 'Mar 12 2008 15:09:04')
 
-(It looks like I need to upgrade that system...)
+(It looks like I need to upgrade that system.)
 
 Windows::
 
@@ -71,11 +74,11 @@ Windows::
 Platform
 ========
 
-A general purpose platform identifier is available via the platform()
-function. platform() accepts two optional boolean arguments. If aliased is
-True, the names in the return value are converted from a formal name to their
-more common form. When terse is true, returns a minimal value with some parts
-dropped.
+``platform()`` returns string containing a general purpose platform
+identifier.  The function accepts two optional boolean arguments. If
+*aliased* is True, the names in the return value are converted from a
+formal name to their more common form. When *terse* is true, returns a
+minimal value with some parts dropped.
 
 .. include:: platform_platform.py
     :literal:
@@ -100,22 +103,31 @@ Windows::
     C:> python.exe platform_platform.py
     Normal : Windows-XP-5.1.2600
     Aliased: Windows-XP-5.1.2600
-    Terse : Windows-XP
+    Terse  : Windows-XP
     
 
 Operating System and Hardware Info
 ==================================
 
 More detailed information about the operating system and hardware the
-interpreter is running under can be retrieved as well. uname() returns a tuple
-containing the system, node, release, version, machine, and processor values.
-Individual values can be accessed through functions of the same names:
+interpreter is running under can be retrieved as well. ``uname()``
+returns a tuple containing the system, node, release, version,
+machine, and processor values.  Individual values can be accessed
+through functions of the same names:
 
-system() returns the operating system name. node() returns the hostname of the
-server, not fully qualified. release() returns the operating system release
-number. version() returns the more detailed system version. machine() gives a
-hardware-type identifier such as 'i386'. processor() returns a real identifier
-for the processor, or the same value as machine() in many cases.
+``system()``
+  returns the operating system name
+``node()``
+  returns the hostname of the server, not fully qualified
+``release()``
+  returns the operating system release number
+``version()``
+  returns the more detailed system version
+``machine()``
+  gives a hardware-type identifier such as ``'i386'``
+``processor()``
+  returns a real identifier for the processor, or the same value as
+  machine() in many cases
 
 .. include:: platform_os_info.py
     :literal:
@@ -163,9 +175,10 @@ Executable Architecture
 =======================
 
 Individual program architecture information can be probed using the
-architecture() function. The first argument is the path to an executable
-program (defaulting to sys.executable, the Python interpreter). The return
-value is a tuple containing the bit architecture and the linkage format used.
+``architecture()`` function. The first argument is the path to an
+executable program (defaulting to ``sys.executable``, the Python
+interpreter). The return value is a tuple containing the bit
+architecture and the linkage format used.
 
 .. include:: platform_architecture.py
     :literal:

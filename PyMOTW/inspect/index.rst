@@ -375,7 +375,7 @@ because B is derived from A.
 The Stack and Frames
 ====================
 
-In addition to introspection of code objects, :ref:`inspect` includes
+In addition to introspection of code objects, :mod:`inspect` includes
 functions for inspecting the runtime environment while a program is
 running. Most of these functions work with the call stack, and operate
 on "call frames". Each frame record in the stack is a 6 element tuple

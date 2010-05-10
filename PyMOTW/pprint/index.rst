@@ -8,14 +8,14 @@ pprint -- Pretty-print data structures
 :Purpose: Pretty-print data structures
 :Python Version: 1.4
 
-The pprint module includes a "pretty printer" for producing aesthetically
-pleasing representations of your data structures.  The formatter used prints 
-representations of data structures in a format which can be parsed correctly 
-by the interpreter, and which are also easy for a human to read. The output is 
-kept on a single line, if possible, and indented correctly when split across 
-multiple lines.
+:mod:`pprint` contains a "pretty printer" for producing aesthetically
+pleasing representations of your data structures.  The formatter
+produces representations of data structures that can be parsed
+correctly by the interpreter, and are also easy for a human to
+read. The output is kept on a single line, if possible, and indented
+when split across multiple lines.
 
-The examples here all depend on pprint_data.py, which contains:
+The examples below all depend on ``pprint_data.py``, which contains:
 
 .. include:: pprint_data.py
     :literal:
@@ -24,9 +24,10 @@ The examples here all depend on pprint_data.py, which contains:
 Printing
 ========
 
-The simplest way to use the module is with the pprint() function. It formats
-your object and writes it to the data stream passed as argument (or sys.stdout
-by default).
+The simplest way to use the module is through the ``pprint()``
+function. It formats your object and writes it to the data stream
+passed as argument (or :ref:`sys.stdout <sys-input-output>` by
+default).
 
 .. include:: pprint_pprint.py
     :literal:
@@ -40,9 +41,10 @@ by default).
 Formatting
 ==========
 
-If you need to format a data structure, but do not want to write it directly
-to a stream (for logging purposes, for example) you can use pformat() to build
-a string representation that can then be passed to another function.
+If you need to format a data structure, but do not want to write it
+directly to a stream (for logging purposes, for example) you can use
+``pformat()`` to build a string representation that can then be passed
+to another function.
 
 .. include:: pprint_pformat.py
     :literal:
@@ -56,8 +58,8 @@ a string representation that can then be passed to another function.
 Arbitrary Classes
 =================
 
-The PrettyPrinter class used by pprint() can also work with your own classes,
-if they define a __repr__ method.
+The ``PrettyPrinter`` class used by ``pprint()`` can also work with
+your own classes, if they define a ``__repr__()`` method.
 
 .. include:: pprint_arbitrary_object.py
     :literal:
@@ -109,7 +111,7 @@ Controlling Output Width
 ========================
 
 The default output width for the formatted text is 80 columns. To adjust that
-width, use the width argument to pprint().
+width, use the width argument to ``pprint()``.
 
 .. include:: pprint_width.py
     :literal:
