@@ -11,18 +11,25 @@ profile, cProfile, and pstats -- Performance analysis of Python programs.
 :Purpose: Performance analysis of Python programs.
 :Python Version: 1.4 and later, these examples are for Python 2.5
 
-The profile and cProfile modules provide APIs for collecting and analyzing statistics about how Python source consumes processor resources.
+The :mod:`profile` and :mod:`cProfile` modules provide APIs for
+collecting and analyzing statistics about how Python source consumes
+processor resources.
 
 run()
 =====
 
-The most basic starting point in the profile module is ``run()``.  It takes a string statement as argument, and creates a report of the time spent executing different lines of code while running the statement.
+The most basic starting point in the profile module is ``run()``.  It
+takes a string statement as argument, and creates a report of the time
+spent executing different lines of code while running the statement.
 
 .. include:: profile_fibonacci_raw.py
    :literal:
    :start-after: #end_pymotw_header
 
-This recursive version of a fibonacci sequence calculator [#fibonacci]_ is especially useful for demonstrating the profile because we can improve the performance so much.  The standard report format shows a summary and then details for each function executed.
+This recursive version of a fibonacci sequence calculator
+[#fibonacci]_ is especially useful for demonstrating the profile
+because we can improve the performance so much.  The standard report
+format shows a summary and then details for each function executed.
 
 ::
 
@@ -45,15 +52,27 @@ This recursive version of a fibonacci sequence calculator [#fibonacci]_ is espec
      57291/21    0.743    0.000    0.743    0.035 profile_fibonacci_raw.py:13(fib)
          21/1    0.001    0.000    0.744    0.744 profile_fibonacci_raw.py:22(fib_seq)
 
-As you can see, it takes 57356 separate function calls and 3/4 of a second to run.  Since there are only 66 *primitive* calls, we know that the vast majority of those 57k calls were recursive.  The details about where time was spent are broken out by function in the listing showing the number of calls, total time spent in the function, time per call (tottime/ncalls), cumulative time spent in a function, and the ratio of cumulative time to primitive calls.  
+As you can see, it takes 57356 separate function calls and 3/4 of a
+second to run.  Since there are only 66 *primitive* calls, we know
+that the vast majority of those 57k calls were recursive.  The details
+about where time was spent are broken out by function in the listing
+showing the number of calls, total time spent in the function, time
+per call (tottime/ncalls), cumulative time spent in a function, and
+the ratio of cumulative time to primitive calls.
 
-Not surprisingly, most of the time here is spent calling ``fib()`` repeatedly.  We can add a memoize decorator [#memoize]_ to reduce the number of recursive calls and have a big impact on the performance of this function.
+Not surprisingly, most of the time here is spent calling ``fib()``
+repeatedly.  We can add a memoize decorator [#memoize]_ to reduce the
+number of recursive calls and have a big impact on the performance of
+this function.
 
 .. include:: profile_fibonacci_memoized.py
     :literal:
     :start-after: #end_pymotw_header
 
-By remembering the Fibonacci value at each level we can avoid most of the recursion and drop down to 145 calls that only take 0.003 seconds.  Also notice that the ncalls count for ``fib()`` shows that it *never* recurses.
+By remembering the Fibonacci value at each level we can avoid most of
+the recursion and drop down to 145 calls that only take 0.003 seconds.
+Also notice that the ncalls count for ``fib()`` shows that it *never*
+recurses.
 
 ::
 
@@ -80,13 +99,17 @@ By remembering the Fibonacci value at each level we can avoid most of the recurs
 runctx()
 ========
 
-Of course, it's not always easy to construct the expression to pass to ``run()``.  Sometimes it is easier to build a simple expression and run it in a context with globals and locals, using ``runctx()``.
+Sometimes, instead of constructing a complex expression for ``run()``,
+it is easier to build a simple expression and pass it parameters
+through a context, using ``runctx()``.
 
 .. include:: profile_runctx.py
     :literal:
     :start-after: #end_pymotw_header
 
-In this example, the value of "n" is passed through the local variable context instead of being embedded directly in the statement passed to ``runctx()``.
+In this example, the value of "n" is passed through the local variable
+context instead of being embedded directly in the statement passed to
+``runctx()``.
 
 ::
 
@@ -114,15 +137,22 @@ pstats: Saving and Working With Statistics
 .. module:: pstats
     :synopsis: Manipulate and analyze profile statistics.
 
-If the standard report is not formatted the way you need it to be, both ``run()`` and ``runctx()`` take a filename argument to save the raw data to a file instead of printing the text report.  The **Stats** class from the pstats module knows how to read the file and can be used to manipulate the data.
+The standard report created by the :mod:`profile` functions is not
+very flexible.  If it doesn't meet your needs, you can produce your
+own reports by saving the raw profiling data from ``run()`` and
+``runctx()`` and processing it separately with the **Stats** class
+from :mod:`pstats`.
 
-For example, to run several iterations of the same test and combine the results, you might do something like this:
+For example, to run several iterations of the same test and combine
+the results, you could do something like this:
 
 .. include:: profile_stats.py
     :literal:
     :start-after: #end_pymotw_header
 
-The output report is sorted in descending order of cumulative time spent in the function and the directory names are removed from the printed filenames to conserve horizontal space.
+The output report is sorted in descending order of cumulative time
+spent in the function and the directory names are removed from the
+printed filenames to conserve horizontal space.
 
 ::
 
@@ -160,13 +190,17 @@ The output report is sorted in descending order of cumulative time spent in the 
 Limiting Report Contents
 ========================
 
-Since we are studying the performance of ``fib()`` and ``fib_seq()``, we can also restrict the output report to only include those functions using a regular expression to match the ``filename:lineno(function)`` values we want.
+Since we are studying the performance of ``fib()`` and ``fib_seq()``,
+we can also restrict the output report to only include those functions
+using a regular expression to match the ``filename:lineno(function)``
+values we want.
 
 .. include:: profile_stats_restricted.py
     :literal:
     :start-after: #end_pymotw_header
 
-The regular expression includes a literal left paren (``(``) to match against the function name portion of the location value.
+The regular expression includes a literal left paren (``(``) to match
+against the function name portion of the location value.
 
 ::
 
@@ -190,13 +224,16 @@ The regular expression includes a literal left paren (``(``) to match against th
 Caller / Callee Graphs
 ======================
 
-**Stats** also includes methods for printing the callers and callees of functions.
+**Stats** also includes methods for printing the callers and callees
+of functions.
 
 .. include:: profile_stats_callers.py
     :literal:
     :start-after: #end_pymotw_header
 
-The arguments to ``print_callers()`` and ``print_callees()`` work the same as the restriction arguments to ``print_stats()``.  The output shows the caller, callee, and cumulative time.
+The arguments to ``print_callers()`` and ``print_callees()`` work the
+same as the restriction arguments to ``print_stats()``.  The output
+shows the caller, callee, and cumulative time.
 
 ::
 

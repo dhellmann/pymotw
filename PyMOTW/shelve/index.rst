@@ -16,9 +16,9 @@ created and managed by :mod:`anydbm`.
 Creating a new Shelf
 ====================
 
-The simplest way to use shelve is via the DbfilenameShelf class. It uses
-anydbm to store the data. You can use the class directly, or simply call
-shelve.open():
+The simplest way to use shelve is via the :class:`DbfilenameShelf`
+class. It uses anydbm to store the data. You can use the class
+directly, or simply call :func:`shelve.open()`:
 
 .. include:: shelve_create.py
     :literal:
@@ -104,11 +104,12 @@ Specific Shelf Types
 ====================
 
 The examples above all use the default shelf implementation. Using
-shelve.open() instead of one of the shelf implementations directly is a common
-usage pattern, especially if you do not care what type of database is used to
-store the data. There are times, however, when you do care. In those
-situations, you may want to use DbfilenameShelf or BsdDbShelf directly, or
-even subclass Shelf for a custom solution.
+:func:`shelve.open()` instead of one of the shelf implementations
+directly is a common usage pattern, especially if you do not care what
+type of database is used to store the data. There are times, however,
+when you do care. In those situations, you may want to use
+:class:`DbfilenameShelf` or :class:`BsdDbShelf` directly, or even
+subclass :class:`Shelf` for a custom solution.
 
 .. seealso::
 
@@ -125,3 +126,4 @@ even subclass Shelf for a custom solution.
         Shove implements a similar API with more backend formats.
 
     :ref:`article-data-persistence`
+        Other mechanisms for storing data using standard library modules.

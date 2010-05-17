@@ -226,6 +226,7 @@ An IndexError is raised when a sequence reference is out of range.
 .. }}}
 .. {{{end}}}
 
+.. _exceptions-KeyError:
 
 KeyError
 --------
@@ -241,6 +242,7 @@ Similarly, a KeyError is raised when a value is not found as a key of a dictiona
 .. }}}
 .. {{{end}}}
 
+.. _exceptions-KeyboardInterrupt:
 
 KeyboardInterrupt
 -----------------
@@ -316,6 +318,7 @@ name.
 .. }}}
 .. {{{end}}}
 
+.. _exceptions-NotImplementedError:
 
 NotImplementedError
 -------------------
@@ -438,6 +441,7 @@ chance of continuing to run successfully, it raises a SystemError.
 SystemErrors probably indicate a bug in the interpreter and should be
 reported to the maintainer.
 
+.. _exceptions-SystemExit:
 
 SystemExit
 ----------
@@ -493,6 +497,7 @@ UnicodeError is a subclass of ValueError and is raised when a Unicode
 problem occurs.  There are separate subclasses for UnicodeEncodeError,
 UnicodeDecodeError, and UnicodeTranslateError.
 
+.. _exceptions-ValueError:
 
 ValueError
 ----------
