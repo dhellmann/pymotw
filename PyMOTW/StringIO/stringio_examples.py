@@ -34,9 +34,9 @@ __module_id__ = "$Id$"
 
 # Find the best implementation available on this platform
 try:
-	from cStringIO import StringIO
+    from cStringIO import StringIO
 except:
-	from StringIO import StringIO
+    from StringIO import StringIO
 
 # Writing to a buffer
 output = StringIO()
