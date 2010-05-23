@@ -263,13 +263,11 @@ def tabcheck(options):
     """Run tabnanny against the current module.
     """
     args = getattr(options, 'args', [])
-    if args:
-        module = args[0]
-    else:
-        module = MODULE
-    module_dir = 'PyMOTW/' + module
+    if not args:
+        args = path('PyMOTW').glob('*')
     tabnanny.verbose = 1
-    tabnanny.check(module_dir)
+    for module in args:
+        tabnanny.check(module)
     return
 
 @task

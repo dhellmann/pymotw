@@ -8,38 +8,41 @@ time -- Functions for manipulating clock time
 :Purpose: Functions for manipulating clock time.
 :Python Version: 1.4 or earlier
 
-The time module exposes C library functions for manipulating dates and times.
-Since it is tied to the underlying C implementation, some details (such as the
-start of the epoch and maximum date value supported) are platform-specific.
-Refer to the library documentation for complete details.
+The :mod:`time` module exposes C library functions for manipulating
+dates and times.  Since it is tied to the underlying C implementation,
+some details (such as the start of the epoch and maximum date value
+supported) are platform-specific.  Refer to the library documentation
+for complete details.
 
 Wall Clock Time
 ===============
 
-One of the core functions of the time module is time.time(), which returns the
-number of seconds since the start of the epoch as a floating point value. 
+One of the core functions of the :mod:`time` module is :func:`time()`,
+which returns the number of seconds since the start of the epoch as a
+floating point value.
 
 .. include:: time_time.py
     :literal:
     :start-after: #end_pymotw_header
 
-Although the value is always a float, actual precision is platform-dependent.
+Although the value is always a float, actual precision is
+platform-dependent.
 
 ::
 
     $ python time_time.py
     The time is: 1205079300.54
 
-The float representation is useful when storing or comparing dates, but not as
-useful for producing human readable representations. For logging or printing
-time time.ctime() can be more useful.
+The float representation is useful when storing or comparing dates,
+but not as useful for producing human readable representations. For
+logging or printing time :func:`ctime()` can be more useful.
 
 .. include:: time_ctime.py
     :literal:
     :start-after: #end_pymotw_header
 
-Here the second output line shows how to use ctime() to format a time value
-other than the current time.
+Here the second output line shows how to use :func:`ctime()` to format
+a time value other than the current time.
 
 ::
 
@@ -50,21 +53,22 @@ other than the current time.
 Processor Clock Time
 ====================
 
-While time() returns a wall clock time, clock() returns processor clock time.
-The values returned from clock() should be used for performance testing,
-benchmarking, etc. since they reflect the actual time used by the program, and
-can be more precise than the values from time().
+While :func:`time()` returns a wall clock time, :func:`clock()`
+returns processor clock time.  The values returned from
+:func:`clock()` should be used for performance testing, benchmarking,
+etc. since they reflect the actual time used by the program, and can
+be more precise than the values from :func:`time()`.
 
 .. include:: time_clock.py
     :literal:
     :start-after: #end_pymotw_header
 
 
-In this example, the formatted ctime() is printed along with the floating
-point values from time(), and clock() for each iteration through the loop. If
-you want to run the example on your system, you may have to add more cycles to
-the inner loop or work with a larger amount of data to actually see a
-difference.
+In this example, the formatted :func:`ctime()` is printed along with
+the floating point values from :func:`time()`, and :func:`clock()` for
+each iteration through the loop. If you want to run the example on
+your system, you may have to add more cycles to the inner loop or work
+with a larger amount of data to actually see a difference.
 
 ::
 
@@ -82,9 +86,9 @@ anything.
     :literal:
     :start-after: #end_pymotw_header
 
-In this example, the loop does very little work by going to sleep after each
-iteration. The time.time() value increases even while the app is asleep, but
-the time.clock() value does not.
+In this example, the loop does very little work by going to sleep
+after each iteration. The :func:`time()` value increases even while
+the app is asleep, but the :func:`clock()` value does not.
 
 ::
 
@@ -100,26 +104,28 @@ the time.clock() value does not.
     Sun Mar  9 12:46:54 2008 1205081214.21 0.02
     Sleeping 2
 
-Calling time.sleep() yields control from the current thread and asks it to
-wait for the system to wake it back up. If your program has only one thread,
-this effectively blocks the app and it does no work.
+Calling :func:`sleep()` yields control from the current thread and
+asks it to wait for the system to wake it back up. If your program has
+only one thread, this effectively blocks the app and it does no work.
 
 struct_time
 ===========
 
-Storing times as elapsed seconds is useful in some situations, but there are
-times when you need to have access to the individual fields of a date (year,
-month, etc.). The time module defines struct_time for holding date and time
-values with components broken out so they are easy to access. There are
-several functions that work with struct_time values instead of floats.
+Storing times as elapsed seconds is useful in some situations, but
+there are times when you need to have access to the individual fields
+of a date (year, month, etc.). The :mod:`time` module defines
+:class:`struct_time` for holding date and time values with components
+broken out so they are easy to access. There are several functions
+that work with :class:`struct_time` values instead of floats.
 
 .. include:: time_struct.py
     :literal:
     :start-after: #end_pymotw_header
 
-gmtime() returns the current time in UTC. localtime() returns the current time
-with the current time zone applied. mktime() takes a struct_time and converts
-it to the floating point representation.
+:func:`gmtime()` returns the current time in UTC. :func:`localtime()`
+returns the current time with the current time zone
+applied. :func:`mktime()` takes a :class:`struct_time` and converts it
+to the floating point representation.
 
 ::
 
@@ -136,20 +142,21 @@ it to the floating point representation.
 Parsing and Formatting Times
 ============================
 
-The two functions strptime() and strftime() convert between struct_time and
-string representations of time values. There is a long list of formatting
-instructions available to support input and output in different styles. The
-complete list is documented in the library documentation for the time module.
+The two functions :func:`strptime()` and :func:`strftime()` convert
+between struct_time and string representations of time values. There
+is a long list of formatting instructions available to support input
+and output in different styles. The complete list is documented in the
+library documentation for the time module.
 
-This example converts the current time from a string, to a struct_time
-instance, and back to a string.
+This example converts the current time from a string, to a
+:class:`struct_time` instance, and back to a string.
 
 .. include:: time_strptime.py
     :literal:
     :start-after: #end_pymotw_header
 
-The output string is not exactly like the input, since the day of the month is
-prefixed with a zero.
+The output string is not exactly like the input, since the day of the
+month is prefixed with a zero.
 
 ::
 
@@ -166,21 +173,22 @@ set, either by your program or by using a default time zone set for the
 system. Changing the time zone does not change the actual time, just the way
 it is represented.
 
-To change the time zone, set the environment variable TZ, then call tzset().
-Using TZ, you can specify the time zone with a lot of detail, right down to
-the start and stop times for daylight savings time. It is usually easier to
-use the time zone name and let the underlying libraries derive the other
-information, though.
+To change the time zone, set the environment variable ``TZ``, then
+call :func:`tzset()`.  Using TZ, you can specify the time zone with a
+lot of detail, right down to the start and stop times for daylight
+savings time. It is usually easier to use the time zone name and let
+the underlying libraries derive the other information, though.
 
-This example program changes the time zone to a few different values and shows
-how the changes affect other settings in the time module.
+This example program changes the time zone to a few different values
+and shows how the changes affect other settings in the time module.
 
 .. include:: time_timezone.py
     :literal:
     :start-after: #end_pymotw_header
 
-My default time zone is US/Eastern, so setting TZ to that has no effect. The
-other zones used change the tzname, daylight flag, and timezone offset value.
+My default time zone is US/Eastern, so setting TZ to that has no
+effect. The other zones used change the tzname, daylight flag, and
+timezone offset value.
 
 ::
 

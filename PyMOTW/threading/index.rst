@@ -8,40 +8,42 @@ threading -- Manage concurrent threads
 :Purpose: Builds on the :mod:`thread` module to more easily manage several threads of execution.
 :Python Version: since 1.5.2 (some of these examples require 2.5 because they use the with statement)
 
-The threading module builds on the low-level features of :mod:`thread` to make working with
-threads even easier and more pythonic. It lets you run multiple operations concurrently in
-the same process space.
+The :mod:`threading` module builds on the low-level features of
+:mod:`thread` to make working with threads even easier and more
+pythonic. It lets you run multiple operations concurrently in the same
+process space.
 
 Thread objects
 ==============
 
-The simplest way to use a thread is to instantiate it with a target function
-and call start() to let it begin working.
+The simplest way to use a :class:`Thread` is to instantiate it with a
+target function and call :func:`start()` to let it begin working.
 
 .. include:: threading_simple.py
     :literal:
     :start-after: #end_pymotw_header
 
-The output, is unsurprisingly, 5 lines with "Worker" on each:
+The output is five lines with ``"Worker"`` on each:
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'threading_simple.py'))
 .. }}}
 .. {{{end}}}
 
-It useful to be able to spawn a thread and pass it arguments to tell it what
-work to do. For example, in :mod:`Queue`, I created a simple program to
-illustrate how to download enclosures from RSS/Atom feeds. Each downloader
-thread needed to know where to find the URLs, and the Queue instance was
-passed as an argument when the thread was created. Here, we'll just pass the
-thread a number so the output is a little more interesting in the second
-example.
+It useful to be able to spawn a thread and pass it arguments to tell
+it what work to do. For example, in the examples for :mod:`Queue` I
+created a simple program to illustrate how to download enclosures from
+RSS/Atom feeds. Each downloader thread needed to know where to find
+the URLs, and the :class:`Queue` instance was passed as an argument
+when the thread was created. Here, we'll just pass the thread a number
+so the output is a little more interesting in the second example.
 
 .. include:: threading_simpleargs.py
     :literal:
     :start-after: #end_pymotw_header
 
-The integer argument is now included in the message printed by each thread:
+The integer argument is now included in the message printed by each
+thread:
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'threading_simpleargs.py'))
@@ -51,28 +53,30 @@ The integer argument is now included in the message printed by each thread:
 Determining the current thread
 ==============================
 
-Using arguments to identify or name the thread is cumbersome, and unnecessary.
-Each Thread instance has a name with a default value that you can change as
-the thread is created. Naming threads is useful if you have a server process
-with multiple service threads handling different operations. 
+Using arguments to identify or name the thread is cumbersome, and
+unnecessary.  Each :class:`Thread` instance has a name with a default
+value that you can change as the thread is created. Naming threads is
+useful if you have a server process with multiple service threads
+handling different operations.
 
 .. include:: threading_names.py
     :literal:
     :start-after: #end_pymotw_header
 
-The debug output includes the name of the current thread on each line. The
-lines with "Thread-1" in the thread name column correspond to the unnamed
-thread w2.
+The debug output includes the name of the current thread on each
+line. The lines with ``"Thread-1"`` in the thread name column
+correspond to the unnamed thread ``w2``.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'threading_names.py'))
 .. }}}
 .. {{{end}}}
 
-Of course, in most programs you won't use print to debug. The logging module
-supports embedding the thread name in every log message using the formatter
-code %(threadName)s. Including thread names in log messages makes it easier to
-trace those messages back to their source.
+Of course, in most programs you won't use ``print`` to debug. The
+:mod:`logging` module supports embedding the thread name in every log
+message using the formatter code ``%(threadName)s``. Including thread
+names in log messages makes it easier to trace those messages back to
+their source.
 
 .. include:: threading_names_log.py
     :literal:
@@ -88,54 +92,58 @@ The output from the format string above looks like:
 Daemon vs. Non-Daemon Threads
 =============================
 
-Up until this point, I have been assuming that the main program does not exit
-until all threads have completed their work. Sometimes you will want to spawn
-a thread as a "daemon" that runs without blocking the main program from
-exiting. Using daemon threads is useful for services where there may not be an
-easy way to interrupt the thread or where letting the thread die in the middle
-of its work does not lose or corrupt data (for example, a thread that
-generates "heart beats" for a service monitoring tool). To mark a thread as a
-daemon, call its setDaemon() with a boolean argument. The default is for
+Up until this point, I have been assuming that the main program does
+not exit until all threads have completed their work. Sometimes you
+will want to spawn a thread as a *daemon* that runs without blocking
+the main program from exiting. Using daemon threads is useful for
+services where there may not be an easy way to interrupt the thread or
+where letting the thread die in the middle of its work does not lose
+or corrupt data (for example, a thread that generates "heart beats"
+for a service monitoring tool). To mark a thread as a daemon, call its
+:func:`setDaemon()` method with a boolean argument. The default is for
 threads to not be daemons, so passing True turns the daemon mode on.
 
 .. include:: threading_daemon.py
     :literal:
     :start-after: #end_pymotw_header
 
-Notice that the output does not include the "Exiting" message from the daemon
-thread, since all of the non-daemon threads (including the main thread) exit
-before the daemon thread wakes up from its 2 second sleep.
+Notice that the output does not include the ``"Exiting"`` message from
+the daemon thread, since all of the non-daemon threads (including the
+main thread) exit before the daemon thread wakes up from its 2 second
+sleep.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'threading_daemon.py'))
 .. }}}
 .. {{{end}}}
 
-To wait until the daemon thread has completed its work, use the join() method.
+To wait until the daemon thread has completed its work, use the
+:func:`join()` method.
 
 .. include:: threading_daemon_join.py
     :literal:
     :start-after: #end_pymotw_header
 
-Since we wait for the daemon thread to exit using join(), we do see its
-"Exiting" message.
+Since we wait for the daemon thread to exit using :func:`join()`, we
+do see its "Exiting" message.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'threading_daemon_join.py'))
 .. }}}
 .. {{{end}}}
 
-By default, join() blocks indefinitely. It is also possible to pass a timeout
-argument (a float representing the number of seconds to wait for the thread to
-become inactive). If the thread does not complete within the timeout period,
-join() returns anyway.
+By default, :func:`join()` blocks indefinitely. It is also possible to
+pass a timeout argument (a float representing the number of seconds to
+wait for the thread to become inactive). If the thread does not
+complete within the timeout period, :func:`join()` returns anyway.
 
 .. include:: threading_daemon_join_timeout.py
     :literal:
     :start-after: #end_pymotw_header
 
-Since the timeout passed is less than the amount of time the daemon thread
-sleeps, the thread is still "alive" after join() returns.
+Since the timeout passed is less than the amount of time the daemon
+thread sleeps, the thread is still "alive" after :func:`join()`
+returns.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'threading_daemon_join_timeout.py'))
@@ -145,18 +153,19 @@ sleeps, the thread is still "alive" after join() returns.
 Using enumerate() to wait for all running threads
 =================================================
 
-It is not necessary to retain an explicit handle to all of the daemon threads
-you start in order to ensure they have completed before exiting the main
-process. threading.enumerate() returns a list of active Thread instances. The
-list includes the current thread, and since joining the current thread is not
-allowed (it introduces a deadlock situation), we must check before joining.
+It is not necessary to retain an explicit handle to all of the daemon
+threads you start in order to ensure they have completed before
+exiting the main process. :func:`enumerate()` returns a list of active
+:class:`Thread` instances. The list includes the current thread, and
+since joining the current thread is not allowed (it introduces a
+deadlock situation), we must check before joining.
 
 .. include:: threading_enumerate.py
     :literal:
     :start-after: #end_pymotw_header
 
-Since the worker is sleeping for a random amount of time, your output may
-vary. It should look something like this, though:
+Since the worker is sleeping for a random amount of time, your output
+may vary. It should look something like this, though:
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'threading_enumerate.py'))
@@ -166,10 +175,11 @@ vary. It should look something like this, though:
 Creating your own Thread class
 ==============================
 
-When you start a Thread, it does some basic setup and then calls its run()
-method, which calls the target function passed to the constructor. If you want
-to create your own type of thread, you can subclass from Thread and override
-run() to do whatever you want.
+When you start a :class:`Thread`, it does some basic setup and then
+calls its :func:`run()` method, which calls the target function passed
+to the constructor. If you want to create your own type of thread, you
+can subclass from :class:`Thread` and override :func:`run()` to do
+whatever you want.
 
 .. include:: threading_subclass.py
     :literal:
@@ -184,17 +194,19 @@ run() to do whatever you want.
 Starting a task in a thread with a Timer
 ========================================
 
-One example of a reason to subclass Thread is provided by Timer, also included
-in threading. A Timer lets you start the work of your thread after a delay,
-and cancel the operation at any point within that time period.
+One example of a reason to subclass :class:`Thread` is provided by
+:class:`Timer`, also included in :mod:`threading`. A :class:`Timer`
+lets you start the work of your thread after a delay, and cancel the
+operation at any point within that time period.
 
 .. include:: threading_timer.py
     :literal:
     :start-after: #end_pymotw_header
 
-Notice that the second timer is never run, and the first timer appears to run
-after the rest of the main program is done. Since it is not a daemon thread,
-we do not have to join() it explicitly to block waiting for it.
+Notice that the second timer is never run, and the first timer appears
+to run after the rest of the main program is done. Since it is not a
+daemon thread, we do not have to :func:`join()` it explicitly to block
+waiting for it.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'threading_timer.py'))
@@ -204,20 +216,23 @@ we do not have to join() it explicitly to block waiting for it.
 Signaling between threads with Event objects
 ============================================
 
-Although the point of using multiple threads is to spin separate operations
-off to run more or less simultaneously, there are times when it is important
-to be able to synchronize the operations in two or more threads. A simple way
-to communicate between threads is using Event objects. An Event manages an
-internal flag that users can either set() or clear(). Other users can wait()
-for the flag to be set(), effectively blocking progress until allowed to
-continue. You can also think of an Event as a traffic light.
+Although the point of using multiple threads is to spin separate
+operations off to run concurrently, there are times when it is
+important to be able to synchronize the operations in two or more
+threads. A simple way to communicate between threads is using
+:class:`Event` objects. An :class:`Event` manages an internal flag
+that users can either :func:`set()` or :func:`clear()`. Other users
+can :func:`wait()` for the flag to be :func:`set()`, effectively
+blocking progress until allowed to continue. You can also think of an
+:class:`Event` as a traffic light.
 
 .. include:: threading_event.py
     :literal:
     :start-after: #end_pymotw_header
 
 
-In this case, the non-block thread times out before the Event is set.
+In this case, the non-block thread times out before the :class:`Event`
+is set.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'threading_event.py'))
@@ -227,45 +242,49 @@ In this case, the non-block thread times out before the Event is set.
 Controlling access to resources with Lock
 =========================================
 
-In addition to synchronizing the operations of threads, it is also important
-to be able to control access to shared resources to prevent corruption or
-missed data. Python's built-in data structures (lists, dictionaries, etc.) are
-thread-safe as a side-effect of having atomic byte-codes for manipulating them
-(so the GIL is not released in the middle of an update). Your own data
-structures implemented in Python (or simpler types like integers and floats),
-don't have that protection. To guard against simultaneous access to an object,
-use a Lock object.
+In addition to synchronizing the operations of threads, it is also
+important to be able to control access to shared resources to prevent
+corruption or missed data. Python's built-in data structures (lists,
+dictionaries, etc.) are thread-safe as a side-effect of having atomic
+byte-codes for manipulating them (so the GIL is not released in the
+middle of an update). Your own data structures implemented in Python
+(or simpler types like integers and floats), don't have that
+protection. To guard against simultaneous access to an object, use a
+Lock object.
 
 .. include:: threading_lock.py
     :literal:
     :start-after: #end_pymotw_header
 
-In this example, the worker() function increments a Counter() instance. The
-Counter manages a Lock to prevent two threads from changing its internal state
-at the same time. If the Lock was not used, there is a possibility of missing
-a change to the value attribute.
+In this example, the :func:`worker()` function increments a
+:class:`Counter` instance. The :class:`Counter` manages a
+:class:`Lock` to prevent two threads from changing its internal state
+at the same time. If the :class:`Lock` was not used, there is a
+possibility of missing a change to the value attribute.
 
-The random module is used to introduce variable sleep durations for each time
-through the loop, so the output you see when running the sample code may vary.
+In the example, the :mod:`random` introduces variable sleep durations
+for each time through the loop, so the output you see when running the
+sample code may vary.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'threading_lock.py'))
 .. }}}
 .. {{{end}}}
 
-If another thread has acquired the lock, it might be preferable to find that
-out without blocking all action in the current thread. In that case, pass a
-False value for the blocking argument to acquire(). In the next example,
-worker() tries to acquire the lock 3 separate times, and counts how many
-attempts it has to make to do so. The random sleeps are used to simulate
+If another thread has acquired the lock, it might be preferable to
+find that out without blocking all action in the current thread. In
+that case, pass False for the *blocking* argument to
+:func:`acquire()`. In the next example, :func:`worker()` tries to
+acquire the lock three separate times, and counts how many attempts it
+has to make to do so. The random sleeps are used again to simulate
 varying load in the different threads.
 
 .. include:: threading_lock_noblock.py
     :literal:
     :start-after: #end_pymotw_header
 
-As you can see, it takes some of the threads many more than 3 iterations to
-acquire the lock 3 separate times.
+As you can see, it takes some of the threads many more than three
+iterations to acquire the lock three separate times.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'threading_lock_noblock.py'))
@@ -275,32 +294,32 @@ acquire the lock 3 separate times.
 Re-entrant Locks
 ================
 
-Normal Lock objects cannot be acquired more than once, even by the same
-thread. This can introduce undesirable side-effects if a lock is accessed by
-more than one function in the same call chain.
+Normal :class:`Lock` objects cannot be acquired more than once, even
+by the same thread. This can introduce undesirable side-effects if a
+lock is accessed by more than one function in the same call chain.
 
 .. include:: threading_lock_reacquire.py
     :literal:
     :start-after: #end_pymotw_header
 
-In this case, since both functions are using the same global lock, and one
-calls the other, the second acquisition fails and would have blocked if we did
-not tell acquire() not to block.
+In this case, since both functions are using the same global lock, and
+one calls the other, the second acquisition fails and would have
+blocked if we did not tell :func:`acquire()` not to block.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'threading_lock_reacquire.py'))
 .. }}}
 .. {{{end}}}
 
-In a situation where separate code from the same thread needs to "re-acquire"
-the lock, use an RLock instead.
+In a situation where separate code from the same thread needs to
+"re-acquire" the lock, use an :class:`RLock` instead.
 
 .. include:: threading_rlock.py
     :literal:
     :start-after: #end_pymotw_header
 
-The only change to the code from the previous example was substituting RLock
-for Lock.
+The only change to the code from the previous example was substituting
+:class:`RLock` for :class:`Lock`.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'threading_rlock.py'))
@@ -310,16 +329,16 @@ for Lock.
 Locks and with
 ==============
 
-Locks are also compatible with new with statement, introduced in ``__future__``
-for Python 2.5 and part of the language for 2.6. Using with removes the need
-to explicitly acquire and release the lock.
+Locks are also compatible with new ``with`` statement, introduced in
+``__future__`` for Python 2.5 and part of the language for 2.6. Using
+``with`` removes the need to explicitly acquire and release the lock.
 
 .. include:: threading_lock_with.py
     :literal:
     :start-after: #end_pymotw_header
 
-The two functions worker_with() and worker_no_with() manage the lock in
-equivalent ways.
+The two functions :func:`worker_with()` and :func:`worker_no_with()`
+manage the lock in equivalent ways.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'threading_lock_with.py'))
@@ -329,20 +348,22 @@ equivalent ways.
 Synchronizing threads with a Condition object
 =============================================
 
-In addition to using Events, another way of synchronizing threads is through
-using a Condition object. Because the Condition uses a Lock, it can be tied to
-a shared resource. This allows threads to wait for the resource to be updated.
-In this example, the consumer() threads wait() for the Condition to be set
-before continuing. The producer() thread is responsible for setting the
-condition and notifying the other threads once they can continue.
+In addition to using :class:`Events`, another way of synchronizing
+threads is through using a :class:`Condition` object. Because the
+:class:`Condition` uses a :class:`Lock`, it can be tied to a shared
+resource. This allows threads to wait for the resource to be updated.
+In this example, the :func:`consumer()` threads :func:`wait()` for the
+:class:`Condition` to be set before continuing. The :func:`producer()`
+thread is responsible for setting the condition and notifying the
+other threads once they can continue.
 
 .. include:: threading_condition.py
     :literal:
     :start-after: #end_pymotw_header
 
-The threads use with to acquire the lock associated with the Condition. You
-can also call the acquire() and release() methods explicitly, if you are not
-using Python 2.5.
+The threads use with to acquire the lock associated with the
+Condition. You can also call the :func:`acquire()` and
+:func:`release()` methods explicitly, if you are not using Python 2.5.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'threading_condition.py'))
@@ -352,22 +373,23 @@ using Python 2.5.
 Controlling concurrent access to resources with a Semaphore
 ===========================================================
 
-Sometimes it is useful to allow more than one worker access to a resource at a time,
-while still limiting the overall number. For example, a connection pool might
-support a fixed number of simultaneous connections, or a network application
-might support a fixed number of concurrent downloads. A Semaphore is one way
+Sometimes it is useful to allow more than one worker access to a
+resource at a time, while still limiting the overall number. For
+example, a connection pool might support a fixed number of
+simultaneous connections, or a network application might support a
+fixed number of concurrent downloads. A :class:`Semaphore` is one way
 to manage those connections.
 
 .. include:: threading_semaphore.py
     :literal:
     :start-after: #end_pymotw_header
 
-In this example, the ActivePool class simply serves as a convenient way to
-track which threads are able to run at a given moment. A real resource pool
-would probably allocate a connection or some other value to the newly active
-thread, and reclaim the value when the thread is done. Here it is just used to
-hold the names of the active threads to show that only 5 are running
-concurrently.
+In this example, the :class:`ActivePool` class simply serves as a
+convenient way to track which threads are able to run at a given
+moment. A real resource pool would probably allocate a connection or
+some other value to the newly active thread, and reclaim the value
+when the thread is done. Here it is just used to hold the names of the
+active threads to show that only five are running concurrently.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'threading_semaphore.py'))
@@ -377,32 +399,32 @@ concurrently.
 Keeping thread-specific data with local
 =======================================
 
-While some resources need to be locked so multiple threads can use them,
-others need to be protected so that they are hidden from view in threads that
-do not "own" them. The threading.local() creates an object capable of hiding
-values from view in separate threads.
+While some resources need to be locked so multiple threads can use
+them, others need to be protected so that they are hidden from view in
+threads that do not "own" them. The :func:`local()` function creates
+an object capable of hiding values from view in separate threads.
 
 .. include:: threading_local.py
     :literal:
     :start-after: #end_pymotw_header
 
-Notice that local_data.value is not present for any thread until it is set in
-that thread.
+Notice that ``local_data.value`` is not present for any thread until
+it is set in that thread.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'threading_local.py'))
 .. }}}
 .. {{{end}}}
 
-To initialize the settings so all threads start with the same value, use a
-subclass and set the attributes in ``__init__()``.
+To initialize the settings so all threads start with the same value,
+use a subclass and set the attributes in ``__init__()``.
 
 .. include:: threading_local_defaults.py
     :literal:
     :start-after: #end_pymotw_header
 
-The output shows that ``__init__()`` is invoked on the same object (note the id()
-value), once in each thread.
+The output shows that ``__init__()`` is invoked on the same object
+(note the ``id()`` value), once in each thread.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'threading_local_defaults.py'))

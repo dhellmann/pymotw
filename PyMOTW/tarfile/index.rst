@@ -8,19 +8,24 @@ tarfile -- Tar archive access
 :Purpose: Tar archive access.
 :Python Version: 2.3 and later
 
-The :mod:`tarfile` module provides read and write access to UNIX tar archives, including compressed files.  In addition to the POSIX standards, several GNU tar extensions are supported.  Various UNIX special file types (hard and soft links, device nodes, etc.) are also handled.
+The :mod:`tarfile` module provides read and write access to UNIX tar
+archives, including compressed files.  In addition to the POSIX
+standards, several GNU tar extensions are supported.  Various UNIX
+special file types (hard and soft links, device nodes, etc.) are also
+handled.
 
 Testing Tar Files
 =================
 
-The is_tarfile() function returns a boolean indicating whether or not the
-filename passed as an argument refers to a valid tar file.
+The :func:`is_tarfile()` function returns a boolean indicating whether
+or not the filename passed as an argument refers to a valid tar file.
 
 .. include:: tarfile_is_tarfile.py
     :literal:
     :start-after: #end_pymotw_header
 
-Notice that if the file does not exist, is_tarfile() raises an IOError.
+If the file does not exist, :func:`is_tarfile()` raises an
+:ref:`IOError <exceptions-IOError>`.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'tarfile_is_tarfile.py'))
@@ -30,22 +35,28 @@ Notice that if the file does not exist, is_tarfile() raises an IOError.
 Reading Meta-data from an Archive
 =================================
 
-Use the TarFile class to work directly with a tar archive. It supports methods for reading data about existing archives as well as modifying the archives by adding additional files.
+Use the :class:`TarFile` class to work directly with a tar archive. It
+supports methods for reading data about existing archives as well as
+modifying the archives by adding additional files.
 
-To read the names of the files in an existing archive, use getnames():
+To read the names of the files in an existing archive, use
+:func:`getnames()`:
 
 .. include:: tarfile_getnames.py
     :literal:
     :start-after: #end_pymotw_header
 
-The return value is a list of strings with the names of the archive contents:
+The return value is a list of strings with the names of the archive
+contents:
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'tarfile_getnames.py'))
 .. }}}
 .. {{{end}}}
 
-In addition to names, meta-data about the archive members is available as instances of TarInfo objects.  Load the meta-data via getmembers() and getmember().
+In addition to names, meta-data about the archive members is available
+as instances of :class:`TarInfo` objects.  Load the meta-data via
+:func:`getmembers()` and :func:`getmember()`.
 
 .. include:: tarfile_getmembers.py
     :literal:
@@ -57,13 +68,15 @@ In addition to names, meta-data about the archive members is available as instan
 .. {{{end}}}
 
 
-If you know in advance the name of the archive member, you can retrieve its TarInfo object with getmember().
+If you know in advance the name of the archive member, you can
+retrieve its :class:`TarInfo` object with :func:`getmember()`.
 
 .. include:: tarfile_getmember.py
     :literal:
     :start-after: #end_pymotw_header
 
-If the archive member is not present, getmember() raises a KeyError.
+If the archive member is not present, :func:`getmember()` raises a
+:ref:`KeyError <exceptions-KeyError>`.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'tarfile_getmember.py'))
@@ -73,7 +86,8 @@ If the archive member is not present, getmember() raises a KeyError.
 Extracting Files From an Archive
 ================================
 
-To access the data from an archive member within your program, use the extractfile() method, passing the member's name.
+To access the data from an archive member within your program, use the
+:func:`extractfile()` method, passing the member's name.
 
 .. include:: tarfile_extractfile.py
     :literal:
@@ -84,7 +98,8 @@ To access the data from an archive member within your program, use the extractfi
 .. }}}
 .. {{{end}}}
 
-If you just want to unpack the archive and write the files to the filesystem, use extract() or extractall() instead.
+If you just want to unpack the archive and write the files to the
+filesystem, use :func:`extract()` or :func:`extractall()` instead.
 
 .. include:: tarfile_extract.py
     :literal:
@@ -97,7 +112,11 @@ If you just want to unpack the archive and write the files to the filesystem, us
 .. }}}
 .. {{{end}}}
 
-.. note:: The standard library documentation includes a note stating that extractall() is safer than extract(), and it should be used in most cases.
+.. note:: 
+
+    The standard library documentation includes a note stating that
+    :func:`extractall()` is safer than :func:`extract()`, and it
+    should be used in most cases.
 
 .. include:: tarfile_extractall.py
     :literal:
@@ -110,7 +129,8 @@ If you just want to unpack the archive and write the files to the filesystem, us
 .. }}}
 .. {{{end}}}
 
-If you only want to extract certain files from the archive, their names can be passed to extractall().
+If you only want to extract certain files from the archive, their
+names can be passed to :func:`extractall()`.
 
 .. include:: tarfile_extractall_members.py
     :literal:
@@ -126,7 +146,9 @@ If you only want to extract certain files from the archive, their names can be p
 Creating New Archives
 =====================
 
-To create a new archive, simply open the TarFile with a mode of ``'w'``. Any existing file is truncated and a new archive is started. To add files, use the add() method.
+To create a new archive, simply open the :class:`TarFile` with a mode
+of ``'w'``. Any existing file is truncated and a new archive is
+started. To add files, use the :func:`add()` method.
 
 .. include:: tarfile_add.py
     :literal:
@@ -142,7 +164,9 @@ To create a new archive, simply open the TarFile with a mode of ``'w'``. Any exi
 Using Alternate Archive Member Names
 ====================================
 
-It is possible to add a file to an archive using a name other than the original file name, by constructing a TarInfo object with an alternate *arcname* and passing it to addfile().
+It is possible to add a file to an archive using a name other than the
+original file name, by constructing a :class:`TarInfo` object with an
+alternate *arcname* and passing it to :func:`addfile()`.
 
 .. include:: tarfile_addfile.py
     :literal:
@@ -158,13 +182,19 @@ The archive includes only the changed filename:
 Writing Data from Sources Other Than Files
 ==========================================
 
-Sometimes you want to write data to an archive but the data is not in a file on the filesystem. Rather than writing the data to a file, then adding that file to the ZIP archive, you can use addfile() to add data from an open file-like handle.
+Sometimes you want to write data to an archive but the data is not in
+a file on the filesystem. Rather than writing the data to a file, then
+adding that file to the archive, you can use :func:`addfile()` to add
+data from an open file-like handle.
 
 .. include:: tarfile_addfile_string.py
     :literal:
     :start-after: #end_pymotw_header
 
-By first constructing a TarInfo object ourselves, we can give the archive member any name we wish.  After setting the size, we can write the data to the archive using addfile() and passing a :mod:`StringIO` buffer as a source of the data.
+By first constructing a :class:`TarInfo` object ourselves, we can give
+the archive member any name we wish.  After setting the size, we can
+write the data to the archive using :func:`addfile()` and passing a
+:mod:`StringIO` buffer as a source of the data.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'tarfile_addfile_string.py'))
@@ -174,13 +204,14 @@ By first constructing a TarInfo object ourselves, we can give the archive member
 Appending to Archives
 =====================
 
-In addition to creating new archives, it is possible to append to an existing file. To open a file to append to it, use mode ``'a'``.
+In addition to creating new archives, it is possible to append to an
+existing file. To open a file to append to it, use mode ``'a'``.
 
 .. include:: tarfile_append.py
     :literal:
     :start-after: #end_pymotw_header
 
-The resulting archive ends up with 2 members:
+The resulting archive ends up with two members:
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'tarfile_append.py'))
@@ -190,13 +221,19 @@ The resulting archive ends up with 2 members:
 Working with Compressed Archives
 ================================
 
-Besides regular tar archive files, the tarfile module can work with archives compressed via the gzip or bzip2 protocols.  To open a compressed archive, modify the mode string passed to open() to include ``":gz"`` or ``":bz2"``, depending on the compression method you want to use.  
+Besides regular tar archive files, the :mod:`tarfile` module can work
+with archives compressed via the gzip or bzip2 protocols.  To open a
+compressed archive, modify the mode string passed to open() to include
+``":gz"`` or ``":bz2"``, depending on the compression method you want
+to use.
 
 .. include:: tarfile_compression.py
     :literal:
     :start-after: #end_pymotw_header
 
-When opening an existing archive for reading, you can specify ``"r:*"`` to have tarfile determine the compression method to use automatically.
+When opening an existing archive for reading, you can specify
+``"r:*"`` to have :mod:`tarfile` determine the compression method to
+use automatically.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'tarfile_compression.py'))

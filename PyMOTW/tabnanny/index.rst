@@ -9,15 +9,16 @@ tabnanny -- Indentation validator
 :Python Version: 2.1.3 and later
 
 Consistent use of indentation is important in a langauge like Python,
-where white-space is significant.  The tabnanny module provides a
-scanner to report on "ambiguous" use of indentation.
+where white-space is significant.  The :mod:`tabnanny` module provides
+a scanner to report on "ambiguous" use of indentation.
 
 Running from the Command Line
 =============================
 
-The simplest way to use tabnanny is to run it from the command line,
-passing the names of files to check.  If you pass directory names, the
-directories are scanned recursively to find `.py` files to check.
+The simplest way to use :mod:`tabnanny` is to run it from the command
+line, passing the names of files to check.  If you pass directory
+names, the directories are scanned recursively to find `.py` files to
+check.
 
 When I ran tabnanny across the PyMOTW source code, I found one old
 module with tabs instead of spaces::
@@ -64,11 +65,11 @@ Using within Your Program
 =========================
 
 As soon as I discovered the mistake in my Queue example, I decided I
-needed to add a tabnanny check to my PyMOTW build process.  I created
-a tabcheck task in my pavement.py build script so I could run `paver
-tabcheck` and scan the code I'm working on for PyMOTW.  This is
-possible because tabnanny exposes its `check()` function as a public
-API.
+needed to add an automatic check to my PyMOTW build process.  I
+created a ``tabcheck`` task in my ``pavement.py`` build script so I
+could run `paver tabcheck` and scan the code I'm working on for
+PyMOTW.  This is possible because tabnanny exposes its `check()`
+function as a public API.
 
 Here's an example of using tabnanny that doesn't require understanding
 Paver's task definition decorators.

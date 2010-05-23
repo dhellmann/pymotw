@@ -8,25 +8,27 @@ unittest -- Automated testing framework
 :Purpose: Automated testing framework
 :Python Version: 2.1
 
-Python's unittest module, sometimes referred to as PyUnit, is based on the
-XUnit framework design by Kent Beck and Erich Gamma. The same pattern is
-repeated in many other languages, including C, perl, Java, and Smalltalk. The
-framework implemented by unittest supports fixtures, test suites, and a test
-runner to enable automated testing for your code.
+Python's :mod:`unittest` module, sometimes referred to as PyUnit, is
+based on the XUnit framework design by Kent Beck and Erich Gamma. The
+same pattern is repeated in many other languages, including C, perl,
+Java, and Smalltalk. The framework implemented by :mod:`unittest`
+supports fixtures, test suites, and a test runner to enable automated
+testing for your code.
 
 Basic Test Structure
 ====================
 
-Tests, as defined by the unittest module, have two parts: code to manage test
-"fixtures", and the test itself. Individual tests are created by subclassing
-unittest.TestCase and overriding or adding appropriate methods. For example,
+Tests, as defined by :mod:`unittest`, have two parts: code to manage
+test "fixtures", and the test itself. Individual tests are created by
+subclassing :class:`TestCase` and overriding or adding appropriate
+methods. For example,
 
 .. include:: unittest_simple.py
     :literal:
     :start-after: #end_pymotw_header
 
-In this case, the SimplisticTest has a single test() method, which would fail
-if True is ever False. 
+In this case, the :class:`SimplisticTest` has a single :func:`test()`
+method, which would fail if True is ever False.
 
 Running Tests
 =============
@@ -85,12 +87,13 @@ output.
 .. {{{end}}}
 
 
-In the example above, testFail() fails and the traceback shows the line with
-the failure code. It is up to the person reading the test output to look at
-the code to figure out the semantic meaning of the failed test, though. To
-make it easier to understand the nature of a test failure, the fail*() and
-assert*() methods all accept an argument msg, which can be used to produce a
-more detailed error message.
+In the example above, :func:`testFail()` fails and the traceback shows
+the line with the failure code. It is up to the person reading the
+test output to look at the code to figure out the semantic meaning of
+the failed test, though. To make it easier to understand the nature of
+a test failure, the :func:`fail*()` and :func:`assert*()` methods all
+accept an argument *msg*, which can be used to produce a more detailed
+error message.
 
 .. include:: unittest_failwithmessage.py
     :literal:
@@ -105,12 +108,13 @@ more detailed error message.
 Asserting Truth
 ===============
 
-Most tests assert the truth of some condition. There are a few different ways
-to write truth-checking tests, depending on the perspective of the test author
-and the desired outcome of the code being tested. If the code produces a value
-which can be evaluated as true, the methods failUnless() and assertTrue()
-should be used. If the code produces a false value, the methods failIf() and
-assertFalse() make more sense. 
+Most tests assert the truth of some condition. There are a few
+different ways to write truth-checking tests, depending on the
+perspective of the test author and the desired outcome of the code
+being tested. If the code produces a value which can be evaluated as
+true, the methods :func:`failUnless()` and :func:`assertTrue()` should
+be used. If the code produces a false value, the methods
+:func:`failIf()` and :func:`assertFalse()` make more sense.
 
 .. include:: unittest_truth.py
     :literal:
@@ -125,8 +129,8 @@ assertFalse() make more sense.
 Testing Equality
 ================
 
-As a special case, unittest includes methods for testing the equality of two
-values. 
+As a special case, :mod:`unittest` includes methods for testing the
+equality of two values.
 
 .. include:: unittest_equality.py
     :literal:
@@ -138,8 +142,8 @@ values.
 .. {{{end}}}
 
 
-These special tests are handy, since the values being compared appear in the
-failure message when a test fails.
+These special tests are handy, since the values being compared appear
+in the failure message when a test fails.
 
 .. include:: unittest_notequal.py
     :literal:
@@ -157,14 +161,15 @@ And when these tests are run:
 Almost Equal?
 =============
 
-In addition to strict equality, it is possible to test for near equality of
-floating point numbers using failIfAlmostEqual() and failUnlessAlmostEqual().
+In addition to strict equality, it is possible to test for near
+equality of floating point numbers using :func:`failIfAlmostEqual()`
+and :func:`failUnlessAlmostEqual()`.
 
 .. include:: unittest_almostequal.py
     :literal:
     :start-after: #end_pymotw_header
 
-The arguments are the 2 values to be compared, and the number of decimal
+The arguments are the values to be compared, and the number of decimal
 places to use for the test.
 
 .. {{{cog
@@ -175,20 +180,22 @@ places to use for the test.
 Testing for Exceptions
 ======================
 
-As previously mentioned, if a test raises an exception it is treated as an
-error in the test. This is very useful for uncovering mistakes while you are
-modifying code which has existing test coverage. There are circumstances,
-however, in which you want the test to verify that some code does produce an
-exception. For example, if an invalid value is given to an attribute of an
-object. In such cases, TestCase.failUnlessRaises() makes the code more clear
-than trapping the exception yourself. Compare these two tests:
+As previously mentioned, if a test raises an exception other than
+:ref:`AssertionError <exceptions-AssertionError>` it is treated as an
+error. This is very useful for uncovering mistakes while you are
+modifying code which has existing test coverage. There are
+circumstances, however, in which you want the test to verify that some
+code does produce an exception. For example, if an invalid value is
+given to an attribute of an object. In such cases,
+:func:`failUnlessRaises()` makes the code more clear than trapping the
+exception yourself. Compare these two tests:
 
 .. include:: unittest_exception.py
     :literal:
     :start-after: #end_pymotw_header
 
 The results for both are the same, but the second test using
-failUnlessRaises() is more succinct.
+:func:`failUnlessRaises()` is more succinct.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'unittest_exception.py -v'))
@@ -199,14 +206,15 @@ failUnlessRaises() is more succinct.
 Test Fixtures
 =============
 
-Fixtures are resources needed by a test. For example, if you are writing
-several tests for the same class, those tests all need an instance of that
-class to use for testing. Other test fixtures include database connections and
-temporary files (many people would argue that using external resources makes
-such tests not "unit" tests, but they are still tests and still useful).
-TestCase includes a special hook to configure and clean up any fixtures needed
-by your tests. To configure the fixtures, override setUp(). To clean up,
-override tearDown().
+Fixtures are resources needed by a test. For example, if you are
+writing several tests for the same class, those tests all need an
+instance of that class to use for testing. Other test fixtures include
+database connections and temporary files (many people would argue that
+using external resources makes such tests not "unit" tests, but they
+are still tests and still useful).  :class:`TestCase` includes a
+special hook to configure and clean up any fixtures needed by your
+tests. To configure the fixtures, override :func:`setUp()`. To clean
+up, override :func:`tearDown()`.
 
 .. include:: unittest_fixtures.py
     :literal:
@@ -224,13 +232,13 @@ fixture and test methods:
 Test Suites
 ===========
 
-The standard library documentation describes how to organize test suites
-manually. I generally do not use test suites directly, because I prefer to
-build the suites automatically (these are automated tests, after all).
-Automating the construction of test suites is especially useful for large code
-bases, in which related tests are not all in the same place. Tools such as
-nose and Proctor make it easier to manage tests when they are spread over
-multiple files and directories.
+The standard library documentation describes how to organize test
+suites manually. I generally do not use test suites directly, because
+I prefer to build the suites automatically (these are automated tests,
+after all).  Automating the construction of test suites is especially
+useful for large code bases, in which related tests are not all in the
+same place. Tools such as nose make it easier to manage tests when
+they are spread over multiple files and directories.
 
 .. seealso::
 
@@ -241,8 +249,8 @@ multiple files and directories.
         An alternate means of running tests embedded in docstrings or 
         external documentation files.
 
-    `Proctor <http://www.doughellmann.com/projects/Proctor/>`_
-        A simple test discovery and runner tool.
-
     `nose <http://somethingaboutorange.com/mrl/projects/nose/>`_
         A more sophisticated test manager.
+
+    `unittest2 <http://pypi.python.org/pypi/unittest2>`_
+        Ongoing improvements to :mod:`unittest`

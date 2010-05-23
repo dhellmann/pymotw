@@ -121,6 +121,9 @@ whether the caller catches and ignores it or not.
     :mod:`profile`
         The profile module documentation shows how to use a ready-made profiler.
 
+    :mod:`trace`
+        The trace module implements several code analysis features.
+
     `Types and Members <http://docs.python.org/library/inspect.html#types-and-members>`_
         The descriptions of frame and code objects and their attributes.
 

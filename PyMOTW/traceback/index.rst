@@ -8,36 +8,39 @@ traceback -- Extract, format, and print exceptions and stack traces.
 :Purpose: Extract, format, and print exceptions and stack traces.
 :Python Version: 1.4 and later, with modifications over time
 
-The traceback module works with the call stack to produce error messages. A
-traceback is a stack trace from the point of an exception handler down the
-call chain to the point where the exception was raised. You can also work with
-the current call stack up from the point of a call (and without the context of
-an error), which is useful for finding out the paths being followed into a
-function.
+The :mod:`traceback` module works with the call stack to produce error
+messages. A traceback is a stack trace from the point of an exception
+handler down the call chain to the point where the exception was
+raised. You can also work with the current call stack up from the
+point of a call (and without the context of an error), which is useful
+for finding out the paths being followed into a function.
 
-The functions in the traceback module fall into several common categories.
-There are functions for extracting raw tracebacks from the current runtime
-environment (either an exception handler for a traceback, or the regular
-stack). The extracted stack trace is a sequence of tuples containing the
-filename, line number, function name, and text of the source line.
+The functions in :mod:`traceback` fall into several common categories.
+There are functions for extracting raw tracebacks from the current
+runtime environment (either an exception handler for a traceback, or
+the regular stack). The extracted stack trace is a sequence of tuples
+containing the filename, line number, function name, and text of the
+source line.
 
 Once extracted, the stack trace can be formatted using functions like
-format_exception, format_stack, etc. The format functions return a list of
-strings with messages formatted to be printed. There are shorthand functions
-for printing the formatted values, as well.
+:func:`format_exception()`, :func:`format_stack()`, etc. The format
+functions return a list of strings with messages formatted to be
+printed. There are shorthand functions for printing the formatted
+values, as well.
 
-Although the functions in traceback mimic the behavior of the interactive
-interpreter by default, they also are useful for handling exceptions in
-situations where dumping the full stack trace to stderr is not desirable. For
-example, a web application may need to format the traceback so it looks good
-in HTML. An IDE may convert the elements of the stack trace into a clickable
-list that lets the user browse the source. 
+Although the functions in :mod:`traceback` mimic the behavior of the
+interactive interpreter by default, they also are useful for handling
+exceptions in situations where dumping the full stack trace to stderr
+is not desirable. For example, a web application may need to format
+the traceback so it looks good in HTML. An IDE may convert the
+elements of the stack trace into a clickable list that lets the user
+browse the source.
 
 Supporting Functions
 ====================
 
-The examples below use the module traceback_example.py (provided in the source
-package for PyMOTW). The contents are:
+The examples below use the module traceback_example.py (provided in
+the source package for PyMOTW). The contents are:
 
 .. include:: traceback_example.py
     :literal:
@@ -47,26 +50,26 @@ package for PyMOTW). The contents are:
 Working With Exceptions
 =======================
 
-The simplest way to handle exception reporting is with print_exc(). It uses
-sys.exc_info() to obtain the exception information for the current thread,
-formats the results, and prints the text to a file handle (sys.stderr, by
-default).
+The simplest way to handle exception reporting is with
+:func:`print_exc()`. It uses :func:`sys.exc_info()` to obtain the
+exception information for the current thread, formats the results, and
+prints the text to a file handle (``sys.stderr``, by default).
 
 .. include:: traceback_print_exc.py
     :literal:
     :start-after: #end_pymotw_header
 
 
-In this example, the file handle for sys.stdout is substituted so the
-informational and traceback messages are mingled correctly:
+In this example, the file handle for ``sys.stdout`` is substituted so
+the informational and traceback messages are mingled correctly:
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'traceback_print_exc.py'))
 .. }}}
 .. {{{end}}}
 
-print_exc() is just a shortcut for print_exception(), which requires explicit
-arguments:
+``print_exc()`` is just a shortcut for :func:`print_exception()`,
+which requires explicit arguments:
 
 .. include:: traceback_print_exception.py
     :literal:
@@ -78,7 +81,7 @@ arguments:
 .. {{{end}}}
 
 
-And print_exception() uses format_exception():
+And :func:`print_exception()` uses :func:`format_exception()`:
 
 .. include:: traceback_format_exception.py
     :literal:
@@ -142,3 +145,6 @@ extract_stack()
 
     :mod:`inspect`
         The inspect module includes other functions for probing the frames on the stack.
+
+    :mod:`cgitb`
+        Another module for formatting tracebacks nicely.
