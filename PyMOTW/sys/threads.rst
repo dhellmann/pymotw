@@ -4,22 +4,41 @@
 Low-level Thread Support
 ========================
 
-:mod:`sys` includes low-level functions for controlling and debugging thread behavior.
+:mod:`sys` includes low-level functions for controlling and debugging
+thread behavior.
 
 Check Interval
 ==============
 
-Python uses a form of cooperative multitasking in its thread implementation.  At a fixed interval, bytecode execution is paused and the interpreter checks if any signal handlers need to be executed.  During the same interval check, the global interpreter lock is also released by the current thread and then reacquired, giving other threads an opportunity to take over execution by grabbing the lock first.
+Python 2 uses a form of cooperative multitasking in its thread
+implementation.  At a fixed interval, bytecode execution is paused and
+the interpreter checks if any signal handlers need to be executed.
+During the same interval check, the global interpreter lock is also
+released by the current thread and then reacquired, giving other
+threads an opportunity to take over execution by grabbing the lock
+first.
 
-The default check interval is 100 bytecodes and the current value can always be retrieved with ``sys.getcheckinterval()``.  Changing the interval with ``sys.setcheckinterval()`` may have an impact on the performance of your application, depending on the nature of the operations being performed.
+The default check interval is 100 bytecodes and the current value can
+always be retrieved with ``sys.getcheckinterval()``.  Changing the
+interval with ``sys.setcheckinterval()`` may have an impact on the
+performance of your application, depending on the nature of the
+operations being performed.
 
 .. include:: sys_checkinterval.py
     :literal:
     :start-after: #end_pymotw_header
 
-When the check interval is smaller than the number of bytecodes in a thread, the interpreter may give another thread control so that it runs for a while.  This is illustrated in the first set of output where the check interval is set to 100 (the default) and 1000 extra loop iterations are performed for each step through the ``i`` loop.
+When the check interval is smaller than the number of bytecodes in a
+thread, the interpreter may give another thread control so that it
+runs for a while.  This is illustrated in the first set of output
+where the check interval is set to 100 (the default) and 1000 extra
+loop iterations are performed for each step through the ``i`` loop.
 
-On the other hand, when the check interval is *greater* than the number of bytecodes being executed by a thread that doesn't release control for another reason, the thread will finish its work before the interval comes up.  This is illustrated by the order of the name values in the queue in the second example.
+On the other hand, when the check interval is *greater* than the
+number of bytecodes being executed by a thread that doesn't release
+control for another reason, the thread will finish its work before the
+interval comes up.  This is illustrated by the order of the name
+values in the queue in the second example.
 
 
 ::
@@ -60,13 +79,19 @@ On the other hand, when the check interval is *greater* than the number of bytec
     Custom T2
 
 
-Modifying the check interval is not as clearly useful as it might seem.  Many other factors may control the context switching behavior of Python's threads.  For example, if a thread performs I/O, it releases the GIL and may therefore allow another thread to take over execution.
+Modifying the check interval is not as clearly useful as it might
+seem.  Many other factors may control the context switching behavior
+of Python's threads.  For example, if a thread performs I/O, it
+releases the GIL and may therefore allow another thread to take over
+execution.
 
 .. include:: sys_checkinterval_io.py
     :literal:
     :start-after: #end_pymotw_header
 
-This example is modified from the first so that the thread prints directly to ``sys.stdout`` instead of appending to a queue.  The output is much less predictable.
+This example is modified from the first so that the thread prints
+directly to ``sys.stdout`` instead of appending to a queue.  The
+output is much less predictable.
 
 ::
 
@@ -109,20 +134,29 @@ This example is modified from the first so that the thread prints directly to ``
 .. seealso::
 
     :mod:`dis`
-        Disassembling your Python code with the dis module is one way to count bytecodes.
+        Disassembling your Python code with the dis module is one way
+        to count bytecodes.
 
 
 Debugging
 =========
 
-Identifying deadlocks can be on of the most difficult aspects of working with threads.  ``sys._current_frames()`` can help by showing exactly where a thread is stopped.
+Identifying deadlocks can be on of the most difficult aspects of
+working with threads.  ``sys._current_frames()`` can help by showing
+exactly where a thread is stopped.
 
 .. literalinclude:: sys_current_frames.py
     :linenos:
 
-The dictionary returned by ``sys._current_frames()`` is keyed on the thread identifier, rather than its name.  We have to do a little work to map those identifiers back to the thread object we created.
+The dictionary returned by ``sys._current_frames()`` is keyed on the
+thread identifier, rather than its name.  We have to do a little work
+to map those identifiers back to the thread object we created.
 
-Since Thread-1 does not sleep, it finishes before we check its status.  Since it is no longer active, it does not appear in the output.  Thread-2 acquires the lock "blocker", then sleeps for a short period.  Meanwhile Thread-3 tries to acquire blocker but cannot because Thread-2 already has it.
+Since **Thread-1** does not sleep, it finishes before we check its
+status.  Since it is no longer active, it does not appear in the
+output.  **Thread-2** acquires the lock *blocker*, then sleeps for a
+short period.  Meanwhile **Thread-3** tries to acquire *blocker* but
+cannot because **Thread-2** already has it.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_current_frames.py'))

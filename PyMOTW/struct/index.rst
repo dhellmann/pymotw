@@ -85,10 +85,10 @@ Buffers
 
 Working with binary packed data is typically reserved for highly
 performance sensitive situations or passing data into and out of
-extension modules.  In situations where performance is important, you
-can optimize by avoiding the overhead of allocating a new buffer for
-each packed structure.  The :meth:`pack_into` and :meth:`unpack_from`
-methods support writing to pre-allocated buffers directly.
+extension modules.  In such situations, you can optimize by avoiding
+the overhead of allocating a new buffer for each packed structure.
+The :meth:`pack_into` and :meth:`unpack_from` methods support writing
+to pre-allocated buffers directly.
 
 .. include:: struct_buffers.py
     :literal:

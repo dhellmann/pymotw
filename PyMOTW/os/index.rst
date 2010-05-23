@@ -410,6 +410,7 @@ listing.
 .. }}}
 .. {{{end}}}
 
+.. _os-system:
 
 Running External Commands
 =========================

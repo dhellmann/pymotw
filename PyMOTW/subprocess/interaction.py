@@ -42,7 +42,8 @@ for i in range(10):
     proc.stdin.write('%d\n' % i)
     output = proc.stdout.readline()
     print output.rstrip()
-proc.communicate()
+remainder = proc.communicate()[0]
+print remainder
 
 print
 print 'All output at once:'
