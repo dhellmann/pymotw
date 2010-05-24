@@ -8,8 +8,9 @@ urllib -- simple interface for network resource access
 :Purpose: Accessing remote resources that don't need authentication, cookies, etc.
 :Python Version: 1.4 and later
 
-The urllib module provides a simple interface for network resource access. Although urllib
-can be used with gopher and ftp, these examples all use http.
+The :mod:`urllib` module provides a simple interface for network
+resource access. Although :mod:`urllib` can be used with gopher and
+ftp, these examples all use http.
 
 HTTP GET
 ========
@@ -20,18 +21,20 @@ HTTP GET
     PyMOTW examples for :mod:`BaseHTTPServer`. Start the server in one
     terminal window, then run these examples in another.
 
-An HTTP GET operation is the simplest use of urllib. Simply pass the URL to
-urlopen() to get a "file-like" handle to the remote data.
+An HTTP GET operation is the simplest use of urllib. Simply pass the
+URL to :func:`urlopen()` to get a "file-like" handle to the remote
+data.
 
 .. include:: urllib_urlopen.py
     :literal:
     :start-after: #end_pymotw_header
 
 
-The example server takes the incoming values and formats a plain text response
-to send back. The return value from urlopen() gives access to the headers from
-the HTTP server through the info() method, and the data for the remote
-resource via methods like read() and readlines().
+The example server takes the incoming values and formats a plain text
+response to send back. The return value from :func:`urlopen()` gives
+access to the headers from the HTTP server through the :func:`info()`
+method, and the data for the remote resource via methods like
+:func:`read()` and :func:`readlines()`.
 
 ::
 
@@ -87,6 +90,7 @@ example strips them before printing the output.
     sys_version=Python/2.5.1
     protocol_version=HTTP/1.0
 
+.. _urllib-urlencode:
 
 Encoding Arguments
 ==================
@@ -118,8 +122,9 @@ query arguments.
     sys_version=Python/2.5.1
     protocol_version=HTTP/1.0
 
-To pass a sequence of values using separate occurrences of the variable in the
-query string, pass doseq=True to urlencode().
+To pass a sequence of values using separate occurrences of the
+variable in the query string, set *doseq* to True when calling
+:func:`urlencode()`.
 
 .. include:: urllib_urlencode_doseq.py
     :literal:
@@ -132,18 +137,21 @@ query string, pass doseq=True to urlencode().
     Sequence: foo=foo1&foo=foo2
 
 
-To decode the query string, see the FieldStorage class from the cgi module.
+To decode the query string, see the :class:`FieldStorage` class from
+the :mod:`cgi` module.
 
-Special characters within the query arguments that might cause parse problems
-with the URL on the server side are "quoted" when passed to urlencode(). To
-quote them locally to make safe versions of the strings, you can use the
-quote() or quote_plus() functions directly.
+Special characters within the query arguments that might cause parse
+problems with the URL on the server side are "quoted" when passed to
+:func:`urlencode()`. To quote them locally to make safe versions of
+the strings, you can use the :func:`quote()` or :func:`quote_plus()`
+functions directly.
 
 .. include:: urllib_quote.py
     :literal:
     :start-after: #end_pymotw_header
 
-Notice that quote_plus() is more aggressive about the characters it replaces.
+Notice that :func:`quote_plus()` is more aggressive about the
+characters it replaces.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'urllib_quote.py'))
@@ -151,8 +159,8 @@ Notice that quote_plus() is more aggressive about the characters it replaces.
 .. {{{end}}}
 
 
-To reverse the quote operations, use unquote() or unquote_plus(), as
-appropriate.
+To reverse the quote operations, use :func:`unquote()` or
+:func:`unquote_plus()`, as appropriate.
 
 .. include:: urllib_unquote.py
     :literal:
@@ -173,8 +181,9 @@ HTTP POST
     PyMOTW examples for the :mod:`BaseHTTPServer`. Start the server in one
     terminal window, then run these examples in another.
 
-To POST data to the remote server, instead of using GET, simply pass the
-encoded query arguments as data to urlopen().
+To POST data to the remote server, instead of using GET, pass the
+encoded query arguments as data to :func:`urlopen()` instead of
+appending them to the URL.
 
 .. include:: urllib_urlopen_post.py
     :literal:
@@ -190,18 +199,20 @@ encoded query arguments as data to urlopen().
         foo=bar
 
 
-You can send any byte-string as data, if the server expects something other
-than url-encoded form arguments in the posted data.
+You can send any byte-string as data, in case the server expects
+something other than url-encoded form arguments in the posted data.
 
 Paths vs. URLs
 ==============
 
-Some operating systems use different values for separating the components of
-paths in local files than URLs. To make your code portable, you should use the
-functions pathname2url() and url2pathname() to convert back and forth. Since I
-am working on a Mac, I have to explicitly import the Windows versions of the
-functions. Using the versions of the functions exported by urllib gives you
-the correct defaults for your platform, so you do not need to do this.
+Some operating systems use different values for separating the
+components of paths in local files than URLs. To make your code
+portable, you should use the functions :func:`pathname2url()` and
+:func:`url2pathname()` to convert back and forth. Since I am working
+on a Mac, I have to explicitly import the Windows versions of the
+functions. Using the versions of the functions exported by
+:mod:`urllib` gives you the correct defaults for your platform, so you
+do not need to do this.
 
 .. include:: urllib_pathnames.py
     :literal:
@@ -220,13 +231,14 @@ prefix of the path.
 Simple Retrieval with Cache
 ===========================
 
-Retrieving data is a common operation, and urllib includes the urlretrieve()
-function so you don't have to write your own. urlretrieve() takes arguments
-for the URL, a temporary file to hold the data, a function to report on
-download progress, and data to pass if the URL refers to a form where data
-should be POSTed. If no filename is given, urlretrieve() creates a temporary
-file. You can delete the file yourself, or treat the file as a cache and use
-urlcleanup() to remove it.
+Retrieving data is a common operation, and :mod:`urllib` includes the
+:func:`urlretrieve()` function so you don't have to write your
+own. :func:`urlretrieve()` takes arguments for the URL, a temporary
+file to hold the data, a function to report on download progress, and
+data to pass if the URL refers to a form where data should be
+POSTed. If no filename is given, :func:`urlretrieve()` creates a
+temporary file. You can delete the file yourself, or treat the file as
+a cache and use :func:`urlcleanup()` to remove it.
 
 This example uses GET to retrieve some data from a web server:
 
@@ -235,9 +247,9 @@ This example uses GET to retrieve some data from a web server:
     :start-after: #end_pymotw_header
 
 
-Since the server does not return a Content-length header, urlretrieve() does
-not know how big the data should be, and passes -1 as the total_size argument
-to reporthook().
+Since the server does not return a ``Content-length`` header,
+:func:`urlretrieve()` does not know how big the data should be, and
+passes -1 as the *total_size* argument to :func:`reporthook()`.
 
 ::
 
@@ -281,10 +293,11 @@ to reporthook().
 URLopener
 =========
 
-urllib provides a URLopener base class, and FancyURLopener with default
-handling for the supported protocols. If you find yourself needing to change
-their behavior, you are probably better off looking at the urllib2 module,
-added in Python 2.1 (to be covered in a future PyMOTW).
+:mod:`urllib` provides a :class:`URLopener` base class, and
+:class:`FancyURLopener` with default handling for the supported
+protocols. If you find yourself needing to change their behavior, you
+are probably better off looking at the :mod:`urllib2` module, added in
+Python 2.1.
 
 .. seealso::
 
