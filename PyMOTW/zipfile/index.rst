@@ -8,26 +8,27 @@ zipfile -- Read and write ZIP archive files
 :Purpose: Read and write ZIP archive files.
 :Python Version: 1.6 and later
 
-The zipfile module can be used to manipulate ZIP archive files. 
+The :mod:`zipfile` module can be used to manipulate ZIP archive files.
 
 Limitations
 ===========
 
-The zipfile module does not support ZIP files with appended comments, or
-multi-disk ZIP files. It does support ZIP files larger than 4 GB that use the
-ZIP64 extensions.
+The :mod:`zipfile` module does not support ZIP files with appended
+comments, or multi-disk ZIP files. It does support ZIP files larger
+than 4 GB that use the ZIP64 extensions.
 
 Testing ZIP Files
 =================
 
-The is_zipfile() function returns a boolean indicating whether or not the
-filename passed as an argument refers to a valid ZIP file.
+The :func:`is_zipfile()` function returns a boolean indicating whether
+or not the filename passed as an argument refers to a valid ZIP file.
 
 .. include:: zipfile_is_zipfile.py
     :literal:
     :start-after: #end_pymotw_header
 
-Notice that if the file does not exist, is_zipfile() returns False.
+Notice that if the file does not exist at all, :func:`is_zipfile()`
+returns False.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'zipfile_is_zipfile.py'))
@@ -37,48 +38,51 @@ Notice that if the file does not exist, is_zipfile() returns False.
 Reading Meta-data from a ZIP Archive
 ====================================
 
-Use the ZipFile class to work directly with a ZIP archive. It supports methods
-for reading data about existing archives as well as modifying the archives by
-adding additional files.
+Use the :class:`ZipFile` class to work directly with a ZIP archive. It
+supports methods for reading data about existing archives as well as
+modifying the archives by adding additional files.
 
-To read the names of the files in an existing archive, use namelist():
+To read the names of the files in an existing archive, use
+:func:`namelist()`:
 
 .. include:: zipfile_namelist.py
     :literal:
     :start-after: #end_pymotw_header
 
-The return value is a list of strings with the names of the archive contents:
+The return value is a list of strings with the names of the archive
+contents:
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'zipfile_namelist.py'))
 .. }}}
 .. {{{end}}}
 
-The list of names is only part of the information available from the archive,
-though. To access all of the meta-data about the ZIP contents, use the
-infolist() or getinfo() methods.
+The list of names is only part of the information available from the
+archive, though. To access all of the meta-data about the ZIP
+contents, use the :func:`infolist()` or :func:`getinfo()` methods.
 
 .. include:: zipfile_infolist.py
     :literal:
     :start-after: #end_pymotw_header
 
-There are additional fields other than those printed here, but deciphering the
-values into anything useful requires careful reading of the PKZIP Application
-Note with the ZIP file specification.
+There are additional fields other than those printed here, but
+deciphering the values into anything useful requires careful reading
+of the `PKZIP Application Note`_ with the ZIP file specification.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'zipfile_infolist.py'))
 .. }}}
 .. {{{end}}}
 
-If you know in advance the name of the archive member, you can retrieve its
-ZipInfo object with getinfo().
+If you know in advance the name of the archive member, you can
+retrieve its :class:`ZipInfo` object with :func:`getinfo()`.
 
 .. include:: zipfile_getinfo.py
     :literal:
     :start-after: #end_pymotw_header
 
-If the archive member is not present, getinfo() raises a KeyError.
+If the archive member is not present, :func:`getinfo()` raises a
+:ref:`KeyError <exceptions-KeyError>`.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'zipfile_getinfo.py'))
@@ -88,8 +92,8 @@ If the archive member is not present, getinfo() raises a KeyError.
 Extracting Archived Files From a ZIP Archive
 ============================================
 
-To access the data from an archive member, use the read() method, passing the
-member's name.
+To access the data from an archive member, use the :func:`read()`
+method, passing the member's name.
 
 .. include:: zipfile_read.py
     :literal:
@@ -105,9 +109,9 @@ The data is automatically decompressed for you, if necessary.
 Creating New Archives
 =====================
 
-To create a new archive, simple instantiate the ZipFile with a mode of 'w'.
-Any existing file is truncated and a new archive is started. To add files, use
-the write() method.
+To create a new archive, simple instantiate the :class:`ZipFile` with
+a mode of ``'w'``.  Any existing file is truncated and a new archive
+is started. To add files, use the :func:`write()` method.
 
 .. include:: zipfile_write.py
     :literal:
@@ -130,10 +134,10 @@ By default, the contents of the archive are not compressed:
             Compressed:     75 bytes
             Uncompressed:   75 bytes
 
-To add compression, the zlib module is required. If zlib is available, you can
-set the compression mode for individual files or for the archive as a whole
-using zipfile.ZIP_DEFLATED. The default compression mode is
-zipfile.ZIP_STORED.
+To add compression, the :mod:`zlib` module is required. If :mod:`zlib`
+is available, you can set the compression mode for individual files or
+for the archive as a whole using ``zipfile.ZIP_DEFLATED``. The default
+compression mode is ``zipfile.ZIP_STORED``.
 
 .. include:: zipfile_write_compression.py
     :literal:
@@ -161,7 +165,7 @@ Using Alternate Archive Member Names
 ====================================
 
 It is easy to add a file to an archive using a name other than the original
-file name, by passing the arcname argument to write().
+file name, by passing the arcname argument to :func:`write()`.
 
 .. include:: zipfile_write_arcname.py
     :literal:
@@ -183,18 +187,20 @@ There is no sign of the original filename in the archive:
 Writing Data from Sources Other Than Files
 ==========================================
 
-Sometimes it is necessary to write to a ZIP archive using data that did not
-come from an existing file. Rather than writing the data to a file, then
-adding that file to the ZIP archive, you can use the writestr() method to add
-a string of bytes to the archive directly.
+Sometimes it is necessary to write to a ZIP archive using data that
+did not come from an existing file. Rather than writing the data to a
+file, then adding that file to the ZIP archive, you can use the
+:func:`writestr()` method to add a string of bytes to the archive
+directly.
 
 .. include:: zipfile_writestr.py
     :literal:
     :start-after: #end_pymotw_header
 
 
-In this case, I used the compress argument to ZipFile to compress the data,
-since writestr() does not take compress as an argument.
+In this case, I used the compress argument to :class:`ZipFile` to
+compress the data, since :func:`writestr()` does not take compress as
+an argument.
 
 ::
 
@@ -212,16 +218,17 @@ This data did not exist in a file before being added to the ZIP file
 Writing with a ZipInfo Instance
 ===============================
 
-By default, the modification date is computed for you when you add a file or
-string to the archive. When using writestr(), it is also possible to pass a
-ZipInfo instance to define that and other meta-data yourself.
+Normally, the modification date is computed for you when you add a
+file or string to the archive. When using :func:`writestr()`, you can
+also pass a :class:`ZipInfo` instance to define the modification date
+and other meta-data yourself.
 
 .. include:: zipfile_writestr_zipinfo.py
     :literal:
     :start-after: #end_pymotw_header
 
 In this example, I set the modified time to the current time, compress the
-data, provide a false value for create_system, and add a comment.
+data, provide a false value for ``create_system``, and add a comment.
 
 ::
 
@@ -237,9 +244,10 @@ data, provide a false value for create_system, and add a comment.
 Appending to Files
 ==================
 
-In addition to creating new archives, it is possible to append to an existing
-archive or add an archive at the end of an existing file (such as a .exe file
-for a self-extracting archive). To open a file to append to it, use mode 'a'.
+In addition to creating new archives, it is possible to append to an
+existing archive or add an archive at the end of an existing file
+(such as a .exe file for a self-extracting archive). To open a file to
+append to it, use mode ``'a'``.
 
 .. include:: zipfile_append.py
     :literal:
@@ -281,19 +289,22 @@ The resulting archive ends up with 2 members:
 Python ZIP Archives
 ===================
 
-Since version 2.3 Python has had the ability to import modules from inside ZIP
-archives if those archives appear in sys.path. The zipfile.PyZipFile class can
-be used to construct a module suitable for use in this way. When you use the
-extra method writepy(), PyZipFile scans a directory for .py files and adds the
-corresponding .pyo or .pyc file to the archive. If neither compiled form
-exists, a .pyc file is created and added.
+Since version 2.3 Python has had the ability to :ref:`import modules
+from inside ZIP archives <zipimport>` if those archives appear in
+:ref:`sys.path <sys-path>`. The :class:`PyZipFile` class can be used
+to construct a module suitable for use in this way. When you use the
+extra method :func:`writepy()`, :class:`PyZipFile` scans a directory
+for ``.py`` files and adds the corresponding ``.pyo`` or ``.pyc`` file
+to the archive. If neither compiled form exists, a ``.pyc`` file is
+created and added.
 
 .. include:: zipfile_pyzipfile.py
     :literal:
     :start-after: #end_pymotw_header
 
-When I set the debug attribute of the PyZipFile to 3, verbose debugging is
-enabled and you can observe as it compiles each .py file it finds.
+With the debug attribute of the :class:`PyZipFile` set to 3, verbose
+debugging is enabled and you can observe as it compiles each ``.py``
+file it finds.
 
 ::
 
@@ -355,3 +366,11 @@ enabled and you can observe as it compiles each .py file it finds.
 
     :mod:`tarfile`
         Read and write tar archives
+
+    :mod:`zipimport`
+        Import Python modules from ZIP archive.
+
+    `PKZIP Application Note`_
+        Official specification for the ZIP archive format.
+
+.. _PKZIP Application Note: http://www.pkware.com/documents/casestudies/APPNOTE.TXT

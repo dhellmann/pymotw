@@ -8,12 +8,15 @@ zlib -- Low-level access to GNU zlib compression library
 :Purpose: Low-level access to GNU zlib compression library
 :Python Version: 2.5 and later
 
-The zlib module provides a lower-level interface to many of the functions in the zlib compression library from GNU.
+The :mod:`zlib` module provides a lower-level interface to many of the
+functions in the :mod:`zlib` compression library from GNU.
 
 Working with Data in Memory
 ===========================
 
-The simplest way to work with zlib requires holding all of the data to be compressed or decompressed in memory, and then using ``compress()`` and ``decompress()``.
+The simplest way to work with :mod:`zlib` requires holding all of the
+data to be compressed or decompressed in memory, and then using
+:func:`compress()` and :func:`decompress()`.
 
 .. include:: zlib_memory.py
     :literal:
@@ -24,7 +27,9 @@ The simplest way to work with zlib requires holding all of the data to be compre
 .. }}}
 .. {{{end}}}
 
-Notice that for short text, the compressed version can be longer.  While the actual results depend on the input data, for short bits of text it is interesting to observe the compression overhead.
+Notice that for short text, the compressed version can be longer.
+While the actual results depend on the input data, for short bits of
+text it is interesting to observe the compression overhead.
 
 .. include:: zlib_lengths.py
     :literal:
@@ -38,14 +43,23 @@ Notice that for short text, the compressed version can be longer.  While the act
 Working with Streams
 ====================
 
-The in-memory approach has obvious drawbacks that make it impractical for real-world use cases.  The alternative is to use Compress and Decompress objects to manipulate streams of data, so that the entire data set does not have to fit into memory.  
+The in-memory approach has obvious drawbacks that make it impractical
+for real-world use cases.  The alternative is to use :class:`Compress`
+and :class:`Decompress` objects to manipulate streams of data, so that
+the entire data set does not have to fit into memory.
 
-The simple server below responds to requests consisting of filenames by writing a compressed version of the file to the socket used to communicate with the client.  It has some artificial chunking in place to illustrate the buffering behavior that happens when the data passed to ``compress()`` or ``decompress()`` doesn't result in a complete block of compressed or uncompressed output.
+The simple server below responds to requests consisting of filenames
+by writing a compressed version of the file to the socket used to
+communicate with the client.  It has some artificial chunking in place
+to illustrate the buffering behavior that happens when the data passed
+to :func:`compress()` or :func:`decompress()` doesn't result in a
+complete block of compressed or uncompressed output.
 
 .. warning::
 
-    This server has obvious security implications.  Do not run it on a server on the
-    open internet or in any environment where security might be an issue.
+    This server has obvious security implications.  Do not run it on a
+    system on the open internet or in any environment where security
+    might be an issue.
 
 .. include:: zlib_server.py
     :literal:
@@ -59,7 +73,10 @@ The simple server below responds to requests consisting of filenames by writing 
 Mixed Content Streams
 =====================
 
-The Decompress class returned by ``decompressobj()`` can also be used in situations where compressed and uncompressed data is mixed together.  After decompressing all of the data, the ``unused_data`` attribute contains any data not used.
+The :class:`Decompress` class returned by :func:`decompressobj()` can
+also be used in situations where compressed and uncompressed data is
+mixed together.  After decompressing all of the data, the
+*unused_data* attribute contains any data not used.
 
 .. include:: zlib_mixed.py
     :literal:
@@ -74,9 +91,17 @@ The Decompress class returned by ``decompressobj()`` can also be used in situati
 Checksums
 =========
 
-In addition to compression and decompression functions, :mod:`zlib` includes two functions for computing checksums of data, ``adler32()`` and ``crc32()``.  Neither checksum is billed as cryptographically secure, and they are only intended for use for data integrity verification.
+In addition to compression and decompression functions, :mod:`zlib`
+includes two functions for computing checksums of data,
+:func:`adler32()` and :func:`crc32()`.  Neither checksum is billed as
+cryptographically secure, and they are only intended for use for data
+integrity verification.
 
-Both functions take the same arguments, a string of data and an optional value to be used as a starting point for the checksum.  They return a 32-bit signed integer value which can also be passed back on subsequent calls as a new starting point argument to produce a *running* checksum.
+Both functions take the same arguments, a string of data and an
+optional value to be used as a starting point for the checksum.  They
+return a 32-bit signed integer value which can also be passed back on
+subsequent calls as a new starting point argument to produce a
+*running* checksum.
 
 .. include:: zlib_checksums.py
     :literal:
@@ -88,7 +113,8 @@ Both functions take the same arguments, a string of data and an optional value t
 .. {{{end}}}
 
 
-The Adler32 algorithm is said to be faster than a standard CRC, but I found it to be slower in some tests.
+The Adler32 algorithm is said to be faster than a standard CRC, but I
+found it to be slower in my own tests.
 
 .. include:: zlib_checksum_tests.py
     :literal:

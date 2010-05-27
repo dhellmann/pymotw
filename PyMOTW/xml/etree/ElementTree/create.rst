@@ -4,19 +4,21 @@
  Creating XML Documents with ElementTree
 =========================================
 
-In addition to its parsing capabilities, ElementTree also supports
-creating well-formed XML documents from Element objects constructed in
-your application.  The Element class used when a document is parsed
-also knows how to generate a serialized form of its contents, which
-can then be written to a file or other data stream.
+In addition to its parsing capabilities, :mod:`xml.etree.ElementTree`
+also supports creating well-formed XML documents from :class:`Element`
+objects constructed in your application.  The :class:`Element` class
+used when a document is parsed also knows how to generate a serialized
+form of its contents, which can then be written to a file or other
+data stream.
 
 Building Element Nodes
 ======================
 
 There are three helper functions useful for creating a hierarchy of
-Element nodes.  ``Element()`` creates a standard node,
-``SubElement()`` attaches a new node to a parent, and ``Comment()``
-creates a node that serializes using XML's comment syntax.
+:class:`Element` nodes.  :func:`Element()` creates a standard node,
+:func:`SubElement()` attaches a new node to a parent, and
+:func:`Comment()` creates a node that serializes using XML's comment
+syntax.
 
 .. include:: ElementTree_create.py
    :literal:
@@ -37,13 +39,13 @@ Notice that the ``&`` character in the text of
 Pretty-Printing XML
 ===================
 
-No effort is made by ElementTree to "pretty print" the output produced
-by ``tostring()``, since adding extra whitespace changes the contents
+ElementTree makes no effort to "pretty print" the output produced by
+:func:`tostring()`, since adding extra whitespace changes the contents
 of the document.  To make the output easier to follow for human
 readers, the rest of the examples below will use `a tip I found online
 <http://renesd.blogspot.com/2007/05/pretty-print-xml-with-python.html>`_
 and re-parse the XML with :mod:`xml.dom.minidom` then use its
-``toprettyxml()`` method.
+:func:`toprettyxml()` method.
 
 .. include:: ElementTree_pretty.py
    :literal:
@@ -75,16 +77,17 @@ not set any attributes of the nodes.  Many of the examples from
 :ref:`xml.etree.ElementTree.parsing` worked with an OPML_ file listing
 podcasts and their feeds.  The ``outline`` nodes in the tree used
 attributes for the group names and podcast properties.  We can use
-ElementTree to construct a similar XML file from a CSV input file,
-setting all of the element attributes as the tree is constructed.
+:class:`ElementTree` to construct a similar XML file from a CSV input
+file, setting all of the element attributes as the tree is
+constructed.
 
 .. include:: ElementTree_csv_to_xml.py
    :literal:
    :start-after: #end_pymotw_header
 
-The attribute values can be configured one at a time with ``set()``
-(as with the ``root`` node), or all at once by passing a dictionary to
-the node factory (as with each group and podcast node).
+The attribute values can be configured one at a time with
+:func:`set()` (as with the ``root`` node), or all at once by passing a
+dictionary to the node factory (as with each group and podcast node).
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ElementTree_csv_to_xml.py'))
@@ -94,18 +97,18 @@ the node factory (as with each group and podcast node).
 Serializing XML to a Stream
 ===========================
 
-``tostring()`` actually writes to an in-memory file-like object and
-then returns a string representing the entire element tree.  When
-working with large amounts of data, it will take less memory and make
-more efficient use of the I/O libraries to write directly to a file
-handle using the ``write()`` method of ElementTree.
+:func:`tostring()` is implemented to write to an in-memory file-like
+object and then return a string representing the entire element tree.
+When working with large amounts of data, it will take less memory and
+make more efficient use of the I/O libraries to write directly to a
+file handle using the :func:`write()` method of :class:`ElementTree`.
 
 .. include:: ElementTree_write.py
    :literal:
    :start-after: #end_pymotw_header
 
-The example uses ``sys.stdout`` to write to the console, but it could
-also write to an open file or socket.
+The example uses :ref:`sys.stdout <sys-input-output>` to write to the
+console, but it could also write to an open file or socket.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ElementTree_write.py'))

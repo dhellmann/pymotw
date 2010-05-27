@@ -8,14 +8,16 @@ xmlrpclib -- Client-side library for XML-RPC communication
 :Purpose: Client-side library for XML-RPC communication.
 :Python Version: 2.2 and later
 
-We have already looked at :mod:`SimpleXMLRPCServer`, the library for creating an XML-RPC
-server. The xmlrpclib module lets you communicate from Python with any XML-RPC server written
-in any language. 
+We have already looked at :mod:`SimpleXMLRPCServer`, the library for
+creating an XML-RPC server. The :mod:`xmlrpclib` module lets you
+communicate from Python with any XML-RPC server written in any
+language.
 
 .. note::
 
-    All of the examples below use the server defined in ``xmlrpclib_server.py``, available in
-    the source distribution and repeated here for reference:
+    All of the examples below use the server defined in
+    ``xmlrpclib_server.py``, available in the source distribution and
+    repeated here for reference:
 
 .. include:: xmlrpclib_server.py
     :literal:
@@ -26,15 +28,15 @@ Connecting to a Server
 ======================
 
 The simplest way to connect a client to a server is to instantiate a
-ServerProxy object, giving it the URI of the server. For example, the demo
-server runs on port 9000 of localhost:
+:class:`ServerProxy` object, giving it the URI of the server. For
+example, the demo server runs on port 9000 of localhost:
 
 .. include:: xmlrpclib_ServerProxy.py
     :literal:
     :start-after: #end_pymotw_header
 
-In this case, the ping() method of the service takes no arguments and returns a
-single boolean value.
+In this case, the :func:`ping()` method of the service takes no
+arguments and returns a single boolean value.
 
 ::
 
@@ -42,14 +44,15 @@ single boolean value.
     Ping: True
 
 
-Other options are available to support alternate transport. Both HTTP and HTTPS
-are supported out of the box, as are basic authentication. You would only need
-to provide a transport class if your communication channel was not one of the
-supported types. It would be an interesting exercise, for example, to implement
-XML-RPC over SMTP. Not terribly useful, but interesting.
+Other options are available to support alternate transport. Both HTTP
+and HTTPS are supported out of the box, as are basic
+authentication. You would only need to provide a transport class if
+your communication channel was not one of the supported types. It
+would be an interesting exercise, for example, to implement XML-RPC
+over SMTP. Not terribly useful, but interesting.
 
-The verbose option gives you debugging information useful for working out where
-communication errors might be happening.
+The verbose option gives you debugging information useful for working
+out where communication errors might be happening.
 
 .. include:: xmlrpclib_ServerProxy_verbose.py
     :literal:
@@ -73,8 +76,8 @@ communication errors might be happening.
     body: "<?xml version='1.0'?>\n<methodResponse>\n<params>\n<param>\n<value><boolean>1</boolean></value>\n</param>\n</params>\n</methodResponse>\n"
     True
 
-You can change the default encoding from UTF-8 if you need to use an alternate
-system.
+You can change the default encoding from UTF-8 if you need to use an
+alternate system.
 
 .. include:: xmlrpclib_ServerProxy_encoding.py
     :literal:
@@ -88,16 +91,16 @@ The server should automatically detect the correct encoding.
     Ping: True
 
 
-The allow_none option controls whether Python's None value is automatically
-translated to a nil value or if it causes an error.
+The *allow_none* option controls whether Python's ``None`` value is
+automatically translated to a nil value or if it causes an error.
 
 .. include:: xmlrpclib_ServerProxy_allow_none.py
     :literal:
     :start-after: #end_pymotw_header
 
-Note that the error is raised locally if the client does not allow None, but
-can also be raised from within the server if it is not configured to allow
-None.
+The error is raised locally if the client does not allow ``None``, but
+can also be raised from within the server if it is not configured to
+allow ``None``.
 
 ::
 
@@ -122,16 +125,17 @@ None.
     TypeError: cannot marshal None unless allow_none is enabled
 
 
-The use_datetime option lets you pass :mod:`datetime` and related objects in
-to the proxy or receive them from the server. If use_datetime is False, the
-internal DateTime class is used to represent dates instead.
+The *use_datetime* option lets you pass :mod:`datetime` and related
+objects in to the proxy or receive them from the server. If
+*use_datetime* is False, the internal :class:`DateTime` class is used
+to represent dates instead.
 
 Data Types
 ==========
 
-The XML-RPC protocol recognizes a limited set of common data types. The types
-can be passed as arguments or return values and combined to create more complex
-data structures.
+The XML-RPC protocol recognizes a limited set of common data
+types. The types can be passed as arguments or return values and
+combined to create more complex data structures.
 
 .. include:: xmlrpclib_types.py
     :literal:
@@ -151,7 +155,8 @@ The simple types::
     structure             : ["{'a': 'dictionary'}", "<type 'dict'>", {'a': 'dictionary'}]
 
 
-And of course, they can be nested to create values of arbitrary complexity:
+And of course, they can be nested to create values of arbitrary
+complexity:
 
 .. include:: xmlrpclib_types_nested.py
     :literal:
@@ -211,16 +216,17 @@ Passing Objects
 ===============
 
 Instances of Python classes are treated as structures and passed as a
-dictionary, with the attributes of the object as values in the dictionary.
+dictionary, with the attributes of the object as values in the
+dictionary.
 
 .. include:: xmlrpclib_types_object.py
     :literal:
     :start-after: #end_pymotw_header
 
 
-Round-tripping the value gives a dictionary on the client, since there is
-nothing encoded in the values to tell the server (or client) that it should be
-instantiated as part of a class.
+Round-tripping the value gives a dictionary on the client, since there
+is nothing encoded in the values to tell the server (or client) that
+it should be instantiated as part of a class.
 
 ::
 
@@ -234,18 +240,19 @@ instantiated as part of a class.
 Binary Data
 ===========
 
-All values passed to the server are encoded and escaped automatically. However,
-some data types may contain characters that are not valid XML. For example,
-binary image data may include byte values in the ASCII control range 0 to 31.
-If you need to pass binary data, it is best to use the Binary class to encode
-it for transport.
+All values passed to the server are encoded and escaped
+automatically. However, some data types may contain characters that
+are not valid XML. For example, binary image data may include byte
+values in the ASCII control range 0 to 31.  If you need to pass binary
+data, it is best to use the :class:`Binary` class to encode it for
+transport.
 
 .. include:: xmlrpclib_Binary.py
     :literal:
     :start-after: #end_pymotw_header
 
-If we pass the string containing a NULL byte to show_type(), an exception is
-raised in the XML parser:
+If we pass the string containing a NULL byte to :func:`show_type()`,
+an exception is raised in the XML parser:
 
 ::
 
@@ -269,19 +276,19 @@ raised in the XML parser:
     xmlrpclib.Fault: <Fault 1: "<class 'xml.parsers.expat.ExpatError'>:not well-formed (invalid token): line 6, column 55">
 
 
-Binary data can also be used to send objects using pickles. The normal security
-issues related to sending what amounts to executable code over the wire apply
-here (i.e., don't do this unless you're sure your communication channel is
-secure).
+:class:`Binary` objects can also be used to send objects using
+:mod:`pickle`. The normal security issues related to sending what
+amounts to executable code over the wire apply here (i.e., don't do
+this unless you're sure your communication channel is secure).
 
 .. include:: xmlrpclib_Binary_pickle.py
     :literal:
     :start-after: #end_pymotw_header
 
 
-Remember, the data attribute of the Binary instance contains the pickled
-version of the object, so it has to be unpickled before it can be used. That
-results in a different object (with a new id value).
+Remember, the data attribute of the :class:`Binary` instance contains
+the pickled version of the object, so it has to be unpickled before it
+can be used. That results in a different object (with a new id value).
 
 ::
 
@@ -294,9 +301,10 @@ results in a different object (with a new id value).
 Exception Handling
 ==================
 
-Since the XML-RPC server might be written in any language, exception classes
-cannot be transmitted directly. Instead, exceptions raised in the server are
-converted to Fault objects and raised as exceptions locally.
+Since the XML-RPC server might be written in any language, exception
+classes cannot be transmitted directly. Instead, exceptions raised in
+the server are converted to :class:`Fault` objects and raised as
+exceptions locally in the client.
 
 .. include:: xmlrpclib_exception.py
     :literal:
@@ -313,11 +321,12 @@ converted to Fault objects and raised as exceptions locally.
 MultiCall
 =========
 
-Multicall is an extension to the XML-RPC protocol to allow more than one call
-to be sent at the same time, with the responses collected and returned to the
-caller. The MultiCall class was added to xmlrpclib in Python 2.4. To use a
-MultiCall instance, invoke the methods on it as with a ServerProxy, then call
-the object with no arguments. The result is an iterator with the results.
+Multicall is an extension to the XML-RPC protocol to allow more than
+one call to be sent at the same time, with the responses collected and
+returned to the caller. The :class:`MultiCall` class was added to
+:mod:`xmlrpclib` in Python 2.4. To use a :class:`MultiCall` instance,
+invoke the methods on it as with a :class:`ServerProxy`, then call the
+object with no arguments. The result is an iterator with the results.
 
 .. include:: xmlrpclib_MultiCall.py
     :literal:
@@ -331,9 +340,9 @@ the object with no arguments. The result is an iterator with the results.
     2 ['string', "<type 'str'>", 'string']
 
 
-If one of the calls causes a Fault or otherwise raises an exception, the
-exception is raised when the result is produced from the iterator and no more
-results are available.
+If one of the calls causes a :class:`Fault` or otherwise raises an
+exception, the exception is raised when the result is produced from
+the iterator and no more results are available.
 
 .. include:: xmlrpclib_MultiCall_exception.py
     :literal:
