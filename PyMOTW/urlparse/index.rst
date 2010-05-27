@@ -8,22 +8,21 @@ urlparse -- Split URL into component pieces.
 :Purpose: Split URL into component pieces.
 :Python Version: since 1.4
 
-The urlparse module provides functions for breaking URLs down into their
-component parts, as defined by the relevant RFCs.
+The :mod:`urlparse` module provides functions for breaking URLs down
+into their component parts, as defined by the relevant RFCs.
 
 Parsing
 =======
 
-The return value from the urlparse function is an object which acts like a
-tuple with 6 elements.
+The return value from the :func:`urlparse()` function is an object
+which acts like a tuple with 6 elements.
 
 .. include:: urlparse_urlparse.py
     :literal:
     :start-after: #end_pymotw_header
 
 The parts of the URL available through the tuple interface are the scheme,
-network location, path, parameters, query, and fragment. In this example, I
-use "http" for the scheme since "scheme" is not a valid scheme.
+network location, path, parameters, query, and fragment.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'urlparse_urlparse.py'))
@@ -31,43 +30,47 @@ use "http" for the scheme since "scheme" is not a valid scheme.
 .. {{{end}}}
 
 
-Although the return value acts like a tuple, it is really a subclass of tuple
-which supports accessing the parts of the URL via named attributes instead of
-indexes. That's especially useful if, like me, you can't remember the index
-order. In addition to being easier to use for the programmer, the attribute
-API also offers access to several values not available in the tuple API.
+Although the return value acts like a tuple, it is really based on a
+:ref:`namedtuple <collections-namedtuple>`, a subclass of tuple that
+supports accessing the parts of the URL via named attributes instead
+of indexes. That's especially useful if, like me, you can't remember
+the index order. In addition to being easier to use for the
+programmer, the attribute API also offers access to several values not
+available in the tuple API.
 
 .. include:: urlparse_urlparseattrs.py
     :literal:
     :start-after: #end_pymotw_header
 
-The username and password are available when present and None when not. The
-hostname is the same value as netloc, but all lower case letters are enforced.
-And the port is converted to an integer when present and None when not.
+The *username* and *password* are available when present in the input
+URL and ``None`` when not. The *hostname* is the same value as
+*netloc*, in all lower case.  And the *port* is converted to an
+integer when present and ``None`` when not.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'urlparse_urlparseattrs.py'))
 .. }}}
 .. {{{end}}}
 
-The urlsplit function is an alternative to urlparse. It does not split the
-parameters from the URL. This is useful for URLs following :rfc:`2396`, which
-supports parameters for each segment of the path. 
+The :func:`urlsplit()` function is an alternative to
+:func:`urlparse()`. It behaves a little different, because it does not
+split the parameters from the URL. This is useful for URLs following
+:rfc:`2396`, which supports parameters for each segment of the path.
 
 .. include:: urlparse_urlsplit.py
     :literal:
     :start-after: #end_pymotw_header
 
-Since the parameters are not split out, the tuple API will show 5 elements
-instead of 6, and there is no params attribute.
+Since the parameters are not split out, the tuple API will show 5
+elements instead of 6, and there is no *params* attribute.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'urlparse_urlsplit.py'))
 .. }}}
 .. {{{end}}}
 
-To simply strip the fragment identifier from a URL, as you might need to do to
-find a base page name from a URL, use urldefrag.
+To simply strip the fragment identifier from a URL, as you might need
+to do to find a base page name from a URL, use :func:`urldefrag()`.
 
 .. include:: urlparse_urldefrag.py
     :literal:
@@ -83,30 +86,31 @@ The return value is a tuple containing the base URL and the fragment.
 Unparsing
 =========
 
-There are several ways to assemble a split URL back together into a single
-string. The parsed URL object has a geturl() method.
+There are several ways to assemble a split URL back together into a
+single string. The parsed URL object has a :func:`geturl()` method.
 
 .. include:: urlparse_geturl.py
     :literal:
     :start-after: #end_pymotw_header
 
-Of course, it only works on the object returned by urlparse or urlsplit.
+Of course, :func:`geturl()` only works on the object returned by
+:func:`urlparse()` or :func:`urlsplit()`.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'urlparse_geturl.py'))
 .. }}}
 .. {{{end}}}
 
-If you have a tuple of values, you can use urlunparse() to assemble it into a
-URL.
+If you have a regular tuple of values, you can use
+:func:`urlunparse()` to combine them into a URL.
 
 .. include:: urlparse_urlunparse.py
     :literal:
     :start-after: #end_pymotw_header
 
-While the ParseResult returned by urlparse can be used as a tuple, in this
-example I explicitly create a new tuple to show that urlunparse works with
-normal tuples, too.
+While the :class:`ParseResult` returned by :func:`urlparse()` can be
+used as a tuple, in this example I explicitly create a new tuple to
+show that :func:`urlunparse()` works with normal tuples, too.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'urlparse_urlunparse.py'))
@@ -120,9 +124,9 @@ unparsed version of the URL.
     :literal:
     :start-after: #end_pymotw_header
 
-In this case, the parameters, query, and fragment are all missing in the
-original URL. The new URL does not look the same as the original, but is
-equivalent according to the standard.
+In this case, the *parameters*, *query*, and *fragment* are all
+missing in the original URL. The new URL does not look the same as the
+original, but is equivalent according to the standard.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'urlparse_urlunparseextra.py'))
@@ -132,15 +136,16 @@ equivalent according to the standard.
 Joining
 =======
 
-In addition to parsing URLs, the urlparse module includes the urljoin()
-function for constructing absolute URLs from relative fragments.
+In addition to parsing URLs, :mod:`urlparse` includes
+:func:`urljoin()` for constructing absolute URLs from relative
+fragments.
 
 .. include:: urlparse_urljoin.py
     :literal:
     :start-after: #end_pymotw_header
 
-Notice that the relative portion of the path ("../") is taken into account
-when the second URL is computed.
+In the example, the relative portion of the path (``"../"``) is taken
+into account when the second URL is computed.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'urlparse_urljoin.py'))
@@ -154,3 +159,6 @@ when the second URL is computed.
 
     :mod:`urllib`
         Retrieve the contents of a resource identified by a URL.
+
+    :mod:`urllib2`
+        Alternative API for accessing remote URLs.

@@ -8,24 +8,25 @@ weakref -- Garbage-collectable references to objects
 :Purpose: Refer to an "expensive" object, but allow it to be garbage collected if there are no other non-weak references.
 :Python Version: Since 2.1
 
-The weakref module supports weak references to objects. A normal reference
-increments the reference count on the object and prevents it from being
-garbage collected. This is not always desirable, either when a circular
-reference might be present or when building a cache of objects that should be
-deleted when memory is needed.
+The :mod:`weakref` module supports weak references to objects. A
+normal reference increments the reference count on the object and
+prevents it from being garbage collected. This is not always
+desirable, either when a circular reference might be present or when
+building a cache of objects that should be deleted when memory is
+needed.
 
 References
 ==========
 
-Weak references to your objects are managed through the ref class. To retrieve
-the original object, call the reference object.
+Weak references to your objects are managed through the :class:`ref`
+class. To retrieve the original object, call the reference object.
 
 .. include:: weakref_ref.py
     :literal:
     :start-after: #end_pymotw_header
 
-In this case, since obj is deleted before the second call to the reference,
-None is returned.
+In this case, since ``obj`` is deleted before the second call to the
+reference, the :class:`ref` returns ``None``.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'weakref_ref.py'))
@@ -35,16 +36,17 @@ None is returned.
 Reference Callbacks
 ===================
 
-The ref constructor takes an optional second argument that should be a
-callback function to invoke when the referenced object is deleted.
+The :class:`ref` constructor takes an optional second argument that
+should be a callback function to invoke when the referenced object is
+deleted.
 
 .. include:: weakref_ref_callback.py
     :literal:
     :start-after: #end_pymotw_header
 
-The callback receives the reference as an argument, after the reference is
-"dead" and no longer refers to the original object. This lets you remove the
-weak reference object from a cache, for example.
+The callback receives the reference object as an argument, after the
+reference is "dead" and no longer refers to the original object. This
+lets you remove the weak reference object from a cache, for example.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'weakref_ref_callback.py'))
@@ -54,16 +56,17 @@ weak reference object from a cache, for example.
 Proxies
 =======
 
-Instead of using ref directly, it can be more convenient to use a proxy.
-Proxies can be used as though they were the original object, so you do not
-need to call the ref first to access the object.
+Instead of using :class:`ref` directly, it can be more convenient to
+use a proxy.  Proxies can be used as though they were the original
+object, so you do not need to call the :class:`ref` first to access
+the object.
 
 .. include:: weakref_proxy.py
     :literal:
     :start-after: #end_pymotw_header
 
-If the proxy is access after the referent object is removed, a ReferenceError
-exception is raised.
+If the proxy is access after the referent object is removed, a
+:class:`ReferenceError` exception is raised.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'weakref_proxy.py', ignore_error=True))
@@ -77,64 +80,53 @@ One use for weak references is to allow cyclic references without preventing
 garbage collection. This example illustrates the difference between using
 regular objects and proxies when a graph includes a cycle.
 
-First we set up the gc module to help us debug the leak. The DEBUG_LEAK flag
-causes it to print information about objects which cannot be seen other than
-through the reference the garbage collector has to them. 
+First, we need a :class:`Graph` class that accepts any object given to
+it as the "next" node in the sequence. For the sake of brevity, this
+:class:`Graph` supports a single outgoing reference from each node,
+which results in boring graphs but makes it easy to create cycles. The
+function :func:`demo()` is a utility function to exercise the graph
+class by creating a cycle and then removing various references.
 
-::
+.. include:: weakref_graph.py
+   :literal:
+   :start-after: #end_pymotw_header
 
-    # {{{cog include('weakref/weakref_cycle.py', 'gc_setup')}}}
-    # {{{end}}}
+Now we can set up a test program using the :mod:`gc` module to help us
+debug the leak. The ``DEBUG_LEAK`` flag causes :mod:`gc` to print
+information about objects that cannot be seen other than through the
+reference the garbage collector has to them.
 
-Next a utility function to exercise the graph class by creating a cycle and
-then removing various references.
+.. include:: weakref_cycle.py
+   :literal:
+   :start-after: #end_pymotw_header
 
-::
-
-    # {{{cog include('weakref/weakref_cycle.py', 'demo')}}}
-    # {{{end}}}
-
-Now a naive Graph class that accepts any object given to it as the "next" node
-in the sequence. For the sake of brevity, this Graph supports a single
-outgoing reference from each node, which results in very boring graphs but
-makes it easy to recreate cycles.
-
-::
-
-    # {{{cog include('weakref/weakref_cycle.py', 'graph')}}}
-    # {{{end}}}
-
-If we run the script we see:
-
-::
-
-    # {{{cog include('weakref/weakref_cycle.py', 'without_proxy')}}}
-    # {{{end}}}
-
-Even after deleting the local references to the Graph instances in
-demo(), the graphs all show up in the garbage list and cannot be collected.
-The dictionaries in the garbage list hold the attributes of the Graph
-instances. We can forcibly delete the graphs, since we know what they are:
-
-::
-
-    # {{{cog include('weakref/weakref_cycle.py', 'break_cycle')}}}
-    # {{{end}}}
-
-And now let's define a more intelligent WeakGraph class that knows not to
-create cycles using regular references, but to use a weakref.ref when a cycle
-is detected.
-
-::
-
-    # {{{cog include('weakref/weakref_cycle.py', 'with_proxy')}}}
-    # {{{end}}}
-
-
-When we put it all together, we get output like:
+Even after deleting the local references to the :class:`Graph`
+instances in :func:`demo()`, the graphs all show up in the garbage
+list and cannot be collected.  The dictionaries in the garbage list
+hold the attributes of the :class:`Graph` instances. We can forcibly
+delete the graphs, since we know what they are:
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'weakref_cycle.py'))
+.. cog.out(run_script(cog.inFile, '-u weakref_cycle.py'))
+.. }}}
+.. {{{end}}}
+
+
+And now let's define a more intelligent :class:`WeakGraph` class that
+knows not to create cycles using regular references, but to use a
+:class:`ref` when a cycle is detected.
+
+.. include:: weakref_weakgraph.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+Since the :class:`WeakGraph` instances use proxies to refer to objects
+that have already been seen, as :func:`demo()` removes all local
+references to the objects, the cycle is broken and the garbage
+collector can delete the objects for us.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'weakref_weakgraph.py'))
 .. }}}
 .. {{{end}}}
 
@@ -142,18 +134,20 @@ When we put it all together, we get output like:
 Caching Objects
 ===============
 
-The ref and proxy classes are considered "low level". While they are useful
-for maintaining weak references to individual objects and allowing cycles to
-be garbage collected, if you need to create a cache of several objects the
-WeakKeyDictionary and WeakValueDictionary provide a more appropriate API.
+The :class:`ref` and :class:`proxy` classes are considered "low
+level". While they are useful for maintaining weak references to
+individual objects and allowing cycles to be garbage collected, if you
+need to create a cache of several objects the
+:class:`WeakKeyDictionary` and :class:`WeakValueDictionary` provide a
+more appropriate API.
 
-As you might expect, the WeakValueDictionary uses weak references to the
-values it holds, allowing them to be garbage collected when other code is not
-actually using them.
+As you might expect, the :class:`WeakValueDictionary` uses weak
+references to the values it holds, allowing them to be garbage
+collected when other code is not actually using them.
 
-To illustrate the difference between memory handling with a regular dictionary
-and WeakValueDictionary, let's go experiment with explicitly calling the
-garbage collector again:
+To illustrate the difference between memory handling with a regular
+dictionary and :class:`WeakValueDictionary`, let's go experiment with
+explicitly calling the garbage collector again:
 
 .. include:: weakref_valuedict.py
     :literal:

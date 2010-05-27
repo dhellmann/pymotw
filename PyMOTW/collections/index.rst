@@ -157,6 +157,8 @@ aggregating or accumulating values, such as a list, set, or even integer. The
 standard library documentation includes several examples of using defaultdict
 this way.
 
+.. _collections-namedtuple:
+
 namedtuple
 ==========
 

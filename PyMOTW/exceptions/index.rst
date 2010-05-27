@@ -530,6 +530,7 @@ ZeroDivisionError is raised.
 .. }}}
 .. {{{end}}}
 
+.. _exceptions-warning:
 
 Warning Categories
 ==================
