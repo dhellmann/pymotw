@@ -26,9 +26,9 @@ the project home page for details
 
 .. rubric:: Translations and Other Versions
 
-Junjie Cai (蔡俊杰) and Yan Sheng (盛艳) have started a google code
-project called PyMOTWCN (http://code.google.com/p/pymotwcn/) and
-posted the completed translations at http://www.vbarter.cn/pymotw/.
+Junjie Cai and Yan Sheng have started a google code project called
+PyMOTWCN (http://code.google.com/p/pymotwcn/) and posted the completed
+translations at http://www.vbarter.cn/pymotw/.
 
 Ralf Schönian is translating PyMOTW into German, following an
 alphabetical order.  The results are available on his web site,

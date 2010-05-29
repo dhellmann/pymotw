@@ -243,7 +243,7 @@ and in the log:
     DEBUG:root:complete('', 2) => stop
     DEBUG:root:complete('', 3) => None
 
-If the first word is "``list ``" (with a space after the word), the
+If the first word is ``"list "`` (with a space after the word), the
 candidates for completion are different:
 
 ::
