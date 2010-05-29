@@ -1,3 +1,5 @@
+.. _zipimport-ref:
+
 ======================================================
 zipimport -- Load Python code from inside ZIP archives
 ======================================================

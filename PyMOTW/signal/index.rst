@@ -171,8 +171,8 @@ registers a handler for ``SIGUSR1``.  Then it uses
 
 Normally ``SIGINT`` (the signal sent by the shell to your program when
 you hit Ctrl-C) raises a :ref:`KeyboardInterrupt
-<exception-KeyboardInterrupt>`.  In this example, we ignore ``SIGINT``
-and raise :ref:`SystemExit <exception-SystemExit>` when we see
+<exceptions-KeyboardInterrupt>`.  In this example, we ignore ``SIGINT``
+and raise :ref:`SystemExit <exceptions-SystemExit>` when we see
 ``SIGUSR1``.  Each ``^C`` represents an attempt to use Ctrl-C to kill
 the script from the terminal.  Using ``kill -USR1 72598`` from another
 terminal eventually causes the script to exit.

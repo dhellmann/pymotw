@@ -290,7 +290,7 @@ Python ZIP Archives
 ===================
 
 Since version 2.3 Python has had the ability to :ref:`import modules
-from inside ZIP archives <zipimport>` if those archives appear in
+from inside ZIP archives <zipimport-ref>` if those archives appear in
 :ref:`sys.path <sys-path>`. The :class:`PyZipFile` class can be used
 to construct a module suitable for use in this way. When you use the
 extra method :func:`writepy()`, :class:`PyZipFile` scans a directory

@@ -24,7 +24,7 @@ Categories and Filtering
 
 Warnings are categorized using subclasses of the built-in exception
 class :class:`Warning`. Several standard values are :ref:`described in
-the documentation <exceptions-warnings>`, and you can add your own by
+the documentation <exceptions-warning>`, and you can add your own by
 subclassing from :class:`Warning` to create a new class.
 
 Messages are filtered using settings controlled through the

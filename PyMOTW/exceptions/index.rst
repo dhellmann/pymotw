@@ -58,6 +58,7 @@ system, filesystem, etc.).
 Raised Exceptions
 =================
 
+.. _exceptions-AssertionError:
 
 AssertionError
 --------------
@@ -390,6 +391,7 @@ already been garbage collected, a ReferenceError occurs.
 .. }}}
 .. {{{end}}}
 
+.. _exceptions-RuntimeError:
 
 RuntimeError
 ------------

@@ -95,7 +95,7 @@ recursion depth using ``setrecursionlimit()`` and
     :start-after: #end_pymotw_header
 
 Once the recursion limit is reached, the interpreter raises a
-:ref:`RuntimeError <exceptions-RuntimeError>`` exception so your
+:ref:`RuntimeError <exceptions-RuntimeError>` exception so your
 program has an opportunity to handle the situation.
 
 .. {{{cog
