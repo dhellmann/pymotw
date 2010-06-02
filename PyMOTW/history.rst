@@ -3,10 +3,14 @@ History
 
 Dev
 
-  - Added LifoQueue and PriorityQueue examples to :mod:`Queue`.
   - Roberto Pauletto's Italian translation has moved to
     http://robyp.x10hosting.com/
 
+1.117a
+
+  - Added LifoQueue and PriorityQueue examples to :mod:`Queue`.
+  - Completed an editing pass of the entire document, tweaking wording
+    and formatting.
 
 1.117
   - Updated :mod:`fileinput` example to use
