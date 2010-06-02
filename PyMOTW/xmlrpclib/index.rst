@@ -155,8 +155,7 @@ The simple types::
     structure             : ["{'a': 'dictionary'}", "<type 'dict'>", {'a': 'dictionary'}]
 
 
-And of course, they can be nested to create values of arbitrary
-complexity:
+And they can be nested to create values of arbitrary complexity:
 
 .. include:: xmlrpclib_types_nested.py
     :literal:

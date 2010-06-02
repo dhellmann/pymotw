@@ -8,10 +8,10 @@ ConfigParser -- Work with configuration files
 :Purpose: Read/write configuration files similar to Windows INI files
 :Python Version: 1.5
 
-Use the ConfigParser module to manage user-editable configuration
-files for your applications. The configuration files are broken up
-into sections, and each section can contain name-value pairs for
-configuration data. Value interpolation using Python formatting
+Use the :mod:`ConfigParser` module to manage user-editable
+configuration files for your applications. The configuration files are
+broken up into sections, and each section can contain name-value pairs
+for configuration data. Value interpolation using Python formatting
 strings is also supported, to build values which depend on one another
 (this is especially handy for paths or URLs).
 
@@ -42,8 +42,8 @@ A developer's configuration file might look like:
 
 The "portal" section refers to the approach document web site. Once
 the diffs were ready to be posted to the site, the tool would load the
-config file using the ConfigParser module to access the URL. That
-might look something like this:
+config file using :mod:`ConfigParser` to access the URL. That might
+look something like this:
 
 .. include:: configparser_example.py
     :literal:
@@ -62,29 +62,30 @@ config file contains 2 formatting strings: "``%(host)s``" and
 automatically substituted in place of the formatting strings by the
 ``get()`` method.
 
-Of course, this is old code, written for Python 2.1. The ConfigParser
-module has been improved in more recent versions. The
-``SafeConfigParser`` class is a drop in replacement for
-``ConfigParser`` with improvements to the interpolation processing.
+This is old code, written for Python 2.1, and the ConfigParser module
+has been improved in more recent versions. The
+:class:`SafeConfigParser` class is a drop in replacement for
+:class:`ConfigParser` with improvements to the interpolation
+processing.
 
-For this tool, I only needed string options. The ConfigParser supports
-other types of options as well: integer, floating point, and
+For this tool, I only needed string options. :class:`ConfigParser`
+supports other types of options as well: integer, floating point, and
 boolean. Since the option file format does not offer a way to
 associate a "type" with a value, the caller needs to know when to use
 a different method to retrieve options with these other types. For
-example, to retrieve a boolean option, use the ``getboolean()`` method
-instead of ``get()``. The method arguments are the same, but the
-option value is converted to a boolean before being
-returned. Similarly, there are separate ``getint()`` and
-``getfloat()`` methods.
+example, to retrieve a boolean option, use the :func:`getboolean()`
+method instead of :func:`get()`. The method arguments are the same,
+but the option value is converted to a boolean before being
+returned. Similarly, there are separate :func:`getint()` and
+:func:`getfloat()` methods.
 
-The ConfigParser class also supports adding and removing sections to
+:class:`ConfigParser` also supports adding and removing sections to
 the file programmaticaly, and saving the results. This makes it
 possible to create a user interface for editing the configuration of
 your program, or to use the config file format for simple data
 files. For example, an app which needed to store a very small amount
-of data in a database-like format might take advantage of ConfigParser
-so the files would be human-readable as well.
+of data in a database-like format might take advantage of
+:mod:`ConfigParser` so the files would be human-readable as well.
 
 .. seealso::
 

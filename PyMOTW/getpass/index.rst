@@ -18,15 +18,16 @@ handle such password prompts securely.
 Example
 =======
 
-The ``getpass()`` function prints a prompt then reads input from the
-user until they press return. The input is passed back as a string to
-the caller.
+The :func:`getpass()` function prints a prompt then reads input from
+the user until they press return. The input is passed back as a string
+to the caller.
 
 .. include:: getpass_defaults.py
     :literal:
     :start-after: #end_pymotw_header
 
-The default prompt, if none is specified by the caller, is "Password:".
+The default prompt, if none is specified by the caller, is
+"``Password:``".
 
 ::
 
@@ -34,7 +35,7 @@ The default prompt, if none is specified by the caller, is "Password:".
     Password:
     You entered: sekret
 
-Of course the prompt can be anything your program needs.
+The prompt can be changed to any value your program needs.
 
 .. include:: getpass_prompt.py
     :literal:
@@ -52,10 +53,11 @@ the point.
     What is your favorite color?
     Auuuuugh!
 
-By default, ``getpass()`` uses stdout to print the prompt string. For
-a program which may produce useful output on ``sys.stdout``, it is
-frequently better to send the prompt to another stream such as
-``sys.stderr``.
+By default, :func:`getpass()` uses stdout to print the prompt
+string. For a program which may produce useful output on
+:ref:`sys.stdout <sys-input-output>`, it is frequently better to send
+the prompt to another stream such as :ref:`sys.stderr
+<sys-input-output>`.
 
 .. include:: getpass_stream.py
     :literal:
@@ -73,7 +75,7 @@ the screen.
 Using getpass Without a Terminal
 ================================
 
-Under Unix, ``getpass()`` always requires a tty it can control via
+Under Unix, :func:`getpass()` always requires a tty it can control via
 termios, so echo can be disabled. This means values will not be read
 from a non-terminal stream redirected to standard input.
 

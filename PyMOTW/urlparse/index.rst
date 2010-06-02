@@ -93,7 +93,7 @@ single string. The parsed URL object has a :func:`geturl()` method.
     :literal:
     :start-after: #end_pymotw_header
 
-Of course, :func:`geturl()` only works on the object returned by
+:func:`geturl()` only works on the object returned by
 :func:`urlparse()` or :func:`urlsplit()`.
 
 .. {{{cog

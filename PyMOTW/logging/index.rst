@@ -8,26 +8,26 @@ logging -- Report status, error, and informational messages.
 :Purpose: Report status, error, and informational messages.
 :Python Version: 2.3
 
-The logging module defines a standard API for reporting errors and status
-information from all of your modules. The key benefit of having the logging
-API provided by a standard library module is that all python modules can
-participate in logging, so your application log can include messages from
-third-party modules.
+The :mod:`logging` module defines a standard API for reporting errors
+and status information from all of your modules. The key benefit of
+having the logging API provided by a standard library module is that
+all Python modules can participate in logging, so your application log
+can include messages from third-party modules.
 
-It is, of course, possible to log messages with different verbosity levels or
-to different destinations. Support for writing log messages to files, HTTP
-GET/POST locations, email via SMTP, generic sockets, or OS-specific logging
-mechanisms are all supported by the standard module. You can also create your
-own log destination class if you have special requirements not met by any of
-the built-in classes.
+It is possible to log messages with different verbosity levels or to
+different destinations. Support for writing log messages to files,
+HTTP GET/POST locations, email via SMTP, generic sockets, or
+OS-specific logging mechanisms are all supported by the standard
+module. You can also create your own log destination class if you have
+special requirements not met by any of the built-in classes.
 
 Logging to a File
 =================
 
 Most applications are probably going to want to log to a file, so
-let's start with that case. Using the ``basicConfig()`` function, we
-can set up the default handler so that debug messages are written to a
-file.
+let's start with that case. Using the :func:`basicConfig()` function,
+we can set up the default handler so that debug messages are written
+to a file.
 
 .. include:: logging_file_example.py
     :literal:
@@ -47,10 +47,11 @@ message:
 Rotating Log Files
 ==================
 
-If you run the script repeatedly, the additional log messages are appended to
-the file. To create a new file each time, you can pass a ``filemode`` argument to
-``basicConfig()`` with a value of ``'w'``. Rather than managing the file size
-yourself, though, it is simpler to use a RotatingFileHandler:
+If you run the script repeatedly, the additional log messages are
+appended to the file. To create a new file each time, you can pass a
+``filemode`` argument to :func:`basicConfig()` with a value of
+``'w'``. Rather than managing the file size yourself, though, it is
+simpler to use a RotatingFileHandler:
 
 .. include:: logging_rotatingfile_example.py
     :literal:
@@ -72,15 +73,16 @@ the existing backup files is renamed to increment the suffix (``.1`` becomes ``.
 etc.) and the ``.5`` file is erased.
 
 Obviously this example sets the log length much much too small as an extreme
-example. You would want to set ``maxBytes`` to an appropriate value.
+example. You would want to set *maxBytes* to an appropriate value.
 
 Verbosity Levels
 ================
 
-Another useful feature of the logging API is the ability to produce different
-messages at different log levels. This allows you to instrument your code with
-debug messages, for example, but turning the log level down so that those
-debug messages are not written for your production system.
+Another useful feature of the :mod:`logging` API is the ability to
+produce different messages at different log levels. This allows you to
+instrument your code with debug messages, for example, but turning the
+log level down so that those debug messages are not written for your
+production system.
 
 ========  =====
 Level     Value

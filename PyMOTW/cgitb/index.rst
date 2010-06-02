@@ -8,11 +8,11 @@ cgitb -- Detailed traceback reports
 :Purpose: cgitb provides more detailed traceback information than :mod:`traceback`.
 :Python Version: 2.2 and later
 
-cgitb was originally designed for showing errors and debugging
+:mod:`cgitb` was originally designed for showing errors and debugging
 information in web applications.  It was later updated to include
 plain-text output as well, but unfortunately wasn't renamed.  This has
 led to obscurity and the module is not used as often as it should be.
-Nonetheless, cgitb is a valuable debugging tool in the standard
+Nonetheless, :mod:`cgitb` is a valuable debugging tool in the standard
 library.
 
 Standard Traceback Dumps
@@ -27,7 +27,7 @@ understand the cause of the exception and permit a fix.
    :literal:
    :start-after: #end_pymotw_header
 
-The above sample program has a subtle error in ``func3()``.
+The above sample program has a subtle error in :func:`func3()`.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'cgitb_basic_traceback.py', ignore_error=True))
@@ -73,18 +73,19 @@ the line where the actual exception is generated.
    :literal:
    :start-after: #end_pymotw_header
 
-In the case of this code with a ZeroDivisionError, we can see that the
-problem is introduced in the computation of the value of ``c`` in
-``func1()``, rather than where the value is used in ``func2()``.
+In the case of this code with a :ref:`ZeroDivisionError
+<exceptions-ZeroDivisionError>`, we can see that the problem is
+introduced in the computation of the value of ``c`` in ``func1()``,
+rather than where the value is used in ``func2()``.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'cgitb_local_vars.py', ignore_error=True))
 .. }}}
 .. {{{end}}}
 
-The code in cgitb that examines the variables used in the stack frame
-leading to the error is smart enough to evaluate object attributes to
-display them, too.
+The code in :mod:`cgitb` that examines the variables used in the stack
+frame leading to the error is smart enough to evaluate object
+attributes to display them, too.
 
 .. include:: cgitb_with_classes.py
    :literal:
@@ -114,8 +115,8 @@ context value when enabling cgitb gets around this.
    :literal:
    :start-after: #end_pymotw_header
 
-You can pass ``context`` to ``cgitb.enable()`` to control the amount
-of code displayed for each line of the traceback.
+You can pass *context* to :func:`enable()` to control the amount of
+code displayed for each line of the traceback.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'cgitb_more_context.py 5', ignore_error=True))
@@ -134,8 +135,8 @@ the problem in the code, again.
 Exception Properties
 ====================
 
-In addition to the local variables from each stack frame, cgitb shows
-all properties of the exception object.  If you have a custom
+In addition to the local variables from each stack frame, :mod:`cgitb`
+shows all properties of the exception object.  If you have a custom
 exception type with extra properties, they are printed as part of the
 error report.
 
@@ -143,8 +144,8 @@ error report.
    :literal:
    :start-after: #end_pymotw_header
 
-In this example, the ``bad_value`` property is included along with the
-standard ``message`` and ``args`` values.
+In this example, the *bad_value* property is included along with the
+standard *message* and *args* values.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'cgitb_exception_properties.py', ignore_error=True))
@@ -158,9 +159,9 @@ Logging Tracebacks
 
 For many situations, printing the traceback details to standard error
 is the best resolution.  In a production system, however, logging the
-errors is even better.  ``cgitb.enable()`` includes an optional
-argument, ``logdir``, to enable error logging.  When a directory name
-is provided, each exception is logged to its own file in the given
+errors is even better.  :func:`enable()` includes an optional
+argument, *logdir*, to enable error logging.  When a directory name is
+provided, each exception is logged to its own file in the given
 directory.
 
 .. include:: cgitb_log_exception.py
@@ -184,15 +185,15 @@ describing where to go to find the error log.
 HTML Output
 ===========
 
-Of course, since cgitb was originally developed for handling
-exceptions in web apps, no discussion would be complete without an
-example of the HTML output it produces.
+Because :mod:`cgitb` was originally developed for handling exceptions
+in web apps, no discussion would be complete without an example of the
+HTML output it produces.
 
 .. include:: cgitb_html_output.py
    :literal:
    :start-after: #end_pymotw_header
 
-By leaving out the ``format`` argument (or specifying ``html``), the
+By leaving out the *format* argument (or specifying ``html``), the
 traceback format changes to HTML output.
 
 .. image:: html_error.png

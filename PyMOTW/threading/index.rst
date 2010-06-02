@@ -72,11 +72,10 @@ correspond to the unnamed thread ``w2``.
 .. }}}
 .. {{{end}}}
 
-Of course, in most programs you won't use ``print`` to debug. The
-:mod:`logging` module supports embedding the thread name in every log
-message using the formatter code ``%(threadName)s``. Including thread
-names in log messages makes it easier to trace those messages back to
-their source.
+In most programs you won't use ``print`` to debug. The :mod:`logging`
+module supports embedding the thread name in every log message using
+the formatter code ``%(threadName)s``. Including thread names in log
+messages makes it easier to trace those messages back to their source.
 
 .. include:: threading_names_log.py
     :literal:

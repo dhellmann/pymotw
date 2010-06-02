@@ -50,8 +50,8 @@ Bolivia, and is translating these examples as a way to contribute to
 the members of the `Bolivian Free Software
 <http://www.softwarelibre.org.bo/>`_ community who use Python.  The
 full list of articles available in Spanish can be found at
-http://denklab.org/articles/category/pymotw/, and of course there is
-an `RSS feed <http://denklab.org/feeds/articles/category/pymotw/>`_.
+http://denklab.org/articles/category/pymotw/, and there is an `RSS
+feed <http://denklab.org/feeds/articles/category/pymotw/>`_.
 
 `Tetsuya Morimoto <http://d.hatena.ne.jp/t2y-1979/>`_ is creating a
 Japanese translation. Tetsuya has used Python for 1.5 years. He has as

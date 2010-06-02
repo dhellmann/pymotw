@@ -8,7 +8,9 @@ dbm -- Simple database interface
 :Purpose: Provides an interface to the Unix (n)dbm library.
 :Python Version: 1.4 and later
 
-The :mod:`dbm` module provides an interface to one of the dbm libraries, depending on how the module was configured during compilation.
+The :mod:`dbm` module provides an interface to one of the dbm
+libraries, depending on how the module was configured during
+compilation.
 
 Examples
 ========
@@ -19,14 +21,16 @@ The ``library`` attribute identifies the library being used, by name.
     :literal:
     :start-after: #end_pymotw_header
 
-Of course, your results will depend on what library ``configure`` was able to find when the interpreter was built.
+Your results will depend on what library ``configure`` was able to
+find when the interpreter was built.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'dbm_library.py'))
 .. }}}
 .. {{{end}}}
 
-The ``open()`` function follows the same semantics as the :mod:`anydbm` module.
+The :func:`open()` function follows the same semantics as the
+:mod:`anydbm` module.
 
 .. seealso::
 

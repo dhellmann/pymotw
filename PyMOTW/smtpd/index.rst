@@ -108,7 +108,7 @@ and
     Message addressed to  : ['recipient@example.com']
     Message length        : 229
 
-The port number for the incoming message will vary, of course.  Notice
+The port number for the incoming message will vary each time.  Notice
 that the *rcpttos* argument is a list of values and *mailfrom* is a
 single string.
 

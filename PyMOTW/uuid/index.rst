@@ -121,7 +121,7 @@ namespace argument to :func:`uuid3()` or :func:`uuid5()`:
 
 The UUID value for a given name in a namespace is always the same, no
 matter when or where it is calculated. Values for the same name in
-different namespaces are different, of course.
+different namespaces are different.
 
 .. include:: uuid_uuid3_repeat.py
     :literal:

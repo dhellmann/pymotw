@@ -8,8 +8,9 @@ bz2 -- bzip2 compression
 :Purpose: bzip2 compression
 :Python Version: 2.3 and later
 
-The bz2 module is an interface for the bzip2 library, used to compress
-data for storage or transmission.  There are three APIs provided:
+The :mod:`bz2` module is an interface for the bzip2 library, used to
+compress data for storage or transmission.  There are three APIs
+provided:
 
 - "one shot" compression/decompression functions for operating on a blob of data
 - iterative compression/decompression objects for working with streams of data
@@ -19,8 +20,8 @@ One-shot Operations in Memory
 =============================
 
 The simplest way to work with bz2 requires holding all of the data to
-be compressed or decompressed in memory, and then using ``compress()``
-and ``decompress()``.
+be compressed or decompressed in memory, and then using
+:func:`compress()` and :func:`decompress()`.
 
 .. include:: bz2_memory.py
     :literal:
@@ -52,15 +53,16 @@ Working with Streams
 The in-memory approach is not practical for real-world use cases,
 since you rarely want to hold both the entire compressed and
 uncompressed data sets in memory at the same time.  The alternative is
-to use BZ2Compressor and BZ2Decompressor objects to work with streams
-of data, so that the entire data set does not have to fit into memory.
+to use :class:`BZ2Compressor` and :class:`BZ2Decompressor` objects to
+work with streams of data, so that the entire data set does not have
+to fit into memory.
 
 The simple server below responds to requests consisting of filenames
 by writing a compressed version of the file to the socket used to
 communicate with the client.  It has some artificial chunking in place
 to illustrate the buffering behavior that happens when the data passed
-to ``compress()`` or ``decompress()`` doesn't result in a complete
-block of compressed or uncompressed output.
+to :func:`compress()` or :func:`decompress()` doesn't result in a
+complete block of compressed or uncompressed output.
 
 .. warning::
 
@@ -198,9 +200,9 @@ block of compressed or uncompressed output.
 Mixed Content Streams
 =====================
 
-The BZ2Decompressor class can also be used in situations where
+:class:`BZ2Decompressor` can also be used in situations where
 compressed and uncompressed data is mixed together.  After
-decompressing all of the data, the ``unused_data`` attribute contains
+decompressing all of the data, the *unused_data* attribute contains
 any data not used.
 
 .. include:: bz2_mixed.py
@@ -216,7 +218,7 @@ any data not used.
 Writing Compressed Files
 ========================
 
-The BZ2File class can be used to write to and read from
+:class:`BZ2File` can be used to write to and read from
 bzip2-compressed files using the usual methods for writing and reading
 data.  To write data into a compressed file, open the file with mode
 ``'w'``.
@@ -245,7 +247,7 @@ and compress more, up to a point.
 The center column of numbers in the output of the script is the size
 in bytes of the files produced.  As you see, for this input data, the
 higher compression values do not always pay off in decreased storage
-space for the same input data.  Results will vary, of course.
+space for the same input data.  Results will vary for other inputs.
 
 ::
 
@@ -261,8 +263,8 @@ space for the same input data.  Results will vary, of course.
 	3103658384 1137 compress-level-9.bz2
 	Input contains 754688 bytes
 
-A BZ2File instance also includes a ``writelines()`` method that can be
-used to write a sequence of strings.
+A :class:`BZ2File` instance also includes a :func:`writelines()`
+method that can be used to write a sequence of strings.
 
 .. include:: bz2_file_writelines.py
     :literal:
@@ -301,7 +303,7 @@ of the data.
     :literal:
     :start-after: #end_pymotw_header
 
-The ``seek()`` position is relative to the *uncompressed* data, so the
+The :func:`seek()` position is relative to the *uncompressed* data, so the
 caller does not even need to know that the data file is compressed.
 
 .. {{{cog

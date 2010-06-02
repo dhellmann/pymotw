@@ -170,7 +170,7 @@ string, and some Apple data structures for working with file references.
 
 By specifing defaultLocation, this example initializes the dialog to the
 current working directory. The user is still free to navigate around the
-filesystem, of course.
+filesystem.
 
 Other options to AskFileForOpen let you filter the values displayed, control
 the type codes of files visible to the user, and interact with the dialog

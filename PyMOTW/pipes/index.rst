@@ -88,8 +88,8 @@ the input and output of the step.
 .. }}}
 .. {{{end}}}
 
-And of course the input and output *kind* values can be mixed so that
-different steps of the pipeline use files or standard I/O as needed.
+And the input and output *kind* values can be mixed, so that different
+steps of the pipeline use files or standard I/O as needed.
 
 .. include:: pipes_mixed_kinds.py
     :literal:

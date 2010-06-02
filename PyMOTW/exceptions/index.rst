@@ -516,6 +516,7 @@ right type but an invalid value.
 .. }}}
 .. {{{end}}}
 
+.. _exceptions-ZeroDivisionError:
 
 ZeroDivisionError
 -----------------
@@ -545,6 +546,8 @@ Warning
 UserWarning
   Base class for warnings coming from user code.
 
+.. _exceptions-DeprecationWarning:
+
 DeprecationWarning
   Used for features no longer being maintained.
 
@@ -553,6 +556,8 @@ PendingDeprecationWarning
 
 SyntaxWarning
   Used for questionable syntax.
+
+.. _exceptions-RuntimeWarning:
 
 RuntimeWarning
   Used for events that happen at runtime that might cause problems.

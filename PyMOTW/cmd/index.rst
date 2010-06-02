@@ -10,11 +10,11 @@ cmd -- Create line-oriented command processors
 :Purpose: Create line-oriented command processors.
 :Python Version: 1.4 and later, with some additions in 2.3
 
-The cmd module contains one public class, Cmd, designed to be used as
-a base class for command processors such as interactive shells and
-other command interpreters. By default it uses :mod:`readline` for
-interactive prompt handling, command line editing, and command
-completion.
+The :mod:`cmd` module contains one public class, :class:`Cmd`,
+designed to be used as a base class for command processors such as
+interactive shells and other command interpreters. By default it uses
+:mod:`readline` for interactive prompt handling, command line editing,
+and command completion.
 
 Processing Commands
 ===================
@@ -23,13 +23,13 @@ The interpreter uses a loop to read all lines from its input, parse
 them, and then dispatch the command to an appropriate command
 handler. Input lines are parsed into two parts. The command, and any
 other text on the line. If the user enters a command ``foo bar``, and
-your class includes a method named do_foo(), it is called with
+your class includes a method named :func:`do_foo()`, it is called with
 ``"bar"`` as the only argument.
 
-The end-of-file marker is dispatched to ``do_EOF()``. If a command
+The end-of-file marker is dispatched to :func:`do_EOF()`. If a command
 handler returns a true value, the program will exit cleanly. So to
 give a clean way to exit your interpreter, make sure to implement
-``do_EOF()`` and have it return True.
+:func:`do_EOF()` and have it return True.
 
 This simple example program supports the "greet" command:
 
@@ -38,16 +38,17 @@ This simple example program supports the "greet" command:
     :start-after: #end_pymotw_header
 
 By running it interactively, we can demonstrate how commands are dispatched as
-well as show of some of the features included in Cmd for free.
+well as show of some of the features included in :class:`Cmd` for free.
 
 ::
 
     $ python cmd_simple.py 
     (Cmd) 
 
-The first thing to notice is the command prompt, "(Cmd)". The prompt can be
-configured through the attribute prompt. If the prompt changes as the result
-of a command processor, the new value is used to query for the next command.
+The first thing to notice is the command prompt, ``(Cmd)``. The
+prompt can be configured through the attribute prompt. If the prompt
+changes as the result of a command processor, the new value is used to
+query for the next command.
 
 ::
 
@@ -57,28 +58,29 @@ of a command processor, the new value is used to query for the next command.
     ======================
     EOF  greet  help
 
-The help command is built into Cmd. With no arguments, it shows the list of
-commands available. If you include a command you want help on, the output is
-more verbose and restricted to details of that command, when available.
+The ``help`` command is built into :class:`Cmd`. With no arguments, it
+shows the list of commands available. If you include a command you
+want help on, the output is more verbose and restricted to details of
+that command, when available.
 
-If we use the greet command, ``do_greet()`` is invoked to handle it:
+If we use the greet command, :func:`do_greet()` is invoked to handle it:
 
 ::
 
     (Cmd) greet
     hello
 
-If your class does not include a specific command processor for "foo",
-the method ``default()`` is called with the entire input line as an
-argument. The built-in implementation of ``default()`` reports an
-error.
+If your class does not include a specific command processor for a
+command, the method :func:`default()` is called with the entire input
+line as an argument. The built-in implementation of :func:`default()`
+reports an error.
 
 ::
 
     (Cmd) foo *** Unknown syntax: foo
 
-Since ``do_EOF()`` returns True, typing Ctrl-D will drop us out of the
-interpreter.
+Since :func:`do_EOF()` returns True, typing Ctrl-D will drop us out of
+the interpreter.
 
 ::
 
@@ -96,8 +98,8 @@ the annoyances and add help for the greet command.
     :literal:
     :start-after: #end_pymotw_header
 
-First, let's look at the help. The docstring added to ``do_greet()``
-becomes the help text for the command:
+First, let's look at the help. The docstring added to
+:func:`do_greet()` becomes the help text for the command:
 
 ::
 
@@ -116,12 +118,14 @@ becomes the help text for the command:
     greet [person]
             Greet the named person
 
-The optional argument to the greet command, "person". There is a distinction
-between the argument to the command and the method. The method always takes
-the argument, but sometimes the value is an empty string. It is left up to the
-command processor to determine if an empty argument is valid, or do any
-further parsing and processing of the command. In this example, if a person's
-name is provided then the greeting is personalized.
+The output shows one optional argument to the greet command,
+*person*. Although the argument is optional to the command, there is a
+distinction between the command and the callback method. The method
+always takes the argument, but sometimes the value is an empty
+string. It is left up to the command processor to determine if an
+empty argument is valid, or do any further parsing and processing of
+the command. In this example, if a person's name is provided then the
+greeting is personalized.
 
 ::
 
@@ -137,12 +141,13 @@ in the command processor, if multiple arguments are needed.
 Live Help
 =========
 
-In the previous example, the formatting of the help text leaves something to
-be desired. Since it comes from the docstring, it retains the indentation from
-our source. Of course we could edit the source to remove the extra
-white-space, but that would leave our application looking poorly formatted. An
-alternative solution is to implement a help handler for the greet command,
-named help_greet(). When present, it is called on to produce help text for the
+In the previous example, the formatting of the help text leaves
+something to be desired. Since it comes from the docstring, it retains
+the indentation from our source. We could edit the source to remove
+the extra white-space, but that would leave our application looking
+poorly formatted. An alternative solution is to implement a help
+handler for the greet command, named :func:`help_greet()`. When
+present, the help handler is called on to produce help text for the
 named command.
 
 .. include:: cmd_do_help.py
@@ -166,10 +171,11 @@ simply return the help text for handling elsewhere.
 Auto-Completion
 ===============
 
-Cmd includes support for command completion based on the names of the
-commands with processor methods. Completion is triggered by hitting
-the tab key at an input prompt. When multiple completions are
-possible, pressing tab twice prints a list of the options.
+:class:`Cmd` includes support for command completion based on the
+names of the commands with processor methods. The user triggers
+completion by hitting the tab key at an input prompt. When multiple
+completions are possible, pressing tab twice prints a list of the
+options.
 
 ::
 
@@ -191,8 +197,8 @@ read it once and cache the contents to be scanned as needed.
     :literal:
     :start-after: #end_pymotw_header
 
-When there is input text, complete_greet() returns a list of friends that
-match. Otherwise, the full list of friends is returned.
+When there is input text, :func:`complete_greet()` returns a list of
+friends that match. Otherwise, the full list of friends is returned.
 
 ::
 
@@ -223,20 +229,22 @@ but contains many of the methods commonly useful.
     :literal:
     :start-after: #end_pymotw_header
 
-cmdloop() is the main processing loop of the interpreter. You can override it,
-but it is usually not necessary, since the preloop() and postloop() hooks are
-available.
+:func:`cmdloop()` is the main processing loop of the interpreter. You
+can override it, but it is usually not necessary, since the
+:func:`preloop()` and :func:`postloop()` hooks are available.
 
-Each iteration through cmdloop() calls onecmd() to dispatch the command to its
-processor. The actual input line is parsed with parseline() to create a tuple
-containing the command, and the remaining portion of the line.
+Each iteration through :func:`cmdloop()` calls :func:`onecmd()` to
+dispatch the command to its processor. The actual input line is parsed
+with :func:`parseline()` to create a tuple containing the command, and
+the remaining portion of the line.
 
-If the line is empty, emptyline() is called. The default implementation runs
-the previous command again. If the line contains a command, first precmd() is
-called then the processor is looked up and invoked. If none is found,
-default() is called instead. Finally postcmd() is called.
+If the line is empty, :func:`emptyline()` is called. The default
+implementation runs the previous command again. If the line contains a
+command, first :func:`precmd()` is called then the processor is looked
+up and invoked. If none is found, :func:`default()` is called
+instead. Finally postcmd() is called.
 
-Here's an example session with print statements added:
+Here's an example session with ``print`` statements added:
 
 ::
 
@@ -301,11 +309,11 @@ prompt for the interactive session.
 Shelling Out
 ============
 
-To supplement the standard command processing, Cmd includes 2 special
-command prefixes. A question mark (?) is equivalent to the built-in
-help command, and can be used in the same way. An exclamation point
-(!) maps to ``do_shell()``, and is intended for shelling out to run
-other commands, as in this example.
+To supplement the standard command processing, :class:`Cmd` includes 2
+special command prefixes. A question mark (``?``) is equivalent to the
+built-in help command, and can be used in the same way. An exclamation
+point (``!``) maps to :func:`do_shell()`, and is intended for shelling
+out to run other commands, as in this example.
 
 .. include:: cmd_do_shell.py
     :literal:
@@ -345,9 +353,10 @@ other commands, as in this example.
 Alternative Inputs
 ==================
 
-While the default mode for Cmd is to interact with the user through
-the :mod:`readline` library, it is also possible to pass a series of
-commands in to standard input using standard Unix shell redirection.
+While the default mode for :func:`Cmd` is to interact with the user
+through the :mod:`readline` library, it is also possible to pass a
+series of commands in to standard input using standard Unix shell
+redirection.
 
 ::
 
@@ -375,8 +384,8 @@ pass it as input to a modified version of the HelloWorld example.
     :literal:
     :start-after: #end_pymotw_header
 
-With ``use_rawinput`` set to False and ``prompt`` set to an empty
-string, we can call the script on this input file:
+With *use_rawinput* set to False and *prompt* set to an empty string,
+we can call the script on this input file:
 
 .. include:: cmd_file.txt
     :literal:
@@ -395,14 +404,14 @@ Commands from sys.argv
 You can also process command line arguments to the program as a
 command for your interpreter class, instead of reading commands from
 stdin or a file.  To use the command line arguments, you can call
-``onecmd()`` directly, as in this example.
+:func:`onecmd()` directly, as in this example.
 
 .. include:: cmd_argv.py
     :literal:
     :start-after: #end_pymotw_header
 
-Since ``onecmd()`` takes a single string as input, the arguments to
-the program need to be joined together before being passed in.
+Since :func:`onecmd()` takes a single string as input, the arguments
+to the program need to be joined together before being passed in.
 
 ::
 

@@ -8,30 +8,31 @@ optparse -- Command line option parser to replace getopt.
 :Purpose: Command line option parser to replace getopt.
 :Python Version: 2.3
 
-The optparse module is a modern alternative for command line option
-parsing that offers several features not available in :mod:`getopt`,
-including type conversion, option callbacks, and automatic help
-generation. There are many more features to optparse than can be
-covered here, but hopefully this introduction will get you started if
-you are writing a command line program soon.
+The :mod:`optparse` module is a modern alternative for command line
+option parsing that offers several features not available in
+:mod:`getopt`, including type conversion, option callbacks, and
+automatic help generation. There are many more features to optparse
+than can be covered here, but hopefully this introduction will get you
+started if you are writing a command line program soon.
 
 Creating an OptionParser
 ========================
 
-There are two phases to parsing options with optparse. First, the OptionParser
-instance is constructed and configured with the expected options. Then a
-sequence of options is fed in and processed. 
+There are two phases to parsing options with :mod:`optparse`. First,
+the :class:`OptionParser` instance is constructed and configured with
+the expected options. Then a sequence of options is fed in and
+processed.
 
 ::
 
     import optparse
     parser = optparse.OptionParser()
 
-Usually, once the parser has been created, each option is added to the parser
-explicitly, with information about what to do when the option is encountered
-on the command line. It is also possible to pass a list of options to the
-OptionParser constructor, but that form does not seem to be used as
-frequently.
+Usually, once the parser has been created, each option is added to the
+parser explicitly, with information about what to do when the option
+is encountered on the command line. It is also possible to pass a list
+of options to the :class:`OptionParser` constructor, but that form
+does not seem to be used as frequently.
 
 Defining Options
 ================
@@ -42,17 +43,18 @@ list are treated as option names. To create aliases for an option, for
 example to have a short and long form of the same option, simply pass
 both names.
 
-Unlike :mod:`getopt`, which only parses the options, optparse is a
-full option processing library. Options can trigger different actions,
-specified by the action argument to ``add_option()``. Supported
-actions include storing the argument (singly, or as part of a list),
-storing a constant value when the option is encountered (including
-special handling for true/false values for boolean switches), counting
-the number of times an option is seen, and calling a callback.
+Unlike :mod:`getopt`, which only parses the options, :func:`optparse`
+is a full option *processing* library. Options can trigger different
+actions, specified by the action argument to
+:func:`add_option()`. Supported actions include storing the argument
+(singly, or as part of a list), storing a constant value when the
+option is encountered (including special handling for true/false
+values for boolean switches), counting the number of times an option
+is seen, and calling a callback.
 
 The default action is to store the argument to the option. In this
 case, if a type is provided, the argument value is converted to that
-type before it is stored. If the ``dest`` argument is provided, the
+type before it is stored. If the *dest* argument is provided, the
 option value is saved to an attribute of that name on the options
 object returned when the command line arguments are parsed.
 
@@ -60,16 +62,16 @@ Parsing a Command Line
 ======================
 
 Once all of the options are defined, the command line is parsed by passing a
-sequence of argument strings to ``parse_args()``. By default, the arguments are
+sequence of argument strings to :func:`parse_args()`. By default, the arguments are
 taken from ``sys.argv[1:]``, but you can also pass your own list. The options are
 processed using the GNU/POSIX syntax, so option and argument values can be
 mixed in the sequence.
 
-The return value from ``parse_args()`` is a two-part tuple containing
-an optparse.Values instance and the list of arguments to the command
-that were not interpreted as options. The Values instance holds the
-option values as attributes, so if your option ``dest`` is
-``"myoption"``, you access the value as: ``options.myoption``.
+The return value from :func:`parse_args()` is a two-part tuple
+containing an optparse.Values instance and the list of arguments to
+the command that were not interpreted as options. The Values instance
+holds the option values as attributes, so if your option ``dest`` is
+``"myoption"``, you access the value as ``options.myoption``.
 
 Simple Examples
 ===============
@@ -84,20 +86,21 @@ Here is a simple example with 3 different options: a boolean option
 
 
 The options on the command line are parsed with the same rules that
-``getopt.gnu_getopt()`` uses, so there are two ways to pass values to single
-character options. The example above uses both forms, ``-bval`` and ``-c val``.
+:func:`getopt.gnu_getopt()` uses, so there are two ways to pass values
+to single character options. The example above uses both forms,
+``-bval`` and ``-c val``.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'optparse_short.py'))
 .. }}}
 .. {{{end}}}
 
-Notice that the type of the value associated with 'c' in the output is an
-integer, since the OptionParser was told to convert the argument before
-storing it.
+Notice that the type of the value associated with ``'c'`` in the
+output is an integer, since the :class:`OptionParser` was told to
+convert the argument before storing it.
 
 Unlike with :mod:`getopt`, "long" option names are not handled any
-differently by optparse:
+differently by :mod:`optparse`:
 
 .. include:: optparse_long.py
     :literal:
@@ -113,8 +116,8 @@ And the results are similar:
 Comparing with getopt
 =====================
 
-Here is an implementation of the same example program used in the PyMOTW article
-about :mod:`getopt`:
+Here is an implementation of the same example program used in the
+chapter about :mod:`getopt`:
 
 .. include:: optparse_getoptcomparison.py
     :literal:
@@ -148,26 +151,28 @@ Any unique prefix of the long option can also be used:
 Option Callbacks
 ================
 
-Beside saving the arguments for options directly, it is possible to define
-callback functions to be invoked when the option is encountered on the command
-line. Callbacks for options take 4 arguments: the optparse.Option instance
-causing the callback, the option string from the command line, any argument
-value associated with the option, and the optparse.OptionParser instance doing
-the parsing work.
+Beside saving the arguments for options directly, it is possible to
+define callback functions to be invoked when the option is encountered
+on the command line. Callbacks for options take 4 arguments: the
+:class:`Option` instance causing the callback, the option string from
+the command line, any argument value associated with the option, and
+the optparse.OptionParser instance doing the parsing work.
 
 .. include:: optparse_callback.py
     :literal:
     :start-after: #end_pymotw_header
 
-In this example, the ``--with`` option is configured to take a string argument
-(other types are support as well, of course).
+In this example, the ``--with`` option is configured to take a string
+argument (other types such as integers and floats are support as
+well).
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'optparse_callback.py'))
 .. }}}
 .. {{{end}}}
 
-Callbacks can be configured to take multiple arguments using the nargs option.
+Callbacks can be configured to take multiple arguments using the *nargs*
+option.
 
 .. include:: optparse_callback_nargs.py
     :literal:
@@ -185,12 +190,12 @@ the value argument.
 Help Messages
 =============
 
-The OptionParser automatically includes a help option to all option
-sets, so the user can pass ``--help`` on the command line to see
-instructions for running the program. The help message includes all of
-the options with an indication of whether or not they take an
-argument. It is also possible to pass help text to ``add_option()`` to
-give a more verbose description of an option.
+The :class:`OptionParser` automatically includes a help option to all
+option sets, so the user can pass ``--help`` on the command line to
+see instructions for running the program. The help message includes
+all of the options with an indication of whether or not they take an
+argument. It is also possible to pass help text to
+:class:`add_option()` to give a more verbose description of an option.
 
 .. include:: optparse_help.py
     :literal:

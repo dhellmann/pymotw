@@ -245,9 +245,9 @@ appropriately:
     demopkg1.shared: /Users/dhellmann/Documents/PyMOTW/in_progress/pkgutil/demopkg1/shared.pyc
     demopkg1.not_shared: /Users/dhellmann/Documents/PyMOTW/in_progress/pkgutil/os_two/demopkg1/not_shared.pyc
 
-Of course, PKG files can appear anywhere in the normal search path, so a
-single PKG file in the current working directory could also be used to include
-a development tree.
+PKG files can appear anywhere in the normal search path, so a single
+PKG file in the current working directory could also be used to
+include a development tree.
 
 Nested Packages
 ===============

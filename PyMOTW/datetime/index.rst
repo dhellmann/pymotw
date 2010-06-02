@@ -14,11 +14,11 @@ and times, separatley and together.
 Times
 =====
 
-Time values are represented with the ``time`` class. Times have
+Time values are represented with the :class:`time` class. Times have
 attributes for hour, minute, second, and microsecond. They can also
-include time zone information. The arguments to initialize a ``time``
-instance are optional, but the default of ``0`` is unlikely to be what
-you want.
+include time zone information. The arguments to initialize a
+:class:`time` instance are optional, but the default of ``0`` is
+unlikely to be what you want.
 
 .. include:: datetime_time.py
     :literal:
@@ -36,7 +36,7 @@ with the time.
     :literal:
     :start-after: #end_pymotw_header
 
-The ``min`` and ``max`` class attributes reflect the valid range of
+The *min* and *max* class attributes reflect the valid range of
 times in a single day.
 
 .. {{{cog
@@ -44,14 +44,15 @@ times in a single day.
 .. }}}
 .. {{{end}}}
 
-The resolution for time is limited to microseconds. More precise values are truncated.
+The resolution for time is limited to microseconds. More precise
+values are truncated.
 
 .. include:: datetime_time_resolution.py
     :literal:
     :start-after: #end_pymotw_header
 
 In fact, using floating point numbers for the microsecond argument
-generates a DeprecationWarning.
+generates a :ref:`DeprecationWarning <exceptions-DeprecationWarning>`.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'datetime_time_resolution.py'))
@@ -62,10 +63,10 @@ generates a DeprecationWarning.
 Dates
 =====
 
-Calendar date values are represented with the ``date``
+Calendar date values are represented with the :class:`date`
 class. Instances have attributes for year, month, and day. It is easy
-to create a date representing today's date using the ``today()`` class
-method.
+to create a date representing today's date using the :func:`today()`
+class method.
 
 .. include:: datetime_date.py
     :literal:
@@ -87,15 +88,15 @@ Jan. 1 of the year 1) or POSIX timestamp values.
     :start-after: #end_pymotw_header
 
 This example illustrates the different value types used by
-``fromordinal()`` and ``fromtimestamp()``.
+:func:`fromordinal()` and :func:`fromtimestamp()`.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'datetime_date_fromordinal.py'))
 .. }}}
 .. {{{end}}}
 
-As with ``time``, the range of date values supported can be determined
-using the ``min`` and ``max`` attributes.
+As with :class:`time`, the range of date values supported can be
+determined using the *min* and *max* attributes.
 
 .. include:: datetime_date_minmax.py
     :literal:
@@ -108,9 +109,9 @@ The resolution for dates is whole days.
 .. }}}
 .. {{{end}}}
 
-Another way to create new date instances uses the ``replace()`` method
-of an existing date. For example, you can change the year, leaving the
-day and month alone.
+Another way to create new date instances uses the :func:`replace()`
+method of an existing date. For example, you can change the year,
+leaving the day and month alone.
 
 .. include:: datetime_date_replace.py
     :literal:
@@ -124,12 +125,13 @@ day and month alone.
 timedeltas
 ==========
 
-Using ``replace()`` is not the only way to calculate future/past
+Using :func:`replace()` is not the only way to calculate future/past
 dates. You can use :mod:`datetime` to perform basic arithmetic on date
-values via the ``timedelta`` class. Subtracting dates produces a
-timedelta, and a timedelta can be added or subtracted from a date to
-produce another date. The internal values for timedeltas are stored in
-days, seconds, and microseconds.
+values via the :class:`timedelta` class. Subtracting dates produces a
+:class:`timedelta`, and a :class:`timedelta` can be added or
+subtracted from a date to produce another date. The internal values
+for a :class:`timedelta` are stored in days, seconds, and
+microseconds.
 
 .. include:: datetime_timedelta.py
     :literal:
@@ -148,9 +150,9 @@ Date Arithmetic
 ===============
 
 Date math uses the standard arithmetic operators. This example with
-date objects illustrates using timedeltas to compute new dates, and
-subtracting date instances to produce timedeltas (including a negative
-delta value).
+date objects illustrates using :class:`timedelta` objects to compute
+new dates, and subtracting date instances to produce timedeltas
+(including a negative delta value).
 
 .. include:: datetime_date_math.py
     :literal:
@@ -179,17 +181,17 @@ to determine which is earlier or later.
 Combining Dates and Times
 =========================
 
-Use the ``datetime`` class to hold values consisting of both date and
-time components. As with ``date``, there are several convenient class
-methods to make creating ``datetime`` instances from other common
-values.
+Use the :class:`datetime` class to hold values consisting of both date
+and time components. As with :class:`date`, there are several
+convenient class methods to make creating :class:`datetime` instances
+from other common values.
 
 .. include:: datetime_datetime.py
     :literal:
     :start-after: #end_pymotw_header
 
-As you might expect, the datetime instance has all of the attributes
-of both a date and a time object.
+As you might expect, the :class:`datetime` instance has all of the
+attributes of both a date and a time object.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'datetime_datetime.py'))
@@ -197,10 +199,10 @@ of both a date and a time object.
 .. {{{end}}}
 
 Just as with date, datetime provides convenient class methods for
-creating new instances. Of course it includes ``fromordinal()`` and
-``fromtimestamp()``. In addition, ``combine()`` can be useful if you
-already have a date instance and time instance and want to create a
-datetime.
+creating new instances. It also includes :func:`fromordinal()` and
+:func:`fromtimestamp()`. In addition, :func:`combine()` can be useful
+if you already have a date instance and time instance and want to
+create a datetime.
 
 .. include:: datetime_datetime_combine.py
     :literal:
@@ -216,9 +218,9 @@ Formatting and Parsing
 
 The default string representation of a datetime object uses the `ISO
 8601`_ format (``YYYY-MM-DDTHH:MM:SS.mmmmmm``). Alternate formats can
-be generated using ``strftime()``. Similarly, if your input data
-includes timestamp values parsable with ``time.strptime()``, then
-``datetime.strptime()`` is a convenient way to convert them to
+be generated using :func:`strftime()`. Similarly, if your input data
+includes timestamp values parsable with :func:`time.strptime()`, then
+:func:`datetime.strptime()` is a convenient way to convert them to
 datetime instances.
 
 .. include:: datetime_datetime_strptime.py
@@ -233,11 +235,11 @@ datetime instances.
 Time Zones
 ==========
 
-Within datetime, time zones are represented by subclasses of
-``datetime.tzinfo``. Since tzinfo is an abstract base class, you need
-to define a subclass and provide appropriate implementations for a few
-methods to make it useful. Unfortunately, datetime does not include
-any actual implementations ready to be used, although the
+Within :mod:`datetime`, time zones are represented by subclasses of
+:class:`tzinfo`. Since :class:`tzinfo` is an abstract base class, you
+need to define a subclass and provide appropriate implementations for
+a few methods to make it useful. Unfortunately, :mod:`datetime` does
+not include any actual implementations ready to be used, although the
 documentation does provide a few sample implementations. Refer to the
 standard library documentation page for examples using fixed offsets
 as well as a DST-aware class and more details about creating your own
