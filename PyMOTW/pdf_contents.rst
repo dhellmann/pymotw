@@ -38,10 +38,10 @@ the `pyCologne
 user group in Germany and author of pyVoc, the open source
 English/German vocabulary trainer (http://code.google.com/p/pyvoc/).
 
-Roberto Pauletto is working on `an Italian translation
-<http://robyp.x10hosting.com/>`_.  Roberto creates Windows
-applications with C# by day, and tinkers with Linux and Python at
-home.  He has recently moved to Python from Perl for all of his
+Roberto Pauletto is working on an Italian translation at
+http://robyp.x10hosting.com/.  Roberto creates Windows applications
+with C# by day, and tinkers with Linux and Python at home.  He has
+recently moved to Python from Perl for all of his
 system-administration scripting.
 
 `Ernesto Rico Schmidt <http://denklab.org/>`_ provides a Spanish

@@ -99,10 +99,10 @@ English/German vocabulary trainer (http://code.google.com/p/pyvoc/).
 Italian
 -------
 
-Roberto Pauletto is working on `an Italian translation
-<http://robyp.x10hosting.com/>`_.  Roberto creates Windows
-applications with C# by day, and tinkers with Linux and Python at
-home.  He has recently moved to Python from Perl for all of his
+Roberto Pauletto is working on an Italian translation at
+http://robyp.x10hosting.com/.  Roberto creates Windows applications
+with C# by day, and tinkers with Linux and Python at home.  He has
+recently moved to Python from Perl for all of his
 system-administration scripting.
 
 
