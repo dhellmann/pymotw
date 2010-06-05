@@ -84,15 +84,88 @@ with :option:`-s`.
 .. }}}
 .. {{{end}}}
 
-Extending the Import Path from Your Code
-========================================
-
-.. using addsitedir()
-
 Path Configuration Files
 ========================
 
 .. contents and processing of .pth files
+
+As paths are added to the import path, they are also scanned for *path
+configuration files*.  A path configuration file is a plain text file
+with the extension ``.pth``.  Each line in the file can take one of
+four forms:
+
+1. A full or relative path to another location that should be added to
+   the import path.
+2. A Python statement to be executed.  All such lines must begin with
+   an ``import`` statement.
+3. Blank lines are ignored.
+4. A line starting with ``#`` is treated as a comment and ignored.
+
+Path configuration files can be used to extend the import path to look
+in locations that would not have been added automatically.  For
+example, Distribute_ adds paths to ``easy-install.pth`` when a package
+is installed in "develop" mode using ``python setup.py develop``.
+
+The function for extending ``sys.path`` is public, so we can use it in
+example programs to show how the path configuration files work.  Given
+a directory ``with_modules`` containing the file ``mymodule.py`` with
+this ``print`` statement showing how the module was imported:
+
+.. include:: with_modules/mymodule.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+This script shows how :func:`addsitedir()` extends the import path so
+the interpreter can find the desired module.
+
+.. include:: site_addsitedir.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+After the directory containing the module is added to ``sys.path``,
+the script can import :mod:`mymodule` without issue.
+
+.. {{{cog
+.. (path(cog.inFile).dirname() / 'with_modules/mymodule.pyc').unlink()
+.. cog.out(run_script(cog.inFile, 'site_addsitedir.py with_modules'))
+.. }}}
+.. {{{end}}}
+
+If the directory given to :func:`addsitedir()` includes any files
+matching the pattern ``*.pth``, they are loaded as path configuration
+files.  For example, if we create ``with_pth/pymotw.pth`` containing:
+
+.. literalinclude:: with_pth/pymotw.pth
+
+and copy ``mymodule.py`` to ``with_pth/subdir/mymodule.py``, then we
+can import it by adding ``with_pth`` as a site directory, even though
+the module is not in that directory.
+
+.. {{{cog
+.. (path(cog.inFile).dirname() / 'with_pth/subdir/mymodule.pyc').unlink()
+.. cog.out(run_script(cog.inFile, 'site_addsitedir.py with_pth'))
+.. }}}
+.. {{{end}}}
+
+If a site directory contains multiple ``.pth`` files, they are
+processed in alphabetical order.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'ls -F with_multiple_pth', interpreter=None))
+.. cog.out(run_script(cog.inFile, 'cat with_multiple_pth/a.pth', interpreter=None, include_prefix=False))
+.. cog.out(run_script(cog.inFile, 'cat with_multiple_pth/b.pth', interpreter=None, include_prefix=False))
+.. }}}
+.. {{{end}}}
+
+In this case, the module is found in ``with_multiple_pth/from_a``
+because ``a.pth`` is read before ``b.pth``.
+
+.. {{{cog
+.. (path(cog.inFile).dirname() / 'with_multiple_pth/from_a/mymodule.pyc').unlink()
+.. cog.out(run_script(cog.inFile, 'site_addsitedir.py with_multiple_pth'))
+.. }}}
+.. {{{end}}}
+
 
 Flags and Constants
 ===================

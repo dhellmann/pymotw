@@ -17,4 +17,3 @@ status = {
 
 print 'Flag   :', site.ENABLE_USER_SITE
 print 'Meaning:', status[site.ENABLE_USER_SITE]
-
