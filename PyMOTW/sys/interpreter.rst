@@ -49,6 +49,7 @@ version in ``uname -r``. For other operating systems there is a
 .. }}}
 .. {{{end}}}
 
+.. _sys-prefix:
 
 Install Location
 ================
