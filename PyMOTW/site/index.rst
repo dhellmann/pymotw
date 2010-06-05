@@ -6,7 +6,7 @@ site -- Site-specific configuration
     :synopsis: Site-specific configuration
 
 The :mod:`site` module handles site-specific configuration, especially
-:ref:`the import path <sys-path>`.
+the :ref:`import path <sys-path>`.
 
 Import Path
 ===========
@@ -63,6 +63,21 @@ it does.
 .. cog.out(run_script(cog.inFile, 'PYTHONUSERBASE=/tmp/$USER python -m site --user-base', interpreter=None, include_prefix=False))
 .. cog.out(run_script(cog.inFile, 'PYTHONUSERBASE=/tmp/$USER python -m site --user-site', interpreter=None, include_prefix=False))
 .. }}}
+
+::
+
+	$ python -m site --user-base
+	/Users/dhellmann/.local
+
+	$ python -m site --user-site
+	/Users/dhellmann/.local/lib/python2.6/site-packages
+
+	$ PYTHONUSERBASE=/tmp/$USER python -m site --user-base
+	/tmp/dhellmann
+
+	$ PYTHONUSERBASE=/tmp/$USER python -m site --user-site
+	/tmp/dhellmann/lib/python2.6/site-packages
+
 .. {{{end}}}
 
 The user directory is disabled under some circumstances that would
@@ -82,6 +97,17 @@ with :option:`-s`.
 .. cog.out(run_script(cog.inFile, 'site_enable_user_site.py'))
 .. cog.out(run_script(cog.inFile, '-s site_enable_user_site.py', include_prefix=False))
 .. }}}
+
+::
+
+	$ python site_enable_user_site.py
+	Flag   : True
+	Meaning: Enabled
+
+	$ python -s site_enable_user_site.py
+	Flag   : False
+	Meaning: Disabled by command-line option
+
 .. {{{end}}}
 
 Path Configuration Files
@@ -129,6 +155,17 @@ the script can import :mod:`mymodule` without issue.
 .. (path(cog.inFile).dirname() / 'with_modules/mymodule.pyc').unlink()
 .. cog.out(run_script(cog.inFile, 'site_addsitedir.py with_modules'))
 .. }}}
+
+::
+
+	$ python site_addsitedir.py with_modules
+	Could not import mymodule: No module named mymodule
+	
+	New paths:
+	   /Users/dhellmann/Documents/PyMOTW/book/PyMOTW/site/with_modules
+	
+	Loaded mymodule from with_modules/mymodule.py
+
 .. {{{end}}}
 
 If the directory given to :func:`addsitedir()` includes any files
@@ -145,6 +182,18 @@ the module is not in that directory.
 .. (path(cog.inFile).dirname() / 'with_pth/subdir/mymodule.pyc').unlink()
 .. cog.out(run_script(cog.inFile, 'site_addsitedir.py with_pth'))
 .. }}}
+
+::
+
+	$ python site_addsitedir.py with_pth
+	Could not import mymodule: No module named mymodule
+	
+	New paths:
+	   /Users/dhellmann/Documents/PyMOTW/book/PyMOTW/site/with_pth
+	   /Users/dhellmann/Documents/PyMOTW/book/PyMOTW/site/with_pth/subdir
+	
+	Loaded mymodule from with_pth/subdir/mymodule.py
+
 .. {{{end}}}
 
 If a site directory contains multiple ``.pth`` files, they are
@@ -155,6 +204,21 @@ processed in alphabetical order.
 .. cog.out(run_script(cog.inFile, 'cat with_multiple_pth/a.pth', interpreter=None, include_prefix=False))
 .. cog.out(run_script(cog.inFile, 'cat with_multiple_pth/b.pth', interpreter=None, include_prefix=False))
 .. }}}
+
+::
+
+	$ ls -F with_multiple_pth
+	a.pth
+	b.pth
+	from_a/
+	from_b/
+
+	$ cat with_multiple_pth/a.pth
+	./from_a
+
+	$ cat with_multiple_pth/b.pth
+	./from_b
+
 .. {{{end}}}
 
 In this case, the module is found in ``with_multiple_pth/from_a``
@@ -164,8 +228,35 @@ because ``a.pth`` is read before ``b.pth``.
 .. (path(cog.inFile).dirname() / 'with_multiple_pth/from_a/mymodule.pyc').unlink()
 .. cog.out(run_script(cog.inFile, 'site_addsitedir.py with_multiple_pth'))
 .. }}}
+
+::
+
+	$ python site_addsitedir.py with_multiple_pth
+	Could not import mymodule: No module named mymodule
+	
+	New paths:
+	   /Users/dhellmann/Documents/PyMOTW/book/PyMOTW/site/with_multiple_pth
+	   /Users/dhellmann/Documents/PyMOTW/book/PyMOTW/site/with_multiple_pth/from_a
+	   /Users/dhellmann/Documents/PyMOTW/book/PyMOTW/site/with_multiple_pth/from_b
+	
+	Loaded mymodule from with_multiple_pth/from_a/mymodule.py
+
 .. {{{end}}}
 
+
+sitecustomize
+=============
+
+.. Show an example that prints something and modifies the import path
+.. cd into the directory containing the sitecustomize.py before
+.. running the wrapper script.  Talk about where the sitecustomize
+.. file would really be written.
+
+usercustomize
+=============
+
+.. replicate the sitecustomize example using usercustomize.py instead
+.. and talk about where it can go
 
 Flags and Constants
 ===================
