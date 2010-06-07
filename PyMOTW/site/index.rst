@@ -1,9 +1,9 @@
-===================================
-site -- Site-specific configuration
-===================================
+===============================
+site -- Site-wide configuration
+===============================
 
 .. module:: site
-    :synopsis: Site-specific configuration
+    :synopsis: Site-wide configuration
 
 The :mod:`site` module handles site-specific configuration, especially
 the :ref:`import path <sys-path>`.
@@ -47,15 +47,30 @@ In addition to the global site-packages paths, :mod:`site` is
 responsible for adding the user-specific locations to the import path.
 The user-specific paths are all based on the ``USER_BASE`` directory,
 usually located in a part of the filesystem that is owned (and
-writable) by the current user.  The path can be set through the
-``PYTHONUSERBASE`` environment variable, and has platform-specific
-defaults (``~/Python$version/site-packages`` for Windows and
-``~/.local`` for non-Windows).
+writable) by the current user.  Inside the ``USER_BASE`` is a
+site-packages directory, with the path accessible as ``USER_SITE``.
 
-You can check the ``USER_BASE`` value by running :mod:`site` from the
-command line.  :mod:`site` will give you the name of the directory
-whether or not it exists, but it is only added to the import path when
-it does.
+.. include:: site_user_base.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+The ``USER_SITE`` path name is created using the same
+platform-specific values described above.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'site_user_base.py'))
+.. }}}
+.. {{{end}}}
+
+The user base directory can be set through the ``PYTHONUSERBASE``
+environment variable, and has platform-specific defaults
+(``~/Python$version/site-packages`` for Windows and ``~/.local`` for
+non-Windows).  
+
+You can check the ``USER_BASE`` value from outside of your Python
+program by running :mod:`site` from the command line.  :mod:`site`
+will give you the name of the directory whether or not it exists, but
+it is only added to the import path when it does.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-m site --user-base'))
@@ -63,21 +78,6 @@ it does.
 .. cog.out(run_script(cog.inFile, 'PYTHONUSERBASE=/tmp/$USER python -m site --user-base', interpreter=None, include_prefix=False))
 .. cog.out(run_script(cog.inFile, 'PYTHONUSERBASE=/tmp/$USER python -m site --user-site', interpreter=None, include_prefix=False))
 .. }}}
-
-::
-
-	$ python -m site --user-base
-	/Users/dhellmann/.local
-
-	$ python -m site --user-site
-	/Users/dhellmann/.local/lib/python2.6/site-packages
-
-	$ PYTHONUSERBASE=/tmp/$USER python -m site --user-base
-	/tmp/dhellmann
-
-	$ PYTHONUSERBASE=/tmp/$USER python -m site --user-site
-	/tmp/dhellmann/lib/python2.6/site-packages
-
 .. {{{end}}}
 
 The user directory is disabled under some circumstances that would
@@ -97,23 +97,10 @@ with :option:`-s`.
 .. cog.out(run_script(cog.inFile, 'site_enable_user_site.py'))
 .. cog.out(run_script(cog.inFile, '-s site_enable_user_site.py', include_prefix=False))
 .. }}}
-
-::
-
-	$ python site_enable_user_site.py
-	Flag   : True
-	Meaning: Enabled
-
-	$ python -s site_enable_user_site.py
-	Flag   : False
-	Meaning: Disabled by command-line option
-
 .. {{{end}}}
 
 Path Configuration Files
 ========================
-
-.. contents and processing of .pth files
 
 As paths are added to the import path, they are also scanned for *path
 configuration files*.  A path configuration file is a plain text file
@@ -155,17 +142,6 @@ the script can import :mod:`mymodule` without issue.
 .. (path(cog.inFile).dirname() / 'with_modules/mymodule.pyc').unlink()
 .. cog.out(run_script(cog.inFile, 'site_addsitedir.py with_modules'))
 .. }}}
-
-::
-
-	$ python site_addsitedir.py with_modules
-	Could not import mymodule: No module named mymodule
-	
-	New paths:
-	   /Users/dhellmann/Documents/PyMOTW/book/PyMOTW/site/with_modules
-	
-	Loaded mymodule from with_modules/mymodule.py
-
 .. {{{end}}}
 
 If the directory given to :func:`addsitedir()` includes any files
@@ -182,18 +158,6 @@ the module is not in that directory.
 .. (path(cog.inFile).dirname() / 'with_pth/subdir/mymodule.pyc').unlink()
 .. cog.out(run_script(cog.inFile, 'site_addsitedir.py with_pth'))
 .. }}}
-
-::
-
-	$ python site_addsitedir.py with_pth
-	Could not import mymodule: No module named mymodule
-	
-	New paths:
-	   /Users/dhellmann/Documents/PyMOTW/book/PyMOTW/site/with_pth
-	   /Users/dhellmann/Documents/PyMOTW/book/PyMOTW/site/with_pth/subdir
-	
-	Loaded mymodule from with_pth/subdir/mymodule.py
-
 .. {{{end}}}
 
 If a site directory contains multiple ``.pth`` files, they are
@@ -204,21 +168,6 @@ processed in alphabetical order.
 .. cog.out(run_script(cog.inFile, 'cat with_multiple_pth/a.pth', interpreter=None, include_prefix=False))
 .. cog.out(run_script(cog.inFile, 'cat with_multiple_pth/b.pth', interpreter=None, include_prefix=False))
 .. }}}
-
-::
-
-	$ ls -F with_multiple_pth
-	a.pth
-	b.pth
-	from_a/
-	from_b/
-
-	$ cat with_multiple_pth/a.pth
-	./from_a
-
-	$ cat with_multiple_pth/b.pth
-	./from_b
-
 .. {{{end}}}
 
 In this case, the module is found in ``with_multiple_pth/from_a``
@@ -228,35 +177,91 @@ because ``a.pth`` is read before ``b.pth``.
 .. (path(cog.inFile).dirname() / 'with_multiple_pth/from_a/mymodule.pyc').unlink()
 .. cog.out(run_script(cog.inFile, 'site_addsitedir.py with_multiple_pth'))
 .. }}}
-
-::
-
-	$ python site_addsitedir.py with_multiple_pth
-	Could not import mymodule: No module named mymodule
-	
-	New paths:
-	   /Users/dhellmann/Documents/PyMOTW/book/PyMOTW/site/with_multiple_pth
-	   /Users/dhellmann/Documents/PyMOTW/book/PyMOTW/site/with_multiple_pth/from_a
-	   /Users/dhellmann/Documents/PyMOTW/book/PyMOTW/site/with_multiple_pth/from_b
-	
-	Loaded mymodule from with_multiple_pth/from_a/mymodule.py
-
 .. {{{end}}}
 
+
+.. module:: sitecustomize
+    :synopsis: Site-specific configuration
 
 sitecustomize
 =============
 
-.. Show an example that prints something and modifies the import path
-.. cd into the directory containing the sitecustomize.py before
-.. running the wrapper script.  Talk about where the sitecustomize
-.. file would really be written.
+The :mod:`site` module is also responsible for loading site-wide
+customization hooks defined by the local site owner in a
+:mod:`sitecustomize` module.  Uses for :mod:`sitecustomize` include
+extending the import path and `enabling coverage
+<http://nedbatchelder.com/blog/201001/running_code_at_python_startup.html>`__,
+profiling, or other development tools.
+
+For example, this ``sitecustomize.py`` script extends the import path
+with a directory based on the current platform.  The platform-specific
+path in ``/opt/local`` is added to the import path, so any packages
+installed there can be imported.  A system like this is useful for
+sharing packages containing compiled extension modules between hosts
+on a network via a shared filesystem.  Only the ``sitecustomize.py``
+script needs to be installed on each host, and the other packages can
+be accessed from the file server.
+
+.. include:: with_sitecustomize/sitecustomize.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+A simple script can be used to show that ``sitecustomize.py`` is
+imported before Python starts running your own code.
+
+.. include:: with_sitecustomize/site_sitecustomize.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+Since :mod:`sitecustomize` is meant for system-wide configuration, it
+should be installed somewere in the default path (usally in the
+``site-packages`` directory).  This example sets ``PYTHONPATH``
+explicitly to ensure the module is picked up.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'PYTHONPATH=with_sitecustomize python with_sitecustomize/site_sitecustomize.py', interpreter=None))
+.. }}}
+.. {{{end}}}
+
+.. module:: usercustomize
+    :synopsis: User-specific configuration
 
 usercustomize
 =============
 
-.. replicate the sitecustomize example using usercustomize.py instead
-.. and talk about where it can go
+Similar to :mod:`sitecustomize`, the :mod:`usercustomize` module can
+be used as a hook to set up the interpreter each time it starts up.
+:mod:`usercustomize` is loaded after :mod:`sitecustomize`, so
+site-wide customizations can be overridden.
+
+In environments where a user's home directory is shared on several
+servers running different operating systems or versions, the standard
+user directory mechanism may not work for user-specific installations
+of packages.  In these cases, platform-specific directory tree can be
+used instead.
+
+.. include:: with_usercustomize/usercustomize.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+Another simple script, similar to the one used for
+:mod:`sitecustomize`, can be used to show that ``usercustomize.py`` is
+imported before Python starts running your own code.
+
+.. include:: with_usercustomize/site_usercustomize.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+Since :mod:`usercustomize` is meant for user-specific configuration
+for a user, it should be installed somewere in the user's default
+path, but not on the site-wide path. The default ``USER_BASE``
+directory is a good location.  This example sets ``PYTHONPATH``
+explicitly to ensure the module is picked up.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'PYTHONPATH=with_usercustomize python with_usercustomize/site_usercustomize.py', interpreter=None))
+.. }}}
+.. {{{end}}}
 
 Flags and Constants
 ===================
@@ -291,3 +296,8 @@ before the automatic import was added, the interpreter accepts an
 
     :ref:`sys-imports`
         Discussion from :mod:`sys` about how the import path works.
+
+    `Running code at Python startup <http://nedbatchelder.com/blog/201001/running_code_at_python_startup.html>`__
+        Post from Ned Batchelder discussing ways to cause the Python
+        interpreter to run your custom initialization code before
+        starting the main program execution.
