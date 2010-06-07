@@ -13,11 +13,13 @@ Import Path
 
 :mod:`site` is automatically imported each time the interpreter starts
 up.  On import, it extends :ref:`sys.path <sys-path>` with
-site-specific paths constructed by combining the prefix values
+site-specific names constructed by combining the prefix values
 :ref:`sys.prefix <sys-prefix>` and :ref:`sys.exec_prefix <sys-prefix>`
-with several suffixes.  Under Windows, the suffixes are an empty
-string and ``lib/site-packages``.  For Unix-like platforms, the values
-are ``lib/python$version/site-packages`` and ``lib/site-python``.
+with several suffixes.  The prefix values used are saved in the
+module-level variable ``PREFIXES`` for reference later.  Under
+Windows, the suffixes are an empty string and ``lib/site-packages``.
+For Unix-like platforms, the values are
+``lib/python$version/site-packages`` and ``lib/site-python``.
 
 .. include:: site_import_path.py
    :literal:
@@ -30,8 +32,8 @@ that exist are added to :ref:`sys.path <sys-path>`.
     
     $ python site_import_path.py 
     Path prefixes:
-       sys.prefix     : /Library/Frameworks/Python.framework/Versions/2.6
-       sys.exec_prefix: /Library/Frameworks/Python.framework/Versions/2.6
+       /Library/Frameworks/Python.framework/Versions/2.6
+       /Library/Frameworks/Python.framework/Versions/2.6
     
     /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages
        exists: True
@@ -46,9 +48,9 @@ User Directories
 In addition to the global site-packages paths, :mod:`site` is
 responsible for adding the user-specific locations to the import path.
 The user-specific paths are all based on the ``USER_BASE`` directory,
-usually located in a part of the filesystem that is owned (and
-writable) by the current user.  Inside the ``USER_BASE`` is a
-site-packages directory, with the path accessible as ``USER_SITE``.
+which usually located in a part of the filesystem owned (and writable)
+by the current user.  Inside the ``USER_BASE`` is a site-packages
+directory, with the path accessible as ``USER_SITE``.
 
 .. include:: site_user_base.py
    :literal:
@@ -116,8 +118,9 @@ four forms:
 
 Path configuration files can be used to extend the import path to look
 in locations that would not have been added automatically.  For
-example, Distribute_ adds paths to ``easy-install.pth`` when a package
-is installed in "develop" mode using ``python setup.py develop``.
+example, Distribute_ adds a path to ``easy-install.pth`` when it
+installs a package in "develop" mode using ``python setup.py
+develop``.
 
 The function for extending ``sys.path`` is public, so we can use it in
 example programs to show how the path configuration files work.  Given
@@ -187,7 +190,7 @@ sitecustomize
 =============
 
 The :mod:`site` module is also responsible for loading site-wide
-customization hooks defined by the local site owner in a
+customization defined by the local site owner in a
 :mod:`sitecustomize` module.  Uses for :mod:`sitecustomize` include
 extending the import path and `enabling coverage
 <http://nedbatchelder.com/blog/201001/running_code_at_python_startup.html>`__,
@@ -195,7 +198,7 @@ profiling, or other development tools.
 
 For example, this ``sitecustomize.py`` script extends the import path
 with a directory based on the current platform.  The platform-specific
-path in ``/opt/local`` is added to the import path, so any packages
+path in ``/opt/python`` is added to the import path, so any packages
 installed there can be imported.  A system like this is useful for
 sharing packages containing compiled extension modules between hosts
 on a network via a shared filesystem.  Only the ``sitecustomize.py``
@@ -230,9 +233,9 @@ usercustomize
 =============
 
 Similar to :mod:`sitecustomize`, the :mod:`usercustomize` module can
-be used as a hook to set up the interpreter each time it starts up.
-:mod:`usercustomize` is loaded after :mod:`sitecustomize`, so
-site-wide customizations can be overridden.
+be used to set up user-specific settings each time the interpreter
+starts up.  :mod:`usercustomize` is loaded after :mod:`sitecustomize`,
+so site-wide customizations can be overridden.
 
 In environments where a user's home directory is shared on several
 servers running different operating systems or versions, the standard
@@ -253,7 +256,7 @@ imported before Python starts running your own code.
    :start-after: #end_pymotw_header
 
 Since :mod:`usercustomize` is meant for user-specific configuration
-for a user, it should be installed somewere in the user's default
+for a user, it should be installed somewhere in the user's default
 path, but not on the site-wide path. The default ``USER_BASE``
 directory is a good location.  This example sets ``PYTHONPATH``
 explicitly to ensure the module is picked up.
@@ -263,10 +266,15 @@ explicitly to ensure the module is picked up.
 .. }}}
 .. {{{end}}}
 
-Flags and Constants
-===================
+When the user site directory feature is disabled, :mod:`usercustomize`
+is not imported, whether it is located in the user site directory or
+elsewhere.
 
-.. the values defined in the module and how they change based on settings
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'PYTHONPATH=with_usercustomize python -s with_usercustomize/site_usercustomize.py', interpreter=None))
+.. }}}
+.. {{{end}}}
+
 
 Disabling site
 ==============
@@ -295,7 +303,7 @@ before the automatic import was added, the interpreter accepts an
         The standard library documentation for this module.
 
     :ref:`sys-imports`
-        Discussion from :mod:`sys` about how the import path works.
+        Description of how the import path defined in :mod:`sys` works.
 
     `Running code at Python startup <http://nedbatchelder.com/blog/201001/running_code_at_python_startup.html>`__
         Post from Ned Batchelder discussing ways to cause the Python

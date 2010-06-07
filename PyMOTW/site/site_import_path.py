@@ -10,6 +10,7 @@
 import sys
 import os
 import platform
+import site
 
 if 'Windows' in platform.platform():
     SUFFIXES = [
@@ -18,15 +19,15 @@ if 'Windows' in platform.platform():
         ]
 else:
     SUFFIXES = [
-        'lib/python2.6/site-packages',
+        'lib/python%s/site-packages' % sys.version[:3],
         'lib/site-python',
         ]
 
 print 'Path prefixes:'
-print '   sys.prefix     :', sys.prefix
-print '   sys.exec_prefix:', sys.exec_prefix
+for p in site.PREFIXES:
+    print '  ', p
 
-for prefix in sorted(set([ sys.prefix, sys.exec_prefix ])):
+for prefix in sorted(set(site.PREFIXES)):
     print
     for suffix in SUFFIXES:
         path = os.path.join(prefix, suffix).rstrip(os.sep)
