@@ -39,19 +39,22 @@ class.
 .. }}}
 .. {{{end}}}
 
-We can use a :mod:`Queue` to perform a breadth-first traversal of all
-of the object references and look for cycles.  The elements of the
-queue are the reference chain so far, and the next object to examine.
-We start with ``three``, and look at everything it refers to.
-Skipping classes lets us avoid looking at methods, modules, etc.
+This example uses a :mod:`Queue` to perform a breadth-first traversal
+of all of the object references looking for cycles.  The items
+inserted into the queue are tuples containing the reference chain so
+far and the next object to examine.  It starts with ``three``, and
+look at everything it refers to.  Skipping classes lets us avoid
+looking at methods, modules, etc.
 
 .. include:: gc_get_referents_cycles.py
    :literal:
    :start-after: #end_pymotw_header
 
-The cycle in the nodes is easily found by scanning in this way.  The
-dictionaries in the chain hold the instance attributes of the Graph
-objects.
+The cycle in the nodes is easily found by watching for objects that
+have already been processed.  To avoid holding references to those
+objects, their :func:`id()` values are cached in a set.  The
+dictionary objects found in the cycle are the ``__dict__`` values for
+the :class:`Graph` instances, and hold their instance attributes.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'gc_get_referents_cycles.py'))
