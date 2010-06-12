@@ -19,6 +19,8 @@ class Graph(object):
         self.next = next
     def __repr__(self):
         return '%s(%s)' % (self.__class__.__name__, self.name)
+    def __del__(self):
+        print '%s.__del__()' % self
 
 # Construct a graph cycle
 one = Graph('one')
@@ -28,5 +30,13 @@ one.set_next(two)
 two.set_next(three)
 three.set_next(one)
 
-for r in gc.get_referents(three):
-    pprint.pprint(r)
+# Remove references to the graph nodes in this module's namespace
+one = two = three = None
+
+# Show the effect of garbage collection
+print 'Collecting...'
+n = gc.collect()
+print 'Unreachable objects:', n
+print 'Remaining Garbage:', 
+pprint.pprint(gc.garbage)
+    

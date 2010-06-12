@@ -28,5 +28,15 @@ one.set_next(two)
 two.set_next(three)
 three.set_next(one)
 
-for r in gc.get_referents(three):
-    pprint.pprint(r)
+# Remove references to the graph nodes in this module's namespace
+one = two = three = None
+
+# Show the effect of garbage collection
+for i in range(2):
+    print 'Collecting %d ...' % i
+    n = gc.collect()
+    print 'Unreachable objects:', n
+    print 'Remaining Garbage:', 
+    pprint.pprint(gc.garbage)
+    print
+    
