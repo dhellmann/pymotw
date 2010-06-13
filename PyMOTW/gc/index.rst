@@ -149,6 +149,48 @@ relationship.
 Collection Thresholds and Generations
 =====================================
 
+The garbage collector maintains three lists of objects it sees as it
+runs, one for each "generation" tracked by the collector.  As objects
+are examined in each generation, they are either collected or they age
+into subsequent generations until they finally reach the stage where
+they are kept permanently.
+
+The collector routines can be tuned to occur at different frequences
+based on the difference between the number of object allocations and
+deallocations between runs.  When the number of allocations minus the
+number of deallocations is greater than the threshold for the
+generation, the garbage collector is run.  The current thresholds can
+be examined with :func:`get_threshold()`.
+
+.. include:: gc_get_threshold.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+The return value is a tuple with the threshold for each generation.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'gc_get_threshold.py'))
+.. }}}
+.. {{{end}}}
+
+The thresholds can be changed with :func:`set_threshold()`.  This
+example program reads the threshold for generation ``0`` from the
+command line, adjusts the :mod:`gc` settings, then allocates a series
+of objects.
+
+.. include:: gc_threshold.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+Different threshold values introduce the garbage collection sweeps at
+different times, shown here because debugging is enabled.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, '-u gc_threshold.py 5'))
+.. cog.out(run_script(cog.inFile, '-u gc_threshold.py 2', include_prefix=False))
+.. }}}
+.. {{{end}}}
+
 
 
 .. Debugging Flags
@@ -163,3 +205,9 @@ Collection Thresholds and Generations
         The :mod:`weakref` module gives you references to objects
         without increasing their reference count, so they can still be
         garbage collected.
+
+    `Supporting Cyclic Garbage Collection <http://docs.python.org/c-api/gcsupport.html>`__
+        Background material from Python's C API documentation.
+
+    `How does Python manage memory? <http://effbot.org/pyfaq/how-does-python-manage-memory.htm>`__
+        An article on Python memory management by Fredrik Lundh.
