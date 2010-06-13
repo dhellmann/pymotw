@@ -248,46 +248,53 @@ and cannot be freed.
 .. }}}
 .. {{{end}}}
 
+The flag :const:`DEBUG_INSTANCES` works much the same way for
+instances of old-style classes (not derived from :class:`object`.
 
+.. include:: gc_debug_collectable_instances.py
+   :literal:
+   :start-after: #end_pymotw_header
 
+In this case, however, the :class:`dict` objects holding the instance
+attributes are not included in the output.
 
+.. {{{cog
+.. cog.out(run_script(cog.inFile, '-u gc_debug_collectable_instances.py'))
+.. }}}
+.. {{{end}}}
 
-gc.DEBUG_STATS¶
+If seeing the uncollectable objects is not enough information to
+understand where data is being retained, you can enable
+:const:`DEBUG_SAVEALL` to cause :mod:`gc` to preserve all objects it
+finds without any references in the :obj:`garbage` list, so you can
+examine them.  This is helpful if, for example, you don't have access
+to the constructor to print the object id when each object is created.
 
-    Print statistics during collection. This information can be useful
-    when tuning the collection frequency.
+.. include:: gc_debug_saveall.py
+   :literal:
+   :start-after: #end_pymotw_header
 
-gc.DEBUG_COLLECTABLE¶
-    Print information on collectable objects found.
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'gc_debug_saveall.py'))
+.. }}}
+.. {{{end}}}
 
-gc.DEBUG_UNCOLLECTABLE¶
+For simplicity, :const:`DEBUG_LEAK` is defined as a combination of all
+of the other options.
 
-    Print information of uncollectable objects found (objects which
-    are not reachable but cannot be freed by the collector). These
-    objects will be added to the garbage list.
+.. include:: gc_debug_leak.py
+   :literal:
+   :start-after: #end_pymotw_header
 
-gc.DEBUG_INSTANCES¶
+Keep in mind that because :const:`DEBUG_SAVEALL` is enabled by
+:const:`DEBUG_LEAK`, even the unreferenced objects that would normally
+have been collected and deleted are retained.
 
-    When DEBUG_COLLECTABLE or DEBUG_UNCOLLECTABLE is set, print
-    information about instance objects found.
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'gc_debug_leak.py'))
+.. }}}
+.. {{{end}}}
 
-gc.DEBUG_OBJECTS¶
-
-    When DEBUG_COLLECTABLE or DEBUG_UNCOLLECTABLE is set, print
-    information about objects other than instance objects found.
-
-gc.DEBUG_SAVEALL¶
-
-    When set, all unreachable objects found will be appended to
-    garbage rather than being freed. This can be useful for debugging
-    a leaking program.
-
-gc.DEBUG_LEAK¶
-
-    The debugging flags necessary for the collector to print
-    information about a leaking program (equal to DEBUG_COLLECTABLE |
-    DEBUG_UNCOLLECTABLE | DEBUG_INSTANCES | DEBUG_OBJECTS |
-    DEBUG_SAVEALL).
 
 .. seealso::
 
