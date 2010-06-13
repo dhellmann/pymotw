@@ -155,7 +155,7 @@ are examined in each generation, they are either collected or they age
 into subsequent generations until they finally reach the stage where
 they are kept permanently.
 
-The collector routines can be tuned to occur at different frequences
+The collector routines can be tuned to occur at different frequencies
 based on the difference between the number of object allocations and
 deallocations between runs.  When the number of allocations minus the
 number of deallocations is greater than the threshold for the
@@ -192,9 +192,102 @@ different times, shown here because debugging is enabled.
 .. {{{end}}}
 
 
+Debugging
+=========
 
-.. Debugging Flags
+Debugging memory leaks can be challenging.  :mod:`gc` includes several
+options to expose the inner workings to make the job easier.  The
+options are bit-flags meant to be combined and passed to
+:func:`set_debug()` to configure the garbage collector while your
+program is running.  Debugging information is printed to :ref:`stderr
+<sys-input-output>`.
 
+The :const:`DEBUG_STATS` flag turns on statistics reporting, causing
+the garbage collector to report when it is running, the number of
+objects tracked for each generation, and the amount of time it took to
+perform the sweep.
+
+.. include:: gc_debug_stats.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+This example output shows two separate runs of the collector because
+it runs once when it is invoked explicitly, and a second time when the
+interpreter exits.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'gc_debug_stats.py'))
+.. }}}
+.. {{{end}}}
+
+Enabling :const:`DEBUG_COLLECTABLE` and :const:`DEBUG_UNCOLLECTABLE`
+causes the collector to report on whether each object it examines can
+or cannot be collected.  You need to combine these flags need with
+:const:`DEBUG_OBJECTS` so :mod:`gc` will print information about
+the objects being held.
+
+.. include:: gc_debug_collectable_objects.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+The two classes :class:`Graph` and :class:`CleanupGraph` are
+constructed so it is possible to create structures that are
+automatically collectable and structures where cycles need to be
+explicitly broken by the user.
+
+The output shows that the :class:`Graph` instances :obj:`one` and
+:obj:`two` create a cycle, but are still collectable because they do
+not have a finalizer and their only incoming references are from other
+objects that can be collected.  Although :class:`CleanupGraph` has a
+finalizer, :obj:`three` is reclaimed as soon as its reference count
+goes to zero. In contrast, :obj:`four` and :obj:`five` create a cycle
+and cannot be freed.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, '-u gc_debug_collectable_objects.py'))
+.. }}}
+.. {{{end}}}
+
+
+
+
+
+gc.DEBUG_STATS¶
+
+    Print statistics during collection. This information can be useful
+    when tuning the collection frequency.
+
+gc.DEBUG_COLLECTABLE¶
+    Print information on collectable objects found.
+
+gc.DEBUG_UNCOLLECTABLE¶
+
+    Print information of uncollectable objects found (objects which
+    are not reachable but cannot be freed by the collector). These
+    objects will be added to the garbage list.
+
+gc.DEBUG_INSTANCES¶
+
+    When DEBUG_COLLECTABLE or DEBUG_UNCOLLECTABLE is set, print
+    information about instance objects found.
+
+gc.DEBUG_OBJECTS¶
+
+    When DEBUG_COLLECTABLE or DEBUG_UNCOLLECTABLE is set, print
+    information about objects other than instance objects found.
+
+gc.DEBUG_SAVEALL¶
+
+    When set, all unreachable objects found will be appended to
+    garbage rather than being freed. This can be useful for debugging
+    a leaking program.
+
+gc.DEBUG_LEAK¶
+
+    The debugging flags necessary for the collector to print
+    information about a leaking program (equal to DEBUG_COLLECTABLE |
+    DEBUG_UNCOLLECTABLE | DEBUG_INSTANCES | DEBUG_OBJECTS |
+    DEBUG_SAVEALL).
 
 .. seealso::
 
