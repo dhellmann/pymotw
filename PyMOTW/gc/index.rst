@@ -275,7 +275,7 @@ to the constructor to print the object id when each object is created.
    :start-after: #end_pymotw_header
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'gc_debug_saveall.py'))
+.. cog.out(run_script(cog.inFile, '-u gc_debug_saveall.py'))
 .. }}}
 .. {{{end}}}
 
@@ -291,7 +291,7 @@ Keep in mind that because :const:`DEBUG_SAVEALL` is enabled by
 have been collected and deleted are retained.
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'gc_debug_leak.py'))
+.. cog.out(run_script(cog.inFile, '-u gc_debug_leak.py'))
 .. }}}
 .. {{{end}}}
 
