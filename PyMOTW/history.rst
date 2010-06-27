@@ -1,10 +1,11 @@
 History
 =======
 
-Dev
+1.118
 
   - Roberto Pauletto's Italian translation has moved to
     http://robyp.x10hosting.com/
+  - 27 June 2010, :mod:`site`
 
 1.117a
 
