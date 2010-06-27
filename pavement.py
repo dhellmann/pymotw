@@ -484,7 +484,7 @@ def gen_blog_post(outdir, input_base, blog_base, url_base):
     ('out-file=', 'B', 'Blog output filename (e.g., "-B blog.html")'),
     ('sourcedir=', 's', 'Source directory name (e.g., "-s PyMOTW/articles")'),
 ])
-def blog(options):
+def old_blog(options):
     """Generate the blog post version of the HTML for the current module.
     
     The default behavior generates the post for the current module using 
@@ -517,15 +517,36 @@ def blog(options):
         url_base=options.blog.sourcedir,
         )
     
-    if os.path.exists('bin/SendToMarsEdit.scpt'):
+    if os.path.exists('bin/SendToMarsEdit.applescript'):
         title = get_post_title(blog_file)
-        sh('osascript bin/SendToMarsEdit.scpt "%s" "%s"' % 
+        sh('osascript bin/SendToMarsEdit.applescript "%s" "%s"' % 
             (blog_file, "PyMOTW: %s" % title)
             )
     
     elif 'EDITOR' in os.environ:
         sh('$EDITOR %s' % blog_file)
     return
+
+@task
+def blog(options):
+    """Generate the blog post HTML.
+    """
+    module_name = MODULE
+    title = '%s - ' % module_name
+    body = '''<p></p>
+<p>The <a href="http://www.doughellmann.com/PyMOTW/%(module_name)s/index.html">Read more...</a></p>
+''' % locals()
+    blog_file = path(options.blog.outdir) / options.blog.out_file
+    blog_file.write_text(body)
+    if os.path.exists('bin/SendToMarsEdit.applescript'):
+        sh('osascript bin/SendToMarsEdit.applescript "%s" "%s"' % 
+            (blog_file, "PyMOTW: %s" % title)
+            )
+    
+    elif 'EDITOR' in os.environ:
+        sh('$EDITOR %s' % blog_file)
+    return
+    
 
 @task
 @needs(['uncog'])

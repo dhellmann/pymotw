@@ -37,6 +37,8 @@ latex_documents = [
      'Python Module of the Week', 'Doug Hellmann', 'manual', False),
     ]
 
+#latex_use_parts = True
+
 #latex_preamble = r'''
 #'''
 
