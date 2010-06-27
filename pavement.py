@@ -484,7 +484,7 @@ def gen_blog_post(outdir, input_base, blog_base, url_base):
     ('out-file=', 'B', 'Blog output filename (e.g., "-B blog.html")'),
     ('sourcedir=', 's', 'Source directory name (e.g., "-s PyMOTW/articles")'),
 ])
-def old_blog(options):
+def blog(options):
     """Generate the blog post version of the HTML for the current module.
     
     The default behavior generates the post for the current module using 
@@ -528,7 +528,7 @@ def old_blog(options):
     return
 
 @task
-def blog(options):
+def brief_blog(options):
     """Generate the blog post HTML.
     """
     module_name = MODULE
