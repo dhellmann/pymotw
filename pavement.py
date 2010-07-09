@@ -272,7 +272,6 @@ def tabcheck(options):
 
 @task
 @consume_args
-@needs(['tabcheck'])
 def update(options):
     """Run cog against the named module, then re-build the HTML.
     
@@ -287,6 +286,7 @@ def update(options):
     else:
         module = MODULE
     module_dir = 'PyMOTW/' + module
+    tabnanny.check(module_dir)
     options.order('cog', 'sphinx', add_rest=True)
     options.args = [module_dir]
     cog(options)
