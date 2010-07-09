@@ -214,14 +214,35 @@ The output is this small table:
                Portugal: 1234.56 Eu
                  Poland: zł 1234,56
 
-Besides generating output in different formats, the locale module
-helps with parsing input. Different cultures use different conventions
-for formatting numbers (as illustrated above). The locale module
-provides ``atoi()`` and ``atof()`` functions for converting the
-strings to integer and floating point values respectively.
+Formatting Numbers
+==================
 
-Numerical Formatting
-====================
+Numbers not related to currency are also formatted differently
+depending on the locale.  In particular, the "grouping" character used
+to separate large numbers into readable chunks is changed:
+
+.. include:: locale_grouping.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+To format numbers without the currency symbol, use :func:`format`
+instead of :func:`currency`.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'locale_grouping.py'))
+.. }}}
+.. {{{end}}}
+
+
+
+Parsing Numbers
+===============
+
+Besides generating output in different formats, the locale module
+helps with parsing input. The :mod:`locale` module provides
+:func:`atoi` and :func:`atof` functions for converting the strings to
+integer and floating point values based on the locale's numerical
+formatting conventions.
 
 .. include:: locale_atof_example.py
     :literal:
