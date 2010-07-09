@@ -66,7 +66,7 @@ reported as all ``*``.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'pwd_getpwnam.py dhellmann'))
-.. cog.out(run_script(cog.inFile, 'pwd_getpwnam.py postgres', include_prefix=False))
+.. cog.out(run_script(cog.inFile, 'pwd_getpwnam.py nobody', include_prefix=False))
 .. }}}
 .. {{{end}}}
 
