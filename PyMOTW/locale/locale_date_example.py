@@ -33,11 +33,11 @@ __module_id__ = "$Id$"
 import locale
 import time
 
-sample_locales = [ ('USA', 'en_US'),
-                   ('France', 'fr_FR'),
-                   ('Spain', 'es_ES'),
+sample_locales = [ ('USA',      'en_US'),
+                   ('France',   'fr_FR'),
+                   ('Spain',    'es_ES'),
                    ('Portugal', 'pt_PT'),
-                   ('Poland', 'pl_PL'),
+                   ('Poland',   'pl_PL'),
                    ]
 
 for name, loc in sample_locales:

@@ -9,11 +9,11 @@
 
 import locale
 
-sample_locales = [ ('USA', 'en_US'),
-                   ('France', 'fr_FR'),
-                   ('Spain', 'es_ES'),
+sample_locales = [ ('USA',      'en_US'),
+                   ('France',   'fr_FR'),
+                   ('Spain',    'es_ES'),
                    ('Portugal', 'pt_PT'),
-                   ('Poland', 'pl_PL'),
+                   ('Poland',   'pl_PL'),
                    ]
 
 for name, loc in sample_locales:
