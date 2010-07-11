@@ -15,7 +15,7 @@ class Graph(object):
         self.name = name
         self.next = None
     def set_next(self, next):
-        print '%s.next = %s' % (self, next)
+        print 'Linking nodes %s.next = %s' % (self, next)
         self.next = next
     def __repr__(self):
         return '%s(%s)' % (self.__class__.__name__, self.name)
@@ -34,6 +34,7 @@ three.set_next(one)
 one = two = three = None
 
 # Collecting now keeps the objects as uncollectable
+print
 print 'Collecting...'
 n = gc.collect()
 print 'Unreachable objects:', n
@@ -41,12 +42,14 @@ print 'Remaining Garbage:',
 pprint.pprint(gc.garbage)
     
 # Break the cycle
+print
 print 'Breaking the cycle'
 gc.garbage[0].set_next(None)
 print 'Removing references in gc.garbage'
 del gc.garbage[:]
 
 # Now the objects are removed
+print
 print 'Collecting...'
 n = gc.collect()
 print 'Unreachable objects:', n

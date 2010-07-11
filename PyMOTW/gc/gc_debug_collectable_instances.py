@@ -21,6 +21,7 @@ class Graph:
         self.next = None
         print 'Creating %s 0x%x (%s)' % (self.__class__.__name__, id(self), name)
     def set_next(self, next):
+        print 'Linking nodes %s.next = %s' % (self, next)
         self.next = next
     def __repr__(self):
         return '%s(%s)' % (self.__class__.__name__, self.name)
@@ -46,6 +47,8 @@ five.set_next(four)
 
 # Remove references to the graph nodes in this module's namespace
 one = two = three = four = five = None
+
+print
 
 # Force a sweep
 print 'Collecting'
