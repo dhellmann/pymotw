@@ -151,6 +151,7 @@ options(
         doctrees='blog_posts/doctrees',
         in_file='index.html',
         out_file='blog.html',
+        no_edit=False,
     ),
     
     # Some of the files include [[[ as part of a nested list data structure,
@@ -407,32 +408,7 @@ def webhtml(options):
 def sitemap_gen():
     sh('sitemap_gen.py --testing --config=%s' % options.sitemap_gen.config)
     return
-
-def clean_blog_html(body):
-    # Clean up the HTML
-    import re
-    import sys
-    from BeautifulSoup import BeautifulSoup
-    from cStringIO import StringIO
-
-    # The post body is passed to stdin.
-    soup = BeautifulSoup(body)
-
-    # Remove the permalinks to each header since the blog does not have
-    # the styles to hide them.
-    links = soup.findAll('a', attrs={'class':"headerlink"})
-    [l.extract() for l in links]
-
-    # Get BeautifulSoup's version of the string
-    s = str(soup)
-
-    # Remove extra newlines.  This depends on the fact that
-    # code blocks are passed through pygments, which wraps each part of the line
-    # in a span tag.
-    pattern = re.compile(r'([^s][^p][^a][^n]>)\n$', re.DOTALL|re.IGNORECASE)
-    s = ''.join(pattern.sub(r'\1', l) for l in StringIO(s))
-    
-    return s
+            
 
 def get_post_title(filename):
     f = open(filename, 'rt')
@@ -442,16 +418,17 @@ def get_post_title(filename):
         f.close()
 
     # Clean up the HTML
-    from BeautifulSoup import BeautifulSoup
+    from BeautifulSoup import BeautifulSoup, Tag
 
     # The post body is passed to stdin.
     soup = BeautifulSoup(body)
 
     # Get the heading(s)
-    h1 = soup.findAll('h1')[0]
+    h1 = soup.find('h1')
 
     # Get BeautifulSoup's version of the string
-    title = ' '.join(h1.contents)
+    #title = ' '.join(h1.string)
+    title = ' '.join(s for s in h1 if type(s) != Tag)
 
     return title
 
@@ -468,12 +445,23 @@ def gen_blog_post(outdir, input_base, blog_base, url_base):
         canonical_url += '/'
     if input_base != "index.html":
         canonical_url += input_base
+
+    module_name = MODULE
+    title = '%s - ' % module_name
+
+    # Get the intro paragraph
+    from BeautifulSoup import BeautifulSoup
+    raw_body = input_file.text().strip()
+    soup = BeautifulSoup(raw_body)
+    intro = str(soup.find('p'))
+
+    output_body = '''%(intro)s
+<p><a href="%(canonical_url)s">Read more...</a></p>
+''' % locals()
+    blog_file.write_text(output_body)
+
     home_page_reference = '''<p><a class="reference external" href="http://www.doughellmann.com/PyMOTW/">PyMOTW Home</a></p>'''
     canonical_reference = '''<p>The <a class="reference external" href="%(canonical_url)s">canonical version</a> of this article</p>''' % locals()
-    
-    # Add links to project pages at the end
-    body = input_file.text().strip()
-    output_body = clean_blog_html(body) + home_page_reference + canonical_reference
     
     blog_file.write_text(output_body)
     return
@@ -483,6 +471,7 @@ def gen_blog_post(outdir, input_base, blog_base, url_base):
     ('in-file=', 'b', 'Blog input filename (e.g., "-b index.html")'),
     ('out-file=', 'B', 'Blog output filename (e.g., "-B blog.html")'),
     ('sourcedir=', 's', 'Source directory name (e.g., "-s PyMOTW/articles")'),
+    ('no-edit', 'n', 'Do not open the post in an editor'),
 ])
 def blog(options):
     """Generate the blog post version of the HTML for the current module.
@@ -516,35 +505,17 @@ def blog(options):
         blog_base=options.blog.out_file,
         url_base=options.blog.sourcedir,
         )
-    
-    if os.path.exists('bin/SendToMarsEdit.applescript'):
-        title = get_post_title(blog_file)
-        sh('osascript bin/SendToMarsEdit.applescript "%s" "%s"' % 
-            (blog_file, "PyMOTW: %s" % title)
-            )
-    
-    elif 'EDITOR' in os.environ:
-        sh('$EDITOR %s' % blog_file)
-    return
 
-@task
-def brief_blog(options):
-    """Generate the blog post HTML.
-    """
-    module_name = MODULE
-    title = '%s - ' % module_name
-    body = '''<p></p>
-<p>The <a href="http://www.doughellmann.com/PyMOTW/%(module_name)s/index.html">Read more...</a></p>
-''' % locals()
-    blog_file = path(options.blog.outdir) / options.blog.out_file
-    blog_file.write_text(body)
-    if os.path.exists('bin/SendToMarsEdit.applescript'):
-        sh('osascript bin/SendToMarsEdit.applescript "%s" "%s"' % 
-            (blog_file, "PyMOTW: %s" % title)
-            )
+    title = get_post_title(path(options.blog.outdir) / options.blog.in_file)
     
-    elif 'EDITOR' in os.environ:
-        sh('$EDITOR %s' % blog_file)
+    if not options.no_edit:
+        if os.path.exists('bin/SendToMarsEdit.applescript'):
+            sh('osascript bin/SendToMarsEdit.applescript "%s" "%s"' % 
+                (blog_file, "PyMOTW: %s" % title)
+                )
+
+        elif 'EDITOR' in os.environ:
+            sh('$EDITOR %s' % blog_file)
     return
     
 
