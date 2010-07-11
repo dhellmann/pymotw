@@ -1,6 +1,14 @@
 History
 =======
 
+1.119
+
+  - 11 July 2010, :mod:`gc`
+
+1.118.1
+
+  - Updates to :mod:`locale`
+
 1.118
 
   - Roberto Pauletto's Italian translation has moved to
