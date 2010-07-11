@@ -309,3 +309,5 @@ before the automatic import was added, the interpreter accepts an
         Post from Ned Batchelder discussing ways to cause the Python
         interpreter to run your custom initialization code before
         starting the main program execution.
+
+.. _Distribute: packages.python.org/distribute

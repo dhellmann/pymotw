@@ -8,6 +8,7 @@ Python Runtime Services
     abc/index
     atexit/index
     contextlib/index
+    gc/index
     inspect/index
     site/index
     sys/index
