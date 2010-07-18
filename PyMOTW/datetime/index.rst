@@ -44,15 +44,14 @@ times in a single day.
 .. }}}
 .. {{{end}}}
 
-The resolution for time is limited to microseconds. More precise
-values are truncated.
+The resolution for time is limited to whole microseconds.
 
 .. include:: datetime_time_resolution.py
     :literal:
     :start-after: #end_pymotw_header
 
 In fact, using floating point numbers for the microsecond argument
-generates a :ref:`DeprecationWarning <exceptions-DeprecationWarning>`.
+generates a :ref:`TypeError <exceptions-TypeError>`.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'datetime_time_resolution.py'))
