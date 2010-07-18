@@ -74,63 +74,61 @@ name in quotes for a module that you haven't already imported.
     *******************************************************
     ...
 
+.. _translations:
 
 Translations and Other Versions
 ===============================
 
-Chinese
--------
+`Chinese <http://www.vbarter.cn/pymotw/>`_
 
-Junjie Cai (蔡俊杰) and Yan Sheng (盛艳) have started a google code
-project called PyMOTWCN (http://code.google.com/p/pymotwcn/) and
-posted the completed translations at http://www.vbarter.cn/pymotw/.
+  Junjie Cai (蔡俊杰) and Yan Sheng (盛艳) have started a google code
+  project called PyMOTWCN (http://code.google.com/p/pymotwcn/) and
+  posted the completed translations at http://www.vbarter.cn/pymotw/.
 
-German
-------
+`German <http://schoenian-online.de/pymotw.html>`_
 
-Ralf Schönian is translating PyMOTW into German, following an
-alphabetical order.  The results are available on his web site,
-http://schoenian-online.de/pymotw.html.  Ralf is an active member of
-the `pyCologne
-<http://wiki.python.de/User_Group_K%C3%B6ln?action=show&redirect=pyCologne>`_
-user group in Germany and author of pyVoc, the open source
-English/German vocabulary trainer (http://code.google.com/p/pyvoc/).
+  Ralf Schönian is translating PyMOTW into German, following an
+  alphabetical order.  The results are available on his web site,
+  http://schoenian-online.de/pymotw.html.  Ralf is an active member of
+  the `pyCologne
+  <http://wiki.python.de/User_Group_K%C3%B6ln?action=show&redirect=pyCologne>`_
+  user group in Germany and author of pyVoc, the open source
+  English/German vocabulary trainer (http://code.google.com/p/pyvoc/).
 
-Italian
--------
+.. 18 July 2010 - Removed for now because it looks like the site is offline.
 
-Roberto Pauletto is working on an Italian translation at
-http://robyp.x10hosting.com/.  Roberto creates Windows applications
-with C# by day, and tinkers with Linux and Python at home.  He has
-recently moved to Python from Perl for all of his
-system-administration scripting.
+.. `Italian <http://robyp.x10hosting.com/>`_
+
+..   Roberto Pauletto is working on an Italian translation at
+..   http://robyp.x10hosting.com/.  Roberto creates Windows applications
+..   with C# by day, and tinkers with Linux and Python at home.  He has
+..   recently moved to Python from Perl for all of his
+..   system-administration scripting.
 
 
-Spanish
--------
+`Spanish <http://denklab.org/articles/category/pymotw/>`_
 
-`Ernesto Rico Schmidt <http://denklab.org/>`_ provides a Spanish
-translation that follows the English version posts. Ernesto is in
-Bolivia, and is translating these examples as a way to contribute to
-the members of the `Bolivian Free Software
-<http://www.softwarelibre.org.bo/>`_ community who use Python.  The
-full list of articles available in Spanish can be found at
-http://denklab.org/articles/category/pymotw/, and there is an `RSS
-feed <http://denklab.org/feeds/articles/category/pymotw/>`_.
+  `Ernesto Rico Schmidt <http://denklab.org/>`_ provides a Spanish
+  translation that follows the English version posts. Ernesto is in
+  Bolivia, and is translating these examples as a way to contribute to
+  the members of the `Bolivian Free Software
+  <http://www.softwarelibre.org.bo/>`_ community who use Python.  The
+  full list of articles available in Spanish can be found at
+  http://denklab.org/articles/category/pymotw/, and there is an `RSS
+  feed <http://denklab.org/feeds/articles/category/pymotw/>`_.
 
-Japanese
---------
+`Japanese <http://www.doughellmann.com/PyMOTW-ja/>`_
 
-`Tetsuya Morimoto <http://d.hatena.ne.jp/t2y-1979/>`_ is creating a
-Japanese translation. Tetsuya has used Python for 1.5 years. He has as
-experience at a Linux Distributor using Python with yum, anaconda, and
-rpm-tools while building RPM packages. Now, he uses it to make useful
-tools for himself, and is interested in application frameworks such as
-Django, mercurial and wxPython. Tetsuya is a member of `Python Japan
-User's Group <http://www.python.jp/Zope/>`_ and `Python Code Reading
-<http://groups.google.co.jp/group/python-code-reading>`_. The home
-page for his translation is
-http://d.hatena.ne.jp/t2y-1979/20090525/1243227350.
+  `Tetsuya Morimoto <http://d.hatena.ne.jp/t2y-1979/>`_ is creating a
+  Japanese translation. Tetsuya has used Python for 1.5 years. He has
+  as experience at a Linux Distributor using Python with yum,
+  anaconda, and rpm-tools while building RPM packages. Now, he uses it
+  to make useful tools for himself, and is interested in application
+  frameworks such as Django, mercurial and wxPython. Tetsuya is a
+  member of `Python Japan User's Group <http://www.python.jp/Zope/>`_
+  and `Python Code Reading
+  <http://groups.google.co.jp/group/python-code-reading>`_. The home
+  page for his translation is http://www.doughellmann.com/PyMOTW-ja/.
 
 
 Compendiums
