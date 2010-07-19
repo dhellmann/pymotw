@@ -45,14 +45,14 @@ Server and Handler
 To make it easier to understand how :mod:`asynchat` is different from
 :mod:`asyncore`, the examples here duplicate the functionality of the
 :class:`EchoServer` example from the :mod:`asyncore` discussion. The
-same basic structure is needed: a server object to accept connections,
-handler objects to deal with communication with each client, and
-client objects to initiate the conversation.
+same pieces are needed: a server object to accept connections, handler
+objects to deal with communication with each client, and client
+objects to initiate the conversation.
 
 The :class:`EchoServer` needed to work with :mod:`asynchat` is
-basically the same as the one created for the :mod:`asyncore` example,
-with fewer :mod:`logging` calls because they are less interesting this
-time around:
+essentially the same as the one created for the :mod:`asyncore`
+example, with fewer :mod:`logging` calls because they are less
+interesting this time around:
 
 .. include:: asynchat_echo_server.py
     :literal:
@@ -61,7 +61,7 @@ time around:
 The :class:`EchoHandler` is based on ``asynchat.async_chat`` instead
 of the :class:`asyncore.dispatcher` this time around. It operates at a
 slightly higher level of abstraction, so reading and writing are
-handled automatically. All we need to do is tell the handler:
+handled automatically. The buffer needs to know four things:
 
 - what to do with incoming data (by overriding
   :func:`handle_incoming_data()`)
@@ -71,21 +71,21 @@ handled automatically. All we need to do is tell the handler:
   :func:`found_terminator()`)
 - what data to send (using :func:`push()`)
 
-In the example application, we have two operating modes. We are either
-waiting for a command of the form ``ECHO length\n``, or we are waiting
-for the data to be echoed. We toggle back and forth between the two
-modes by setting an instance variable *process_data* to the method
-to be invoked when the terminator is found and then changing the
-terminator as appropriate.
+The example application has two operating modes. It is either waiting
+for a command of the form ``ECHO length\n``, or waiting for the data
+to be echoed. The mode is toggled back and forth by setting an
+instance variable *process_data* to the method to be invoked when the
+terminator is found and then changing the terminator as appropriate.
 
 .. include:: asynchat_echo_handler.py
     :literal:
     :start-after: #end_pymotw_header
 
-Once the complete command is found, we switch to message-processing
-mode and wait for the complete set of text to be received. When all of
-the data is available, we push it onto the outgoing channel and set up
-the handler to be closed once the data is sent.
+Once the complete command is found, the handler switches to
+message-processing mode and waits for the complete set of text to be
+received. When all of the data is available, it is pushed onto the
+outgoing channel and set up the handler to be closed once the data is
+sent.
 
 Client
 ======
@@ -93,13 +93,13 @@ Client
 The client works in much the same way as the handler. As with the
 :mod:`asyncore` implementation, the message to be sent is an argument
 to the client's constructor. When the socket connection is
-established, :func:`handle_connect()` is called so we can send the
-command and message data.
+established, :func:`handle_connect()` is called so the client can send
+the command and message data.
 
 The command is pushed directly, but a special "producer" class is used
-for the message text. The producer is polled for data to send out over
-the network. When the producer returns an empty string, it is assumed
-to be empty and writing stops.
+for the message text. The producer is polled for chunks of data to
+send out over the network. When the producer returns an empty string,
+it is assumed to be empty and writing stops.
 
 The client expects just the message data in response, so it sets an
 integer terminator and collects data in a list until the entire

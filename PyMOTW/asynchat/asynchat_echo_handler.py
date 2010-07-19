@@ -14,10 +14,15 @@ import logging
 class EchoHandler(asynchat.async_chat):
     """Handles echoing messages from a single client.
     """
+
+    # Artificially reduce buffer sizes to illustrate
+    # sending and receiving partial messages.
+    ac_in_buffer_size = 64
+    ac_out_buffer_size = 64
     
     def __init__(self, sock):
         self.received_data = []
-        self.logger = logging.getLogger('EchoHandler%s' % str(sock.getsockname()))
+        self.logger = logging.getLogger('EchoHandler')
         asynchat.async_chat.__init__(self, sock)
         # Start looking for the ECHO command
         self.process_data = self._process_command
@@ -26,7 +31,7 @@ class EchoHandler(asynchat.async_chat):
 
     def collect_incoming_data(self, data):
         """Read an incoming message from the client and put it into our outgoing queue."""
-        self.logger.debug('collect_incoming_data() -> (%d)\n"""%s"""', len(data), data)
+        self.logger.debug('collect_incoming_data() -> (%d bytes)\n"""%s"""', len(data), data)
         self.received_data.append(data)
 
     def found_terminator(self):

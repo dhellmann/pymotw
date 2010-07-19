@@ -15,6 +15,11 @@ import socket
 class EchoClient(asynchat.async_chat):
     """Sends messages to the server and receives responses.
     """
+
+    # Artificially reduce buffer sizes to illustrate
+    # sending and receiving partial messages.
+    ac_in_buffer_size = 64
+    ac_out_buffer_size = 64
     
     def __init__(self, host, port, message):
         self.message = message
@@ -31,7 +36,7 @@ class EchoClient(asynchat.async_chat):
         # Send the command
         self.push('ECHO %d\n' % len(self.message))
         # Send the data
-        self.push_with_producer(EchoProducer(self.message))
+        self.push_with_producer(EchoProducer(self.message, buffer_size=self.ac_out_buffer_size))
         # We expect the data to come back as-is, 
         # so set a length-based terminator
         self.set_terminator(len(self.message))
@@ -58,5 +63,5 @@ class EchoProducer(asynchat.simple_producer):
 
     def more(self):
         response = asynchat.simple_producer.more(self)
-        self.logger.debug('more() -> (%s)\n"""%s"""', len(response), response)
+        self.logger.debug('more() -> (%s bytes)\n"""%s"""', len(response), response)
         return response
