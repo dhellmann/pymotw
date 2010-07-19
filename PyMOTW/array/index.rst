@@ -9,11 +9,38 @@ array -- Sequence of fixed-type data
 :Python Version: 1.4 and later
 
 The :mod:`array` module defines a sequence data structure that looks
-very much like a ``list`` except that all of the members have to be of
-the same type.  The types supported are listed in the `standard
-library documentation <http://docs.python.org/library/array.html>`_.
-They are all numeric or other fixed-size primitive types such as
-bytes.
+very much like a :class:`list` except that all of the members have to
+be of the same type.  The types supported are all numeric or other
+fixed-size primitive types such as bytes.
+
++------------+-------------------+--------------------------+
+| Code       | Type              | Minimum size (bytes)     |
++============+===================+==========================+
+| ``c``      | character         | 1                        |
++------------+-------------------+--------------------------+
+| ``b``      | int               | 1                        |
++------------+-------------------+--------------------------+
+| ``B``      | int               | 1                        |
++------------+-------------------+--------------------------+
+| ``u``      | Unicode character | 2 or 4 (build-dependent) |
++------------+-------------------+--------------------------+
+| ``h``      | int               | 2                        |
++------------+-------------------+--------------------------+
+| ``H``      | int               | 2                        |
++------------+-------------------+--------------------------+
+| ``i``      | int               | 2                        |
++------------+-------------------+--------------------------+
+| ``I``      | long              | 2                        |
++------------+-------------------+--------------------------+
+| ``l``      | int               | 4                        |
++------------+-------------------+--------------------------+
+| ``L``      | long              | 4                        |
++------------+-------------------+--------------------------+
+| ``f``      | float             | 4                        |
++------------+-------------------+--------------------------+
+| ``d``      | float             | 8                        |
++------------+-------------------+--------------------------+
+
 
 array Initialization
 ====================
