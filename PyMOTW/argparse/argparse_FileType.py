@@ -1,0 +1,21 @@
+#!/usr/bin/env python
+# encoding: utf-8
+#
+# Copyright (c) 2010 Doug Hellmann.  All rights reserved.
+#
+"""
+"""
+#end_pymotw_header
+
+import argparse
+
+parser = argparse.ArgumentParser()
+
+parser.add_argument('-i', metavar='in-file', type=argparse.FileType('rt'))
+parser.add_argument('-o', metavar='out-file', type=argparse.FileType('wt'))
+
+try:
+    print parser.parse_args()
+except IOError, msg:
+    parser.error(str(msg))
+    

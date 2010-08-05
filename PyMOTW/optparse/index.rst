@@ -219,3 +219,6 @@ printed in the right column.
 
     :mod:`getopt`
         The getopt module.
+
+    :mod:`argparse`
+        Newer replacement for optparse.

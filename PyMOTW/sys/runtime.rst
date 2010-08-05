@@ -9,6 +9,8 @@ outside of your application, by accepting command line arguments,
 accessing user input, and passing messages and status values to the
 user.
 
+.. _sys-argv:
+
 Arguments to Your Program
 =========================
 
@@ -29,7 +31,7 @@ arguments, including the name of the script itself, are saved to
 
 .. seealso::
     
-    :mod:`getopt`, :mod:`optparse`
+    :mod:`getopt`, :mod:`optparse`, :mod:`argparse`
         Modules for parsing command line arguments.
 
 .. _sys-input-output:

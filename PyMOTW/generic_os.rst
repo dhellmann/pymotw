@@ -7,8 +7,9 @@ Generic Operating System Services
     
     os/index
     time/index
-    optparse/index
     getopt/index
+    optparse/index
+    argparse/index
     logging/index
     getpass/index
     platform/index
