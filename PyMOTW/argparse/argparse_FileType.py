@@ -15,7 +15,9 @@ parser.add_argument('-i', metavar='in-file', type=argparse.FileType('rt'))
 parser.add_argument('-o', metavar='out-file', type=argparse.FileType('wt'))
 
 try:
-    print parser.parse_args()
+    results = parser.parse_args()
+    print 'Input file:', results.i
+    print 'Output file:', results.o
 except IOError, msg:
     parser.error(str(msg))
     
