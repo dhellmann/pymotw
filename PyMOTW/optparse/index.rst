@@ -3,9 +3,9 @@ optparse -- Command line option parser to replace getopt.
 =========================================================
 
 .. module:: optparse
-    :synopsis: Command line option parser to replace getopt.
+    :synopsis: Command line option parser to replace :mod:`getopt`.
 
-:Purpose: Command line option parser to replace getopt.
+:Purpose: Command line option parser to replace :mod:`getopt`.
 :Python Version: 2.3
 
 The :mod:`optparse` module is a modern alternative for command line
@@ -37,13 +37,13 @@ does not seem to be used as frequently.
 Defining Options
 ================
 
-Options should be added one at a time using the ``add_option()``
+Options should be added one at a time using the :func:`add_option()`
 method. Any un-named string arguments at the beginning of the argument
 list are treated as option names. To create aliases for an option, for
 example to have a short and long form of the same option, simply pass
 both names.
 
-Unlike :mod:`getopt`, which only parses the options, :func:`optparse`
+Unlike :mod:`getopt`, which only parses the options, :mod:`optparse`
 is a full option *processing* library. Options can trigger different
 actions, specified by the action argument to
 :func:`add_option()`. Supported actions include storing the argument
