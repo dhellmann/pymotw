@@ -187,9 +187,9 @@ Option Prefixes
 ---------------
 
 The default syntax for options is based on the Unix convention of
-signifying command line switches using a prefix of "``-``".
+signifying command line switches using a prefix of "-".
 :mod:`argparse` supports other prefixes, so you can make your program
-conform to the local platform default (i.e., use "``/``" on Windows)
+conform to the local platform default (i.e., use "/" on Windows)
 or follow a different convention.
 
 .. include:: argparse_prefix_chars.py
@@ -603,7 +603,7 @@ error is generated and processing stops.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'argparse_choices.py -h'))
 .. cog.out(run_script(cog.inFile, 'argparse_choices.py --mode read-only', include_prefix=False))
-.. cog.out(run_script(cog.inFile, 'argparse_choices.py --mode invalid', include_prefix=False, ignore_error=True))
+.. cog.out(run_script(cog.inFile, 'argparse_choices.py --mode invalid', include_prefix=False, ignore_error=True, break_lines_at=71))
 .. }}}
 .. {{{end}}}
 
