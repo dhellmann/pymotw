@@ -10,13 +10,13 @@ doctest -- Testing through documentation
 
 :mod:`doctest` lets you test your code by running examples embedded in
 the documentation and verifying that they produce the expected
-results.  It works by looking for parsing the help text to find
-examples, running them, then comparing the output text against the
-expected value.  Many developers find :mod:`doctest` easier than
-:mod:`unittest` because in its simplest form, there is no API to
-learn.  However, as the examples become more complex the lack of
-fixture management can make writing :mod:`doctest` tests more
-cumbersome than using :mod:`unittest`.
+results.  It works by parsing the help text to find examples, running
+them, then comparing the output text against the expected value.  Many
+developers find :mod:`doctest` easier than :mod:`unittest` because in
+its simplest form, there is no API to learn before using it.  However,
+as the examples become more complex the lack of fixture management can
+make writing :mod:`doctest` tests more cumbersome than using
+:mod:`unittest`.
 
 Getting Started
 ===============
@@ -44,9 +44,9 @@ Examples cannot usually stand on their own as explanations of a
 function, so :mod:`doctest` also lets you keep the surrounding text
 you would normally include in the documentation.  It looks for lines
 beginning with the interpreter prompt, ``>>>``, to find the beginning
-of a test case.  The case is ended by a blank line, or by the
-beginning of the next test.  Intervening text is ignored, and can have
-any format as long as it does not look like a test case.
+of a test case.  The case is ended by a blank line, or by the next
+interpreter prompt.  Intervening text is ignored, and can have any
+format as long as it does not look like a test case.
 
 .. include:: doctest_simple_with_docs.py
    :literal:
@@ -151,16 +151,16 @@ Tracebacks
 ==========
 
 Tracebacks are a special case of changing data.  Since the paths in a
-traceback depend on where a module is installed on the filesystem on a
-given system, it would be impossible to write portable tests if they
-were treated the same as other output.
+traceback depend on the location where a module is installed on the
+filesystem on a given system, it would be impossible to write portable
+tests if they were treated the same as other output.
 
 .. include:: doctest_tracebacks.py
    :literal:
    :start-after: #end_pymotw_header
 
 :mod:`doctest` makes a special effort to recognize tracebacks, and
-ignore the parts the might change from system to system.  
+ignore the parts that might change from system to system.  
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-m doctest -v doctest_tracebacks.py'))
