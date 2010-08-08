@@ -450,10 +450,17 @@ def gen_blog_post(outdir, input_base, blog_base, url_base):
     title = '%s - ' % module_name
 
     # Get the intro paragraph
-    from BeautifulSoup import BeautifulSoup
+    from BeautifulSoup import BeautifulSoup, Tag
     raw_body = input_file.text().strip()
     soup = BeautifulSoup(raw_body)
-    intro = str(soup.find('p'))
+    intro = soup.find('p')
+
+    # Strip hyperlinks by replacing those nodes with their contents.
+    for link in intro.findAll('a'):
+        new_span = Tag(soup, 'span')
+        for c in link.contents:
+            new_span.append(c)
+        link.replaceWith(new_span)
 
     output_body = '''%(intro)s
 <p><a href="%(canonical_url)s">Read more...</a></p>
