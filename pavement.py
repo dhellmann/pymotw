@@ -33,7 +33,7 @@ except:
 PROJECT = 'PyMOTW'
 
 # What version is this?
-VERSION = '1.119'
+VERSION = '1.120'
 
 # The sphinx templates expect the VERSION in the shell environment
 os.environ['VERSION'] = VERSION

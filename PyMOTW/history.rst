@@ -1,6 +1,10 @@
 History
 =======
 
+1.120
+
+  - 8 Aug 2010, :mod:`argparse`
+
 1.119
 
   - 11 July 2010, :mod:`gc`
