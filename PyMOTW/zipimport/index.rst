@@ -36,6 +36,9 @@ some test data needed for the code below.
     :start-after: #end_pymotw_header
 
 .. {{{cog
+.. # clean up pyc files in case the interpreter version has
+.. # changed since the last build
+.. [ p.unlink() for p in path(cog.inFile).parent.glob('*.pyc') ]
 .. (path(cog.inFile).parent / 'zipimport_example.zip').unlink()
 .. cog.out(run_script(cog.inFile, 'zipimport_make_example.py'))
 .. }}}
