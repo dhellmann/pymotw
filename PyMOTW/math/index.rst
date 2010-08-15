@@ -561,12 +561,10 @@ The complimentary error function is ``1 - erf(x)``.
     `math <http://docs.python.org/library/math.html>`_
         The standard library documentation for this module.
 
-    `Newton-Mercator series <http://en.wikipedia.org/wiki/Mercator_series>`_
-        The Taylor series for the natural logarithm.
-
     `IEEE floating point arithmetic in Python <http://www.johndcook.com/blog/2009/07/21/ieee-arithmetic-python/>`__
         Blog post by John Cook about how special values arise and are
         dealt with when doing math in Python.
 
-    `Error Function <http://en.wikipedia.org/wiki/Error_function>`__
-        Wikipedia article on the Gauss Error Function, :func:`erf`.
+    `SciPy <http://scipy.org/>`_
+        Open source libraryes for scientific and mathematical
+        calculations in Python.
