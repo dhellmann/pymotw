@@ -308,7 +308,7 @@ def text(options):
         'minilib', 
         'cog',
         'html_clean', 
-        'text',
+        #'text',
         'setuptools.command.sdist',
         ])
 def sdist(options):
