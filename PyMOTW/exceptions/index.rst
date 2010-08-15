@@ -357,6 +357,8 @@ raised when an error comes back from an os-specific function.
 .. {{{end}}}
 
 
+.. _exceptions-OverflowError:
+
 OverflowError
 -------------
 
