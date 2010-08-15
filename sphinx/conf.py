@@ -46,6 +46,6 @@ extensions = [ 'sphinx.ext.todo',
                'sphinx.ext.graphviz',
                ]
 
-unused_docs = [ 'copyright' ]
+unused_docs = [ 'copyright', 'doctest/doctest_in_help' ]
 
 html_theme = 'sphinxdoc'
