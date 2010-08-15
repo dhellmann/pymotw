@@ -1,6 +1,10 @@
 History
 =======
 
+1.121
+
+  - 15 Aug 2010, :mod:`doctest`
+
 1.120
 
   - 8 Aug 2010, :mod:`argparse`
