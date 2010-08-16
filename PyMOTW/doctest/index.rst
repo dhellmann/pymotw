@@ -526,3 +526,6 @@ control.
     `py.test <http://codespeak.net/py/dist/test/>`_
         Third-party test runner with :mod:`doctest` support.
 
+    `Manuel <http://packages.python.org/manuel/>`_
+        Third-party documentation-based test runner with more advanced
+        test case extraction and integration with Sphinx.
