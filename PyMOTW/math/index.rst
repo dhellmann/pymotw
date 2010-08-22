@@ -29,13 +29,6 @@ point C library.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'math_constants.py'))
 .. }}}
-
-::
-
-	$ python math_constants.py
-	π: 3.141592653589793115997963468544
-	e: 2.718281828459045090795598298428
-
 .. {{{end}}}
 
 Testing for Exceptional Values
@@ -57,24 +50,6 @@ infinite.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'math_isinf.py'))
 .. }}}
-
-::
-
-	$ python math_isinf.py
-	 e   x       x**2    isinf 
-	---  ------  ------  ------
-	  0  1.0     1.0     False 
-	 20  1e+20   1e+40   False 
-	 40  1e+40   1e+80   False 
-	 60  1e+60   1e+120  False 
-	 80  1e+80   1e+160  False 
-	100  1e+100  1e+200  False 
-	120  1e+120  1e+240  False 
-	140  1e+140  1e+280  False 
-	160  1e+160  inf     True  
-	180  1e+180  inf     True  
-	200  1e+200  inf     True  
-
 .. {{{end}}}
 
 Not all floating point overflows result in ``INF`` values, however.
@@ -107,16 +82,6 @@ check for ``NaN`` you must use :func:`isnan`.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'math_isnan.py'))
 .. }}}
-
-::
-
-	$ python math_isnan.py
-	x = inf
-	isnan(x) = False
-	y = x / x = nan
-	y == nan = False
-	isnan(y) = True
-
 .. {{{end}}}
 
 Converting to Integers
@@ -141,22 +106,6 @@ largest integer following sequentially after the input value.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'math_integers.py'))
 .. }}}
-
-::
-
-	$ python math_integers.py
-	  i     int   trunk  floor  ceil 
-	-----  -----  -----  -----  -----
-	 -1.5   -1.0   -1.0   -2.0   -1.0
-	 -0.8    0.0    0.0   -1.0   -0.0
-	 -0.5    0.0    0.0   -1.0   -0.0
-	 -0.2    0.0    0.0   -1.0   -0.0
-	  0.0    0.0    0.0    0.0    0.0
-	  0.2    0.0    0.0    0.0    1.0
-	  0.5    0.0    0.0    0.0    1.0
-	  0.8    0.0    0.0    0.0    1.0
-	  1.0    1.0    1.0    1.0    1.0
-
 .. {{{end}}}
 
 Alternate Representations
@@ -174,17 +123,6 @@ Both numbers in the return value are floats.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'math_modf.py'))
 .. }}}
-
-::
-
-	$ python math_modf.py
-	0/2 = (0.0, 0.0)
-	1/2 = (0.5, 0.0)
-	2/2 = (0.0, 1.0)
-	3/2 = (0.5, 1.0)
-	4/2 = (0.0, 2.0)
-	5/2 = (0.5, 2.0)
-
 .. {{{end}}}
 
 :func:`frexp` returns the mantissa and exponent of a floating point
@@ -201,16 +139,6 @@ values *m* and *e*.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'math_frexp.py'))
 .. }}}
-
-::
-
-	$ python math_frexp.py
-	   x        m        e   
-	-------  -------  -------
-	   0.10     0.80       -3
-	   0.50     0.50        0
-	   4.00     0.50        3
-
 .. {{{end}}}
 
 :func:`ldexp` is the inverse of :func:`frexp`.  
@@ -226,16 +154,6 @@ number.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'math_ldexp.py'))
 .. }}}
-
-::
-
-	$ python math_ldexp.py
-	   m        e        x   
-	-------  -------  -------
-	   0.80       -3     0.10
-	   0.50        0     0.50
-	   0.50        3     4.00
-
 .. {{{end}}}
 
 
@@ -256,15 +174,6 @@ represented as a positive value.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'math_fabs.py'))
 .. }}}
-
-::
-
-	$ python math_fabs.py
-	1.1
-	0.0
-	0.0
-	1.1
-
 .. {{{end}}}
 
 To determine the sign of a value, either to give a set of values the
@@ -281,21 +190,6 @@ NaN and -NaN directly with other values does not work.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'math_copysign.py'))
 .. }}}
-
-::
-
-	$ python math_copysign.py
-	
-	  f      s     < 0    > 0    = 0 
-	-----  -----  -----  -----  -----
-	 -1.0     -1  True   False  False
-	  0.0      1  False  False  True 
-	  1.0      1  False  True   False
-	 -inf     -1  True   False  False
-	  inf      1  False  True   False
-	  nan     -1  False  False  False
-	  nan      1  False  False  False
-
 .. {{{end}}}
 
 Commonly Used Calculations
@@ -320,15 +214,6 @@ introduced into the sum unless it is calculated with :func:`fsum`.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'math_fsum.py'))
 .. }}}
-
-::
-
-	$ python math_fsum.py
-	Input values: [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
-	sum()       : 0.99999999999999988898
-	for-loop    : 0.99999999999999988898
-	math.fsum() : 1.00000000000000000000
-
 .. {{{end}}}
 
 :func:`factorial` is commonly used to calculate the number of
@@ -347,18 +232,6 @@ integer without losing value.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'math_factorial.py'))
 .. }}}
-
-::
-
-	$ python math_factorial.py
-	 0       1
-	 1       1
-	 2       2
-	 3       6
-	 4      24
-	 5     120
-	Error computing factorial(6.1): factorial() only accepts integral values
-
 .. {{{end}}}
 
 :func:`gamma` is like :func:`factorial`, except it works with real
@@ -374,18 +247,6 @@ Since zero causes the start value to be negative, it is not allowed.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'math_gamma.py'))
 .. }}}
-
-::
-
-	$ python math_gamma.py
-	Error computing gamma(0): math domain error
-	1.1    0.95
-	2.2    1.10
-	3.3    2.68
-	4.4   10.14
-	5.5   52.34
-	6.6  344.70
-
 .. {{{end}}}
 
 :func:`lgamma` returns the natural logarithm of the absolute value of
@@ -401,18 +262,6 @@ logarithm separately using the results of :func:`gamma`.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'math_lgamma.py'))
 .. }}}
-
-::
-
-	$ python math_lgamma.py
-	Error computing lgamma(0): math domain error
-	1.1  -0.04987244125984036103  -0.04987244125983997245
-	2.2  0.09694746679063825923  0.09694746679063866168
-	3.3  0.98709857789473387513  0.98709857789473409717
-	4.4  2.31610349142485727469  2.31610349142485727469
-	5.5  3.95781396761871651080  3.95781396761871606671
-	6.6  5.84268005527463252236  5.84268005527463252236
-
 .. {{{end}}}
 
 The modulo operator (``%``) computes the remainder of a division
@@ -434,16 +283,6 @@ mixed-sign inputs.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'math_fmod.py'))
 .. }}}
-
-::
-
-	$ python math_fmod.py
-	 x     y      %    fmod 
-	----  ----  -----  -----
-	 5.0   2.0   1.00   1.00
-	 5.0  -2.0  -1.00   1.00
-	-5.0   2.0   1.00  -1.00
-
 .. {{{end}}}
 
 Exponents and Logarithms
@@ -466,18 +305,6 @@ value ``nan`` return ``nan``.  If the exponent is less than ``1``,
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'math_pow.py'))
 .. }}}
-
-::
-
-	$ python math_pow.py
-	  2.0 ** 3.000 =  8.000
-	  2.1 ** 3.200 = 10.742
-	  1.0 ** 5.000 =  1.000
-	  2.0 ** 0.000 =  1.000
-	  2.0 **   nan =    nan
-	  9.0 ** 0.500 =  3.000
-	 27.0 ** 0.333 =  3.000
-
 .. {{{end}}}
 
 Since square roots (exponent of ``1/2``) are used so frequently, there
@@ -495,14 +322,6 @@ calculate a square root of a negative value results in a
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'math_sqrt.py'))
 .. }}}
-
-::
-
-	$ python math_sqrt.py
-	3.0
-	1.73205080757
-	Cannot compute sqrt(-1): math domain error
-
 .. {{{end}}}
 
 The logarithm function finds *y* where ``x = b ** y``.  By default,
@@ -518,14 +337,6 @@ Logarithms where *x* is less than one yield negative results.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'math_log.py'))
 .. }}}
-
-::
-
-	$ python math_log.py
-	2.07944154168
-	3.0
-	-1.0
-
 .. {{{end}}}
 
 There are two variations of :func:`log`.  Given floating point
@@ -544,23 +355,6 @@ values.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'math_log10.py'))
 .. }}}
-
-::
-
-	$ python math_log10.py
-	i        x              accurate             inaccurate       mismatch
-	--  ------------  --------------------  --------------------  --------
-	 0           1.0  0.000000000000000000  0.000000000000000000       
-	 1          10.0  1.000000000000000000  1.000000000000000000       
-	 2         100.0  2.000000000000000000  2.000000000000000000       
-	 3        1000.0  3.000000000000000000  2.999999999999999556    *  
-	 4       10000.0  4.000000000000000000  4.000000000000000000       
-	 5      100000.0  5.000000000000000000  5.000000000000000000       
-	 6     1000000.0  6.000000000000000000  5.999999999999999112    *  
-	 7    10000000.0  7.000000000000000000  7.000000000000000000       
-	 8   100000000.0  8.000000000000000000  8.000000000000000000       
-	 9  1000000000.0  9.000000000000000000  8.999999999999998224    *  
-
 .. {{{end}}}
 
 :func:`log1p` calculates the Newton-Mercator series (the natural
@@ -577,15 +371,6 @@ from the initial addition.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'math_log1p.py'))
 .. }}}
-
-::
-
-	$ python math_log1p.py
-	x       : 1e-25
-	1 + x   : 1.0
-	log(1+x): 0.0
-	log1p(x): 1e-25
-
 .. {{{end}}}
 
 :func:`exp` computes the exponential function (``e**x``).  
@@ -601,14 +386,6 @@ produces more accurate results than the general-purpose equivalent
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'math_exp.py'))
 .. }}}
-
-::
-
-	$ python math_exp.py
-	7.38905609893064951876
-	7.38905609893064951876
-	7.38905609893065040694
-
 .. {{{end}}}
 
 :func:`expm1` is the inverse of :func:`log1p`, and calculates ``e**x -
@@ -624,14 +401,6 @@ subtraction is performed separately.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'math_expm1.py'))
 .. }}}
-
-::
-
-	$ python math_expm1.py
-	1e-25
-	0.0
-	1e-25
-
 .. {{{end}}}
 
 Angles
@@ -660,21 +429,6 @@ The formula for the conversion is ``rad = deg * π / 180``.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'math_radians.py'))
 .. }}}
-
-::
-
-	$ python math_radians.py
-	Degrees  Radians  Expected
-	-------  -------  -------
-	      0     0.00     0.00
-	     30     0.52     0.52
-	     45     0.79     0.79
-	     60     1.05     1.05
-	     90     1.57     1.57
-	    180     3.14     3.14
-	    270     4.71     3.14
-	    360     6.28     6.28
-
 .. {{{end}}}
 
 To convert from radians to degrees, use :func:`degrees`.
@@ -688,21 +442,6 @@ The formula is ``deg = rad * 180 / π``.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'math_degrees.py'))
 .. }}}
-
-::
-
-	$ python math_degrees.py
-	Radians   Degrees   Expected
-	--------  --------  --------
-	    0.00      0.00      0.00
-	    0.52     30.00     30.00
-	    0.79     45.00     45.00
-	    1.05     60.00     60.00
-	    1.57     90.00     90.00
-	    3.14    180.00    180.00
-	    4.71    270.00    270.00
-	    6.28    360.00    360.00
-
 .. {{{end}}}
 
 
@@ -736,26 +475,6 @@ tangent is infinite.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'math_trig.py'))
 .. }}}
-
-::
-
-	$ python math_trig.py
-	Degrees  Radians  Sine     Cosine    Tangent
-	-------  -------  -------  --------  -------
-	   0.00     0.00     0.00     1.00     0.00
-	  30.00     0.52     0.50     0.87     0.58
-	  60.00     1.05     0.87     0.50     1.73
-	  90.00     1.57     1.00     0.00      inf
-	 120.00     2.09     0.87    -0.50    -1.73
-	 150.00     2.62     0.50    -0.87    -0.58
-	 180.00     3.14     0.00    -1.00    -0.00
-	 210.00     3.67    -0.50    -0.87     0.58
-	 240.00     4.19    -0.87    -0.50     1.73
-	 270.00     4.71    -1.00    -0.00      inf
-	 300.00     5.24    -0.87     0.50    -1.73
-	 330.00     5.76    -0.50     0.87    -0.58
-	 360.00     6.28    -0.00     1.00    -0.00
-
 .. {{{end}}}
 
 Given a point (*x*, *y*), the length of the hypotenuse for the
@@ -771,19 +490,6 @@ Points on the circle always have hypotenuse == ``1``.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'math_hypot.py'))
 .. }}}
-
-::
-
-	$ python math_hypot.py
-	   X        Y     Hypotenuse
-	-------  -------  ----------
-	   1.00     1.00     1.41
-	  -1.00    -1.00     1.41
-	   1.41     1.41     2.00
-	   3.00     4.00     5.00
-	   0.71     0.71     1.00
-	   0.50     0.87     1.00
-
 .. {{{end}}}
 
 The same function can be used to find the distance between two points.
@@ -798,17 +504,6 @@ the origin, and then pass the results to :func:`hypot`.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'math_distance_2_points.py'))
 .. }}}
-
-::
-
-	$ python math_distance_2_points.py
-	   X1        Y1        X2        Y2     Distance
-	--------  --------  --------  --------  --------
-	    5.00      5.00      6.00      6.00      1.41
-	   -6.00     -6.00     -5.00     -5.00      1.41
-	    0.00      0.00      3.00      4.00      5.00
-	   -1.00     -1.00      2.00      3.00      5.00
-
 .. {{{end}}}
 
 :mod:`math` also defines inverse trigonometric functions.
@@ -823,23 +518,6 @@ which the sine is 1 and the cosine is 0.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'math_inverse_trig.py'))
 .. }}}
-
-::
-
-	$ python math_inverse_trig.py
-	arcsine(0.0)    =  0.00
-	arccosine(0.0)  =  1.57
-	arctangent(0.0) =  0.00
-	
-	arcsine(0.5)    =  0.52
-	arccosine(0.5)  =  1.05
-	arctangent(0.5) =  0.46
-	
-	arcsine(1.0)    =  1.57
-	arccosine(1.0)  =  0.00
-	arctangent(1.0) =  0.79
-	
-
 .. {{{end}}}
 
 .. atan2
@@ -861,19 +539,6 @@ hyperbolic cosine and hyperbolic sine form half of a hyperbola.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'math_hyperbolic.py'))
 .. }}}
-
-::
-
-	$ python math_hyperbolic.py
-	  X      sinh    cosh    tanh 
-	------  ------  ------  ------
-	0.0000  0.0000  1.0000  0.0000
-	0.2000  0.2013  1.0201  0.1974
-	0.4000  0.4108  1.0811  0.3799
-	0.6000  0.6367  1.1855  0.5370
-	0.8000  0.8881  1.3374  0.6640
-	1.0000  1.1752  1.5431  0.7616
-
 .. {{{end}}}
 
 Inverse hyperbolic functions :func:`acosh`, :func:`asinh`, and
@@ -893,24 +558,6 @@ Notice that ``erf(-x) == -erf(x)``.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'math_erf.py'))
 .. }}}
-
-::
-
-	$ python math_erf.py
-	  x    erf(x) 
-	-----  -------
-	-3.00  -1.0000
-	-2.00  -0.9953
-	-1.00  -0.8427
-	-0.50  -0.5205
-	-0.25  -0.2763
-	 0.00   0.0000
-	 0.25   0.2763
-	 0.50   0.5205
-	 1.00   0.8427
-	 2.00   0.9953
-	 3.00   1.0000
-
 .. {{{end}}}
 
 The complimentary error function is ``1 - erf(x)``.
@@ -922,24 +569,6 @@ The complimentary error function is ``1 - erf(x)``.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'math_erfc.py'))
 .. }}}
-
-::
-
-	$ python math_erfc.py
-	  x    erfc(x)
-	-----  -------
-	-3.00   2.0000
-	-2.00   1.9953
-	-1.00   1.8427
-	-0.50   1.5205
-	-0.25   1.2763
-	 0.00   1.0000
-	 0.25   0.7237
-	 0.50   0.4795
-	 1.00   0.1573
-	 2.00   0.0047
-	 3.00   0.0000
-
 .. {{{end}}}
 
 
