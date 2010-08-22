@@ -1,6 +1,10 @@
 History
 =======
 
+1.122
+
+  - 22 Aug 2010, :mod:`math`
+
 1.121
 
   - 15 Aug 2010, :mod:`doctest`
