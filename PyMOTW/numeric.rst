@@ -9,4 +9,5 @@ Numeric and Mathematical Modules
     fractions/index
     functools/index
     itertools/index
+    math/index
     operator/index
