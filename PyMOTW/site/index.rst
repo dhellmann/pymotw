@@ -310,4 +310,4 @@ before the automatic import was added, the interpreter accepts an
         interpreter to run your custom initialization code before
         starting the main program execution.
 
-.. _Distribute: packages.python.org/distribute
+.. _Distribute: http://packages.python.org/distribute

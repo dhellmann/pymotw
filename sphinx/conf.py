@@ -27,6 +27,8 @@ html_additional_pages = {
     }
 html_use_modindex = True
 html_last_updated_fmt = '%b %d, %Y'
+html_static_path = ['images']
+html_theme = 'sphinxdoc'
 
 # The TEMPLATES variable is set by the Makefile before sphinx-build is called.
 templates_path = ['../sphinx/templates/%s' % os.environ['TEMPLATES'],
@@ -42,10 +44,22 @@ latex_documents = [
 #latex_preamble = r'''
 #'''
 
+latex_show_pagerefs = True
+latex_show_urls = True
+
+latex_elements = {
+    'preamble':'''
+\DeclareUnicodeCharacter{FFFD}{\includegraphics{replacement-character.png}}
+''',
+    }
+
+latex_additional_files = [
+    'images/replacement-character.png',
+    ]
+
 extensions = [ 'sphinx.ext.todo',
                'sphinx.ext.graphviz',
                ]
 
 unused_docs = [ 'copyright', 'doctest/doctest_in_help' ]
 
-html_theme = 'sphinxdoc'
