@@ -493,13 +493,15 @@ name.
 .. }}}
 .. {{{end}}}
 
+.. _exceptions-UnicodeError:
 
 UnicodeError
 ------------
 
-UnicodeError is a subclass of ValueError and is raised when a Unicode
-problem occurs.  There are separate subclasses for UnicodeEncodeError,
-UnicodeDecodeError, and UnicodeTranslateError.
+:class:`UnicodeError` is a subclass of :class:`ValueError` and is
+raised when a Unicode problem occurs.  There are separate subclasses
+for :class:`UnicodeEncodeError`, :class:`UnicodeDecodeError`, and
+:class:`UnicodeTranslateError`.
 
 .. _exceptions-ValueError:
 

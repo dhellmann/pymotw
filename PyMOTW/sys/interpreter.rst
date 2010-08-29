@@ -104,6 +104,7 @@ Some of these are available for programs to check through
 .. {{{end}}}
 
 
+.. _sys-unicode-defaults:
 
 Unicode Defaults
 ================
