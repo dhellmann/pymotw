@@ -15,10 +15,8 @@ def to_hex(t, nbytes):
     hex_version = binascii.hexlify(t)
     num_chunks = len(hex_version) / chars_per_item
     def chunkify():
-        for i in xrange(num_chunks):
-            start = i*chars_per_item
-            end = start + chars_per_item
-            yield hex_version[start:end]
+        for start in xrange(0, len(hex_version), chars_per_item):
+            yield hex_version[start:start + chars_per_item]
     return ' '.join(chunkify())
 
 if __name__ == '__main__':
