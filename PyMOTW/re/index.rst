@@ -6,7 +6,7 @@ re -- Regular Expressions
     :synopsis: Searching within and changing text using formal patterns.
 
 :Purpose: Searching within and changing text using formal patterns.
-:Python Version: 1.5
+:Python Version: 1.5 and later
 
 *Regular expressions* are text matching patterns described with a
 formal syntax.  The patterns are interpreted as a set of instructions,
