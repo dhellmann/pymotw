@@ -28,7 +28,10 @@ html_additional_pages = {
 html_use_modindex = True
 html_last_updated_fmt = '%b %d, %Y'
 html_static_path = ['images']
-html_theme = 'sphinxdoc'
+if os.environ['TEMPLATES'] == 'pkg':
+    html_theme = 'sphinxdoc'
+else:
+    html_theme = 'default'
 
 # The TEMPLATES variable is set by the Makefile before sphinx-build is called.
 templates_path = ['../sphinx/templates/%s' % os.environ['TEMPLATES'],
