@@ -1,6 +1,10 @@
 History
 =======
 
+1.124
+
+  - 5 Sept 2010, :mod:`re`
+
 1.123
 
   - 29 Aug 2010, :mod:`codecs`

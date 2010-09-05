@@ -9,5 +9,6 @@ String Services
     difflib/index
     string/index
     StringIO/index
+    re/index
     struct/index
     textwrap/index
