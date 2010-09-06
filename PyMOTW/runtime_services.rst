@@ -12,5 +12,6 @@ Python Runtime Services
     inspect/index
     site/index
     sys/index
+    sysconfig/index
     traceback/index
     warnings/index

@@ -7,6 +7,8 @@ Interpreter Settings
 :mod:`sys` contains attributes and functions for accessing
 compile-time or runtime configuration settings for the interpreter.
 
+.. _sys-build-time-info:
+
 Build-time Version Information
 ==============================
 
@@ -34,15 +36,16 @@ interpreter is saved in ``sys.api_version``.
 .. {{{end}}}
 
 The operating system platform used to build the interpreter is saved
-as ``sys.platform``.  For most Unix systems, the value comes from
-combining the output of ``uname -s`` with the first part of the
-version in ``uname -r``. For other operating systems there is a
-`hard-coded table of values
-<http://docs.python.org/library/sys.html#sys.platform>`_.
+as ``sys.platform``.  
 
 .. include:: sys_platform.py
     :literal:
     :start-after: #end_pymotw_header
+
+For most Unix systems, the value comes from combining the output of
+``uname -s`` with the first part of the version in ``uname -r``. For
+other operating systems there is a `hard-coded table of values
+<http://docs.python.org/library/sys.html#sys.platform>`_.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_platform.py'))
