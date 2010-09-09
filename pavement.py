@@ -21,6 +21,7 @@ from paver.path import path
 from paver.easy import *
 import paver.setuputils
 paver.setuputils.install_distutils_tasks()
+import setuptools
 try:
     from sphinxcontrib import paverutils
 except:
@@ -33,7 +34,7 @@ except:
 PROJECT = 'PyMOTW'
 
 # What version is this?
-VERSION = '1.124'
+VERSION = '1.124.1'
 
 # The sphinx templates expect the VERSION in the shell environment
 os.environ['VERSION'] = VERSION
@@ -82,7 +83,7 @@ options(
         keywords = ('python', 'PyMOTW', 'documentation'),
 
         # It seems wrong to have to list recursive packages explicitly.
-        packages = sorted(PACKAGE_DATA.keys()),
+        packages = setuptools.find_packages(),
         package_data=PACKAGE_DATA,
         zip_safe=False,
         
