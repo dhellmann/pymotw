@@ -85,6 +85,7 @@ It is also used in the :mod:`unittest` module in methods like ``failIf()``.
 .. }}}
 .. {{{end}}}
 
+.. _exceptions-AttributeError:
 
 AttributeError
 --------------
