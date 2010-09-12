@@ -1,6 +1,14 @@
 History
 =======
 
+1.125
+
+  - 12 Sept 2010, :mod:`pdb`
+
+1.124.1
+
+  - 9 Sept 2010, Updated packaging to fix installation errors.
+
 1.124
 
   - 5 Sept 2010, :mod:`re`
