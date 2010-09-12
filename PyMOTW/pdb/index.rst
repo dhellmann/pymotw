@@ -115,7 +115,7 @@ debugging.  :mod:`pdb` supports post-mortem debugging through the
 .. literalinclude:: pdb_post_mortem.py
    :linenos:
 
-Here the incorrect attribute name on line 15 triggers an
+Here the incorrect attribute name on line 13 triggers an
 :ref:`AttributeError <exceptions-AttributeError>` exception, causing
 execution to stop. :func:`pm` looks for the active traceback and
 starts the debugger at the point in the call stack where the exception
