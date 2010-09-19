@@ -1,6 +1,10 @@
 History
 =======
 
+1.126
+
+  - 19 Sept 2010, :mod:`sysconfig`
+
 1.125
 
   - 12 Sept 2010, :mod:`pdb`
