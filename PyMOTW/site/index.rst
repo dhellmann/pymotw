@@ -32,13 +32,13 @@ that exist are added to :ref:`sys.path <sys-path>`.
     
     $ python site_import_path.py 
     Path prefixes:
-       /Library/Frameworks/Python.framework/Versions/2.6
-       /Library/Frameworks/Python.framework/Versions/2.6
+       /Library/Frameworks/Python.framework/Versions/2.7
+       /Library/Frameworks/Python.framework/Versions/2.7
     
-    /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages
+    /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages
        exists: True
       in path: True
-    /Library/Frameworks/Python.framework/Versions/2.6/lib/site-python
+    /Library/Frameworks/Python.framework/Versions/2.7/lib/site-python
        exists: False
       in path: False
 
@@ -287,13 +287,13 @@ before the automatic import was added, the interpreter accepts an
 
     $ python -S site_import_path.py 
     Path prefixes:
-       sys.prefix     : /Library/Frameworks/Python.framework/Versions/2.6
-       sys.exec_prefix: /Library/Frameworks/Python.framework/Versions/2.6
+       sys.prefix     : /Library/Frameworks/Python.framework/Versions/2.7
+       sys.exec_prefix: /Library/Frameworks/Python.framework/Versions/2.7
     
-    /Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages
+    /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages
        exists: True
       in path: False
-    /Library/Frameworks/Python.framework/Versions/2.6/lib/site-python
+    /Library/Frameworks/Python.framework/Versions/2.7/lib/site-python
        exists: False
       in path: False
 
