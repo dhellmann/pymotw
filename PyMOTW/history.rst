@@ -1,6 +1,10 @@
 History
 =======
 
+1.127
+
+  - 26 Sept 2010, :mod:`socket`
+
 1.126
 
   - 19 Sept 2010, :mod:`sysconfig`
