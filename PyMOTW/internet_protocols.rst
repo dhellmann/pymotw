@@ -12,6 +12,7 @@ Internet Protocols and Support
     SimpleXMLRPCServer/index
     smtpd/index
     smtplib/index
+    socket/index
     SocketServer/index
     urllib/index
     urllib2/index
