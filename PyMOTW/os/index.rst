@@ -18,8 +18,8 @@ described in this summary are not available for Windows.
 The Python documentation for the os module is subtitled "Miscellaneous
 operating system interfaces". The module includes mostly functions for
 creating and managing running processes or filesystem content (files
-and directories), with a few other random bits of functionality thrown
-in besides.
+and directories), with a few other bits of functionality thrown in
+besides.
 
 .. note::
 
