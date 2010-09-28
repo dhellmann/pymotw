@@ -2,10 +2,10 @@
  Counter
 =========
 
-A :class:`Counter` is container that keeps track of how many times
-equivalent values are added to it.  It can be used to implement the
-same algorithms for which Bag or multiset data structures are commonly
-used in other languages.
+A :class:`Counter` is a container that keeps track of how many times
+equivalent values are added.  It can be used to implement the same
+algorithms for which bag or multiset data structures are commonly used
+in other languages.
 
 Initializing
 ============
