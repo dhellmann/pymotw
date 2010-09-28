@@ -30,7 +30,7 @@ inputs = [ server ]
 # Sockets to which we expect to write
 outputs = [ ]
 
-# Keep up with the queues of outgoing messages
+# Outgoing message queues (socket:Queue)
 message_queues = {}
 
 while inputs:

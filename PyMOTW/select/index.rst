@@ -19,17 +19,18 @@ select()
 
 Python's :func:`select` function is a direct interface to the
 underlying operating system implementation.  It monitors sockets, open
-files, or pipes (anything with a :func:`fileno` method that returns a
+files, and pipes (anything with a :func:`fileno` method that returns a
 valid file descriptor) until they become readable or writable, or a
-communication error occurs.  Using :func:`select` is more efficient
-than writing a polling loop in Python, because the monitoring happens
-in the operating system, instead of the interpreter.  :func:`select`
-also makes it easier to monitor multiple connections at the same time.
+communication error occurs.  :func:`select` makes it easier to monitor
+multiple connections at the same time, and is more efficient than
+writing a polling loop in Python using socket timeouts, because the
+monitoring happens in the operating system network layer, instead of
+the interpreter.
 
 .. note::
 
-   Using Python's file objects with :func:`select` is not supported
-   under Windows.
+   Using Python's file objects with :func:`select` works for Unix, but
+   is not supported under Windows.
 
 The echo server example from the :mod:`socket` section can be extended
 to watch for more than one connection at a time by using
@@ -45,17 +46,17 @@ to be checked for incoming data to be read, the second contains
 objects that will receive outgoing data when there is room in their
 buffer, and the third those that may have an error (usually a
 combination of the input and output channel objects).  The next step
-in the server is to set up two lists containing input sources and
+in the server is to set up the lists containing input sources and
 output destinations to be passed to :func:`select`.
 
 .. literalinclude:: select_echo_server.py
    :lines: 27-31
 
-Connections are added to and removed from the lists by the server main
-loop.  Since this version of the server is going to wait for a socket
-to become writable before sending any data (instead of immediately
-sending the reply), each output connection needs a queue to act as a
-buffer for the data to be sent through it.
+Connections are added to and removed from these lists by the server
+main loop.  Since this version of the server is going to wait for a
+socket to become writable before sending any data (instead of
+immediately sending the reply), each output connection needs a queue
+to act as a buffer for the data to be sent through it.
 
 .. literalinclude:: select_echo_server.py
    :lines: 33-34
@@ -70,29 +71,28 @@ block and wait for network activity.
 contents of the lists passed in.  All of the sockets in the
 :data:`readable` list have incoming data buffered and available to be
 read.  All of the sockets in the :data:`writable` list have free space
-in their buffer and can be written to.  The sockets in
+in their buffer and can be written to.  The sockets returned in
 :data:`exceptional` have had an error (the actual definition of
 "exceptional condition" depends on the platform).
 
 The "readable" sockets represent three possible cases.  If the socket
-is the main "server" socket, on which the server is listening for
+is the main "server" socket, the one being used to listen for
 connections, then the "readable" condition means it is ready to accept
 another incoming connection.  In addition to adding the new connection
-to the list of inputs to monitor, this section sets the client socket to
-not block.
+to the list of inputs to monitor, this section sets the client socket
+to not block.
 
 .. literalinclude:: select_echo_server.py
    :lines: 42-53
 
-The next case is a readable socket with data available to be read,
-which represents an established connection with a client that has sent
-data.  The data is placed on the queue so it can be sent through the
-socket and back to the client.
+The next case is an established connection with a client that has sent
+data.  The data is read with :func:`recv`, then placed on the queue so
+it can be sent through the socket and back to the client.
 
 .. literalinclude:: select_echo_server.py
    :lines: 55-63
 
-A reable socket *without* data available is from a client that has
+A readable socket *without* data available is from a client that has
 disconnected, and the stream is ready to be closed.
 
 .. literalinclude:: select_echo_server.py
@@ -209,11 +209,11 @@ sockets.
 Timeouts
 --------
 
-:func:`select` also takes an optional fourth parameter with the number
-of seconds to wait before breaking off monitoring if no channels have
-become active.  Using a timeout value lets a main program call
-:func:`select` as part of a larger processing loop, taking other
-actions in between checking for network input.
+:func:`select` also takes an optional fourth parameter which is the
+number of seconds to wait before breaking off monitoring if no
+channels have become active.  Using a timeout value lets a main
+program call :func:`select` as part of a larger processing loop,
+taking other actions in between checking for network input.
 
 When the timeout expires, :func:`select` returns three empty lists.
 Updating the server example to use a timeout requires adding the extra
@@ -330,7 +330,7 @@ Event              Description
 
 The echo server will be setting up some sockets just for reading, and
 others to be read from or written to.  The appropriate combinations of
-flags are saved to the local variables :data:`READ_ONLY` AND
+flags are saved to the local variables :data:`READ_ONLY` and
 :data:`READ_WRITE`.
 
 .. literalinclude:: select_poll_echo_server.py
