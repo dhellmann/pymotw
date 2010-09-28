@@ -19,7 +19,7 @@ while True:
     except IndexError:
         break
 
-print 'From the left:'
+print '\nFrom the left:'
 d = collections.deque('abcdefg')
 while True:
     try:
