@@ -18,6 +18,7 @@ built-in types :class:`list`, :class:`dict`, and :class:`tuple`.
    defaultdict
    deque
    namedtuple
+   ordereddict
 
 
 .. seealso::
