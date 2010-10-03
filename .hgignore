@@ -30,6 +30,7 @@ syntax: re
 ^PyMOTW/shelve/test_shelf.db
 ^PyMOTW/shutil/file_to_change.txt
 ^PyMOTW/shutil/shutil_copyfile.py.copy
+^PyMOTW/sqlite3/.*\.db
 ^PyMOTW/tarfile/outdir
 ^PyMOTW/trace/trace_report.dat
 ^PyMOTW/trace/coverdir
