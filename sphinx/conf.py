@@ -47,7 +47,7 @@ latex_documents = [
 #latex_preamble = r'''
 #'''
 
-latex_show_pagerefs = True
+#latex_show_pagerefs = True
 latex_show_urls = True
 
 latex_elements = {

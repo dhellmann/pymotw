@@ -1,6 +1,10 @@
 History
 =======
 
+1.129
+
+  - 3 Oct 2010, :mod:`select`
+
 1.128.1
 
   - 29 Sept 2010, Corrected the :class:`OrderedDict` equality example.
