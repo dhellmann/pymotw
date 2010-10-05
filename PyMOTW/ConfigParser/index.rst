@@ -222,7 +222,7 @@ to add or change an option.
    :start-after: #end_pymotw_header
 
 All options must be set as strings, even if they will be retrieved as
-an integer, float, or boolean values.
+integer, float, or boolean values.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ConfigParser_populate.py'))
@@ -236,8 +236,7 @@ with :func:`remove_section` and :func:`remove_option`.
    :literal:
    :start-after: #end_pymotw_header
 
-Removing a section with options deletes all of the options it
-contains.
+Removing a section deletes any options it contains.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ConfigParser_remove.py'))
@@ -259,8 +258,8 @@ file.
    :start-after: #end_pymotw_header
 
 The :func:`write` method takes a file-like object as argument.  It
-writes the data out in a format that can be read again by
-:func:`read`.
+writes the data out in the INI format so it can be parsed again by
+:class:`SafeConfigParser`.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ConfigParser_write.py'))
