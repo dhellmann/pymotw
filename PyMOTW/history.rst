@@ -1,6 +1,11 @@
 History
 =======
 
+development
+
+  - Updates to :mod:`contextlib`.
+  - Updates to :mod:`logging`.
+
 1.129
 
   - 3 Oct 2010, :mod:`select`
