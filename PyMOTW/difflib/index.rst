@@ -1,23 +1,17 @@
-================================================
-difflib -- Compute differences between sequences
-================================================
+==============================
+ difflib -- Compare sequences
+==============================
 
 .. module:: difflib
-    :synopsis: Library of tools for computing and working with differences between sequences, especially of lines in text files.
+    :synopsis: Compare sequences, especially lines of text.
 
-:Purpose: Library of tools for computing and working with differences between sequences, especially of lines in text files.
-:Python Version: 2.1
+:Purpose: Compare sequences, especially lines of text.
+:Python Version: 2.1 and later
 
-The SequenceMatcher class compares any 2 sequences of values, as long
-as the values are hashable. It uses a recursive algorithm to identify
-the longest contiguous matching blocks from the sequences, eliminating
-"junk" values. The Differ class works on sequences of text lines and
-produces human-readable deltas, including differences within
-individual lines. The HtmlDiff class produces similar results
-formatted as an HTML table.
-
-Test Data
-=========
+The :mod:`difflib` module contains tools for computing and working
+with differences between sequences.  It is especially useful for
+comparing text, and includes functions that produce reports using
+several common difference formats.
 
 The examples below will all use this common test data in the
 ``difflib_data.py`` module:
@@ -26,35 +20,46 @@ The examples below will all use this common test data in the
     :literal:
     :start-after: #end_pymotw_header
 
-Differ Example
-==============
+Comparing Bodies of Text
+========================
 
-Reproducing output similar to the diff command line tool is simple
-with the Differ class:
+The :class:`Differ` class works on sequences of text lines and
+produces human-readable *deltas*, or change instructions, including
+differences within individual lines.
+
+The default output produced by :class:`Differ` is similar to the
+:command:`diff` command line tool is simple with the :class:`Differ`
+class.  It includes the original input values from both lists,
+including common values, and markup data to indicate what changes were
+made. 
+
+* Lines prefixed with ``-`` indicate that they were in the first
+  sequence, but not the second.
+* Lines prefixed with ``+`` were in the second sequence, but not the
+  first. 
+* If a line has an incremental difference between versions, an extra
+  line prefixed with ``?`` is used to highlight the change within the
+  new version.
+* If a line has not changed, it is printed with an extra blank space
+  on the left column so that it it lines up with the other lines that
+  may have differences.
+
+To compare text, break it up into a sequence of individual lines and
+pass the sequences to :func:`compare`.
 
 .. include:: difflib_differ.py
     :literal:
     :start-after: #end_pymotw_header
 
-The output includes the original input values from both lists,
-including common values, and markup data to indicate what changes were
-made. Lines may be prefixed with ``-`` to indicate that they were in
-the first sequence, but not the second. Lines prefixed with ``+`` were
-in the second sequence, but not the first. If a line has an
-incremental change between versions, an extra line prefixed with ``?``
-is used to indicate where the change occurred within the line. If a
-line has not changed, it is printed with an extra blank space on the
-left column to make it line up with the other lines which may have
-other markup.
-
-The beginning of both text segments is the same.
+The beginning of both text segments in the sample data is the same, so
+the first line is printed without any extra annotation.
 
 ::
 
      1:   Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Integer
 
-The second line has been changed to include a comma in the modified
-text. Both versions of the line are printed, with the extra
+The second line of the data has been changed to include a comma in the
+modified text. Both versions of the line are printed, with the extra
 information on line 4 showing the column where the text was modified,
 including the fact that the ``,`` character was added.
 
@@ -100,39 +105,41 @@ new (lines 20-23).
     22: + adipiscing. Duis vulputate tristique enim. Donec quis lectus a justo
     23: + imperdiet tempus. Suspendisse eu lectus. In nunc.
 
-The ndiff() function produces essentially the same output. The processing is
-specifically tailored to working with text data and eliminating "noise" in the
-input.
+The :func:`ndiff` function produces essentially the same output.
 
 .. include:: difflib_ndiff.py
     :literal:
     :start-after: #end_pymotw_header
+
+The processing is specifically tailored for working with text data and
+eliminating "noise" in the input.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'difflib_ndiff.py'))
 .. }}}
 .. {{{end}}}
 
-Other Diff Formats
-==================
+Other Output Formats
+--------------------
 
-Where the Differ class shows all of the inputs, a unified diff only includes
-modified lines and a bit of context. In version 2.3, a unified_diff() function
-was added to produce this sort of output:
+While the :class:`Differ` class shows all of the input lines, a
+*unified diff* only includes modified lines and a bit of context. In
+Python 2.3, the :func:`unified_diff` function was added to produce
+this sort of output:
 
 .. include:: difflib_unified.py
     :literal:
     :start-after: #end_pymotw_header
 
-The output should look familiar to users of svn or other version control
-tools:
+The output should look familiar to users of subversion or other
+version control tools:
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'difflib_unified.py'))
 .. }}}
 .. {{{end}}}
 
-Using context_diff() produces similar readable output:
+Using :func:`context_diff` produces similar readable output:
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'difflib_context.py'))
@@ -140,37 +147,41 @@ Using context_diff() produces similar readable output:
 .. {{{end}}}
 
 HTML Output
-===========
+-----------
 
-HtmlDiff (new in Python 2.4) produces HTML output with the same information as
-the Diff class. This example uses make_table(), but the make_file() method
-produces a fully-formed HTML file as output.
+:class:`HtmlDiff` produces HTML output with the same information as
+:class:`Diff`. 
 
 .. include:: difflib_html.py
     :literal:
     :start-after: #end_pymotw_header
 
-.. {{{cog
-.. cog.out(run_script(cog.inFile, 'difflib_html.py'))
-.. }}}
-.. {{{end}}}
+This example uses :func:`make_table`, which only returns the
+:const:`table` tag containing the difference information.  The
+:func:`make_file` method produces a fully-formed HTML file as output.
+
+.. note::
+
+  The output is not included here because it is very verbose.
 
 
 Junk Data
 =========
 
-All of the functions that produce diff sequences accept arguments to
-indicate which lines should be ignored, and which characters within a
-line should be ignored. This can be used to ignore markup or
-whitespace changes in two versions of file, for example.
+All of the functions that produce difference sequences accept
+arguments to indicate which lines should be ignored, and which
+characters within a line should be ignored. These parameters can be
+used to skip over markup or whitespace changes in two versions of a
+file, for example.
 
 .. include:: difflib_junk.py
     :literal:
     :start-after: #end_pymotw_header
 
-The default for Differ is to not ignore any
-lines or characters explicitly, but to rely on the SequenceMatcher's ability
-to detect noise. The default for ndiff is to ignore space and tab characters.
+The default for :class:`Differ` is to not ignore any lines or
+characters explicitly, but to rely on the ability of
+:class:`SequenceMatcher` to detect noise. The default for
+:func:`ndiff` is to ignore space and tab characters.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'difflib_junk.py'))
@@ -178,26 +189,31 @@ to detect noise. The default for ndiff is to ignore space and tab characters.
 .. {{{end}}}
 
 
-SequenceMatcher
-===============
+Comparing Arbitrary Types
+=========================
 
-SequenceMatcher, which implements the comparison algorithm, can be used with
-sequences of any type of object as long as the object is hashable. For
-example, two lists of integers can be compared, and using get_opcodes() a set
-of instructions for converting the original list into the newer can be
-printed:
+The :class:`SequenceMatcher` class compares two sequences of any
+types, as long as the values are hashable. It uses an algorithm to
+identify the longest contiguous matching blocks from the sequences,
+eliminating "junk" values that do not contribute to the real data.
 
 .. include:: difflib_seq.py
     :literal:
     :start-after: #end_pymotw_header
+
+This example compares two lists of integers and uses
+:func:`get_opcodes` to derive the instructions for converting the
+original list into the newer version.  The modifications are applied
+in reverse order so that the list indexes remain accurate after items
+are added and removed.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'difflib_seq.py'))
 .. }}}
 .. {{{end}}}
 
-
-You can use SequenceMatcher with your own classes, as well as built-in types.
+:class:`SequenceMatcher` works with custom classes, as well as
+built-in types, as long as they are hashable.
 
 .. seealso::
 
