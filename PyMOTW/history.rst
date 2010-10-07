@@ -7,6 +7,7 @@ development
   - Updates to :mod:`logging`.
   - Updates to :mod:`mmap`.
   - Added more details about dialects to :mod:`csv`.
+  - Updates to :mod:`difflib`.
 
 1.129
 
