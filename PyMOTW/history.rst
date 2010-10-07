@@ -5,6 +5,7 @@ development
 
   - Updates to :mod:`contextlib`.
   - Updates to :mod:`logging`.
+  - Updates to :mod:`mmap`.
 
 1.129
 
