@@ -6,6 +6,7 @@ development
   - Updates to :mod:`contextlib`.
   - Updates to :mod:`logging`.
   - Updates to :mod:`mmap`.
+  - Added more details about dialects to :mod:`csv`.
 
 1.129
 
