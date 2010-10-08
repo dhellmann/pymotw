@@ -8,7 +8,13 @@ multiprocessing -- Manage processes like threads
 :Purpose: Provides an API for managing processes.
 :Python Version: 2.6
 
-The multiprocessing module includes a relatively simple API for dividing work up between multiple processes.  It is based on the API for :mod:`threading`, and in some cases is a drop-in replacement.  Due to the similarity, the first few examples here are modified from the threading examples.  Features provided by multiprocessing but not available in threading are covered later.
+The :mod:`multiprocessing` module includes a relatively simple API for
+dividing work up between multiple processes.  It is based on the API
+for :mod:`threading`, and in some cases is a drop-in replacement.  Due
+to the similarity, the first few examples here are modified from the
+:mod:`threading` examples.  Features provided by
+:mod:`multiprocessing` but not available in :mod:`threading` are
+covered later.
 
 .. toctree::
     :maxdepth: 2
