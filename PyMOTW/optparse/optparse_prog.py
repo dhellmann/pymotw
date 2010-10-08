@@ -1,15 +1,17 @@
 #!/usr/bin/env python
 #
 # Copyright 2007 Doug Hellmann.
-"""Using optparse with single-letter options.
+"""Explicit usage message
 """
 #end_pymotw_header
 
 import optparse
 
-parser = optparse.OptionParser()
+parser = optparse.OptionParser(usage='%prog [options] <arg1> <arg2> [<arg3>...]',
+                               prog='my_program_name',
+                               )
 parser.add_option('-a', action="store_true", default=False)
 parser.add_option('-b', action="store", dest="b")
 parser.add_option('-c', action="store", dest="c", type="int")
 
-print parser.parse_args(['-a', '-bval', '-c', '3'])
+parser.parse_args()
