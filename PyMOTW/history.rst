@@ -8,6 +8,7 @@ development
   - Updates to :mod:`mmap`.
   - Added more details about dialects to :mod:`csv`.
   - Updates to :mod:`difflib`.
+  - Updates to :mod:`multiprocessing`.
 
 1.129
 
