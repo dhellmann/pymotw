@@ -9,6 +9,7 @@ development
   - Added more details about dialects to :mod:`csv`.
   - Updates to :mod:`difflib`.
   - Updates to :mod:`multiprocessing`.
+  - Updates to :mod:`optparse`.
 
 1.129
 
