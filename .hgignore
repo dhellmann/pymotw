@@ -27,6 +27,7 @@ syntax: re
 ^PyMOTW/os/os_stat_chmod_example.txt
 ^PyMOTW/ospath/broken_link
 ^PyMOTW/pickle/test.dat
+^PyMOTW/pkgutil/.*\.zip
 ^PyMOTW/shelve/test_shelf.db
 ^PyMOTW/shutil/file_to_change.txt
 ^PyMOTW/shutil/shutil_copyfile.py.copy

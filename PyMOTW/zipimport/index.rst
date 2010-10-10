@@ -216,3 +216,5 @@ The ``__loader__`` is not set for modules not imported via
     :pep:`302`
         New Import Hooks
 
+    :mod:`pkgutil`
+        Provides a more generic interface to :func:`get_data`.

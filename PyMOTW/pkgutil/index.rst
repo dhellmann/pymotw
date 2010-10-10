@@ -1,187 +1,228 @@
-========================================
-pkgutil -- Extend the module search path
-========================================
+==============================
+ pkgutil -- Package Utilities
+==============================
 
 .. module:: pkgutil
-    :synopsis: Extend the module search path
+    :synopsis: Package utilities
 
-:Purpose: Add to the module search path for a specific package to combine separate directories into a single package.
+:Purpose: Add to the module search path for a specific package and work with resources included in a package.
 :Python Version: 2.3 and later
 
-The pkgutil module provides a single function, extend_path(), that is used to
-modify the search path for modules in a given package to include other
-directories in sys.path. This is very useful for overriding installed versions
-of packages with development versions, or for combining os-specific and shared
-modules into a single package namespace.
+The :mod:`pkgutil` module includes functions for working with Python
+packages.  :func:`extend_path` changes the import path for sub-modules
+of the package, and :func:`get_data` provides access to file resources
+distributed with the package.
 
-The most common way to call extend_path() is by adding these two lines to the
-__init__.py inside the package::
+Package Import Paths
+====================
+
+The :func:`extend_path` function is used to modify the search path for
+modules in a given package to include other directories in
+:ref:`sys.path <sys-path>`. This can be used to override installed
+versions of packages with development versions, or to combine
+platform-specific and shared modules into a single package namespace.
+
+The most common way to call :func:`extend_path` is by adding these two
+lines to the ``__init__.py`` inside the packag:
+
+e::
 
     import pkgutil
     __path__ = pkgutil.extend_path(__path__, __name__)
 
-extend_path() returns a new module search path for the package that includes
-paths from sys.path that include a subdirectory with the package name. An
-example will make that more clear. Set up a package called demopkg1 with empty
-files::
+:func:`extend_path` scans ``sys.path`` for directories that include a
+subdirectory named for the package given as the second argument.  The
+list of directories is combined with the path value passed as the
+first argument and returned as a single list, suitable for use as the
+package import path.
+
+An example package called :mod:`demopkg` includes these files:
+
+::
 
     $ find demopkg1 -name '*.py'
     demopkg1/__init__.py
     demopkg1/shared.py
 
-Now create a directory structure like::
+``demopkg1/__init__.py`` contains:
+
+.. include:: demopkg1/__init__.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+The :command:`print` statements shows the search path before and after
+it is modified, to highlight the difference.
+
+And an ``extension`` directory, with add-on features for
+:mod:`demopkg`, contains
+
+::
 
     $ find extension -name '*.py'
     extension/__init__.py
     extension/demopkg1/__init__.py
     extension/demopkg1/not_shared.py
 
-All of the files can be empty.
-
-Now go back to demopkg1/__init__.py and edit it to contain:
-
-.. include:: demopkg1/__init__.py
-    :literal:
-    :start-after: #end_pymotw_header
-
-This shows what the search path is before and after it is modified, to
-illustrate the difference.
-
-Now a simple test program to import the package:
+A simple test program imports the :mod:`demopkg1` package:
 
 .. include:: pkgutil_extend_path.py
     :literal:
     :start-after: #end_pymotw_header
 
-When this test program is run directly from the command line, the not_shared
-module is not found. 
+When this test program is run directly from the command line, the
+:mod:`not_shared` module is not found.  
+
+.. note::
+
+  The full filesystem paths in these examples have been shortened to
+  emphasize the parts that change.
 
 ::
 
-    $ python pkgutil_extend_path.py
-    demopkg1.__path__ before:
-    ['/Users/dhellmann/Documents/PyMOTW/in_progress/pkgutil/demopkg1']
+	$ python pkgutil_extend_path.py
 
-    demopkg1.__path__ after:
-    ['/Users/dhellmann/Documents/PyMOTW/in_progress/pkgutil/demopkg1']
+	demopkg1.__path__ before:
+	['.../PyMOTW/pkgutil/demopkg1']
+	
+	demopkg1.__path__ after:
+	['.../PyMOTW/pkgutil/demopkg1']
+	
+	demopkg1           : .../PyMOTW/pkgutil/demopkg1/__init__.py
+	demopkg1.shared    : .../PyMOTW/pkgutil/demopkg1/shared.py
+	demopkg1.not_shared: Not found (No module named not_shared)
 
-    demopkg1: /Users/dhellmann/Documents/PyMOTW/in_progress/pkgutil/demopkg1/__init__.pyc
-    demopkg1.shared: /Users/dhellmann/Documents/PyMOTW/in_progress/pkgutil/demopkg1/shared.pyc
-    demopkg1.not_shared: Not found (No module named not_shared)
+However, if the ``extension`` directory is added to the
+:data:`PYTHONPATH` and the program is run again, different results are
+produced.
 
-However, if we add "extension" to the PYTHONPATH and run it again, we see
-different results::
+::
 
     $ export PYTHONPATH=extension
     $ python pkgutil_extend_path.py
     demopkg1.__path__ before:
-    ['/Users/dhellmann/Documents/PyMOTW/in_progress/pkgutil/demopkg1']
+    ['.../PyMOTW/pkgutil/demopkg1']
 
     demopkg1.__path__ after:
-    ['/Users/dhellmann/Documents/PyMOTW/in_progress/pkgutil/demopkg1',
-     '/Users/dhellmann/Documents/PyMOTW/in_progress/pkgutil/extension/demopkg1']
+    ['.../PyMOTW/pkgutil/demopkg1',
+     '.../PyMOTW/pkgutil/extension/demopkg1']
 
-    demopkg1: /Users/dhellmann/Documents/PyMOTW/in_progress/pkgutil/demopkg1/__init__.pyc
-    demopkg1.shared: /Users/dhellmann/Documents/PyMOTW/in_progress/pkgutil/demopkg1/shared.pyc
-    demopkg1.not_shared: /Users/dhellmann/Documents/PyMOTW/in_progress/pkgutil/extension/demopkg1/not_shared.py
+    demopkg1           : .../PyMOTW/pkgutil/demopkg1/__init__.pyc
+    demopkg1.shared    : .../PyMOTW/pkgutil/demopkg1/shared.pyc
+    demopkg1.not_shared: .../PyMOTW/pkgutil/extension/demopkg1/not_shared.py
 
-The version of demopkg1 inside the extension directory has been added to the
-search path, so the not_shared module is found there.
+The version of :mod:`demopkg1` inside the ``extension`` directory has
+been added to the search path, so the :mod:`not_shared` module is
+found there.
 
-Extending the path in this manner is useful for combining os-specific versions
-of packages with common packages, especially if the os-specific versions
-include C extension modules.
+Extending the path in this manner is useful for combining
+platform-specific versions of packages with common packages,
+especially if the platform-specific versions include C extension
+modules.
 
-Developing with pkgutil
-=======================
+Development Versions of Packages
+--------------------------------
 
-As I develop enhancements to my own projects, I commonly find that I need to
-test changes to an installed package. I don't want to replace the installed
-copy with my development version, since it is not necessarily correct (yet)
-and other tools on my system may depend on the installed package. I could
-configure a completely separate copy of the package in a development
-environment using something like `virtualenv`_, but if I just need to modify one
-file that could be overkill. Another option is to use pkgutil to modify the
-module search path for modules that belong to the package I'm working on. In
-this case, however, I need to reverse the path, since I want the development
-version to override the installed version.
+While develop enhancements to a project, it is common to need to test
+changes to an installed package. Replacing the installed copy with a
+development version may be a bad idea, since it is not necessarily
+correct and other tools on the system are likely to depend on the
+installed package. 
 
-Suppose the package looks like this::
+A completely separate copy of the package could be configured in a
+development environment using `virtualenv`_, but for small
+modifications the overhead of setting up a virtual environment with
+all of the dependencies may be excessive.
+
+Another option is to use :mod:`pkgutil` to modify the module search
+path for modules that belong to the package under development. In this
+case, however, the path must be reversed so development version
+overrides the installed version.
+
+Given a package :mod:`demopkg2` like this:
+
+::
 
     $ find demopkg2 -name '*.py'
     demopkg2/__init__.py
     demopkg2/overloaded.py
 
-The function I'm working on is in demopkg2/overloaded.py. The installed
-version looks like:
+With the function under development located in
+``demopkg2/overloaded.py``. The installed version contains
 
 .. include:: demopkg2/overloaded.py
     :literal:
     :start-after: #end_pymotw_header
 
-And demopkg2/__init__.py contains:
+and ``demopkg2/__init__.py`` contains
 
 .. include:: demopkg2/__init__.py
     :literal:
     :start-after: #end_pymotw_header
 
-Note the use of reverse() there to ensure that any directories added to the
-search path are scanned before the default location.
+:func:`reverse` is used to ensure that any directories added to the
+search path by :mod:`pkgutil` are scanned for imports *before* the
+default location.
 
-With another simple test program, I can run the function:
+This program imports :mod:`demopkg2.overloaded` and calls :func:`func`:
 
 .. include:: pkgutil_devel.py
     :literal:
     :start-after: #end_pymotw_header
 
-First, without any special path treatment::
+Running it without any special path treatment produces output from the
+installed version of :func:`func`.
+
+::
 
     $ python pkgutil_devel.py
-    demopkg2: /Users/dhellmann/Documents/PyMOTW/in_progress/pkgutil/demopkg2/__init__.py
-    demopkg2.overloaded: /Users/dhellmann/Documents/PyMOTW/in_progress/pkgutil/demopkg2/overloaded.py
+    demopkg2           : .../PyMOTW/pkgutil/demopkg2/__init__.py
+    demopkg2.overloaded: .../PyMOTW/pkgutil/demopkg2/overloaded.py
 
-This is the installed version of func().
+A development directory containing
 
-And now I can set up a development directory like this::
+::
 
     $ find develop -name '*.py'
     develop/demopkg2/__init__.py
     develop/demopkg2/overloaded.py
 
-And replace the overloaded module contents:
+and a modified version of :mod:`overloaded`
 
 .. include:: develop/demopkg2/overloaded.py
     :literal:
     :start-after: #end_pymotw_header
 
-Now, when the test program is run with the develop directory in the search
-path, the overloaded module from the development directory is found and used.
+will be loaded when the test program is run with the ``develop``
+directory in the search path.
 
 ::
 
     $ export PYTHONPATH=develop 
     $ python pkgutil_devel.py
 
-    demopkg2: /Users/dhellmann/Documents/PyMOTW/in_progress/pkgutil/demopkg2/__init__.pyc
-    demopkg2.overloaded: /Users/dhellmann/Documents/PyMOTW/in_progress/pkgutil/develop/demopkg2/overloaded.pyc
+    demopkg2           : .../PyMOTW/pkgutil/demopkg2/__init__.pyc
+    demopkg2.overloaded: .../PyMOTW/pkgutil/develop/demopkg2/overloaded.pyc
 
-This is the development version of func().
 
-Using .pkg files
-================
+Managing Paths with PKG Files
+-----------------------------
 
-The first example illustrated how to extend the search path using extra
-directories included in the PYTHONPATH. It is also possible to add to the
-search path using ``*.pkg`` files containing directory names. PKG files are
-similar to the PTH files used by the site module. They can contain directory
-names, one per line, to be added to the search path for the package.
+The first example above illustrated how to extend the search path
+using extra directories included in the :data:`PYTHONPATH`. It is also
+possible to add to the search path using ``*.pkg`` files containing
+directory names. PKG files are similar to the PTH files used by the
+:mod:`site` module. They can contain directory names, one per line, to
+be added to the search path for the package.
 
-Another way to structure the os-specific portions of the application from the
-first example is to have a directory for each operating system, and use a .pkg
-file to extend the search path.
+Another way to structure the platform-specific portions of the
+application from the first example is to use a separate directory for
+each operating system, and include a ``.pkg`` file to extend the
+search path.
 
-This example uses the same demopkg1 files, and also includes the following
-files::
+This example uses the same :mod:`demopkg1` files, and also includes
+the following files:
+
+::
 
     $ find os_* -type f
     os_one/demopkg1/__init__.py
@@ -191,8 +232,8 @@ files::
     os_two/demopkg1/not_shared.py
     os_two/demopkg1.pkg
 
-The PKG files are named demopkg1.pkg to match the package we are extending.
-They both contain::
+The PKG files are named ``demopkg1.pkg`` to match the package
+being extended.  They both contain::
 
     demopkg
 
@@ -208,8 +249,8 @@ A simple run script can be used to switch between the two packages:
     :literal:
     :start-after: #end_pymotw_header
 
-And when run with "one" or "two" as the arguments, the path is adjusted
-appropriately:
+And when run with ``"one"`` or ``"two"`` as the arguments, the path is
+adjusted appropriately:
 
 ::
 
@@ -217,16 +258,16 @@ appropriately:
     PYTHONPATH=os_one
 
     demopkg1.__path__ before:
-    ['/Users/dhellmann/Documents/PyMOTW/in_progress/pkgutil/demopkg1']
+    ['.../PyMOTW/pkgutil/demopkg1']
 
     demopkg1.__path__ after:
-    ['/Users/dhellmann/Documents/PyMOTW/in_progress/pkgutil/demopkg1',
-     '/Users/dhellmann/Documents/PyMOTW/in_progress/pkgutil/os_one/demopkg1',
+    ['.../PyMOTW/pkgutil/demopkg1',
+     '.../PyMOTW/pkgutil/os_one/demopkg1',
      'demopkg']
 
-    demopkg1: /Users/dhellmann/Documents/PyMOTW/in_progress/pkgutil/demopkg1/__init__.pyc
-    demopkg1.shared: /Users/dhellmann/Documents/PyMOTW/in_progress/pkgutil/demopkg1/shared.pyc
-    demopkg1.not_shared: /Users/dhellmann/Documents/PyMOTW/in_progress/pkgutil/os_one/demopkg1/not_shared.pyc
+    demopkg1           : .../PyMOTW/pkgutil/demopkg1/__init__.pyc
+    demopkg1.shared    : .../PyMOTW/pkgutil/demopkg1/shared.pyc
+    demopkg1.not_shared: .../PyMOTW/pkgutil/os_one/demopkg1/not_shared.pyc
 
 ::
 
@@ -234,26 +275,28 @@ appropriately:
     PYTHONPATH=os_two
 
     demopkg1.__path__ before:
-    ['/Users/dhellmann/Documents/PyMOTW/in_progress/pkgutil/demopkg1']
+    ['.../PyMOTW/pkgutil/demopkg1']
 
     demopkg1.__path__ after:
-    ['/Users/dhellmann/Documents/PyMOTW/in_progress/pkgutil/demopkg1',
-     '/Users/dhellmann/Documents/PyMOTW/in_progress/pkgutil/os_two/demopkg1',
+    ['.../PyMOTW/pkgutil/demopkg1',
+     '.../PyMOTW/pkgutil/os_two/demopkg1',
      'demopkg']
 
-    demopkg1: /Users/dhellmann/Documents/PyMOTW/in_progress/pkgutil/demopkg1/__init__.pyc
-    demopkg1.shared: /Users/dhellmann/Documents/PyMOTW/in_progress/pkgutil/demopkg1/shared.pyc
-    demopkg1.not_shared: /Users/dhellmann/Documents/PyMOTW/in_progress/pkgutil/os_two/demopkg1/not_shared.pyc
+    demopkg1           : .../PyMOTW/pkgutil/demopkg1/__init__.pyc
+    demopkg1.shared    : .../PyMOTW/pkgutil/demopkg1/shared.pyc
+    demopkg1.not_shared: .../PyMOTW/pkgutil/os_two/demopkg1/not_shared.pyc
 
-PKG files can appear anywhere in the normal search path, so a single
-PKG file in the current working directory could also be used to
-include a development tree.
+PKG files can appear anywhere in the normal search path, so a
+single PKG file in the current working directory could also be
+used to include a development tree.
 
 Nested Packages
-===============
+---------------
 
 For nested packages, it is only necessary to modify the path of the top-level
-package. For example, with a directory structure like::
+package. For example, with this directory structure
+
+::
 
     $ find nested -name '*.py'
     nested/__init__.py
@@ -261,13 +304,15 @@ package. For example, with a directory structure like::
     nested/second/deep.py
     nested/shallow.py
 
-Where nested/__init__.py contains:
+Where ``nested/__init__.py`` contains
 
 .. include:: nested/__init__.py
     :literal:
     :start-after: #end_pymotw_header
 
-And a development tree like::
+and a development tree like
+
+::
 
     $ find develop/nested -name '*.py'
     develop/nested/__init__.py
@@ -275,35 +320,97 @@ And a development tree like::
     develop/nested/second/deep.py
     develop/nested/shallow.py
 
-Both the shallow and deep modules contain a simple function to print out a
-message indicating whether or not they come from the installed or development
-version.
+Both the :mod:`shallow` and :mod:`deep` modules contain a simple
+function to print out a message indicating whether or not they come
+from the installed or development version.
 
-Again, we need a simple test program:
+This test program exercises the new packages.
 
 .. include:: pkgutil_nested.py
     :literal:
     :start-after: #end_pymotw_header
 
-When pkgutil_nested.py is run without any special path considerations, we see
-the installed version of both modules::
+When ``pkgutil_nested.py`` is run without any path manipulation, the
+installed version of both modules are used.
+
+::
 
     $ python pkgutil_nested.py
-    nested.shallow: /Users/dhellmann/Documents/PyMOTW/in_progress/pkgutil/nested/shallow.pyc
+    nested.shallow: .../PyMOTW/pkgutil/nested/shallow.pyc
     This func() comes from the installed version of nested.shallow
 
-    nested.second.deep: /Users/dhellmann/Documents/PyMOTW/in_progress/pkgutil/nested/second/deep.pyc
+    nested.second.deep: .../PyMOTW/pkgutil/nested/second/deep.pyc
     This func() comes from the installed version of nested.second.deep
 
-And when the develop directory is added to the path, we see the development
-version of both functions::
+When the ``develop`` directory is added to the path, the development
+version of both functions override the installed versions.
+
+::
 
     $ PYTHONPATH=develop python pkgutil_nested.py 
-    nested.shallow: /Users/dhellmann/Documents/PyMOTW/in_progress/pkgutil/develop/nested/shallow.pyc
+    nested.shallow: .../PyMOTW/pkgutil/develop/nested/shallow.pyc
     This func() comes from the development version of nested.shallow
 
-    nested.second.deep: /Users/dhellmann/Documents/PyMOTW/in_progress/pkgutil/develop/nested/second/deep.pyc
+    nested.second.deep: .../PyMOTW/pkgutil/develop/nested/second/deep.pyc
     This func() comes from the development version of nested.second.deep
+
+Package Data
+============
+
+In addition to code, Python packages can contain data files such as
+templates, default configuration files, images, and other supporting
+files used by the code in the package.  The :func:`get_data` function
+gives access to the data in the files in a format-agnostic way, so it
+does not matter if the package is distributed as an EGG, part of a
+frozen binary, or regular files on the filesystem.
+
+With a package :mod:`pkgwithdata` containing a ``templates`` directory
+
+::
+
+    $ find pkgwithdata -type f
+    
+    pkgwithdata/__init__.py
+    pkgwithdata/templates/base.html
+
+and ``pkgwithdata/templates/base.html`` containing
+
+.. literalinclude:: pkgwithdata/templates/base.html
+
+This program uses :func:`get_data` to retrieve the template contents
+and print them out.
+
+.. include:: pkgutil_get_data.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+The arguments to :func:`get_data` are the dotted name of the package,
+and a filename relative to the top of the package.  The return value
+is a byte sequence, so it is encoded as UTF-8 before being printed.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'pkgutil_get_data.py'))
+.. }}}
+.. {{{end}}}
+
+:func:`get_data` is distribution format-agnostic because it uses the
+import hooks defined in :pep:`302` to access the package contents.
+Any loader that provides the hooks can be used, including the ZIP
+archive importer in :mod:`zipfile`.
+
+.. include:: pkgutil_get_data_zip.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+This example creates a ZIP archive with a copy of the
+:mod:`pkgwithdata` package, including a renamed version of the
+template file.  It then adds the ZIP archive to the import path before
+using :mod:`pkgutil` to load the template and print it.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'pkgutil_get_data_zip.py'))
+.. }}}
+.. {{{end}}}
 
 
 .. seealso::
@@ -314,4 +421,21 @@ version of both functions::
     `virtualenv`_
         Ian Bicking's virtual environment script.
 
+    :mod:`distutils`
+        Packaging tools from Python standard library.
+
+    `Distribute`_
+        Next-generation packaging tools.
+
+    :pep:`302`
+        Import Hooks
+
+    :mod:`zipfile`
+        Create importable ZIP archives.
+
+    :mod:`zipimport`
+        Importer for packages in ZIP archives.
+
 .. _virtualenv: http://pypi.python.org/pypi/virtualenv
+
+.. _Distribute: http://packages.python.org/distribute/
