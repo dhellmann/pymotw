@@ -1,51 +1,70 @@
 #!/usr/bin/env python
+# encoding: utf-8
 #
-# Copyright 2007 Doug Hellmann.
+# Copyright (c) 2010 Doug Hellmann.  All rights reserved.
 #
-#
-#                         All Rights Reserved
-#
-# Permission to use, copy, modify, and distribute this software and
-# its documentation for any purpose and without fee is hereby
-# granted, provided that the above copyright notice appear in all
-# copies and that both that copyright notice and this permission
-# notice appear in supporting documentation, and that the name of Doug
-# Hellmann not be used in advertising or publicity pertaining to
-# distribution of the software without specific, written prior
-# permission.
-#
-# DOUG HELLMANN DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE,
-# INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN
-# NO EVENT SHALL DOUG HELLMANN BE LIABLE FOR ANY SPECIAL, INDIRECT OR
-# CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS
-# OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT,
-# NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
-# CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-#
-
 """Example setting the locale using environment variable(s).
-
 """
-
-__module_id__ = "$Id$"
 #end_pymotw_header
 
 import locale
 import os
 import pprint
+import codecs
+import sys
+
+sys.stdout = codecs.getwriter('UTF-8')(sys.stdout)
+
+# Default settings based on the user's environment.
+locale.setlocale(locale.LC_ALL, '')
 
 print 'Environment settings:'
 for env_name in [ 'LC_ALL', 'LC_CTYPE', 'LANG', 'LANGUAGE' ]:
     print '\t%s = %s' % (env_name, os.environ.get(env_name, ''))
 
-# What is the default locale?
+# What is the locale?
 print
-print 'Default locale:', locale.getdefaultlocale()
+print 'Locale from environment:', locale.getlocale()
 
-# Default settings based on the user's environment.
-locale.setlocale(locale.LC_ALL, '')
+template = """
+Numeric formatting:
 
-# If we do not have a locale, assume US English.
-print 'From environment:', locale.getlocale()
+  Decimal point      : "%(decimal_point)s"
+  Grouping positions : %(grouping)s
+  Thousands separator: "%(thousands_sep)s"
 
-pprint.pprint(locale.localeconv())
+Monetary formatting:
+
+  International currency symbol             : "%(int_curr_symbol)r"
+  Local currency symbol                     : %(currency_symbol)r (%(currency_symbol_u)s)
+  Symbol precedes positive value            : %(p_cs_precedes)s
+  Symbol precedes negative value            : %(n_cs_precedes)s
+  Decimal point                             : "%(mon_decimal_point)s"
+  Digits in fractional values               : %(frac_digits)s
+  Digits in fractional values, international: %(int_frac_digits)s
+  Grouping positions                        : %(mon_grouping)s
+  Thousands separator                       : "%(mon_thousands_sep)s"
+  Positive sign                             : "%(positive_sign)s"
+  Positive sign position                    : %(p_sign_posn)s
+  Negative sign                             : "%(negative_sign)s"
+  Negative sign position                    : %(n_sign_posn)s
+
+"""
+
+sign_positions = {
+    0 : 'Surrounded by parentheses',
+    1 : 'Before value and symbol',
+    2 : 'After value and symbol',
+    3 : 'Before value',
+    4 : 'After value',
+    locale.CHAR_MAX : 'Unspecified',
+    }
+
+info = {}
+info.update(locale.localeconv())
+info['p_sign_posn'] = sign_positions[info['p_sign_posn']]
+info['n_sign_posn'] = sign_positions[info['n_sign_posn']]
+# convert the currency symbol to unicode
+info['currency_symbol_u'] = info['currency_symbol'].decode('utf-8')
+
+print (template % info)
