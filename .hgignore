@@ -26,6 +26,7 @@ syntax: re
 ^PyMOTW/mmap/lorem_copy.txt
 ^PyMOTW/os/os_stat_chmod_example.txt
 ^PyMOTW/ospath/broken_link
+^PyMOTW/random/state.dat
 ^PyMOTW/pickle/test.dat
 ^PyMOTW/pkgutil/.*\.zip
 ^PyMOTW/shelve/test_shelf.db

@@ -1,8 +1,9 @@
 History
 =======
 
-development
+1.130
 
+  - 10 Oct 2010, :mod:`random`
   - Updates to :mod:`contextlib`.
   - Updates to :mod:`logging`.
   - Updates to :mod:`mmap`.

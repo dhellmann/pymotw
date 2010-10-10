@@ -11,3 +11,5 @@ Numeric and Mathematical Modules
     itertools/index
     math/index
     operator/index
+    random/index
+
