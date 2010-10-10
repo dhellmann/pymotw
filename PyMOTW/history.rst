@@ -10,6 +10,7 @@ development
   - Updates to :mod:`difflib`.
   - Updates to :mod:`multiprocessing`.
   - Updates to :mod:`optparse`.
+  - Updates to :mod:`pkgutil`.
 
 1.129
 
