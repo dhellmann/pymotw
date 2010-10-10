@@ -171,7 +171,7 @@ It takes two arguments, the name of the header and the value.
    :start-after: #end_pymotw_header
 
 This example sets the ``Last-Modified`` header to the current
-timestamp formatted following :rfc:`2822`.
+timestamp formatted according to :rfc:`2822`.
 
 ::
 
