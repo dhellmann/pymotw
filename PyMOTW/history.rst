@@ -1,6 +1,10 @@
 History
 =======
 
+development
+
+  - Updates to :mod:`xml.etree.ElementTree`
+
 1.130
 
   - 10 Oct 2010, :mod:`random`
