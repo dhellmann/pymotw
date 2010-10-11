@@ -33,10 +33,8 @@ __module_id__ = "$Id$"
 import os
 
 print 'Starting:', os.getcwd()
-print os.listdir(os.curdir)
 
 print 'Moving up one:', os.pardir
 os.chdir(os.pardir)
 
 print 'After move:', os.getcwd()
-print os.listdir(os.curdir)

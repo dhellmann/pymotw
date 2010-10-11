@@ -10,16 +10,16 @@ os -- Portable access to operating system specific features.
 
 The :mod:`os` module provides a wrapper for platform specific modules
 such as :mod:`posix`, :mod:`nt`, and :mod:`mac`. The API for functions
-available on all platform should be the same, so using the os module
-offers some measure of portability. Not all functions are available on
-all platforms, however. Many of the process management functions
-described in this summary are not available for Windows.
+available on all platform should be the same, so using the :mod:`os`
+module offers some measure of portability. Not all functions are
+available on all platforms, however. Many of the process management
+functions described in this summary are not available for Windows.
 
-The Python documentation for the os module is subtitled "Miscellaneous
-operating system interfaces". The module includes mostly functions for
-creating and managing running processes or filesystem content (files
-and directories), with a few other bits of functionality thrown in
-besides.
+The Python documentation for the :mod:`os` module is subtitled
+"Miscellaneous operating system interfaces". The module consists
+mostly of functions for creating and managing running processes or
+filesystem content (files and directories), with a few other bits of
+functionality thrown in besides.
 
 .. note::
 
@@ -32,36 +32,40 @@ Process Owner
 The first set of functions to cover are used for determining and
 changing the process owner ids. These are mostly useful to authors of
 daemons or special system programs which need to change permission
-level rather than running as ``root``. I won't try to explain all of
-the intricate details of Unix security, process owners, etc. in this
-brief post. See the References list below for more details.
+level rather than running as ``root``. This section does not try to
+explain all of the intricate details of Unix security, process owners,
+etc. See the References list below for more details.
 
-Let's start with a script to show the real and effective user and
-group information for a process, and then change the effective
-values. This is similar to what a daemon would need to do when it
-starts as root during a system boot, to lower the privilege level and
-run as a different user. If you download the examples to try them out,
-you should change the ``TEST_GID`` and ``TEST_UID`` values to match
-your user.
+This first script shows the real and effective user and group
+information for a process, and then changes the effective values. This
+is similar to what a daemon would need to do when it starts as root
+during a system boot, to lower the privilege level and run as a
+different user. 
+
+.. note::
+
+  Before running the example, change the :data:`TEST_GID` and
+  :data:`TEST_UID` values to match a real user.
 
 .. include:: os_process_user_example.py
     :literal:
     :start-after: #end_pymotw_header
 
-When run as myself (527, 501) on OS X, I see this output:
+When run as user with id of 527 and group 501 on OS X, this output is
+produced:
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'os_process_user_example.py'))
 .. }}}
 .. {{{end}}}
 
-Notice that the values do not change. Since I am not running as root,
-processes I start cannot change their effective owner values. If I do try to
-set the effective user id or group id to anything other than my own, an
-OSError is raised.
+Notice that the values do not change. When not running as root,
+processes cannot change their effective owner values. Any attempt to
+set the effective user id or group id to anything other than that of
+the current user causes an :ref:`OSError <exceptions-OSError>`.
 
-Now let's look at what happens when we run the same script using
-``sudo`` to start out with root privileges:
+Running the same script using :command:`sudo` so that it starts out
+with root privileges is a different story.
 
 .. Don't use cog here because sudo sometimes asks for a password.
 
@@ -90,36 +94,37 @@ Now let's look at what happens when we run the same script using
 	Actual Groups   : [501, 1, 2, 8, 29, 3, 9, 4, 5, 80, 20]
 	
 
-In this case, since we start as root, we can change the effective user and
-group for the process. Once we change the effective UID, the process is
-limited to the permissions of that user. Since non-root users cannot change
-their effective group, we need to change the group first then the user.
+In this case, since it starts as root, it can change the effective
+user and group for the process. Once the effective UID is changed, the
+process is limited to the permissions of that user. Since non-root
+users cannot change their effective group, the program needs to change
+the group before changing the user.
 
 Besides finding and changing the process owner, there are functions for
 determining the current and parent process id, finding and changing the
 process group and session ids, as well as finding the controlling terminal id.
 These can be useful for sending signals between processes or for complex
-applications such as writing your own command line shell.
+applications such as writing a command line shell.
 
 Process Environment
 ===================
 
-Another feature of the operating system exposed to your program though
-the os module is the environment. Variables set in the environment are
-visible as strings that can be read through ``os.environ`` or
-:func:`os.getenv()`. Environment variables are commonly used for
-configuration values such as search paths, file locations, and debug
-flags. Let's look at an example of retrieving an environment variable,
-and passing a value through to a child process.
+Another feature of the operating system exposed to a program though
+the :mod:`os` module is the environment. Variables set in the
+environment are visible as strings that can be read through
+:data:`os.environ` or :func:`getenv()`. Environment variables are
+commonly used for configuration values such as search paths, file
+locations, and debug flags. This example shows how to retrieve an
+environment variable, and pass a value through to a child process.
 
 .. include:: os_environ_example.py
     :literal:
     :start-after: #end_pymotw_header
 
 
-The ``os.environ`` object follows the standard Python mapping API for
-retrieving and setting values. Changes to ``os.environ`` are exported
-for child processes.
+The :data:`os.environ` object follows the standard Python mapping API
+for retrieving and setting values. Changes to :data:`os.environ` are
+exported for child processes.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u os_environ_example.py'))
@@ -130,16 +135,17 @@ for child processes.
 Process Working Directory
 =========================
 
-The notion of the "current working directory" for a process is a
-concept from operating systems with hierarchical filesystems.  This is
-the directory on the filesystem the process uses as the starting
-location when files are accessed with relative paths.
+Operating systems with hierarchical filesystems have a concept of the
+*current working directory* -- the directory on the filesystem the
+process uses as the starting location when files are accessed with
+relative paths.  The current working directory can be retrieved with
+:func:`getcwd` and changed with :func:`chdir`.
 
 .. include:: os_cwd_example.py
     :literal:
     :start-after: #end_pymotw_header
 
-Note the use of ``os.curdir`` and ``os.pardir`` to refer to the
+:const:`os.curdir` and :const:`os.pardir` are used to refer to the
 current and parent directories in a portable manner. The output should
 not be surprising:
 
@@ -157,15 +163,19 @@ of child processes using *pipes*. The functions all work essentially
 the same way, but return different file handles depending on the type
 of input or output desired. For the most part, these functions are
 made obsolete by the :mod:`subprocess` module (added in Python 2.4),
-but there is a good chance you will encounter them if you are
-maintaining legacy code.
+but there is a good chance legacy code uses them.
 
 The most commonly used pipe function is :func:`popen()`. It creates a
 new process running the command given and attaches a single stream to
-the input or output of that process, depending on the mode
+the input or output of that process, depending on the *mode*
 argument. While :func:`popen` functions work on Windows, some of these
-examples assume some sort of Unix-like shell. The descriptions of the
-streams also assume Unix-like terminology:
+examples assume a Unix-like shell. 
+
+.. include:: os_popen.py
+    :literal:
+    :start-after: #end_pymotw_header
+
+The descriptions of the streams also assume Unix-like terminology:
 
 * stdin - The "standard input" stream for a process (file descriptor 0) is
   readable by the process. This is usually where terminal input goes.
@@ -176,10 +186,6 @@ streams also assume Unix-like terminology:
 
 * stderr - The "standard error" stream for a process (file descriptor 2) is
   writable by the process, and is used for conveying error messages.
-
-.. include:: os_popen.py
-    :literal:
-    :start-after: #end_pymotw_header
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u os_popen.py'))
@@ -202,9 +208,9 @@ stdout.
 
 This simplistic example illustrates bi-directional communication. The
 value written to stdin is read by ``cat`` (because of the ``'-'``
-argument), then written back to stdout. Obviously a more complicated
-process could pass other types of messages back and forth through the
-pipe; even serialized objects.
+argument), then written back to stdout. A more complicated process
+could pass other types of messages back and forth through the pipe;
+even serialized objects.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u os_popen2.py'))
@@ -215,20 +221,20 @@ In most cases, it is desirable to have access to both stdout and
 stderr. The stdout stream is used for message passing and the stderr
 stream is used for errors, so reading from it separately reduces the
 complexity for parsing any error messages. The :func:`popen3()`
-function returns 3 open streams tied to stdin, stdout, and stderr of
-the new process.
+function returns three open streams tied to stdin, stdout, and stderr
+of the new process.
 
 .. include:: os_popen3.py
     :literal:
     :start-after: #end_pymotw_header
 
-Notice that we have to read from and close both stdout and stderr
-*separately*. There are some related to flow control and sequencing
-when dealing with I/O for multiple processes. The I/O is buffered, and
-if the caller expects to be able to read all of the data from a stream
-then the child process must close that stream to indicate the
-end-of-file. For more information on these issues, refer to the `Flow
-Control Issues
+Notice that the program has to read from and close both stdout and
+stderr *separately*. There are some related to flow control and
+sequencing when dealing with I/O for multiple processes. The I/O is
+buffered, and if the caller expects to be able to read all of the data
+from a stream then the child process must close that stream to
+indicate the end-of-file. For more information on these issues, refer
+to the `Flow Control Issues
 <http://docs.python.org/library/popen2.html#popen2-flow-control>`__
 section of the Python library documentation.
 
@@ -245,6 +251,9 @@ be logged, but not parsed directly.
     :literal:
     :start-after: #end_pymotw_header
 
+All of the messages written to both stdout and stderr are read
+together.
+
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u os_popen4.py'))
 .. }}}
@@ -252,12 +261,13 @@ be logged, but not parsed directly.
 
 Besides accepting a single string command to be given to the shell for
 parsing, :func:`popen2()`, :func:`popen3()`, and :func:`popen4()` also
-accept a sequence of strings (command, followed by arguments). In this
-case, the arguments are not processed by the shell.
+accept a sequence of strings (command, followed by arguments). 
 
 .. include:: os_popen2_seq.py
     :literal:
     :start-after: #end_pymotw_header
+
+In this case, the arguments are not processed by the shell.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u os_popen2_seq.py'))
@@ -271,23 +281,22 @@ File Descriptors
 :mod:`os` includes the standard set of functions for working with
 low-level *file descriptors* (integers representing open files owned
 by the current process). This is a lower-level API than is provided by
-:class:`file` objects. I am going to skip over describing them here,
-since it is generally easier to work directly with :class:`file`
-objects. Refer to the library documentation for details if you do need
-to use file descriptors.
+:class:`file` objects. They are not covered here because it is
+generally easier to work directly with :class:`file` objects. Refer to
+the library documentation for details.
 
 Filesystem Permissions
 ======================
 
-The function :func:`os.access()` can be used to test the access rights a
+The function :func:`access()` can be used to test the access rights a
 process has for a file.
 
 .. include:: os_access.py
     :literal:
     :start-after: #end_pymotw_header
 
-Your results will vary depending on how you install the example code, but it
-should look something like this:
+The results will vary depending on how the example code is installed,
+but it will look something like this:
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'os_access.py'))
@@ -295,8 +304,8 @@ should look something like this:
 .. {{{end}}}
 
 
-The library documentation for :func:`os.access()` includes two special
-warnings. First, there isn't much sense in calling :func:`os.access()`
+The library documentation for :func:`access()` includes two special
+warnings. First, there isn't much sense in calling :func:`access()`
 to test whether a file can be opened before actually calling
 :func:`open()` on it. There is a small, but real, window of time
 between the two calls during which the permissions on the file could
@@ -310,15 +319,15 @@ catch the :ref:`IOError <exceptions-IOError>` raised if there is a
 problem.
 
 More detailed information about the file can be accessed using
-:func:`os.stat()` or :func:`os.lstat()` (if you want the status of
+:func:`stat()` or :func:`lstat()` (for checking the status of
 something that might be a symbolic link).
 
 .. include:: os_stat.py
     :literal:
     :start-after: #end_pymotw_header
 
-Once again, your results will vary depending on how the example code
-was installed. Try passing different filenames on the command line to
+Once again, the output will vary depending on how the example code was
+installed. Try passing different filenames on the command line to
 ``os_stat.py``.
 
 .. {{{cog
@@ -328,17 +337,17 @@ was installed. Try passing different filenames on the command line to
 
 
 On Unix-like systems, file permissions can be changed using
-:func:`os.chmod()`, passing the mode as an integer. Mode values can be
-constructed using constants defined in the :mod:`stat` module. Here is
-an example which toggles the user's execute permission bit:
+:func:`chmod()`, passing the mode as an integer. Mode values can be
+constructed using constants defined in the :mod:`stat` module.  This
+example toggles the user's execute permission bit:
 
 .. include:: os_stat_chmod.py
     :literal:
     :start-after: #end_pymotw_header
 
 
-The script assumes you have the permissions necessary to modify the
-mode of the file to begin with:
+The script assumes it has the permissions necessary to modify the mode
+of the file when run.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'os_stat_chmod.py'))
@@ -357,26 +366,26 @@ including creating, listing contents, and removing them.
     :literal:
     :start-after: #end_pymotw_header
 
+There are two sets of functions for creating and deleting
+directories. When creating a new directory with :func:`mkdir()`,
+all of the parent directories must already exist. When removing a
+directory with :func:`rmdir()`, only the leaf directory (the last
+part of the path) is actually removed. In contrast,
+:func:`makedirs()` and :func:`removedirs()` operate on all of
+the nodes in the path.  :func:`makedirs()` will create any parts of
+the path which do not exist, and :func:`removedirs()` will remove
+all of the parent directories (assuming it can).
+
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'os_directories.py'))
 .. }}}
 .. {{{end}}}
 
 
-There are two sets of functions for creating and deleting
-directories. When creating a new directory with :func:`os.mkdir()`,
-all of the parent directories must already exist. When removing a
-directory with :func:`os.rmdir()`, only the leaf directory (the last
-part of the path) is actually removed. In contrast,
-:func:`os.makedirs()` and :func:`os.removedirs()` operate on all of
-the nodes in the path.  :func:`os.makedirs()` will create any parts of
-the path which do not exist, and :func:`os.removedirs()` will remove
-all of the parent directories (assuming it can).
-
 Symbolic Links
 ==============
 
-For platforms and filesystems which support them, there are functions
+For platforms and filesystems that support them, there are functions
 for working with symlinks.
 
 .. include:: os_symlinks.py
@@ -384,7 +393,7 @@ for working with symlinks.
     :start-after: #end_pymotw_header
 
 
-Although :mod:`os` includes :func:`os.tempnam()` for creating
+Although :mod:`os` includes :func:`tempnam()` for creating
 temporary filenames, it is not as secure as the :mod:`tempfile` module
 and produces a :ref:`RuntimeWarning <exceptions-RuntimeWarning>`
 message when it is used. In general it is better to use
@@ -399,18 +408,19 @@ message when it is used. In general it is better to use
 Walking a Directory Tree
 ========================
 
-The function :func:`os.walk()` traverses a directory recursively and
+The function :func:`walk()` traverses a directory recursively and
 for each directory generates a tuple containing the directory path,
 any immediate sub-directories of that path, and the names of any files
-in that directory.  This example shows a simplistic recursive
-directory listing.
+in that directory.  
 
 .. include:: os_walk.py
     :literal:
     :start-after: #end_pymotw_header
 
+This example shows a recursive directory listing.
+
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'os_walk.py'))
+.. cog.out(run_script(cog.inFile, 'os_walk.py ../zipimport'))
 .. }}}
 .. {{{end}}}
 
@@ -427,12 +437,17 @@ Running External Commands
     instead.
 
 The simplest way to run a separate command, without interacting with
-it at all, is :func:`os.system()`. It takes a single string which is
+it at all, is :func:`system()`. It takes a single string which is
 the command line to be executed by a sub-process running a shell.
 
 .. include:: os_system_example.py
     :literal:
     :start-after: #end_pymotw_header
+
+The return value of :func:`system` is the exit value of the shell
+running the program packed into a 16 bit number, with the high byte
+the exit status and the low byte the signal number that caused the
+process to die, or zero.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u os_system_example.py'))
@@ -453,8 +468,8 @@ include shell syntax such as globbing or environment variables:
 .. {{{end}}}
 
 
-Unless you explicitly run the command in the background, the call to
-:func:`os.system()` blocks until it is complete. Standard input,
+Unless the command is explicitly run in the background, the call to
+:func:`system()` blocks until it is complete. Standard input,
 output, and error from the child process are tied to the appropriate
 streams owned by the caller by default, but can be redirected using
 shell syntax.
@@ -480,54 +495,53 @@ Creating Processes with os.fork()
 The POSIX functions :func:`fork()` and :func:`exec*()` (available
 under Mac OS X, Linux, and other UNIX variants) are exposed via the
 :mod:`os` module. Entire books have been written about reliably using
-these functions, so check your library or bookstore for more details
-than I will present here.
+these functions, so check the library or bookstore for more details
+than are presented here.
 
 To create a new process as a clone of the current process, use
-:func:`os.fork()`:
+:func:`fork()`:
 
 .. include:: os_fork_example.py
     :literal:
     :start-after: #end_pymotw_header
 
-Your output will vary based on the state of your system each time you run the
-example, but it should look something like:
+The output will vary based on the state of the system each time the
+example is run, but it will look something like:
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u os_fork_example.py'))
 .. }}}
 .. {{{end}}}
 
-After the fork, you end up with two processes running the same
-code. To tell which one you are in, check the return value of
-:func:`fork()`. If it is ``0``, you are inside the child process. If
-it is not ``0``, you are in the parent process and the return value is
-the process id of the child process.
+After the fork, there are two processes running the same code. For a
+program to tell which one it is in, it needs to check the return value
+of :func:`fork()`. If the value is ``0``, the current process is the
+child.  If it is not ``0``, the program is running in the parent
+process and the return value is the process id of the child process.
 
-From the parent process, it is possible to send the child signals. This is a
-bit more complicated to set up, and uses the :mod:`signal` module, so let's walk
-through the code. First we can define a signal handler to be invoked when the
-signal is received.
+From the parent process, it is possible to send the child
+signals. This is a bit more complicated to set up, and uses the
+:mod:`signal` module. First, define a signal handler to be invoked
+when the signal is received.
 
 .. literalinclude:: os_kill_example.py
    :lines: 33-40
 
-Then we fork, and in the parent pause a short amount of time before
-sending a ``USR1`` signal using :func:`os.kill()`. The short pause
-gives the child process time to set up the signal handler.
+Then :func:`fork`, and in the parent pause a short amount of time
+before sending a :const:`USR1` signal using :func:`kill()`. The
+short pause gives the child process time to set up the signal handler.
 
 .. literalinclude:: os_kill_example.py
    :lines: 42-48
 
-In the child, we set up the signal handler and go to sleep for a while to give
-the parent time to send us the signal:
+In the child, set up the signal handler and go to sleep for a while to
+give the parent time to send the signal:
 
 .. literalinclude:: os_kill_example.py
    :language: python
    :lines: 49-53
 
-In a real app, you probably wouldn't need to (or want to) call
-:func:`sleep()`.
+A real application, wouldn't need (or want) to call :func:`sleep()`.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'os_kill_example.py'))
@@ -535,18 +549,19 @@ In a real app, you probably wouldn't need to (or want to) call
 .. {{{end}}}
 
 
-As you see, a simple way to handle separate behavior in the child
-process is to check the return value of :func:`fork()` and branch. For
-more complex behavior, you may want more code separation than a simple
-branch. In other cases, you may have an existing program you have to
-wrap. For both of these situations, you can use the :func:`os.exec*()`
-series of functions to run another program. When you "exec" a program,
-the code from that program replaces the code from your existing
-process.
+A simple way to handle separate behavior in the child process is to
+check the return value of :func:`fork()` and branch. More complex
+behavior may call for more code separation than a simple branch. In
+other cases, there may be an existing program that needs to be
+wrapped. For both of these situations, the :func:`exec*()` series
+of functions can be used to run another program. 
 
 .. include:: os_exec_example.py
     :literal:
     :start-after: #end_pymotw_header
+
+When a program is "execed", the code from that program replaces the
+code from the existing process.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'os_exec_example.py'))
@@ -554,49 +569,52 @@ process.
 .. {{{end}}}
 
 
-There are many variations of :func:`exec*()`, depending on what form
-you might have the arguments in, whether you want the path and
-environment of the parent process to be copied to the child, etc. Have
-a look at the library documentation to for complete details.
+There are many variations of :func:`exec*()`, depending on the form in
+which the arguments are available, whether the path and environment of
+the parent process should be be copied to the child, etc. Refer to the
+library documentation for complete details.
 
-For all variations, the first argument is a path or filename and the remaining
-arguments control how that program runs. They are either passed as command
-line arguments or override the process "environment" (see os.environ and
-os.getenv).
+For all variations, the first argument is a path or filename and the
+remaining arguments control how that program runs. They are either
+passed as command line arguments or override the process "environment"
+(see :data:`os.environ` and :data:`os.getenv`).
 
 Waiting for a Child
 ===================
 
-Suppose you are using multiple processes to work around the threading
-limitations of Python and the Global Interpreter Lock. If you start
-several processes to run separate tasks, you will want to wait for one
-or more of them to finish before starting new ones, to avoid
-overloading the server. There are a few different ways to do that
-using :func:`wait()` and related functions.
+Many computationally intensive programs use multiple processes to work
+around the threading limitations of Python and the Global Interpreter
+Lock. When starting several processes to run separate tasks, the
+master will need to wait for one or more of them to finish before
+starting new ones, to avoid overloading the server. There are a few
+different ways to do that using :func:`wait()` and related functions.
 
-If you don't care, or know, which child process might exit first
-:func:`os.wait()` will return as soon as any exits:
+When it does not matter which child process might exit first, use
+:func:`wait()`.  It returns as soon as any child process exits.
 
 .. include:: os_wait_example.py
     :literal:
     :start-after: #end_pymotw_header
 
 
-Notice that the return value from :func:`os.wait()` is a tuple
-containing the process id and exit status ("a 16-bit number, whose low
-byte is the signal number that killed the process, and whose high byte
-is the exit status").
+The return value from :func:`wait()` is a tuple containing the
+process id and exit status ("a 16-bit number, whose low byte is the
+signal number that killed the process, and whose high byte is the exit
+status").
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'os_wait_example.py'))
 .. }}}
 .. {{{end}}}
 
-If you want a specific process, use :func:`os.waitpid()`.
+To wait for a specific process, use :func:`waitpid()`.
 
 .. include:: os_waitpid_example.py
     :literal:
     :start-after: #end_pymotw_header
+
+Pass the process id of the target process, and :func:`waitpid` blocks
+until that process exits.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'os_waitpid_example.py'))
@@ -611,11 +629,16 @@ Spawn
 =====
 
 As a convenience, the :func:`spawn*()` family of functions handles the
-:func:`fork()` and :func:`exec*()` calls for you in one statement:
+:func:`fork()` and :func:`exec*()` in one statement:
 
 .. include:: os_spawn_example.py
     :literal:
     :start-after: #end_pymotw_header
+
+The first argument is a mode indicating whether or not to wait for the
+process to finish before returning.  This example waits.  Use
+:const:`P_NOWAIT` to let the other process start, but then resume in
+the current process.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'os_spawn_example.py'))
