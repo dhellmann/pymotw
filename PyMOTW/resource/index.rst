@@ -8,10 +8,9 @@ resource -- System resource management
 :Purpose: Manage the system resource limits for a Unix program.
 :Python Version: 1.5.2
 
-The functions in :mod:`resource` help you probe the current system
-resources consumed by a process, and place limits on them to control
-how much load your program places on a system.
-
+The functions in :mod:`resource` probe the current system resources
+consumed by a process, and place limits on them to control how much
+load a program can impose on a system.
 
 Current Usage
 =============
@@ -32,8 +31,8 @@ system.
     :literal:
     :start-after: #end_pymotw_header
 
-Because the test program is extremely simple, the results aren't that
-interesting:
+Because the test program is extremely simple, it does not use very
+many resources:
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'resource_getrusage.py'))
@@ -60,7 +59,7 @@ the operating system.
 .. {{{end}}}
 
 The limits can be changed with :func:`setrlimit()`.  For example, to
-control the number of files a process can open the ``RLIMIT_NOFILE``
+control the number of files a process can open the :const:`RLIMIT_NOFILE`
 value can be set to use a smaller soft limit value.
 
 .. include:: resource_setrlimit_nofile.py
@@ -74,14 +73,14 @@ value can be set to use a smaller soft limit value.
 
 It can also be useful to limit the amount of CPU time a process should
 consume, to avoid eating up too much time.  When the process runs past
-the allotted amount of time, it it sent a SIGXCPU signal.
+the allotted amount of time, it it sent a :const:`SIGXCPU` signal.
 
 .. include:: resource_setrlimit_cpu.py
     :literal:
     :start-after: #end_pymotw_header
 
 Normally the signal handler should flush all open files and close
-them, but in this case we just print a message and exit.
+them, but in this case it just prints a message and exits.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'resource_setrlimit_cpu.py', ignore_error=True))

@@ -4,6 +4,7 @@ History
 development
 
   - Updates to :mod:`xml.etree.ElementTree`
+  - Updates to :mod:`resource`
 
 1.130
 
