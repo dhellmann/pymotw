@@ -23,7 +23,7 @@ parsed = XML('''
 
 print 'parsed =', parsed
 
-for elem in parsed.getiterator():
+for elem in parsed:
     print elem.tag
     if elem.text is not None and elem.text.strip():
         print '  text: "%s"' % elem.text

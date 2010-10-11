@@ -25,4 +25,6 @@ child_with_tail.tail = 'And "tail" text.'
 child_with_entity_ref = SubElement(top, 'child_with_entity_ref')
 child_with_entity_ref.text = 'This & that'
 
+empty_child = SubElement(top, 'empty_child')
+
 ElementTree(top).write(sys.stdout)
