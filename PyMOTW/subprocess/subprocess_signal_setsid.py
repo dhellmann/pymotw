@@ -23,15 +23,14 @@ script_file = tempfile.NamedTemporaryFile('wt')
 script_file.write(script)
 script_file.flush()
 
-proc = subprocess.Popen(['sh %s' % script_file.name], 
-                        shell=True, 
+proc = subprocess.Popen(['sh', script_file.name], 
                         close_fds=True,
                         preexec_fn=os.setsid,
                         )
-print 'PARENT: Pausing before sending signal to child %s...' % proc.pid
+print 'PARENT      : Pausing before sending signal to child %s...' % proc.pid
 sys.stdout.flush()
 time.sleep(1)
-print 'PARENT: Signaling process group %s' % proc.pid
+print 'PARENT      : Signaling process group %s' % proc.pid
 sys.stdout.flush()
 os.killpg(proc.pid, signal.SIGUSR1)
 time.sleep(3)

@@ -13,7 +13,6 @@ import subprocess
 
 print '\nwrite:'
 proc = subprocess.Popen(['cat', '-'],
-                        shell=True,
                         stdin=subprocess.PIPE,
                         )
 proc.communicate('\tstdin: to stdin\n')

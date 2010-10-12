@@ -13,7 +13,6 @@ import subprocess
 
 print '\nread:'
 proc = subprocess.Popen(['echo', '"to stdout"'], 
-                        shell=True, 
                         stdout=subprocess.PIPE,
                         )
 stdout_value = proc.communicate()[0]

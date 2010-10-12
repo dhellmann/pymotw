@@ -5,6 +5,7 @@ development
 
   - Updates to :mod:`xml.etree.ElementTree`
   - Updates to :mod:`resource`
+  - Updates to :mod:`subprocess`
 
 1.130
 
