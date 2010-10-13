@@ -66,7 +66,6 @@ while inputs:
                 # Add output channel for response
                 if s not in outputs:
                     outputs.append(s)
-                    
             else:
                 # Interpret empty result as closed connection
                 print >>sys.stderr, 'closing', client_address, 'after reading no data'
@@ -75,6 +74,9 @@ while inputs:
                     outputs.remove(s)
                 inputs.remove(s)
                 s.close()
+
+                # Remove message queue
+                del message_queues[s]
 
     # Handle outputs
     for s in writable:
@@ -96,3 +98,6 @@ while inputs:
         if s in outputs:
             outputs.remove(s)
         s.close()
+
+        # Remove message queue
+        del message_queues[s]
