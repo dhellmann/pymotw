@@ -1,22 +1,22 @@
 .. _sys-tracing:
 
 ===============================
-Tracing Your Program As It Runs
+Tracing a Program As It Runs
 ===============================
 
-There are two ways to inject code to watch your program run: tracing
-and profiling.  They are similar, but intended for different purposes
-and so have different constraints.  The easiest, but least efficient,
-way to monitor your program is through a *trace hook*, which can be
-used for writing a debugger, code coverage monitoring, or many other
-purposes.
+There are two ways to inject code to watch a program run: *tracing*
+and *profiling*.  They are similar, but intended for different
+purposes and so have different constraints.  The easiest, but least
+efficient, way to monitor a program is through a *trace hook*, which
+can be used for writing a debugger, code coverage monitoring, or many
+other purposes.
 
 The trace hook is modified by passing a callback function to
-``sys.settrace()``.  The callback is passed three arguments, frame
-(the stack frame from the code being run), event (a string naming the
-type of notification), and arg (an event-specific value).  There are 7
-event types for different levels of information that occur as your
-program is being executed.
+:func:`sys.settrace`.  The callback will receive three arguments,
+frame (the stack frame from the code being run), event (a string
+naming the type of notification), and arg (an event-specific value).
+There are 7 event types for different levels of information that occur
+as a program is being executed.
 
 +-------------------+-------------------------------------+------------------------------------------+
 | Event             | When                                | arg value                                |
@@ -39,15 +39,15 @@ program is being executed.
 Tracing Function Calls
 ======================
 
-A call event is generated before every function call.  The frame
+A ``call`` event is generated before every function call.  The frame
 passed to the callback can be used to find out which function is being
 called and from where.
 
 .. literalinclude:: sys_settrace_call.py
     :linenos:
 
-This example ignores calls to ``write()``, as used by ``print`` to
-write to ``sys.stdout``.
+This example ignores calls to :func:`write`, as used by :command:`print` to
+write to :const:`sys.stdout`.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_settrace_call.py'))
@@ -65,8 +65,8 @@ tracing to only run line-by-line within certain modules or functions.
     :linenos:
 
 Here the global list of functions is kept in the variable
-``TRACE_INTO``, so when ``trace_calls()`` runs it can return
-``trace_lines()`` to enable tracing inside of ``b()``.
+:cont:`TRACE_INTO`, so when :func:`trace_calls` runs it can return
+:func:`trace_lines` to enable tracing inside of :func:`b`.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_settrace_line.py'))
@@ -84,8 +84,9 @@ values, watch for the ``return`` event.
 .. literalinclude:: sys_settrace_return.py
     :linenos:
 
-The local trace function is used for watching returns, so we need to
-return ``trace_calls_and_returns`` when a function is called.
+The local trace function is used for watching returns, so
+:func:`trace_calls_and_returns` needs to return a reference to itself
+when a function is called, so the return value can be monitored.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_settrace_return.py'))
@@ -98,8 +99,8 @@ Exception Propagation
 
 Exceptions can be monitored by looking for the ``exception`` event in
 a local trace function.  When an exception occurs, the trace hook is
-called with the ``(type, instance, traceback)`` triple passed as
-``arg``.
+called with a tuple containing the type of exception, the exception
+object, and a traceback object.
 
 .. literalinclude:: sys_settrace_exception.py
     :linenos:

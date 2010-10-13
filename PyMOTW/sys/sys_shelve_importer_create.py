@@ -39,6 +39,10 @@ message = 'This message is in package.subpackage.__init__'
 print 'package.subpackage.module2 imported'
 message = 'This message is in package.subpackage.module2'
 """
+    db['package.with_error'] = """
+print 'package.with_error being imported'
+raise ValueError('raising exception to break import')
+"""
     print 'Created %s with:' % filename
     for key in sorted(db.keys()):
         print '\t', key

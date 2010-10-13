@@ -19,9 +19,9 @@ threads an opportunity to take over execution by grabbing the lock
 first.
 
 The default check interval is 100 bytecodes and the current value can
-always be retrieved with ``sys.getcheckinterval()``.  Changing the
-interval with ``sys.setcheckinterval()`` may have an impact on the
-performance of your application, depending on the nature of the
+always be retrieved with :func:`sys.getcheckinterval`.  Changing the
+interval with :func:`sys.setcheckinterval` may have an impact on the
+performance of an application, depending on the nature of the
 operations being performed.
 
 .. include:: sys_checkinterval.py
@@ -40,6 +40,7 @@ control for another reason, the thread will finish its work before the
 interval comes up.  This is illustrated by the order of the name
 values in the queue in the second example.
 
+.. do not use cog, too unreliable
 
 ::
 
@@ -90,8 +91,10 @@ execution.
     :start-after: #end_pymotw_header
 
 This example is modified from the first so that the thread prints
-directly to ``sys.stdout`` instead of appending to a queue.  The
+directly to :const:`sys.stdout` instead of appending to a queue.  The
 output is much less predictable.
+
+.. do not use cog, too unreliable
 
 ::
 
@@ -142,18 +145,18 @@ Debugging
 =========
 
 Identifying deadlocks can be on of the most difficult aspects of
-working with threads.  ``sys._current_frames()`` can help by showing
+working with threads.  :func:`sys._current_frames` can help by showing
 exactly where a thread is stopped.
 
 .. literalinclude:: sys_current_frames.py
     :linenos:
 
-The dictionary returned by ``sys._current_frames()`` is keyed on the
-thread identifier, rather than its name.  We have to do a little work
-to map those identifiers back to the thread object we created.
+The dictionary returned by :func:`sys._current_frames` is keyed on the
+thread identifier, rather than its name.  A little work is needed to
+map those identifiers back to the thread object.
 
-Since **Thread-1** does not sleep, it finishes before we check its
-status.  Since it is no longer active, it does not appear in the
+Since **Thread-1** does not sleep, it finishes before its status is
+checked.  Since it is no longer active, it does not appear in the
 output.  **Thread-2** acquires the lock *blocker*, then sleeps for a
 short period.  Meanwhile **Thread-3** tries to acquire *blocker* but
 cannot because **Thread-2** already has it.

@@ -81,7 +81,9 @@ class ShelveLoader(object):
         return
         
     def _get_filename(self, fullname):
-        return '<%s "%s"[%s]>' % (self.__class__.__name__, self.path_entry, fullname)
+        # Make up a fake filename that starts with the path entry
+        # so pkgutil.get_data() works correctly.
+        return os.path.join(self.path_entry, fullname)
         
     def get_source(self, fullname):
         print 'loading source for "%s" from shelf' % fullname
@@ -101,7 +103,7 @@ class ShelveLoader(object):
         return compile(source, self._get_filename(fullname), 'exec', dont_inherit=True)
     
     def get_data(self, path):
-        print 'looking for data for "%s"' % path
+        print 'looking for data in %s for "%s"' % (self.path_entry, path)
         if not path.startswith(self.path_entry):
             raise IOError
         path = path[len(self.path_entry)+1:]

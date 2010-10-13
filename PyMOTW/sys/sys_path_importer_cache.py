@@ -14,4 +14,6 @@ print 'PATH:',
 pprint.pprint(sys.path)
 print
 print 'IMPORTERS:'
-pprint.pprint(sys.path_importer_cache)
+for name, cache_value in sys.path_importer_cache.items():
+    name = name.replace(sys.prefix, '...')
+    print '%s: %r' % (name, cache_value)

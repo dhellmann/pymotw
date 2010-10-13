@@ -10,6 +10,7 @@
 import sys
 import sys_shelve_importer
 import os
+import pkgutil
 
 filename = '/tmp/pymotw_import_example.shelve'
 sys.path_hooks.append(sys_shelve_importer.ShelveFinder)
@@ -19,9 +20,11 @@ import package
 
 readme_path = os.path.join(package.__path__[0], 'README')
 
-readme = package.__loader__.get_data(readme_path)
+#readme = package.__loader__.get_data(readme_path)
+readme = pkgutil.get_data('package', 'README')
 print readme
 
 foo_path = os.path.join(package.__path__[0], 'foo')
-foo = package.__loader__.get_data(foo_path)
+#foo = package.__loader__.get_data(foo_path)
+foo = pkgutil.get_data('package', 'foo')
 print foo

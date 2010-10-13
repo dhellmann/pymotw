@@ -8,7 +8,10 @@ sys -- System-specific Configuration
 :Purpose: Provides system-specific configuration and operations.
 :Python Version: 1.4 and later
 
-The :mod:`sys` module includes a collection of services for probing or changing the configuration of the interpreter at runtime and resources for interacting with the operating environment outside of the current program.
+The :mod:`sys` module includes a collection of services for probing or
+changing the configuration of the interpreter at runtime and resources
+for interacting with the operating environment outside of the current
+program.
 
 .. toctree::
     :maxdepth: 2

@@ -11,12 +11,12 @@ import sys
 import sys_shelve_importer
 
 def show_module_details(module):
-    print '  message:', module.message
-    print '  __name__:', module.__name__
+    print '  message    :', module.message
+    print '  __name__   :', module.__name__
     print '  __package__:', module.__package__
-    print '  __file__:', module.__file__
-    print '  __path__:', module.__path__
-    print '  __loader__:', module.__loader__
+    print '  __file__   :', module.__file__
+    print '  __path__   :', module.__path__
+    print '  __loader__ :', module.__loader__
 
 filename = '/tmp/pymotw_import_example.shelve'
 sys.path_hooks.append(sys_shelve_importer.ShelveFinder)

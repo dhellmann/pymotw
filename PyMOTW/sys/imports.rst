@@ -5,28 +5,27 @@ Modules and Imports
 ===================
 
 Most Python programs end up as a combination of several modules with a
-main application importing them. Whether you are using the features of
-the standard library, or organizing your own code in separate files to
-make it easier to maintain, understanding and managing the
-dependencies for your program is an important aspect of
-development. :mod:`sys` includes information about the modules
-available to your application, either as built-ins or after being
-imported.  It also defines hooks for overriding the standard import
-behavior for special cases.
+main application importing them. Whether using the features of the
+standard library, or organizing custom code in separate files to make
+it easier to maintain, understanding and managing the dependencies for
+a program is an important aspect of development. :mod:`sys` includes
+information about the modules available to an application, either as
+built-ins or after being imported.  It also defines hooks for
+overriding the standard import behavior for special cases.
 
 .. _sys-modules:
 
 Imported Modules
 ================
 
-``sys.modules`` is a dictionary mapping the names of imported modules
-to the module object holding the code.
+:data:`sys.modules` is a dictionary mapping the names of imported
+modules to the module object holding the code.
 
 .. include:: sys_modules.py
     :literal:
     :start-after: #end_pymotw_header
 
-The contents of ``sys.modules`` change as new modules are imported.
+The contents of :data:`sys.modules` change as new modules are imported.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_modules.py'))
@@ -38,22 +37,20 @@ Built-in Modules
 ================
 
 The Python interpreter can be compiled with some C modules built right
-in, so you don't need to distribute them as separate shared
+in, so they do not need to be distributed as separate shared
 libraries. These modules don't appear in the list of imported modules
-managed in ``sys.modules`` because they weren't technically
+managed in :data:`sys.modules` because they were not technically
 imported. The only way to find the available built-in modules is
-through ``sys.builtin_module_names``.
+through :data:`sys.builtin_module_names`.
 
 .. include:: sys_builtins.py
     :literal:
     :start-after: #end_pymotw_header
 
-.. note::
-
-    Your results may vary, especially if you have built a custom
-    version of the interpreter.  This script was run using a copy of
-    the interpreter installed from the standard python.org installer
-    for the platform.
+The output of this script will vary, especially if run with a
+custom-built version of the interpreter.  This output was created
+using a copy of the interpreter installed from the standard python.org
+installer for OS X.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_builtins.py'))
@@ -72,7 +69,7 @@ Import Path
 ===========
 
 The search path for modules is managed as a Python list saved in
-``sys.path``. The default contents of the path include the directory
+:data:`sys.path`. The default contents of the path include the directory
 of the script used to start the application and the current working
 directory.
 
@@ -80,11 +77,10 @@ directory.
     :literal:
     :start-after: #end_pymotw_header
 
-As you can see here, the first directory in the search path is the
-home for the sample script itself. That is followed by a series of
-platform-specific paths where compiled extension modules (written in
-C) might be installed, and then the global ``site-packages`` directory
-is listed last.
+The first directory in the search path is the home for the sample
+script itself. That is followed by a series of platform-specific paths
+where compiled extension modules (written in C) might be installed,
+and then the global ``site-packages`` directory is listed last.
 
 ::
 
@@ -99,7 +95,7 @@ is listed last.
 
 
 The import search path list can be modified before starting the
-interpreter by setting the shell variable ``PYTHONPATH`` to a
+interpreter by setting the shell variable :data:`PYTHONPATH` to a
 colon-separated list of directories.
 
 ::
@@ -115,12 +111,17 @@ colon-separated list of directories.
 	/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/plat-mac/lib-scriptpackages
 	/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages
 
-A program can also modify its path by adding elements to ``sys.path``
-directly.
+A program can also modify its path by adding elements to
+:data:`sys.path` directly.
 
 .. include:: sys_path_modify.py
     :literal:
     :start-after: #end_pymotw_header
+
+Reloading an imported module re-imports the file, and uses the same
+:class:`module` object to hold the results.  Changing the path between
+the initial import and the call to :func:`reload` means a different
+module may be loaded the second time.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_path_modify.py'))
@@ -131,13 +132,13 @@ directly.
 Custom Importers
 ================
 
-Modifying the search path lets you control how standard Python modules
-are found, but what if you need to import code from somewhere other
-than the usual ``.py`` or ``.pyc`` files on the filesystem? :pep:`302`
-solves this problem by introducing the idea of *import hooks* that let
-you trap an attempt to find a module on the search path and take
-alternative measures to load the code from somewhere else or apply
-pre-processing to it.
+Modifying the search path lets a programmer control how standard
+Python modules are found, but what if a program needs to import code
+from somewhere other than the usual ``.py`` or ``.pyc`` files on the
+filesystem? :pep:`302` solves this problem by introducing the idea of
+*import hooks* that can trap an attempt to find a module on the search
+path and take alternative measures to load the code from somewhere
+else or apply pre-processing to it.
 
 Finders
 -------
@@ -145,10 +146,11 @@ Finders
 Custom importers are implemented in two separate phases. The *finder*
 is responsible for locating a module and providing a *loader* to
 manage the actual import. Adding a custom module finder is as simple
-as appending a factory to the ``sys.path_hooks`` list. On import, each
-part of the path is given to a finder until one claims support (by not
-raising ImportError). That finder is then responsible for searching
-data storage represented by its path entry for named modules.
+as appending a factory to the :data:`sys.path_hooks` list. On import,
+each part of the path is given to a finder until one claims support
+(by not raising :ref:`ImportError <exceptions-ImportError>`). That
+finder is then responsible for searching data storage represented by
+its path entry for named modules.
 
 .. include:: sys_path_hooks_noisy.py
     :literal:
@@ -190,15 +192,16 @@ this.
 .. }}}
 .. {{{end}}}
 
-Next, we need to provide finder and loader classes that know how to
-look in a shelf for the source of a module or package:
+Next, it needs to provide finder and loader classes that know how to
+look in a shelf for the source of a module or package.
 
 .. include:: sys_shelve_importer.py
     :literal:
     :start-after: #end_pymotw_header
 
-Now we can use ``ShelveFinder`` and ``ShelveLoader`` to import code
-from a shelf. For example, importing the ``package`` created above:
+Now :class:`ShelveFinder` and :class:`ShelveLoader` can be used to
+import code from a shelf. For example, importing the :mod:`package`
+created above:
 
 .. include:: sys_shelve_importer_package.py
     :literal:
@@ -213,7 +216,7 @@ namespace so that names defined in the source are preserved as
 module-level attributes.
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'sys_shelve_importer_package.py'))
+.. cog.out(run_script(cog.inFile, 'sys_shelve_importer_package.py', break_lines_at=70))
 .. }}}
 .. {{{end}}}
 
@@ -227,7 +230,7 @@ The loading of other modules and sub-packages proceeds in the same way.
     :start-after: #end_pymotw_header
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'sys_shelve_importer_module.py'))
+.. cog.out(run_script(cog.inFile, 'sys_shelve_importer_module.py', break_lines_at=70))
 .. }}}
 .. {{{end}}}
 
@@ -246,23 +249,27 @@ preserved even if class or function definitions are modified by the
 reload.
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'sys_shelve_importer_reload.py'))
+.. cog.out(run_script(cog.inFile, 'sys_shelve_importer_reload.py', break_lines_at=70))
 .. }}}
 .. {{{end}}}
 
 Import Errors
 -------------
 
-When a module cannot be imported, ``ImportError`` is raised.
+When a module cannot be located by any finder, :ref:`ImportError
+<exceptions-ImportError>` is raised by the main import code.
 
 .. include:: sys_shelve_importer_missing.py
     :literal:
     :start-after: #end_pymotw_header
 
+Other errors during the import are propagated.
+
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'sys_shelve_importer_missing.py'))
+.. cog.out(run_script(cog.inFile, 'sys_shelve_importer_missing.py', break_lines_at=70))
 .. }}}
 .. {{{end}}}
+
 
 Package Data
 ------------
@@ -270,7 +277,7 @@ Package Data
 In addition to defining the API loading executable Python code,
 :pep:`302` defines an optional API for retrieving package data
 intended for distributing data files, documentation, and other
-non-code resources used by a package. By implementing ``get_data()``,
+non-code resources used by a package. By implementing :func:`get_data`,
 a loader can allow calling applications to support retrieval of data
 associated with the package without considering how the package is
 actually installed (especially without assuming that the package is
@@ -280,22 +287,26 @@ stored as files on a filesystem).
     :literal:
     :start-after: #end_pymotw_header
 
-``get_data()`` takes a path based on the module or package that owns
+:func:`get_data` takes a path based on the module or package that owns
 the data, and returns the contents of the resource "file" as a string,
 or raises :ref:`IOError <exceptions-IOError>` if the resource does not
 exist.
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'sys_shelve_importer_get_data.py', ignore_error=True))
+.. cog.out(run_script(cog.inFile, 'sys_shelve_importer_get_data.py', ignore_error=True, break_lines_at=70))
 .. }}}
 .. {{{end}}}
 
+.. seealso::
+
+    :mod:`pkgutil`
+        Includes :func:`get_data` for retrieving data from a package.
 
 Importer Cache
 ==============
 
 Searching through all of the hooks each time a module is imported can
-become expensive. To save time, ``sys.path_importer_cache`` is
+become expensive. To save time, :data:`sys.path_importer_cache` is
 maintained as a mapping between a path entry and the loader that can
 use the value to find modules.
 
@@ -305,13 +316,13 @@ use the value to find modules.
 
 A cache value of ``None`` means to use the default filesystem
 loader. Each missing directory is associated with an
-``imp.NullImporter`` instance, since modules cannot be imported from
-directories that do not exist. In the example output below, several
-``zipimport.zipimporter`` instances are used to manage EGG files found
-on the path.
+:class:`imp.NullImporter` instance, since modules cannot be imported
+from directories that do not exist. In the example output below,
+several :class:`zipimport.zipimporter` instances are used to manage EGG
+files found on the path.
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'sys_path_importer_cache.py'))
+.. cog.out(run_script(cog.inFile, 'sys_path_importer_cache.py', break_lines_at=70))
 .. }}}
 .. {{{end}}}
 
@@ -319,21 +330,23 @@ on the path.
 Meta Path
 =========
 
-The ``sys.meta_path`` further extends the sources of potential imports
-by allowing a finder to be searched *before* the regular ``sys.path``
-is scanned. The API for a finder on the meta-path is the same as for a
-regular path. The difference is that the meta-finder is not limited to
-a single entry in ``sys.path``, it can search anywhere at all.
+The :data:`sys.meta_path` further extends the sources of potential
+imports by allowing a finder to be searched *before* the regular
+:data:`sys.path` is scanned. The API for a finder on the meta-path is
+the same as for a regular path. The difference is that the meta-finder
+is not limited to a single entry in :data:`sys.path`, it can search
+anywhere at all.
 
 .. include:: sys_meta_path.py
     :literal:
     :start-after: #end_pymotw_header
 
-Each finder on the meta-path is interrogated before ``sys.path`` is
-searched, so there is always an opportunity to have a central importer
-load modules without explicitly modifying ``sys.path``.  Once the
-module is "found", the loader API works in the same way as for regular
-loaders (although this example is truncated for simplicity).
+Each finder on the meta-path is interrogated before :data:`sys.path`
+is searched, so there is always an opportunity to have a central
+importer load modules without explicitly modifying :data:`sys.path`.
+Once the module is "found", the loader API works in the same way as
+for regular loaders (although this example is truncated for
+simplicity).
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_meta_path.py'))
@@ -352,6 +365,9 @@ loaders (although this example is truncated for simplicity).
         
     :mod:`zipimport`
         Implements importing Python modules from inside ZIP archives.
+
+    :mod:`importlib`
+        Base classes and other tools for creating custom importers.
         
     `The Quick Guide to Python Eggs <http://peak.telecommunity.com/DevCenter/PythonEggs>`_
         PEAK documentation for working with EGGs.
