@@ -1,42 +1,45 @@
-============================================================================
-platform -- Access system hardware, OS, and interpreter version information.
-============================================================================
+===============================================
+ platform -- Access system version information
+===============================================
 
 .. module:: platform
     :synopsis: Access system hardware, OS, and interpreter version information.
 
-:Purpose: Probe the underlying platform's architecture and version information with the platform module.
-:Python Version: 2.3+
+:Purpose: Probe the underlying platform's hardware, operating system, and interpreter version information.
+:Python Version: 2.3 and later
 
 Although Python is often used as a cross-platform language, it is
-occasionally necessary to know what sort of system you're running
-on. Build tools need that information, but you might also know that
-some of the libraries or external commands you use have different
-interfaces on different operating systems. For example, if you are
-writing a tool to manage the network configuration of an operating
-system, you can define your own portable representation of network
-interfaces, aliases, IP addresses, etc. But once you get down to
-actually editing the configuration files, you need to know more about
-your host and how it is configured. The :mod:`platform` module gives
-you the tools for learning about the interpreter, operating system,
-and hardware platform where your program is running.
+occasionally necessary to know what sort of system a program is
+running on. Build tools need that information, but an application
+might also know that some of the libraries or external commands it
+uses have different interfaces on different operating systems. For
+example, a tool to manage the network configuration of an operating
+system can define a portable representation of network interfaces,
+aliases, IP addresses, etc. But once it actually needs to edit the
+configuration files, it must know more about the host so it can use
+the correct operating system configuration commands and files.  The
+:mod:`platform` module includes the tools for learning about the
+interpreter, operating system, and hardware platform where a program
+is running.
 
 .. note::
 
-    The example output below was generated on a MacBook Pro running OS
-    X 10.5.2, a VMware VM running CentOS 4.6, and a PC running
-    Microsoft Vista SP1 (contributed by `christof
-    <http://christof.myopenid.com/>`__).
+    The example output below was generated on a MacBook Pro3,1 running
+    OS X 10.6.4, a VMware Fusion VM running CentOS 5.5, and a Dell PC
+    running Microsoft Windows 2008.  Python was installed on the OS X
+    and Windows systems using the pre-compiled installer from
+    python.org.  The Linux system is running an interpreter built from
+    source locally.
 
 Interpreter
 ===========
 
 There are four functions for getting information about the current
-Python interpreter. ``python_version()`` and
-``python_version_tuple()`` return different forms of the interpreter
+Python interpreter. :func:`python_version` and
+:func:`python_version_tuple` return different forms of the interpreter
 version with major, minor, and patchlevel components.
-``python_compiler()`` reports on the compiler used to build the
-interpreter. And ``python_build()`` gives a version string for the
+:func:`python_compiler` reports on the compiler used to build the
+interpreter. And :func:`python_build` gives a version string for the
 build of the interpreter.
 
 .. include:: platform_python.py
@@ -44,37 +47,33 @@ build of the interpreter.
     :start-after: #end_pymotw_header
 
 
-OS X::
+OS X:
 
-    $ python platform_python.py
-    Version      : 2.5.1
-    Version tuple: ['2', '5', '1']
-    Compiler     : GCC 4.0.1 (Apple Computer, Inc. build 5367)
-    Build        : ('r251:54869', 'Apr 18 2007 22:08:04')
-
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'platform_python.py'))
+.. }}}
+.. {{{end}}}
 
 Linux::
 
     $ python platform_python.py 
-    Version      : 2.4.4
-    Version tuple: ['2', '4', '4']
-    Compiler     : GCC 3.4.6 20060404 (Red Hat 3.4.6-9)
-    Build        : (1, 'Mar 12 2008 15:09:04')
-
-(It looks like I need to upgrade that system.)
+    Version      : 2.7.0
+    Version tuple: ('2', '7', '0')
+    Compiler     : GCC 4.1.2 20080704 (Red Hat 4.1.2-46)
+    Build        : ('r27', 'Aug 20 2010 11:37:51')
 
 Windows::
 
     C:> python.exe platform_python.py
-    Version : 2.5.4
-    Version tuple: ['2', '5', '4']
-    Compiler : MSC v.1310 32 bit (Intel)
-    Build : ('r254:67916', 'Dec 23 2008 15:10:54')
+    Version      : 2.7.0
+    Version tuple: ['2', '7', '0']
+    Compiler     : MSC v.1500 64 bit (AMD64)
+    Build        : ('r27:82525', 'Jul  4 2010 07:43:08')
 
 Platform
 ========
 
-``platform()`` returns string containing a general purpose platform
+:func:`platform` returns string containing a general purpose platform
 identifier.  The function accepts two optional boolean arguments. If
 *aliased* is True, the names in the return value are converted from a
 formal name to their more common form. When *terse* is true, returns a
@@ -84,26 +83,26 @@ minimal value with some parts dropped.
     :literal:
     :start-after: #end_pymotw_header
 
-OS X::
+OS X:
 
-    $ python platform_platform.py
-    Normal : Darwin-9.2.2-i386-32bit
-    Aliased: Darwin-9.2.2-i386-32bit
-    Terse  : Darwin-9.2.2
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'platform_platform.py'))
+.. }}}
+.. {{{end}}}
 
 Linux::
 
     $ python platform_platform.py 
-    Normal : Linux-2.6.9-67.0.4.ELsmp-i686-with-redhat-4.6-Final
-    Aliased: Linux-2.6.9-67.0.4.ELsmp-i686-with-redhat-4.6-Final
-    Terse  : Linux-2.6.9-67.0.4.ELsmp-i686-with-glibc2.3
+    Normal : Linux-2.6.18-194.3.1.el5-i686-with-redhat-5.5-Final
+    Aliased: Linux-2.6.18-194.3.1.el5-i686-with-redhat-5.5-Final
+    Terse  : Linux-2.6.18-194.3.1.el5-i686-with-glibc2.3
 
 Windows::
 
     C:> python.exe platform_platform.py
-    Normal : Windows-XP-5.1.2600
-    Aliased: Windows-XP-5.1.2600
-    Terse  : Windows-XP
+    Normal : Windows-2008ServerR2-6.1.7600
+    Aliased: Windows-2008ServerR2-6.1.7600
+    Terse  : Windows-2008ServerR2
     
 
 Operating System and Hardware Info
@@ -115,17 +114,17 @@ returns a tuple containing the system, node, release, version,
 machine, and processor values.  Individual values can be accessed
 through functions of the same names:
 
-``system()``
+:func:`system`
   returns the operating system name
-``node()``
+:func:`node`
   returns the hostname of the server, not fully qualified
-``release()``
+:func:`release`
   returns the operating system release number
-``version()``
+:func:`version`
   returns the more detailed system version
-``machine()``
+:func:`machine`
   gives a hardware-type identifier such as ``'i386'``
-``processor()``
+:func:`processor`
   returns a real identifier for the processor, or the same value as
   machine() in many cases
 
@@ -134,48 +133,45 @@ through functions of the same names:
     :start-after: #end_pymotw_header
 
 
-OS X::
+OS X:
 
-    $ python platform_os_info.py
-    uname: ('Darwin', 'farnsworth.local', '9.2.2', 'Darwin Kernel Version 9.2.2: Tue Mar  4 21:17:34 PST 2008; root:xnu-1228.4.31~1/RELEASE_I386', 'i386', 'i386')
-
-    system   : Darwin
-    node     : farnsworth.local
-    release  : 9.2.2
-    version  : Darwin Kernel Version 9.2.2: Tue Mar  4 21:17:34 PST 2008; root:xnu-1228.4.31~1/RELEASE_I386
-    machine  : i386
-    processor: i386
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'platform_os_info.py'))
+.. }}}
+.. {{{end}}}
 
 Linux::
 
     $ python platform_os_info.py 
-    uname: ('Linux', 'zoidberg', '2.6.9-67.0.4.ELsmp', '#1 SMP Sun Feb 3 07:08:57 EST 2008', 'i686', 'i686')
-
+    uname: ('Linux', 'hermes.hellfly.net', '2.6.18-194.3.1.el5', 
+    '#1 SMP Thu May 13 13:09:10 EDT 2010', 'i686', 'i686')
+    
     system   : Linux
-    node     : zoidberg
-    release  : 2.6.9-67.0.4.ELsmp
-    version  : #1 SMP Sun Feb 3 07:08:57 EST 2008
+    node     : hermes.hellfly.net
+    release  : 2.6.18-194.3.1.el5
+    version  : #1 SMP Thu May 13 13:09:10 EDT 2010
     machine  : i686
     processor: i686
 
 Windows::
 
     C:> python.exe platform_os_info.py
-    uname: ('Windows', 'argent', 'XP', '5.1.2600', '', '')
+    uname: ('Windows', 'dhellmann', '2008ServerR2', '6.1.7600', 'AMD64', 
+    'Intel64 Family 6 Model 15 Stepping 11, GenuineIntel')
 
-    system : Windows
-    node : argent
-    release : XP
-    version : 5.1.2600
-    machine :
-    processor:
+    system   : Windows
+    node     : dhellmann
+    release  : 2008ServerR2
+    version  : 6.1.7600
+    machine  : AMD64
+    processor: Intel64 Family 6 Model 15 Stepping 11, GenuineIntel
     
 
 Executable Architecture
 =======================
 
 Individual program architecture information can be probed using the
-``architecture()`` function. The first argument is the path to an
+:func:`architecture` function. The first argument is the path to an
 executable program (defaulting to ``sys.executable``, the Python
 interpreter). The return value is a tuple containing the bit
 architecture and the linkage format used.
@@ -185,11 +181,12 @@ architecture and the linkage format used.
     :start-after: #end_pymotw_header
 
 
-OS X::
+OS X:
 
-    $ python platform_architecture.py
-    interpreter: ('32bit', '')
-    /bin/ls    : ('32bit', '')
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'platform_architecture.py'))
+.. }}}
+.. {{{end}}}
 
 Linux::
 
@@ -200,8 +197,8 @@ Linux::
 Windows::
 
     C:> python.exe platform_architecture.py
-    interpreter: ('32bit', 'WindowsPE')
-    explorer.exe : ('32bit', '')
+    interpreter  : ('64bit', 'WindowsPE')
+    iexplore.exe : ('64bit', '')
 
 .. seealso::
 

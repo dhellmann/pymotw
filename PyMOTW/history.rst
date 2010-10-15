@@ -6,6 +6,8 @@ development
   - Updates to :mod:`xml.etree.ElementTree`
   - Updates to :mod:`resource`
   - Updates to :mod:`subprocess`
+  - Updates to :mod:`sys`
+  - Re-generate :mod:`platform` example output on more modern systems.
 
 1.130
 
