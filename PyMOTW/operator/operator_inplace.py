@@ -19,11 +19,11 @@ print 'a =', a
 print 'b =', b
 print 'c =', c
 print 'd =', d
+print
 
-print 'iadd(a, b):', iadd(a, b)
 a = iadd(a, b)
 print 'a = iadd(a, b) =>', a
+print
 
-print 'iconcat(c, d):', iconcat(c, d)
 c = iconcat(c, d)
 print 'c = iconcat(c, d) =>', c

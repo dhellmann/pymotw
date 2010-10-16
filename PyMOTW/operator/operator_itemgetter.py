@@ -18,6 +18,7 @@ g = itemgetter('val')
 vals = [ g(i) for i in l ]
 print vals
 
+print
 print 'Tuples:'
 l = [ (i, i*2) for i in xrange(5) ]
 print l

@@ -31,5 +31,8 @@ class MyObj(object):
 a = MyObj(1)
 b = MyObj(2)
 
+print 'Comparison:'
 print lt(a, b)
+
+print '\nArithmetic:'
 print add(a, b)
