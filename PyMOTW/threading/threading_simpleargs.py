@@ -11,7 +11,7 @@ import threading
 
 def worker(num):
     """thread worker function"""
-    print 'Worker:', num
+    print 'Worker: %s' % num
     return
 
 threads = []

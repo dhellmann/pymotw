@@ -9,9 +9,14 @@
 
 import threading
 import time
+import logging
+
+logging.basicConfig(level=logging.DEBUG,
+                    format='(%(threadName)-10s) %(message)s',
+                    )
 
 def delayed():
-    print 'Worker running', threading.currentThread().getName()
+    logging.debug('worker running')
     return
 
 t1 = threading.Timer(3, delayed)
@@ -19,12 +24,12 @@ t1.setName('t1')
 t2 = threading.Timer(3, delayed)
 t2.setName('t2')
 
-print 'Starting timers'
+logging.debug('starting timers')
 t1.start()
 t2.start()
 
-print 'Waiting before canceling', t2.getName()
+logging.debug('waiting before canceling %s', t2.getName())
 time.sleep(2)
-print 'Canceling', t2.getName()
+logging.debug('canceling %s', t2.getName())
 t2.cancel()
-print 'Main thread done'
+logging.debug('done')

@@ -10,14 +10,19 @@
 import random
 import threading
 import time
+import logging
+
+logging.basicConfig(level=logging.DEBUG,
+                    format='(%(threadName)-10s) %(message)s',
+                    )
 
 def worker():
     """thread worker function"""
     t = threading.currentThread()
     pause = random.randint(1,5)
-    print 'Starting:', t.getName(), 'sleeping', pause
+    logging.debug('sleeping %s', pause)
     time.sleep(pause)
-    print 'Ending  :', t.getName()
+    logging.debug('ending')
     return
 
 for i in range(3):
@@ -29,5 +34,5 @@ main_thread = threading.currentThread()
 for t in threading.enumerate():
     if t is main_thread:
         continue
-    print 'Joining :', t.getName()
+    logging.debug('joining %s', t.getName())
     t.join()

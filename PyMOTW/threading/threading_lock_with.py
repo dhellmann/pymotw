@@ -7,15 +7,20 @@
 """
 #end_pymotw_header
 import threading
+import logging
+
+logging.basicConfig(level=logging.DEBUG,
+                    format='(%(threadName)-10s) %(message)s',
+                    )
 
 def worker_with(lock):
     with lock:
-        print 'Lock acquired via with'
+        logging.debug('Lock acquired via with')
         
 def worker_no_with(lock):
     lock.acquire()
     try:
-        print 'Lock acquired directly'
+        logging.debug('Lock acquired directly')
     finally:
         lock.release()
 

@@ -8,6 +8,7 @@ development
   - Updates to :mod:`subprocess`
   - Updates to :mod:`sys`
   - Re-generate :mod:`platform` example output on more modern systems.
+  - Updates to :mod:`threading`
 
 1.130
 

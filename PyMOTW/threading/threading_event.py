@@ -18,14 +18,19 @@ logging.basicConfig(level=logging.DEBUG,
 def wait_for_event(e):
     """Wait for the event to be set before doing anything"""
     logging.debug('wait_for_event starting')
-    e.wait()
-    logging.debug('e.isSet()->%s', e.isSet())
+    event_is_set = e.wait()
+    logging.debug('event set: %s', event_is_set)
 
 def wait_for_event_timeout(e, t):
     """Wait t seconds and then timeout"""
-    logging.debug('wait_for_event_timeout starting')
-    e.wait(t)
-    logging.debug('e.isSet()->%s', e.isSet())
+    while not e.isSet():
+        logging.debug('wait_for_event_timeout starting')
+        event_is_set = e.wait(t)
+        logging.debug('event set: %s', event_is_set)
+        if event_is_set:
+            logging.debug('processing event')
+        else:
+            logging.debug('doing other work')
 
 
 e = threading.Event()

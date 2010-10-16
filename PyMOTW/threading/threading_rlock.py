@@ -11,11 +11,5 @@ import threading
 
 lock = threading.RLock()
 
-def first():
-    print 'First try:', lock.acquire()
-    second()
-    
-def second():
-    print 'Second try:', lock.acquire(0)
-
-first()
+print 'First try :', lock.acquire()
+print 'Second try:', lock.acquire(0)

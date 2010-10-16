@@ -23,23 +23,22 @@ class ActivePool(object):
     def makeActive(self, name):
         with self.lock:
             self.active.append(name)
+            logging.debug('Running: %s', self.active)
     def makeInactive(self, name):
         with self.lock:
             self.active.remove(name)
-    def __str__(self):
-        with self.lock:
-            return str(self.active)
+            logging.debug('Running: %s', self.active)
 
 def worker(s, pool):
+    logging.debug('Waiting to join the pool')
     with s:
         name = threading.currentThread().getName()
         pool.makeActive(name)
-        logging.debug('Running: %s', str(pool))
-        time.sleep(random.random())
+        time.sleep(0.1)
         pool.makeInactive(name)
 
 pool = ActivePool()
-s = threading.Semaphore(5)
-for i in range(20):
+s = threading.Semaphore(2)
+for i in range(4):
     t = threading.Thread(target=worker, name=str(i), args=(s, pool))
     t.start()

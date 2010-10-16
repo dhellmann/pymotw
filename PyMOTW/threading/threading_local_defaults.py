@@ -9,13 +9,20 @@
 
 import random
 import threading
+import logging
+
+logging.basicConfig(level=logging.DEBUG,
+                    format='(%(threadName)-10s) %(message)s',
+                    )
+
 
 def show_value(data):
-    print threading.currentThread().getName(), ': value=',
     try:
-        print data.value
+        val = data.value
     except AttributeError:
-        print 'No value yet'
+        logging.debug('No value yet')
+    else:
+        logging.debug('value=%s', val)
 
 def worker(data):
     show_value(data)
@@ -24,7 +31,7 @@ def worker(data):
 
 class MyLocal(threading.local):
     def __init__(self, value):
-        print '(Initializing %s for %s)' % (id(self), threading.currentThread().getName()),
+        logging.debug('Initializing %r', self)
         self.value = value
 
 local_data = MyLocal(1000)

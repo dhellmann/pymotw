@@ -8,11 +8,16 @@
 #end_pymotw_header
 
 import threading
+import logging
+
+logging.basicConfig(level=logging.DEBUG,
+                    format='(%(threadName)-10s) %(message)s',
+                    )
 
 class MyThread(threading.Thread):
 
     def run(self):
-        print 'MyThread:', self.getName()
+        logging.debug('running')
         return
 
 for i in range(5):

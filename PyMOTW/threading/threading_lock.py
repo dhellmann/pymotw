@@ -21,6 +21,7 @@ class Counter(object):
         self.lock = threading.Lock()
         self.value = start
     def increment(self):
+        logging.debug('Waiting for lock')
         self.lock.acquire()
         try:
             logging.debug('Acquired lock')
@@ -29,7 +30,7 @@ class Counter(object):
             self.lock.release()
 
 def worker(c):
-    for i in range(3):
+    for i in range(2):
         pause = random.random()
         logging.debug('Sleeping %0.02f', pause)
         time.sleep(pause)
@@ -37,7 +38,7 @@ def worker(c):
     logging.debug('Done')
 
 counter = Counter()
-for i in range(5):
+for i in range(2):
     t = threading.Thread(target=worker, args=(counter,))
     t.start()
 
