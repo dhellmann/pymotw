@@ -17,6 +17,7 @@ The standard library includes a variety of modules for persisting data.  The mos
     pickle/index
     shelve/index
     whichdb/index
+    sqlite3/index
 
 For serializing over the web, the :mod:`json` module may be a better choice since its format is more portable.
 

@@ -1,8 +1,9 @@
 History
 =======
 
-development
+1.131
 
+  - 17 Oct 2010, :mod:`sqlite3`
   - Updates to :mod:`xml.etree.ElementTree`
   - Updates to :mod:`resource`
   - Updates to :mod:`subprocess`
