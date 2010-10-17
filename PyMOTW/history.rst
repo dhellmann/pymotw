@@ -9,6 +9,7 @@ development
   - Updates to :mod:`sys`
   - Re-generate :mod:`platform` example output on more modern systems.
   - Updates to :mod:`threading`
+  - Updates to :mod:`dircache`
 
 1.130
 
