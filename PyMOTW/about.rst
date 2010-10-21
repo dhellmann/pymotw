@@ -95,16 +95,13 @@ Translations and Other Versions
   user group in Germany and author of pyVoc, the open source
   English/German vocabulary trainer (http://code.google.com/p/pyvoc/).
 
-.. 18 July 2010 - Removed for now because it looks like the site is offline.
+`Italian <http://robyp.x10hosting.com/>`_
 
-.. `Italian <http://robyp.x10hosting.com/>`_
-
-..   Roberto Pauletto is working on an Italian translation at
-..   http://robyp.x10hosting.com/.  Roberto creates Windows applications
-..   with C# by day, and tinkers with Linux and Python at home.  He has
-..   recently moved to Python from Perl for all of his
-..   system-administration scripting.
-
+  Roberto Pauletto is working on an Italian translation at
+  http://robyp.x10hosting.com/.  Roberto creates Windows applications
+  with C# by day, and tinkers with Linux and Python at home.  He has
+  recently moved to Python from Perl for all of his
+  system-administration scripting.
 
 `Spanish <http://denklab.org/articles/category/pymotw/>`_
 
