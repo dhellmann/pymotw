@@ -1,6 +1,10 @@
 History
 =======
 
+1.132
+
+  - 24 Oct 2010, rewrite :mod:`ConfigParser`
+
 1.131
 
   - 17 Oct 2010, :mod:`sqlite3`
