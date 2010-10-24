@@ -557,7 +557,9 @@ def checklist(options):
     """
     print """
 Checklist
-=========    
+=========
+
+USE "paver release"
 
 - hg pull into src sandbox
 - Change version in pavement.py
