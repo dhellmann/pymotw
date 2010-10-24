@@ -9,86 +9,403 @@ ConfigParser -- Work with configuration files
 :Python Version: 1.5
 
 Use the :mod:`ConfigParser` module to manage user-editable
-configuration files for your applications. The configuration files are
-broken up into sections, and each section can contain name-value pairs
+configuration files for an application. The configuration files are
+organized into sections, and each section can contain name-value pairs
 for configuration data. Value interpolation using Python formatting
-strings is also supported, to build values which depend on one another
-(this is especially handy for paths or URLs).
+strings is also supported, to build values that depend on one another
+(this is especially handy for URLs and message strings).
 
-Example
-=======
+Configuration File Format
+=========================
 
-At my day job, before we moved to svn and trac, we had rolled our own
-tool for conducting distributed code reviews. To prepare the code for
-review, a developer would write up a summary "approach" document, then
-attach code diffs to it. The approach document supported comments
-through the web page, so developers not located in our main office
-could also review code. The only trouble was, posting the diffs could
-be a bit of a pain. To make that part of the process easier, I wrote a
-command line tool to run against a CVS sandbox to automatically find
-and post the diffs.
+The file format used by :mod:`ConfigParser` is similar to the format
+used by older versions of Microsoft Windows.  It consists of one or
+more named *sections*, each of which can contain individual *options*
+with names and values.  
 
-For the tool to update the diffs on an approach, it needed to know how
-to reach the web server hosting the approach documents. Since our
-developers were not always in the office, the URL to reach the server
-from any given host might be port-forwarded through SSH. Rather than
-forcing each developer to use the same port-forwarding scheme, the
-tool used a simple config file to remember the URL.
+Config file sections are identified by looking for lines starting with
+``[`` and ending with ``]``.  The value between the square brackets is
+the section name, and can contain any characters except square
+brackets.
 
-A developer's configuration file might look like:
+Options are listed one per line within a section.  The line starts
+with the name of the option, which is separated from the value by a
+colon (``:``) or equal sign (``=``).  Whitespace around the separator
+is ignored when the file is parsed.  
 
-.. literalinclude:: approach.ini
+A sample configuration file with section "bug_tracker" and three options
+would look like:
 
+.. literalinclude:: simple.ini
 
-The "portal" section refers to the approach document web site. Once
-the diffs were ready to be posted to the site, the tool would load the
-config file using :mod:`ConfigParser` to access the URL. That might
-look something like this:
+Reading Configuration Files
+===========================
 
-.. include:: configparser_example.py
-    :literal:
-    :start-after: #end_pymotw_header
+The most common use for a configuration file is to have a user or
+system administrator edit the file with a regular text editor to set
+application behavior defaults, and then have the application read the
+file, parse it, and act based on its contents.  Use the :func:`read`
+method of :mod:`SafeConfigParser` to read the configuration file.
+
+.. include:: ConfigParser_read.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+This program reads the ``simple.ini`` file from the previous section
+and prints the value of the :data:`url` option from the
+:data:`bug_tracker` section.
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'configparser_example.py'))
+.. cog.out(run_script(cog.inFile, 'ConfigParser_read.py'))
+.. }}}
+.. {{{end}}}
+
+The :func:`read` method also accepts a list of filenames.  Each name
+in turn is scanned, and if the file exists it is opened and read.  
+
+.. include:: ConfigParser_read_many.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+:func:`read` returns a list containing the names of the files
+successfully loaded, so the program can discover which configuration
+files are missing and decide whether to ignore them.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'ConfigParser_read_many.py'))
+.. }}}
+.. {{{end}}}
+
+Unicode Configuration Data
+--------------------------
+
+Configuration files containing Unicode data should be opened using the
+:mod:`codecs` module to set the proper encoding value.  
+
+Changing the password value of the original input to contain Unicode
+characters and saving the results in UTF-8 encoding gives:
+
+.. literalinclude:: unicode.ini
+
+The :mod:`codecs` file handle can be passed to :func:`readfp`, which
+uses the :func:`readline` method of its argument to get lines from the
+file and parse them.
+
+.. include:: ConfigParser_unicode.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+The value returned by :func:`get` is a :class:`unicode` object, so in
+order to print it safely it must be re-encoded as UTF-8.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'ConfigParser_unicode.py'))
+.. }}}
+.. {{{end}}}
+
+Accessing Configuration Settings
+================================
+
+:class:`SafeConfigParser` includes methods for examining the structure
+of the parsed configuration, including listing the sections and
+options, and getting their values.  This configuration file includes
+two sections for separate web services:
+
+.. literalinclude:: multisection.ini
+
+And this sample program exercies some of the methods for looking at
+the configuration data, including :func:`sections`, :func:`options`,
+and :func:`items`.
+
+.. include:: ConfigParser_structure.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+Both :func:`sections` and :func:`options` return lists of strings,
+while :func:`items` returns a list of tuples containing the name-value
+pairs.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'ConfigParser_structure.py'))
+.. }}}
+.. {{{end}}}
+
+Testing whether values are present
+----------------------------------
+
+To test if a section exists, use :func:`has_section`, passing the
+section name.
+
+.. include:: ConfigParser_has_section.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+Testing if a section exists before calling :func:`get` avoids
+exceptions for missing data.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'ConfigParser_has_section.py'))
+.. }}}
+.. {{{end}}}
+
+Use :func:`has_option` to test if an option exists within a section.
+
+.. include:: ConfigParser_has_option.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+If the section does not exist, :func:`has_option` returns ``False``.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'ConfigParser_has_option.py'))
+.. }}}
+.. {{{end}}}
+
+Value Types
+-----------
+
+All section and option names are treated as strings, but option values
+can be strings, integers, floating point numbers, or booleans.  There
+are a range of possible boolean values that are converted true or
+false.  This example file includes one of each:
+
+.. literalinclude:: types.ini
+
+:class:`SafeConfigParser` does not make any attempt to understand the
+option type.  The application is expected to use the correct method to
+fetch the value as the desired type.  :func:`get` always returns a
+string.  Use :func:`getint` for integers, :func:`getfloat` for
+floating point numbers, and :func:`getboolean` for boolean values.
+
+.. include:: ConfigParser_value_types.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+Running this program with the example input produces:
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'ConfigParser_value_types.py'))
 .. }}}
 .. {{{end}}}
 
 
-In the example above, the value of the url variable is
-"``http://localhost:8080/Portal``". The "``url``" value from the
-config file contains 2 formatting strings: "``%(host)s``" and
-"``%(port)s``". The values of the host and port variables are
-automatically substituted in place of the formatting strings by the
-``get()`` method.
+Options as Flags
+----------------
 
-This is old code, written for Python 2.1, and the ConfigParser module
-has been improved in more recent versions. The
-:class:`SafeConfigParser` class is a drop in replacement for
-:class:`ConfigParser` with improvements to the interpolation
-processing.
+Usually the parser requires an explicit value for each option, but
+with the :class:`SafeConfigParser` parameter *allow_no_value* set to
+``True`` an option can appear by itself on a line in the input file,
+and be used as a flag.
 
-For this tool, I only needed string options. :class:`ConfigParser`
-supports other types of options as well: integer, floating point, and
-boolean. Since the option file format does not offer a way to
-associate a "type" with a value, the caller needs to know when to use
-a different method to retrieve options with these other types. For
-example, to retrieve a boolean option, use the :func:`getboolean()`
-method instead of :func:`get()`. The method arguments are the same,
-but the option value is converted to a boolean before being
-returned. Similarly, there are separate :func:`getint()` and
-:func:`getfloat()` methods.
+.. include:: ConfigParser_allow_no_value.py
+   :literal:
+   :start-after: #end_pymotw_header
 
-:class:`ConfigParser` also supports adding and removing sections to
-the file programmaticaly, and saving the results. This makes it
-possible to create a user interface for editing the configuration of
-your program, or to use the config file format for simple data
-files. For example, an app which needed to store a very small amount
-of data in a database-like format might take advantage of
-:mod:`ConfigParser` so the files would be human-readable as well.
+When an option has no explicit value, :func:`has_option` reports that
+the option exists and :func:`get` returns ``None``.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'ConfigParser_allow_no_value.py'))
+.. }}}
+.. {{{end}}}
+
+Modifying Settings
+==================
+
+While :class:`SafeConfigParser` is primarily intended to be configured
+by reading settings from files, settings can also be populated by
+calling :func:`add_section` to create a new section, and :func:`set`
+to add or change an option.
+
+.. include:: ConfigParser_populate.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+All options must be set as strings, even if they will be retrieved as
+integer, float, or boolean values.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'ConfigParser_populate.py'))
+.. }}}
+.. {{{end}}}
+
+Sections and options can be removed from a :class:`SafeConfigParser`
+with :func:`remove_section` and :func:`remove_option`.
+
+.. include:: ConfigParser_remove.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+Removing a section deletes any options it contains.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'ConfigParser_remove.py'))
+.. }}}
+.. {{{end}}}
+
+
+Saving Configuration Files
+==========================
+
+Once a :class:`SafeConfigParser` is populated with desired data, it
+can be saved to a file by calling the :func:`write` method.  This
+makes it possible to provide a user interface for editing the
+configuration settings, without having to write any code to manage the
+file.
+
+.. include:: ConfigParser_write.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+The :func:`write` method takes a file-like object as argument.  It
+writes the data out in the INI format so it can be parsed again by
+:class:`SafeConfigParser`.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'ConfigParser_write.py'))
+.. }}}
+.. {{{end}}}
+
+
+
+Option Search Path
+==================
+
+:class:`SafeConfigParser` uses a multi-step search process when
+looking for an option.
+
+Before starting the option search, the section name is tested.  If the
+section does not exist, and the name is not the special value
+``DEFAULT``, then :class:`NoSectionError` is raised.
+
+1. If the option name appears in the *vars* dictionary passed to
+   :func:`get`, the value from *vars* is returned.
+2. If the option name appears in the specified section, the value from
+   that section is returned.
+3. If the option name appears in the ``DEFAULT`` section, that value
+   is returned.
+4. If the option name appears in the *defaults* dictionary passed to
+   the constructor, that value is returned.
+
+If the name is not found in any of those locations,
+:class:`NoOptionError` is raised.
+
+The search path behavior can be demonstrated using this configuration
+file:
+
+.. literalinclude:: with-defaults.ini
+
+and this test program:
+
+.. include:: ConfigParser_defaults.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+The output shows the origin for the value of each option, and
+illustrates the way defaults from different sources override existing
+values.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'ConfigParser_defaults.py'))
+.. }}}
+.. {{{end}}}
+
+
+Combining Values with Interpolation
+===================================
+
+:class:`SafeConfigParser` provides a feature called *interpolation*
+that can be used to combine values together.  Values containing
+standard Python format strings trigger the interpolation feature when
+they are retrieved with :func:`get`.  Options named within the value
+being fetched are replaced with their values in turn, until no more
+substitution is necessary.
+
+The URL examples from earlier in this section can be rewritten to use
+interpolation to make it easier to change only part of the value.  For
+example, this configuration file separates the protocol, hostname, and
+port from the URL as separate options.
+
+.. literalinclude:: interpolation.ini
+
+Interpolation is performed by default each time :func:`get` is called.
+Pass a true value in the :data:`raw` argument to retrieve the original
+value, without interpolation.
+
+.. include:: ConfigParser_interpolation.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+Because the value is computed by :func:`get`, changing one of the
+settings being used by the ``url`` value changes the return value.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'ConfigParser_interpolation.py'))
+.. }}}
+.. {{{end}}}
+
+Using Defaults
+--------------
+
+Values for interpolation do not need to appear in the same section as
+the original option.  Defaults can be mixed with override values.
+Using this config file:
+
+.. literalinclude:: interpolation_defaults.ini
+
+The ``url`` value comes from the ``DEFAULT`` section, and the
+substitution starts by looking in ``bug_tracker`` and falling back to
+``DEFAULT`` for pieces not found.
+
+.. include:: ConfigParser_interpolation_defaults.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+The ``hostname`` and ``port`` values come from the ``bug_tracker``
+section, but the ``protocol`` comes from ``DEFAULT``.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'ConfigParser_interpolation_defaults.py'))
+.. }}}
+.. {{{end}}}
+
+Substitution Errors
+-------------------
+
+Substitution stops after :attr:`MAX_INTERPOLATION_DEPTH` steps to
+avoid problems due to recursive references.
+
+.. include:: ConfigParser_interpolation_recursion.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+An :class:`InterpolationDepthError` exception is raised if there are
+too many substitution steps.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'ConfigParser_interpolation_recursion.py'))
+.. }}}
+.. {{{end}}}
+
+Missing values result in an :class:`InterpolationMissingOptionError`
+exception.
+
+.. include:: ConfigParser_interpolation_error.py
+   :literal:
+   :start-after: #end_pymotw_header
+
+Since no ``server`` value is defined, the ``url`` cannot be
+constructed.
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, 'ConfigParser_interpolation_error.py'))
+.. }}}
+.. {{{end}}}
 
 .. seealso::
 
     `ConfigParser <http://docs.python.org/library/configparser.html>`_
         The standard library documentation for this module.
 
+    :mod:`codecs`
+        The codecs module is for reading and writing Unicode files.
