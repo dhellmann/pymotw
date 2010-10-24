@@ -142,10 +142,15 @@ to do a "reverse" lookup for the name.
 The return value is a tuple containing the full hostname, any aliases,
 and all IP addresses associated with the name.
 
-.. {{{cog
-.. cog.out(run_script(cog.inFile, 'socket_gethostbyaddr.py'))
-.. }}}
-.. {{{end}}}
+.. Do not cog this, since it depends on being on home network.
+
+::
+
+    $ python socket_gethostbyaddr.py
+    
+    Hostname : homer.hellfly.net
+    Aliases  : ['8.1.168.192.in-addr.arpa']
+    Addresses: ['192.168.1.8']
 
 Finding Service Information
 ===========================
@@ -241,10 +246,17 @@ server (different from the value used for the lookup) is included in
 the results this time.  Without the flag, the canonical name value is
 left empty.
 
-.. {{{cog
-.. cog.out(run_script(cog.inFile, 'socket_getaddrinfo_extra_args.py'))
-.. }}}
-.. {{{end}}}
+.. Do not cog, since the output depends on being on home network.
+
+::
+
+    $ python socket_getaddrinfo_extra_args.py
+    
+    Family        : AF_INET
+    Type          : SOCK_STREAM
+    Protocol      : IPPROTO_TCP
+    Canonical name: homer.doughellmann.com
+    Socket address: ('192.168.1.8', 80)
 
 IP Address Representations
 ==========================
