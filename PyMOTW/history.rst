@@ -1,6 +1,11 @@
 History
 =======
 
+Development
+
+  - Merge in fixes to the :mod:`select` module examples from Michael
+    Schurter.
+
 1.132
 
   - 24 Oct 2010, rewrite :mod:`ConfigParser`
