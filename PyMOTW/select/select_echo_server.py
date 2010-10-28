@@ -71,6 +71,9 @@ while inputs:
                 inputs.remove(s)
                 s.close()
 
+                # Remove message queue
+                del message_queues[s]
+
     # Handle outputs
     for s in writable:
         try:
@@ -91,3 +94,6 @@ while inputs:
         if s in outputs:
             outputs.remove(s)
         s.close()
+
+        # Remove message queue
+        del message_queues[s]

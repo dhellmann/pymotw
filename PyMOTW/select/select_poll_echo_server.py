@@ -83,6 +83,9 @@ while True:
                     poller.unregister(s)
                     s.close()
 
+                    # Remove message queue
+                    del message_queues[s]
+
         elif flag & select.POLLHUP:
             # Client hung up
             print >>sys.stderr, 'closing', client_address, 'after receiving HUP'
@@ -107,3 +110,6 @@ while True:
             # Stop listening for input on the connection
             poller.unregister(s)
             s.close()
+
+            # Remove message queue
+            del message_queues[s]

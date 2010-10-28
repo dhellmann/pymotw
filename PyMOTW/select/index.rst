@@ -96,7 +96,7 @@ A readable socket *without* data available is from a client that has
 disconnected, and the stream is ready to be closed.
 
 .. literalinclude:: select_echo_server.py
-   :lines: 65-72
+   :lines: 65-75
 
 There are fewer cases for the writable connections.  If there is data
 in the queue for a connection, the next message is sent.  Otherwise,
@@ -105,12 +105,12 @@ the next time through the loop :func:`select` does not indicate that
 the socket is ready to send data.
 
 .. literalinclude:: select_echo_server.py
-   :lines: 74-84
+   :lines: 77-87
 
 Finally, if there is an error with a socket, it is closed.
 
 .. literalinclude:: select_echo_server.py
-   :lines: 86-
+   :lines: 89-
 
 The example client program uses two sockets to demonstrate how the
 server with :func:`select` manages multiple connections at the same
@@ -384,14 +384,14 @@ disconnected, so :func:`unregister` is used to tell the :class:`poll`
 object to ignore the socket.
 
 .. literalinclude:: select_poll_echo_server.py
-   :lines: 79-84
+   :lines: 79-87
 
 The :const:`POLLHUP` flag indicates a client that "hung up" the
 connection without closing it cleanly.  The server stops polling
 clients that disappear.
 
 .. literalinclude:: select_poll_echo_server.py
-   :lines: 86-91
+   :lines: 89-94
 
 The handling for writable sockets looks like the version used in the
 example for :func:`select`, except that :func:`modify` is used to
@@ -399,13 +399,13 @@ change the flags for the socket in the poller, instead of removing it
 from the output list.
 
 .. literalinclude:: select_poll_echo_server.py
-   :lines: 93-103
+   :lines: 96-106
 
 And finally, any events with :const:`POLLERR` cause the server to
 close the socket.
 
 .. literalinclude:: select_poll_echo_server.py
-   :lines: 105-
+   :lines: 108-
 
 When the poll-based server is run together with
 ``select_echo_multiclient.py`` (the client program that uses multiple
