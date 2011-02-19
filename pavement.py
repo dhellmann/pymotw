@@ -142,6 +142,7 @@ options(
         templates='pkg',
         builddir='web',
         builder='latex',
+        docroot='.',
     ),
     
     blog=Bunch(
