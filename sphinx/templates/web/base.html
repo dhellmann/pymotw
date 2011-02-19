@@ -5,7 +5,7 @@
     <title>{% block title %}Doug Hellmann{% endblock %}</title>
 {% block head_before_css %}
 {% endblock %}
-<link href="/static/css/leaves.css" rel="stylesheet" type="text/css" />
+<link href="{{pathto('_static/css/leaves.css', 1)}}" rel="stylesheet" type="text/css" />
 {% block head_after_css %}
 {% endblock %}
 {% block head %}
@@ -17,22 +17,22 @@
 <div id="container">
     
 <div id="header">
-  <h1>{% block page_heading %}Doug Hellmann{% endblock %}</h1>
+  <a href="{{pathto('index')}}"><h1>{% block page_heading %}Doug Hellmann{% endblock %}</h1></a>
   <p>{% block page_subheading %}{% endblock %}</p>
-  <a id="admin-link" href="/admin/">admin</a>
 </div>
 
 <div id="sidebar_left_wrapper">
 
 <div id="navigation"> 
 	<ul id="navlist">
-		<li><a href="/">Home</a></li>
-		<li><a href="/PyMOTW/">PyMOTW</a></li>
+		<li><a href="{{pathto('index')}}">Home</a></li>
+		<li><a href="{{pathto('PyMOW/', 1)}}">PyMOTW</a></li>
 		<li><a href="http://blog.doughellmann.com/" target="_">Blog</a></li>
-		<li><a href="/articles/">Articles</a></li>
-		<li><a href="/projects/">Projects</a></li>
+		<li><a href="{{pathto('articles/index')}}">Articles</a></li>
+		<li><a href="{{pathto('projects/index')}}">Projects</a></li>
 		<li><a href="http://code.doughellmann.com/" target="_">Code</a></li>
-		<li><a href="/about/">About</a></li>
+		<li><a href="{{pathto('about/index')}}">About</a></li>
+		<li><a href="{{pathto('genindex')}}">Site Index</a></li>
 	</ul>
 </div>
 
@@ -134,6 +134,7 @@
 
 </div>
 
+{% block disqus_footer %}
 <!-- Disqus -->
 <script type="text/javascript">
 //<![CDATA[
@@ -149,7 +150,7 @@
 	})();
 //]]>
 </script>
-
+{% endblock %}
 
 </body>
 </html>

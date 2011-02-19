@@ -129,7 +129,7 @@ options(
         server_path = '/var/www/doughellmann/DocumentRoot/PyMOTW/',
 
         # What template should be used for the web site HTML?
-        template_source = '~/Devel/doughellmann/doughellmann/templates/base.html',
+        template_source = '~/Devel/website/website/source/_templates/base.html',
         template_dest = 'sphinx/templates/web/base.html',        
     ),
     
