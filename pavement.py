@@ -396,6 +396,7 @@ def rsyncwebsite(options):
 def webtemplatebase():
     """Import the latest version of the web page template from the source.
     """
+    raise RuntimeError('merge changes by hand so the nav menu links do not break!')
     dest = path(options.website.template_dest).expanduser()
     src = path(options.website.template_source).expanduser()
     if not dest.exists() or (src.mtime > dest.mtime):
@@ -403,7 +404,6 @@ def webtemplatebase():
     return
 
 @task
-@needs(['webtemplatebase'])
 def webhtml(options):
     """Generate HTML files for website.
     """
