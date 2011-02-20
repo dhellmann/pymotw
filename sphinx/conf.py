@@ -33,6 +33,11 @@ if os.environ['TEMPLATES'] == 'pkg':
 else:
     html_theme = 'default'
 
+# The base template needs a flag to indicate when to turn on comments
+html_context = {
+    'enable_comments':True,
+    }
+
 # The TEMPLATES variable is set by the Makefile before sphinx-build is called.
 templates_path = ['../sphinx/templates/%s' % os.environ['TEMPLATES'],
                   ]
