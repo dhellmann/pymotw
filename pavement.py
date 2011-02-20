@@ -54,6 +54,8 @@ PACKAGE_DATA = paver.setuputils.find_package_data(PROJECT,
                                                   only_in_packages=True,
                                                   )
 
+WEB_WORK_DIR = '/users/dhellmann/Devel/website/website'
+
 options(
     setup=Bunch(
         name = PROJECT,
@@ -129,8 +131,14 @@ options(
         server_path = '/var/www/doughellmann/DocumentRoot/PyMOTW/',
 
         # What template should be used for the web site HTML?
-        template_source = '~/Devel/doughellmann/doughellmann/templates/base.html',
-        template_dest = 'sphinx/templates/web/base.html',        
+        template_source = '%s/source/_templates/base.html' % WEB_WORK_DIR,
+        template_dest = 'sphinx/templates/web/base.html',
+
+        # Where are the css files
+        css_source = '%s/source/_static/css' % WEB_WORK_DIR,
+        css_dest = 'web/html/_static/css',
+        images_source = '%s/source/_static/images' % WEB_WORK_DIR,
+        images_dest = 'web/html/_static/images',
     ),
     
     sitemap_gen=Bunch(
@@ -142,6 +150,7 @@ options(
         templates='pkg',
         builddir='web',
         builder='latex',
+        docroot='.',
     ),
     
     blog=Bunch(
@@ -402,7 +411,8 @@ def webhtml(options):
     if paverutils is None:
         raise RuntimeError('Could not find sphinxcontrib.paverutils, will not be able to build HTML output.')
     paverutils.run_sphinx(options, 'website')
-    sitemap_gen()
+    sh('rsync --archive --delete --verbose "%s" "%s"' % (options.website.css_source, options.website.css_dest))
+    sh('rsync --archive --delete --verbose "%s" "%s"' % (options.website.images_source, options.website.images_dest))
     return
 
 @task
