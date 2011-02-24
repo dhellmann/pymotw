@@ -6,6 +6,15 @@
 {% block head_before_css %}
 {% endblock %}
 <link href="{{pathto('_static/css/leaves.css', 1)}}" rel="stylesheet" type="text/css" />
+<link rel="alternate" type="application/atom+xml"
+      title="Doug Hellmann"
+      href="http://feeds.feedburner.com/DougHellmann" />
+<link rel="alternate" type="application/atom+xml"
+      title="Doug Hellmann Project Releases"
+      href="http://feeds.feedburner.com/DougHellmann-Releases" />
+<link rel="alternate" type="application/atom+xml"
+      title="Doug Hellmann Links"
+      href="http://feeds.feedburner.com/DougHellmannLinkBlog" />
 {% block head_after_css %}
 {% endblock %}
 {% block head %}
@@ -29,6 +38,7 @@
 		<li><a href="{{pathto('index')}}">PyMOTW</a></li>
 		<li><a href="http://blog.doughellmann.com/" target="_">Blog</a></li>
 		<li><a href="/articles/">Articles</a></li>
+		<li><a href="/books/">Books</a></li>
 		<li><a href="/projects/">Projects</a></li>
 		<li><a href="http://code.doughellmann.com/" target="_">Code</a></li>
 		<li><a href="/about/">About</a></li>
