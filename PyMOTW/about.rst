@@ -18,9 +18,31 @@ Python web site at http://docs.python.org/library/.
 Tools
 =====
 
-The source text for PyMOTW is `reStructuredText
-<http://docutils.sourceforge.net/>`_ and the HTML and PDF output are
-created using `Sphinx <http://sphinx.pocoo.org/>`_.
+The source text for PyMOTW is reStructuredText_
+and the HTML and PDF output are
+created using Sphinx_.
+
+.. _reStructuredText: http://docutils.sourceforge.net/
+
+.. _Sphinx: http://sphinx.pocoo.org/
+
+The output from all the example programs has been generated with
+CPython (see below for version) and inserted into the text using
+cog_. 
+
+.. _cog: http://nedbatchelder.com/code/cog/
+
+.. {{{cog
+.. cog.out(run_script(cog.inFile, '-V'))
+.. }}}
+.. {{{end}}}
+
+.. warning::
+
+  Some of the features described here may not be available in earlier
+  versions of the standard library. When in doubt, refer to the
+  documentation for the version of Python you are using.
+
 
 Subscribe
 =========
