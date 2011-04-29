@@ -6,7 +6,7 @@ trace -- Follow Python statements as they are executed
     :synopsis: Follow Python statements as they are executed.
 
 :Purpose: Monitor which statements and functions are executed as a program runs to produce coverage and call-graph information.
-:Python Version: 2.3 and later
+:Available In: 2.3 and later
 
 The :mod:`trace` module helps you understand the way your program
 runs.  You can trace the statements executed, produce coverage

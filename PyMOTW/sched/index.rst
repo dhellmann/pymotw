@@ -6,7 +6,7 @@ sched -- Generic event scheduler.
     :synopsis: Generic event scheduler.
 
 :Purpose: Generic event scheduler.
-:Python Version: 1.4
+:Available In: 1.4
 
 The :mod:`sched` module implements a generic event scheduler for
 running tasks at specific times. The scheduler class uses a *time*

@@ -6,7 +6,7 @@ pprint -- Pretty-print data structures
     :synopsis: Pretty-print data structures
 
 :Purpose: Pretty-print data structures
-:Python Version: 1.4
+:Available In: 1.4
 
 :mod:`pprint` contains a "pretty printer" for producing aesthetically
 pleasing representations of your data structures.  The formatter

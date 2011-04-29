@@ -6,7 +6,7 @@ os.path -- Platform-independent manipulation of file names.
     :synopsis: Platform-independent manipulation of file names.
 
 :Purpose: Parse, build, test, and otherwise work on file names and paths.
-:Python Version: 1.4 and later
+:Available In: 1.4 and later
 
 Writing code to work with files on multiple platforms is easy using
 the functions included in the :mod:`os.path` module. Even programs not

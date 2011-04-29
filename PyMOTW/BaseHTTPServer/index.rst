@@ -6,7 +6,7 @@ BaseHTTPServer -- base classes for implementing web servers
     :synopsis: Provides base classes for implementing web servers.
 
 :Purpose: BaseHTTPServer includes classes that can form the basis of a web server.
-:Python Version: 1.4 and later
+:Available In: 1.4 and later
 
 
 :mod:`BaseHTTPServer` uses classes from :mod:`SocketServer` to create

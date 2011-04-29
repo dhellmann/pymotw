@@ -6,7 +6,7 @@
     :synopsis: Memory-map files
 
 :Purpose: Memory-map files instead of reading the contents directly.
-:Python Version: 2.1 and later
+:Available In: 2.1 and later
 
 Memory-mapping a file uses the operating system virtual memory system
 to access the data on the filesystem directly, instead of using normal

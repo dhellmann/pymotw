@@ -6,7 +6,7 @@ uuid -- Universally unique identifiers
     :synopsis: Universally unique identifiers
 
 :Purpose: The :mod:`uuid` module implements Universally Unique Identifiers as described in :rfc:`4122`.
-:Python Version: 2.5 and later
+:Available In: 2.5 and later
 
 :rfc:`4122` defines a system for creating universally unique
 identifiers for resources in a way that does not require a central

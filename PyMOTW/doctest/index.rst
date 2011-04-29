@@ -6,7 +6,7 @@ doctest -- Testing through documentation
     :synopsis: Write automated tests as part of the documentation for a module.
 
 :Purpose: Write automated tests as part of the documentation for a module.
-:Python Version: 2.1
+:Available In: 2.1
 
 :mod:`doctest` lets you test your code by running examples embedded in
 the documentation and verifying that they produce the expected

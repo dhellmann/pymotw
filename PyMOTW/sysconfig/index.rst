@@ -6,7 +6,7 @@ sysconfig -- Interpreter Compile-time Configuration
     :synopsis: Interpreter Compile-time Configuration
 
 :Purpose: Access the configuration settings used to build Python.
-:Python Version: 2.7 and later
+:Available In: 2.7 and later
 
 In Python 2.7 :mod:`sysconfig` has been extracted from
 :mod:`distutils` to become a stand-alone module.  It includes

@@ -6,7 +6,7 @@ threading -- Manage concurrent threads
     :synopsis: Manage several concurrent threads of execution.
 
 :Purpose: Builds on the :mod:`thread` module to more easily manage several threads of execution.
-:Python Version: 1.5.2 and later
+:Available In: 1.5.2 and later
 
 The :mod:`threading` module builds on the low-level features of
 :mod:`thread` to make working with threads even easier and more

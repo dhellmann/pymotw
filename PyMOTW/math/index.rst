@@ -6,7 +6,7 @@
     :synopsis: Mathematical functions
 
 :Purpose: Provides functions for specialized mathematical operations.
-:Python Version: 1.4
+:Available In: 1.4
 
 The :mod:`math` module implements many of the IEEE functions that would
 normally be found in the native platform C libraries for complex

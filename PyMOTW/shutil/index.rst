@@ -6,7 +6,7 @@ shutil -- High-level file operations.
     :synopsis: High-level file operations.
 
 :Purpose: High-level file operations.
-:Python Version: 1.4 and later
+:Available In: 1.4 and later
 
 The :mod:`shutil` module includes high-level file operations such as
 copying, setting permissions, etc.

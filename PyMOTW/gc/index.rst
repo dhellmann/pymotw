@@ -6,7 +6,7 @@ gc -- Garbage Collector
     :synopsis: Garbage Collector
 
 :Purpose: Manages memory used by Python objects
-:Python Version: 2.1+
+:Available In: 2.1+
 
 :mod:`gc` exposes the underlying memory management mechanism of
 Python, the automatic garbage collector.  The module includes

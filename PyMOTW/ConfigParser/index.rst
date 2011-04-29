@@ -6,7 +6,7 @@ ConfigParser -- Work with configuration files
     :synopsis: Read/write configuration files similar to Windows INI files
 
 :Purpose: Read/write configuration files similar to Windows INI files
-:Python Version: 1.5
+:Available In: 1.5
 
 Use the :mod:`ConfigParser` module to manage user-editable
 configuration files for an application. The configuration files are

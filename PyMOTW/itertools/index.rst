@@ -8,7 +8,7 @@ itertools -- Iterator functions for efficient looping
 :Purpose:
     The itertools module includes a set of functions for working with iterable
     (sequence-like) data sets. 
-:Python Version: 2.3
+:Available In: 2.3
 
 The functions provided are inspired by similar features of the "lazy
 functional programming language" Haskell and SML. They are intended to

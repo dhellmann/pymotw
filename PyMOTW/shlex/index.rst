@@ -6,7 +6,7 @@ shlex -- Lexical analysis of shell-style syntaxes.
     :synopsis: Lexical analysis of shell-style syntaxes.
 
 :Purpose: Lexical analysis of shell-style syntaxes.
-:Python Version: 1.5.2, with additions in later versions
+:Available In: 1.5.2, with additions in later versions
 
 The shlex module implements a class for parsing simple shell-like syntaxes. It
 can be used for writing your own domain specific language, or for parsing

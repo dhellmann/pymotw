@@ -6,7 +6,7 @@ multiprocessing -- Manage processes like threads
     :synopsis: Manage processes like threads.
 
 :Purpose: Provides an API for managing processes.
-:Python Version: 2.6
+:Available In: 2.6
 
 The :mod:`multiprocessing` module includes a relatively simple API for
 dividing work up between multiple processes.  It is based on the API

@@ -6,7 +6,7 @@ readline -- Interface to the GNU readline library
     :synopsis: Interface to the GNU readline library
 
 :Purpose: Provides an interface to the GNU readline library for interacting with the user at a command prompt.
-:Python Version: 1.4 and later
+:Available In: 1.4 and later
 
 The :mod:`readline` module can be used to enhance interactive command
 line programs to make them easier to use.  It is primarily used to

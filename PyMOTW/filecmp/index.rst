@@ -6,7 +6,7 @@ filecmp -- Compare files
     :synopsis: Compare files and directories on the filesystem.
 
 :Purpose: Compare files and directories on the filesystem.
-:Python Version: 2.1 and later
+:Available In: 2.1 and later
 
 Example Data
 ============

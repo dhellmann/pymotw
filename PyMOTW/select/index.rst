@@ -6,7 +6,7 @@ select -- Wait for I/O Efficiently
     :synopsis: Wait for I/O Efficiently
 
 :Purpose: Wait for notification that an input or output channel is ready.
-:Python Version: 1.4 and later
+:Available In: 1.4 and later
 
 The :mod:`select` module provides access to platform-specific I/O
 monitoring functions.  The most portable interface is the POSIX

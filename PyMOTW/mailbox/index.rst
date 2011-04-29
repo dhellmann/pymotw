@@ -6,7 +6,7 @@ mailbox -- Access and manipulate email archives
     :synopsis: Access and manipulate email archives.
 
 :Purpose: Work with email messages in various local file formats.
-:Python Version: 1.4 and later
+:Available In: 1.4 and later
 
 The :mod:`mailbox` module defines a common API for accessing email
 messages stored in local disk formats, including:

@@ -6,7 +6,7 @@ Cookie -- HTTP Cookies
     :synopsis: Working with HTTP cookies from the server side.
 
 :Purpose: The Cookie module defines classes for parsing and creating HTTP cookie headers.
-:Python Version: 2.1 and later
+:Available In: 2.1 and later
 
 Cookies have been a part of the HTTP protocol for a long time. All of the
 modern web development frameworks provide easy access to cookies so a

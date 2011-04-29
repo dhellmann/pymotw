@@ -6,7 +6,7 @@ dbhash -- DBM-style API for the BSD database library
     :synopsis: DBM-style API for the BSD database library
 
 :Purpose: Provides a dictionary-like API for accessing BSD ``db`` files.
-:Python Version: 1.4 and later
+:Available In: 1.4 and later
 
 The :mod:`dbhash` module is the primary backend for :mod:`anydbm`.  It uses the :mod:`bsddb` library to manage database files.  The semantics are the same as :mod:`anydbm`, so refer to the examples on that page for details.
 

@@ -6,7 +6,7 @@
     :synopsis: Functional interface to built-in operators
 
 :Purpose: Functional interface to built-in operators.
-:Python Version: 1.4 and later
+:Available In: 1.4 and later
 
 Functional programming using iterators occasionally requires creating
 small functions for simple expressions. Sometimes these can be

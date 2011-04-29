@@ -6,7 +6,7 @@ resource -- System resource management
     :synopsis: System resource management
 
 :Purpose: Manage the system resource limits for a Unix program.
-:Python Version: 1.5.2
+:Available In: 1.5.2
 
 The functions in :mod:`resource` probe the current system resources
 consumed by a process, and place limits on them to control how much

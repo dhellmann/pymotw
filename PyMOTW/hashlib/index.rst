@@ -6,7 +6,7 @@ hashlib -- Cryptographic hashes and message digests
     :synopsis: Cryptographic hashes and message digests
 
 :Purpose: Cryptographic hashes and message digests
-:Python Version: 2.5
+:Available In: 2.5
 
 The :mod:`hashlib` module deprecates the separate :mod:`md5` and
 :mod:`sha` modules and makes their API consistent. To work with a

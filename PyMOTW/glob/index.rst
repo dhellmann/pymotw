@@ -6,7 +6,7 @@ glob -- Filename pattern matching
     :synopsis: Use Unix shell rules to fine filenames matching a pattern.
 
 :Purpose: Use Unix shell rules to fine filenames matching a pattern.
-:Python Version: 1.4
+:Available In: 1.4
 
 Even though the glob API is very simple, the module packs a lot of
 power. It is useful in any situation where your program needs to look

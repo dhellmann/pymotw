@@ -6,7 +6,7 @@
     :synopsis: Work with additional processes
 
 :Purpose: Spawn and communicate with additional processes.
-:Python Version: 2.4 and later
+:Available In: 2.4 and later
 
 The :mod:`subprocess` module provides a consistent interface to
 creating and working with additional processes. It offers a

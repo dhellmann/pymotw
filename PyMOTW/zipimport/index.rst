@@ -8,7 +8,7 @@ zipimport -- Load Python code from inside ZIP archives
     :synopsis: Load Python code from inside ZIP archives.
 
 :Purpose: Load Python code from inside ZIP archives.
-:Python Version: 2.3 and later
+:Available In: 2.3 and later
 
 The :mod:`zipimport` module implements the :class:`zipimporter` class,
 which can be used to find and load Python modules inside ZIP

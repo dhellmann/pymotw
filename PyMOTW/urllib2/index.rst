@@ -6,7 +6,7 @@ urllib2 -- Library for opening URLs.
     :synopsis: Library for opening URLs.
 
 :Purpose: A library for opening URLs that can be extended by defining custom protocol handlers.
-:Python Version: 2.1
+:Available In: 2.1
 
 The :mod:`urllib2` module provides an updated API for using internet
 resources identified by URLs.  It is designed to be extended by

@@ -6,7 +6,7 @@ Queue -- A thread-safe FIFO implementation
     :synopsis: Provides a thread-safe FIFO implementation
 
 :Purpose: Provides a thread-safe FIFO implementation
-:Python Version: at least 1.4
+:Available In: at least 1.4
 
 The :mod:`Queue` module provides a FIFO implementation suitable for
 multi-threaded programming. It can be used to pass messages or other

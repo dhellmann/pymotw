@@ -6,7 +6,7 @@ string -- Working with text
     :synopsis: Contains constants and classes for working with text.
 
 :Purpose: Contains constants and classes for working with text.
-:Python Version: 2.5
+:Available In: 2.5
 
 The :mod:`string` module dates from the earliest versions of
 Python. In version 2.0, many of the functions previously implemented

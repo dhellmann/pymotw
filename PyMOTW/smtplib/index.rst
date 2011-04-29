@@ -6,7 +6,7 @@ smtplib -- Simple Mail Transfer Protocol client
     :synopsis: Simple mail transfer protocol client.
 
 :Purpose: Interact with SMTP servers, including sending email.
-:Python Version: 1.5.2 and later
+:Available In: 1.5.2 and later
 
 :mod:`smtplib` includes the class :class:`SMTP`, which is useful for communicating with mail servers to send mail.  
 

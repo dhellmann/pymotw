@@ -6,7 +6,7 @@ SimpleXMLRPCServer -- Implements an XML-RPC server.
     :synopsis: Implements an XML-RPC server.
 
 :Purpose: Implements an XML-RPC server.
-:Python Version: 2.2 and later
+:Available In: 2.2 and later
 
 The :mod:`SimpleXMLRPCServer` module contains classes for creating
 your own cross-platform, language-independent server using the XML-RPC

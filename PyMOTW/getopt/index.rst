@@ -6,7 +6,7 @@ getopt -- Command line option parsing
     :synopsis: Command line option parsing
 
 :Purpose: Command line option parsing
-:Python Version: 1.4
+:Available In: 1.4
 
 The getopt module is the *old-school* command line option parser that
 supports the conventions established by the Unix function

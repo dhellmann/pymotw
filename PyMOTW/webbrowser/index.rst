@@ -6,7 +6,7 @@ webbrowser -- Displays web pages
     :synopsis: Displays web pages
 
 :Purpose: Use the `webbrowser` module to display web pages to your users.
-:Python Version: 2.1.3 and later
+:Available In: 2.1.3 and later
 
 The :mod:`webbrowser` module includes functions to open URLs in interactive
 browser applications. The module includes a registry of available

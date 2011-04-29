@@ -8,7 +8,7 @@ hmac -- Cryptographic signature and verification of messages.
 :Purpose: 
     The hmac module implements keyed-hashing for message authentication, as
     described in :rfc:`2104`.
-:Python Version: 2.2
+:Available In: 2.2
 
 The HMAC algorithm can be used to verify the integrity of information
 passed between applications or stored in a potentially vulnerable

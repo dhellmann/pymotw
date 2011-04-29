@@ -6,7 +6,7 @@ zlib -- Low-level access to GNU zlib compression library
     :synopsis: Low-level access to GNU zlib compression library
 
 :Purpose: Low-level access to GNU zlib compression library
-:Python Version: 2.5 and later
+:Available In: 2.5 and later
 
 The :mod:`zlib` module provides a lower-level interface to many of the
 functions in the :mod:`zlib` compression library from GNU.

@@ -6,7 +6,7 @@ abc -- Abstract Base Classes
     :synopsis: Abstract Base Classes
 
 :Purpose: Define and use abstract base classes for API checks in your code.
-:Python Version: 2.6
+:Available In: 2.6
 
 Why use Abstract Base Classes?
 ==============================

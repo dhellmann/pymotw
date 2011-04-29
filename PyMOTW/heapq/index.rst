@@ -8,7 +8,7 @@ heapq -- In-place heap sort algorithm
 :Purpose:
     The heapq implements a min-heap sort algorithm suitable for use with
     Python's lists.
-:Python Version: New in 2.3 with additions in 2.5
+:Available In: New in 2.3 with additions in 2.5
 
 A *heap* is a tree-like data structure where the child nodes have a
 sort-order relationship with the parents. *Binary heaps* can be

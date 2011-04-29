@@ -6,7 +6,7 @@ traceback -- Extract, format, and print exceptions and stack traces.
     :synopsis: Extract, format, and print exceptions and stack traces.
 
 :Purpose: Extract, format, and print exceptions and stack traces.
-:Python Version: 1.4 and later, with modifications over time
+:Available In: 1.4 and later, with modifications over time
 
 The :mod:`traceback` module works with the call stack to produce error
 messages. A traceback is a stack trace from the point of an exception

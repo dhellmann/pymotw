@@ -6,7 +6,7 @@ argparse -- Command line option and argument parsing.
     :synopsis: Command line option and argument parsing.
 
 :Purpose: Command line option and argument parsing.
-:Python Version: 2.7 and later
+:Available In: 2.7 and later
 
 The :mod:`argparse` module was added to Python 2.7 as a replacement
 for :mod:`optparse`.  The implementation of :mod:`argparse` supports

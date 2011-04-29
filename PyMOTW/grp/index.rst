@@ -6,7 +6,7 @@ grp -- Unix Group Database
     :synopsis: Unix Group Database
 
 :Purpose: Read group data from Unix group database.
-:Python Version: 1.4 and later
+:Available In: 1.4 and later
 
 The grp module can be used to read information about Unix groups from
 the group database (usually ``/etc/group``).  The read-only interface

@@ -6,7 +6,7 @@
     :synopsis: Compare sequences, especially lines of text.
 
 :Purpose: Compare sequences, especially lines of text.
-:Python Version: 2.1 and later
+:Available In: 2.1 and later
 
 The :mod:`difflib` module contains tools for computing and working
 with differences between sequences.  It is especially useful for

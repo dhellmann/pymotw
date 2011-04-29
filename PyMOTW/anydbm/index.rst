@@ -6,7 +6,7 @@ anydbm -- Access to DBM-style databases
     :synopsis: anydbm provides a generic dictionary-like interface to DBM-style, string-keyed databases
 
 :Purpose: anydbm provides a generic dictionary-like interface to DBM-style, string-keyed databases
-:Python Version: 1.4 and later
+:Available In: 1.4 and later
 
 anydbm is a front-end for DBM-style databases that use simple string
 values as keys to access records containing strings.  It uses the

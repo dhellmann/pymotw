@@ -9,7 +9,7 @@ StringIO and cStringIO -- Work with text buffers using file-like API
     :synopsis: Work with text buffers using file-like API
 
 :Purpose: Work with text buffers using file-like API
-:Python Version: StringIO: 1.4, cStringIO: 1.5
+:Available In: StringIO: 1.4, cStringIO: 1.5
 
 :class:`StringIO` provides a convenient means of working with text in
 memory using the file API (read, write. etc.). There are two separate

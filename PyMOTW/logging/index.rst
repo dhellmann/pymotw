@@ -6,7 +6,7 @@ logging -- Report status, error, and informational messages.
     :synopsis: Report status, error, and informational messages.
 
 :Purpose: Report status, error, and informational messages.
-:Python Version: 2.3
+:Available In: 2.3
 
 The :mod:`logging` module defines a standard API for reporting errors
 and status information from applications and libraries. The key

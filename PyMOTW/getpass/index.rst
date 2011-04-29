@@ -8,7 +8,7 @@ getpass -- Prompt the user for a password without echoing.
     :synopsis: Prompt the user for a value, usually a password, without echoing what they type to the console.
 
 :Purpose: Prompt the user for a value, usually a password, without echoing what they type to the console.
-:Python Version: 1.5.2
+:Available In: 1.5.2
 
 Many programs that interact with the user via the terminal need to ask
 the user for password values without showing what the user types on

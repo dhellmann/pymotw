@@ -6,7 +6,7 @@ calendar -- Work with dates
     :synopsis: The calendar module implements classes for working with dates to manage year/month/week oriented values.
 
 :Purpose: The calendar module implements classes for working with dates to manage year/month/week oriented values.
-:Python Version: 1.4, with updates in 2.5
+:Available In: 1.4, with updates in 2.5
 
 The calendar module defines the Calendar class, which encapsulates
 calculations for values such as the dates of the weeks in a given month or

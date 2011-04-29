@@ -6,7 +6,7 @@ EasyDialogs -- Carbon dialogs for Mac OS X
     :synopsis: Provides simple interfaces to Carbon dialogs from Python.
 
 :Purpose: Provides simple interfaces to Carbon dialogs from Python.
-:Python Version: At least 2.0, Macintosh-only (see References below for a Windows implementation)
+:Available In: At least 2.0, Macintosh-only (see References below for a Windows implementation)
 
 The EasyDialogs module includes classes and functions for working with
 simple message and prompt dialogs, as well as stock dialogs for

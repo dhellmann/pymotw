@@ -9,7 +9,7 @@ profile, cProfile, and pstats -- Performance analysis of Python programs.
     :synopsis: Performance analysis of Python programs.
 
 :Purpose: Performance analysis of Python programs.
-:Python Version: 1.4 and later, these examples are for Python 2.5
+:Available In: 1.4 and later, these examples are for Python 2.5
 
 The :mod:`profile` and :mod:`cProfile` modules provide APIs for
 collecting and analyzing statistics about how Python source consumes

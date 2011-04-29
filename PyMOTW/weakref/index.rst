@@ -6,7 +6,7 @@ weakref -- Garbage-collectable references to objects
     :synopsis: Refer to an "expensive" object, but allow it to be garbage collected if there are no other non-weak references.
 
 :Purpose: Refer to an "expensive" object, but allow it to be garbage collected if there are no other non-weak references.
-:Python Version: Since 2.1
+:Available In: Since 2.1
 
 The :mod:`weakref` module supports weak references to objects. A
 normal reference increments the reference count on the object and

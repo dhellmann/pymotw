@@ -6,7 +6,7 @@ mhlib -- Work with MH mailboxes
     :synopsis: Work with MH mailboxes
 
 :Purpose: Manipulate the contents of MH mailboxes.
-:Python Version: 1.4 and later
+:Available In: 1.4 and later
 
 .. note::
     This module is superseded by :mod:`mailbox`.

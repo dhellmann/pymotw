@@ -6,7 +6,7 @@ dircache -- Cache directory listings
     :synopsis: Cache directory listings
 
 :Purpose: Cache directory listings, updating when the modification time of a directory changes.
-:Python Version: 1.4 and later
+:Available In: 1.4 and later
 
 Listing Directory Contents
 ==========================

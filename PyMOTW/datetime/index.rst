@@ -6,7 +6,7 @@ datetime -- Date/time value manipulation
     :synopsis: Date/time value manipulation.
 
 :Purpose: The datetime module includes functions and classes for doing date and time parsing, formatting, and arithmetic.
-:Python Version: 2.3 and later
+:Available In: 2.3 and later
 
 :mod:`datetime` contains functions and classes for working with dates
 and times, separatley and together.

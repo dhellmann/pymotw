@@ -6,7 +6,7 @@ optparse -- Command line option parser to replace getopt.
     :synopsis: Command line option parser to replace :mod:`getopt`.
 
 :Purpose: Command line option parser to replace :mod:`getopt`.
-:Python Version: 2.3
+:Available In: 2.3
 
 The :mod:`optparse` module is a modern alternative for command line
 option parsing that offers several features not available in

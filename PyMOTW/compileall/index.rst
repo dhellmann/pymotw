@@ -6,7 +6,7 @@ compileall -- Byte-compile Source Files
     :synopsis: Byte-compile Source Files
 
 :Purpose: Convert source files to byte-compiled version.
-:Python Version: 1.4
+:Available In: 1.4
 
 The :mod:`compileall` module finds Python source files and compiles
 them to the byte-code representation, saving the results in ``.pyc``

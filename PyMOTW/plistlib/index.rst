@@ -6,7 +6,7 @@ plistlib -- Manipulate OS X property list files
     :synopsis: Manipulate OS X property list files
 
 :Purpose: Read and write OS X property list files
-:Python Version: 2.6
+:Available In: 2.6
 
 :mod:`plistlib` provides an interface for working with property list
 files used under OS X.  plist files are typically XML, sometimes

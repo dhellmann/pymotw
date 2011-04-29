@@ -6,7 +6,7 @@
     :synopsis: Tools for working with functions.
 
 :Purpose: Functions that operate on other functions.
-:Python Version: 2.5 and later
+:Available In: 2.5 and later
 
 The :mod:`functools` module provides tools for working with functions
 and other callable objects, to adapt or extend them for new purposes

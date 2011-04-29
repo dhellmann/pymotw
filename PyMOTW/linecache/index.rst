@@ -6,7 +6,7 @@ linecache -- Read text files efficiently
     :synopsis: Retrieve lines of text from files or imported python modules, holding a cache of the results to make reading many lines from the same file more efficient.
 
 :Purpose: Retrieve lines of text from files or imported python modules, holding a cache of the results to make reading many lines from the same file more efficient.
-:Python Version: 1.4
+:Available In: 1.4
 
 The linecache module is used extensively throughout the Python standard
 library when dealing with Python source files. The implementation of the cache

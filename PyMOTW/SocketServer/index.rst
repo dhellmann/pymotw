@@ -6,7 +6,7 @@ SocketServer -- Creating network servers.
     :synopsis: Creating network servers.
 
 :Purpose: Creating network servers.
-:Python Version: 1.4
+:Available In: 1.4
 
 The :mod:`SocketServer` module is a framework for creating network
 servers. It defines classes for handling synchronous network requests

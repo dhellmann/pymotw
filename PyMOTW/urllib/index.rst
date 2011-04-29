@@ -6,7 +6,7 @@ urllib -- simple interface for network resource access
     :synopsis: Accessing remote resources that don't need authentication, cookies, etc.
 
 :Purpose: Accessing remote resources that don't need authentication, cookies, etc.
-:Python Version: 1.4 and later
+:Available In: 1.4 and later
 
 The :mod:`urllib` module provides a simple interface for network
 resource access. Although :mod:`urllib` can be used with gopher and

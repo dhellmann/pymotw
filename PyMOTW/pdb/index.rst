@@ -6,7 +6,7 @@ pdb -- Interactive Debugger
     :synopsis: Interactive Debugger
 
 :Purpose: Python's Interactive Debugger
-:Python Version: 1.4 and later
+:Available In: 1.4 and later
 
 :mod:`pdb` implements an interactive debugging environment for Python
 programs.  It includes features to let you pause your program, look at

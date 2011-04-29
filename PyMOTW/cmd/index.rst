@@ -8,7 +8,7 @@ cmd -- Create line-oriented command processors
     :synopsis: Create line-oriented command processors.
 
 :Purpose: Create line-oriented command processors.
-:Python Version: 1.4 and later, with some additions in 2.3
+:Available In: 1.4 and later, with some additions in 2.3
 
 The :mod:`cmd` module contains one public class, :class:`Cmd`,
 designed to be used as a base class for command processors such as

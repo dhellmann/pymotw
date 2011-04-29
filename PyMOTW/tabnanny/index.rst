@@ -6,7 +6,7 @@ tabnanny -- Indentation validator
     :synopsis: Scan Python source code looking for suspicious indentation.
 
 :Purpose: Scan Python source code looking for suspicious indentation.
-:Python Version: 2.1.3 and later
+:Available In: 2.1.3 and later
 
 Consistent use of indentation is important in a langauge like Python,
 where white-space is significant.  The :mod:`tabnanny` module provides

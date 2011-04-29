@@ -6,7 +6,7 @@ locale -- POSIX cultural localization API
     :synopsis: POSIX cultural localization API
 
 :Purpose: Format and parse values that depend on location or language.
-:Python Version: 1.5 and later
+:Available In: 1.5 and later
 
 The :mod:`locale` module is part of Python's internationalization and
 localization support library. It provides a standard way to handle

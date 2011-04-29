@@ -6,7 +6,7 @@ cgitb -- Detailed traceback reports
     :synopsis: Mis-named module that provides extended traceback information.
 
 :Purpose: cgitb provides more detailed traceback information than :mod:`traceback`.
-:Python Version: 2.2 and later
+:Available In: 2.2 and later
 
 :mod:`cgitb` was originally designed for showing errors and debugging
 information in web applications.  It was later updated to include

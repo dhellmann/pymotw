@@ -6,7 +6,7 @@ os -- Portable access to operating system specific features.
     :synopsis: Portable access to operating system specific features.
 
 :Purpose: Portable access to operating system specific features.
-:Python Version: 1.4 (or earlier)
+:Available In: 1.4 (or earlier)
 
 The :mod:`os` module provides a wrapper for platform specific modules
 such as :mod:`posix`, :mod:`nt`, and :mod:`mac`. The API for functions

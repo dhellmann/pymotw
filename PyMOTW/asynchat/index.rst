@@ -6,7 +6,7 @@ asynchat -- Asynchronous protocol handler
     :synopsis: Asynchronous protocol handler
 
 :Purpose: Asynchronous network communication protocol handler
-:Python Version: 1.5.2 and later
+:Available In: 1.5.2 and later
 
 The :mod:`asynchat` module builds on :mod:`asyncore` to make it easier
 to implement protocols based on passing messages back and forth

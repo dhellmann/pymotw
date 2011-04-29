@@ -6,7 +6,7 @@ sys -- System-specific Configuration
     :synopsis: System-specific configuration
 
 :Purpose: Provides system-specific configuration and operations.
-:Python Version: 1.4 and later
+:Available In: 1.4 and later
 
 The :mod:`sys` module includes a collection of services for probing or
 changing the configuration of the interpreter at runtime and resources

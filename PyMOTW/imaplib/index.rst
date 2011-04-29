@@ -8,7 +8,7 @@ imaplib - IMAP4 client library
     :synopsis: IMAP4 client library
 
 :Purpose: Client library for IMAP4 communication.
-:Python Version: 1.5.2 and later
+:Available In: 1.5.2 and later
 
 :mod:`imaplib` implements a client for communicating with Internet
 Message Access Protocol (IMAP) version 4 servers.  The IMAP protocol

@@ -6,7 +6,7 @@ fractions -- Rational Numbers
     :synopsis: Implements a class for working with rational numbers.
 
 :Purpose: Implements a class for working with rational numbers.
-:Python Version: 2.6 and later
+:Available In: 2.6 and later
 
 The Fraction class implements numerical operations for rational numbers based on the API defined by :class:`Rational` in :mod:`numbers`.
 

@@ -6,7 +6,7 @@ unittest -- Automated testing framework
     :synopsis: Automated testing framework
 
 :Purpose: Automated testing framework
-:Python Version: 2.1
+:Available In: 2.1
 
 Python's :mod:`unittest` module, sometimes referred to as PyUnit, is
 based on the XUnit framework design by Kent Beck and Erich Gamma. The

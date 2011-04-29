@@ -6,7 +6,7 @@ copy -- Duplicate objects
     :synopsis: Provides functions for duplicating objects using shallow or deep copy semantics.
 
 :Purpose: Provides functions for duplicating objects using shallow or deep copy semantics.
-:Python Version: 1.4
+:Available In: 1.4
 
 
 The copy module includes 2 functions, copy() and deepcopy(), for duplicating

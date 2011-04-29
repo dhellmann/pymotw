@@ -6,7 +6,7 @@ xmlrpclib -- Client-side library for XML-RPC communication
     :synopsis: Client-side library for XML-RPC communication.
 
 :Purpose: Client-side library for XML-RPC communication.
-:Python Version: 2.2 and later
+:Available In: 2.2 and later
 
 We have already looked at :mod:`SimpleXMLRPCServer`, the library for
 creating an XML-RPC server. The :mod:`xmlrpclib` module lets you

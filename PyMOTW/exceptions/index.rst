@@ -6,7 +6,7 @@ exceptions -- Built-in error classes
     :synopsis: Built-in error classes
 
 :Purpose: The exceptions module defines the built-in errors used throughout the standard library and by the interpreter.
-:Python Version: 1.5 and later
+:Available In: 1.5 and later
 
 
 Description

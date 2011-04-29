@@ -6,7 +6,7 @@ fileinput -- Process lines from input streams
     :synopsis: Process lines from input streams.
 
 :Purpose: Create command-line filter programs to process lines from input streams.
-:Python Version: 1.5.2 and later
+:Available In: 1.5.2 and later
 
 The fileinput module is a framework for creating command line programs
 for processing text files in a filter-ish manner. 

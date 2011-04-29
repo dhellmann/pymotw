@@ -6,7 +6,7 @@ rlcompleter -- Adds tab-completion to the interactive interpreter
     :synopsis: Adds tab-completion to the interactive interpreter
 
 :Purpose: Adds tab-completion to the interactive interpreter
-:Python Version: 1.5 and later
+:Available In: 1.5 and later
 
 :mod:`rlcompleter` adds tab-completion for Python symbols to the
 interactive interpreter.  Importing the module causes it to configure

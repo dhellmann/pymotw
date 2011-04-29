@@ -6,7 +6,7 @@ pipes -- Unix shell command pipeline templates
     :synopsis: Unix shell command pipeline templates
 
 :Purpose: Create repeatable Unix shell command pipelines.
-:Python Version: Python 1.4
+:Available In: Python 1.4
 
 The :mod:`pipes` module implements a class to create arbitrarily
 complex Unix command pipelines.  Inputs and outputs of the commands

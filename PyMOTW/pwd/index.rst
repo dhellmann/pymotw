@@ -6,7 +6,7 @@ pwd -- Unix Password Database
     :synopsis: Unix Password Database
 
 :Purpose: Read user data from Unix password database.
-:Python Version: 1.4 and later
+:Available In: 1.4 and later
 
 The pwd module can be used to read user information from the Unix
 password database (usually ``/etc/passwd``).  The read-only interface

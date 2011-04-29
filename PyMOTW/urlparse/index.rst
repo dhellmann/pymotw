@@ -6,7 +6,7 @@ urlparse -- Split URL into component pieces.
     :synopsis: Split URL into component pieces.
 
 :Purpose: Split URL into component pieces.
-:Python Version: since 1.4
+:Available In: since 1.4
 
 The :mod:`urlparse` module provides functions for breaking URLs down
 into their component parts, as defined by the relevant RFCs.

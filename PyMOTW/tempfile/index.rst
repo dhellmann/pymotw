@@ -6,7 +6,7 @@ tempfile -- Create temporary filesystem resources.
     :synopsis: Create temporary filesystem resources.
 
 :Purpose: Create temporary filesystem resources.
-:Python Version: Since 1.4 with major security revisions in 2.3
+:Available In: Since 1.4 with major security revisions in 2.3
 
 Many programs need to create files to write intermediate
 data. Creating files with unique names securely, so they cannot be

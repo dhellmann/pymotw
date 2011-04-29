@@ -6,7 +6,7 @@ bisect -- Maintain lists in sorted order
     :synopsis: Maintains a list in sorted order without having to call sort each time an item is added to the list.
 
 :Purpose: Maintains a list in sorted order without having to call sort each time an item is added to the list.
-:Python Version: 1.4
+:Available In: 1.4
 
 The bisect module implements an algorithm for inserting elements into a list
 while maintaining the list in sorted order. This can be much more efficient

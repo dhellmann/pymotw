@@ -8,7 +8,7 @@ inspect -- Inspect live objects
 :Purpose:
     The inspect module provides functions for introspecting on live
     objects and their source code.
-:Python Version: added in 2.1, with updates in 2.3 and 2.5
+:Available In: added in 2.1, with updates in 2.3 and 2.5
 
 The :mod:`inspect` module provides functions for learning about live
 objects, including modules, classes, instances, functions, and

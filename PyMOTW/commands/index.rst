@@ -6,7 +6,7 @@ commands -- Run external shell commands
     :synopsis: Run external shell commands and capture the status code and output.
 
 :Purpose: The commands module contains utility functions for working with shell command output under Unix.
-:Python Version: 1.4
+:Available In: 1.4
 
 
 .. warning::

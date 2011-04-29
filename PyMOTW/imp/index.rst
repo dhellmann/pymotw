@@ -7,7 +7,7 @@ imp -- Interface to module import mechanism.
 
 :Purpose: 
     The imp module exposes the implementation of Python's import statement.
-:Python Version: At least 2.2.1
+:Available In: At least 2.2.1
 
 The imp module includes functions that expose part of the underlying
 implementation of Python's import mechanism for loading code in packages and

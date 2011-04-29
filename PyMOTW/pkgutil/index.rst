@@ -6,7 +6,7 @@
     :synopsis: Package utilities
 
 :Purpose: Add to the module search path for a specific package and work with resources included in a package.
-:Python Version: 2.3 and later
+:Available In: 2.3 and later
 
 The :mod:`pkgutil` module includes functions for working with Python
 packages.  :func:`extend_path` changes the import path for sub-modules

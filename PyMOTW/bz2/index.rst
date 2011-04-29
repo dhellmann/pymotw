@@ -6,7 +6,7 @@ bz2 -- bzip2 compression
     :synopsis: bzip2 compression
 
 :Purpose: bzip2 compression
-:Python Version: 2.3 and later
+:Available In: 2.3 and later
 
 The :mod:`bz2` module is an interface for the bzip2 library, used to
 compress data for storage or transmission.  There are three APIs

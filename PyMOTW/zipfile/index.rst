@@ -6,7 +6,7 @@ zipfile -- Read and write ZIP archive files
     :synopsis: Read and write ZIP archive files.
 
 :Purpose: Read and write ZIP archive files.
-:Python Version: 1.6 and later
+:Available In: 1.6 and later
 
 The :mod:`zipfile` module can be used to manipulate ZIP archive files.
 

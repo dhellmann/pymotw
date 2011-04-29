@@ -6,7 +6,7 @@ asyncore -- Asynchronous I/O handler
     :synopsis: Asynchronous I/O handler
 
 :Purpose: Asynchronous I/O handler
-:Python Version: 1.5.2 and later
+:Available In: 1.5.2 and later
 
 The asyncore module includes tools for working with I/O objects such as sockets so they can be managed asynchronously (instead of, for example, using threads).  The main class provided is :class:`dispatcher`, a wrapper around a socket that provides hooks for handling events like connecting, reading, and writing when invoked from the main loop function, :func:`loop`.
 

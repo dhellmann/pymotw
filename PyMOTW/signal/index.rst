@@ -6,7 +6,7 @@ signal -- Receive notification of asynchronous system events
     :synopsis: Receive notification of asynchronous system events
 
 :Purpose: Receive notification of asynchronous system events
-:Python Version: 1.4 and later
+:Available In: 1.4 and later
 
 .. note::
 

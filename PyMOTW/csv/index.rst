@@ -6,7 +6,7 @@ csv -- Comma-separated value files
     :synopsis: Read and write comma separated value files.
 
 :Purpose: Read and write comma separated value files.
-:Python Version: 2.3 and later
+:Available In: 2.3 and later
 
 The :mod:`csv` module is useful for working with data exported from
 spreadsheets and databases into text files formatted with fields and

@@ -6,7 +6,7 @@ dbm -- Simple database interface
     :synopsis: Simple database interface
 
 :Purpose: Provides an interface to the Unix (n)dbm library.
-:Python Version: 1.4 and later
+:Available In: 1.4 and later
 
 The :mod:`dbm` module provides an interface to one of the dbm
 libraries, depending on how the module was configured during

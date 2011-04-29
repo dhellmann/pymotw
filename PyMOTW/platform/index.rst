@@ -6,7 +6,7 @@
     :synopsis: Access system hardware, OS, and interpreter version information.
 
 :Purpose: Probe the underlying platform's hardware, operating system, and interpreter version information.
-:Python Version: 2.3 and later
+:Available In: 2.3 and later
 
 Although Python is often used as a cross-platform language, it is
 occasionally necessary to know what sort of system a program is

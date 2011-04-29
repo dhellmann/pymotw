@@ -6,7 +6,7 @@
     :synopsis: Embedded relational database
 
 :Purpose: Implements an embedded relational database with SQL support.
-:Python Version: 2.5 and later
+:Available In: 2.5 and later
 
 
 The :mod:`sqlite3` module provides a DB-API 2.0 compliant interface to

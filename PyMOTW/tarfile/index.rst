@@ -6,7 +6,7 @@ tarfile -- Tar archive access
     :synopsis: Tar archive access
 
 :Purpose: Tar archive access.
-:Python Version: 2.3 and later
+:Available In: 2.3 and later
 
 The :mod:`tarfile` module provides read and write access to UNIX tar
 archives, including compressed files.  In addition to the POSIX

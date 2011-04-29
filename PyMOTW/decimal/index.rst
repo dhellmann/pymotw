@@ -6,7 +6,7 @@ decimal -- Fixed and floating point math
     :synopsis: Fixed and floating point math
 
 :Purpose: Decimal arithmetic using fixed and floating point numbers
-:Python Version: 2.4 and later
+:Available In: 2.4 and later
 
 The :mod:`decimal` module implements fixed and floating point
 arithmetic using the model familiar to most people, rather than the

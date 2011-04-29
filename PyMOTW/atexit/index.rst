@@ -6,7 +6,7 @@ atexit -- Call functions when a program is closing down
     :synopsis: Register function(s) to be called when a program is closing down.
 
 :Purpose: Register function(s) to be called when a program is closing down.
-:Python Version: 2.1.3 and later
+:Available In: 2.1.3 and later
 
 The atexit module provides a simple interface to register functions to be
 called when a program closes down normally. The sys module also provides a

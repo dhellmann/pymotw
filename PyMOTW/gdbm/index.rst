@@ -6,7 +6,7 @@ gdbm -- GNU's version of the dbm library
     :synopsis: GNU's version of the dbm library
 
 :Purpose: GNU's version of the dbm library
-:Python Version: 1.4 and later
+:Available In: 1.4 and later
 
 :mod:`gdbm` is GNU's updated version of the :mod:`dbm` library.  It follows the same semantics as the other DBM implementations described under :mod:`anydbm`, with a few changes to the *flags* supported by ``open()``.
 

@@ -6,7 +6,7 @@ textwrap -- Formatting text paragraphs
     :synopsis: Formatting text by adjusting where line breaks occur in a paragraph.
 
 :Purpose: Formatting text by adjusting where line breaks occur in a paragraph.
-:Python Version: 2.5
+:Available In: 2.5
 
 The :mod:`textwrap` module can be used to format text for output in
 situations where pretty-printing is desired. It offers programmatic

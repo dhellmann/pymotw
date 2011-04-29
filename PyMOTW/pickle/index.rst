@@ -9,7 +9,7 @@ pickle and cPickle -- Python object serialization
     :synopsis: Python object serialization
 
 :Purpose: Python object serialization
-:Python Version: pickle at least 1.4, cPickle 1.5
+:Available In: pickle at least 1.4, cPickle 1.5
 
 The :mod:`pickle` module implements an algorithm for turning an
 arbitrary Python object into a series of bytes.  This process is also

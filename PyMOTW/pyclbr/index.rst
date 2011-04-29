@@ -6,7 +6,7 @@ pyclbr -- Python class browser support
     :synopsis: Python class browser support
 
 :Purpose: Implements an API suitable for use in a source code editor for making a class browser.
-:Python Version: 1.4 and later
+:Available In: 1.4 and later
 
 :mod:`pyclbr` can scan Python source to find classes and stand-alone functions.  The information about class, method, and function names and line numbers is gathered using :mod:`tokenize` *without* importing the code.
 

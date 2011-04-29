@@ -6,7 +6,7 @@
     :synopsis: Pseudorandom number generators
 
 :Purpose: Implements several types of pseudorandom number generators.
-:Python Version: 1.4 and later
+:Available In: 1.4 and later
 
 The :mod:`random` module provides a fast pseudorandom number generator
 based on the *Mersenne Twister* algorithm.  Originally developed to

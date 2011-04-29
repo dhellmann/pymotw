@@ -6,7 +6,7 @@ gzip -- Read and write GNU zip files
     :synopsis: Read and write gzip files
 
 :Purpose: Read and write gzip files.
-:Python Version: 1.5.2 and later
+:Available In: 1.5.2 and later
 
 The gzip module provides a file-like interface to GNU zip files, using
 :mod:`zlib` to compress and uncompress the data.

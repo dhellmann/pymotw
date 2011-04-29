@@ -6,7 +6,7 @@ smtpd -- Sample SMTP Servers
     :synopsis: Includes classes for implementing SMTP servers.
 
 :Purpose: Includes classes for implementing SMTP servers.
-:Python Version: 2.1 and later
+:Available In: 2.1 and later
 
 The :mod:`smtpd` module includes classes for building simple mail
 transport protocol servers.  It is the server-side of the protocol

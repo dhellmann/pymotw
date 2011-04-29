@@ -6,7 +6,7 @@ warnings -- Non-fatal alerts
     :synopsis: Deliver non-fatal alerts to the user about issues encountered when running a program.
 
 :Purpose: Deliver non-fatal alerts to the user about issues encountered when running a program.
-:Python Version: 2.1 and later
+:Available In: 2.1 and later
 
 The :mod:`warnings` module was introduced in :pep:`230` as a way to
 warn programmers about changes in language or library features in
