@@ -8,6 +8,7 @@
 
 import glob
 import os
+import sysconfig
 
 __version__ = "$Id$"
 
@@ -36,6 +37,30 @@ else:
 # The base template needs a flag to indicate when to turn on comments
 html_context = {
     'enable_comments':True,
+    'python_version':sysconfig.get_config_vars()['py_version'],
+    }
+
+html_sidebars = {
+    'index':['sidebar_subscribe.html',
+             'sidebar_book.html',
+             'sidebar_ads.html',
+             ],
+    'about':['sidebar_subscribe.html',
+             'sidebar_toc.html',
+             'sidebar_book.html',
+             'sidebar_ads.html',
+             ],
+    '*':['sidebar_toc.html',
+         'sidebar_navigation.html',
+         'sidebar_book.html',
+         'sidebar_ads.html',
+         ],
+    '**':['sidebar_toc.html',
+          'sidebar_navigation.html',
+          'sidebar_examples.html',
+          'sidebar_book.html',
+          'sidebar_ads.html',
+          ],
     }
 
 # The TEMPLATES variable is set by the Makefile before sphinx-build is called.

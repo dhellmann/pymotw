@@ -1,0 +1,21 @@
+    <h3>Navigation</h3>
+      <p>
+    <a href="{{ pathto("contents") }}"><strong>Table of Contents</strong></a><br/>
+    {% if next or prev %}
+        {%- if prev %}
+          <a href="{{ prev.link|e }}" title="previous chapter"><strong>Previous:</strong> {{ prev.title }}</a><br/>
+        {%- endif %}
+
+        {%- if next %}
+          <a href="{{ next.link|e }}" title="next chapter"><strong>Next:</strong> {{ next.title }}</a><br/>
+        {%- endif %}
+      </p>
+    {% endif %}
+
+    {%- if show_source and has_source and sourcename %}
+      <h3>{{ _('This Page') }}</h3>
+      <p>
+      <a href="{{ pathto('_sources/' + sourcename, true)|e }}"
+               rel="nofollow">{{ _('Show Source') }}</a>
+      </p>
+    {%- endif %}
