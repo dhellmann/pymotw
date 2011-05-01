@@ -40,28 +40,48 @@ html_context = {
     'python_version':sysconfig.get_config_vars()['py_version'],
     }
 
-html_sidebars = {
-    'index':['sidebar_subscribe.html',
+if os.environ['TEMPLATES'] == 'pkg':
+    html_sidebars = {
+        'index':['sidebar_subscribe.html',
+                 'sidebar_book.html',
+                 ],
+        'about':['sidebar_subscribe.html',
+                 'sidebar_toc.html',
+                 'sidebar_book.html',
+                 ],
+        '*':['sidebar_toc.html',
+             'sidebar_navigation.html',
+             'sidebar_book.html',
+             ],
+        '**':['sidebar_toc.html',
+              'sidebar_navigation.html',
+              'sidebar_examples.html',
+              'sidebar_book.html',
+              ],
+        }
+else:
+    html_sidebars = {
+        'index':['sidebar_subscribe.html',
+                 'sidebar_book.html',
+                 'sidebar_ads.html',
+                 ],
+        'about':['sidebar_subscribe.html',
+                 'sidebar_toc.html',
+                 'sidebar_book.html',
+                 'sidebar_ads.html',
+                 ],
+        '*':['sidebar_toc.html',
+             'sidebar_navigation.html',
              'sidebar_book.html',
              'sidebar_ads.html',
              ],
-    'about':['sidebar_subscribe.html',
-             'sidebar_toc.html',
-             'sidebar_book.html',
-             'sidebar_ads.html',
-             ],
-    '*':['sidebar_toc.html',
-         'sidebar_navigation.html',
-         'sidebar_book.html',
-         'sidebar_ads.html',
-         ],
-    '**':['sidebar_toc.html',
-          'sidebar_navigation.html',
-          'sidebar_examples.html',
-          'sidebar_book.html',
-          'sidebar_ads.html',
-          ],
-    }
+        '**':['sidebar_toc.html',
+              'sidebar_navigation.html',
+              'sidebar_examples.html',
+              'sidebar_book.html',
+              'sidebar_ads.html',
+              ],
+        }
 
 # The TEMPLATES variable is set by the Makefile before sphinx-build is called.
 templates_path = ['../sphinx/templates/%s' % os.environ['TEMPLATES'],
