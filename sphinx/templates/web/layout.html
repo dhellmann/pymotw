@@ -95,9 +95,9 @@
 {% block footer %}
 <p>
   {%- if hasdoc('copyright') %}
-    <a href="{{ pathto('copyright') }}">&copy; Copyright </a> {{ copyright }}.
+    <a href="{{ pathto('copyright') }}">&copy; Copyright </a> <a rel="author" href="/about/index.html">{{ copyright }}</a>.
   {%- else %}
-    &copy; Copyright {{ copyright }}.
+    &copy; Copyright <a rel="author" href="/about/index.html">{{ copyright }}</a>.
   {%- endif %}
     | <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/us/" rel="license"><img alt="Creative Commons License" style="border-width:0; align: center;" width="80" height="15" src="http://i.creativecommons.org/l/by-nc-sa/3.0/us/80x15.png"/></a>
   {%- if last_updated %}
