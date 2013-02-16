@@ -8,7 +8,7 @@ the habit of writing something on a regular basis.  The focus of the
 series is building a set of example code for the modules in the
 `Python <http://www.python.org/>`_ standard library.
 
-See the project home page at http://www.doughellmann.com/PyMOTW/ for
+See the project home page at http://pymotw.com/ for
 updates and the latest release.  Source code is available from
 http://bitbucket.org/dhellmann/pymotw/.
 
@@ -136,7 +136,7 @@ Translations and Other Versions
   http://denklab.org/articles/category/pymotw/, and there is an `RSS
   feed <http://denklab.org/feeds/articles/category/pymotw/>`_.
 
-`Japanese <http://www.doughellmann.com/PyMOTW-ja/>`_
+`Japanese <http://ja.pymotw.com/>`_
 
   `Tetsuya Morimoto <http://d.hatena.ne.jp/t2y-1979/>`_ is creating a
   Japanese translation. Tetsuya has used Python for 1.5 years. He has
@@ -147,7 +147,7 @@ Translations and Other Versions
   member of `Python Japan User's Group <http://www.python.jp/Zope/>`_
   and `Python Code Reading
   <http://groups.google.co.jp/group/python-code-reading>`_. The home
-  page for his translation is http://www.doughellmann.com/PyMOTW-ja/.
+  page for his translation is http://ja.pymotw.com/.
 
 
 Compendiums
