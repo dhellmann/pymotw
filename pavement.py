@@ -377,18 +377,40 @@ def installwebsite(options):
     remake_directories(options.pdf.builddir, options.website.builddir)
     # Rebuild
     website(options)
+    # Rebuild the site-map
+    buildsitemap(options)
     # Install
     rsyncwebsite(options)
+    # Update Google
+    notify_google(options)
     return
-    
+
+
 @task
 def rsyncwebsite(options):
     # Copy to the server
     os.environ['RSYNC_RSH'] = '/usr/bin/ssh'
     src_path = path(options.website.builddir) / 'html'
-    sh('(cd %s; rsync --archive --delete --verbose . %s:%s)' % 
+    sh('(cd %s; rsync --archive --delete --verbose . %s:%s)' %
         (src_path, options.website.server, options.website.server_path))
     return
+
+
+@task
+def buildsitemap(options):
+    sh('./bin/sitemap_gen.py --testing --config=%s' %
+       options.sitemap_gen.config)
+    return
+
+
+@task
+def notify_google(options):
+    # Tell Google there is a new sitemap. This is sort of hacky,
+    # since we regenerate the sitemap locally but Google fetches
+    # the one we just copied to the remote site.
+    sh('./bin/sitemap_gen.py --config=%s' % options.sitemap_gen.config)
+    return
+
 
 @task
 def webtemplatebase():
@@ -411,11 +433,6 @@ def webhtml(options):
     paverutils.run_sphinx(options, 'website')
     sh('rsync --archive --verbose "%s" "%s"' % (options.website.css_source, options.website.css_dest))
     sh('rsync --archive --verbose "%s" "%s"' % (options.website.images_source, options.website.images_dest))
-    return
-
-@task
-def sitemap_gen():
-    sh('sitemap_gen.py --testing --config=%s' % options.sitemap_gen.config)
     return
             
 
