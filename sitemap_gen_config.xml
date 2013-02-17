@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
+
+
   sitemap_gen.py example configuration script
 
   This file specifies a set of sample input parameters for the
@@ -32,8 +34,8 @@
                  file paths.  (Example: "UTF-8")
 -->
 <site
-  base_url="http://www.doughellmann.com/PyMOTW/"
-  store_into="./web/html/sitemap.xml"
+  base_url="http://pymotw.com/"
+  store_into="./sitemap.xml"
   verbose="1"
   >
 
@@ -92,7 +94,6 @@
     Optional attributes:
       default_file - name of the index or default file for directory URLs
   -->
-  <directory  path="./web/html/"    url="http://www.doughellmann.com/PyMOTW/" />
   <!--
   <directory
      path="/var/www/docroot"
@@ -100,6 +101,9 @@
      default_file="index.html"
   />
   -->
+
+  <directory  path="/home/dhellmann/pymotw.com/"
+              url="http://pymotw.com/" />
 
   <!-- ** MODIFY or DELETE **
     "accesslog" nodes tell the script to scan webserver log files to
@@ -164,11 +168,9 @@
   <filter  action="drop"  type="wildcard"  pattern="*~"           />
   <filter  action="drop"  type="wildcard"  pattern="*rst"           />
   <filter  action="drop"  type="wildcard"  pattern="*txt"           />
+  <filter  action="drop"  type="wildcard"  pattern="*_sources"           />
 
   <!-- Exclude URLs within UNIX-style hidden files or directories       -->
   <filter  action="drop"  type="regexp"    pattern="/\.[^/]*"     />
-  <filter  action="drop"  type="regexp"    pattern="/.*/_sources/.*"     />
-  <filter  action="drop"  type="regexp"    pattern="/.*/_images/.*"     />
-  <filter  action="drop"  type="regexp"    pattern="/.*/_static/.*"     />
 
 </site>
