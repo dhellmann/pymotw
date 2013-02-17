@@ -34,8 +34,8 @@
                  file paths.  (Example: "UTF-8")
 -->
 <site
-  base_url="http://pymotw.com/"
-  store_into="./sitemap.xml"
+  base_url="http://pymotw.com/2"
+  store_into="web/html/sitemap.xml"
   verbose="1"
   >
 
@@ -102,8 +102,8 @@
   />
   -->
 
-  <directory  path="/home/dhellmann/pymotw.com/"
-              url="http://pymotw.com/" />
+  <directory  path="web/html"
+              url="http://pymotw.com/2" />
 
   <!-- ** MODIFY or DELETE **
     "accesslog" nodes tell the script to scan webserver log files to
