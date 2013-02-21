@@ -73,6 +73,15 @@ in the file.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'mmap_read.py'))
 .. }}}
+
+::
+
+	$ python mmap_read.py
+	
+	First 10 bytes via read : Lorem ipsu
+	First 10 bytes via slice: Lorem ipsu
+	2nd   10 bytes via read : m dolor si
+
 .. {{{end}}}
 
 Writing
@@ -96,6 +105,16 @@ The word "consectetuer" is replaced in the middle of the first line:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'mmap_write_slice.py'))
 .. }}}
+
+::
+
+	$ python mmap_write_slice.py
+	
+	Looking for    : consectetuer
+	Replacing with : reutetcesnoc
+	Before: Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
+	After : Lorem ipsum dolor sit amet, reutetcesnoc adipiscing elit. Donec
+
 .. {{{end}}}
 
 ACCESS_COPY Mode
@@ -115,6 +134,17 @@ maintained separately.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'mmap_write_copy.py'))
 .. }}}
+
+::
+
+	$ python mmap_write_copy.py
+	
+	Memory Before: Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
+	File Before  : Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
+	
+	Memory After : Lorem ipsum dolor sit amet, reutetcesnoc adipiscing elit. Donec
+	File After   : Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
+
 .. {{{end}}}
 
 Regular Expressions
@@ -137,6 +167,14 @@ spaces so the result prints on a single line.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'mmap_regex.py'))
 .. }}}
+
+::
+
+	$ python mmap_regex.py
+	
+	Nulla facilisi.
+	Nulla feugiat augue eleifend nulla.
+
 .. {{{end}}}
 
 

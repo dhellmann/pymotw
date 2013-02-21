@@ -44,6 +44,15 @@ specified as argument to ``open()``, whether reading or writing.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'pipes_simple_write.py'))
 .. }}}
+
+::
+
+	$ python pipes_simple_write.py
+	
+	+ cat -
+	cat - >/var/folders/5q/8gk0wq888xlggz008k8dr7180000hg/T/tmpLXAYxI
+	Some text
+
 .. {{{end}}}
 
 Reading from a pipeline works basically the same way, with a few
@@ -60,6 +69,15 @@ We can read the results from the pipeline directly.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'pipes_simple_read.py'))
 .. }}}
+
+::
+
+	$ python pipes_simple_read.py
+	
+	+ cat -
+	cat - </var/folders/5q/8gk0wq888xlggz008k8dr7180000hg/T/tmpeqkbXa
+	Some text
+
 .. {{{end}}}
 
 Using Files Instead of Streams
@@ -86,6 +104,23 @@ the input and output of the step.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'pipes_file_kind.py'))
 .. }}}
+
+::
+
+	$ python pipes_file_kind.py
+	
+	+ trap 'rm -f /var/folders/5q/8gk0wq888xlggz008k8dr7180000hg/T/tmpMlX74D; exit' 1 2 3 13 14 15
+	+ cat
+	+ IN=/var/folders/5q/8gk0wq888xlggz008k8dr7180000hg/T/tmpMlX74D
+	+ OUT=/var/folders/5q/8gk0wq888xlggz008k8dr7180000hg/T/tmp4mLFvP
+	+ cat /var/folders/5q/8gk0wq888xlggz008k8dr7180000hg/T/tmpMlX74D
+	+ rm -f /var/folders/5q/8gk0wq888xlggz008k8dr7180000hg/T/tmpMlX74D
+	trap 'rm -f /var/folders/5q/8gk0wq888xlggz008k8dr7180000hg/T/tmpMlX74D; exit' 1 2 3 13 14 15
+	cat >/var/folders/5q/8gk0wq888xlggz008k8dr7180000hg/T/tmpMlX74D
+	IN=/var/folders/5q/8gk0wq888xlggz008k8dr7180000hg/T/tmpMlX74D; OUT=/var/folders/5q/8gk0wq888xlggz008k8dr7180000hg/T/tmp4mLFvP; cat $IN > $OUT
+	rm -f /var/folders/5q/8gk0wq888xlggz008k8dr7180000hg/T/tmpMlX74D
+	Some text
+
 .. {{{end}}}
 
 And the input and output *kind* values can be mixed, so that different
@@ -102,6 +137,25 @@ fails in the middle or the shell is killed.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'pipes_mixed_kinds.py'))
 .. }}}
+
+::
+
+	$ python pipes_mixed_kinds.py
+	
+	+ trap 'rm -f /var/folders/5q/8gk0wq888xlggz008k8dr7180000hg/T/tmpWSCqXa; exit' 1 2 3 13 14 15
+	+ cat
+	+ IN=/var/folders/5q/8gk0wq888xlggz008k8dr7180000hg/T/tmpWSCqXa
+	+ cat /var/folders/5q/8gk0wq888xlggz008k8dr7180000hg/T/tmpWSCqXa
+	+ OUT=/var/folders/5q/8gk0wq888xlggz008k8dr7180000hg/T/tmpvccJBL
+	+ cat -
+	+ rm -f /var/folders/5q/8gk0wq888xlggz008k8dr7180000hg/T/tmpWSCqXa
+	trap 'rm -f /var/folders/5q/8gk0wq888xlggz008k8dr7180000hg/T/tmpWSCqXa; exit' 1 2 3 13 14 15
+	cat >/var/folders/5q/8gk0wq888xlggz008k8dr7180000hg/T/tmpWSCqXa
+	IN=/var/folders/5q/8gk0wq888xlggz008k8dr7180000hg/T/tmpWSCqXa; cat $IN |
+	{ OUT=/var/folders/5q/8gk0wq888xlggz008k8dr7180000hg/T/tmpvccJBL; cat - > $OUT; }
+	rm -f /var/folders/5q/8gk0wq888xlggz008k8dr7180000hg/T/tmpWSCqXa
+	Some text
+
 .. {{{end}}}
 
 
@@ -142,6 +196,84 @@ output is easy:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'pipes_multistep.py'))
 .. }}}
+
+::
+
+	$ python pipes_multistep.py
+	
+	SANDBOXES:
+	['AstronomyPictureOfTheDay',
+	 'aspell',
+	 'athensdocket',
+	 'backups',
+	 'bartender',
+	 'billsapp',
+	 'bpython',
+	 'cliff',
+	 'commandlineapp',
+	 'csvcat',
+	 'd765e36b407a6270',
+	 'dh-akanda',
+	 'dh-betauser-creator',
+	 'dh-ceilometer',
+	 'dh-ceilometerclient',
+	 'dh-keystone',
+	 'dh-openstackclient',
+	 'dictprofilearticle',
+	 'distutils2',
+	 'docket',
+	 'docket-pyparsing',
+	 'dotfiles',
+	 'dreamhost',
+	 'dreamhost-lunch-and-learn',
+	 'emacs_tools',
+	 'extensions',
+	 'feedcache',
+	 'fuzzy',
+	 'git_tools',
+	 'hidden_stdlib',
+	 'ical2org',
+	 'mytweets',
+	 'ndn-billing-usage',
+	 'ndn-datamodels-python',
+	 'ndn-dhc-dude',
+	 'ndn-ndn',
+	 'nose-testconfig',
+	 'openstack',
+	 'personal',
+	 'phonetic-hashing',
+	 'pinboard_tools',
+	 'psfblog',
+	 'psfboard',
+	 'pyatl',
+	 'pyatl-readlines',
+	 'pycon2012',
+	 'pycon2013-plugins',
+	 'pycon2013-sphinx',
+	 'pydotorg',
+	 'pymotw',
+	 'pymotw-book',
+	 'pymotw-ja',
+	 'python-dev',
+	 'pywebdav',
+	 'racemi',
+	 'racemi_status',
+	 'reporting_server',
+	 'rst2blogger',
+	 'rst2marsedit',
+	 'sobell-book',
+	 'sphinxcontrib-bitbucket',
+	 'sphinxcontrib-fulltoc',
+	 'sphinxcontrib-spelling',
+	 'sphinxcontrib-sqltable',
+	 'stevedore',
+	 'summerfield-book',
+	 'svnautobackup',
+	 'virtualenvwrapper',
+	 'website',
+	 'wsme',
+	 'zenofpy']
+
 .. {{{end}}}
 
 
@@ -160,6 +292,19 @@ through the pipeline and create an output file for reading.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'pipes_copy.py'))
 .. }}}
+
+::
+
+	$ python pipes_copy.py
+	
+	+ IN=lorem.txt
+	+ grep -n tortor lorem.txt
+	IN=lorem.txt; grep -n tortor $IN >/var/folders/5q/8gk0wq888xlggz008k8dr7180000hg/T/tmpjlfxq6
+	3:elementum elit tortor eu quam. Duis tincidunt nisi ut ante. Nulla
+	6:lacus. Praesent placerat tortor sed nisl. Nunc blandit diam egestas
+	11:eget velit auctor tortor blandit sollicitudin. Suspendisse imperdiet
+	
+
 .. {{{end}}}
 
 
@@ -182,6 +327,14 @@ pipelines that perform the same basic function with small variations.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'pipes_clone.py'))
 .. }}}
+
+::
+
+	$ python pipes_clone.py
+	
+	  "py":  1381
+	"perl":    71
+
 .. {{{end}}}
 
 

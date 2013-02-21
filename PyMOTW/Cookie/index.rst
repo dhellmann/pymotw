@@ -35,6 +35,13 @@ part of the HTTP response:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'Cookie_setheaders.py'))
 .. }}}
+
+::
+
+	$ python Cookie_setheaders.py
+	
+	Set-Cookie: mycookie=cookie_value
+
 .. {{{end}}}
 
 
@@ -56,6 +63,38 @@ and time when the cookie should be discarded.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'Cookie_Morsel.py'))
 .. }}}
+
+::
+
+	$ python Cookie_Morsel.py
+	
+	Set-Cookie: encoded_value_cookie="\"cookie_value\""; Comment=Notice that this cookie value has escaped quotes
+	Set-Cookie: expires_at_time=cookie_value; expires=Sat, 14 Feb 2009 19:30:14
+	Set-Cookie: restricted_cookie=cookie_value; Domain=PyMOTW; Path=/sub/path; secure
+	Set-Cookie: with_max_age="expires in 5 minutes"; Max-Age=300
+	
+	key = restricted_cookie
+	  value = cookie_value
+	  coded_value = cookie_value
+	  domain = PyMOTW
+	  secure = True
+	  path = /sub/path
+	
+	key = with_max_age
+	  value = expires in 5 minutes
+	  coded_value = "expires in 5 minutes"
+	  max-age = 300
+	
+	key = encoded_value_cookie
+	  value = "cookie_value"
+	  coded_value = "\"cookie_value\""
+	  comment = Notice that this cookie value has escaped quotes
+	
+	key = expires_at_time
+	  value = cookie_value
+	  coded_value = cookie_value
+	  expires = Sat, 14 Feb 2009 19:30:14
+
 .. {{{end}}}
 
 
@@ -92,6 +131,22 @@ cookie that are not strings are converted automatically.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'Cookie_coded_value.py'))
 .. }}}
+
+::
+
+	$ python Cookie_coded_value.py
+	
+	integer
+	  Set-Cookie: integer=5
+	  value=5 <type 'str'>
+	  coded_value=5
+	
+	string_with_quotes
+	  Set-Cookie: string_with_quotes="He said\054 \"Hello\054 World!\""
+	  value=He said, "Hello, World!" <type 'str'>
+	  coded_value="He said\054 \"Hello\054 World!\""
+	
+
 .. {{{end}}}
 
 Receiving and Parsing Cookie Headers
@@ -115,6 +170,19 @@ the SimpleCookie when instantiating it, or use the load() method.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'Cookie_parse.py'))
 .. }}}
+
+::
+
+	$ python Cookie_parse.py
+	
+	From constructor:
+	Set-Cookie: integer=5
+	Set-Cookie: string_with_quotes="He said, \"Hello, World!\""
+	
+	From load():
+	Set-Cookie: integer=5
+	Set-Cookie: string_with_quotes="He said, \"Hello, World!\""
+
 .. {{{end}}}
 
 Alternative Output Formats
@@ -131,6 +199,25 @@ js_output() method.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'Cookie_js_output.py'))
 .. }}}
+
+::
+
+	$ python Cookie_js_output.py
+	
+	
+	        <script type="text/javascript">
+	        <!-- begin hiding
+	        document.cookie = "another_cookie=\"second value\"";
+	        // end hiding -->
+	        </script>
+	        
+	        <script type="text/javascript">
+	        <!-- begin hiding
+	        document.cookie = "mycookie=cookie_value";
+	        // end hiding -->
+	        </script>
+	        
+
 .. {{{end}}}
 
 

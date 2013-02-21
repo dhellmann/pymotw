@@ -70,6 +70,16 @@ Then when your program runs, the message is printed:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'warnings_warn.py'))
 .. }}}
+
+::
+
+	$ python warnings_warn.py
+	
+	warnings_warn.py:13: UserWarning: This is a warning message
+	  warnings.warn('This is a warning message')
+	Before the warning
+	After the warning
+
 .. {{{end}}}
 
 Even though the warning is printed, the default behavior is to continue past
@@ -86,6 +96,17 @@ is issued.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'warnings_warn_raise.py', ignore_error=True))
 .. }}}
+
+::
+
+	$ python warnings_warn_raise.py
+	
+	Before the warning
+	Traceback (most recent call last):
+	  File "warnings_warn_raise.py", line 15, in <module>
+	    warnings.warn('This is a warning message')
+	UserWarning: This is a warning message
+
 .. {{{end}}}
 
 
@@ -96,6 +117,17 @@ raise an error on :class:`UserWarning`, we see the exception:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-W "error::UserWarning::0" warnings_warn.py', ignore_error=True))
 .. }}}
+
+::
+
+	$ python -W "error::UserWarning::0" warnings_warn.py
+	
+	Before the warning
+	Traceback (most recent call last):
+	  File "warnings_warn.py", line 13, in <module>
+	    warnings.warn('This is a warning message')
+	UserWarning: This is a warning message
+
 .. {{{end}}}
 
 Since I left the fields for *message* and *module* blank, they were
@@ -119,6 +151,14 @@ compiled to look for case insensitive matches.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'warnings_filterwarnings_message.py'))
 .. }}}
+
+::
+
+	$ python warnings_filterwarnings_message.py
+	
+	warnings_filterwarnings_message.py:14: UserWarning: Show this message
+	  warnings.warn('Show this message')
+
 .. {{{end}}}
 
 Running this source from the command line:
@@ -132,6 +172,14 @@ yields:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-W "ignore:do not:UserWarning::0" warnings_filtering.py'))
 .. }}}
+
+::
+
+	$ python -W "ignore:do not:UserWarning::0" warnings_filtering.py
+	
+	warnings_filtering.py:12: UserWarning: Show this message
+	  warnings.warn('Show this message')
+
 .. {{{end}}}
 
 The same pattern matching rules apply to the name of the source module
@@ -148,6 +196,12 @@ Since the filter is in place, no warnings are emitted when
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'warnings_filterwarnings_module.py'))
 .. }}}
+
+::
+
+	$ python warnings_filterwarnings_module.py
+	
+
 .. {{{end}}}
 
 To suppress only the warning on line 14 of ``warnings_filtering``:
@@ -159,6 +213,16 @@ To suppress only the warning on line 14 of ``warnings_filtering``:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'warnings_filterwarnings_lineno.py'))
 .. }}}
+
+::
+
+	$ python warnings_filterwarnings_lineno.py
+	
+	/Users/dhellmann/Documents/PyMOTW/src/PyMOTW/warnings/warnings_filtering.py:12: UserWarning: Show this message
+	  warnings.warn('Show this message')
+	/Users/dhellmann/Documents/PyMOTW/src/PyMOTW/warnings/warnings_filtering.py:13: UserWarning: Do not show this message
+	  warnings.warn('Do not show this message')
+
 .. {{{end}}}
 
 
@@ -176,6 +240,14 @@ and line number.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'warnings_repeated.py'))
 .. }}}
+
+::
+
+	$ python warnings_repeated.py
+	
+	warnings_repeated.py:13: UserWarning: This is a warning!
+	  warnings.warn('This is a warning!')
+
 .. {{{end}}}
 
 
@@ -189,6 +261,14 @@ different locations.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'warnings_once.py'))
 .. }}}
+
+::
+
+	$ python warnings_once.py
+	
+	warnings_once.py:14: UserWarning: This is a warning!
+	  warnings.warn('This is a warning!')
+
 .. {{{end}}}
 
 Similarly, "module" will suppress repeated messages from the same module, no
@@ -213,6 +293,13 @@ the rest of the log messages.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'warnings_showwarning.py'))
 .. }}}
+
+::
+
+	$ python warnings_showwarning.py
+	
+	WARNING:root:warnings_showwarning.py:24: UserWarning:This is a warning message
+
 .. {{{end}}}
 
 Formatting
@@ -228,6 +315,15 @@ formatting, you can replace :func:`formatwarning()` instead.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'warnings_formatwarning.py'))
 .. }}}
+
+::
+
+	$ python warnings_formatwarning.py
+	
+	warnings_formatwarning.py:15: UserWarning: This is a warning message, before
+	  warnings.warn('This is a warning message, before')
+	 warnings_formatwarning.py:17: UserWarning:This is a warning message, after
+
 .. {{{end}}}
 
 Stack Level in Warnings
@@ -252,6 +348,14 @@ levels, one for itself and one for :func:`old_function()`.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'warnings_warn_stacklevel.py'))
 .. }}}
+
+::
+
+	$ python warnings_warn_stacklevel.py
+	
+	warnings_warn_stacklevel.py:18: UserWarning: old_function() is deprecated, use new_function() instead
+	  old_function()
+
 .. {{{end}}}
 
 .. seealso::

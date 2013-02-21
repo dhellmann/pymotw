@@ -30,6 +30,19 @@ The contents of :data:`sys.modules` change as new modules are imported.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_modules.py'))
 .. }}}
+
+::
+
+	$ python sys_modules.py
+	
+	UserDict, __builtin__, __main__, _abcoll, _codecs, _sre, _warnings,
+	_weakref, _weakrefset, abc, codecs, copy_reg, encodings,
+	encodings.__builtin__, encodings.aliases, encodings.codecs,
+	encodings.encodings, encodings.utf_8, errno, exceptions, genericpath,
+	linecache, os, os.path, posix, posixpath, re, signal, site,
+	sphinxcontrib, sre_compile, sre_constants, sre_parse, stat, string,
+	strop, sys, textwrap, types, warnings, zipimport
+
 .. {{{end}}}
 
 
@@ -55,6 +68,32 @@ installer for OS X.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_builtins.py'))
 .. }}}
+
+::
+
+	$ python sys_builtins.py
+	
+	__builtin__
+	__main__
+	_ast
+	_codecs
+	_sre
+	_symtable
+	_warnings
+	_weakref
+	errno
+	exceptions
+	gc
+	imp
+	marshal
+	posix
+	pwd
+	signal
+	sys
+	thread
+	xxsubtype
+	zipimport
+
 .. {{{end}}}
 
 
@@ -126,6 +165,17 @@ module may be loaded the second time.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_path_modify.py'))
 .. }}}
+
+::
+
+	$ python sys_path_modify.py
+	
+	Base directory: .
+	Imported example from: ./package_dir_a/example.pyc
+		This is example A
+	Reloaded example from: ./package_dir_b/example.pyc
+		This is example B
+
 .. {{{end}}}
 
 
@@ -166,6 +216,17 @@ real path on the filesystem. This test prevents the
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_path_hooks_noisy.py'))
 .. }}}
+
+::
+
+	$ python sys_path_hooks_noisy.py
+	
+	Checking NoisyImportFinder support for NoisyImportFinder_PATH_TRIGGER
+	NoisyImportFinder looking for "target_module"
+	Checking NoisyImportFinder support for /Users/dhellmann/Documents/PyMOTW/src/PyMOTW/sys
+	NoisyImportFinder does not work for /Users/dhellmann/Documents/PyMOTW/src/PyMOTW/sys
+	Import failed: No module named target_module
+
 .. {{{end}}}
 
 Importing from a Shelve
@@ -190,6 +251,19 @@ this.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_shelve_importer_create.py'))
 .. }}}
+
+::
+
+	$ python sys_shelve_importer_create.py
+	
+	Created /tmp/pymotw_import_example.shelve with:
+		data:README
+		package.__init__
+		package.module1
+		package.subpackage.__init__
+		package.subpackage.module2
+		package.with_error
+
 .. {{{end}}}
 
 Next, it needs to provide finder and loader classes that know how to
@@ -218,6 +292,35 @@ module-level attributes.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_shelve_importer_package.py', break_lines_at=70))
 .. }}}
+
+::
+
+	$ python sys_shelve_importer_package.py
+	
+	Import of "package":
+	new shelf added to import path: /tmp/pymotw_import_example.shelve
+	looking for "package" in /tmp/pymotw_import_example.shelve ... found i
+	t as package.__init__
+	loading source for "package" from shelf
+	creating a new module object for "package"
+	adding path for package
+	execing source...
+	package imported
+	done
+	
+	Examine package details:
+	  message    : This message is in package.__init__
+	  __name__   : package
+	  __package__: 
+	  __file__   : /tmp/pymotw_import_example.shelve/package
+	  __path__   : ['/tmp/pymotw_import_example.shelve']
+	  __loader__ : <sys_shelve_importer.ShelveLoader object at 0x100473950
+	>
+	
+	Global settings:
+	sys.modules entry: <module 'package' from '/tmp/pymotw_import_example.
+	shelve/package'>
+
 .. {{{end}}}
 
 Packages
@@ -232,6 +335,68 @@ The loading of other modules and sub-packages proceeds in the same way.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_shelve_importer_module.py', break_lines_at=70))
 .. }}}
+
+::
+
+	$ python sys_shelve_importer_module.py
+	
+	
+	Import of "package.module1":
+	new shelf added to import path: /tmp/pymotw_import_example.shelve
+	looking for "package" in /tmp/pymotw_import_example.shelve ... found i
+	t as package.__init__
+	loading source for "package" from shelf
+	creating a new module object for "package"
+	adding path for package
+	execing source...
+	package imported
+	done
+	looking for "package.module1" in /tmp/pymotw_import_example.shelve ...
+	 found it as package.module1
+	loading source for "package.module1" from shelf
+	creating a new module object for "package.module1"
+	imported as regular module
+	execing source...
+	package.module1 imported
+	done
+	
+	Examine package.module1 details:
+	  message    : This message is in package.module1
+	  __name__   : package.module1
+	  __package__: package
+	  __file__   : /tmp/pymotw_import_example.shelve/package.module1
+	  __path__   : /tmp/pymotw_import_example.shelve
+	  __loader__ : <sys_shelve_importer.ShelveLoader object at 0x100473a90
+	>
+	
+	Import of "package.subpackage.module2":
+	looking for "package.subpackage" in /tmp/pymotw_import_example.shelve 
+	... found it as package.subpackage.__init__
+	loading source for "package.subpackage" from shelf
+	creating a new module object for "package.subpackage"
+	adding path for package
+	execing source...
+	package.subpackage imported
+	done
+	looking for "package.subpackage.module2" in /tmp/pymotw_import_example
+	.shelve ... found it as package.subpackage.module2
+	loading source for "package.subpackage.module2" from shelf
+	creating a new module object for "package.subpackage.module2"
+	imported as regular module
+	execing source...
+	package.subpackage.module2 imported
+	done
+	
+	Examine package.subpackage.module2 details:
+	  message    : This message is in package.subpackage.module2
+	  __name__   : package.subpackage.module2
+	  __package__: package.subpackage
+	  __file__   : /tmp/pymotw_import_example.shelve/package.subpackage.mo
+	dule2
+	  __path__   : /tmp/pymotw_import_example.shelve
+	  __loader__ : <sys_shelve_importer.ShelveLoader object at 0x1006db990
+	>
+
 .. {{{end}}}
 
 Reloading
@@ -251,6 +416,32 @@ reload.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_shelve_importer_reload.py', break_lines_at=70))
 .. }}}
+
+::
+
+	$ python sys_shelve_importer_reload.py
+	
+	First import of "package":
+	new shelf added to import path: /tmp/pymotw_import_example.shelve
+	looking for "package" in /tmp/pymotw_import_example.shelve ... found i
+	t as package.__init__
+	loading source for "package" from shelf
+	creating a new module object for "package"
+	adding path for package
+	execing source...
+	package imported
+	done
+	
+	Reloading "package":
+	looking for "package" in /tmp/pymotw_import_example.shelve ... found i
+	t as package.__init__
+	loading source for "package" from shelf
+	reusing existing module from previous import of "package"
+	adding path for package
+	execing source...
+	package imported
+	done
+
 .. {{{end}}}
 
 Import Errors
@@ -268,6 +459,24 @@ Other errors during the import are propagated.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_shelve_importer_missing.py', break_lines_at=70))
 .. }}}
+
+::
+
+	$ python sys_shelve_importer_missing.py
+	
+	new shelf added to import path: /tmp/pymotw_import_example.shelve
+	looking for "package" in /tmp/pymotw_import_example.shelve ... found i
+	t as package.__init__
+	loading source for "package" from shelf
+	creating a new module object for "package"
+	adding path for package
+	execing source...
+	package imported
+	done
+	looking for "package.module3" in /tmp/pymotw_import_example.shelve ...
+	 not found
+	Failed to import: No module named module3
+
 .. {{{end}}}
 
 
@@ -295,6 +504,42 @@ exist.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_shelve_importer_get_data.py', ignore_error=True, break_lines_at=70))
 .. }}}
+
+::
+
+	$ python sys_shelve_importer_get_data.py
+	
+	new shelf added to import path: /tmp/pymotw_import_example.shelve
+	looking for "package" in /tmp/pymotw_import_example.shelve ... found i
+	t as package.__init__
+	loading source for "package" from shelf
+	creating a new module object for "package"
+	adding path for package
+	execing source...
+	package imported
+	done
+	looking for data in /tmp/pymotw_import_example.shelve for "/tmp/pymotw
+	_import_example.shelve/README"
+	
+	==============
+	package README
+	==============
+	
+	This is the README for ``package``.
+	
+	looking for data in /tmp/pymotw_import_example.shelve for "/tmp/pymotw
+	_import_example.shelve/foo"
+	Traceback (most recent call last):
+	  File "sys_shelve_importer_get_data.py", line 29, in <module>
+	    foo = pkgutil.get_data('package', 'foo')
+	  File "/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.
+	7/pkgutil.py", line 583, in get_data
+	    return loader.get_data(resource_name)
+	  File "/Users/dhellmann/Documents/PyMOTW/src/PyMOTW/sys/sys_shelve_im
+	porter.py", line 116, in get_data
+	    raise IOError
+	IOError
+
 .. {{{end}}}
 
 .. seealso::
@@ -324,6 +569,87 @@ files found on the path.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_path_importer_cache.py', break_lines_at=70))
 .. }}}
+
+::
+
+	$ python sys_path_importer_cache.py
+	
+	PATH:['/Users/dhellmann/Documents/PyMOTW/src/PyMOTW/sys',
+	 '/Users/dhellmann/Documents/PyMOTW/sphinx-graphviz-paragraphs',
+	 '/Users/dhellmann/Envs/pymotw/lib/python2.7/site-packages/distribute-
+	0.6.14-py2.7.egg',
+	 '/Users/dhellmann/Envs/pymotw/lib/python2.7/site-packages/pip-0.8.1-p
+	y2.7.egg',
+	 '/Users/dhellmann/Envs/pymotw/lib/python27.zip',
+	 '/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site
+	-packages/distribute-0.6.10-py2.7.egg',
+	 '/Users/dhellmann/Devel/virtualenvwrapper/virtualenvwrapper',
+	 '/Users/dhellmann/Devel/virtualenvwrapper/bitbucket',
+	 '/Users/dhellmann/Devel/virtualenvwrapper/emacs-desktop',
+	 '/Users/dhellmann/Envs/pymotw/lib/python2.7',
+	 '/Users/dhellmann/Envs/pymotw/lib/python2.7/plat-darwin',
+	 '/Users/dhellmann/Envs/pymotw/lib/python2.7/plat-mac',
+	 '/Users/dhellmann/Envs/pymotw/lib/python2.7/plat-mac/lib-scriptpackag
+	es',
+	 '/Users/dhellmann/Envs/pymotw/lib/python2.7/lib-tk',
+	 '/Users/dhellmann/Envs/pymotw/lib/python2.7/lib-old',
+	 '/Users/dhellmann/Envs/pymotw/lib/python2.7/lib-dynload',
+	 '/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7',
+	 '/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/plat
+	-darwin',
+	 '/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-
+	tk',
+	 '/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/plat
+	-mac',
+	 '/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/plat
+	-mac/lib-scriptpackages',
+	 '/Users/dhellmann/Envs/pymotw/lib/python2.7/site-packages',
+	 '/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site
+	-packages']
+	
+	IMPORTERS:
+	/Users/dhellmann/Documents/PyMOTW/src/PyMOTW/sys: None
+	/Users/dhellmann/Envs/pymotw/lib/python2.7/lib-old: <imp.NullImporter 
+	object at 0x1002ae0d0>
+	/Users/dhellmann/Devel/virtualenvwrapper/virtualenvwrapper: None
+	sys_path_importer_cache.py: <imp.NullImporter object at 0x1002ae0e0>
+	/Users/dhellmann/Devel/virtualenvwrapper/bitbucket: None
+	/Users/dhellmann/Envs/pymotw/lib/python2.7/site-packages: None
+	/Users/dhellmann/Envs/pymotw/lib/python2.7/site-packages/distribute-0.
+	6.14-py2.7.egg: None
+	/Users/dhellmann/Envs/pymotw/lib/python2.7/encodings: None
+	/Users/dhellmann/Envs/pymotw/lib/python2.7: None
+	/Users/dhellmann/Envs/pymotw/lib/python27.zip: <imp.NullImporter objec
+	t at 0x1002ae080>
+	/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-tk
+	: None
+	/Users/dhellmann/Envs/pymotw/lib/python2.7/plat-darwin: <imp.NullImpor
+	ter object at 0x1002ae090>
+	/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7: None
+	/Users/dhellmann/Envs/pymotw/lib/python2.7/site-packages/pip-0.8.1-py2
+	.7.egg: None
+	/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-p
+	ackages: None
+	/Users/dhellmann/Envs/pymotw/lib/python2.7/lib-dynload: None
+	/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/plat-d
+	arwin: None
+	/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/plat-m
+	ac/lib-scriptpackages: None
+	/Users/dhellmann/Envs/pymotw/lib/python2.7/plat-mac: <imp.NullImporter
+	 object at 0x1002ae0a0>
+	/Users/dhellmann/Devel/virtualenvwrapper/emacs-desktop: None
+	/Users/dhellmann/Documents/PyMOTW/sphinx-graphviz-paragraphs: None
+	.../lib/python2.7/: None
+	/Users/dhellmann/Envs/pymotw/lib/python2.7/plat-mac/lib-scriptpackages
+	: <imp.NullImporter object at 0x1002ae0b0>
+	.../lib/python27.zip: <imp.NullImporter object at 0x1002ae030>
+	/Users/dhellmann/Envs/pymotw/lib/python2.7/lib-tk: <imp.NullImporter o
+	bject at 0x1002ae0c0>
+	/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-p
+	ackages/distribute-0.6.10-py2.7.egg: None
+	/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/plat-m
+	ac: None
+
 .. {{{end}}}
 
 
@@ -351,6 +677,24 @@ simplicity).
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_meta_path.py'))
 .. }}}
+
+::
+
+	$ python sys_meta_path.py
+	
+	Creating NoisyMetaImportFinder for foo
+	
+	NoisyMetaImportFinder looking for "foo" with path "None"
+	 ... found prefix, returning loader
+	loading foo
+	
+	NoisyMetaImportFinder looking for "foo.bar" with path "['path-entry-goes-here']"
+	 ... found prefix, returning loader
+	loading foo.bar
+	
+	NoisyMetaImportFinder looking for "bar" with path "None"
+	 ... not the right prefix, cannot load
+
 .. {{{end}}}
 
 

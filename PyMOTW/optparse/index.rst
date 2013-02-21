@@ -82,6 +82,13 @@ to single character options. The example above uses both forms,
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'optparse_short.py'))
 .. }}}
+
+::
+
+	$ python optparse_short.py
+	
+	(<Values at 0x1004cf488: {'a': True, 'c': 3, 'b': 'val'}>, [])
+
 .. {{{end}}}
 
 Notice that the type of the value associated with ``'c'`` in the
@@ -100,6 +107,13 @@ And the results are similar:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'optparse_long.py'))
 .. }}}
+
+::
+
+	$ python optparse_long.py
+	
+	(<Values at 0x1004d9488: {'noarg': True, 'witharg': 'val', 'witharg2': 3}>, [])
+
 .. {{{end}}}
 
 Comparing with getopt
@@ -120,6 +134,17 @@ The short form:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'optparse_getoptcomparison.py -o output.txt'))
 .. }}}
+
+::
+
+	$ python optparse_getoptcomparison.py -o output.txt
+	
+	ARGV      : ['-o', 'output.txt']
+	VERSION   : 1.0
+	VERBOSE   : False
+	OUTPUT    : output.txt
+	REMAINING : []
+
 .. {{{end}}}
 
 or the long form:
@@ -127,6 +152,17 @@ or the long form:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'optparse_getoptcomparison.py --output output.txt'))
 .. }}}
+
+::
+
+	$ python optparse_getoptcomparison.py --output output.txt
+	
+	ARGV      : ['--output', 'output.txt']
+	VERSION   : 1.0
+	VERBOSE   : False
+	OUTPUT    : output.txt
+	REMAINING : []
+
 .. {{{end}}}
 
 
@@ -135,6 +171,17 @@ Any unique prefix of the long option can also be used:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'optparse_getoptcomparison.py --out output.txt'))
 .. }}}
+
+::
+
+	$ python optparse_getoptcomparison.py --out output.txt
+	
+	ARGV      : ['--out', 'output.txt']
+	VERSION   : 1.0
+	VERBOSE   : False
+	OUTPUT    : output.txt
+	REMAINING : []
+
 .. {{{end}}}
 
 
@@ -161,6 +208,17 @@ the option is defined.
 .. cog.out(run_script(cog.inFile, 'optparse_default.py'))
 .. cog.out(run_script(cog.inFile, 'optparse_default.py -o "different value"', include_prefix=False))
 .. }}}
+
+::
+
+	$ python optparse_default.py
+	
+	default value
+
+	$ python optparse_default.py -o "different value"
+	
+	different value
+
 .. {{{end}}}
 
 Defaults can also be loaded after the options are defined using
@@ -177,6 +235,17 @@ other source, instead of hard-coding them.
 .. cog.out(run_script(cog.inFile, 'optparse_set_defaults.py'))
 .. cog.out(run_script(cog.inFile, 'optparse_set_defaults.py -o "different value"', include_prefix=False))
 .. }}}
+
+::
+
+	$ python optparse_set_defaults.py
+	
+	default value
+
+	$ python optparse_set_defaults.py -o "different value"
+	
+	different value
+
 .. {{{end}}}
 
 All defined options are available as attributes of the :class:`Values`
@@ -194,6 +263,17 @@ specified on the command line, its value is ``None``.
 .. cog.out(run_script(cog.inFile, 'optparse_no_default.py'))
 .. cog.out(run_script(cog.inFile, 'optparse_no_default.py -o "different value"', include_prefix=False))
 .. }}}
+
+::
+
+	$ python optparse_no_default.py
+	
+	None
+
+	$ python optparse_no_default.py -o "different value"
+	
+	different value
+
 .. {{{end}}}
 
 
@@ -215,6 +295,22 @@ error is printed and the program exits.
 .. cog.out(run_script(cog.inFile, 'optparse_types.py -i 1 -f 3.14 -l 1000000 -c 1+2j'))
 .. cog.out(run_script(cog.inFile, 'optparse_types.py -i a', ignore_error=True, include_prefix=False))
 .. }}}
+
+::
+
+	$ python optparse_types.py -i 1 -f 3.14 -l 1000000 -c 1+2j
+	
+	int    : <type 'int'>     1
+	float  : <type 'float'>   3.14
+	long   : <type 'long'>    1000000
+	complex: <type 'complex'> (1+2j)
+
+	$ python optparse_types.py -i a
+	
+	Usage: optparse_types.py [options]
+	
+	optparse_types.py: error: option -i: invalid integer value: 'a'
+
 .. {{{end}}}
 
 Custom conversions can be created by subclassing the :class:`Option`
@@ -239,6 +335,24 @@ of values.
 .. cog.out(run_script(cog.inFile, 'optparse_choice.py -c b', include_prefix=False))
 .. cog.out(run_script(cog.inFile, 'optparse_choice.py -c d', include_prefix=False, ignore_error=True, break_lines_at=70))
 .. }}}
+
+::
+
+	$ python optparse_choice.py -c a
+	
+	Choice: a
+
+	$ python optparse_choice.py -c b
+	
+	Choice: b
+
+	$ python optparse_choice.py -c d
+	
+	Usage: optparse_choice.py [options]
+	
+	optparse_choice.py: error: option -c: invalid choice: 'd' (choose from
+	 'a', 'b', 'c')
+
 .. {{{end}}}
 
 Option Actions
@@ -275,6 +389,17 @@ can be configured to store different constant values to the same
 .. cog.out(run_script(cog.inFile, 'optparse_store_const.py'))
 .. cog.out(run_script(cog.inFile, 'optparse_store_const.py --fire', include_prefix=False))
 .. }}}
+
+::
+
+	$ python optparse_store_const.py
+	
+	earth
+
+	$ python optparse_store_const.py --fire
+	
+	fire
+
 .. {{{end}}}
 
 
@@ -296,6 +421,21 @@ their *dest* name to the same value.
 .. cog.out(run_script(cog.inFile, 'optparse_boolean.py -t', include_prefix=False))
 .. cog.out(run_script(cog.inFile, 'optparse_boolean.py -f', include_prefix=False))
 .. }}}
+
+::
+
+	$ python optparse_boolean.py
+	
+	Flag: False
+
+	$ python optparse_boolean.py -t
+	
+	Flag: True
+
+	$ python optparse_boolean.py -f
+	
+	Flag: False
+
 .. {{{end}}}
 
 
@@ -323,6 +463,21 @@ case it is important for the application.
 .. cog.out(run_script(cog.inFile, 'optparse_append.py -o a.out', include_prefix=False))
 .. cog.out(run_script(cog.inFile, 'optparse_append.py -o a.out -o b.out', include_prefix=False))
 .. }}}
+
+::
+
+	$ python optparse_append.py
+	
+	[]
+
+	$ python optparse_append.py -o a.out
+	
+	['a.out']
+
+	$ python optparse_append.py -o a.out -o b.out
+	
+	['a.out', 'b.out']
+
 .. {{{end}}}
 
 Sometimes it is enough to know how many times an option was given, and
@@ -346,6 +501,29 @@ options.
 .. cog.out(run_script(cog.inFile, 'optparse_count.py -vv', include_prefix=False))
 .. cog.out(run_script(cog.inFile, 'optparse_count.py -q', include_prefix=False))
 .. }}}
+
+::
+
+	$ python optparse_count.py
+	
+	1
+
+	$ python optparse_count.py -v
+	
+	2
+
+	$ python optparse_count.py -v -v
+	
+	3
+
+	$ python optparse_count.py -vv
+	
+	3
+
+	$ python optparse_count.py -q
+	
+	0
+
 .. {{{end}}}
 
 
@@ -370,6 +548,22 @@ well).
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'optparse_callback.py'))
 .. }}}
+
+::
+
+	$ python optparse_callback.py
+	
+	with_callback:
+		option: <Option at 0x1004cf2d8: --with>
+		opt_str: --with
+		value: foo
+		parser: <optparse.OptionParser instance at 0x1004675a8>
+	flag_callback:
+		option: <Option at 0x100467830: --flag>
+		opt_str: --flag
+		value: None
+		parser: <optparse.OptionParser instance at 0x1004675a8>
+
 .. {{{end}}}
 
 Callbacks can be configured to take multiple arguments using the *nargs*
@@ -386,6 +580,17 @@ the value argument.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'optparse_callback_nargs.py'))
 .. }}}
+
+::
+
+	$ python optparse_callback_nargs.py
+	
+	with_callback:
+		option: <Option at 0x100467758: --with>
+		opt_str: --with
+		value: ('foo', 'bar')
+		parser: <optparse.OptionParser instance at 0x1004674d0>
+
 .. {{{end}}}
 
 Help Messages
@@ -411,6 +616,18 @@ printed in the right column.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'optparse_help.py --help'))
 .. }}}
+
+::
+
+	$ python optparse_help.py --help
+	
+	Usage: optparse_help.py [options]
+	
+	Options:
+	  -h, --help   show this help message and exit
+	  --no-foo     Turn off foo
+	  --with=WITH  Include optional feature
+
 .. {{{end}}}
 
 The name ``WITH`` printed with the option ``--with`` comes from the
@@ -428,6 +645,18 @@ capitalization or punctuation.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'optparse_metavar.py -h'))
 .. }}}
+
+::
+
+	$ python optparse_metavar.py -h
+	
+	Usage: optparse_metavar.py [options]
+	
+	Options:
+	  -h, --help           show this help message and exit
+	  --no-foo             Turn off foo
+	  --with=feature_NAME  Include optional feature
+
 .. {{{end}}}
 
 
@@ -451,6 +680,31 @@ are displayed together.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'optparse_groups.py -h'))
 .. }}}
+
+::
+
+	$ python optparse_groups.py -h
+	
+	Usage: optparse_groups.py [options]
+	
+	Options:
+	  -h, --help  show this help message and exit
+	  -q          Query
+	  -i          Install
+	
+	  Query Options:
+	    These options control the query mode.
+	
+	    -l        List contents
+	    -f        Show owner of file
+	    -a        Show all packages
+	
+	  Installation Options:
+	    These options control installation.
+	
+	    --hash    Show hash marks as progress indication
+	    --force   Install, regardless of depdencies or existing version
+
 .. {{{end}}}
 
 Application Settings
@@ -473,6 +727,19 @@ name is used.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'optparse_usage.py -h'))
 .. }}}
+
+::
+
+	$ python optparse_usage.py -h
+	
+	Usage: optparse_usage.py [options] <arg1> <arg2> [<arg3>...]
+	
+	Options:
+	  -h, --help  show this help message and exit
+	  -a          
+	  -b B        
+	  -c C        
+
 .. {{{end}}}
 
 The program name can be changed using the *prog* argument.
@@ -488,6 +755,19 @@ the change.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'optparse_prog.py -h'))
 .. }}}
+
+::
+
+	$ python optparse_prog.py -h
+	
+	Usage: my_program_name [options] <arg1> <arg2> [<arg3>...]
+	
+	Options:
+	  -h, --help  show this help message and exit
+	  -a          
+	  -b B        
+	  -c C        
+
 .. {{{end}}}
 
 The application version can be set using the *version* argument.  When
@@ -505,6 +785,21 @@ When the user runs the program with the ``--version`` option,
 .. cog.out(run_script(cog.inFile, 'optparse_version.py -h'))
 .. cog.out(run_script(cog.inFile, 'optparse_version.py --version', include_prefix=False))
 .. }}}
+
+::
+
+	$ python optparse_version.py -h
+	
+	Usage: optparse_version.py [options] <arg1> <arg2> [<arg3>...]
+	
+	Options:
+	  --version   show program's version number and exit
+	  -h, --help  show this help message and exit
+
+	$ python optparse_version.py --version
+	
+	1.0
+
 .. {{{end}}}
 
 .. seealso::

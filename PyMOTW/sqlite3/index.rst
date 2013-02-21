@@ -43,6 +43,25 @@ does not exist.
 .. cog.out(run_script(cog.inFile, 'ls *.db', interpreter='', include_prefix=False))
 .. cog.out(run_script(cog.inFile, 'sqlite3_createdb.py', include_prefix=False))
 .. }}}
+
+::
+
+	$ ls *.db
+	
+	ls: *.db: No such file or directory
+
+	$ python sqlite3_createdb.py
+	
+	Need to create schema
+
+	$ ls *.db
+	
+	todo.db
+
+	$ python sqlite3_createdb.py
+	
+	Database exists, assume schema does, too.
+
 .. {{{end}}}
 
 After creating the new database file, the next step is to create the
@@ -98,6 +117,20 @@ database.
 .. cog.out(run_script(cog.inFile, "sqlite3 todo.db 'select * from task'", 
 ..         interpreter=None, include_prefix=False))
 .. }}}
+
+::
+
+	$ python sqlite3_create_schema.py
+	
+	Creating schema
+	Inserting initial data
+
+	$ sqlite3 todo.db 'select * from task'
+	
+	1|1|write about select|done|2010-10-03||pymotw
+	2|1|write about random|waiting|2010-10-10||pymotw
+	3|1|write about sqlite3|active|2010-10-17||pymotw
+
 .. {{{end}}}
 
 
@@ -123,6 +156,15 @@ columns included in the :command:`select` clause of the query.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sqlite3_select_tasks.py'))
 .. }}}
+
+::
+
+	$ python sqlite3_select_tasks.py
+	
+	 1 {1} write about select   [done    ] (2010-10-03)
+	 2 {1} write about random   [waiting ] (2010-10-10)
+	 3 {1} write about sqlite3  [active  ] (2010-10-17)
+
 .. {{{end}}}
 
 The results can be retrieved one at a time with :func:`fetchone`, or
@@ -139,6 +181,18 @@ be smaller than the maximum value.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sqlite3_select_variations.py'))
 .. }}}
+
+::
+
+	$ python sqlite3_select_variations.py
+	
+	Project details for Python Module of the Week (pymotw) due 2010-11-01
+	
+	Next 5 tasks:
+	 1 {1} write about select        [done    ] (2010-10-03)
+	 2 {1} write about random        [waiting ] (2010-10-10)
+	 3 {1} write about sqlite3       [active  ] (2010-10-17)
+
 .. {{{end}}}
 
 Query Metadata
@@ -163,6 +217,20 @@ in.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sqlite3_cursor_description.py'))
 .. }}}
+
+::
+
+	$ python sqlite3_cursor_description.py
+	
+	Task table has these columns:
+	('id', None, None, None, None, None, None)
+	('priority', None, None, None, None, None, None)
+	('details', None, None, None, None, None, None)
+	('status', None, None, None, None, None, None)
+	('deadline', None, None, None, None, None, None)
+	('completed_on', None, None, None, None, None, None)
+	('project', None, None, None, None, None, None)
+
 .. {{{end}}}
 
 Row Objects
@@ -198,6 +266,18 @@ the query has been changed.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sqlite3_row_factory.py'))
 .. }}}
+
+::
+
+	$ python sqlite3_row_factory.py
+	
+	Project details for Python Module of the Week (pymotw) due 2010-11-01
+	
+	Next 5 tasks:
+	 1 {1} write about select        [done    ] (2010-10-03)
+	 2 {1} write about random        [waiting ] (2010-10-10)
+	 3 {1} write about sqlite3       [active  ] (2010-10-17)
+
 .. {{{end}}}
 
 Using Variables with Queries
@@ -240,6 +320,15 @@ the database.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sqlite3_argument_positional.py pymotw'))
 .. }}}
+
+::
+
+	$ python sqlite3_argument_positional.py pymotw
+	
+	 1 {1} write about select   [done    ] (2010-10-03)
+	 2 {1} write about random   [waiting ] (2010-10-10)
+	 3 {1} write about sqlite3  [active  ] (2010-10-17)
+
 .. {{{end}}}
 
 Named Parameters
@@ -259,6 +348,15 @@ since they are given special treatment by the query parser.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sqlite3_argument_named.py pymotw'))
 .. }}}
+
+::
+
+	$ python sqlite3_argument_named.py pymotw
+	
+	 1 {1} write about select        [done    ] (2010-10-03)
+	 2 {1} write about random        [waiting ] (2010-10-10)
+	 3 {1} write about sqlite3       [active  ] (2010-10-17)
+
 .. {{{end}}}
 
 Query parameters can be used with :command:`select`,
@@ -277,6 +375,16 @@ This :command:`update` statement uses two named parameters.  The
 .. cog.out(run_script(cog.inFile, 'sqlite3_argument_update.py 2 done', trailing_newlines=False))
 .. cog.out(run_script(cog.inFile, 'sqlite3_argument_named.py pymotw', include_prefix=False))
 .. }}}
+
+::
+
+	$ python sqlite3_argument_update.py 2 done
+	$ python sqlite3_argument_named.py pymotw
+	
+	 1 {1} write about select        [done    ] (2010-10-03)
+	 2 {1} write about random        [done    ] (2010-10-10)
+	 3 {1} write about sqlite3       [active  ] (2010-10-17)
+
 .. {{{end}}}
 
 Bulk Loading
@@ -303,6 +411,19 @@ Running the program produces:
 .. cog.out(run_script(cog.inFile, 'sqlite3_load_csv.py tasks.csv', trailing_newlines=False))
 .. cog.out(run_script(cog.inFile, 'sqlite3_argument_named.py pymotw', include_prefix=False))
 .. }}}
+
+::
+
+	$ python sqlite3_load_csv.py tasks.csv
+	$ python sqlite3_argument_named.py pymotw
+	
+	 4 {2} finish reviewing markup   [active  ] (2010-10-02)
+	 6 {1} subtitle                  [active  ] (2010-10-03)
+	 1 {1} write about select        [done    ] (2010-10-03)
+	 5 {2} revise chapter intros     [active  ] (2010-10-03)
+	 2 {1} write about random        [done    ] (2010-10-10)
+	 3 {1} write about sqlite3       [active  ] (2010-10-17)
+
 .. {{{end}}}
 
 
@@ -338,6 +459,33 @@ converters are enabled automatically when type-detection is turned on.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sqlite3_date_types.py'))
 .. }}}
+
+::
+
+	$ python sqlite3_date_types.py
+	
+	Without type detection:
+	  column: id
+	    value : 1
+	    type  : <type 'int'>
+	  column: details
+	    value : write about select
+	    type  : <type 'unicode'>
+	  column: deadline
+	    value : 2010-10-03
+	    type  : <type 'unicode'>
+	
+	With type detection:
+	  column: id
+	    value : 1
+	    type  : <type 'int'>
+	  column: details
+	    value : write about select
+	    type  : <type 'unicode'>
+	  column: deadline
+	    value : 2010-10-03
+	    type  : <type 'datetime.date'>
+
 .. {{{end}}}
 
 Custom Types
@@ -364,6 +512,27 @@ for large amounts of data.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sqlite3_custom_type.py', break_lines_at=70))
 .. }}}
+
+::
+
+	$ python sqlite3_custom_type.py
+	
+	adapter_func(MyObj('this is a value to save'))
+	
+	adapter_func(MyObj(42))
+	
+	converter_func("ccopy_reg\n_reconstructor\np1\n(c__main__\nMyObj\np2\n
+	c__builtin__\nobject\np3\nNtRp4\n(dp5\nS'arg'\np6\nS'this is a value t
+	o save'\np7\nsb.")
+	
+	converter_func("ccopy_reg\n_reconstructor\np1\n(c__main__\nMyObj\np2\n
+	c__builtin__\nobject\np3\nNtRp4\n(dp5\nS'arg'\np6\nI42\nsb.")
+	
+	Retrieved 1 MyObj('this is a value to save') <class '__main__.MyObj'>
+	
+	Retrieved 2 MyObj(42) <class '__main__.MyObj'>
+	
+
 .. {{{end}}}
 
 Deriving Types from Column Names
@@ -385,6 +554,27 @@ part of the query instead of the original table definition.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sqlite3_custom_type_column.py', break_lines_at=70))
 .. }}}
+
+::
+
+	$ python sqlite3_custom_type_column.py
+	
+	adapter_func(MyObj('this is a value to save'))
+	
+	adapter_func(MyObj(42))
+	
+	converter_func("ccopy_reg\n_reconstructor\np1\n(c__main__\nMyObj\np2\n
+	c__builtin__\nobject\np3\nNtRp4\n(dp5\nS'arg'\np6\nS'this is a value t
+	o save'\np7\nsb.")
+	
+	converter_func("ccopy_reg\n_reconstructor\np1\n(c__main__\nMyObj\np2\n
+	c__builtin__\nobject\np3\nNtRp4\n(dp5\nS'arg'\np6\nI42\nsb.")
+	
+	Retrieved 1 MyObj('this is a value to save') <class '__main__.MyObj'>
+	
+	Retrieved 2 MyObj(42) <class '__main__.MyObj'>
+	
+
 .. {{{end}}}
 
 
@@ -427,6 +617,25 @@ However, :data:`conn2` does not.  After committing, the new connection
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sqlite3_transaction_commit.py'))
 .. }}}
+
+::
+
+	$ python sqlite3_transaction_commit.py
+	
+	Before changes:
+	   pymotw
+	
+	After changes in conn1:
+	   pymotw
+	   virtualenvwrapper
+	
+	Before commit:
+	   pymotw
+	
+	After commit:
+	   pymotw
+	   virtualenvwrapper
+
 .. {{{end}}}
 
 
@@ -448,6 +657,23 @@ longer present.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sqlite3_transaction_rollback.py'))
 .. }}}
+
+::
+
+	$ python sqlite3_transaction_rollback.py
+	
+	Before changes:
+	   pymotw
+	   virtualenvwrapper
+	
+	After delete:
+	   pymotw
+	ERROR: simulated error
+	
+	After rollback:
+	   pymotw
+	   virtualenvwrapper
+
 .. {{{end}}}
 
 Isolation Levels
@@ -485,6 +711,33 @@ previous examples use deferred mode.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sqlite3_isolation_levels.py DEFERRED'))
 .. }}}
+
+::
+
+	$ python sqlite3_isolation_levels.py DEFERRED
+	
+	2013-02-21 06:36:58,573 (Reader 1  ) waiting to synchronize
+	2013-02-21 06:36:58,573 (Reader 2  ) waiting to synchronize
+	2013-02-21 06:36:58,573 (Writer 1  ) connecting
+	2013-02-21 06:36:58,574 (Writer 2  ) connecting
+	2013-02-21 06:36:58,574 (Writer 1  ) connected
+	2013-02-21 06:36:58,574 (Writer 2  ) connected
+	2013-02-21 06:36:58,574 (Writer 1  ) changes made
+	2013-02-21 06:36:58,575 (Writer 1  ) waiting to synchronize
+	2013-02-21 06:36:59,574 (MainThread) setting ready
+	2013-02-21 06:36:59,575 (Writer 1  ) PAUSING
+	2013-02-21 06:36:59,575 (Reader 2  ) wait over
+	2013-02-21 06:36:59,575 (Reader 1  ) wait over
+	2013-02-21 06:36:59,576 (Reader 2  ) SELECT EXECUTED
+	2013-02-21 06:36:59,576 (Reader 1  ) SELECT EXECUTED
+	2013-02-21 06:36:59,577 (Reader 2  ) results fetched
+	2013-02-21 06:36:59,577 (Reader 1  ) results fetched
+	2013-02-21 06:37:00,579 (Writer 1  ) CHANGES COMMITTED
+	2013-02-21 06:37:00,625 (Writer 2  ) changes made
+	2013-02-21 06:37:00,626 (Writer 2  ) waiting to synchronize
+	2013-02-21 06:37:00,626 (Writer 2  ) PAUSING
+	2013-02-21 06:37:01,629 (Writer 2  ) CHANGES COMMITTED
+
 .. {{{end}}}
 
 
@@ -500,6 +753,33 @@ transaction is ongoing.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sqlite3_isolation_levels.py IMMEDIATE'))
 .. }}}
+
+::
+
+	$ python sqlite3_isolation_levels.py IMMEDIATE
+	
+	2013-02-21 06:37:01,668 (Reader 2  ) waiting to synchronize
+	2013-02-21 06:37:01,668 (Reader 1  ) waiting to synchronize
+	2013-02-21 06:37:01,669 (Writer 1  ) connecting
+	2013-02-21 06:37:01,669 (Writer 2  ) connecting
+	2013-02-21 06:37:01,669 (Writer 1  ) connected
+	2013-02-21 06:37:01,669 (Writer 2  ) connected
+	2013-02-21 06:37:01,670 (Writer 1  ) changes made
+	2013-02-21 06:37:01,670 (Writer 1  ) waiting to synchronize
+	2013-02-21 06:37:02,670 (MainThread) setting ready
+	2013-02-21 06:37:02,671 (Writer 1  ) PAUSING
+	2013-02-21 06:37:02,671 (Reader 2  ) wait over
+	2013-02-21 06:37:02,671 (Reader 1  ) wait over
+	2013-02-21 06:37:02,672 (Reader 2  ) SELECT EXECUTED
+	2013-02-21 06:37:02,672 (Reader 1  ) SELECT EXECUTED
+	2013-02-21 06:37:02,673 (Reader 2  ) results fetched
+	2013-02-21 06:37:02,673 (Reader 1  ) results fetched
+	2013-02-21 06:37:03,675 (Writer 1  ) CHANGES COMMITTED
+	2013-02-21 06:37:03,724 (Writer 2  ) changes made
+	2013-02-21 06:37:03,724 (Writer 2  ) waiting to synchronize
+	2013-02-21 06:37:03,725 (Writer 2  ) PAUSING
+	2013-02-21 06:37:04,729 (Writer 2  ) CHANGES COMMITTED
+
 .. {{{end}}}
 
 
@@ -513,6 +793,33 @@ important, since each exclusive connection blocks all other users.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sqlite3_isolation_levels.py EXCLUSIVE'))
 .. }}}
+
+::
+
+	$ python sqlite3_isolation_levels.py EXCLUSIVE
+	
+	2013-02-21 06:37:04,769 (Reader 2  ) waiting to synchronize
+	2013-02-21 06:37:04,769 (Writer 1  ) connecting
+	2013-02-21 06:37:04,768 (Reader 1  ) waiting to synchronize
+	2013-02-21 06:37:04,769 (Writer 2  ) connecting
+	2013-02-21 06:37:04,769 (Writer 1  ) connected
+	2013-02-21 06:37:04,769 (Writer 2  ) connected
+	2013-02-21 06:37:04,771 (Writer 1  ) changes made
+	2013-02-21 06:37:04,771 (Writer 1  ) waiting to synchronize
+	2013-02-21 06:37:05,770 (MainThread) setting ready
+	2013-02-21 06:37:05,771 (Reader 1  ) wait over
+	2013-02-21 06:37:05,771 (Reader 2  ) wait over
+	2013-02-21 06:37:05,771 (Writer 1  ) PAUSING
+	2013-02-21 06:37:06,775 (Writer 1  ) CHANGES COMMITTED
+	2013-02-21 06:37:06,816 (Reader 2  ) SELECT EXECUTED
+	2013-02-21 06:37:06,816 (Reader 1  ) SELECT EXECUTED
+	2013-02-21 06:37:06,817 (Reader 2  ) results fetched
+	2013-02-21 06:37:06,817 (Reader 1  ) results fetched
+	2013-02-21 06:37:06,819 (Writer 2  ) changes made
+	2013-02-21 06:37:06,819 (Writer 2  ) waiting to synchronize
+	2013-02-21 06:37:06,819 (Writer 2  ) PAUSING
+	2013-02-21 06:37:07,822 (Writer 2  ) CHANGES COMMITTED
+
 .. {{{end}}}
 
 Because the first writer has started making changes, the readers and
@@ -546,6 +853,31 @@ starts querying.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sqlite3_autocommit.py'))
 .. }}}
+
+::
+
+	$ python sqlite3_autocommit.py
+	
+	2013-02-21 06:37:07,878 (Reader 1  ) waiting to synchronize
+	2013-02-21 06:37:07,878 (Reader 2  ) waiting to synchronize
+	2013-02-21 06:37:07,878 (Writer 1  ) connecting
+	2013-02-21 06:37:07,878 (Writer 2  ) connecting
+	2013-02-21 06:37:07,878 (Writer 1  ) connected
+	2013-02-21 06:37:07,879 (Writer 2  ) connected
+	2013-02-21 06:37:07,880 (Writer 2  ) changes made
+	2013-02-21 06:37:07,880 (Writer 2  ) waiting to synchronize
+	2013-02-21 06:37:07,881 (Writer 1  ) changes made
+	2013-02-21 06:37:07,881 (Writer 1  ) waiting to synchronize
+	2013-02-21 06:37:08,879 (MainThread) setting ready
+	2013-02-21 06:37:08,880 (Writer 1  ) PAUSING
+	2013-02-21 06:37:08,880 (Writer 2  ) PAUSING
+	2013-02-21 06:37:08,880 (Reader 1  ) wait over
+	2013-02-21 06:37:08,881 (Reader 2  ) wait over
+	2013-02-21 06:37:08,882 (Reader 2  ) SELECT EXECUTED
+	2013-02-21 06:37:08,882 (Reader 1  ) SELECT EXECUTED
+	2013-02-21 06:37:08,882 (Reader 2  ) results fetched
+	2013-02-21 06:37:08,882 (Reader 1  ) results fetched
+
 .. {{{end}}}
 
 
@@ -578,6 +910,49 @@ function takes, and the Python function to expose.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sqlite3_create_function.py'))
 .. }}}
+
+::
+
+	$ python sqlite3_create_function.py
+	
+	Original values:
+	(1, u'write about select')
+	(2, u'write about random')
+	(3, u'write about sqlite3')
+	(4, u'finish reviewing markup')
+	(5, u'revise chapter intros')
+	(6, u'subtitle')
+	
+	Encrypting...
+	Encrypting u'write about select'
+	Encrypting u'write about random'
+	Encrypting u'write about sqlite3'
+	Encrypting u'finish reviewing markup'
+	Encrypting u'revise chapter intros'
+	Encrypting u'subtitle'
+	
+	Raw encrypted values:
+	(1, u'jevgr nobhg fryrpg')
+	(2, u'jevgr nobhg enaqbz')
+	(3, u'jevgr nobhg fdyvgr3')
+	(4, u'svavfu erivrjvat znexhc')
+	(5, u'erivfr puncgre vagebf')
+	(6, u'fhogvgyr')
+	
+	Decrypting in query...
+	Decrypting u'jevgr nobhg fryrpg'
+	Decrypting u'jevgr nobhg enaqbz'
+	Decrypting u'jevgr nobhg fdyvgr3'
+	Decrypting u'svavfu erivrjvat znexhc'
+	Decrypting u'erivfr puncgre vagebf'
+	Decrypting u'fhogvgyr'
+	(1, u'write about select')
+	(2, u'write about random')
+	(3, u'write about sqlite3')
+	(4, u'finish reviewing markup')
+	(5, u'revise chapter intros')
+	(6, u'subtitle')
+
 .. {{{end}}}
 
 Custom Aggregation
@@ -608,6 +983,20 @@ arguments the :func:`step` method takes, and the class to use.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sqlite3_create_aggregate.py'))
 .. }}}
+
+::
+
+	$ python sqlite3_create_aggregate.py
+	
+	step(u'2010-10-03')
+	step(u'2010-10-10')
+	step(u'2010-10-17')
+	step(u'2010-10-02')
+	step(u'2010-10-03')
+	step(u'2010-10-03')
+	finalize() -> u'2010-10-03' (3 times)
+	mode(deadline) is: 2010-10-03
+
 .. {{{end}}}
 
 Custom Sorting
@@ -630,6 +1019,30 @@ comparison can be performed.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sqlite3_create_collation.py'))
 .. }}}
+
+::
+
+	$ python sqlite3_create_collation.py
+	
+	
+	Querying:
+	collation_func(MyObj(5), MyObj(4))
+	collation_func(MyObj(4), MyObj(3))
+	collation_func(MyObj(4), MyObj(2))
+	collation_func(MyObj(3), MyObj(2))
+	collation_func(MyObj(3), MyObj(1))
+	collation_func(MyObj(2), MyObj(1))
+	7 MyObj(1)
+	
+	6 MyObj(2)
+	
+	5 MyObj(3)
+	
+	4 MyObj(4)
+	
+	3 MyObj(5)
+	
+
 .. {{{end}}}
 
 
@@ -662,6 +1075,48 @@ raise an exception.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sqlite3_set_authorizer.py', ignore_error=True))
 .. }}}
+
+::
+
+	$ python sqlite3_set_authorizer.py
+	
+	Using SQLITE_IGNORE to mask a column value:
+	
+	authorizer_func(21, None, None, None, None)
+	requesting permission to run a select statement
+	
+	authorizer_func(20, task, id, main, None)
+	requesting permission to access the column task.id from main
+	
+	authorizer_func(20, task, details, main, None)
+	requesting permission to access the column task.details from main
+	  ignoring details column
+	
+	authorizer_func(20, task, project, main, None)
+	requesting permission to access the column task.project from main
+	1 None
+	2 None
+	3 None
+	4 None
+	5 None
+	6 None
+	
+	Using SQLITE_DENY to deny access to a column:
+	
+	authorizer_func(21, None, None, None, None)
+	requesting permission to run a select statement
+	
+	authorizer_func(20, task, id, main, None)
+	requesting permission to access the column task.id from main
+	
+	authorizer_func(20, task, priority, main, None)
+	requesting permission to access the column task.priority from main
+	  preventing access to priority column
+	Traceback (most recent call last):
+	  File "sqlite3_set_authorizer.py", line 47, in <module>
+	    cursor.execute("select id, priority from task where project = 'pymotw'")
+	sqlite3.DatabaseError: access to task.priority is prohibited
+
 .. {{{end}}}
 
 The possible action codes are available as constants in
@@ -701,6 +1156,24 @@ connections.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sqlite3_memory.py', ignore_error=True))
 .. }}}
+
+::
+
+	$ python sqlite3_memory.py
+	
+	Creating schema
+	Inserting initial data
+	Looking for tasks...
+	 1 {1} write about select        [done    ] (2010-10-03)
+	 2 {1} write about random        [waiting ] (2010-10-10)
+	 3 {1} write about sqlite3       [active  ] (2010-10-17)
+	
+	Looking for tasks in second connection...
+	Traceback (most recent call last):
+	  File "sqlite3_memory.py", line 54, in <module>
+	    """)
+	sqlite3.OperationalError: no such table: task
+
 .. {{{end}}}
 
 Exporting the Contents of a Database
@@ -722,6 +1195,37 @@ be saved.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sqlite3_iterdump.py'))
 .. }}}
+
+::
+
+	$ python sqlite3_iterdump.py
+	
+	Creating schema
+	Inserting initial data
+	Dumping:
+	BEGIN TRANSACTION;
+	CREATE TABLE project (
+	    name        text primary key,
+	    description text,
+	    deadline    date
+	);
+	INSERT INTO "project" VALUES('pymotw','Python Module of the Week','2010-11-01');
+	CREATE TABLE task (
+	    id           integer primary key autoincrement not null,
+	    priority     integer default 1,
+	    details      text,
+	    status       text,
+	    deadline     date,
+	    completed_on date,
+	    project      text not null references project(name)
+	);
+	INSERT INTO "task" VALUES(1,1,'write about select','done','2010-10-03',NULL,'pymotw');
+	INSERT INTO "task" VALUES(2,1,'write about random','waiting','2010-10-10',NULL,'pymotw');
+	INSERT INTO "task" VALUES(3,1,'write about sqlite3','active','2010-10-17',NULL,'pymotw');
+	DELETE FROM sqlite_sequence;
+	INSERT INTO "sqlite_sequence" VALUES('task',3);
+	COMMIT;
+
 .. {{{end}}}
 
 
@@ -741,6 +1245,14 @@ Attempts to share a connection between threads result in an exception.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sqlite3_threading.py'))
 .. }}}
+
+::
+
+	$ python sqlite3_threading.py
+	
+	Starting thread
+	ERROR: SQLite objects created in a thread can only be used in that same thread.The object was created in thread id 140735199439200 and this is thread id 4315942912
+
 .. {{{end}}}
 
 .. seealso::

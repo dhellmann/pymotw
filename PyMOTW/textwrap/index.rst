@@ -40,6 +40,18 @@ The results are something less than what we want:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'textwrap_fill.py'))
 .. }}}
+
+::
+
+	$ python textwrap_fill.py
+	
+	No dedent:
+	
+	         The textwrap module can be used to format text for output in
+	situations         where pretty-printing is desired.  It offers
+	programmatic functionality similar         to the paragraph wrapping
+	or filling features found in many text editors.
+
 .. {{{end}}}
 
 
@@ -63,6 +75,17 @@ The results are starting to look better:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'textwrap_dedent.py'))
 .. }}}
+
+::
+
+	$ python textwrap_dedent.py
+	
+	Dedented:
+	
+	The textwrap module can be used to format text for output in situations
+	where pretty-printing is desired.  It offers programmatic functionality similar
+	to the paragraph wrapping or filling features found in many text editors.
+
 .. {{{end}}}
 
 Since "dedent" is the opposite of "indent", the result is a block of
@@ -101,6 +124,42 @@ This gives several sets of output in the specified widths:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'textwrap_fill_width.py'))
 .. }}}
+
+::
+
+	$ python textwrap_fill_width.py
+	
+	
+	20 Columns:
+	
+	The textwrap module
+	can be used to
+	format text for
+	output in situations
+	where pretty-
+	printing is desired.
+	It offers
+	programmatic
+	functionality
+	similar to the
+	paragraph wrapping
+	or filling features
+	found in many text
+	editors.
+	
+	60 Columns:
+	
+	The textwrap module can be used to format text for output in
+	situations where pretty-printing is desired.  It offers
+	programmatic functionality similar to the paragraph wrapping
+	or filling features found in many text editors.
+	
+	80 Columns:
+	
+	The textwrap module can be used to format text for output in situations where
+	pretty-printing is desired.  It offers programmatic functionality similar to the
+	paragraph wrapping or filling features found in many text editors.
+
 .. {{{end}}}
 
 
@@ -120,6 +179,16 @@ first line is indented less than the other lines.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'textwrap_hanging_indent.py'))
 .. }}}
+
+::
+
+	$ python textwrap_hanging_indent.py
+	
+	The textwrap module can be used to format text for output in
+	    situations where pretty-printing is desired.  It offers
+	    programmatic functionality similar to the paragraph wrapping or
+	    filling features found in many text editors.
+
 .. {{{end}}}
 
 The indent values can include non-whitespace characters, too, so the

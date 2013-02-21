@@ -164,6 +164,18 @@ cannot because **Thread-2** already has it.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_current_frames.py'))
 .. }}}
+
+::
+
+	$ python sys_current_frames.py
+	
+	Thread-1 with ident 4315942912 going to sleep
+	Thread-1 finishing
+	Thread-3 with ident 4336926720 going to sleep
+	Thread-2 with ident 4332720128 going to sleep
+	Thread-3 stopped in block at line 17 of sys_current_frames.py
+	Thread-2 stopped in block at line 16 of sys_current_frames.py
+
 .. {{{end}}}
 
 

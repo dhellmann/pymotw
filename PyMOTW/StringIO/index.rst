@@ -37,6 +37,15 @@ you are using some sort of look-ahead parsing algorithm.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'stringio_examples.py'))
 .. }}}
+
+::
+
+	$ python stringio_examples.py
+	
+	This goes into the buffer. And so does this.
+	
+	Inital value for read buffer
+
 .. {{{end}}}
 
 Real world applications of :mod:`StringIO` include a web application

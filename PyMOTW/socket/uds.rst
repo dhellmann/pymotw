@@ -118,4 +118,14 @@ the sockets are created.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'socket_socketpair.py'))
 .. }}}
+
+::
+
+	$ python socket_socketpair.py
+	
+	in parent, sending message
+	response from child: pong
+	in child, waiting for message
+	message from parent: ping
+
 .. {{{end}}}

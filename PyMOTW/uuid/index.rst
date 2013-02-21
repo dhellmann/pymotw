@@ -41,6 +41,13 @@ value on a given system:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'uuid_getnode.py'))
 .. }}}
+
+::
+
+	$ python uuid_getnode.py
+	
+	0x70cd60f2c980
+
 .. {{{end}}}
 
 If a system has more than one network card, and so more than one MAC,
@@ -63,6 +70,29 @@ and *urn*, are different representations of the UUID value.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'uuid_uuid1.py'))
 .. }}}
+
+::
+
+	$ python uuid_uuid1.py
+	
+	2500b32e-7c1b-11e2-830a-70cd60f2c980
+	<class 'uuid.UUID'>
+	bytes   : '%\x00\xb3.|\x1b\x11\xe2\x83\np\xcd`\xf2\xc9\x80'
+	hex     : 2500b32e7c1b11e2830a70cd60f2c980
+	int     : 49185070078265283276219513639424674176
+	urn     : urn:uuid:2500b32e-7c1b-11e2-830a-70cd60f2c980
+	variant : specified in RFC 4122
+	version : 1
+	fields  : (620802862L, 31771L, 4578L, 131L, 10L, 124027397130624L)
+		time_low            :  620802862
+		time_mid            :  31771
+		time_hi_version     :  4578
+		clock_seq_hi_variant:  131
+		clock_seq_low       :  10
+		node                :  124027397130624
+		time                :  135807394801300270
+		clock_seq           :  778
+
 .. {{{end}}}
 
 Because of the time component, each time :func:`uuid1()` is called a
@@ -79,6 +109,15 @@ of the string) changes.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'uuid_uuid1_repeat.py'))
 .. }}}
+
+::
+
+	$ python uuid_uuid1_repeat.py
+	
+	2507ba51-7c1b-11e2-8ee5-70cd60f2c980
+	250938c7-7c1b-11e2-b456-70cd60f2c980
+	25093ae3-7c1b-11e2-940c-70cd60f2c980
+
 .. {{{end}}}
 
 Because your computer has a different MAC address than mine, you will
@@ -92,6 +131,14 @@ node identifier at the end of the UUID will change, too.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'uuid_uuid1_othermac.py'))
 .. }}}
+
+::
+
+	$ python uuid_uuid1_othermac.py
+	
+	0x70cd60f2c980 250ff58c-7c1b-11e2-9808-70cd60f2c980
+	0x1e5274040e 25106559-7c1b-11e2-9e48-001e5274040e
+
 .. {{{end}}}
 
 
@@ -117,6 +164,18 @@ namespace argument to :func:`uuid3()` or :func:`uuid5()`:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'uuid_uuid3_uuid5.py'))
 .. }}}
+
+::
+
+	$ python uuid_uuid3_uuid5.py
+	
+	www.doughellmann.com
+		MD5   : bcd02e22-68f0-3046-a512-327cca9def8f
+		SHA-1 : e3329b12-30b7-57c4-8117-c2cd34a87ce9
+	blog.doughellmann.com
+		MD5   : 9bdabfce-dfd6-37ab-8a3f-7f7293bcf111
+		SHA-1 : fa829736-7ef8-5239-9906-b4775a5abacb
+
 .. {{{end}}}
 
 The UUID value for a given name in a namespace is always the same, no
@@ -130,6 +189,15 @@ different namespaces are different.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'uuid_uuid3_repeat.py'))
 .. }}}
+
+::
+
+	$ python uuid_uuid3_repeat.py
+	
+	bcd02e22-68f0-3046-a512-327cca9def8f
+	bcd02e22-68f0-3046-a512-327cca9def8f
+	bcd02e22-68f0-3046-a512-327cca9def8f
+
 .. {{{end}}}
 
 
@@ -151,6 +219,15 @@ use :func:`uuid4()` to generate them using random input values.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'uuid_uuid4.py'))
 .. }}}
+
+::
+
+	$ python uuid_uuid4.py
+	
+	025b0d74-00a2-4048-bf57-227c5111bb34
+	6491c2a5-acb2-40ef-b2c0-bc1fc4cd7e6c
+	3a99e70f-5ca4-4c0c-bf25-b05b441dfcae
+
 .. {{{end}}}
 
 
@@ -168,6 +245,27 @@ compare them, sort them, etc.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'uuid_uuid_objects.py'))
 .. }}}
+
+::
+
+	$ python uuid_uuid_objects.py
+	
+	input_values
+		urn:uuid:f2f84497-b3bf-493a-bba9-7c68e6def80b
+		{417a5ebb-01f7-4ed5-aeac-3d56cd5037b0}
+		2115773a-5bf1-11dd-ab48-001ec200d9e0
+	
+	converted to uuids
+		f2f84497-b3bf-493a-bba9-7c68e6def80b
+		417a5ebb-01f7-4ed5-aeac-3d56cd5037b0
+		2115773a-5bf1-11dd-ab48-001ec200d9e0
+	
+	sorted
+		2115773a-5bf1-11dd-ab48-001ec200d9e0
+		417a5ebb-01f7-4ed5-aeac-3d56cd5037b0
+		f2f84497-b3bf-493a-bba9-7c68e6def80b
+	
+
 .. {{{end}}}
 
 .. seealso::

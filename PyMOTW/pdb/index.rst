@@ -1143,6 +1143,13 @@ numbers divisible by ``5``.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'pdb_jump.py'))
 .. }}}
+
+::
+
+	$ python pdb_jump.py
+	
+	[5, 15, 30, 50, 75]
+
 .. {{{end}}}
 
 Jump Ahead

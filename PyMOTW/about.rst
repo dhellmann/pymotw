@@ -35,6 +35,13 @@ cog_.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-V'))
 .. }}}
+
+::
+
+	$ python -V
+	
+	Python 2.7.2
+
 .. {{{end}}}
 
 .. warning::

@@ -27,6 +27,13 @@ then the main process waits for the worker to finish.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_queue.py'))
 .. }}}
+
+::
+
+	$ python multiprocessing_queue.py
+	
+	Doing something fancy in Process-1 for Fancy Dan!
+
 .. {{{end}}}
 
 A more complex example shows how to manage several workers consuming
@@ -49,6 +56,49 @@ completed.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u multiprocessing_producer_consumer.py'))
 .. }}}
+
+::
+
+	$ python -u multiprocessing_producer_consumer.py
+	
+	Creating 16 consumers
+	Consumer-1: 0 * 0
+	Consumer-2: 1 * 1
+	Consumer-3: 2 * 2
+	Consumer-4: 3 * 3
+	Consumer-5: 4 * 4
+	Consumer-6: 5 * 5
+	Consumer-7: 6 * 6
+	Consumer-8: 7 * 7
+	Consumer-9: 8 * 8
+	Consumer-10: 9 * 9
+	Consumer-11: Exiting
+	Consumer-12: Exiting
+	Consumer-13: Exiting
+	Consumer-14: Exiting
+	Consumer-15: Exiting
+	Consumer-16: Exiting
+	Consumer-1: Exiting
+	Consumer-4: Exiting
+	Consumer-5: Exiting
+	Consumer-6: Exiting
+	Consumer-2: Exiting
+	Consumer-3: Exiting
+	Consumer-9: Exiting
+	Consumer-7: Exiting
+	Consumer-8: Exiting
+	Consumer-10: Exiting
+	Result: 0 * 0 = 0
+	Result: 3 * 3 = 9
+	Result: 8 * 8 = 64
+	Result: 5 * 5 = 25
+	Result: 4 * 4 = 16
+	Result: 6 * 6 = 36
+	Result: 7 * 7 = 49
+	Result: 1 * 1 = 1
+	Result: 2 * 2 = 4
+	Result: 9 * 9 = 81
+
 .. {{{end}}}
 
 
@@ -72,6 +122,18 @@ is responsible for checking the state of the event using
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u multiprocessing_event.py'))
 .. }}}
+
+::
+
+	$ python -u multiprocessing_event.py
+	
+	main: waiting before calling Event.set()
+	wait_for_event: starting
+	wait_for_event_timeout: starting
+	wait_for_event_timeout: e.is_set()-> False
+	main: event is set
+	wait_for_event: e.is_set()-> True
+
 .. {{{end}}}
 
 Controlling Access to Resources
@@ -92,6 +154,14 @@ output stream with the lock.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_lock.py'))
 .. }}}
+
+::
+
+	$ python multiprocessing_lock.py
+	
+	Lock acquired via with
+	Lock acquired directly
+
 .. {{{end}}}
 
 
@@ -112,6 +182,18 @@ parallel, but only after the first stage is done.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_condition.py'))
 .. }}}
+
+::
+
+	$ python multiprocessing_condition.py
+	
+	Starting s1
+	s1 done and ready for stage 2
+	Starting stage_2[1]
+	stage_2[1] running
+	Starting stage_2[2]
+	stage_2[2] running
+
 .. {{{end}}}
 
 
@@ -140,6 +222,32 @@ concurrently.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_semaphore.py'))
 .. }}}
+
+::
+
+	$ python multiprocessing_semaphore.py
+	
+	Now running: ['0', '1', '2']
+	Now running: ['0', '1', '2']
+	Now running: ['0', '1', '2']
+	Now running: ['0', '1', '3']
+	Now running: ['4', '5', '6']
+	Now running: ['3', '4', '5']
+	Now running: ['1', '3', '4']
+	Now running: ['4', '7', '8']
+	Now running: ['4', '5', '7']
+	Now running: ['7', '8', '9']
+	Now running: ['1', '3', '4']
+	Now running: ['3', '4', '5']
+	Now running: ['3', '4', '5']
+	Now running: ['4', '5', '6']
+	Now running: ['7', '8', '9']
+	Now running: ['7', '8', '9']
+	Now running: ['7', '8', '9']
+	Now running: ['9']
+	Now running: ['9']
+	Now running: []
+
 .. {{{end}}}
 
 Managing Shared State
@@ -161,6 +269,13 @@ seen in all processes.  Dictionaries are also supported.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_manager_dict.py'))
 .. }}}
+
+::
+
+	$ python multiprocessing_manager_dict.py
+	
+	Results: {0: 0, 1: 2, 2: 4, 3: 6, 4: 8, 5: 10, 6: 12, 7: 14, 8: 16, 9: 18}
+
 .. {{{end}}}
 
 Shared Namespaces
@@ -179,6 +294,14 @@ the clients that receive the :class:`Namespace` instance.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_namespaces.py'))
 .. }}}
+
+::
+
+	$ python multiprocessing_namespaces.py
+	
+	Before event, consumer got: 'Namespace' object has no attribute 'value'
+	After event, consumer got: This is the value
+
 .. {{{end}}}
 
 It is important to know that *updates* to the contents of mutable
@@ -193,6 +316,14 @@ To update the list, attach it to the namespace object again.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_namespaces_mutable.py'))
 .. }}}
+
+::
+
+	$ python multiprocessing_namespaces_mutable.py
+	
+	Before event, consumer got: []
+	After event, consumer got: []
+
 .. {{{end}}}
 
 
@@ -219,6 +350,31 @@ processes to ensure proper cleanup.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_pool.py'))
 .. }}}
+
+::
+
+	$ python multiprocessing_pool.py
+	
+	Input   : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+	Built-in: [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
+	Starting PoolWorker-11
+	Starting PoolWorker-12
+	Starting PoolWorker-13
+	Starting PoolWorker-14
+	Starting PoolWorker-15
+	Starting PoolWorker-16
+	Starting PoolWorker-1
+	Starting PoolWorker-2
+	Starting PoolWorker-3
+	Starting PoolWorker-4
+	Starting PoolWorker-5
+	Starting PoolWorker-8
+	Starting PoolWorker-9
+	Starting PoolWorker-6
+	Starting PoolWorker-10
+	Starting PoolWorker-7
+	Pool    : [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
+
 .. {{{end}}}
 
 By default :class:`Pool` creates a fixed number of worker processes
@@ -239,5 +395,30 @@ complete two of them at a time.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_pool_maxtasksperchild.py'))
 .. }}}
+
+::
+
+	$ python multiprocessing_pool_maxtasksperchild.py
+	
+	Input   : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+	Built-in: [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
+	Starting PoolWorker-11
+	Starting PoolWorker-12
+	Starting PoolWorker-13
+	Starting PoolWorker-14
+	Starting PoolWorker-15
+	Starting PoolWorker-16
+	Starting PoolWorker-1
+	Starting PoolWorker-2
+	Starting PoolWorker-3
+	Starting PoolWorker-4
+	Starting PoolWorker-5
+	Starting PoolWorker-6
+	Starting PoolWorker-7
+	Starting PoolWorker-8
+	Starting PoolWorker-9
+	Starting PoolWorker-10
+	Pool    : [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
+
 .. {{{end}}}
 

@@ -107,6 +107,13 @@ message is printed:
 .. sh('rm -f PyMOTW/gettext/locale/en_US/LC_MESSAGES/gettext_example.mo')
 .. cog.out(run_script(cog.inFile, 'gettext_example.py'))
 .. }}}
+
+::
+
+	$ python gettext_example.py
+	
+	This message is in the script.
+
 .. {{{end}}}
 
 The next step is to extract the message(s) and create the ``.pot``
@@ -115,6 +122,12 @@ file, using ``pygettext.py``.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'xgettext -d gettext_example -o gettext_example.pot gettext_example.py', interpreter=None))
 .. }}}
+
+::
+
+	$ xgettext -d gettext_example -o gettext_example.pot gettext_example.py
+	
+
 .. {{{end}}}
 
 The output file produced looks like:
@@ -153,6 +166,13 @@ The catalog is built from the ``.po`` file using ``msgformat``:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'cd locale/en_US/LC_MESSAGES/; msgfmt -o gettext_example.mo gettext_example.po', interpreter=None))
 .. }}}
+
+::
+
+	$ cd locale/en_US/LC_MESSAGES/; msgfmt -o gettext_example.mo gettext_exa\
+	mple.po
+	
+
 .. {{{end}}}
 
 And now when we run the script, the message from the catalog is
@@ -161,6 +181,13 @@ printed instead of the in-line string:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'gettext_example.py'))
 .. }}}
+
+::
+
+	$ python gettext_example.py
+	
+	This message is in the en_US catalog.
+
 .. {{{end}}}
 
 
@@ -191,6 +218,24 @@ running a few experiments.
 .. cog.out(run_script(cog.inFile, 'LANGUAGE=en_CA:en_US python gettext_find.py', interpreter=None, include_prefix=False, trailing_newlines=False))
 .. cog.out(run_script(cog.inFile, 'LANGUAGE=en_US:en_CA python gettext_find.py', interpreter=None, include_prefix=False))
 .. }}}
+
+::
+
+	$ cd locale/en_CA/LC_MESSAGES/; msgfmt -o gettext_example.mo gettext_exa\
+	mple.po
+	$ python gettext_find.py
+	
+	Catalogs: ['locale/en_US/LC_MESSAGES/gettext_example.mo']
+	$ LANGUAGE=en_CA python gettext_find.py
+	
+	Catalogs: ['locale/en_CA/LC_MESSAGES/gettext_example.mo']
+	$ LANGUAGE=en_CA:en_US python gettext_find.py
+	
+	Catalogs: ['locale/en_CA/LC_MESSAGES/gettext_example.mo', 'locale/en_US/LC_MESSAGES/gettext_example.mo']
+	$ LANGUAGE=en_US:en_CA python gettext_find.py
+	
+	Catalogs: ['locale/en_US/LC_MESSAGES/gettext_example.mo', 'locale/en_CA/LC_MESSAGES/gettext_example.mo']
+
 .. {{{end}}}
 
 Although ``find()`` shows the complete list of catalogs, only the
@@ -202,6 +247,22 @@ first one in the sequence is actually loaded for message lookups.
 .. cog.out(run_script(cog.inFile, 'LANGUAGE=en_CA:en_US python gettext_example.py', interpreter=None, include_prefix=False, trailing_newlines=False))
 .. cog.out(run_script(cog.inFile, 'LANGUAGE=en_US:en_CA python gettext_example.py', interpreter=None, include_prefix=False))
 .. }}}
+
+::
+
+	$ python gettext_example.py
+	
+	This message is in the en_US catalog.
+	$ LANGUAGE=en_CA python gettext_example.py
+	
+	This message is in the en_CA catalog.
+	$ LANGUAGE=en_CA:en_US python gettext_example.py
+	
+	This message is in the en_CA catalog.
+	$ LANGUAGE=en_US:en_CA python gettext_example.py
+	
+	This message is in the en_US catalog.
+
 .. {{{end}}}
 
 
@@ -225,6 +286,13 @@ set of functions for asking for the plural form of a message.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'xgettext -L Python -d gettext_plural -o gettext_plural.pot gettext_plural.py', interpreter=None))
 .. }}}
+
+::
+
+	$ xgettext -L Python -d gettext_plural -o gettext_plural.pot gettext_plu\
+	ral.py
+	
+
 .. {{{end}}}
 
 Since there are alternate forms to be translated, the replacements are
@@ -268,6 +336,21 @@ translation strings.
 .. cog.out(run_script(cog.inFile, 'gettext_plural.py 1', include_prefix=False, trailing_newlines=False))
 .. cog.out(run_script(cog.inFile, 'gettext_plural.py 2', include_prefix=False))
 .. }}}
+
+::
+
+	$ cd locale/en_US/LC_MESSAGES/; msgfmt -o gettext_plural.mo gettext_plur\
+	al.po
+	$ python gettext_plural.py 0
+	
+	In en_US, 0 is plural.
+	$ python gettext_plural.py 1
+	
+	In en_US, 1 is singular.
+	$ python gettext_plural.py 2
+	
+	In en_US, 2 is plural.
+
 .. {{{end}}}
 
 Application vs. Module Localization

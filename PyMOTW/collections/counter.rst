@@ -24,6 +24,15 @@ The results of all three forms of initialization are the same.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'collections_counter_init.py'))
 .. }}}
+
+::
+
+	$ python collections_counter_init.py
+	
+	Counter({'b': 3, 'a': 2, 'c': 1})
+	Counter({'b': 3, 'a': 2, 'c': 1})
+	Counter({'b': 3, 'a': 2, 'c': 1})
+
 .. {{{end}}}
 
 An empty :class:`Counter` can be constructed with no arguments and
@@ -40,6 +49,15 @@ replaced.  In this example, the count for ``a`` goes from ``3`` to
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'collections_counter_update.py'))
 .. }}}
+
+::
+
+	$ python collections_counter_update.py
+	
+	Initial : Counter()
+	Sequence: Counter({'a': 3, 'b': 2, 'c': 1, 'd': 1})
+	Dict    : Counter({'d': 6, 'a': 4, 'b': 2, 'c': 1})
+
 .. {{{end}}}
 
 Accessing Counts
@@ -59,6 +77,17 @@ for unknown items.  If a value has not been seen in the input (as with
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'collections_counter_get_values.py'))
 .. }}}
+
+::
+
+	$ python collections_counter_get_values.py
+	
+	a : 3
+	b : 2
+	c : 1
+	d : 1
+	e : 0
+
 .. {{{end}}}
 
 The :func:`elements` method returns an iterator that produces all of
@@ -74,6 +103,14 @@ than zero are not included.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'collections_counter_elements.py'))
 .. }}}
+
+::
+
+	$ python collections_counter_elements.py
+	
+	Counter({'e': 3, 'm': 1, 'l': 1, 'r': 1, 't': 1, 'y': 1, 'x': 1, 'z': 0})
+	['e', 'e', 'e', 'm', 'l', 'r', 't', 'y', 'x']
+
 .. {{{end}}}
 
 Use :func:`most_common` to produce a sequence of the *n* most
@@ -92,6 +129,16 @@ frequency.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'collections_counter_most_common.py'))
 .. }}}
+
+::
+
+	$ python collections_counter_most_common.py
+	
+	Most common:
+	e:  235331
+	i:  201032
+	a:  199554
+
 .. {{{end}}}
 
 Arithmetic
@@ -112,6 +159,26 @@ zero.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'collections_counter_arithmetic.py'))
 .. }}}
+
+::
+
+	$ python collections_counter_arithmetic.py
+	
+	C1: Counter({'b': 3, 'a': 2, 'c': 1})
+	C2: Counter({'a': 2, 'b': 1, 'e': 1, 'h': 1, 'l': 1, 'p': 1, 't': 1})
+	
+	Combined counts:
+	Counter({'a': 4, 'b': 4, 'c': 1, 'e': 1, 'h': 1, 'l': 1, 'p': 1, 't': 1})
+	
+	Subtraction:
+	Counter({'b': 2, 'c': 1})
+	
+	Intersection (taking positive minimums):
+	Counter({'a': 2, 'b': 1})
+	
+	Union (taking maximums):
+	Counter({'b': 3, 'a': 2, 'c': 1, 'e': 1, 'h': 1, 'l': 1, 'p': 1, 't': 1})
+
 .. {{{end}}}
 
 

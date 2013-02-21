@@ -31,6 +31,35 @@ The meta-data for the class includes the file and line number where it is define
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'pyclbr_readmodule.py'))
 .. }}}
+
+::
+
+	$ python pyclbr_readmodule.py
+	
+	Class: Base
+		File: pyclbr_example.py [10]
+		Method: method1 [14]
+	
+	Class: Sub1
+		File: pyclbr_example.py [17]
+		Super classes: ['Base']
+	
+	Class: Sub2
+		File: pyclbr_example.py [21]
+		Super classes: ['Base']
+	
+	Class: Mixin
+		File: pyclbr_example.py [25]
+		Method: method2 [29]
+	
+	Class: MixinUser
+		File: pyclbr_example.py [32]
+		Super classes: ['Sub2', 'Mixin']
+		Method: method1 [36]
+		Method: method2 [39]
+		Method: method3 [42]
+	
+
 .. {{{end}}}
 
 
@@ -48,6 +77,13 @@ Each ``Function`` object has properties much like the ``Class`` object.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'pyclbr_readmodule_ex.py'))
 .. }}}
+
+::
+
+	$ python pyclbr_readmodule_ex.py
+	
+	Function: my_function [45]
+
 .. {{{end}}}
 
 

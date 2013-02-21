@@ -38,6 +38,29 @@ to make the output more verbose.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-m doctest -v doctest_simple.py'))
 .. }}}
+
+::
+
+	$ python -m doctest -v doctest_simple.py
+	
+	Trying:
+	    my_function(2, 3)
+	Expecting:
+	    6
+	ok
+	Trying:
+	    my_function('a', 3)
+	Expecting:
+	    'aaa'
+	ok
+	1 items had no tests:
+	    doctest_simple
+	1 items passed all tests:
+	   2 tests in doctest_simple.my_function
+	2 tests in 2 items.
+	2 passed and 0 failed.
+	Test passed.
+
 .. {{{end}}}
 
 Examples cannot usually stand on their own as explanations of a
@@ -59,6 +82,29 @@ the same.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-m doctest -v doctest_simple_with_docs.py'))
 .. }}}
+
+::
+
+	$ python -m doctest -v doctest_simple_with_docs.py
+	
+	Trying:
+	    my_function(2, 3)
+	Expecting:
+	    6
+	ok
+	Trying:
+	    my_function('a', 3)
+	Expecting:
+	    'aaa'
+	ok
+	1 items had no tests:
+	    doctest_simple_with_docs
+	1 items passed all tests:
+	   2 tests in doctest_simple_with_docs.my_function
+	2 tests in 2 items.
+	2 passed and 0 failed.
+	Test passed.
+
 .. {{{end}}}
 
 Handling Unpredictable Output
@@ -85,6 +131,33 @@ into a different part of memory.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-m doctest -v doctest_unpredictable.py', ignore_error=True))
 .. }}}
+
+::
+
+	$ python -m doctest -v doctest_unpredictable.py
+	
+	Trying:
+	    unpredictable(MyClass())
+	Expecting:
+	    [<doctest_unpredictable.MyClass object at 0x10055a2d0>]
+	**********************************************************************
+	File "doctest_unpredictable.py", line 16, in doctest_unpredictable.unpredictable
+	Failed example:
+	    unpredictable(MyClass())
+	Expected:
+	    [<doctest_unpredictable.MyClass object at 0x10055a2d0>]
+	Got:
+	    [<doctest_unpredictable.MyClass object at 0x10051df90>]
+	2 items had no tests:
+	    doctest_unpredictable
+	    doctest_unpredictable.MyClass
+	**********************************************************************
+	1 items had failures:
+	   1 of   1 in doctest_unpredictable.unpredictable
+	1 tests in 3 items.
+	0 passed and 1 failed.
+	***Test Failed*** 1 failures.
+
 .. {{{end}}}
 
 When the tests include values that are likely to change in
@@ -105,6 +178,25 @@ output matches and the test passes.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-m doctest -v doctest_ellipsis.py'))
 .. }}}
+
+::
+
+	$ python -m doctest -v doctest_ellipsis.py
+	
+	Trying:
+	    unpredictable(MyClass()) #doctest: +ELLIPSIS
+	Expecting:
+	    [<doctest_ellipsis.MyClass object at 0x...>]
+	ok
+	2 items had no tests:
+	    doctest_ellipsis
+	    doctest_ellipsis.MyClass
+	1 items passed all tests:
+	   1 tests in doctest_ellipsis.unpredictable
+	1 tests in 3 items.
+	1 passed and 0 failed.
+	Test passed.
+
 .. {{{end}}}
 
 There are cases where you cannot ignore the unpredictable value,
@@ -125,6 +217,20 @@ exhibit the same behavior.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'doctest_hashed_values.py'))
 .. }}}
+
+::
+
+	$ python doctest_hashed_values.py
+	
+	
+	d1: {'a': 1, 'aa': 2, 'aaa': 3}
+	d2: {'aa': 2, 'a': 1, 'aaa': 3}
+	d1 == d2: True
+	
+	s1: set(['a', 'aa', 'aaa'])
+	s2: set(['aa', 'a', 'aaa'])
+	s1 == s2: True
+
 .. {{{end}}}
 
 The best way to deal with these potential discrepancies is to create
@@ -145,6 +251,32 @@ expecting the boolean result of the comparison operation.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-m doctest -v doctest_hashed_values_tests.py'))
 .. }}}
+
+::
+
+	$ python -m doctest -v doctest_hashed_values_tests.py
+	
+	Trying:
+	    grouped = group_by_length([ 'python', 'module', 'of', 'the', 'week' ])
+	Expecting nothing
+	ok
+	Trying:
+	    grouped == { 2:set(['of']),
+	                 3:set(['the']),
+	                 4:set(['week']),
+	                 6:set(['python', 'module']),
+	                 }
+	Expecting:
+	    True
+	ok
+	1 items had no tests:
+	    doctest_hashed_values_tests
+	1 items passed all tests:
+	   2 tests in doctest_hashed_values_tests.group_by_length
+	2 tests in 2 items.
+	2 passed and 0 failed.
+	Test passed.
+
 .. {{{end}}}
 
 Tracebacks
@@ -165,6 +297,28 @@ ignore the parts that might change from system to system.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-m doctest -v doctest_tracebacks.py'))
 .. }}}
+
+::
+
+	$ python -m doctest -v doctest_tracebacks.py
+	
+	Trying:
+	    this_raises()
+	Expecting:
+	    Traceback (most recent call last):
+	      File "<stdin>", line 1, in <module>
+	      File "/no/such/path/doctest_tracebacks.py", line 14, in this_raises
+	        raise RuntimeError('here is the error')
+	    RuntimeError: here is the error
+	ok
+	1 items had no tests:
+	    doctest_tracebacks
+	1 items passed all tests:
+	   1 tests in doctest_tracebacks.this_raises
+	1 tests in 2 items.
+	1 passed and 0 failed.
+	Test passed.
+
 .. {{{end}}}
 
 In fact, the entire body of the traceback is ignored and can be
@@ -183,6 +337,25 @@ entirely.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-m doctest -v doctest_tracebacks_no_body.py'))
 .. }}}
+
+::
+
+	$ python -m doctest -v doctest_tracebacks_no_body.py
+	
+	Trying:
+	    this_raises()
+	Expecting:
+	    Traceback (most recent call last):
+	    RuntimeError: here is the error
+	ok
+	1 items had no tests:
+	    doctest_tracebacks_no_body
+	1 items passed all tests:
+	   1 tests in doctest_tracebacks_no_body.this_raises
+	1 tests in 2 items.
+	1 passed and 0 failed.
+	Test passed.
+
 .. {{{end}}}
 
 Working Around Whitespace
@@ -203,6 +376,27 @@ double-spaced with blank lines between.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-m doctest doctest_blankline_fail.py', ignore_error=True))
 .. }}}
+
+::
+
+	$ python -m doctest doctest_blankline_fail.py
+	
+	**********************************************************************
+	File "doctest_blankline_fail.py", line 13, in doctest_blankline_fail.double_space
+	Failed example:
+	    double_space(['Line one.', 'Line two.'])
+	Expected:
+	    Line one.
+	Got:
+	    Line one.
+	    <BLANKLINE>
+	    Line two.
+	    <BLANKLINE>
+	**********************************************************************
+	1 items had failures:
+	   1 of   1 in doctest_blankline_fail.double_space
+	***Test Failed*** 1 failures.
+
 .. {{{end}}}
 
 The test fails, because it interprets the blank line after ``Line
@@ -221,6 +415,27 @@ values match and the test passes.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-m doctest -v doctest_blankline.py'))
 .. }}}
+
+::
+
+	$ python -m doctest -v doctest_blankline.py
+	
+	Trying:
+	    double_space(['Line one.', 'Line two.'])
+	Expecting:
+	    Line one.
+	    <BLANKLINE>
+	    Line two.
+	    <BLANKLINE>
+	ok
+	1 items had no tests:
+	    doctest_blankline
+	1 items passed all tests:
+	   1 tests in doctest_blankline.double_space
+	1 tests in 2 items.
+	1 passed and 0 failed.
+	Test passed.
+
 .. {{{end}}}
 
 Another pitfall of using text comparisons for tests is that embedded
@@ -239,6 +454,37 @@ report as well.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-m doctest -v doctest_extra_space.py', ignore_error=True))
 .. }}}
+
+::
+
+	$ python -m doctest -v doctest_extra_space.py
+	
+	Trying:
+	    my_function(2, 3)
+	Expecting:
+	    6 
+	**********************************************************************
+	File "doctest_extra_space.py", line 12, in doctest_extra_space.my_function
+	Failed example:
+	    my_function(2, 3)
+	Expected:
+	    6 
+	Got:
+	    6
+	Trying:
+	    my_function('a', 3)
+	Expecting:
+	    'aaa'
+	ok
+	1 items had no tests:
+	    doctest_extra_space
+	**********************************************************************
+	1 items had failures:
+	   1 of   2 in doctest_extra_space.my_function
+	2 tests in 2 items.
+	1 passed and 1 failed.
+	***Test Failed*** 1 failures.
+
 .. {{{end}}}
 
 Using one of the diff-based reporting options, such as
@@ -255,6 +501,37 @@ also available, for output where those formats are more readable.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-m doctest -v doctest_ndiff.py', ignore_error=True))
 .. }}}
+
+::
+
+	$ python -m doctest -v doctest_ndiff.py
+	
+	Trying:
+	    my_function(2, 3) #doctest: +REPORT_NDIFF
+	Expecting:
+	    6 
+	**********************************************************************
+	File "doctest_ndiff.py", line 12, in doctest_ndiff.my_function
+	Failed example:
+	    my_function(2, 3) #doctest: +REPORT_NDIFF
+	Differences (ndiff with -expected +actual):
+	    - 6
+	    ?  -
+	    + 6
+	Trying:
+	    my_function('a', 3)
+	Expecting:
+	    'aaa'
+	ok
+	1 items had no tests:
+	    doctest_ndiff
+	**********************************************************************
+	1 items had failures:
+	   1 of   2 in doctest_ndiff.my_function
+	2 tests in 2 items.
+	1 passed and 1 failed.
+	***Test Failed*** 1 failures.
+
 .. {{{end}}}
 
 There are cases where it is beneficial to add extra whitespace in the
@@ -278,6 +555,41 @@ second has extra whitespace after ``[`` and before ``]``, so it fails.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-m doctest -v doctest_normalize_whitespace.py', ignore_error=True))
 .. }}}
+
+::
+
+	$ python -m doctest -v doctest_normalize_whitespace.py
+	
+	Trying:
+	    my_function(['A', 'B', 'C'], 3) #doctest: +NORMALIZE_WHITESPACE
+	Expecting:
+	    ['A', 'B', 'C',
+	     'A', 'B', 'C',
+	     'A', 'B', 'C']
+	ok
+	Trying:
+	    my_function(['A', 'B', 'C'], 2) #doctest: +NORMALIZE_WHITESPACE
+	Expecting:
+	    [ 'A', 'B', 'C',
+	      'A', 'B', 'C' ]
+	**********************************************************************
+	File "doctest_normalize_whitespace.py", line 20, in doctest_normalize_whitespace.my_function
+	Failed example:
+	    my_function(['A', 'B', 'C'], 2) #doctest: +NORMALIZE_WHITESPACE
+	Expected:
+	    [ 'A', 'B', 'C',
+	      'A', 'B', 'C' ]
+	Got:
+	    ['A', 'B', 'C', 'A', 'B', 'C']
+	1 items had no tests:
+	    doctest_normalize_whitespace
+	**********************************************************************
+	1 items had failures:
+	   1 of   2 in doctest_normalize_whitespace.my_function
+	2 tests in 2 items.
+	1 passed and 1 failed.
+	***Test Failed*** 1 failures.
+
 .. {{{end}}}
 
 Test Locations
@@ -299,6 +611,42 @@ level.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-m doctest -v doctest_docstrings.py'))
 .. }}}
+
+::
+
+	$ python -m doctest -v doctest_docstrings.py
+	
+	Trying:
+	    A('a') == B('b')
+	Expecting:
+	    False
+	ok
+	Trying:
+	    A('instance_name').name
+	Expecting:
+	    'instance_name'
+	ok
+	Trying:
+	    A('name').method()
+	Expecting:
+	    'eman'
+	ok
+	Trying:
+	    B('different_name').name
+	Expecting:
+	    'different_name'
+	ok
+	1 items had no tests:
+	    doctest_docstrings.A.__init__
+	4 items passed all tests:
+	   1 tests in doctest_docstrings
+	   1 tests in doctest_docstrings.A
+	   1 tests in doctest_docstrings.A.method
+	   1 tests in doctest_docstrings.B
+	4 tests in 5 items.
+	4 passed and 0 failed.
+	Test passed.
+
 .. {{{end}}}
 
 In cases where you have tests that you want to include with your
@@ -328,6 +676,47 @@ docstring.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-m doctest -v doctest_private_tests.py'))
 .. }}}
+
+::
+
+	$ python -m doctest -v doctest_private_tests.py
+	
+	Trying:
+	    my_function(['A', 'B', 'C'], 2)
+	Expecting:
+	    ['A', 'B', 'C', 'A', 'B', 'C']
+	ok
+	Trying:
+	    my_function(2, 3)
+	Expecting:
+	    6
+	ok
+	Trying:
+	    my_function(2.0, 3)
+	Expecting:
+	    6.0
+	ok
+	Trying:
+	    my_function('a', 3)
+	Expecting:
+	    'aaa'
+	ok
+	Trying:
+	    my_function(3, 'a')
+	Expecting:
+	    'aaa'
+	ok
+	2 items had no tests:
+	    doctest_private_tests
+	    doctest_private_tests.my_function
+	3 items passed all tests:
+	   1 tests in doctest_private_tests.__test__.external
+	   2 tests in doctest_private_tests.__test__.numbers
+	   2 tests in doctest_private_tests.__test__.strings
+	5 tests in 5 items.
+	5 passed and 0 failed.
+	Test passed.
+
 .. {{{end}}}
 
 External Documentation
@@ -355,6 +744,41 @@ with the Python source modules.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-m doctest -v doctest_in_help.rst'))
 .. }}}
+
+::
+
+	$ python -m doctest -v doctest_in_help.rst
+	
+	Trying:
+	    from doctest_in_help import my_function
+	Expecting nothing
+	ok
+	Trying:
+	    my_function(2, 3)
+	Expecting:
+	    6
+	ok
+	Trying:
+	    my_function(2.0, 3)
+	Expecting:
+	    6.0
+	ok
+	Trying:
+	    my_function('a', 3)
+	Expecting:
+	    'aaa'
+	ok
+	Trying:
+	    my_function(['A', 'B', 'C'], 2)
+	Expecting:
+	    ['A', 'B', 'C', 'A', 'B', 'C']
+	ok
+	1 items passed all tests:
+	   5 tests in doctest_in_help.rst
+	5 tests in 1 items.
+	5 passed and 0 failed.
+	Test passed.
+
 .. {{{end}}}
 
 Normally :mod:`doctest` sets up the test execution environment to
@@ -392,6 +816,29 @@ program by invoking :func:`testmod` only if the current module name is
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'doctest_testmod.py -v'))
 .. }}}
+
+::
+
+	$ python doctest_testmod.py -v
+	
+	Trying:
+	    my_function(2, 3)
+	Expecting:
+	    6
+	ok
+	Trying:
+	    my_function('a', 3)
+	Expecting:
+	    'aaa'
+	ok
+	1 items had no tests:
+	    __main__
+	1 items passed all tests:
+	   2 tests in __main__.my_function
+	2 tests in 2 items.
+	2 passed and 0 failed.
+	Test passed.
+
 .. {{{end}}}
 
 The first argument to :func:`testmod` is a module containing code to
@@ -409,6 +856,29 @@ and running its tests.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'doctest_testmod_other_module.py -v'))
 .. }}}
+
+::
+
+	$ python doctest_testmod_other_module.py -v
+	
+	Trying:
+	    my_function(2, 3)
+	Expecting:
+	    6
+	ok
+	Trying:
+	    my_function('a', 3)
+	Expecting:
+	    'aaa'
+	ok
+	1 items had no tests:
+	    doctest_simple
+	1 items passed all tests:
+	   2 tests in doctest_simple.my_function
+	2 tests in 2 items.
+	2 passed and 0 failed.
+	Test passed.
+
 .. {{{end}}}
 
 By File
@@ -425,6 +895,41 @@ your test program.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'doctest_testfile.py -v'))
 .. }}}
+
+::
+
+	$ python doctest_testfile.py -v
+	
+	Trying:
+	    from doctest_in_help import my_function
+	Expecting nothing
+	ok
+	Trying:
+	    my_function(2, 3)
+	Expecting:
+	    6
+	ok
+	Trying:
+	    my_function(2.0, 3)
+	Expecting:
+	    6.0
+	ok
+	Trying:
+	    my_function('a', 3)
+	Expecting:
+	    'aaa'
+	ok
+	Trying:
+	    my_function(['A', 'B', 'C'], 2)
+	Expecting:
+	    ['A', 'B', 'C', 'A', 'B', 'C']
+	ok
+	1 items passed all tests:
+	   5 tests in doctest_in_help.rst
+	5 tests in 1 items.
+	5 passed and 0 failed.
+	Test passed.
+
 .. {{{end}}}
 
 Both :func:`testmod` and :func:`testfile` include optional parameters
@@ -452,6 +957,21 @@ instead of being reported individually.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'doctest_unittest.py'))
 .. }}}
+
+::
+
+	$ python doctest_unittest.py
+	
+	my_function (doctest_simple)
+	Doctest: doctest_simple.my_function ... ok
+	doctest_in_help.rst
+	Doctest: doctest_in_help.rst ... ok
+	
+	----------------------------------------------------------------------
+	Ran 2 tests in 0.003s
+	
+	OK
+
 .. {{{end}}}
 
 
@@ -475,6 +995,35 @@ the test for :func:`two` looks for it (expecting not to find it).
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-m doctest -v doctest_test_globals.py'))
 .. }}}
+
+::
+
+	$ python -m doctest -v doctest_test_globals.py
+	
+	Trying:
+	    var = 'value'
+	Expecting nothing
+	ok
+	Trying:
+	    'var' in globals()
+	Expecting:
+	    True
+	ok
+	Trying:
+	    'var' in globals()
+	Expecting:
+	    False
+	ok
+	2 items had no tests:
+	    doctest_test_globals
+	    doctest_test_globals.TestGlobals
+	2 items passed all tests:
+	   2 tests in doctest_test_globals.TestGlobals.one
+	   1 tests in doctest_test_globals.TestGlobals.two
+	3 tests in 4 items.
+	3 passed and 0 failed.
+	Test passed.
+
 .. {{{end}}}
 
 That does not mean the tests *cannot* interfere with each other,
@@ -491,6 +1040,44 @@ The module varabile ``_module_data`` is changed by the tests for
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-m doctest -v doctest_mutable_globals.py', ignore_error=True))
 .. }}}
+
+::
+
+	$ python -m doctest -v doctest_mutable_globals.py
+	
+	Trying:
+	    TestGlobals().one()
+	Expecting nothing
+	ok
+	Trying:
+	    'var' in _module_data
+	Expecting:
+	    True
+	ok
+	Trying:
+	    'var' in _module_data
+	Expecting:
+	    False
+	**********************************************************************
+	File "doctest_mutable_globals.py", line 24, in doctest_mutable_globals.TestGlobals.two
+	Failed example:
+	    'var' in _module_data
+	Expected:
+	    False
+	Got:
+	    True
+	2 items had no tests:
+	    doctest_mutable_globals
+	    doctest_mutable_globals.TestGlobals
+	1 items passed all tests:
+	   2 tests in doctest_mutable_globals.TestGlobals.one
+	**********************************************************************
+	1 items had failures:
+	   1 of   1 in doctest_mutable_globals.TestGlobals.two
+	3 tests in 4 items.
+	2 passed and 1 failed.
+	***Test Failed*** 1 failures.
+
 .. {{{end}}}
 
 If you need to set global values for the tests, to parameterize them

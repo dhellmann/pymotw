@@ -46,6 +46,17 @@ command line:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'unittest_simple.py'))
 .. }}}
+
+::
+
+	$ python unittest_simple.py
+	
+	.
+	----------------------------------------------------------------------
+	Ran 1 test in 0.000s
+	
+	OK
+
 .. {{{end}}}
 
 This abbreviated output includes the amount of time the tests took, along with
@@ -55,6 +66,18 @@ that a test passed). For more detailed test results, include the -v option:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'unittest_simple.py -v'))
 .. }}}
+
+::
+
+	$ python unittest_simple.py -v
+	
+	test (__main__.SimplisticTest) ... ok
+	
+	----------------------------------------------------------------------
+	Ran 1 test in 0.000s
+	
+	OK
+
 .. {{{end}}}
 
 Test Outcomes
@@ -84,6 +107,33 @@ output.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'unittest_outcomes.py', ignore_error=True))
 .. }}}
+
+::
+
+	$ python unittest_outcomes.py
+	
+	EF.
+	======================================================================
+	ERROR: testError (__main__.OutcomesTest)
+	----------------------------------------------------------------------
+	Traceback (most recent call last):
+	  File "unittest_outcomes.py", line 42, in testError
+	    raise RuntimeError('Test error!')
+	RuntimeError: Test error!
+	
+	======================================================================
+	FAIL: testFail (__main__.OutcomesTest)
+	----------------------------------------------------------------------
+	Traceback (most recent call last):
+	  File "unittest_outcomes.py", line 39, in testFail
+	    self.failIf(True)
+	AssertionError: True is not false
+	
+	----------------------------------------------------------------------
+	Ran 3 tests in 0.000s
+	
+	FAILED (failures=1, errors=1)
+
 .. {{{end}}}
 
 
@@ -102,6 +152,26 @@ error message.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'unittest_failwithmessage.py -v', ignore_error=True))
 .. }}}
+
+::
+
+	$ python unittest_failwithmessage.py -v
+	
+	testFail (__main__.FailureMessageTest) ... FAIL
+	
+	======================================================================
+	FAIL: testFail (__main__.FailureMessageTest)
+	----------------------------------------------------------------------
+	Traceback (most recent call last):
+	  File "unittest_failwithmessage.py", line 36, in testFail
+	    self.failIf(True, 'failure message goes here')
+	AssertionError: failure message goes here
+	
+	----------------------------------------------------------------------
+	Ran 1 test in 0.000s
+	
+	FAILED (failures=1)
+
 .. {{{end}}}
 
 
@@ -123,6 +193,21 @@ be used. If the code produces a false value, the methods
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'unittest_truth.py -v'))
 .. }}}
+
+::
+
+	$ python unittest_truth.py -v
+	
+	testAssertFalse (__main__.TruthTest) ... ok
+	testAssertTrue (__main__.TruthTest) ... ok
+	testFailIf (__main__.TruthTest) ... ok
+	testFailUnless (__main__.TruthTest) ... ok
+	
+	----------------------------------------------------------------------
+	Ran 4 tests in 0.000s
+	
+	OK
+
 .. {{{end}}}
 
 
@@ -139,6 +224,19 @@ equality of two values.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'unittest_equality.py -v'))
 .. }}}
+
+::
+
+	$ python unittest_equality.py -v
+	
+	testEqual (__main__.EqualityTest) ... ok
+	testNotEqual (__main__.EqualityTest) ... ok
+	
+	----------------------------------------------------------------------
+	Ran 2 tests in 0.000s
+	
+	OK
+
 .. {{{end}}}
 
 
@@ -155,6 +253,35 @@ And when these tests are run:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'unittest_notequal.py -v', ignore_error=True))
 .. }}}
+
+::
+
+	$ python unittest_notequal.py -v
+	
+	testEqual (__main__.InequalityTest) ... FAIL
+	testNotEqual (__main__.InequalityTest) ... FAIL
+	
+	======================================================================
+	FAIL: testEqual (__main__.InequalityTest)
+	----------------------------------------------------------------------
+	Traceback (most recent call last):
+	  File "unittest_notequal.py", line 36, in testEqual
+	    self.failIfEqual(1, 3-2)
+	AssertionError: 1 == 1
+	
+	======================================================================
+	FAIL: testNotEqual (__main__.InequalityTest)
+	----------------------------------------------------------------------
+	Traceback (most recent call last):
+	  File "unittest_notequal.py", line 39, in testNotEqual
+	    self.failUnlessEqual(2, 3-2)
+	AssertionError: 2 != 1
+	
+	----------------------------------------------------------------------
+	Ran 2 tests in 0.000s
+	
+	FAILED (failures=2)
+
 .. {{{end}}}
 
 
@@ -175,6 +302,17 @@ places to use for the test.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'unittest_almostequal.py'))
 .. }}}
+
+::
+
+	$ python unittest_almostequal.py
+	
+	..
+	----------------------------------------------------------------------
+	Ran 2 tests in 0.000s
+	
+	OK
+
 .. {{{end}}}
 
 Testing for Exceptions
@@ -200,6 +338,21 @@ The results for both are the same, but the second test using
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'unittest_exception.py -v'))
 .. }}}
+
+::
+
+	$ python unittest_exception.py -v
+	
+	testFailUnlessRaises (__main__.ExceptionTest) ... ok
+	testTrapLocally (__main__.ExceptionTest) ... ok
+	
+	----------------------------------------------------------------------
+	Ran 2 tests in 0.000s
+	
+	OK
+	('a',) {'b': 'c'}
+	('a',) {'b': 'c'}
+
 .. {{{end}}}
 
 
@@ -226,6 +379,20 @@ fixture and test methods:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'unittest_fixtures.py'))
 .. }}}
+
+::
+
+	$ python unittest_fixtures.py
+	
+	.
+	----------------------------------------------------------------------
+	Ran 1 test in 0.000s
+	
+	OK
+	In setUp()
+	in test()
+	In tearDown()
+
 .. {{{end}}}
 
 

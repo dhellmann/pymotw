@@ -30,6 +30,15 @@ be compressed or decompressed in memory, and then using
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'bz2_memory.py'))
 .. }}}
+
+::
+
+	$ python bz2_memory.py
+	
+	Original     : 26 This is the original text.
+	Compressed   : 62 425a683931415926535916be35a600000293804001040022e59c402000314c000111e93d434da223028cf9e73148cae0a0d6ed7f17724538509016be35a6
+	Decompressed : 26 This is the original text.
+
 .. {{{end}}}
 
 Notice that for short text, the compressed version can be
@@ -44,6 +53,34 @@ compression overhead.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'bz2_lengths.py'))
 .. }}}
+
+::
+
+	$ python bz2_lengths.py
+	
+	      len(data)  len(compressed)
+	---------------  ---------------
+	              0               14 *
+	             26               62 *
+	             52               68 *
+	             78               70 
+	            104               72 
+	            130               77 
+	            156               77 
+	            182               73 
+	            208               75 
+	            234               80 
+	            260               80 
+	            286               81 
+	            312               80 
+	            338               81 
+	            364               81 
+	            390               76 
+	            416               78 
+	            442               84 
+	            468               84 
+	            494               87 
+
 .. {{{end}}}
 
 
@@ -212,6 +249,14 @@ any data not used.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'bz2_mixed.py'))
 .. }}}
+
+::
+
+	$ python bz2_mixed.py
+	
+	Decompressed matches lorem: True
+	Unused data matches lorem : True
+
 .. {{{end}}}
 
 
@@ -232,6 +277,13 @@ data.  To write data into a compressed file, open the file with mode
 .. sh("cd %s; rm -f example.txt.bzw" % workdir)
 .. cog.out(run_script(cog.inFile, 'bz2_file_write.py'))
 .. }}}
+
+::
+
+	$ python bz2_file_write.py
+	
+	example.txt.bz2: bzip2 compressed data, block size = 900k
+
 .. {{{end}}}
 
 
@@ -275,6 +327,22 @@ method that can be used to write a sequence of strings.
 .. sh("cd %s; rm -f example_lines.txt.bz2" % workdir)
 .. cog.out(run_script(cog.inFile, 'bz2_file_writelines.py'))
 .. }}}
+
+::
+
+	$ python bz2_file_writelines.py
+	
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+
 .. {{{end}}}
 
 
@@ -294,6 +362,14 @@ previous section.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'bz2_file_read.py'))
 .. }}}
+
+::
+
+	$ python bz2_file_read.py
+	
+	Contents of the example file go here.
+	
+
 .. {{{end}}}
     
 While reading a file, it is also possible to seek and read only part
@@ -309,6 +385,19 @@ caller does not even need to know that the data file is compressed.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'bz2_file_seek.py'))
 .. }}}
+
+::
+
+	$ python bz2_file_seek.py
+	
+	Entire file:
+	Contents of the example file go here.
+	
+	Starting at position 5 for 10 bytes:
+	nts of the
+	
+	True
+
 .. {{{end}}}
 
 

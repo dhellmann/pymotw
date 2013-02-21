@@ -29,6 +29,14 @@ special files cannot be copied as new special files with
 .. run_script(cog.inFile, 'rm -rf *.copy', interpreter=None)
 .. cog.out(run_script(cog.inFile, 'shutil_copyfile.py'))
 .. }}}
+
+::
+
+	$ python shutil_copyfile.py
+	
+	BEFORE: ['shutil_copyfile.py']
+	AFTER: ['shutil_copyfile.py', 'shutil_copyfile.py.copy']
+
 .. {{{end}}}
 
 
@@ -49,6 +57,37 @@ your own block size.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'shutil_copyfileobj.py'))
 .. }}}
+
+::
+
+	$ python shutil_copyfileobj.py
+	
+	Default:
+	read(16384) => Lorem ipsum dolor sit amet, consectetuer adipiscing elit. 
+	Vestibulum aliquam mollis dolor. Donec vulputate nunc ut diam. 
+	Ut rutrum mi vel sem. Vestibulum ante ipsum.
+	read(16384) => 
+	
+	All at once:
+	read(-1) => Lorem ipsum dolor sit amet, consectetuer adipiscing elit. 
+	Vestibulum aliquam mollis dolor. Donec vulputate nunc ut diam. 
+	Ut rutrum mi vel sem. Vestibulum ante ipsum.
+	read(-1) => 
+	
+	Blocks of 20:
+	read(20) => Lorem ipsum dolor si
+	read(20) => t amet, consectetuer
+	read(20) =>  adipiscing elit. 
+	V
+	read(20) => estibulum aliquam mo
+	read(20) => llis dolor. Donec vu
+	read(20) => lputate nunc ut diam
+	read(20) => . 
+	Ut rutrum mi vel 
+	read(20) => sem. Vestibulum ante
+	read(20) =>  ipsum.
+	read(20) => 
+
 .. {{{end}}}
 
 
@@ -66,6 +105,14 @@ copied along with the contents.
 .. (path(cog.inFile).parent / 'example').rmtree()
 .. cog.out(run_script(cog.inFile, 'shutil_copy.py'))
 .. }}}
+
+::
+
+	$ python shutil_copy.py
+	
+	BEFORE: []
+	AFTER: ['shutil_copy.py']
+
 .. {{{end}}}
 
 
@@ -80,6 +127,22 @@ modification times in the meta-data copied to the new file.
 .. (path(cog.inFile).parent / 'example').rmtree()
 .. cog.out(run_script(cog.inFile, 'shutil_copy2.py'))
 .. }}}
+
+::
+
+	$ python shutil_copy2.py
+	
+	SOURCE:
+		Mode    : 33188
+		Created : Sat Jul 16 12:28:43 2011
+		Accessed: Thu Feb 21 06:36:54 2013
+		Modified: Sat Feb 19 19:18:23 2011
+	DEST:
+		Mode    : 33188
+		Created : Thu Feb 21 06:36:54 2013
+		Accessed: Thu Feb 21 06:36:54 2013
+		Modified: Sat Feb 19 19:18:23 2011
+
 .. {{{end}}}
 
 
@@ -105,6 +168,14 @@ Then run the example script to change the permissions.
 .. (path(cog.inFile).parent / 'file_to_change.txt').unlink()
 .. cog.out(run_script(cog.inFile, 'shutil_copymode.py'))
 .. }}}
+
+::
+
+	$ python shutil_copymode.py
+	
+	BEFORE: -r--r--r--  1 dhellmann  dhellmann  7 Feb 21 06:36 file_to_change.txt
+	AFTER : -rw-r--r--  1 dhellmann  dhellmann  7 Feb 21 06:36 file_to_change.txt
+
 .. {{{end}}}
 
 To copy other meta-data about the file (permissions, last access time,
@@ -118,6 +189,22 @@ and last modified time), use :func:`copystat()`.
 .. (path(cog.inFile).parent / 'file_to_change.txt').unlink()
 .. cog.out(run_script(cog.inFile, 'shutil_copystat.py'))
 .. }}}
+
+::
+
+	$ python shutil_copystat.py
+	
+	BEFORE:
+		Mode    : 33060
+		Created : Thu Feb 21 06:36:54 2013
+		Accessed: Thu Feb 21 06:36:54 2013
+		Modified: Thu Feb 21 06:36:54 2013
+	AFTER :
+		Mode    : 33188
+		Created : Thu Feb 21 06:36:54 2013
+		Accessed: Thu Feb 21 06:36:54 2013
+		Modified: Sat Feb 19 19:18:23 2011
+
 .. {{{end}}}
 
 Working With Directory Trees
@@ -146,6 +233,19 @@ within the destination tree.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'shutil_copytree.py'))
 .. }}}
+
+::
+
+	$ python shutil_copytree.py
+	
+	BEFORE:
+	ls: /tmp/example: No such file or directory
+	AFTER:
+	total 8
+	8 -rw-r--r--   1 dhellmann  wheel  1595 Feb 19  2011 shutil_copy2.py
+	0 drwxrwxrwt  19 root       wheel   646 Feb 21 06:36 ..
+	0 drwxr-xr-x   3 dhellmann  wheel   102 Feb 21 06:36 .
+
 .. {{{end}}}
 
 To remove a directory and its contents, use :func:`rmtree()`. Errors
@@ -160,6 +260,19 @@ in the third argument.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'shutil_rmtree.py'))
 .. }}}
+
+::
+
+	$ python shutil_rmtree.py
+	
+	BEFORE:
+	total 8
+	8 -rw-r--r--   1 dhellmann  wheel  1595 Feb 19  2011 shutil_copy2.py
+	0 drwxrwxrwt  19 root       wheel   646 Feb 21 06:36 ..
+	0 drwxr-xr-x   3 dhellmann  wheel   102 Feb 21 06:36 .
+	AFTER:
+	ls: /tmp/example: No such file or directory
+
 .. {{{end}}}
 
 To move a file or directory from one place to another, use
@@ -177,6 +290,14 @@ destination and then the source is removed.
 .. d = [ f.unlink() for f in path(cog.inFile).parent.glob('example.*') ]
 .. cog.out(run_script(cog.inFile, 'shutil_move.py'))
 .. }}}
+
+::
+
+	$ python shutil_move.py
+	
+	BEFORE:  ['example.txt']
+	AFTER :  ['example.out']
+
 .. {{{end}}}
 
 

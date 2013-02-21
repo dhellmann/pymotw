@@ -16,6 +16,19 @@ This makes :class:`tuples` convenient containers for simple uses.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'collections_tuple.py'))
 .. }}}
+
+::
+
+	$ python collections_tuple.py
+	
+	Representation: ('Bob', 30, 'male')
+	
+	Field by index: Jane
+	
+	Fields by index:
+	Bob is a 30 year old male
+	Jane is a 29 year old female
+
 .. {{{end}}}
 
 On the other hand, remembering which index should be used for each
@@ -45,6 +58,21 @@ well as using the positional indexes of standard tuples.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'collections_namedtuple_person.py'))
 .. }}}
+
+::
+
+	$ python collections_namedtuple_person.py
+	
+	Type of Person: <type 'type'>
+	
+	Representation: Person(name='Bob', age=30, gender='male')
+	
+	Field by name: Jane
+	
+	Fields by index:
+	Bob is a 30 year old male
+	Jane is a 29 year old female
+
 .. {{{end}}}
 
 Invalid Field Names
@@ -63,6 +91,14 @@ keywords.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'collections_namedtuple_bad_fields.py'))
 .. }}}
+
+::
+
+	$ python collections_namedtuple_bad_fields.py
+	
+	Type names and field names cannot be a keyword: 'class'
+	Encountered duplicate field name: 'age'
+
 .. {{{end}}}
 
 In situations where a :class:`namedtuple` is being created based on
@@ -81,4 +117,12 @@ field is changed to ``_3``.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'collections_namedtuple_rename.py'))
 .. }}}
+
+::
+
+	$ python collections_namedtuple_rename.py
+	
+	('name', '_1', 'age', 'gender')
+	('name', 'age', 'gender', '_3')
+
 .. {{{end}}}

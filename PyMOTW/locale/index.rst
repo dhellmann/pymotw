@@ -47,6 +47,43 @@ A Mac running OS X 10.6 with all of the variables unset produces this output:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'export LANG=; export LC_CTYPE=; python locale_env_example.py', interpreter=None))
 .. }}}
+
+::
+
+	$ export LANG=; export LC_CTYPE=; python locale_env_example.py
+	
+	Environment settings:
+		LC_ALL = 
+		LC_CTYPE = 
+		LANG = 
+		LANGUAGE = 
+	
+	Locale from environment: (None, None)
+	
+	Numeric formatting:
+	
+	  Decimal point      : "."
+	  Grouping positions : []
+	  Thousands separator: ""
+	
+	Monetary formatting:
+	
+	  International currency symbol             : "''"
+	  Local currency symbol                     : '' ()
+	  Symbol precedes positive value            : 127
+	  Symbol precedes negative value            : 127
+	  Decimal point                             : ""
+	  Digits in fractional values               : 127
+	  Digits in fractional values, international: 127
+	  Grouping positions                        : []
+	  Thousands separator                       : ""
+	  Positive sign                             : ""
+	  Positive sign position                    : Unspecified
+	  Negative sign                             : ""
+	  Negative sign position                    : Unspecified
+	
+	
+
 .. {{{end}}}
 
 
@@ -58,6 +95,43 @@ France (``fr_FR``):
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'LANG=fr_FR LC_CTYPE=fr_FR LC_ALL=fr_FR python locale_env_example.py', interpreter=None))
 .. }}}
+
+::
+
+	$ LANG=fr_FR LC_CTYPE=fr_FR LC_ALL=fr_FR python locale_env_example.py
+	
+	Environment settings:
+		LC_ALL = fr_FR
+		LC_CTYPE = fr_FR
+		LANG = fr_FR
+		LANGUAGE = 
+	
+	Locale from environment: ('fr_FR', 'ISO8859-1')
+	
+	Numeric formatting:
+	
+	  Decimal point      : ","
+	  Grouping positions : [127]
+	  Thousands separator: ""
+	
+	Monetary formatting:
+	
+	  International currency symbol             : "'EUR '"
+	  Local currency symbol                     : 'Eu' (Eu)
+	  Symbol precedes positive value            : 0
+	  Symbol precedes negative value            : 0
+	  Decimal point                             : ","
+	  Digits in fractional values               : 2
+	  Digits in fractional values, international: 2
+	  Grouping positions                        : [3, 3, 0]
+	  Thousands separator                       : " "
+	  Positive sign                             : ""
+	  Positive sign position                    : Before value and symbol
+	  Negative sign                             : "-"
+	  Negative sign position                    : After value and symbol
+	
+	
+
 .. {{{end}}}
 
 
@@ -67,6 +141,43 @@ Spain (``es_ES``):
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'LANG=es_ES LC_CTYPE=es_ES LC_ALL=es_ES python locale_env_example.py', interpreter=None))
 .. }}}
+
+::
+
+	$ LANG=es_ES LC_CTYPE=es_ES LC_ALL=es_ES python locale_env_example.py
+	
+	Environment settings:
+		LC_ALL = es_ES
+		LC_CTYPE = es_ES
+		LANG = es_ES
+		LANGUAGE = 
+	
+	Locale from environment: ('es_ES', 'ISO8859-1')
+	
+	Numeric formatting:
+	
+	  Decimal point      : ","
+	  Grouping positions : [127]
+	  Thousands separator: ""
+	
+	Monetary formatting:
+	
+	  International currency symbol             : "'EUR '"
+	  Local currency symbol                     : 'Eu' (Eu)
+	  Symbol precedes positive value            : 1
+	  Symbol precedes negative value            : 1
+	  Decimal point                             : ","
+	  Digits in fractional values               : 2
+	  Digits in fractional values, international: 2
+	  Grouping positions                        : [3, 3, 0]
+	  Thousands separator                       : "."
+	  Positive sign                             : ""
+	  Positive sign position                    : Before value and symbol
+	  Negative sign                             : "-"
+	  Negative sign position                    : Before value and symbol
+	
+	
+
 .. {{{end}}}
 
 Portgual (``pt_PT``):
@@ -75,6 +186,43 @@ Portgual (``pt_PT``):
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'LANG=pt_PT LC_CTYPE=pt_PT LC_ALL=pt_PT python locale_env_example.py', interpreter=None))
 .. }}}
+
+::
+
+	$ LANG=pt_PT LC_CTYPE=pt_PT LC_ALL=pt_PT python locale_env_example.py
+	
+	Environment settings:
+		LC_ALL = pt_PT
+		LC_CTYPE = pt_PT
+		LANG = pt_PT
+		LANGUAGE = 
+	
+	Locale from environment: ('pt_PT', 'ISO8859-1')
+	
+	Numeric formatting:
+	
+	  Decimal point      : ","
+	  Grouping positions : []
+	  Thousands separator: " "
+	
+	Monetary formatting:
+	
+	  International currency symbol             : "'EUR '"
+	  Local currency symbol                     : 'Eu' (Eu)
+	  Symbol precedes positive value            : 0
+	  Symbol precedes negative value            : 0
+	  Decimal point                             : "."
+	  Digits in fractional values               : 2
+	  Digits in fractional values, international: 2
+	  Grouping positions                        : [3, 3, 0]
+	  Thousands separator                       : "."
+	  Positive sign                             : ""
+	  Positive sign position                    : Before value and symbol
+	  Negative sign                             : "-"
+	  Negative sign position                    : Before value and symbol
+	
+	
+
 .. {{{end}}}
 
 
@@ -84,6 +232,43 @@ Poland (``pl_PL``):
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'LANG=pl_PL LC_CTYPE=pl_PL LC_ALL=pl_PL python locale_env_example.py', interpreter=None))
 .. }}}
+
+::
+
+	$ LANG=pl_PL LC_CTYPE=pl_PL LC_ALL=pl_PL python locale_env_example.py
+	
+	Environment settings:
+		LC_ALL = pl_PL
+		LC_CTYPE = pl_PL
+		LANG = pl_PL
+		LANGUAGE = 
+	
+	Locale from environment: ('pl_PL', 'ISO8859-2')
+	
+	Numeric formatting:
+	
+	  Decimal point      : ","
+	  Grouping positions : [3, 3, 0]
+	  Thousands separator: " "
+	
+	Monetary formatting:
+	
+	  International currency symbol             : "'PLN '"
+	  Local currency symbol                     : 'z\xc5\x82' (zł)
+	  Symbol precedes positive value            : 1
+	  Symbol precedes negative value            : 1
+	  Decimal point                             : ","
+	  Digits in fractional values               : 2
+	  Digits in fractional values, international: 2
+	  Grouping positions                        : [3, 3, 0]
+	  Thousands separator                       : " "
+	  Positive sign                             : ""
+	  Positive sign position                    : After value
+	  Negative sign                             : "-"
+	  Negative sign position                    : After value
+	
+	
+
 .. {{{end}}}
 
 
@@ -105,6 +290,17 @@ The output is this small table:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'locale_currency_example.py'))
 .. }}}
+
+::
+
+	$ python locale_currency_example.py
+	
+	                 USA:   $1234.56   -$1234.56
+	              France: 1234,56 Eu  1234,56 Eu-
+	               Spain: Eu 1234,56  -Eu 1234,56
+	            Portugal: 1234.56 Eu  -1234.56 Eu
+	              Poland: zł 1234,56  zł 1234,56-
+
 .. {{{end}}}
 
 Formatting Numbers
@@ -124,6 +320,18 @@ instead of :func:`currency`.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'locale_grouping.py'))
 .. }}}
+
+::
+
+	$ python locale_grouping.py
+	
+	              Locale         Integer                Float
+	                 USA         123,456           123,456.78
+	              France          123456            123456,78
+	               Spain          123456            123456,78
+	            Portugal          123456            123456,78
+	              Poland         123 456           123 456,78
+
 .. {{{end}}}
 
 
@@ -146,6 +354,17 @@ The grouping and decimal separator values
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'locale_atof_example.py'))
 .. }}}
+
+::
+
+	$ python locale_atof_example.py
+	
+	                 USA:  1,234.56 => 1234.560000
+	              France:   1234,56 => 1234.560000
+	               Spain:   1234,56 => 1234.560000
+	            Portugal:   1234.56 => 1234.560000
+	              Poland:  1 234,56 => 1234.560000
+
 .. {{{end}}}
 
 
@@ -161,6 +380,17 @@ Another important aspect of localization is date and time formatting:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'locale_date_example.py'))
 .. }}}
+
+::
+
+	$ python locale_date_example.py
+	
+	                 USA: Thu Feb 21 06:35:54 2013
+	              France: Jeu 21 fév 06:35:54 2013
+	               Spain: jue 21 feb 06:35:54 2013
+	            Portugal: Qui 21 Fev 06:35:54 2013
+	              Poland: czw 21 lut 06:35:54 2013
+
 .. {{{end}}}
 
 This discussion only covers some of the high-level functions in the

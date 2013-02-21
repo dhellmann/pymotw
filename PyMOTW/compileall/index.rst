@@ -32,6 +32,22 @@ to unnecessary scanning, as seen here:
 .. sh("cd %s; find . -name '*.pyc' | xargs rm -f" % workdir)
 .. cog.out(run_script(cog.inFile, 'compileall_compile_dir.py'))
 .. }}}
+
+::
+
+	$ python compileall_compile_dir.py
+	
+	Listing examples ...
+	Listing examples/.svn ...
+	Listing examples/.svn/prop-base ...
+	Listing examples/.svn/text-base ...
+	Compiling examples/a.py ...
+	Listing examples/subdir ...
+	Listing examples/subdir/.svn ...
+	Listing examples/subdir/.svn/prop-base ...
+	Listing examples/subdir/.svn/text-base ...
+	Compiling examples/subdir/b.py ...
+
 .. {{{end}}}
 
 To filter directories out, use the ``rx`` argument to provide a
@@ -46,6 +62,22 @@ regular expression to match the names to exclude.
 .. sh("cd %s; find . -name '*.pyc' | xargs rm -f" % workdir)
 .. cog.out(run_script(cog.inFile, 'compileall_exclude_dirs.py'))
 .. }}}
+
+::
+
+	$ python compileall_exclude_dirs.py
+	
+	Listing examples ...
+	Listing examples/.svn ...
+	Listing examples/.svn/prop-base ...
+	Listing examples/.svn/text-base ...
+	Compiling examples/a.py ...
+	Listing examples/subdir ...
+	Listing examples/subdir/.svn ...
+	Listing examples/subdir/.svn/prop-base ...
+	Listing examples/subdir/.svn/text-base ...
+	Compiling examples/subdir/b.py ...
+
 .. {{{end}}}
 
 The maxlevels argument controls the depth of recursion.  For example,
@@ -61,6 +93,14 @@ to avoid recursion entirely pass ``0``.
 .. sh("cd %s; find . -name '*.pyc' | xargs rm -f" % workdir)
 .. cog.out(run_script(cog.inFile, 'compileall_recursion_depth.py'))
 .. }}}
+
+::
+
+	$ python compileall_recursion_depth.py
+	
+	Listing examples ...
+	Compiling examples/a.py ...
+
 .. {{{end}}}
 
 
@@ -83,6 +123,17 @@ default behavior.  Note that the maxlevels value defaults to ``0``.
 .. sh("cd %s; find . -name '*.pyc' | xargs rm -f" % workdir)
 .. cog.out(run_script(cog.inFile, 'compileall_path.py'))
 .. }}}
+
+::
+
+	$ python compileall_path.py
+	
+	sys.path = ['examples', 'notthere']
+	Listing examples ...
+	Compiling examples/a.py ...
+	Listing notthere ...
+	Can't list notthere
+
 .. {{{end}}}
 
 
@@ -96,6 +147,22 @@ For example:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-m compileall -h', ignore_error=True))
 .. }}}
+
+::
+
+	$ python -m compileall -h
+	
+	option -h not recognized
+	usage: python compileall.py [-l] [-f] [-q] [-d destdir] [-x regexp] [-i list] [directory|file ...]
+	-l: don't recurse down
+	-f: force rebuild even if timestamps are up-to-date
+	-q: quiet operation
+	-d destdir: purported directory name for error messages
+	   if no directory arguments, -l sys.path is assumed
+	-x regexp: skip files matching the regular expression regexp
+	   the regexp is searched for in the full path of the file
+	-i list: expand list with its content (file and directory names)
+
 .. {{{end}}}
 
 To recreate the example above, skipping ``.svn`` directories, one
@@ -106,6 +173,22 @@ would run:
 .. sh("cd %s; find . -name '*.pyc' | xargs rm -f" % workdir)
 .. cog.out(run_script(cog.inFile, "-m compileall -x '/\.svn' examples"))
 .. }}}
+
+::
+
+	$ python -m compileall -x '/\.svn' examples
+	
+	Listing examples ...
+	Listing examples/.svn ...
+	Listing examples/.svn/prop-base ...
+	Listing examples/.svn/text-base ...
+	Compiling examples/a.py ...
+	Listing examples/subdir ...
+	Listing examples/subdir/.svn ...
+	Listing examples/subdir/.svn/prop-base ...
+	Listing examples/subdir/.svn/text-base ...
+	Compiling examples/subdir/b.py ...
+
 .. {{{end}}}
 
 

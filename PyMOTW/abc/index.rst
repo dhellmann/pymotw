@@ -55,6 +55,14 @@ API.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'abc_register.py'))
 .. }}}
+
+::
+
+	$ python abc_register.py
+	
+	Subclass: True
+	Instance: True
+
 .. {{{end}}}
 
 Implementation Through Subclassing
@@ -73,6 +81,14 @@ In this case the normal Python class management is used to recognize
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'abc_subclass.py'))
 .. }}}
+
+::
+
+	$ python abc_subclass.py
+	
+	Subclass: True
+	Instance: True
+
 .. {{{end}}}
 
 A side-effect of using direct subclassing is it is possible to find
@@ -91,6 +107,13 @@ because it is not actually derived from the base.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'abc_find_subclasses.py'))
 .. }}}
+
+::
+
+	$ python abc_find_subclasses.py
+	
+	SubclassImplementation
+
 .. {{{end}}}
 
 Dr. André Roberge `has described
@@ -114,6 +137,18 @@ implementations from triggering unexpected errors at runtime.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'abc_incomplete.py', ignore_error=True))
 .. }}}
+
+::
+
+	$ python abc_incomplete.py
+	
+	Subclass: True
+	Instance:
+	Traceback (most recent call last):
+	  File "abc_incomplete.py", line 22, in <module>
+	    print 'Instance:', isinstance(IncompleteImplementation(), PluginBase)
+	TypeError: Can't instantiate abstract class IncompleteImplementation with abstract methods load
+
 .. {{{end}}}
 
 
@@ -139,6 +174,16 @@ the concrete class massages the data before returning it at all.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'abc_concrete_method.py'))
 .. }}}
+
+::
+
+	$ python abc_concrete_method.py
+	
+	base class reading data
+	subclass sorting data
+	['line one', 'line three', 'line two']
+	
+
 .. {{{end}}}
 
 .. _abc-abstract-properties:
@@ -160,6 +205,14 @@ has only an abstract version of the property getter method.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'abc_abstractproperty.py'))
 .. }}}
+
+::
+
+	$ python abc_abstractproperty.py
+	
+	ERROR: Can't instantiate abstract class Base with abstract methods value
+	Implementation.value: concrete property
+
 .. {{{end}}}
 
 You can also define abstract read/write properties.
@@ -175,6 +228,16 @@ abstract property.  Trying to override a read/write property in
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'abc_abstractproperty_rw.py'))
 .. }}}
+
+::
+
+	$ python abc_abstractproperty_rw.py
+	
+	ERROR: Can't instantiate abstract class Base with abstract methods value
+	ERROR: Can't instantiate abstract class PartialImplementation with abstract methods value
+	Implementation.value: Default value
+	Changed value: New value
+
 .. {{{end}}}
 
 To use the decorator syntax does with read/write abstract properties,
@@ -191,6 +254,14 @@ signatures.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'abc_abstractproperty_rw_deco.py'))
 .. }}}
+
+::
+
+	$ python abc_abstractproperty_rw_deco.py
+	
+	Implementation.value: Default value
+	Changed value: New value
+
 .. {{{end}}}
 
 .. _abc-collection-types:

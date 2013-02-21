@@ -62,6 +62,14 @@ platform-specific values described above.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'site_user_base.py'))
 .. }}}
+
+::
+
+	$ python site_user_base.py
+	
+	Base: /Users/dhellmann/.local
+	Site: /Users/dhellmann/.local/lib/python2.7/site-packages
+
 .. {{{end}}}
 
 The user base directory can be set through the ``PYTHONUSERBASE``
@@ -80,6 +88,21 @@ it is only added to the import path when it does.
 .. cog.out(run_script(cog.inFile, 'PYTHONUSERBASE=/tmp/$USER python -m site --user-base', interpreter=None, include_prefix=False))
 .. cog.out(run_script(cog.inFile, 'PYTHONUSERBASE=/tmp/$USER python -m site --user-site', interpreter=None, include_prefix=False))
 .. }}}
+
+::
+
+	$ python -m site --user-base
+	
+
+	$ python -m site --user-site
+	
+
+	$ PYTHONUSERBASE=/tmp/$USER python -m site --user-base
+	
+
+	$ PYTHONUSERBASE=/tmp/$USER python -m site --user-site
+	
+
 .. {{{end}}}
 
 The user directory is disabled under some circumstances that would
@@ -99,6 +122,19 @@ with :option:`-s`.
 .. cog.out(run_script(cog.inFile, 'site_enable_user_site.py'))
 .. cog.out(run_script(cog.inFile, '-s site_enable_user_site.py', include_prefix=False))
 .. }}}
+
+::
+
+	$ python site_enable_user_site.py
+	
+	Flag   : True
+	Meaning: Enabled
+
+	$ python -s site_enable_user_site.py
+	
+	Flag   : False
+	Meaning: Disabled by command-line option
+
 .. {{{end}}}
 
 Path Configuration Files
@@ -145,6 +181,18 @@ the script can import :mod:`mymodule` without issue.
 .. (path(cog.inFile).dirname() / 'with_modules/mymodule.pyc').unlink()
 .. cog.out(run_script(cog.inFile, 'site_addsitedir.py with_modules'))
 .. }}}
+
+::
+
+	$ python site_addsitedir.py with_modules
+	
+	Could not import mymodule: No module named mymodule
+	
+	New paths:
+	   /Users/dhellmann/Documents/PyMOTW/src/PyMOTW/site/with_modules
+	
+	Loaded mymodule from with_modules/mymodule.py
+
 .. {{{end}}}
 
 If the directory given to :func:`addsitedir()` includes any files
@@ -161,6 +209,19 @@ the module is not in that directory.
 .. (path(cog.inFile).dirname() / 'with_pth/subdir/mymodule.pyc').unlink()
 .. cog.out(run_script(cog.inFile, 'site_addsitedir.py with_pth'))
 .. }}}
+
+::
+
+	$ python site_addsitedir.py with_pth
+	
+	Could not import mymodule: No module named mymodule
+	
+	New paths:
+	   /Users/dhellmann/Documents/PyMOTW/src/PyMOTW/site/with_pth
+	   /Users/dhellmann/Documents/PyMOTW/src/PyMOTW/site/with_pth/subdir
+	
+	Loaded mymodule from with_pth/subdir/mymodule.py
+
 .. {{{end}}}
 
 If a site directory contains multiple ``.pth`` files, they are
@@ -171,6 +232,24 @@ processed in alphabetical order.
 .. cog.out(run_script(cog.inFile, 'cat with_multiple_pth/a.pth', interpreter=None, include_prefix=False))
 .. cog.out(run_script(cog.inFile, 'cat with_multiple_pth/b.pth', interpreter=None, include_prefix=False))
 .. }}}
+
+::
+
+	$ ls -F with_multiple_pth
+	
+	a.pth
+	b.pth
+	from_a/
+	from_b/
+
+	$ cat with_multiple_pth/a.pth
+	
+	./from_a
+
+	$ cat with_multiple_pth/b.pth
+	
+	./from_b
+
 .. {{{end}}}
 
 In this case, the module is found in ``with_multiple_pth/from_a``
@@ -180,6 +259,20 @@ because ``a.pth`` is read before ``b.pth``.
 .. (path(cog.inFile).dirname() / 'with_multiple_pth/from_a/mymodule.pyc').unlink()
 .. cog.out(run_script(cog.inFile, 'site_addsitedir.py with_multiple_pth'))
 .. }}}
+
+::
+
+	$ python site_addsitedir.py with_multiple_pth
+	
+	Could not import mymodule: No module named mymodule
+	
+	New paths:
+	   /Users/dhellmann/Documents/PyMOTW/src/PyMOTW/site/with_multiple_pth
+	   /Users/dhellmann/Documents/PyMOTW/src/PyMOTW/site/with_multiple_pth/from_a
+	   /Users/dhellmann/Documents/PyMOTW/src/PyMOTW/site/with_multiple_pth/from_b
+	
+	Loaded mymodule from with_multiple_pth/from_a/mymodule.py
+
 .. {{{end}}}
 
 
@@ -224,6 +317,17 @@ explicitly to ensure the module is picked up.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'PYTHONPATH=with_sitecustomize python with_sitecustomize/site_sitecustomize.py', interpreter=None))
 .. }}}
+
+::
+
+	$ PYTHONPATH=with_sitecustomize python with_sitecustomize/site_sitecusto\
+	mize.py
+	
+	Loading sitecustomize.py
+	Adding new path /opt/python/2.7/Darwin-11.4.2-x86_64-i386-64bit
+	Running main program
+	End of path: /opt/python/2.7/Darwin-11.4.2-x86_64-i386-64bit
+
 .. {{{end}}}
 
 .. module:: usercustomize
@@ -264,6 +368,17 @@ explicitly to ensure the module is picked up.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'PYTHONPATH=with_usercustomize python with_usercustomize/site_usercustomize.py', interpreter=None))
 .. }}}
+
+::
+
+	$ PYTHONPATH=with_usercustomize python with_usercustomize/site_usercusto\
+	mize.py
+	
+	Loading usercustomize.py
+	Adding new path /Users/dhellmann/python/2.7/Darwin-11.4.2-x86_64-i386-64bit
+	Running main program
+	End of path: /Users/dhellmann/python/2.7/Darwin-11.4.2-x86_64-i386-64bit
+
 .. {{{end}}}
 
 When the user site directory feature is disabled, :mod:`usercustomize`
@@ -273,6 +388,15 @@ elsewhere.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'PYTHONPATH=with_usercustomize python -s with_usercustomize/site_usercustomize.py', interpreter=None))
 .. }}}
+
+::
+
+	$ PYTHONPATH=with_usercustomize python -s with_usercustomize/site_usercu\
+	stomize.py
+	
+	Running main program
+	End of path: /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages
+
 .. {{{end}}}
 
 

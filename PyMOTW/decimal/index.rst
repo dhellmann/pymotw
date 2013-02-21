@@ -35,6 +35,17 @@ Decimal value.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'decimal_create.py'))
 .. }}}
+
+::
+
+	$ python decimal_create.py
+	
+	Input                Output              
+	-------------------- --------------------
+	5                    5                   
+	3.14                 3.14                
+	0.1                  0.1                 
+
 .. {{{end}}}
 
 Less conveniently, Decimals can also be created from tuples containing
@@ -48,6 +59,14 @@ digits, and an integer exponent.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'decimal_tuple.py'))
 .. }}}
+
+::
+
+	$ python decimal_tuple.py
+	
+	Input  : (1, (1, 1), -2)
+	Decimal: -0.11
+
 .. {{{end}}}
 
 
@@ -68,6 +87,28 @@ values must be converted to Decimal instances.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'decimal_operators.py'))
 .. }}}
+
+::
+
+	$ python decimal_operators.py
+	
+	a     = 5.1
+	b     = 3.14
+	c     = 4
+	d     = 3.14
+	
+	a + b = 8.24
+	a - b = 1.96
+	a * b = 16.014
+	a / b = 1.624203821656050955414012739
+	
+	a + c = 9.1
+	a - c = 1.1
+	a * c = 20.4
+	a / c = 1.275
+	
+	a + d = unsupported operand type(s) for +: 'Decimal' and 'float'
+
 .. {{{end}}}
 
 
@@ -84,6 +125,15 @@ and natural logarithms.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'decimal_log.py'))
 .. }}}
+
+::
+
+	$ python decimal_log.py
+	
+	d     : 100
+	log10 : 2
+	ln    : 4.605170185988091368035982909
+
 .. {{{end}}}
 
 
@@ -107,6 +157,20 @@ is undefined and results in an error.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'decimal_special.py'))
 .. }}}
+
+::
+
+	$ python decimal_special.py
+	
+	Infinity -Infinity
+	NaN -NaN
+	0 -0
+	
+	Infinity + 1: Infinity
+	-Infinity + 1: -Infinity
+	False
+	True
+
 .. {{{end}}}
 
 
@@ -132,6 +196,13 @@ To retrieve the current global context, use ``getcontext()``.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'decimal_getcontext.py'))
 .. }}}
+
+::
+
+	$ python decimal_getcontext.py
+	
+	Context(prec=28, rounding=ROUND_HALF_EVEN, Emin=-999999999, Emax=999999999, capitals=1, flags=[], traps=[DivisionByZero, Overflow, InvalidOperation])
+
 .. {{{end}}}
 
 
@@ -149,6 +220,16 @@ maintained as described.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'decimal_precision.py'))
 .. }}}
+
+::
+
+	$ python decimal_precision.py
+	
+	0 : 0.123456 0
+	1 : 0.123456 0.1
+	2 : 0.123456 0.12
+	3 : 0.123456 0.123
+
 .. {{{end}}}
 
 
@@ -194,6 +275,36 @@ ROUND_05UP
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'decimal_rounding.py'))
 .. }}}
+
+::
+
+	$ python decimal_rounding.py
+	
+	POSITIVES:
+	
+	                      1/8 (1)    1/8 (2)    1/8 (3)  
+	                     ---------- ---------- ----------
+	ROUND_CEILING        0.2        0.13       0.125     
+	ROUND_DOWN           0.1        0.12       0.125     
+	ROUND_FLOOR          0.1        0.12       0.125     
+	ROUND_HALF_DOWN      0.1        0.12       0.125     
+	ROUND_HALF_EVEN      0.1        0.12       0.125     
+	ROUND_HALF_UP        0.1        0.13       0.125     
+	ROUND_UP             0.2        0.13       0.125     
+	ROUND_05UP           0.1        0.12       0.125     
+	
+	NEGATIVES:
+	                      -1/8 (1)   -1/8 (2)   -1/8 (3) 
+	                     ---------- ---------- ----------
+	ROUND_CEILING        -0.1       -0.12      -0.125    
+	ROUND_DOWN           -0.1       -0.12      -0.125    
+	ROUND_FLOOR          -0.2       -0.13      -0.125    
+	ROUND_HALF_DOWN      -0.1       -0.12      -0.125    
+	ROUND_HALF_EVEN      -0.1       -0.12      -0.125    
+	ROUND_HALF_UP        -0.1       -0.13      -0.125    
+	ROUND_UP             -0.2       -0.13      -0.125    
+	ROUND_05UP           -0.1       -0.12      -0.125    
+
 .. {{{end}}}
 
 Local Context
@@ -209,6 +320,17 @@ of your code using the ``with`` statement and a context manager.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'decimal_context_manager.py'))
 .. }}}
+
+::
+
+	$ python decimal_context_manager.py
+	
+	Local precision: 2
+	3.14 / 3 = 1.0
+	
+	Default precision: 28
+	3.14 / 3 = 1.046666666666666666666666667
+
 .. {{{end}}}
 
 Per-Instance Context
@@ -223,6 +345,14 @@ Contexts can be used to construct Decimal instances, applying the precision and 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'decimal_instance_context.py'))
 .. }}}
+
+::
+
+	$ python decimal_instance_context.py
+	
+	PI: 3.14
+	RESULT: 6.3114
+
 .. {{{end}}}
 
 
@@ -238,6 +368,17 @@ The "global" context is actually thread-local, so each thread can potentially be
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'decimal_thread_context.py'))
 .. }}}
+
+::
+
+	$ python decimal_thread_context.py
+	
+	1 	4
+	2 	3.9
+	3 	3.87
+	4 	3.875
+	5 	3.8748
+
 .. {{{end}}}
 
 

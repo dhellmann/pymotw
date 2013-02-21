@@ -65,6 +65,14 @@ bytes before returning the value.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'codecs_to_hex.py'))
 .. }}}
+
+::
+
+	$ python codecs_to_hex.py
+	
+	61 62 63 64 65 66
+	6162 6364 6566
+
 .. {{{end}}}
 
 The first encoding example begins by printing the text ``'pi: π'``
@@ -84,6 +92,15 @@ object.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'codecs_encodings.py'))
 .. }}}
+
+::
+
+	$ python codecs_encodings.py
+	
+	Raw   : u'pi: \u03c0'
+	UTF-8 : 70 69 3a 20 cf 80
+	UTF-16: fffe 7000 6900 3a00 2000 c003
+
 .. {{{end}}}
 
 Given a sequence of encoded bytes as a :class:`str` instance, the
@@ -99,6 +116,15 @@ The choice of encoding used does not change the output type.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'codecs_decode.py'))
 .. }}}
+
+::
+
+	$ python codecs_decode.py
+	
+	Original : u'pi: \u03c0'
+	Encoded  : 70 69 3a 20 cf 80 <type 'str'>
+	Decoded  : u'pi: \u03c0' <type 'unicode'>
+
 .. {{{end}}}
 
 .. note::
@@ -141,6 +167,27 @@ the command line.
 .. cog.out(run_script(cog.inFile, 'codecs_open_write.py utf-16', include_prefix=False))
 .. cog.out(run_script(cog.inFile, 'codecs_open_write.py utf-32', include_prefix=False))
 .. }}}
+
+::
+
+	$ python codecs_open_write.py utf-8
+	
+	Writing to utf-8.txt
+	File contents:
+	70 69 3a 20 cf 80
+
+	$ python codecs_open_write.py utf-16
+	
+	Writing to utf-16.txt
+	File contents:
+	fffe 7000 6900 3a00 2000 c003
+
+	$ python codecs_open_write.py utf-32
+	
+	Writing to utf-32.txt
+	File contents:
+	fffe0000 70000000 69000000 3a000000 20000000 c0030000
+
 .. {{{end}}}
 
 Reading the data with :func:`open` is straightforward, with one catch:
@@ -163,6 +210,24 @@ the console.
 .. cog.out(run_script(cog.inFile, 'codecs_open_read.py utf-16', include_prefix=False))
 .. cog.out(run_script(cog.inFile, 'codecs_open_read.py utf-32', include_prefix=False))
 .. }}}
+
+::
+
+	$ python codecs_open_read.py utf-8
+	
+	Reading from utf-8.txt
+	u'pi: \u03c0'
+
+	$ python codecs_open_read.py utf-16
+	
+	Reading from utf-16.txt
+	u'pi: \u03c0'
+
+	$ python codecs_open_read.py utf-32
+	
+	Reading from utf-32.txt
+	u'pi: \u03c0'
+
 .. {{{end}}}
 
 Byte Order
@@ -193,6 +258,22 @@ current system's native byte order.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'codecs_bom.py'))
 .. }}}
+
+::
+
+	$ python codecs_bom.py
+	
+	BOM          : fffe
+	BOM_BE       : feff
+	BOM_LE       : fffe
+	BOM_UTF8     : efbb bf
+	BOM_UTF16    : fffe
+	BOM_UTF16_BE : feff
+	BOM_UTF16_LE : fffe
+	BOM_UTF32    : fffe 0000
+	BOM_UTF32_BE : 0000 feff
+	BOM_UTF32_LE : fffe 0000
+
 .. {{{end}}}
 
 Byte ordering is detected and handled automatically by the decoders in
@@ -210,6 +291,15 @@ demonstrate auto-detection while reading.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'codecs_bom_create_file.py'))
 .. }}}
+
+::
+
+	$ python codecs_bom_create_file.py
+	
+	Native order  : fffe
+	Selected order: feff
+	utf_16_be     : 0070 0069 003a 0020 03c0
+
 .. {{{end}}}
 
 ``codecs_bom_detection.py`` does not specify a byte order when opening
@@ -226,6 +316,14 @@ detection, they are not included in the data returned by :func:`read`.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'codecs_bom_detection.py'))
 .. }}}
+
+::
+
+	$ python codecs_bom_detection.py
+	
+	Raw    : feff 0070 0069 003a 0020 03c0
+	Decoded: u'pi: \u03c0'
+
 .. {{{end}}}
 
 Error Handling
@@ -274,6 +372,13 @@ lead to program crashes when an exception is raised.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'codecs_encode_error.py strict'))
 .. }}}
+
+::
+
+	$ python codecs_encode_error.py strict
+	
+	ERROR: 'ascii' codec can't encode character u'\u03c0' in position 4: ordinal not in range(128)
+
 .. {{{end}}}
 
 Some of the other error modes are more flexible.  For example,
@@ -286,6 +391,13 @@ with ``?`` in the output.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'codecs_encode_error.py replace'))
 .. }}}
+
+::
+
+	$ python codecs_encode_error.py replace
+	
+	File contents: 'pi: ?'
+
 .. {{{end}}}
 
 To skip over problem data entirely, use ``ignore``.  Any data that
@@ -294,6 +406,13 @@ cannot be encoded is simply discarded.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'codecs_encode_error.py ignore'))
 .. }}}
+
+::
+
+	$ python codecs_encode_error.py ignore
+	
+	File contents: 'pi: '
+
 .. {{{end}}}
 
 There are two lossless error handling options, both of which replace
@@ -306,6 +425,13 @@ is specified in the W3C `XML Entity Definitions for Characters
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'codecs_encode_error.py xmlcharrefreplace'))
 .. }}}
+
+::
+
+	$ python codecs_encode_error.py xmlcharrefreplace
+	
+	File contents: 'pi: &#960;'
+
 .. {{{end}}}
 
 The other lossless error handling scheme is ``backslashreplace`` which
@@ -317,6 +443,13 @@ point.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'codecs_encode_error.py backslashreplace'))
 .. }}}
+
+::
+
+	$ python codecs_encode_error.py backslashreplace
+	
+	File contents: 'pi: \\u03c0'
+
 .. {{{end}}}
 
 
@@ -339,6 +472,15 @@ UTF-8 decoder.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'codecs_decode_error.py strict'))
 .. }}}
+
+::
+
+	$ python codecs_decode_error.py strict
+	
+	Original     : u'pi: \u03c0'
+	File contents: ff fe 70 00 69 00 3a 00 20 00 c0 03
+	ERROR: 'utf8' codec can't decode byte 0xff in position 0: invalid start byte
+
 .. {{{end}}}
 
 Switching to ``ignore`` causes the decoder to skip over the invalid
@@ -348,6 +490,15 @@ it includes embedded null bytes.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'codecs_decode_error.py ignore'))
 .. }}}
+
+::
+
+	$ python codecs_decode_error.py ignore
+	
+	Original     : u'pi: \u03c0'
+	File contents: ff fe 70 00 69 00 3a 00 20 00 c0 03
+	Read         : u'p\x00i\x00:\x00 \x00\x03'
+
 .. {{{end}}}
 
 In ``replace`` mode invalid bytes are replaced with ``\uFFFD``, the
@@ -359,6 +510,15 @@ with a black background containing a white question mark (|?|).
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'codecs_decode_error.py replace'))
 .. }}}
+
+::
+
+	$ python codecs_decode_error.py replace
+	
+	Original     : u'pi: \u03c0'
+	File contents: ff fe 70 00 69 00 3a 00 20 00 c0 03
+	Read         : u'\ufffd\ufffdp\x00i\x00:\x00 \x00\ufffd\x03'
+
 .. {{{end}}}
 
 Standard Input and Output Streams
@@ -421,6 +581,14 @@ encoding writer.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'codecs_stdout_wrapped.py'))
 .. }}}
+
+::
+
+	$ python codecs_stdout_wrapped.py
+	
+	Via write: pi: π
+	Via print: pi: π
+
 .. {{{end}}}
 
 The next problem to solve is how to know which encoding should be
@@ -442,6 +610,14 @@ be used with :func:`getwriter`.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'codecs_stdout_locale.py'))
 .. }}}
+
+::
+
+	$ python codecs_stdout_locale.py
+	
+	Locale encoding    : UTF-8
+	With wrapped stdout: pi: π
+
 .. {{{end}}}
 
 The encoding also needs to be set up when working with :ref:`sys.stdin
@@ -458,6 +634,13 @@ instead of :class:`str` instances.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'codecs_stdout_locale.py | python codecs_stdin.py'))
 .. }}}
+
+::
+
+	$ python codecs_stdout_locale.py | python codecs_stdin.py
+	
+	From stdin: u'Locale encoding    : UTF-8\nWith wrapped stdout: pi: \u03c0\n'
+
 .. {{{end}}}
 
 Network Communication
@@ -540,6 +723,15 @@ passing through the :func:`read` and :func:`write` calls.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'codecs_encodedfile.py'))
 .. }}}
+
+::
+
+	$ python codecs_encodedfile.py
+	
+	Start as UTF-8   : 70 69 3a 20 cf 80
+	Encoded to UTF-16: fffe 7000 6900 3a00 2000 c003
+	Back to UTF-8    : 70 69 3a 20 cf 80
+
 .. {{{end}}}
 
 
@@ -562,6 +754,14 @@ registered as a codec.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'codecs_rot13.py'))
 .. }}}
+
+::
+
+	$ python codecs_rot13.py
+	
+	Original: abcdefghijklmnopqrstuvwxyz
+	ROT-13  : nopqrstuvwxyzabcdefghijklm
+
 .. {{{end}}}
 
 Using :mod:`codecs` to wrap a data stream provides a simpler interface
@@ -581,6 +781,17 @@ features of the compression library instead of :mod:`codecs`.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'codecs_zlib.py'))
 .. }}}
+
+::
+
+	$ python codecs_zlib.py
+	
+	Original length : 1350
+	ZIP compressed  : 48
+	Read first line : 'abcdefghijklmnopqrstuvwxyz\n'
+	Uncompressed    : 1350
+	Same            : True
+
 .. {{{end}}}
 
 Incremental Encoding
@@ -607,6 +818,27 @@ last bit of data is passed in, the argument *final* should be set to
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'codecs_incremental_bz2.py', break_lines_at=69))
 .. }}}
+
+::
+
+	$ python codecs_incremental_bz2.py
+	
+	Text length : 27
+	Repetitions : 50
+	Expected len: 1350
+	
+	Encoding:.................................................
+	Encoded : 99 bytes
+	
+	Total encoded length: 99
+	
+	Decoding:............................................................
+	............................
+	Decoded : 1350 characters
+	Decoding:..........
+	
+	Total uncompressed length: 1350
+
 .. {{{end}}}
 
 
@@ -633,6 +865,14 @@ In this case, the encoder and decoder are the same function (as with
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'codecs_invertcaps.py'))
 .. }}}
+
+::
+
+	$ python codecs_invertcaps.py
+	
+	abc.DEF
+	ABC.def
+
 .. {{{end}}}
 
 Although it is easy to understand, this implementation is not
@@ -660,6 +900,15 @@ encoding as undefined.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'codecs_invertcaps_charmap.py'))
 .. }}}
+
+::
+
+	$ python codecs_invertcaps_charmap.py
+	
+	('ABC.def', 7)
+	(u'ABC.def', 7)
+	True
+
 .. {{{end}}}
 
 The character map encoder and decoder support all of the standard
@@ -676,6 +925,16 @@ the strict error handling mode raises an exception.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'codecs_invertcaps_error.py', ignore_error=True, break_lines_at=69))
 .. }}}
+
+::
+
+	$ python codecs_invertcaps_error.py
+	
+	ignore : ('PI: ', 5)
+	replace: ('PI: ?', 5)
+	strict : 'charmap' codec can't encode character u'\u03c0' in position
+	 4: character maps to <undefined>
+
 .. {{{end}}}
 
 After that the encoding and decoding maps are defined, you need to set
@@ -699,6 +958,16 @@ names will never be passed to your search function.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'codecs_register.py'))
 .. }}}
+
+::
+
+	$ python codecs_register.py
+	
+	UTF-8: <codecs.CodecInfo object for encoding utf-8 at 0x100452ae0>
+	search1: Searching for: no-such-encoding
+	search2: Searching for: no-such-encoding
+	ERROR: unknown encoding: no-such-encoding
+
 .. {{{end}}}
 
 The :class:`CodecInfo` instance returned by the search function tells
@@ -741,6 +1010,15 @@ inheritance for the implementation.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'codecs_invertcaps_register.py'))
 .. }}}
+
+::
+
+	$ python codecs_invertcaps_register.py
+	
+	Encoder converted "abc.DEF" to "ABC.def", consuming 7 characters
+	StreamWriter for stdout: ABC.def
+	IncrementalDecoder converted "ABC.def" to "abc.DEF"
+
 .. {{{end}}}
 
 

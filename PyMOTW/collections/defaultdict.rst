@@ -20,6 +20,15 @@ includes several examples of using :class:`defaultdict` this way.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'collections_defaultdict.py'))
 .. }}}
+
+::
+
+	$ python collections_defaultdict.py
+	
+	d: defaultdict(<function default_factory at 0x100468c80>, {'foo': 'bar'})
+	foo => bar
+	bar => default value
+
 .. {{{end}}}
 
 .. seealso::

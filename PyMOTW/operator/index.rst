@@ -36,6 +36,19 @@ implements the same check used by the :command:`is` keyword, and
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'operator_boolean.py'))
 .. }}}
+
+::
+
+	$ python operator_boolean.py
+	
+	a = -1
+	b = 5
+	
+	not_(a)     : False
+	truth(a)    : True
+	is_(a, b)   : False
+	is_not(a, b): True
+
 .. {{{end}}}
 
 
@@ -54,6 +67,21 @@ The functions are equivalent to the expression syntax using ``<``,
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'operator_comparisons.py'))
 .. }}}
+
+::
+
+	$ python operator_comparisons.py
+	
+	
+	a = 1
+	b = 5.0
+	lt(a, b): True
+	le(a, b): True
+	eq(a, b): False
+	ne(a, b): True
+	ge(a, b): False
+	gt(a, b): False
+
 .. {{{end}}}
 
 
@@ -75,6 +103,44 @@ The arithmetic operators for manipulating numerical values are also supported.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'operator_math.py'))
 .. }}}
+
+::
+
+	$ python operator_math.py
+	
+	a = -1
+	b = 5.0
+	c = 2
+	d = 6
+	
+	Positive/Negative:
+	abs(a): 1
+	neg(a): 1
+	neg(b): -5.0
+	pos(a): -1
+	pos(b): 5.0
+	
+	Arithmetic:
+	add(a, b)     : 4.0
+	div(a, b)     : -0.2
+	div(d, c)     : 3
+	floordiv(a, b): -1.0
+	floordiv(d, c): 3
+	mod(a, b)     : 4.0
+	mul(a, b)     : -5.0
+	pow(c, d)     : 64
+	sub(b, a)     : 6.0
+	truediv(a, b) : -0.2
+	truediv(d, c) : 3.0
+	
+	Bitwise:
+	and_(c, d)  : 2
+	invert(c)   : -3
+	lshift(c, d): 128
+	or_(c, d)   : 6
+	rshift(d, c): 1
+	xor(c, d)   : 4
+
 .. {{{end}}}
 
 
@@ -96,6 +162,35 @@ modify the sequence in place and do not return a value.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'operator_sequences.py'))
 .. }}}
+
+::
+
+	$ python operator_sequences.py
+	
+	a = [1, 2, 3]
+	b = ['a', 'b', 'c']
+	
+	Constructive:
+	  concat(a, b): [1, 2, 3, 'a', 'b', 'c']
+	  repeat(a, 3): [1, 2, 3, 1, 2, 3, 1, 2, 3]
+	
+	Searching:
+	  contains(a, 1)  : True
+	  contains(b, "d"): False
+	  countOf(a, 1)   : 1
+	  countOf(b, "d") : 0
+	  indexOf(a, 5)   : 0
+	
+	Access Items:
+	  getitem(b, 1)            : b
+	  getslice(a, 1, 3)        : [2, 3]
+	  setitem(b, 1, "d")       : None , after b = ['a', 'd', 'c']
+	  setslice(a, 1, 3, [4, 5]): None , after a = [1, 4, 5]
+	
+	Destructive:
+	  delitem(b, 1)    : None , after b = ['a', 'c']
+	  delslice(a, 1, 3): None , after a = [1]
+
 .. {{{end}}}
 
 
@@ -117,6 +212,20 @@ documentation for complete details.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'operator_inplace.py'))
 .. }}}
+
+::
+
+	$ python operator_inplace.py
+	
+	a = -1
+	b = 5.0
+	c = [1, 2, 3]
+	d = ['a', 'b', 'c']
+	
+	a = iadd(a, b) => 4.0
+	
+	c = iconcat(c, d) => [1, 2, 3, 'a', 'b', 'c']
+
 .. {{{end}}}
 
 
@@ -139,6 +248,14 @@ Attribute getters work like ``lambda x, n='attrname': getattr(x, n)``:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'operator_attrgetter.py'))
 .. }}}
+
+::
+
+	$ python operator_attrgetter.py
+	
+	[MyObj(0), MyObj(1), MyObj(2), MyObj(3), MyObj(4)]
+	[0, 1, 2, 3, 4]
+
 .. {{{end}}}
 
 While item getters work like ``lambda x, y=5: x[y]``:
@@ -152,6 +269,19 @@ Item getters work with mappings as well as sequences.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'operator_itemgetter.py'))
 .. }}}
+
+::
+
+	$ python operator_itemgetter.py
+	
+	Dictionaries:
+	[{'val': 0}, {'val': 1}, {'val': 2}, {'val': 3}, {'val': 4}]
+	[0, 1, 2, 3, 4]
+	
+	Tuples:
+	[(0, 0), (1, 2), (2, 4), (3, 6), (4, 8)]
+	[0, 2, 4, 6, 8]
+
 .. {{{end}}}
 
 
@@ -173,6 +303,19 @@ methods used by each operator.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'operator_classes.py'))
 .. }}}
+
+::
+
+	$ python operator_classes.py
+	
+	Comparison:
+	Testing MyObj(1) < MyObj(2)
+	True
+	
+	Arithmetic:
+	Adding MyObj(1) + MyObj(2)
+	MyObj(3)
+
 .. {{{end}}}
 
 
@@ -193,6 +336,18 @@ defined, but they do provide some idea of what is supported.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'operator_typechecking.py'))
 .. }}}
+
+::
+
+	$ python operator_typechecking.py
+	
+	isMappingType(o): False
+	isMappingType(t): True
+	isNumberType(o): False
+	isNumberType(t): True
+	isSequenceType(o): False
+	isSequenceType(t): True
+
 .. {{{end}}}
 
 :mod:`abc` includes :ref:`abstract base classes

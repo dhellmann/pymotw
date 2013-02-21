@@ -156,6 +156,15 @@ characters it replaces.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'urllib_quote.py'))
 .. }}}
+
+::
+
+	$ python urllib_quote.py
+	
+	urlencode() : url=http%3A%2F%2Flocalhost%3A8080%2F%7Edhellmann%2F
+	quote()     : http%3A//localhost%3A8080/%7Edhellmann/
+	quote_plus(): http%3A%2F%2Flocalhost%3A8080%2F%7Edhellmann%2F
+
 .. {{{end}}}
 
 
@@ -169,6 +178,14 @@ To reverse the quote operations, use :func:`unquote()` or
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'urllib_unquote.py'))
 .. }}}
+
+::
+
+	$ python urllib_unquote.py
+	
+	http://localhost:8080/~dhellmann/
+	http://localhost:8080/~dhellmann/
+
 .. {{{end}}}
 
 
@@ -225,6 +242,26 @@ prefix of the path.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'urllib_pathnames.py'))
 .. }}}
+
+::
+
+	$ python urllib_pathnames.py
+	
+	== Default ==
+	Original: /a/b/c
+	URL     : /a/b/c
+	Path    : /d/e/f
+	
+	== Windows, without drive letter ==
+	Original: \a\b\c
+	URL     : /a/b/c
+	Path    : \d\e\f
+	
+	== Windows, with drive letter ==
+	Original: C:\\a\b\c
+	URL     : ///C:/a/b/c
+	Path    : \d\e\f
+
 .. {{{end}}}
 
 

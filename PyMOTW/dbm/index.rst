@@ -27,6 +27,13 @@ find when the interpreter was built.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'dbm_library.py'))
 .. }}}
+
+::
+
+	$ python dbm_library.py
+	
+	GNU gdbm
+
 .. {{{end}}}
 
 The :func:`open()` function follows the same semantics as the

@@ -27,6 +27,15 @@ Since the program doesn't do anything else, all_done() is called right away:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'atexit_simple.py'))
 .. }}}
+
+::
+
+	$ python atexit_simple.py
+	
+	Registering
+	Registered
+	all_done()
+
 .. {{{end}}}
 
 It is also possible to register more than one function, and to pass arguments.
@@ -47,6 +56,15 @@ atexit functions), which should reduce dependency conflicts.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'atexit_multiple.py'))
 .. }}}
+
+::
+
+	$ python atexit_multiple.py
+	
+	my_cleanup(third)
+	my_cleanup(second)
+	my_cleanup(first)
+
 .. {{{end}}}
 
 When are atexit functions not called?
@@ -82,6 +100,16 @@ When run, the output should look something like this:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'atexit_signal_parent.py'))
 .. }}}
+
+::
+
+	$ python atexit_signal_parent.py
+	
+	CHILD: Registering atexit handler
+	CHILD: Pausing to wait for signal
+	PARENT: Pausing before sending signal...
+	PARENT: Signaling child
+
 .. {{{end}}}
 
 Note that the child does not print the message embedded in not_called().
@@ -100,6 +128,12 @@ invoked.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'atexit_os_exit.py'))
 .. }}}
+
+::
+
+	$ python atexit_os_exit.py
+	
+
 .. {{{end}}}
 
 If we had instead used sys.exit(), the callbacks would still have been called.
@@ -112,6 +146,16 @@ If we had instead used sys.exit(), the callbacks would still have been called.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'atexit_sys_exit.py'))
 .. }}}
+
+::
+
+	$ python atexit_sys_exit.py
+	
+	Registering
+	Registered
+	Exiting...
+	all_done()
+
 .. {{{end}}}
 
 Simulating a fatal error in the Python interpreter is left as an exercise to
@@ -136,6 +180,33 @@ message to show the user.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'atexit_exception.py'))
 .. }}}
+
+::
+
+	$ python atexit_exception.py
+	
+	Error in atexit._run_exitfuncs:
+	Traceback (most recent call last):
+	  File "/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/atexit.py", line 24, in _run_exitfuncs
+	    func(*targs, **kargs)
+	  File "atexit_exception.py", line 37, in exit_with_exception
+	    raise RuntimeError(message)
+	RuntimeError: Registered second
+	Error in atexit._run_exitfuncs:
+	Traceback (most recent call last):
+	  File "/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/atexit.py", line 24, in _run_exitfuncs
+	    func(*targs, **kargs)
+	  File "atexit_exception.py", line 37, in exit_with_exception
+	    raise RuntimeError(message)
+	RuntimeError: Registered first
+	Error in sys.exitfunc:
+	Traceback (most recent call last):
+	  File "/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/atexit.py", line 24, in _run_exitfuncs
+	    func(*targs, **kargs)
+	  File "atexit_exception.py", line 37, in exit_with_exception
+	    raise RuntimeError(message)
+	RuntimeError: Registered first
+
 .. {{{end}}}
 
 

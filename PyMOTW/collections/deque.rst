@@ -21,6 +21,17 @@ from the middle by matching identity.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'collections_deque.py'))
 .. }}}
+
+::
+
+	$ python collections_deque.py
+	
+	Deque: deque(['a', 'b', 'c', 'd', 'e', 'f', 'g'])
+	Length: 7
+	Left end: a
+	Right end: g
+	remove(c): deque(['a', 'b', 'd', 'e', 'f', 'g'])
+
 .. {{{end}}}
 
 Populating
@@ -40,6 +51,16 @@ is the :class:`deque` contains the input sequence in reverse order.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'collections_deque_populating.py'))
 .. }}}
+
+::
+
+	$ python collections_deque_populating.py
+	
+	extend    : deque(['a', 'b', 'c', 'd', 'e', 'f', 'g'])
+	append    : deque(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'])
+	extendleft: deque(['g', 'f', 'e', 'd', 'c', 'b', 'a'])
+	appendleft: deque(['h', 'g', 'f', 'e', 'd', 'c', 'b', 'a'])
+
 .. {{{end}}}
 
 Consuming
@@ -58,6 +79,29 @@ Use :func:`pop` to remove an item from the "right" end of the
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'collections_deque_consuming.py'))
 .. }}}
+
+::
+
+	$ python collections_deque_consuming.py
+	
+	From the right:
+	g
+	f
+	e
+	d
+	c
+	b
+	a
+	
+	From the left:
+	a
+	b
+	c
+	d
+	e
+	f
+	g
+
 .. {{{end}}}
 
 
@@ -74,6 +118,25 @@ until the :class:`deque` is empty.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'collections_deque_both_ends.py'))
 .. }}}
+
+::
+
+	$ python collections_deque_both_ends.py
+	
+	    Left: 0
+	   Right: 10
+	   Right: 9
+	     Left: 1
+	   Right: 8
+	    Left: 2
+	   Right: 7
+	    Left: 3
+	   Right: 6
+	    Left: 4
+	   Right: 5
+	    Left done
+	   Right done
+
 .. {{{end}}}
 
 Rotating
@@ -95,6 +158,15 @@ the items in the deque as being engraved along the edge of a dial.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'collections_deque_rotate.py'))
 .. }}}
+
+::
+
+	$ python collections_deque_rotate.py
+	
+	Normal        : deque([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+	Right rotation: deque([8, 9, 0, 1, 2, 3, 4, 5, 6, 7])
+	Left rotation : deque([2, 3, 4, 5, 6, 7, 8, 9, 0, 1])
+
 .. {{{end}}}
 
 .. seealso::

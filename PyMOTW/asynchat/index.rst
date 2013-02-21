@@ -126,6 +126,55 @@ easier to show the combined output.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'asynchat_echo_main.py'))
 .. }}}
+
+::
+
+	$ python asynchat_echo_main.py
+	
+	EchoClient: connecting to ('127.0.0.1', 56193)
+	EchoClient: handle_connect()
+	EchoProducer: more() -> (64 bytes)
+	"""Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
+	"""
+	EchoHandler: collect_incoming_data() -> (8 bytes)
+	"""ECHO 166"""
+	EchoHandler: found_terminator()
+	EchoHandler: _process_command() "ECHO 166"
+	EchoHandler: collect_incoming_data() -> (55 bytes)
+	"""Lorem ipsum dolor sit amet, consectetuer adipiscing eli"""
+	EchoProducer: more() -> (64 bytes)
+	"""egestas, enim et consectetuer ullamcorper, lectus ligula rutrum """
+	EchoHandler: collect_incoming_data() -> (64 bytes)
+	"""t. Donec
+	egestas, enim et consectetuer ullamcorper, lectus ligul"""
+	EchoProducer: more() -> (38 bytes)
+	"""leo, a
+	elementum elit tortor eu quam.
+	"""
+	EchoHandler: collect_incoming_data() -> (47 bytes)
+	"""a rutrum leo, a
+	elementum elit tortor eu quam.
+	"""
+	EchoHandler: found_terminator()
+	EchoHandler: _process_message() echoing
+	"""Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
+	egestas, enim et consectetuer ullamcorper, lectus ligula rutrum leo, a
+	elementum elit tortor eu quam.
+	"""
+	EchoProducer: more() -> (0 bytes)
+	""""""
+	EchoClient: collect_incoming_data() -> (64)
+	"""Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
+	"""
+	EchoClient: collect_incoming_data() -> (64)
+	"""egestas, enim et consectetuer ullamcorper, lectus ligula rutrum """
+	EchoClient: collect_incoming_data() -> (38)
+	"""leo, a
+	elementum elit tortor eu quam.
+	"""
+	EchoClient: found_terminator()
+	EchoClient: RECEIVED COPY OF MESSAGE
+
 .. {{{end}}}
 
 

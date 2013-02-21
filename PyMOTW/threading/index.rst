@@ -77,6 +77,18 @@ correspond to the unnamed thread :data:`w2`.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u threading_names.py'))
 .. }}}
+
+::
+
+	$ python -u threading_names.py
+	
+	worker Thread-1 Starting
+	my_service Starting
+	Starting
+	Thread-1worker Exiting
+	 Exiting
+	my_service Exiting
+
 .. {{{end}}}
 
 Most programs do not use :command:`print` to debug. The
@@ -95,6 +107,18 @@ are kept distinct in the output.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'threading_names_log.py'))
 .. }}}
+
+::
+
+	$ python threading_names_log.py
+	
+	[DEBUG] (worker    ) Starting
+	[DEBUG] (Thread-1  ) Starting
+	[DEBUG] (my_service) Starting
+	[DEBUG] (worker    ) Exiting
+	[DEBUG] (Thread-1  ) Exiting
+	[DEBUG] (my_service) Exiting
+
 .. {{{end}}}
 
 Daemon vs. Non-Daemon Threads
@@ -123,6 +147,15 @@ sleep.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'threading_daemon.py'))
 .. }}}
+
+::
+
+	$ python threading_daemon.py
+	
+	(daemon    ) Starting
+	(non-daemon) Starting
+	(non-daemon) Exiting
+
 .. {{{end}}}
 
 To wait until a daemon thread has completed its work, use the
@@ -138,6 +171,16 @@ has a chance to produce its ``"Exiting"`` message.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'threading_daemon_join.py'))
 .. }}}
+
+::
+
+	$ python threading_daemon_join.py
+	
+	(daemon    ) Starting
+	(non-daemon) Starting
+	(non-daemon) Exiting
+	(daemon    ) Exiting
+
 .. {{{end}}}
 
 By default, :func:`join()` blocks indefinitely. It is also possible to
@@ -156,6 +199,16 @@ returns.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'threading_daemon_join_timeout.py'))
 .. }}}
+
+::
+
+	$ python threading_daemon_join_timeout.py
+	
+	(daemon    ) Starting
+	(non-daemon) Starting
+	(non-daemon) Exiting
+	d.isAlive() True
+
 .. {{{end}}}
 
 Enumerating All Threads
@@ -178,6 +231,21 @@ from this program may vary. It should look something like this:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'threading_enumerate.py'))
 .. }}}
+
+::
+
+	$ python threading_enumerate.py
+	
+	(Thread-1  ) sleeping 3
+	(Thread-2  ) sleeping 2
+	(Thread-3  ) sleeping 5
+	(MainThread) joining Thread-1
+	(Thread-2  ) ending
+	(Thread-1  ) ending
+	(MainThread) joining Thread-3
+	(Thread-3  ) ending
+	(MainThread) joining Thread-2
+
 .. {{{end}}}
 
 Subclassing Thread
@@ -197,6 +265,17 @@ The return value of :func:`run` is ignored.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'threading_subclass.py'))
 .. }}}
+
+::
+
+	$ python threading_subclass.py
+	
+	(Thread-1  ) running
+	(Thread-2  ) running
+	(Thread-3  ) running
+	(Thread-4  ) running
+	(Thread-5  ) running
+
 .. {{{end}}}
 
 Because the *args* and *kwargs* values passed to the :class:`Thread`
@@ -217,6 +296,17 @@ thread, as with any other class.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'threading_subclass_args.py'))
 .. }}}
+
+::
+
+	$ python threading_subclass_args.py
+	
+	(Thread-1  ) running with (0,) and {'a': 'A', 'b': 'B'}
+	(Thread-2  ) running with (1,) and {'a': 'A', 'b': 'B'}
+	(Thread-3  ) running with (2,) and {'a': 'A', 'b': 'B'}
+	(Thread-4  ) running with (3,) and {'a': 'A', 'b': 'B'}
+	(Thread-5  ) running with (4,) and {'a': 'A', 'b': 'B'}
+
 .. {{{end}}}
 
 
@@ -239,6 +329,17 @@ daemon thread, it is joined implicitly when the main thread is done.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'threading_timer.py'))
 .. }}}
+
+::
+
+	$ python threading_timer.py
+	
+	(MainThread) starting timers
+	(MainThread) waiting before canceling t2
+	(MainThread) canceling t2
+	(MainThread) done
+	(t1        ) worker running
+
 .. {{{end}}}
 
 Signaling Between Threads
@@ -271,6 +372,22 @@ event status changes.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'threading_event.py'))
 .. }}}
+
+::
+
+	$ python threading_event.py
+	
+	(block     ) wait_for_event starting
+	(non-block ) wait_for_event_timeout starting
+	(MainThread) Waiting before calling Event.set()
+	(non-block ) event set: False
+	(non-block ) doing other work
+	(non-block ) wait_for_event_timeout starting
+	(MainThread) Event is set
+	(block     ) event set: True
+	(non-block ) event set: True
+	(non-block ) processing event
+
 .. {{{end}}}
 
 Controlling Access to Resources
@@ -299,6 +416,28 @@ to the value attribute.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'threading_lock.py'))
 .. }}}
+
+::
+
+	$ python threading_lock.py
+	
+	(Thread-1  ) Sleeping 0.47
+	(Thread-2  ) Sleeping 0.65
+	(MainThread) Waiting for worker threads
+	(Thread-1  ) Waiting for lock
+	(Thread-1  ) Acquired lock
+	(Thread-1  ) Sleeping 0.90
+	(Thread-2  ) Waiting for lock
+	(Thread-2  ) Acquired lock
+	(Thread-2  ) Sleeping 0.11
+	(Thread-2  ) Waiting for lock
+	(Thread-2  ) Acquired lock
+	(Thread-2  ) Done
+	(Thread-1  ) Waiting for lock
+	(Thread-1  ) Acquired lock
+	(Thread-1  ) Done
+	(MainThread) Counter: 4
+
 .. {{{end}}}
 
 To find out whether another thread has acquired the lock without
@@ -319,6 +458,31 @@ three separate times.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'threading_lock_noblock.py'))
 .. }}}
+
+::
+
+	$ python threading_lock_noblock.py
+	
+	(LockHolder) Starting
+	(LockHolder) Holding
+	(Worker    ) Starting
+	(LockHolder) Not holding
+	(Worker    ) Trying to acquire
+	(Worker    ) Iteration 1: Acquired
+	(Worker    ) Trying to acquire
+	(LockHolder) Holding
+	(Worker    ) Iteration 2: Not acquired
+	(LockHolder) Not holding
+	(Worker    ) Trying to acquire
+	(Worker    ) Iteration 3: Acquired
+	(LockHolder) Holding
+	(Worker    ) Trying to acquire
+	(Worker    ) Iteration 4: Not acquired
+	(LockHolder) Not holding
+	(Worker    ) Trying to acquire
+	(Worker    ) Iteration 5: Acquired
+	(Worker    ) Done after 5 iterations
+
 .. {{{end}}}
 
 Re-entrant Locks
@@ -339,6 +503,14 @@ blocked using the default arguments to :func:`acquire()`.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'threading_lock_reacquire.py'))
 .. }}}
+
+::
+
+	$ python threading_lock_reacquire.py
+	
+	First try : True
+	Second try: False
+
 .. {{{end}}}
 
 In a situation where separate code from the same thread needs to
@@ -354,6 +526,14 @@ The only change to the code from the previous example was substituting
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'threading_rlock.py'))
 .. }}}
+
+::
+
+	$ python threading_rlock.py
+	
+	First try : True
+	Second try: 1
+
 .. {{{end}}}
 
 Locks as Context Managers
@@ -373,6 +553,14 @@ manage the lock in equivalent ways.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'threading_lock_with.py'))
 .. }}}
+
+::
+
+	$ python threading_lock_with.py
+	
+	(Thread-1  ) Lock acquired via with
+	(Thread-2  ) Lock acquired directly
+
 .. {{{end}}}
 
 Synchronizing Threads
@@ -398,6 +586,18 @@ the :class:`Condition`. Using the :func:`acquire()` and
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'threading_condition.py'))
 .. }}}
+
+::
+
+	$ python threading_condition.py
+	
+	2013-02-21 06:37:49,549 (c1) Starting consumer thread
+	2013-02-21 06:37:51,550 (c2) Starting consumer thread
+	2013-02-21 06:37:53,551 (p ) Starting producer thread
+	2013-02-21 06:37:53,552 (p ) Making resource available
+	2013-02-21 06:37:53,552 (c2) Resource is available to consumer
+	2013-02-21 06:37:53,553 (c1) Resource is available to consumer
+
 .. {{{end}}}
 
 Limiting Concurrent Access to Resources
@@ -424,6 +624,24 @@ threads to show that only five are running concurrently.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'threading_semaphore.py'))
 .. }}}
+
+::
+
+	$ python threading_semaphore.py
+	
+	2013-02-21 06:37:53,629 (0 ) Waiting to join the pool
+	2013-02-21 06:37:53,629 (1 ) Waiting to join the pool
+	2013-02-21 06:37:53,629 (0 ) Running: ['0']
+	2013-02-21 06:37:53,629 (2 ) Waiting to join the pool
+	2013-02-21 06:37:53,630 (3 ) Waiting to join the pool
+	2013-02-21 06:37:53,630 (1 ) Running: ['0', '1']
+	2013-02-21 06:37:53,730 (0 ) Running: ['1']
+	2013-02-21 06:37:53,731 (2 ) Running: ['1', '2']
+	2013-02-21 06:37:53,731 (1 ) Running: ['2']
+	2013-02-21 06:37:53,732 (3 ) Running: ['2', '3']
+	2013-02-21 06:37:53,831 (2 ) Running: ['3']
+	2013-02-21 06:37:53,833 (3 ) Running: []
+
 .. {{{end}}}
 
 Thread-specific Data
@@ -444,6 +662,18 @@ it is set in that thread.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'threading_local.py'))
 .. }}}
+
+::
+
+	$ python threading_local.py
+	
+	(MainThread) No value yet
+	(MainThread) value=1000
+	(Thread-1  ) No value yet
+	(Thread-1  ) value=34
+	(Thread-2  ) No value yet
+	(Thread-2  ) value=7
+
 .. {{{end}}}
 
 To initialize the settings so all threads start with the same value,
@@ -459,6 +689,20 @@ value), once in each thread.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'threading_local_defaults.py'))
 .. }}}
+
+::
+
+	$ python threading_local_defaults.py
+	
+	(MainThread) Initializing <__main__.MyLocal object at 0x100514390>
+	(MainThread) value=1000
+	(Thread-1  ) Initializing <__main__.MyLocal object at 0x100514390>
+	(Thread-1  ) value=1000
+	(Thread-2  ) Initializing <__main__.MyLocal object at 0x100514390>
+	(Thread-1  ) value=81
+	(Thread-2  ) value=1000
+	(Thread-2  ) value=54
+
 .. {{{end}}}
 
 .. seealso::

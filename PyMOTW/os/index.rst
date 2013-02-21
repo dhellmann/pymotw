@@ -57,6 +57,33 @@ produced:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'os_process_user_example.py'))
 .. }}}
+
+::
+
+	$ python os_process_user_example.py
+	
+	BEFORE CHANGE:
+	Effective User  : 527
+	Effective Group : 501
+	Actual User     : 527 dhellmann
+	Actual Group    : 501
+	Actual Groups   : [501, 401, 101, 500, 12, 33, 61, 80, 98, 100, 204, 102]
+	
+	CHANGED GROUP:
+	Effective User  : 527
+	Effective Group : 501
+	Actual User     : 527 dhellmann
+	Actual Group    : 501
+	Actual Groups   : [501, 401, 101, 500, 12, 33, 61, 80, 98, 100, 204, 102]
+	
+	CHANGE USER:
+	Effective User  : 527
+	Effective Group : 501
+	Actual User     : 527 dhellmann
+	Actual Group    : 501
+	Actual Groups   : [501, 401, 101, 500, 12, 33, 61, 80, 98, 100, 204, 102]
+	
+
 .. {{{end}}}
 
 Notice that the values do not change. When not running as root,
@@ -129,6 +156,23 @@ exported for child processes.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u os_environ_example.py'))
 .. }}}
+
+::
+
+	$ python -u os_environ_example.py
+	
+	Initial value: None
+	Child process:
+	
+	
+	Changed value: THIS VALUE WAS CHANGED
+	Child process:
+	THIS VALUE WAS CHANGED
+	
+	Removed value: None
+	Child process:
+	
+
 .. {{{end}}}
 
 
@@ -152,6 +196,15 @@ not be surprising:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'os_cwd_example.py'))
 .. }}}
+
+::
+
+	$ python os_cwd_example.py
+	
+	Starting: /Users/dhellmann/Documents/PyMOTW/src/PyMOTW/os
+	Moving up one: ..
+	After move: /Users/dhellmann/Documents/PyMOTW/src/PyMOTW
+
 .. {{{end}}}
 
 
@@ -190,6 +243,17 @@ The descriptions of the streams also assume Unix-like terminology:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u os_popen.py'))
 .. }}}
+
+::
+
+	$ python -u os_popen.py
+	
+	popen, read:
+		stdout: 'to stdout\n'
+	
+	popen, write:
+		stdin: to stdin
+
 .. {{{end}}}
 
 The caller can only read from or write to the streams associated with
@@ -215,6 +279,14 @@ even serialized objects.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u os_popen2.py'))
 .. }}}
+
+::
+
+	$ python -u os_popen2.py
+	
+	popen2:
+		pass through: 'through stdin to stdout'
+
 .. {{{end}}}
 
 In most cases, it is desirable to have access to both stdout and
@@ -241,6 +313,15 @@ section of the Python library documentation.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u os_popen3.py'))
 .. }}}
+
+::
+
+	$ python -u os_popen3.py
+	
+	popen3:
+		pass through: 'through stdin to stdout'
+		stderr: ';to stderr\n'
+
 .. {{{end}}}
 
 And finally, :func:`popen4()` returns 2 streams, stdin and a merged
@@ -257,6 +338,14 @@ together.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u os_popen4.py'))
 .. }}}
+
+::
+
+	$ python -u os_popen4.py
+	
+	popen4:
+		combined output: 'through stdin to stdout;to stderr\n'
+
 .. {{{end}}}
 
 Besides accepting a single string command to be given to the shell for
@@ -272,6 +361,14 @@ In this case, the arguments are not processed by the shell.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u os_popen2_seq.py'))
 .. }}}
+
+::
+
+	$ python -u os_popen2_seq.py
+	
+	popen2, cmd as sequence:
+		pass through: 'through stdin to stdout'
+
 .. {{{end}}}
 
 
@@ -301,6 +398,17 @@ but it will look something like this:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'os_access.py'))
 .. }}}
+
+::
+
+	$ python os_access.py
+	
+	Testing: os_access.py
+	Exists: True
+	Readable: True
+	Writable: True
+	Executable: False
+
 .. {{{end}}}
 
 
@@ -333,6 +441,18 @@ installed. Try passing different filenames on the command line to
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'os_stat.py'))
 .. }}}
+
+::
+
+	$ python os_stat.py
+	
+	os.stat(os_stat.py):
+		Size: 1516
+		Permissions: 0100644
+		Owner: 527
+		Device: 234881026
+		Last modified: Sat Feb 19 19:18:23 2011
+
 .. {{{end}}}
 
 
@@ -352,6 +472,13 @@ of the file when run.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'os_stat_chmod.py'))
 .. }}}
+
+::
+
+	$ python os_stat_chmod.py
+	
+	Adding execute permission
+
 .. {{{end}}}
 
 .. _os-directories:
@@ -379,6 +506,17 @@ all of the parent directories (assuming it can).
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'os_directories.py'))
 .. }}}
+
+::
+
+	$ python os_directories.py
+	
+	Creating os_directories_example
+	Creating os_directories_example/example.txt
+	Listing os_directories_example
+	['example.txt']
+	Cleaning up
+
 .. {{{end}}}
 
 
@@ -402,6 +540,15 @@ message when it is used. In general it is better to use
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'os_symlinks.py'))
 .. }}}
+
+::
+
+	$ python os_symlinks.py
+	
+	Creating link /var/folders/5q/8gk0wq888xlggz008k8dr7180000hg/T/tmpt1_Bsr -> os_symlinks.py
+	Permissions: 0120755
+	Points to: os_symlinks.py
+
 .. {{{end}}}
 
 
@@ -422,6 +569,42 @@ This example shows a recursive directory listing.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'os_walk.py ../zipimport'))
 .. }}}
+
+::
+
+	$ python os_walk.py ../zipimport
+	
+	
+	../zipimport
+		__init__.py
+		__init__.pyc
+		example_package/
+		index.rst
+		zipimport_example.zip
+		zipimport_find_module.py
+		zipimport_find_module.pyc
+		zipimport_get_code.py
+		zipimport_get_code.pyc
+		zipimport_get_data.py
+		zipimport_get_data.pyc
+		zipimport_get_data_nozip.py
+		zipimport_get_data_nozip.pyc
+		zipimport_get_data_zip.py
+		zipimport_get_data_zip.pyc
+		zipimport_get_source.py
+		zipimport_get_source.pyc
+		zipimport_is_package.py
+		zipimport_is_package.pyc
+		zipimport_load_module.py
+		zipimport_load_module.pyc
+		zipimport_make_example.py
+		zipimport_make_example.pyc
+	
+	../zipimport/example_package
+		README.txt
+		__init__.py
+		__init__.pyc
+
 .. {{{end}}}
 
 .. _os-system:
@@ -452,6 +635,40 @@ process to die, or zero.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u os_system_example.py'))
 .. }}}
+
+::
+
+	$ python -u os_system_example.py
+	
+	total 248
+	-rw-r--r--  1 dhellmann  dhellmann      0 Feb 19  2011 __init__.py
+	-rw-r--r--  1 dhellmann  dhellmann  22700 Jul  8  2011 index.rst
+	-rw-r--r--  1 dhellmann  dhellmann   1360 Feb 19  2011 os_access.py
+	-rw-r--r--  1 dhellmann  dhellmann   1292 Feb 19  2011 os_cwd_example.py
+	-rw-r--r--  1 dhellmann  dhellmann   1499 Feb 19  2011 os_directories.py
+	-rw-r--r--  1 dhellmann  dhellmann   1573 Feb 19  2011 os_environ_example.py
+	-rw-r--r--  1 dhellmann  dhellmann   1241 Feb 19  2011 os_exec_example.py
+	-rw-r--r--  1 dhellmann  dhellmann   1267 Feb 19  2011 os_fork_example.py
+	-rw-r--r--  1 dhellmann  dhellmann   1703 Feb 19  2011 os_kill_example.py
+	-rw-r--r--  1 dhellmann  dhellmann   1476 Feb 19  2011 os_popen.py
+	-rw-r--r--  1 dhellmann  dhellmann   1506 Feb 19  2011 os_popen2.py
+	-rw-r--r--  1 dhellmann  dhellmann   1528 Feb 19  2011 os_popen2_seq.py
+	-rw-r--r--  1 dhellmann  dhellmann   1658 Feb 19  2011 os_popen3.py
+	-rw-r--r--  1 dhellmann  dhellmann   1567 Feb 19  2011 os_popen4.py
+	-rw-r--r--  1 dhellmann  dhellmann   1395 Feb 19  2011 os_process_id_example.py
+	-rw-r--r--  1 dhellmann  dhellmann   1896 Feb 19  2011 os_process_user_example.py
+	-rw-r--r--  1 dhellmann  dhellmann   1206 Feb 19  2011 os_spawn_example.py
+	-rw-r--r--  1 dhellmann  dhellmann   1516 Feb 19  2011 os_stat.py
+	-rw-r--r--  1 dhellmann  dhellmann   1751 Feb 19  2011 os_stat_chmod.py
+	-rwxr--r--  1 dhellmann  dhellmann      8 Feb 21 06:36 os_stat_chmod_example.txt
+	-rw-r--r--  1 dhellmann  dhellmann   1421 Feb 19  2011 os_symlinks.py
+	-rw-r--r--  1 dhellmann  dhellmann   1250 Feb 19  2011 os_system_background.py
+	-rw-r--r--  1 dhellmann  dhellmann   1191 Feb 19  2011 os_system_example.py
+	-rw-r--r--  1 dhellmann  dhellmann   1214 Feb 19  2011 os_system_shell.py
+	-rw-r--r--  1 dhellmann  dhellmann   1499 Feb 19  2011 os_wait_example.py
+	-rw-r--r--  1 dhellmann  dhellmann   1555 Feb 19  2011 os_waitpid_example.py
+	-rw-r--r--  1 dhellmann  dhellmann   1643 Feb 19  2011 os_walk.py
+
 .. {{{end}}}
 
 
@@ -465,6 +682,13 @@ include shell syntax such as globbing or environment variables:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u os_system_shell.py'))
 .. }}}
+
+::
+
+	$ python -u os_system_shell.py
+	
+	drwx------  10 dhellmann  dhellmann  340 Feb 21 06:36 /var/folders/5q/8gk0wq888xlggz008k8dr7180000hg/T/
+
 .. {{{end}}}
 
 
@@ -485,6 +709,16 @@ accomplish the same thing.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u os_system_background.py'))
 .. }}}
+
+::
+
+	$ python -u os_system_background.py
+	
+	Calling...
+	Thu Feb 21 06:36:14 EST 2013
+	Sleeping...
+	Thu Feb 21 06:36:18 EST 2013
+
 .. {{{end}}}
 
 .. _creating-processes-with-os-fork:
@@ -511,6 +745,14 @@ example is run, but it will look something like:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u os_fork_example.py'))
 .. }}}
+
+::
+
+	$ python -u os_fork_example.py
+	
+	Child process id: 14167
+	I am the child
+
 .. {{{end}}}
 
 After the fork, there are two processes running the same code. For a
@@ -546,6 +788,19 @@ A real application, wouldn't need (or want) to call :func:`sleep()`.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'os_kill_example.py'))
 .. }}}
+
+::
+
+	$ python os_kill_example.py
+	
+	Forking...
+	PARENT: Pausing before sending signal...
+	PARENT: Signaling 14170
+	Forking...
+	CHILD: Setting up signal handler
+	CHILD: Pausing to wait for signal
+	Received USR1 in process 14170
+
 .. {{{end}}}
 
 
@@ -566,6 +821,29 @@ code from the existing process.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'os_exec_example.py'))
 .. }}}
+
+::
+
+	$ python os_exec_example.py
+	
+	total 320
+	-rw-r-----  1 root        _lp         1193 Feb 21 06:26 025c6512ef714
+	-rw-r--r--  1 root        wheel      70150 Feb 19 09:01 Carbon Copy Cloner-96-8F64ABE0-B932-4033-B71B-8815A11C13F1.growlRegDict
+	-rw-r--r--  1 root        wheel      70150 Feb 19 09:01 Carbon Copy Cloner-96-F29FA27F-20E9-45F4-8FEB-B5BE8104239A.growlRegDict
+	-rw-r--r--  1 dhellmann   wheel          0 Feb 19 09:03 CrashReportCopyLock-Doug Hellmann’s iPhone
+	-rw-r--r--  1 dhellmann   wheel          0 Feb 19 23:52 CrashReportCopyLock-Fry
+	-rw-r--r--  1 dhellmann   wheel          0 Feb 19 10:02 CrashReportCopyLock-Nibbler
+	-rw-r--r--  1 dhellmann   wheel      12288 Feb 21 06:35 example.db
+	drwx------  3 dhellmann   wheel        102 Feb 19 09:00 launch-CRQRox
+	drwx------  3 dhellmann   wheel        102 Feb 19 15:39 launch-EId8eS
+	drwx------  3 dhellmann   wheel        102 Feb 19 09:00 launch-XiBNeS
+	drwx------  3 dhellmann   wheel        102 Feb 19 09:00 launch-m0jqKW
+	drwx------  3 dhellmann   wheel        102 Feb 19 09:00 launch-n4P253
+	drwx------  3 dhellmann   wheel        102 Feb 19 09:00 launchd-328.RnuGVc
+	drwx------  3 _spotlight  wheel        102 Feb 19 09:06 launchd-587.onAzLG
+	drwx------  2 dhellmann   wheel         68 Feb 19 15:46 ssh-DUxXnX9KUd
+	drwxr-xr-x  2 dhellmann   dhellmann     68 Feb 20 03:15 var_backups
+
 .. {{{end}}}
 
 
@@ -605,6 +883,33 @@ status").
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'os_wait_example.py'))
 .. }}}
+
+::
+
+	$ python os_wait_example.py
+	
+	PARENT: Forking 0
+	WORKER 0: Starting
+	WORKER 0: Finishing
+	PARENT: Forking 0
+	PARENT: Forking 1
+	WORKER 1: Starting
+	WORKER 1: Finishing
+	PARENT: Forking 0
+	PARENT: Forking 1
+	PARENT: Forking 2
+	WORKER 2: Starting
+	WORKER 2: Finishing
+	PARENT: Forking 0
+	PARENT: Forking 1
+	PARENT: Forking 2
+	PARENT: Waiting for 0
+	PARENT: (14176, 0)
+	PARENT: Waiting for 1
+	PARENT: (14177, 256)
+	PARENT: Waiting for 2
+	PARENT: (14178, 512)
+
 .. {{{end}}}
 
 To wait for a specific process, use :func:`waitpid()`.
@@ -619,6 +924,33 @@ until that process exits.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'os_waitpid_example.py'))
 .. }}}
+
+::
+
+	$ python os_waitpid_example.py
+	
+	PARENT: Forking 0
+	WORKER 0: Starting
+	WORKER 0: Finishing
+	PARENT: Forking 0
+	PARENT: Forking 1
+	WORKER 1: Starting
+	WORKER 1: Finishing
+	PARENT: Forking 0
+	PARENT: Forking 1
+	PARENT: Forking 2
+	WORKER 2: Starting
+	WORKER 2: Finishing
+	PARENT: Forking 0
+	PARENT: Forking 1
+	PARENT: Forking 2
+	PARENT: Waiting for 14181
+	PARENT: (14181, 0)
+	PARENT: Waiting for 14182
+	PARENT: (14182, 256)
+	PARENT: Waiting for 14183
+	PARENT: (14183, 512)
+
 .. {{{end}}}
 
 :func:`wait3()` and :func:`wait4()` work in a similar manner, but
@@ -643,6 +975,29 @@ the current process.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'os_spawn_example.py'))
 .. }}}
+
+::
+
+	$ python os_spawn_example.py
+	
+	total 320
+	-rw-r-----  1 root        _lp         1193 Feb 21 06:26 025c6512ef714
+	-rw-r--r--  1 root        wheel      70150 Feb 19 09:01 Carbon Copy Cloner-96-8F64ABE0-B932-4033-B71B-8815A11C13F1.growlRegDict
+	-rw-r--r--  1 root        wheel      70150 Feb 19 09:01 Carbon Copy Cloner-96-F29FA27F-20E9-45F4-8FEB-B5BE8104239A.growlRegDict
+	-rw-r--r--  1 dhellmann   wheel          0 Feb 19 09:03 CrashReportCopyLock-Doug Hellmann’s iPhone
+	-rw-r--r--  1 dhellmann   wheel          0 Feb 19 23:52 CrashReportCopyLock-Fry
+	-rw-r--r--  1 dhellmann   wheel          0 Feb 19 10:02 CrashReportCopyLock-Nibbler
+	-rw-r--r--  1 dhellmann   wheel      12288 Feb 21 06:35 example.db
+	drwx------  3 dhellmann   wheel        102 Feb 19 09:00 launch-CRQRox
+	drwx------  3 dhellmann   wheel        102 Feb 19 15:39 launch-EId8eS
+	drwx------  3 dhellmann   wheel        102 Feb 19 09:00 launch-XiBNeS
+	drwx------  3 dhellmann   wheel        102 Feb 19 09:00 launch-m0jqKW
+	drwx------  3 dhellmann   wheel        102 Feb 19 09:00 launch-n4P253
+	drwx------  3 dhellmann   wheel        102 Feb 19 09:00 launchd-328.RnuGVc
+	drwx------  3 _spotlight  wheel        102 Feb 19 09:06 launchd-587.onAzLG
+	drwx------  2 dhellmann   wheel         68 Feb 19 15:46 ssh-DUxXnX9KUd
+	drwxr-xr-x  2 dhellmann   dhellmann     68 Feb 20 03:15 var_backups
+
 .. {{{end}}}
 
 

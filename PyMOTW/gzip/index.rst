@@ -26,6 +26,14 @@ file with mode ``'w'``.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'gzip_write.py'))
 .. }}}
+
+::
+
+	$ python gzip_write.py
+	
+	application/x-gzip; charset=binary
+	example.txt.gz contains 68 bytes of compressed data
+
 .. {{{end}}}
 
 Different amounts of compression can be used by passing a
@@ -45,6 +53,24 @@ storage space.  Results will vary, depending on the input data.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'gzip_compresslevel.py'))
 .. }}}
+
+::
+
+	$ python gzip_compresslevel.py
+	
+	Level  Size        Checksum
+	-----  ----------  ---------------------------------
+	data       754688  e4c0f9433723971563f08a458715119c
+	    1        9839  9a7d983796832f354f8ed980d8f9490b
+	    2        8260  bfc400197e9fc1ee6d8fcf23055362b2
+	    3        8221  63a50795cf7e203339236233f473e23b
+	    4        4160  c3d7f661a98895a20e22b1c97e02a02a
+	    5        4160  800a904ede7007dacf7e6313d044a9c9
+	    6        4160  8904134bbd7e2f4cc87dbda39093835b
+	    7        4160  724bd069062b2adb0739d3ab427b8729
+	    8        4160  61504720d0e524d2b32689a3409d978d
+	    9        4160  538734caa5e4558c7da7c19ca2620573
+
 .. {{{end}}}
 
 
@@ -58,6 +84,22 @@ be used to write a sequence of strings.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'gzip_writelines.py'))
 .. }}}
+
+::
+
+	$ python gzip_writelines.py
+	
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+
 .. {{{end}}}
 
 
@@ -77,6 +119,14 @@ previous section.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'gzip_read.py'))
 .. }}}
+
+::
+
+	$ python gzip_read.py
+	
+	Contents of the example file go here.
+	
+
 .. {{{end}}}
     
 While reading a file, it is also possible to seek and read only part
@@ -92,6 +142,19 @@ caller does not even need to know that the data file is compressed.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'gzip_seek.py'))
 .. }}}
+
+::
+
+	$ python gzip_seek.py
+	
+	Entire file:
+	Contents of the example file go here.
+	
+	Starting at position 5 for 10 bytes:
+	nts of the
+	
+	True
+
 .. {{{end}}}
 
 
@@ -118,6 +181,39 @@ data is being transmitted over a socket or from read an existing
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'gzip_StringIO.py'))
 .. }}}
+
+::
+
+	$ python gzip_StringIO.py
+	
+	UNCOMPRESSED: 300
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	
+	COMPRESSED: 51
+	1f8b08009706265102ff0bc94855284ecc4d55c8c9cc4bd551c82f4b2d5248cc4b0133f4b8424665916401d3e717802c010000
+	
+	RE-READ: 300
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	The same line, over and over.
+	
+
 .. {{{end}}}
 
 

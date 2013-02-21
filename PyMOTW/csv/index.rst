@@ -46,6 +46,22 @@ list of strings.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'csv_reader.py testdata.csv'))
 .. }}}
+
+::
+
+	$ python csv_reader.py testdata.csv
+	
+	['Title 1', 'Title 2', 'Title 3']
+	['1', 'a', '08/18/07']
+	['2', 'b', '08/19/07']
+	['3', 'c', '08/20/07']
+	['4', 'd', '08/21/07']
+	['5', 'e', '08/22/07']
+	['6', 'f', '08/23/07']
+	['7', 'g', '08/24/07']
+	['8', 'h', '08/25/07']
+	['9', 'i', '08/26/07']
+
 .. {{{end}}}
 
 
@@ -62,6 +78,14 @@ when returned by the parser.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'csv_reader.py testlinebreak.csv'))
 .. }}}
+
+::
+
+	$ python csv_reader.py testlinebreak.csv
+	
+	['Title 1', 'Title 2', 'Title 3']
+	['1', 'first line\nsecond line', '08/18/07']
+
 .. {{{end}}}
 
 Writing
@@ -81,6 +105,24 @@ example:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'csv_writer.py testout.csv'))
 .. }}}
+
+::
+
+	$ python csv_writer.py testout.csv
+	
+	Title 1,Title 2,Title 3
+	1,a,08/01/07
+	2,b,08/02/07
+	3,c,08/03/07
+	4,d,08/04/07
+	5,e,08/05/07
+	6,f,08/06/07
+	7,g,08/07/07
+	8,h,08/08/07
+	9,i,08/09/07
+	10,j,08/10/07
+	
+
 .. {{{end}}}
 
 The default quoting behavior is different for the writer, so the string column
@@ -96,6 +138,24 @@ And now the strings are quoted:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'csv_writer_quoted.py testout_quoted.csv'))
 .. }}}
+
+::
+
+	$ python csv_writer_quoted.py testout_quoted.csv
+	
+	"Title 1","Title 2","Title 3"
+	1,"a","08/01/07"
+	2,"b","08/02/07"
+	3,"c","08/03/07"
+	4,"d","08/04/07"
+	5,"e","08/05/07"
+	6,"f","08/06/07"
+	7,"g","08/07/07"
+	8,"h","08/08/07"
+	9,"i","08/09/07"
+	10,"j","08/10/07"
+	
+
 .. {{{end}}}
 
 .. _csv-quoting:
@@ -150,6 +210,13 @@ OpenOffice or NeoOffice.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'csv_list_dialects.py'))
 .. }}}
+
+::
+
+	$ python csv_list_dialects.py
+	
+	['excel-tab', 'excel']
+
 .. {{{end}}}
 
 Creating a Dialect
@@ -172,6 +239,14 @@ and the file can be read just as with the comma-delimited file:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'csv_dialect.py'))
 .. }}}
+
+::
+
+	$ python csv_dialect.py
+	
+	['Title 1', 'Title 2', 'Title 3']
+	['1', 'first line\nsecond line', '08/18/07']
+
 .. {{{end}}}
 
 Dialect Parameters
@@ -202,6 +277,60 @@ This program shows how the same data appears in several different dialects.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'csv_dialect_variations.py'))
 .. }}}
+
+::
+
+	$ python csv_dialect_variations.py
+	
+	
+	Dialect: "escaped"
+	
+	  delimiter   = ','       skipinitialspace = 0
+	  doublequote = 0         quoting          = QUOTE_NONE
+	  quotechar   = '"'       lineterminator   = '\r\n'
+	  escapechar  = '\\'  
+	
+	col1,0,10/00/2010,Contains special chars: \" ' \, to be parsed
+	col1,1,10/01/2010,Contains special chars: \" ' \, to be parsed
+	col1,2,10/02/2010,Contains special chars: \" ' \, to be parsed
+	
+	
+	Dialect: "excel"
+	
+	  delimiter   = ','       skipinitialspace = 0
+	  doublequote = 1         quoting          = QUOTE_MINIMAL
+	  quotechar   = '"'       lineterminator   = '\r\n'
+	  escapechar  = None  
+	
+	col1,0,10/00/2010,"Contains special chars: "" ' , to be parsed"
+	col1,1,10/01/2010,"Contains special chars: "" ' , to be parsed"
+	col1,2,10/02/2010,"Contains special chars: "" ' , to be parsed"
+	
+	
+	Dialect: "excel-tab"
+	
+	  delimiter   = '\t'      skipinitialspace = 0
+	  doublequote = 1         quoting          = QUOTE_MINIMAL
+	  quotechar   = '"'       lineterminator   = '\r\n'
+	  escapechar  = None  
+	
+	col1	0	10/00/2010	"Contains special chars: "" ' 	 to be parsed"
+	col1	1	10/01/2010	"Contains special chars: "" ' 	 to be parsed"
+	col1	2	10/02/2010	"Contains special chars: "" ' 	 to be parsed"
+	
+	
+	Dialect: "singlequote"
+	
+	  delimiter   = ','       skipinitialspace = 0
+	  doublequote = 1         quoting          = QUOTE_ALL
+	  quotechar   = "'"       lineterminator   = '\r\n'
+	  escapechar  = None  
+	
+	'col1','0','10/00/2010','Contains special chars: " '' , to be parsed'
+	'col1','1','10/01/2010','Contains special chars: " '' , to be parsed'
+	'col1','2','10/02/2010','Contains special chars: " '' , to be parsed'
+	
+
 .. {{{end}}}
 
 Automatically Detecting Dialects
@@ -225,6 +354,36 @@ demonstrated by the "escaped" dialect in the example.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'csv_dialect_sniffer.py'))
 .. }}}
+
+::
+
+	$ python csv_dialect_sniffer.py
+	
+	
+	Dialect: "escaped"
+	
+	['col1', '0', '10/00/2010', 'Contains special chars: \\" \' \\', ' to be parsed']
+	['col1', '1', '10/01/2010', 'Contains special chars: \\" \' \\', ' to be parsed']
+	['col1', '2', '10/02/2010', 'Contains special chars: \\" \' \\', ' to be parsed']
+	
+	Dialect: "excel"
+	
+	['col1', '0', '10/00/2010', 'Contains special chars: " \' , to be parsed']
+	['col1', '1', '10/01/2010', 'Contains special chars: " \' , to be parsed']
+	['col1', '2', '10/02/2010', 'Contains special chars: " \' , to be parsed']
+	
+	Dialect: "excel-tab"
+	
+	['col1', '0', '10/00/2010', 'Contains special chars: " \' \t to be parsed']
+	['col1', '1', '10/01/2010', 'Contains special chars: " \' \t to be parsed']
+	['col1', '2', '10/02/2010', 'Contains special chars: " \' \t to be parsed']
+	
+	Dialect: "singlequote"
+	
+	['col1', '0', '10/00/2010', 'Contains special chars: " \' , to be parsed']
+	['col1', '1', '10/01/2010', 'Contains special chars: " \' , to be parsed']
+	['col1', '2', '10/02/2010', 'Contains special chars: " \' , to be parsed']
+
 .. {{{end}}}
 
 
@@ -250,6 +409,21 @@ returned as dictionaries instead of lists or tuples.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'csv_dictreader.py testdata.csv'))
 .. }}}
+
+::
+
+	$ python csv_dictreader.py testdata.csv
+	
+	{'Title 1': '1', 'Title 3': '08/18/07', 'Title 2': 'a'}
+	{'Title 1': '2', 'Title 3': '08/19/07', 'Title 2': 'b'}
+	{'Title 1': '3', 'Title 3': '08/20/07', 'Title 2': 'c'}
+	{'Title 1': '4', 'Title 3': '08/21/07', 'Title 2': 'd'}
+	{'Title 1': '5', 'Title 3': '08/22/07', 'Title 2': 'e'}
+	{'Title 1': '6', 'Title 3': '08/23/07', 'Title 2': 'f'}
+	{'Title 1': '7', 'Title 3': '08/24/07', 'Title 2': 'g'}
+	{'Title 1': '8', 'Title 3': '08/25/07', 'Title 2': 'h'}
+	{'Title 1': '9', 'Title 3': '08/26/07', 'Title 2': 'i'}
+
 .. {{{end}}}
 
 The :class:`DictWriter` must be given a list of field names so it
@@ -262,6 +436,24 @@ knows how to order the columns in the output.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'csv_dictwriter.py testout.csv'))
 .. }}}
+
+::
+
+	$ python csv_dictwriter.py testout.csv
+	
+	Title 1,Title 2,Title 3
+	1,a,08/01/07
+	2,b,08/02/07
+	3,c,08/03/07
+	4,d,08/04/07
+	5,e,08/05/07
+	6,f,08/06/07
+	7,g,08/07/07
+	8,h,08/08/07
+	9,i,08/09/07
+	10,j,08/10/07
+	
+
 .. {{{end}}}
 
 .. seealso::

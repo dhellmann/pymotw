@@ -41,6 +41,24 @@ The URL argument to ``can_fetch()`` can be a path relative to the root of the si
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'robotparser_simple.py'))
 .. }}}
+
+::
+
+	$ python robotparser_simple.py
+	
+	  True : /
+	  True : http://www.doughellmann.com/
+	
+	  True : /PyMOTW/
+	  True : http://www.doughellmann.com/PyMOTW/
+	
+	  True : /admin/
+	  True : http://www.doughellmann.com/admin/
+	
+	 False : /downloads/PyMOTW-1.92.tar.gz
+	 False : http://www.doughellmann.com/downloads/PyMOTW-1.92.tar.gz
+	
+
 .. {{{end}}}
 
 
@@ -59,6 +77,24 @@ This extreme example downloads a new ``robots.txt`` file if the one it has is mo
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'robotparser_longlived.py'))
 .. }}}
+
+::
+
+	$ python robotparser_longlived.py
+	
+	
+	age: 0
+	  True : /
+	
+	age: 1
+	  True : /PyMOTW/
+	
+	age: 2 re-reading robots.txt
+	 False : /admin/
+	
+	age: 1
+	 False : /downloads/PyMOTW-1.92.tar.gz
+
 .. {{{end}}}
 
 A "nicer" version of the long-lived application might request the modification time for the file before downloading the entire thing.  On the other hand, ``robots.txt`` files are usually fairly small, so it isn't that much more expensive to just grab the entire document again.

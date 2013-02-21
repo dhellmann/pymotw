@@ -117,6 +117,35 @@ eliminating "noise" in the input.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'difflib_ndiff.py'))
 .. }}}
+
+::
+
+	$ python difflib_ndiff.py
+	
+	  Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Integer
+	- eu lacus accumsan arcu fermentum euismod. Donec pulvinar porttitor
+	+ eu lacus accumsan arcu fermentum euismod. Donec pulvinar, porttitor
+	?                                                         +
+	
+	- tellus. Aliquam venenatis. Donec facilisis pharetra tortor.  In nec
+	?                                                             -
+	
+	+ tellus. Aliquam venenatis. Donec facilisis pharetra tortor. In nec
+	- mauris eget magna consequat convallis. Nam sed sem vitae odio
+	?                                             ------
+	
+	+ mauris eget magna consequat convallis. Nam cras vitae mi vitae odio
+	?                                            +++        +++++++++
+	
+	  pellentesque interdum. Sed consequat viverra nisl. Suspendisse arcu
+	  metus, blandit quis, rhoncus ac, pharetra eget, velit. Mauris
+	  urna. Morbi nonummy molestie orci. Praesent nisi elit, fringilla ac,
+	  suscipit non, tristique vel, mauris. Curabitur vel lorem id nisl porta
+	- adipiscing. Suspendisse eu lectus. In nunc. Duis vulputate tristique
+	- enim. Donec quis lectus a justo imperdiet tempus.
+	+ adipiscing. Duis vulputate tristique enim. Donec quis lectus a justo
+	+ imperdiet tempus. Suspendisse eu lectus. In nunc. 
+
 .. {{{end}}}
 
 Other Output Formats
@@ -137,6 +166,30 @@ version control tools:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'difflib_unified.py'))
 .. }}}
+
+::
+
+	$ python difflib_unified.py
+	
+	--- 
+	+++ 
+	@@ -1,10 +1,10 @@
+	 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Integer
+	-eu lacus accumsan arcu fermentum euismod. Donec pulvinar porttitor
+	-tellus. Aliquam venenatis. Donec facilisis pharetra tortor.  In nec
+	-mauris eget magna consequat convallis. Nam sed sem vitae odio
+	+eu lacus accumsan arcu fermentum euismod. Donec pulvinar, porttitor
+	+tellus. Aliquam venenatis. Donec facilisis pharetra tortor. In nec
+	+mauris eget magna consequat convallis. Nam cras vitae mi vitae odio
+	 pellentesque interdum. Sed consequat viverra nisl. Suspendisse arcu
+	 metus, blandit quis, rhoncus ac, pharetra eget, velit. Mauris
+	 urna. Morbi nonummy molestie orci. Praesent nisi elit, fringilla ac,
+	 suscipit non, tristique vel, mauris. Curabitur vel lorem id nisl porta
+	-adipiscing. Suspendisse eu lectus. In nunc. Duis vulputate tristique
+	-enim. Donec quis lectus a justo imperdiet tempus.
+	+adipiscing. Duis vulputate tristique enim. Donec quis lectus a justo
+	+imperdiet tempus. Suspendisse eu lectus. In nunc. 
+
 .. {{{end}}}
 
 Using :func:`context_diff` produces similar readable output:
@@ -144,6 +197,37 @@ Using :func:`context_diff` produces similar readable output:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'difflib_context.py'))
 .. }}}
+
+::
+
+	$ python difflib_context.py
+	
+	*** 
+	--- 
+	***************
+	*** 1,10 ****
+	  Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Integer
+	! eu lacus accumsan arcu fermentum euismod. Donec pulvinar porttitor
+	! tellus. Aliquam venenatis. Donec facilisis pharetra tortor.  In nec
+	! mauris eget magna consequat convallis. Nam sed sem vitae odio
+	  pellentesque interdum. Sed consequat viverra nisl. Suspendisse arcu
+	  metus, blandit quis, rhoncus ac, pharetra eget, velit. Mauris
+	  urna. Morbi nonummy molestie orci. Praesent nisi elit, fringilla ac,
+	  suscipit non, tristique vel, mauris. Curabitur vel lorem id nisl porta
+	! adipiscing. Suspendisse eu lectus. In nunc. Duis vulputate tristique
+	! enim. Donec quis lectus a justo imperdiet tempus.
+	--- 1,10 ----
+	  Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Integer
+	! eu lacus accumsan arcu fermentum euismod. Donec pulvinar, porttitor
+	! tellus. Aliquam venenatis. Donec facilisis pharetra tortor. In nec
+	! mauris eget magna consequat convallis. Nam cras vitae mi vitae odio
+	  pellentesque interdum. Sed consequat viverra nisl. Suspendisse arcu
+	  metus, blandit quis, rhoncus ac, pharetra eget, velit. Mauris
+	  urna. Morbi nonummy molestie orci. Praesent nisi elit, fringilla ac,
+	  suscipit non, tristique vel, mauris. Curabitur vel lorem id nisl porta
+	! adipiscing. Duis vulputate tristique enim. Donec quis lectus a justo
+	! imperdiet tempus. Suspendisse eu lectus. In nunc. 
+
 .. {{{end}}}
 
 HTML Output
@@ -186,6 +270,28 @@ characters explicitly, but to rely on the ability of
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'difflib_junk.py'))
 .. }}}
+
+::
+
+	$ python difflib_junk.py
+	
+	A = ' abcd'
+	B = 'abcd abcd'
+	
+	Without junk detection:
+	  i = 0
+	  j = 4
+	  k = 5
+	  A[i:i+k] = ' abcd'
+	  B[j:j+k] = ' abcd'
+	
+	Treat spaces as junk:
+	  i = 1
+	  j = 0
+	  k = 4
+	  A[i:i+k] = 'abcd'
+	  B[j:j+k] = 'abcd'
+
 .. {{{end}}}
 
 
@@ -210,6 +316,38 @@ are added and removed.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'difflib_seq.py'))
 .. }}}
+
+::
+
+	$ python difflib_seq.py
+	
+	Initial data:
+	s1 = [1, 2, 3, 5, 6, 4]
+	s2 = [2, 3, 5, 4, 6, 1]
+	s1 == s2: False
+	
+	Replace [4] from [5:6] of s1 with [1] from [5:6] of s2
+	s1 = [1, 2, 3, 5, 6, 1]
+	s2 = [2, 3, 5, 4, 6, 1]
+	
+	The sections [4:5] of s1 and [4:5] of s2 are the same
+	s1 = [1, 2, 3, 5, 6, 1]
+	s2 = [2, 3, 5, 4, 6, 1]
+	
+	Insert [4] from [3:4] of s2 into s1 at 4
+	s1 = [1, 2, 3, 5, 4, 6, 1]
+	s2 = [2, 3, 5, 4, 6, 1]
+	
+	The sections [1:4] of s1 and [0:3] of s2 are the same
+	s1 = [1, 2, 3, 5, 4, 6, 1]
+	s2 = [2, 3, 5, 4, 6, 1]
+	
+	Remove [1] from positions [0:1]
+	s1 = [2, 3, 5, 4, 6, 1]
+	s2 = [2, 3, 5, 4, 6, 1]
+	
+	s1 == s2: True
+
 .. {{{end}}}
 
 :class:`SequenceMatcher` works with custom classes, as well as

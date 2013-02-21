@@ -391,6 +391,24 @@ is a byte sequence, so it is encoded as UTF-8 before being printed.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'pkgutil_get_data.py'))
 .. }}}
+
+::
+
+	$ python pkgutil_get_data.py
+	
+	<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+	<html> <head>
+	<title>PyMOTW Template</title>
+	</head>
+	
+	<body>
+	<h1>Example Template</h1>
+	
+	<p>This is a sample data file.</p>
+	
+	</body>
+	</html>
+
 .. {{{end}}}
 
 :func:`get_data` is distribution format-agnostic because it uses the
@@ -410,6 +428,27 @@ using :mod:`pkgutil` to load the template and print it.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'pkgutil_get_data_zip.py'))
 .. }}}
+
+::
+
+	$ python pkgutil_get_data_zip.py
+	
+	Loading pkgwithdata from pkgwithdatainzip.zip/pkgwithdata/__init__.pyc
+	
+	Template:
+	<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+	<html> <head>
+	<title>PyMOTW Template</title>
+	</head>
+	
+	<body>
+	<h1>Example Template</h1>
+	
+	<p>This is a sample data file.</p>
+	
+	</body>
+	</html>
+
 .. {{{end}}}
 
 

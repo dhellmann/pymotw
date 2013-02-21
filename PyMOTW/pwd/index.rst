@@ -46,6 +46,22 @@ the records by name.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'pwd_getpwall.py'))
 .. }}}
+
+::
+
+	$ python pwd_getpwall.py
+	
+	User        UID Home Dir                 Description
+	---------- ---- ------------------------ ------------------------------
+	daemon        1 /var/root                System Services
+	daemon        1 /var/root                System Services
+	dhellmann   527 /Users/dhellmann         Doug Hellmann
+	nobody     4294967294 /var/empty               Unprivileged User
+	nobody     4294967294 /var/empty               Unprivileged User
+	postgres    528 /Library/PostgreSQL/9.0  PostgreSQL
+	root          0 /var/root                System Administrator
+	root          0 /var/root                System Administrator
+
 .. {{{end}}}
 
 
@@ -68,6 +84,27 @@ reported as all ``*``.
 .. cog.out(run_script(cog.inFile, 'pwd_getpwnam.py dhellmann'))
 .. cog.out(run_script(cog.inFile, 'pwd_getpwnam.py nobody', include_prefix=False))
 .. }}}
+
+::
+
+	$ python pwd_getpwnam.py dhellmann
+	
+	Username: dhellmann
+	Password: ********
+	Comment : Doug Hellmann
+	UID/GID : 527 / 501
+	Home    : /Users/dhellmann
+	Shell   : /bin/bash
+
+	$ python pwd_getpwnam.py nobody
+	
+	Username: nobody
+	Password: *
+	Comment : Unprivileged User
+	UID/GID : 4294967294 / 4294967294
+	Home    : /var/empty
+	Shell   : /usr/bin/false
+
 .. {{{end}}}
 
 
@@ -84,6 +121,13 @@ This is useful to find the owner of a file:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'pwd_getpwuid_fileowner.py'))
 .. }}}
+
+::
+
+	$ python pwd_getpwuid_fileowner.py
+	
+	pwd_getpwuid_fileowner.py is owned by dhellmann (527)
+
 .. {{{end}}}
 
 
@@ -97,6 +141,13 @@ user currently running a process:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'pwd_getpwuid_process.py'))
 .. }}}
+
+::
+
+	$ python pwd_getpwuid_process.py
+	
+	Currently running with UID=527 username=dhellmann
+
 .. {{{end}}}
 
 

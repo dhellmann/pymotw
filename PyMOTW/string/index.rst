@@ -35,6 +35,36 @@ Most of the names for the constants are self-explanatory.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'string_constants.py'))
 .. }}}
+
+::
+
+	$ python string_constants.py
+	
+	ascii_letters='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+	
+	ascii_lowercase='abcdefghijklmnopqrstuvwxyz'
+	
+	ascii_uppercase='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+	
+	digits='0123456789'
+	
+	hexdigits='0123456789abcdefABCDEF'
+	
+	letters='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+	
+	lowercase='abcdefghijklmnopqrstuvwxyz'
+	
+	octdigits='01234567'
+	
+	printable='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~ \t\n\r\x0b\x0c'
+	
+	punctuation='!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'
+	
+	uppercase='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+	
+	whitespace='\t\n\x0b\x0c\r '
+	
+
 .. {{{end}}}
 
 
@@ -55,6 +85,14 @@ the results.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'string_capwords.py'))
 .. }}}
+
+::
+
+	$ python string_capwords.py
+	
+	The quick brown fox jumped over the lazy dog.
+	The Quick Brown Fox Jumped Over The Lazy Dog.
+
 .. {{{end}}}
 
 The other function creates translation tables that can be used with
@@ -71,6 +109,14 @@ In this example, some letters are replaced by their `l33t
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'string_maketrans.py'))
 .. }}}
+
+::
+
+	$ python string_maketrans.py
+	
+	The quick brown fox jumped over the lazy dog.
+	Th3 qu1ck 620wn f0x jum93d 0v32 7h3 142y d06.
+
 .. {{{end}}}
 
 Templates
@@ -96,6 +142,22 @@ escaped by repeating it twice.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'string_template.py'))
 .. }}}
+
+::
+
+	$ python string_template.py
+	
+	TEMPLATE: 
+	foo
+	$
+	fooiable
+	
+	INTERPLOATION: 
+	foo
+	%
+	fooiable
+	
+
 .. {{{end}}}
 
 One key difference between templates and standard string interpolation
@@ -122,6 +184,14 @@ expression alone in the text.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'string_template_missing.py'))
 .. }}}
+
+::
+
+	$ python string_template_missing.py
+	
+	TEMPLATE: ERROR: 'missing'
+	TEMPLATE: foo is here but $missing is not provided
+
 .. {{{end}}}
 
 Advanced Templates
@@ -143,6 +213,13 @@ the middle, so ``%notunderscored`` is not replaced by anything.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'string_template_advanced.py'))
 .. }}}
+
+::
+
+	$ python string_template_advanced.py
+	
+	% replaced %notunderscored
+
 .. {{{end}}}
 
 For more complex changes, you can override the *pattern* attribute and
@@ -163,6 +240,20 @@ access its pattern attribute to see the actual string.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'string_template_defaultpattern.py'))
 .. }}}
+
+::
+
+	$ python string_template_defaultpattern.py
+	
+	
+	    \$(?:
+	      (?P<escaped>\$) |   # Escape sequence of two delimiters
+	      (?P<named>[_a-z][_a-z0-9]*)      |   # delimiter and a Python identifier
+	      {(?P<braced>[_a-z][_a-z0-9]*)}   |   # delimiter and a braced identifier
+	      (?P<invalid>)              # Other ill-formed delimiter exprs
+	    )
+	    
+
 .. {{{end}}}
 
 If we wanted to create a new type of template using, for example,
@@ -178,6 +269,17 @@ though they are the same. Here's the output:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'string_template_newsyntax.py'))
 .. }}}
+
+::
+
+	$ python string_template_newsyntax.py
+	
+	MATCHES: [('{{', '', '', ''), ('', 'var', '', '')]
+	SUBSTITUTED: 
+	{{
+	replacement
+	
+
 .. {{{end}}}
 
 Deprecated Functions

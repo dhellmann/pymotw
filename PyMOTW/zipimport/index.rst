@@ -42,6 +42,25 @@ some test data needed for the code below.
 .. (path(cog.inFile).parent / 'zipimport_example.zip').unlink()
 .. cog.out(run_script(cog.inFile, 'zipimport_make_example.py'))
 .. }}}
+
+::
+
+	$ python zipimport_make_example.py
+	
+	__init__.pyc
+	example_package/__init__.pyc
+	zipimport_find_module.pyc
+	zipimport_get_code.pyc
+	zipimport_get_data.pyc
+	zipimport_get_data_nozip.pyc
+	zipimport_get_data_zip.pyc
+	zipimport_get_source.pyc
+	zipimport_is_package.pyc
+	zipimport_load_module.pyc
+	zipimport_make_example.pyc
+	zipimport_get_source.py
+	example_package/README.txt
+
 .. {{{end}}}
 
 
@@ -63,6 +82,14 @@ returned. Otherwise, ``None`` is returned.
 .. run_script(cog.inFile, 'zipimport_make_example.py')
 .. cog.out(run_script(cog.inFile, 'zipimport_find_module.py'))
 .. }}}
+
+::
+
+	$ python zipimport_find_module.py
+	
+	zipimport_find_module : <zipimporter object "zipimport_example.zip">
+	not_there : None
+
 .. {{{end}}}
 
 Accessing Code
@@ -82,6 +109,13 @@ The code object is not the same as a module object.
 .. run_script(cog.inFile, 'zipimport_make_example.py')
 .. cog.out(run_script(cog.inFile, 'zipimport_get_code.py'))
 .. }}}
+
+::
+
+	$ python zipimport_get_code.py
+	
+	<code object <module> at 0x1002bc2b0, file "./zipimport_get_code.py", line 7>
+
 .. {{{end}}}
 
 To load the code as a usable module, use :func:`load_module()`
@@ -99,6 +133,16 @@ regular import:
 .. run_script(cog.inFile, 'zipimport_make_example.py')
 .. cog.out(run_script(cog.inFile, 'zipimport_load_module.py'))
 .. }}}
+
+::
+
+	$ python zipimport_load_module.py
+	
+	<code object <module> at 0x1002ea7b0, file "./zipimport_get_code.py", line 7>
+	Name   : zipimport_get_code
+	Loader : <zipimporter object "zipimport_example.zip">
+	Code   : <code object <module> at 0x1002ea7b0, file "./zipimport_get_code.py", line 7>
+
 .. {{{end}}}
 
 Source
@@ -122,6 +166,42 @@ returns ``None``.
 .. run_script(cog.inFile, 'zipimport_make_example.py')
 .. cog.out(run_script(cog.inFile, 'zipimport_get_source.py'))
 .. }}}
+
+::
+
+	$ python zipimport_get_source.py
+	
+	================================================================================
+	zipimport_get_code
+	================================================================================
+	None
+	
+	================================================================================
+	zipimport_get_source
+	================================================================================
+	#!/usr/bin/env python
+	#
+	# Copyright 2007 Doug Hellmann.
+	#
+	
+	"""Retrieving the source code for a module within a zip archive.
+	
+	"""
+	#end_pymotw_header
+	
+	import zipimport
+	
+	importer = zipimport.zipimporter('zipimport_example.zip')
+	for module_name in ['zipimport_get_code', 'zipimport_get_source']:
+	    source = importer.get_source(module_name)
+	    print '=' * 80
+	    print module_name
+	    print '=' * 80
+	    print source
+	    print
+	
+	
+
 .. {{{end}}}
 
 Packages
@@ -142,6 +222,14 @@ In this case, ``zipimport_is_package`` came from a module and the
 .. run_script(cog.inFile, 'zipimport_make_example.py')
 .. cog.out(run_script(cog.inFile, 'zipimport_is_package.py'))
 .. }}}
+
+::
+
+	$ python zipimport_is_package.py
+	
+	zipimport_is_package False
+	example_package True
+
 .. {{{end}}}
 
 Data
@@ -168,6 +256,17 @@ the PyMOTW sample code is on your filesystem.
 .. run_script(cog.inFile, 'zipimport_make_example.py')
 .. cog.out(run_script(cog.inFile, 'zipimport_get_data_nozip.py'))
 .. }}}
+
+::
+
+	$ python zipimport_get_data_nozip.py
+	
+	/Users/dhellmann/Documents/PyMOTW/src/PyMOTW/zipimport/example_package/README.txt :
+	This file represents sample data which could be embedded in the ZIP
+	archive.  You could include a configuration file, images, or any other
+	sort of non-code data.
+	
+
 .. {{{end}}}
 
 If the ``example_package`` is imported from the ZIP archive instead of
@@ -185,6 +284,18 @@ we cannot just build up the path to the ``README.txt`` file.
 .. run_script(cog.inFile, 'zipimport_make_example.py')
 .. cog.out(run_script(cog.inFile, 'zipimport_get_data_zip.py', ignore_error=True))
 .. }}}
+
+::
+
+	$ python zipimport_get_data_zip.py
+	
+	zipimport_example.zip/example_package/__init__.pyc
+	zipimport_example.zip/example_package/README.txt :
+	Traceback (most recent call last):
+	  File "zipimport_get_data_zip.py", line 40, in <module>
+	    print open(data_filename, 'rt').read()
+	IOError: [Errno 20] Not a directory: 'zipimport_example.zip/example_package/README.txt'
+
 .. {{{end}}}
 
 Instead, we need to use the :func:`get_data()` method. We can access
@@ -200,6 +311,17 @@ Instead, we need to use the :func:`get_data()` method. We can access
 .. run_script(cog.inFile, 'zipimport_make_example.py')
 .. cog.out(run_script(cog.inFile, 'zipimport_get_data.py'))
 .. }}}
+
+::
+
+	$ python zipimport_get_data.py
+	
+	zipimport_example.zip/example_package/__init__.pyc
+	This file represents sample data which could be embedded in the ZIP
+	archive.  You could include a configuration file, images, or any other
+	sort of non-code data.
+	
+
 .. {{{end}}}
 
 The ``__loader__`` is not set for modules not imported via

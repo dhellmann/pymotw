@@ -56,6 +56,42 @@ and its output:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'fileinput_example.py sample_data.m3u'))
 .. }}}
+
+::
+
+	$ python fileinput_example.py sample_data.m3u
+	
+	<?xml version="1.0" ?>
+	<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
+	  <channel>
+	    <title>
+	      Sample podcast feed
+	    </title>
+	    <description>
+	      Generated for PyMOTW
+	    </description>
+	    <pubDate>
+	      Thu Feb 21 06:35:49 2013
+	    </pubDate>
+	    <generator>
+	      http://www.doughellmann.com/PyMOTW/
+	    </generator>
+	  </channel>
+	  <item>
+	    <title>
+	      episode-one.mp3
+	    </title>
+	    <enclosure type="audio/mpeg" url="episode-one.mp3"/>
+	  </item>
+	  <item>
+	    <title>
+	      episode-two.mp3
+	    </title>
+	    <enclosure type="audio/mpeg" url="episode-two.mp3"/>
+	  </item>
+	</rss>
+	
+
 .. {{{end}}}
 
 Progress Meta-data
@@ -77,6 +113,26 @@ We can use this basic pattern matching loop to find the occurances of
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'fileinput_grep.py fileinput *.py'))
 .. }}}
+
+::
+
+	$ python fileinput_grep.py fileinput *.py
+	
+	fileinput_change_subnet.py:10:import fileinput
+	fileinput_change_subnet.py:17:for line in fileinput.input(files, inplace=True):
+	fileinput_change_subnet_noisy.py:10:import fileinput
+	fileinput_change_subnet_noisy.py:18:for line in fileinput.input(files, inplace=True):
+	fileinput_change_subnet_noisy.py:19:    if fileinput.isfirstline():
+	fileinput_change_subnet_noisy.py:20:        sys.stderr.write('Started processing %s\n' % fileinput.filename())
+	fileinput_example.py:6:"""Example for fileinput module.
+	fileinput_example.py:10:import fileinput
+	fileinput_example.py:30:for line in fileinput.input(sys.argv[1:]):
+	fileinput_grep.py   :10:import fileinput
+	fileinput_grep.py   :16:for line in fileinput.input(sys.argv[2:]):
+	fileinput_grep.py   :18:        if fileinput.isstdin():
+	fileinput_grep.py   :22:        print fmt.format(filename=fileinput.filename(),
+	fileinput_grep.py   :23:                         lineno=fileinput.filelineno(),
+
 .. {{{end}}}
 
 We can also pass input to it through stdin.
@@ -84,6 +140,26 @@ We can also pass input to it through stdin.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'cat *.py | python fileinput_grep.py fileinput', interpreter=None))
 .. }}}
+
+::
+
+	$ cat *.py | python fileinput_grep.py fileinput
+	
+	10:import fileinput
+	17:for line in fileinput.input(files, inplace=True):
+	29:import fileinput
+	37:for line in fileinput.input(files, inplace=True):
+	38:    if fileinput.isfirstline():
+	39:        sys.stderr.write('Started processing %s\n' % fileinput.filename())
+	51:"""Example for fileinput module.
+	55:import fileinput
+	75:for line in fileinput.input(sys.argv[1:]):
+	96:import fileinput
+	102:for line in fileinput.input(sys.argv[2:]):
+	104:        if fileinput.isstdin():
+	108:        print fmt.format(filename=fileinput.filename(),
+	109:                         lineno=fileinput.filelineno(),
+
 .. {{{end}}}
 
 
@@ -109,6 +185,12 @@ fileinput supports this automatically using the *inplace* option.
 .. path('PyMOTW/fileinput/etc_hosts').copy('PyMOTW/fileinput/etc_hosts.txt')
 .. cog.out(run_script(cog.inFile, 'fileinput_change_subnet.py 172.16.177 172.16.178 etc_hosts.txt'))
 .. }}}
+
+::
+
+	$ python fileinput_change_subnet.py 172.16.177 172.16.178 etc_hosts.txt
+	
+
 .. {{{end}}}
 
 Although the script uses ``print``, no output is produced to stdout
@@ -129,6 +211,17 @@ closed.
 .. path('PyMOTW/fileinput/etc_hosts').copy('PyMOTW/fileinput/etc_hosts.txt')
 .. cog.out(run_script(cog.inFile, 'fileinput_change_subnet_noisy.py 172.16.177 172.16.178 etc_hosts.txt'))
 .. }}}
+
+::
+
+	$ python fileinput_change_subnet_noisy.py 172.16.177 172.16.178 etc_host\
+	s.txt
+	
+	Started processing etc_hosts.txt
+	Directory contains: ['etc_hosts.txt', 'etc_hosts.txt.bak']
+	Finished processing
+	Directory contains: ['etc_hosts.txt']
+
 .. {{{end}}}
 
 

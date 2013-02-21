@@ -41,6 +41,19 @@ using a common pattern for making up a name, versus using the
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'tempfile_TemporaryFile.py'))
 .. }}}
+
+::
+
+	$ python tempfile_TemporaryFile.py
+	
+	Building a file name yourself:
+	temp: <open file '/tmp/guess_my_name.14891.txt', mode 'w+b' at 0x100458270>
+	temp.name: /tmp/guess_my_name.14891.txt
+	
+	TemporaryFile:
+	temp: <open file '<fdopen>', mode 'w+b' at 0x100458780>
+	temp.name: <fdopen>
+
 .. {{{end}}}
 
 By default, the file handle is created with mode ``'w+b'`` so it
@@ -57,6 +70,13 @@ in order to read the data back from it.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'tempfile_TemporaryFile_binary.py'))
 .. }}}
+
+::
+
+	$ python tempfile_TemporaryFile_binary.py
+	
+	Some data
+
 .. {{{end}}}
 
 If you want the file to work in text mode, set *mode* to ``'w+t'``
@@ -71,6 +91,14 @@ The file handle treats the data as text:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'tempfile_TemporaryFile_text.py'))
 .. }}}
+
+::
+
+	$ python tempfile_TemporaryFile_text.py
+	
+	first
+	second
+
 .. {{{end}}}
 
 NamedTemporaryFile
@@ -92,6 +120,15 @@ closed.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'tempfile_NamedTemporaryFile.py'))
 .. }}}
+
+::
+
+	$ python tempfile_NamedTemporaryFile.py
+	
+	temp: <open file '<fdopen>', mode 'w+b' at 0x100458270>
+	temp.name: /var/folders/5q/8gk0wq888xlggz008k8dr7180000hg/T/tmpIIkknb
+	Exists after close: False
+
 .. {{{end}}}
 
 mkdtemp
@@ -112,6 +149,13 @@ yourself when you are done with it.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'tempfile_mkdtemp.py'))
 .. }}}
+
+::
+
+	$ python tempfile_mkdtemp.py
+	
+	/var/folders/5q/8gk0wq888xlggz008k8dr7180000hg/T/tmpE4plSY
+
 .. {{{end}}}
 
 Predicting Names
@@ -142,6 +186,14 @@ as-is and used as the location of the new file.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'tempfile_NamedTemporaryFile_args.py'))
 .. }}}
+
+::
+
+	$ python tempfile_NamedTemporaryFile_args.py
+	
+	temp: <open file '<fdopen>', mode 'w+b' at 0x100458270>
+	temp.name: /tmp/prefix_SMkGcX_suffix
+
 .. {{{end}}}
 
 Temporary File Location
@@ -163,6 +215,14 @@ prefix for new file and directory names.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'tempfile_settings.py'))
 .. }}}
+
+::
+
+	$ python tempfile_settings.py
+	
+	gettempdir(): /var/folders/5q/8gk0wq888xlggz008k8dr7180000hg/T
+	gettempprefix(): tmp
+
 .. {{{end}}}
 
 The value returned by :func:`gettempdir()` is set based on a
@@ -204,6 +264,13 @@ directly.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'tempfile_tempdir.py'))
 .. }}}
+
+::
+
+	$ python tempfile_tempdir.py
+	
+	gettempdir(): /I/changed/this/path
+
 .. {{{end}}}
 
 .. seealso::

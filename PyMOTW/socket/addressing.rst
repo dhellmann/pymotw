@@ -98,6 +98,16 @@ hostname).  If the name cannot be found, an exception of type
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'socket_gethostbyname.py'))
 .. }}}
+
+::
+
+	$ python socket_gethostbyname.py
+	
+	          homer : ERROR: [Errno 8] nodename nor servname provided, or not known
+	            www : ERROR: [Errno 8] nodename nor servname provided, or not known
+	 www.python.org : 82.94.164.162
+	     nosuchname : ERROR: [Errno 8] nodename nor servname provided, or not known
+
 .. {{{end}}}
 
 For access to more naming information about a server, use
@@ -115,6 +125,26 @@ own load balancing or fail-over algorithms.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'socket_gethostbyname_ex.py'))
 .. }}}
+
+::
+
+	$ python socket_gethostbyname_ex.py
+	
+	homer
+	          homer : ERROR: [Errno 8] nodename nor servname provided, or not known
+	
+	www
+	            www : ERROR: [Errno 8] nodename nor servname provided, or not known
+	
+	www.python.org
+	  Hostname: www.python.org
+	  Aliases : []
+	 Addresses: ['82.94.164.162']
+	
+	nosuchname
+	     nosuchname : ERROR: [Errno 8] nodename nor servname provided, or not known
+	
+
 .. {{{end}}}
 
 Use :func:`getfqdn` to convert a partial name to a fully qualified
@@ -130,6 +160,14 @@ way if the input is an alias, such as ``www`` is here.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'socket_getfqdn.py'))
 .. }}}
+
+::
+
+	$ python socket_getfqdn.py
+	
+	 homer : homer
+	   www : www
+
 .. {{{end}}}
 
 When the address of a server is available, use :func:`gethostbyaddr`
@@ -179,6 +217,21 @@ flexible when new services are added in the future.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'socket_getservbyname.py'))
 .. }}}
+
+::
+
+	$ python socket_getservbyname.py
+	
+	  http : 80
+	 https : 443
+	   ftp : 21
+	gopher : 70
+	  smtp : 25
+	  imap : 143
+	 imaps : 993
+	  pop3 : 110
+	 pop3s : 995
+
 .. {{{end}}}
 
 To reverse the service port lookup, use :func:`getservbyport`.
@@ -193,6 +246,21 @@ arbitrary addresses.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'socket_getservbyport.py'))
 .. }}}
+
+::
+
+	$ python socket_getservbyport.py
+	
+	http://example.com/
+	https://example.com/
+	ftp://example.com/
+	gopher://example.com/
+	smtp://example.com/
+	imap://example.com/
+	imaps://example.com/
+	pop3://example.com/
+	pop3s://example.com/
+
 .. {{{end}}}
 
 The number assigned to a transport protocol can be retrieved with
@@ -208,6 +276,15 @@ constants in :mod:`socket` with the prefix ``IPPROTO_``.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'socket_getprotobyname.py'))
 .. }}}
+
+::
+
+	$ python socket_getprotobyname.py
+	
+	icmp ->  1 (socket.IPPROTO_ICMP =  1)
+	 udp -> 17 (socket.IPPROTO_UDP  = 17)
+	 tcp ->  6 (socket.IPPROTO_TCP  =  6)
+
 .. {{{end}}}
 
 
@@ -229,6 +306,36 @@ for ``www.python.org``.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'socket_getaddrinfo.py'))
 .. }}}
+
+::
+
+	$ python socket_getaddrinfo.py
+	
+	Family        : AF_INET
+	Type          : SOCK_DGRAM
+	Protocol      : IPPROTO_UDP
+	Canonical name: 
+	Socket address: ('82.94.164.162', 80)
+	
+	Family        : AF_INET
+	Type          : SOCK_STREAM
+	Protocol      : IPPROTO_TCP
+	Canonical name: 
+	Socket address: ('82.94.164.162', 80)
+	
+	Family        : AF_INET6
+	Type          : SOCK_DGRAM
+	Protocol      : IPPROTO_UDP
+	Canonical name: 
+	Socket address: ('2001:888:2000:d::a2', 80, 0, 0)
+	
+	Family        : AF_INET6
+	Type          : SOCK_STREAM
+	Protocol      : IPPROTO_TCP
+	Canonical name: 
+	Socket address: ('2001:888:2000:d::a2', 80, 0, 0)
+	
+
 .. {{{end}}}
 
 :func:`getaddrinfo` takes several arguments to filter the result
@@ -278,6 +385,21 @@ transmitted safely over the network, or saved to a database compactly.
 .. cog.out(run_script(cog.inFile, 'socket_address_packing.py 192.168.1.1'))
 .. cog.out(run_script(cog.inFile, 'socket_address_packing.py 127.0.0.1', include_prefix=False))
 .. }}}
+
+::
+
+	$ python socket_address_packing.py 192.168.1.1
+	
+	Original: 192.168.1.1
+	Packed  : c0a80101
+	Unpacked: 192.168.1.1
+
+	$ python socket_address_packing.py 127.0.0.1
+	
+	Original: 127.0.0.1
+	Packed  : 7f000001
+	Unpacked: 127.0.0.1
+
 .. {{{end}}}
 
 The related functions :func:`inet_pton` and :func:`inet_ntop` work
@@ -295,6 +417,16 @@ the original value.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'socket_ipv6_address_packing.py 2002:ac10:10a:1234:21e:52ff:fe74:40e'))
 .. }}}
+
+::
+
+	$ python socket_ipv6_address_packing.py 2002:ac10:10a:1234:21e:52ff:fe74\
+	:40e
+	
+	Original: 2002:ac10:10a:1234:21e:52ff:fe74:40e
+	Packed  : 2002ac10010a1234021e52fffe74040e
+	Unpacked: 2002:ac10:10a:1234:21e:52ff:fe74:40e
+
 .. {{{end}}}
 
 .. seealso::

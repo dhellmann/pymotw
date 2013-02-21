@@ -44,6 +44,39 @@ reduction phase.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_wordcount.py'))
 .. }}}
+
+::
+
+	$ python multiprocessing_wordcount.py
+	
+	PoolWorker-1 reading basics.rst
+	PoolWorker-3 reading index.rst
+	PoolWorker-4 reading mapreduce.rst
+	PoolWorker-2 reading communication.rst
+	
+	TOP 20 WORDS BY FREQUENCY
+	
+	process         :    80
+	starting        :    52
+	multiprocessing :    40
+	worker          :    37
+	after           :    33
+	poolworker      :    32
+	running         :    31
+	consumer        :    31
+	processes       :    30
+	start           :    28
+	exiting         :    28
+	python          :    28
+	class           :    27
+	literal         :    26
+	header          :    26
+	pymotw          :    26
+	end             :    26
+	daemon          :    22
+	now             :    21
+	func            :    20
+
 .. {{{end}}}
 
 .. seealso::

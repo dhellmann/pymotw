@@ -41,6 +41,29 @@ we expect:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'shlex_example.py quotes.txt'))
 .. }}}
+
+::
+
+	$ python shlex_example.py quotes.txt
+	
+	ORIGINAL: 'This string has embedded "double quotes" and \'single quotes\' in it,\nand even "a \'nested example\'".\n'
+	
+	TOKENS:
+	'This'
+	'string'
+	'has'
+	'embedded'
+	'"double quotes"'
+	'and'
+	"'single quotes'"
+	'in'
+	'it'
+	','
+	'and'
+	'even'
+	'"a \'nested example\'"'
+	'.'
+
 .. {{{end}}}
 
 Isolated quotes such as apostrophes are also handled.  Given this
@@ -54,6 +77,25 @@ The token with the embedded apostrophe is no problem:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'shlex_example.py apostrophe.txt'))
 .. }}}
+
+::
+
+	$ python shlex_example.py apostrophe.txt
+	
+	ORIGINAL: "This string has an embedded apostrophe, doesn't it?"
+	
+	TOKENS:
+	'This'
+	'string'
+	'has'
+	'an'
+	'embedded'
+	'apostrophe'
+	','
+	"doesn't"
+	'it'
+	'?'
+
 .. {{{end}}}
 
 Embedded Comments
@@ -68,6 +110,26 @@ configured through the commenters property.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'shlex_example.py comments.txt'))
 .. }}}
+
+::
+
+	$ python shlex_example.py comments.txt
+	
+	ORIGINAL: 'This line is recognized.\n# But this line is ignored.\nAnd this line is processed.'
+	
+	TOKENS:
+	'This'
+	'line'
+	'is'
+	'recognized'
+	'.'
+	'And'
+	'this'
+	'line'
+	'is'
+	'processed'
+	'.'
+
 .. {{{end}}}
 
 Split
@@ -86,6 +148,16 @@ The result is a list:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'shlex_split.py'))
 .. }}}
+
+::
+
+	$ python shlex_split.py
+	
+	ORIGINAL: 'This text has "quoted parts" inside it.'
+	
+	TOKENS:
+	['This', 'text', 'has', 'quoted parts', 'inside', 'it.']
+
 .. {{{end}}}
 
 
@@ -114,6 +186,35 @@ looks like:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'shlex_source.py'))
 .. }}}
+
+::
+
+	$ python shlex_source.py
+	
+	ORIGINAL: 'This text says to source quotes.txt before continuing.'
+	
+	TOKENS:
+	'This'
+	'text'
+	'says'
+	'to'
+	'This'
+	'string'
+	'has'
+	'embedded'
+	'"double quotes"'
+	'and'
+	"'single quotes'"
+	'in'
+	'it'
+	','
+	'and'
+	'even'
+	'"a \'nested example\'"'
+	'.'
+	'before'
+	'continuing.'
+
 .. {{{end}}}
 
 The "source" feature uses a method called :func:`sourcehook()` to load
@@ -139,6 +240,18 @@ In this example, each table cell is wrapped in vertical bars:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'shlex_table.py'))
 .. }}}
+
+::
+
+	$ python shlex_table.py
+	
+	ORIGINAL: '|Col 1||Col 2||Col 3|'
+	
+	TOKENS:
+	'|Col 1|'
+	'|Col 2|'
+	'|Col 3|'
+
 .. {{{end}}}
 
 It is also possible to control the whitespace characters used to split words.
@@ -154,6 +267,27 @@ The results change to:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'shlex_whitespace.py quotes.txt'))
 .. }}}
+
+::
+
+	$ python shlex_whitespace.py quotes.txt
+	
+	ORIGINAL: 'This string has embedded "double quotes" and \'single quotes\' in it,\nand even "a \'nested example\'".\n'
+	
+	TOKENS:
+	'This'
+	'string'
+	'has'
+	'embedded'
+	'"double quotes"'
+	'and'
+	"'single quotes'"
+	'in'
+	'it'
+	'and'
+	'even'
+	'"a \'nested example\'"'
+
 .. {{{end}}}
 
 
@@ -183,6 +317,25 @@ The example above produces this output:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'shlex_errors.py', ignore_error=True))
 .. }}}
+
+::
+
+	$ python shlex_errors.py
+	
+	ORIGINAL: 'This line is ok.\nThis line has an "unfinished quote.\nThis line is ok, too.\n'
+	
+	TOKENS:
+	'This'
+	'line'
+	'is'
+	'ok'
+	'.'
+	'This'
+	'line'
+	'has'
+	'an'
+	ERROR: "None", line 4:  No closing quotation following ""unfinished quote."
+
 .. {{{end}}}
 
 
@@ -202,6 +355,44 @@ Here are a few examples of the differences in parsing behavior:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'shlex_posix.py'))
 .. }}}
+
+::
+
+	$ python shlex_posix.py
+	
+	ORIGINAL : 'Do"Not"Separate'
+	non-POSIX: ['Do"Not"Separate']
+	POSIX    : ['DoNotSeparate']
+	
+	ORIGINAL : '"Do"Separate'
+	non-POSIX: ['"Do"', 'Separate']
+	POSIX    : ['DoSeparate']
+	
+	ORIGINAL : 'Escaped \\e Character not in quotes'
+	non-POSIX: ['Escaped', '\\', 'e', 'Character', 'not', 'in', 'quotes']
+	POSIX    : ['Escaped', 'e', 'Character', 'not', 'in', 'quotes']
+	
+	ORIGINAL : 'Escaped "\\e" Character in double quotes'
+	non-POSIX: ['Escaped', '"\\e"', 'Character', 'in', 'double', 'quotes']
+	POSIX    : ['Escaped', '\\e', 'Character', 'in', 'double', 'quotes']
+	
+	ORIGINAL : "Escaped '\\e' Character in single quotes"
+	non-POSIX: ['Escaped', "'\\e'", 'Character', 'in', 'single', 'quotes']
+	POSIX    : ['Escaped', '\\e', 'Character', 'in', 'single', 'quotes']
+	
+	ORIGINAL : 'Escaped \'\\\'\' \\"\\\'\\" single quote'
+	non-POSIX: error(No closing quotation)
+	POSIX    : ['Escaped', '\\ \\"\\"', 'single', 'quote']
+	
+	ORIGINAL : 'Escaped "\\"" \\\'\\"\\\' double quote'
+	non-POSIX: error(No closing quotation)
+	POSIX    : ['Escaped', '"', '\'"\'', 'double', 'quote']
+	
+	ORIGINAL : '"\'Strip extra layer of quotes\'"'
+	non-POSIX: ['"\'Strip extra layer of quotes\'"']
+	POSIX    : ["'Strip extra layer of quotes'"]
+	
+
 .. {{{end}}}
 
 

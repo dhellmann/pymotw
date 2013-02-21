@@ -26,6 +26,15 @@ returned each time, so it should not be modified in place.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'dircache_listdir.py'))
 .. }}}
+
+::
+
+	$ python dircache_listdir.py
+	
+	Contents : ['__init__.py', 'dircache_annotate.py', 'dircache_listdir.py', 'dircache_listdir_file_added.py', 'dircache_reset.py', 'index.rst']
+	Identical: True
+	Equal    : True
+
 .. {{{end}}}
 
 If the contents of the directory changes, it is rescanned.
@@ -40,6 +49,15 @@ constructed.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'dircache_listdir_file_added.py'))
 .. }}}
+
+::
+
+	$ python dircache_listdir_file_added.py
+	
+	Identical : False
+	Equal     : False
+	Difference: ['pymotw_tmp.txt']
+
 .. {{{end}}}
 
 It is also possible to reset the entire cache, discarding its contents so that
@@ -54,6 +72,15 @@ After resetting, a new :class:`list` instance is returned.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'dircache_reset.py'))
 .. }}}
+
+::
+
+	$ python dircache_reset.py
+	
+	Identical : False
+	Equal     : True
+	Difference: []
+
 .. {{{end}}}
 
 
@@ -76,6 +103,36 @@ Unfortunately for Windows users, although :func:`annotate` uses
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'dircache_annotate.py'))
 .. }}}
+
+::
+
+	$ python dircache_annotate.py
+	
+	                 ORIGINAL	                ANNOTATED
+	-------------------------	-------------------------
+	                      .hg	                     .hg/
+	                 .hgcheck	                .hgcheck/
+	                .hgignore	                .hgignore
+	                  .hgtags	                  .hgtags
+	              LICENSE.txt	              LICENSE.txt
+	              MANIFEST.in	              MANIFEST.in
+	                   PyMOTW	                  PyMOTW/
+	          PyMOTW.egg-info	         PyMOTW.egg-info/
+	               README.txt	               README.txt
+	                      bin	                     bin/
+	                     dist	                    dist/
+	                   module	                   module
+	                     motw	                     motw
+	              pavement.py	              pavement.py
+	             pavement.py~	             pavement.py~
+	        paver-minilib.zip	        paver-minilib.zip
+	                 setup.py	                 setup.py
+	   sitemap_gen_config.xml	   sitemap_gen_config.xml
+	  sitemap_gen_config.xml~	  sitemap_gen_config.xml~
+	                   sphinx	                  sphinx/
+	                    utils	                   utils/
+	                      web	                     web/
+
 .. {{{end}}}
 
 .. seealso::

@@ -33,6 +33,14 @@ output.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'json_simple_types.py'))
 .. }}}
+
+::
+
+	$ python json_simple_types.py
+	
+	DATA: [{'a': 'A', 'c': 3.0, 'b': (2, 4)}]
+	JSON: [{"a": "A", "c": 3.0, "b": [2, 4]}]
+
 .. {{{end}}}
 
 Encoding, then re-decoding may not give exactly the same type of
@@ -48,6 +56,16 @@ lists.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'json_simple_types_decode.py'))
 .. }}}
+
+::
+
+	$ python json_simple_types_decode.py
+	
+	ENCODED: [{"a": "A", "c": 3.0, "b": [2, 4]}]
+	DECODED: [{u'a': u'A', u'c': 3.0, u'b': [2, 4]}]
+	ORIGINAL: <type 'tuple'>
+	DECODED : <type 'list'>
+
 .. {{{end}}}
 
 Human-consumable vs. Compact Output
@@ -69,6 +87,17 @@ possible to compare JSON output in tests.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'json_sort_keys.py'))
 .. }}}
+
+::
+
+	$ python json_sort_keys.py
+	
+	DATA: [{'a': 'A', 'c': 3.0, 'b': (2, 4)}]
+	JSON: [{"a": "A", "c": 3.0, "b": [2, 4]}]
+	SORT: [{"a": "A", "b": [2, 4], "c": 3.0}]
+	UNSORTED MATCH: False
+	SORTED MATCH  : True
+
 .. {{{end}}}
 
 For highly-nested data structures, you will want to specify a value
@@ -85,6 +114,24 @@ the data structure matching the indent level.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'json_indent.py'))
 .. }}}
+
+::
+
+	$ python json_indent.py
+	
+	DATA: [{'a': 'A', 'c': 3.0, 'b': (2, 4)}]
+	NORMAL: [{"a": "A", "b": [2, 4], "c": 3.0}]
+	INDENT: [
+	  {
+	    "a": "A", 
+	    "b": [
+	      2, 
+	      4
+	    ], 
+	    "c": 3.0
+	  }
+	]
+
 .. {{{end}}}
 
 Verbose output like this increases the number of bytes needed to
@@ -105,6 +152,17 @@ the whitespace, we can produce a more compact output.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'json_compact_encoding.py'))
 .. }}}
+
+::
+
+	$ python json_compact_encoding.py
+	
+	DATA: [{'a': 'A', 'c': 3.0, 'b': (2, 4)}]
+	repr(data)             : 35
+	dumps(data)            : 35
+	dumps(data, indent=2)  : 76
+	dumps(data, separators): 29
+
 .. {{{end}}}
 
 Encoding Dictionaries
@@ -126,6 +184,17 @@ ignored.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'json_skipkeys.py'))
 .. }}}
+
+::
+
+	$ python json_skipkeys.py
+	
+	First attempt
+	ERROR: keys must be a string
+	
+	Second attempt
+	[{"a": "A", "c": 3.0, "b": [2, 4]}]
+
 .. {{{end}}}
 
 Working with Your Own Types
@@ -158,6 +227,18 @@ necessary.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'json_dump_default.py'))
 .. }}}
+
+::
+
+	$ python json_dump_default.py
+	
+	First attempt
+	ERROR: <MyObj(instance value goes here)> is not JSON serializable
+	
+	With default
+	default( <MyObj(instance value goes here)> )
+	{"s": "instance value goes here", "__module__": "json_myobj", "__class__": "MyObj"}
+
 .. {{{end}}}
 
 To decode the results and create a ``MyObj`` instance, we need to tie
@@ -181,6 +262,16 @@ arguments to the class constructor.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'json_load_object_hook.py'))
 .. }}}
+
+::
+
+	$ python json_load_object_hook.py
+	
+	MODULE: <module 'json_myobj' from '/Users/dhellmann/Documents/PyMOTW/src/PyMOTW/json/json_myobj.pyc'>
+	CLASS: <class 'json_myobj.MyObj'>
+	INSTANCE ARGS: {'s': u'instance value goes here'}
+	[<MyObj(instance value goes here)>]
+
 .. {{{end}}}
 
 Similar hooks are available for the built-in types integers
@@ -210,6 +301,29 @@ being based on any size value.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'json_encoder_iterable.py'))
 .. }}}
+
+::
+
+	$ python json_encoder_iterable.py
+	
+	PART: [
+	PART: {
+	PART: "a"
+	PART: : 
+	PART: "A"
+	PART: , 
+	PART: "c"
+	PART: : 
+	PART: 3.0
+	PART: , 
+	PART: "b"
+	PART: : 
+	PART: [2
+	PART: , 4
+	PART: ]
+	PART: }
+	PART: ]
+
 .. {{{end}}}
 
 The ``encode()`` method is basically equivalent to
@@ -229,6 +343,15 @@ The output is the same as the previous implementation.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'json_encoder_default.py'))
 .. }}}
+
+::
+
+	$ python json_encoder_default.py
+	
+	<MyObj(internal data)>
+	default( <MyObj(internal data)> )
+	{"s": "internal data", "__module__": "json_myobj", "__class__": "MyObj"}
+
 .. {{{end}}}
 
 Decoding text, then converting the dictionary into an object takes a
@@ -244,6 +367,16 @@ And the output is the same as the earlier example.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'json_decoder_object_hook.py'))
 .. }}}
+
+::
+
+	$ python json_decoder_object_hook.py
+	
+	MODULE: <module 'json_myobj' from '/Users/dhellmann/Documents/PyMOTW/src/PyMOTW/json/json_myobj.pyc'>
+	CLASS: <class 'json_myobj.MyObj'>
+	INSTANCE ARGS: {'s': u'instance value goes here'}
+	[<MyObj(instance value goes here)>]
+
 .. {{{end}}}
 
 Working with Streams and Files
@@ -266,6 +399,13 @@ used here.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'json_dump_file.py'))
 .. }}}
+
+::
+
+	$ python json_dump_file.py
+	
+	[{"a": "A", "c": 3.0, "b": [2, 4]}]
+
 .. {{{end}}}
 
 Although it isn't optimized to read only part of the data at a time,
@@ -279,6 +419,13 @@ logic of generating objects from stream input.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'json_load_file.py'))
 .. }}}
+
+::
+
+	$ python json_load_file.py
+	
+	[{u'a': u'A', u'c': 3.0, u'b': [2, 4]}]
+
 .. {{{end}}}
 
 
@@ -300,6 +447,19 @@ of the input.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'json_mixed_data.py'))
 .. }}}
+
+::
+
+	$ python json_mixed_data.py
+	
+	JSON first:
+	Object              : [{u'a': u'A', u'c': 3.0, u'b': [2, 4]}]
+	End of parsed input : 35
+	Remaining text      : ' This text is not JSON.'
+	
+	JSON embedded:
+	ERROR: No JSON object could be decoded
+
 .. {{{end}}}
 
 

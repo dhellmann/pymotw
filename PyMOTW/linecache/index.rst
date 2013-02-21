@@ -41,6 +41,14 @@ strip the trailing newline from the value returned from the cache.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'linecache_getline.py'))
 .. }}}
+
+::
+
+	$ python linecache_getline.py
+	
+	SOURCE:  eros pede, egestas at, ultricies ac, pellentesque eu, tellus. 
+	CACHE :  eros pede, egestas at, ultricies ac, pellentesque eu, tellus.
+
 .. {{{end}}}
 
 Handling Blank Lines
@@ -55,6 +63,15 @@ Next let's see what happens if the line we want is empty:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'linecache_empty_line.py'))
 .. }}}
+
+::
+
+	$ python linecache_empty_line.py
+	
+	
+	BLANK : "
+	"
+
 .. {{{end}}}
 
 Error Handling
@@ -70,6 +87,14 @@ file, linecache returns an empty string.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'linecache_out_of_range.py'))
 .. }}}
+
+::
+
+	$ python linecache_out_of_range.py
+	
+	
+	NOT THERE: "" includes 0 characters
+
 .. {{{end}}}
 
 
@@ -82,6 +107,14 @@ The module never raises an exception, even if the file does not exist:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'linecache_missing_file.py'))
 .. }}}
+
+::
+
+	$ python linecache_missing_file.py
+	
+	
+	NO FILE:  
+
 .. {{{end}}}
 
 Python Source
@@ -100,6 +133,15 @@ the module. The cache population code in :mod:`linecache` searches
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'linecache_path_search.py'))
 .. }}}
+
+::
+
+	$ python linecache_path_search.py
+	
+	
+	MODULE :  This is intended to read lines from modules imported -- hence if a filename
+	
+
 .. {{{end}}}
     
 .. seealso::

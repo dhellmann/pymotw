@@ -51,6 +51,13 @@ binary digest value is acceptable, you can use :func:`digest()`.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'hashlib_md5.py'))
 .. }}}
+
+::
+
+	$ python hashlib_md5.py
+	
+	c3abe541f361b1bfbbcfecbf53aad1fb
+
 .. {{{end}}}
 
 SHA1 Example
@@ -68,6 +75,13 @@ algorithm from MD5 to SHA1
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'hashlib_sha1.py'))
 .. }}}
+
+::
+
+	$ python hashlib_sha1.py
+	
+	ac2a96a4237886637d5352d606d7a7b6d7ad2f29
+
 .. {{{end}}}
 
 
@@ -92,6 +106,25 @@ When run with a variety of arguments:
 .. cog.out(run_script(cog.inFile, 'hashlib_new.py sha512', include_prefix=False))
 .. cog.out(run_script(cog.inFile, 'hashlib_new.py md5', include_prefix=False))
 .. }}}
+
+::
+
+	$ python hashlib_new.py sha1
+	
+	ac2a96a4237886637d5352d606d7a7b6d7ad2f29
+
+	$ python hashlib_new.py sha256
+	
+	88b7404fc192fcdb9bb1dba1ad118aa1ccd580e9faa110d12b4d63988cf20332
+
+	$ python hashlib_new.py sha512
+	
+	f58c6935ef9d5a94d296207ee4a7d9bba411539d8677482b7e9d60e4b7137f68d25f9747cab62fe752ec5ed1e5b2fa4cdbc8c9203267f995a5d17e4408dccdb4
+
+	$ python hashlib_new.py md5
+	
+	c3abe541f361b1bfbbcfecbf53aad1fb
+
 .. {{{end}}}
 
 
@@ -114,6 +147,15 @@ data is read or otherwise produced.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'hashlib_update.py'))
 .. }}}
+
+::
+
+	$ python hashlib_update.py
+	
+	All at once : c3abe541f361b1bfbbcfecbf53aad1fb
+	Line by line: c3abe541f361b1bfbbcfecbf53aad1fb
+	Same        : True
+
 .. {{{end}}}
 
 .. seealso::

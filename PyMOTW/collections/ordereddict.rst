@@ -17,6 +17,25 @@ remembered and used when creating an iterator.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'collections_ordereddict_iter.py'))
 .. }}}
+
+::
+
+	$ python collections_ordereddict_iter.py
+	
+	Regular dictionary:
+	a A
+	c C
+	b B
+	e E
+	d D
+	
+	OrderedDict:
+	a A
+	b B
+	c C
+	d D
+	e E
+
 .. {{{end}}}
 
 Equality
@@ -36,5 +55,13 @@ values in a different order, they are considered to be different.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'collections_ordereddict_equality.py'))
 .. }}}
+
+::
+
+	$ python collections_ordereddict_equality.py
+	
+	dict       : True
+	OrderedDict: False
+
 .. {{{end}}}
 

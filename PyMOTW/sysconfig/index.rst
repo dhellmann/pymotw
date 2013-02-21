@@ -35,6 +35,35 @@ filename extensions, and version details.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sysconfig_get_config_vars.py'))
 .. }}}
+
+::
+
+	$ python sysconfig_get_config_vars.py
+	
+	Found 517 configuration settings
+	
+	Some highlights:
+	
+	  Installation prefixes:
+	    prefix=/Library/Frameworks/Python.framework/Versions/2.7
+	    exec_prefix=/Library/Frameworks/Python.framework/Versions/2.7
+	
+	  Version info:
+	    py_version=2.7.2
+	    py_version_short=2.7
+	    py_version_nodot=27
+	
+	  Base directories:
+	    base=/Users/dhellmann/Envs/pymotw
+	    platbase=/Users/dhellmann/Envs/pymotw
+	    userbase=/Users/dhellmann/Library/Python/2.7
+	    srcdir=/Users/sysadmin/build/v2.7.2
+	
+	  Compiler and linker flags:
+	    LDFLAGS=-arch i386 -arch x86_64 -isysroot /Developer/SDKs/MacOSX10.6.sdk -isysroot /Developer/SDKs/MacOSX10.6.sdk -g
+	    BASECFLAGS=-fno-strict-aliasing -fno-common -dynamic
+	    Py_ENABLE_SHARED=0
+
 .. {{{end}}}
 
 If you pass variable names to :func:`get_config_vars`, the return
@@ -51,6 +80,16 @@ where modules can be found on the current system.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sysconfig_get_config_vars_by_name.py'))
 .. }}}
+
+::
+
+	$ python sysconfig_get_config_vars_by_name.py
+	
+	Base directories:
+	   /Users/dhellmann/Envs/pymotw
+	   /Users/dhellmann/Envs/pymotw
+	   /Users/dhellmann/Library/Python/2.7
+
 .. {{{end}}}
 
 When you only need a single configuration value, use
@@ -66,6 +105,14 @@ instead of raising an exception.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sysconfig_get_config_var.py'))
 .. }}}
+
+::
+
+	$ python sysconfig_get_config_var.py
+	
+	User base directory: /Users/dhellmann/Library/Python/2.7
+	Unknown variable   : None
+
 .. {{{end}}}
 
 
@@ -98,6 +145,20 @@ Otherwise the default is ``os.name``.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sysconfig_get_scheme_names.py'))
 .. }}}
+
+::
+
+	$ python sysconfig_get_scheme_names.py
+	
+	nt
+	nt_user
+	os2
+	os2_home
+	osx_framework_user
+	posix_home
+	posix_prefix
+	posix_user
+
 .. {{{end}}}
 
 Each scheme defines a set of paths used for installing packages.  For
@@ -128,6 +189,19 @@ data         Data files
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sysconfig_get_path_names.py'))
 .. }}}
+
+::
+
+	$ python sysconfig_get_path_names.py
+	
+	stdlib
+	platstdlib
+	purelib
+	platlib
+	include
+	scripts
+	data
+
 .. {{{end}}}
 
 Use :func:`get_paths` to retrieve the actual directories associated
@@ -143,6 +217,33 @@ for ``posix_prefix`` and the user-specific values for ``posix_user``.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sysconfig_get_paths.py'))
 .. }}}
+
+::
+
+	$ python sysconfig_get_paths.py
+	
+	posix_prefix
+	============
+	{'data': '/Users/dhellmann/Envs/pymotw',
+	 'include': '/Users/dhellmann/Envs/pymotw/include/python2.7',
+	 'platinclude': '/Users/dhellmann/Envs/pymotw/include/python2.7',
+	 'platlib': '/Users/dhellmann/Envs/pymotw/lib/python2.7/site-packages',
+	 'platstdlib': '/Users/dhellmann/Envs/pymotw/lib/python2.7',
+	 'purelib': '/Users/dhellmann/Envs/pymotw/lib/python2.7/site-packages',
+	 'scripts': '/Users/dhellmann/Envs/pymotw/bin',
+	 'stdlib': '/Users/dhellmann/Envs/pymotw/lib/python2.7'}
+	
+	posix_user
+	==========
+	{'data': '/Users/dhellmann/Library/Python/2.7',
+	 'include': '/Users/dhellmann/Library/Python/2.7/include/python2.7',
+	 'platlib': '/Users/dhellmann/Library/Python/2.7/lib/python2.7/site-packages',
+	 'platstdlib': '/Users/dhellmann/Library/Python/2.7/lib/python2.7',
+	 'purelib': '/Users/dhellmann/Library/Python/2.7/lib/python2.7/site-packages',
+	 'scripts': '/Users/dhellmann/Library/Python/2.7/bin',
+	 'stdlib': '/Users/dhellmann/Library/Python/2.7/lib/python2.7'}
+	
+
 .. {{{end}}}
 
 For an individual path, call :func:`get_path`.
@@ -159,6 +260,20 @@ it does not recompute all of the paths each time.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sysconfig_get_path.py'))
 .. }}}
+
+::
+
+	$ python sysconfig_get_path.py
+	
+	posix_prefix
+	============
+	purelib = /Users/dhellmann/Envs/pymotw/lib/python2.7/site-packages
+	
+	posix_user
+	==========
+	purelib = /Users/dhellmann/Library/Python/2.7/lib/python2.7/site-packages
+	
+
 .. {{{end}}}
 
 Python Version and Platform
@@ -182,6 +297,13 @@ number included in the platform string.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sysconfig_get_platform.py'))
 .. }}}
+
+::
+
+	$ python sysconfig_get_platform.py
+	
+	macosx-10.6-intel
+
 .. {{{end}}}
 
 As a convenience, the interpreter version from ``sys.version_info`` is
@@ -197,6 +319,14 @@ building a version-specific path.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sysconfig_get_python_version.py'))
 .. }}}
+
+::
+
+	$ python sysconfig_get_python_version.py
+	
+	sysconfig.get_python_version() => 2.7
+	sys.version_info => sys.version_info(major=2, minor=7, micro=2, releaselevel='final', serial=0)
+
 .. {{{end}}}
 
 .. seealso::

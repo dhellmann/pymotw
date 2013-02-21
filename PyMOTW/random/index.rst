@@ -32,6 +32,25 @@ numbers.
 .. cog.out(run_script(cog.inFile, 'random_random.py'))
 .. cog.out(run_script(cog.inFile, 'random_random.py', include_prefix=False))
 .. }}}
+
+::
+
+	$ python random_random.py
+	
+	0.182
+	0.155
+	0.097
+	0.175
+	0.008
+
+	$ python random_random.py
+	
+	0.851
+	0.607
+	0.700
+	0.922
+	0.496
+
 .. {{{end}}}
 
 To generate numbers in a specific numerical range, use :func:`uniform`
@@ -48,6 +67,17 @@ min) * random()``.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'random_uniform.py'))
 .. }}}
+
+::
+
+	$ python random_uniform.py
+	
+	6.899
+	14.411
+	96.792
+	18.219
+	63.386
+
 .. {{{end}}}
 
 
@@ -79,6 +109,25 @@ is available.  Otherwise the current time is used.
 .. cog.out(run_script(cog.inFile, 'random_seed.py'))
 .. cog.out(run_script(cog.inFile, 'random_seed.py', include_prefix=False))
 .. }}}
+
+::
+
+	$ python random_seed.py
+	
+	0.134
+	0.847
+	0.764
+	0.255
+	0.495
+
+	$ python random_seed.py
+	
+	0.134
+	0.847
+	0.764
+	0.255
+	0.495
+
 .. {{{end}}}
 
 
@@ -108,6 +157,33 @@ causes the generator to produce the same values again.
 .. cog.out(run_script(cog.inFile, 'random_state.py'))
 .. cog.out(run_script(cog.inFile, 'random_state.py', include_prefix=False))
 .. }}}
+
+::
+
+	$ python random_state.py
+	
+	No state.dat, seeding
+	0.134
+	0.847
+	0.764
+	
+	After saving state:
+	0.255
+	0.495
+	0.449
+
+	$ python random_state.py
+	
+	Found state.dat, initializing random module
+	0.255
+	0.495
+	0.449
+	
+	After saving state:
+	0.652
+	0.789
+	0.094
+
 .. {{{end}}}
 
 
@@ -129,6 +205,21 @@ first value should be less than the second.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'random_randint.py'))
 .. }}}
+
+::
+
+	$ python random_randint.py
+	
+	[1, 100]:
+	3
+	47
+	72
+	
+	[-5, 5]:
+	4
+	1
+	-3
+
 .. {{{end}}}
 
 :func:`randrange` is a more general form of selecting values from a
@@ -146,6 +237,15 @@ range is not actually constructed.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'random_randrange.py'))
 .. }}}
+
+::
+
+	$ python random_randrange.py
+	
+	50
+	55
+	45
+
 .. {{{end}}}
 
 
@@ -171,6 +271,14 @@ outcome names as keys.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'random_choice.py'))
 .. }}}
+
+::
+
+	$ python random_choice.py
+	
+	Heads: 5069
+	Tails: 4931
+
 .. {{{end}}}
 
 
@@ -195,6 +303,34 @@ cannot be dealt again.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'random_shuffle.py'))
 .. }}}
+
+::
+
+	$ python random_shuffle.py
+	
+	Initial deck:
+	 2H  2D  2C  2S  3H  3D  3C  3S  4H  4D  4C  4S  5H
+	 5D  5C  5S  6H  6D  6C  6S  7H  7D  7C  7S  8H  8D
+	 8C  8S  9H  9D  9C  9S 10H 10D 10C 10S  JH  JD  JC
+	 JS  QH  QD  QC  QS  KH  KD  KC  KS  AH  AD  AC  AS
+	
+	Shuffled deck:
+	 4C  3H  AD  JH  7D  3D  5C  6D  5D  7S  5S  KH  8S
+	 QC  5H  7C  4D  4S  2H  JD  KD  AH 10S  KC  6C  6H
+	 8H 10H  QD  AC  2S  7H  JC  9S  AS  8C  QH  9D  4H
+	 8D  JS  2D  3S  9C 10D  3C  6S  2C  QS  KS 10C  9H
+	
+	Hands:
+	1:  9H  2C  9C  8D  8C
+	2: 10C  6S  3S  4H  AS
+	3:  KS  3C  2D  9D  9S
+	4:  QS 10D  JS  QH  JC
+	
+	Remaining deck:
+	 4C  3H  AD  JH  7D  3D  5C  6D  5D  7S  5S  KH  8S
+	 QC  5H  7C  4D  4S  2H  JD  KD  AH 10S  KC  6C  6H
+	 8H 10H  QD  AC  2S  7H
+
 .. {{{end}}}
 
 Many simulations need random samples from a population of input
@@ -251,6 +387,23 @@ current time, and therefore produce the same values.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'random_random_class.py'))
 .. }}}
+
+::
+
+	$ python random_random_class.py
+	
+	Default initializiation:
+	
+	0.171  0.711
+	0.184  0.558
+	0.818  0.113
+	
+	Same seed:
+	
+	0.857  0.857
+	0.925  0.925
+	0.040  0.040
+
 .. {{{end}}}
 
 To ensure that the generators produce values from different parts of
@@ -269,6 +422,15 @@ simply by incrementing it by the number of steps given.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'random_jumpahead.py'))
 .. }}}
+
+::
+
+	$ python random_jumpahead.py
+	
+	0.405  0.159
+	0.592  0.765
+	0.501  0.764
+
 .. {{{end}}}
 
 SystemRandom
@@ -293,6 +455,23 @@ all).
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'random_system_random.py'))
 .. }}}
+
+::
+
+	$ python random_system_random.py
+	
+	Default initializiation:
+	
+	0.374  0.932
+	0.002  0.022
+	0.692  1.000
+	
+	Same seed:
+	
+	0.182  0.939
+	0.154  0.430
+	0.649  0.970
+
 .. {{{end}}}
 
 

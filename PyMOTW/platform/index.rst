@@ -52,6 +52,16 @@ OS X:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'platform_python.py'))
 .. }}}
+
+::
+
+	$ python platform_python.py
+	
+	Version      : 2.7.2
+	Version tuple: ('2', '7', '2')
+	Compiler     : GCC 4.2.1 (Apple Inc. build 5666) (dot 3)
+	Build        : ('v2.7.2:8527427914a2', 'Jun 11 2011 15:22:34')
+
 .. {{{end}}}
 
 Linux::
@@ -88,6 +98,15 @@ OS X:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'platform_platform.py'))
 .. }}}
+
+::
+
+	$ python platform_platform.py
+	
+	Normal : Darwin-11.4.2-x86_64-i386-64bit
+	Aliased: Darwin-11.4.2-x86_64-i386-64bit
+	Terse  : Darwin-11.4.2
+
 .. {{{end}}}
 
 Linux::
@@ -138,6 +157,20 @@ OS X:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'platform_os_info.py'))
 .. }}}
+
+::
+
+	$ python platform_os_info.py
+	
+	uname: ('Darwin', 'hubert.local', '11.4.2', 'Darwin Kernel Version 11.4.2: Thu Aug 23 16:25:48 PDT 2012; root:xnu-1699.32.7~1/RELEASE_X86_64', 'x86_64', 'i386')
+	
+	system   : Darwin
+	node     : hubert.local
+	release  : 11.4.2
+	version  : Darwin Kernel Version 11.4.2: Thu Aug 23 16:25:48 PDT 2012; root:xnu-1699.32.7~1/RELEASE_X86_64
+	machine  : x86_64
+	processor: i386
+
 .. {{{end}}}
 
 Linux::
@@ -186,6 +219,14 @@ OS X:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'platform_architecture.py'))
 .. }}}
+
+::
+
+	$ python platform_architecture.py
+	
+	interpreter: ('64bit', '')
+	/bin/ls    : ('64bit', '')
+
 .. {{{end}}}
 
 Linux::

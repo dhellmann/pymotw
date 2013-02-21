@@ -50,6 +50,27 @@ Here are a few sample runs:
 .. cog.out(run_script(cog.inFile, 'inspect_getmoduleinfo.py readme.txt', include_prefix=False))
 .. cog.out(run_script(cog.inFile, 'inspect_getmoduleinfo.py notthere.pyc', include_prefix=False))
 .. }}}
+
+::
+
+	$ python inspect_getmoduleinfo.py example.py
+	
+	NAME   : example
+	SUFFIX : .py
+	MODE   : U (universal newline)
+	MTYPE  : source
+
+	$ python inspect_getmoduleinfo.py readme.txt
+	
+	Could not determine module type of readme.txt
+
+	$ python inspect_getmoduleinfo.py notthere.pyc
+	
+	NAME   : notthere
+	SUFFIX : .pyc
+	MODE   : rb (read-binary)
+	MTYPE  : compiled
+
 .. {{{end}}}
 
 
@@ -116,6 +137,14 @@ Notice that only classes are included in the output, now:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'inspect_getmembers_module_class.py'))
 .. }}}
+
+::
+
+	$ python inspect_getmembers_module_class.py
+	
+	A : <class 'example.A'>
+	B : <class 'example.B'>
+
 .. {{{end}}}
 
 
@@ -163,6 +192,14 @@ To find the methods of a class, use the :func:`ismethod()` predicate:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'inspect_getmembers_class_methods.py'))
 .. }}}
+
+::
+
+	$ python inspect_getmembers_class_methods.py
+	
+	[('__init__', <unbound method A.__init__>),
+	 ('get_name', <unbound method A.get_name>)]
+
 .. {{{end}}}
 
 
@@ -180,6 +217,15 @@ Notice that even though :func:`__init__()` is inherited from
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'inspect_getmembers_class_methods_b.py'))
 .. }}}
+
+::
+
+	$ python inspect_getmembers_class_methods_b.py
+	
+	[('__init__', <unbound method B.__init__>),
+	 ('do_something', <unbound method B.do_something>),
+	 ('get_name', <unbound method B.get_name>)]
+
 .. {{{end}}}
 
 
@@ -200,6 +246,20 @@ doctring:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'inspect_getdoc.py'))
 .. }}}
+
+::
+
+	$ python inspect_getdoc.py
+	
+	B.__doc__:
+	This is the B class.
+	    It is derived from A.
+	    
+	
+	getdoc(B):
+	This is the B class.
+	It is derived from A.
+
 .. {{{end}}}
 
 In addition to the actual docstring, it is possible to retrieve the
@@ -218,6 +278,14 @@ prefix is stripped off.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'inspect_getcomments_method.py'))
 .. }}}
+
+::
+
+	$ python inspect_getcomments_method.py
+	
+	# This method is not part of A.
+	
+
 .. {{{end}}}
 
 When a module is passed to :func:`getcomments()`, the return value is
@@ -233,6 +301,15 @@ comment, but as soon as a blank line appears the comment is stopped.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'inspect_getcomments_module.py'))
 .. }}}
+
+::
+
+	$ python inspect_getcomments_module.py
+	
+	# This comment appears first
+	# and spans 2 lines.
+	
+
 .. {{{end}}}
 
 Retrieving Source
@@ -251,6 +328,16 @@ The original indent level is retained in this case.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'inspect_getsource_method.py'))
 .. }}}
+
+::
+
+	$ python inspect_getsource_method.py
+	
+	    def get_name(self):
+	        "Returns the name of the instance."
+	        return self.name
+	
+
 .. {{{end}}}
 
 When a class is passed in, all of the methods for the class are included in
@@ -263,6 +350,21 @@ the output.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'inspect_getsource_class.py'))
 .. }}}
+
+::
+
+	$ python inspect_getsource_class.py
+	
+	class A(object):
+	    """The A class."""
+	    def __init__(self, name):
+	        self.name = name
+	
+	    def get_name(self):
+	        "Returns the name of the instance."
+	        return self.name
+	
+
 .. {{{end}}}
 
 If you need the lines of source split up, it can be easier to use
@@ -278,6 +380,16 @@ in the file where the source appears.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'inspect_getsourcelines_method.py'))
 .. }}}
+
+::
+
+	$ python inspect_getsourcelines_method.py
+	
+	(['    def get_name(self):\n',
+	  '        "Returns the name of the instance."\n',
+	  '        return self.name\n'],
+	 48)
+
 .. {{{end}}}
 
 If the source file is not available, :func:`getsource()` and
@@ -306,6 +418,17 @@ value. The single default therefore is matched up with *arg2*.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'inspect_getargspec_function.py'))
 .. }}}
+
+::
+
+	$ python inspect_getargspec_function.py
+	
+	NAMES   : ['arg1', 'arg2']
+	*       : args
+	**      : kwargs
+	defaults: ('default',)
+	args & defaults: [('arg2', 'default')]
+
 .. {{{end}}}
 
 
@@ -337,6 +460,19 @@ D classes. Note that D appears twice, since it inherits from both C and A.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'inspect_getclasstree.py'))
 .. }}}
+
+::
+
+	$ python inspect_getclasstree.py
+	
+	A, B, C, D:
+	 object
+	   A
+	     D
+	     B
+	       C
+	         D
+
 .. {{{end}}}
 
 If we call :func:`getclasstree()` with ``unique=True``, the output is
@@ -351,6 +487,17 @@ This time, D only appears in the output once:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'inspect_getclasstree_unique.py'))
 .. }}}
+
+::
+
+	$ python inspect_getclasstree_unique.py
+	
+	 object
+	   A
+	     B
+	       C
+	         D
+
 .. {{{end}}}
 
 
@@ -373,6 +520,25 @@ because B is derived from A.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'inspect_getmro.py'))
 .. }}}
+
+::
+
+	$ python inspect_getmro.py
+	
+	B_First:
+		B_First
+		B
+		A
+		C
+		object
+	
+	C_First:
+		C_First
+		C
+		B
+		A
+		object
+
 .. {{{end}}}
 
 
@@ -409,6 +575,16 @@ variables even though it is not an argument to the function.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'inspect_getargvalues.py'))
 .. }}}
+
+::
+
+	$ python inspect_getargvalues.py
+	
+	3 ArgInfo(args=['limit'], varargs=None, keywords=None, locals={'local_variable': '...', 'limit': 3})
+	2 ArgInfo(args=['limit'], varargs=None, keywords=None, locals={'local_variable': '..', 'limit': 2})
+	1 ArgInfo(args=['limit'], varargs=None, keywords=None, locals={'local_variable': '.', 'limit': 1})
+	0 ArgInfo(args=['limit'], varargs=None, keywords=None, locals={'local_variable': '', 'limit': 0})
+
 .. {{{end}}}
 
 

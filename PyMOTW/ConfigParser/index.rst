@@ -58,6 +58,13 @@ and prints the value of the :data:`url` option from the
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ConfigParser_read.py'))
 .. }}}
+
+::
+
+	$ python ConfigParser_read.py
+	
+	http://localhost:8080/bugs/
+
 .. {{{end}}}
 
 The :func:`read` method also accepts a list of filenames.  Each name
@@ -74,6 +81,14 @@ files are missing and decide whether to ignore them.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ConfigParser_read_many.py'))
 .. }}}
+
+::
+
+	$ python ConfigParser_read_many.py
+	
+	Found config files: ['multisection.ini', 'simple.ini']
+	Missing files     : ['also-does-not-exist.ini', 'does_not_exist.ini']
+
 .. {{{end}}}
 
 Unicode Configuration Data
@@ -101,6 +116,15 @@ order to print it safely it must be re-encoded as UTF-8.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ConfigParser_unicode.py'))
 .. }}}
+
+::
+
+	$ python ConfigParser_unicode.py
+	
+	Password: ßéç®é†
+	Type    : <type 'unicode'>
+	repr()  : u'\xdf\xe9\xe7\xae\xe9\u2020'
+
 .. {{{end}}}
 
 Accessing Configuration Settings
@@ -128,6 +152,24 @@ pairs.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ConfigParser_structure.py'))
 .. }}}
+
+::
+
+	$ python ConfigParser_structure.py
+	
+	Section: bug_tracker
+	  Options: ['url', 'username', 'password']
+	  url = http://localhost:8080/bugs/
+	  username = dhellmann
+	  password = SECRET
+	
+	Section: wiki
+	  Options: ['url', 'username', 'password']
+	  url = http://localhost:8080/wiki/
+	  username = dhellmann
+	  password = SECRET
+	
+
 .. {{{end}}}
 
 Testing whether values are present
@@ -146,6 +188,15 @@ exceptions for missing data.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ConfigParser_has_section.py'))
 .. }}}
+
+::
+
+	$ python ConfigParser_has_section.py
+	
+	wiki        : True
+	bug_tracker : True
+	dvcs        : False
+
 .. {{{end}}}
 
 Use :func:`has_option` to test if an option exists within a section.
@@ -159,6 +210,24 @@ If the section does not exist, :func:`has_option` returns ``False``.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ConfigParser_has_option.py'))
 .. }}}
+
+::
+
+	$ python ConfigParser_has_option.py
+	
+	wiki section exists: True
+	wiki.username      : True
+	wiki.password      : True
+	wiki.url           : True
+	wiki.description   : False
+	
+	none section exists: False
+	none.username      : False
+	none.password      : False
+	none.url           : False
+	none.description   : False
+	
+
 .. {{{end}}}
 
 Value Types
@@ -186,6 +255,29 @@ Running this program with the example input produces:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ConfigParser_value_types.py'))
 .. }}}
+
+::
+
+	$ python ConfigParser_value_types.py
+	
+	Integers:
+	  positive     : '1'     -> 1
+	  negative     : '-5'    -> -5
+	
+	Floats:
+	  positive     : '0.2'   -> 0.20
+	  negative     : '-3.14' -> -3.14
+	
+	Booleans:
+	  number_true  : '1'     -> True
+	  number_false : '0'     -> False
+	  yn_true      : 'yes'   -> True
+	  yn_false     : 'no'    -> False
+	  tf_true      : 'true'  -> True
+	  tf_false     : 'false' -> False
+	  onoff_true   : 'on'    -> True
+	  onoff_false  : 'false' -> False
+
 .. {{{end}}}
 
 
@@ -207,6 +299,23 @@ the option exists and :func:`get` returns ``None``.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ConfigParser_allow_no_value.py'))
 .. }}}
+
+::
+
+	$ python ConfigParser_allow_no_value.py
+	
+	Could not parse: File contains parsing errors: allow_no_value.ini
+		[line  2]: 'turn_feature_on\n'
+	
+	Trying again with allow_no_value=True
+	
+	turn_feature_on
+	  has_option: True
+	         get: None
+	
+	turn_other_feature_on
+	  has_option: False
+
 .. {{{end}}}
 
 Modifying Settings
@@ -227,6 +336,16 @@ integer, float, or boolean values.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ConfigParser_populate.py'))
 .. }}}
+
+::
+
+	$ python ConfigParser_populate.py
+	
+	bug_tracker
+	  url = 'http://localhost:8080/bugs'
+	  username = 'dhellmann'
+	  password = 'secret'
+
 .. {{{end}}}
 
 Sections and options can be removed from a :class:`SafeConfigParser`
@@ -241,6 +360,28 @@ Removing a section deletes any options it contains.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ConfigParser_remove.py'))
 .. }}}
+
+::
+
+	$ python ConfigParser_remove.py
+	
+	Read values:
+	
+	bug_tracker
+	  url = 'http://localhost:8080/bugs/'
+	  username = 'dhellmann'
+	  password = 'SECRET'
+	wiki
+	  url = 'http://localhost:8080/wiki/'
+	  username = 'dhellmann'
+	  password = 'SECRET'
+	
+	Modified values:
+	
+	bug_tracker
+	  url = 'http://localhost:8080/bugs/'
+	  username = 'dhellmann'
+
 .. {{{end}}}
 
 
@@ -264,6 +405,17 @@ writes the data out in the INI format so it can be parsed again by
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ConfigParser_write.py'))
 .. }}}
+
+::
+
+	$ python ConfigParser_write.py
+	
+	[bug_tracker]
+	url = http://localhost:8080/bugs
+	username = dhellmann
+	password = secret
+	
+
 .. {{{end}}}
 
 
@@ -308,6 +460,39 @@ values.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ConfigParser_defaults.py'))
 .. }}}
+
+::
+
+	$ python ConfigParser_defaults.py
+	
+	Defaults before loading file:
+	  from-default    = 'value from defaults passed to init'
+	  from-section    = 'value from defaults passed to init'
+	  init-only       = 'value from defaults passed to init'
+	  init-and-file   = 'value from defaults passed to init'
+	  from-vars       = 'value from defaults passed to init'
+	
+	Defaults after loading file:
+	  from-default    = 'value from defaults passed to init'
+	  from-section    = 'value from DEFAULT section'
+	  file-only       = 'value from DEFAULT section'
+	  init-only       = 'value from defaults passed to init'
+	  init-and-file   = 'value from DEFAULT section'
+	  from-vars       = 'value from DEFAULT section'
+	
+	Option lookup:
+	  from-default    = 'value from defaults passed to init'
+	  from-section    = 'value from section in file'
+	  section-only    = 'value from section in file'
+	  file-only       = 'value from DEFAULT section'
+	  init-only       = 'value from defaults passed to init'
+	  init-and-file   = 'value from DEFAULT section'
+	  from-vars       = 'value from vars'
+	
+	Error cases:
+	No such option : No option 'no-option' in section: 'sect'
+	No such section: No section: 'no-sect'
+
 .. {{{end}}}
 
 
@@ -342,6 +527,15 @@ settings being used by the ``url`` value changes the return value.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ConfigParser_interpolation.py'))
 .. }}}
+
+::
+
+	$ python ConfigParser_interpolation.py
+	
+	Original value       : http://localhost:8080/bugs/
+	Altered port value   : http://localhost:9090/bugs/
+	Without interpolation: %(protocol)s://%(server)s:%(port)s/bugs/
+
 .. {{{end}}}
 
 Using Defaults
@@ -367,6 +561,13 @@ section, but the ``protocol`` comes from ``DEFAULT``.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ConfigParser_interpolation_defaults.py'))
 .. }}}
+
+::
+
+	$ python ConfigParser_interpolation_defaults.py
+	
+	URL: http://localhost:8080/bugs/
+
 .. {{{end}}}
 
 Substitution Errors
@@ -385,6 +586,17 @@ too many substitution steps.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ConfigParser_interpolation_recursion.py'))
 .. }}}
+
+::
+
+	$ python ConfigParser_interpolation_recursion.py
+	
+	ERROR: Value interpolation too deeply recursive:
+		section: [sect]
+		option : opt
+		rawval : %(opt)s
+	
+
 .. {{{end}}}
 
 Missing values result in an :class:`InterpolationMissingOptionError`
@@ -400,6 +612,18 @@ constructed.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ConfigParser_interpolation_error.py'))
 .. }}}
+
+::
+
+	$ python ConfigParser_interpolation_error.py
+	
+	ERROR: Bad value substitution:
+		section: [bug_tracker]
+		option : url
+		key    : server
+		rawval : :%(port)s/bugs
+	
+
 .. {{{end}}}
 
 .. seealso::

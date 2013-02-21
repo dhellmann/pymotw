@@ -19,6 +19,13 @@ Your results will vary, depending on what modules are available in your PYTHONPA
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'whichdb_whichdb.py'))
 .. }}}
+
+::
+
+	$ python whichdb_whichdb.py
+	
+	dbhash
+
 .. {{{end}}}
 
 

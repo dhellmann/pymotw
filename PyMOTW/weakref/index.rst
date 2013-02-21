@@ -31,6 +31,18 @@ reference, the :class:`ref` returns ``None``.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'weakref_ref.py'))
 .. }}}
+
+::
+
+	$ python weakref_ref.py
+	
+	obj: <__main__.ExpensiveObject object at 0x10046d410>
+	ref: <weakref at 0x100467838; to 'ExpensiveObject' at 0x10046d410>
+	r(): <__main__.ExpensiveObject object at 0x10046d410>
+	deleting obj
+	(Deleting <__main__.ExpensiveObject object at 0x10046d410>)
+	r(): None
+
 .. {{{end}}}
 
 Reference Callbacks
@@ -51,6 +63,19 @@ lets you remove the weak reference object from a cache, for example.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'weakref_ref_callback.py'))
 .. }}}
+
+::
+
+	$ python weakref_ref_callback.py
+	
+	obj: <__main__.ExpensiveObject object at 0x10046c610>
+	ref: <weakref at 0x100468890; to 'ExpensiveObject' at 0x10046c610>
+	r(): <__main__.ExpensiveObject object at 0x10046c610>
+	deleting obj
+	callback( <weakref at 0x100468890; dead> )
+	(Deleting <__main__.ExpensiveObject object at 0x10046c610>)
+	r(): None
+
 .. {{{end}}}
 
 Proxies
@@ -71,6 +96,21 @@ If the proxy is access after the referent object is removed, a
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'weakref_proxy.py', ignore_error=True))
 .. }}}
+
+::
+
+	$ python weakref_proxy.py
+	
+	via obj: My Object
+	via ref: My Object
+	via proxy: My Object
+	(Deleting <__main__.ExpensiveObject object at 0x10046b490>)
+	via proxy:
+	Traceback (most recent call last):
+	  File "weakref_proxy.py", line 26, in <module>
+	    print 'via proxy:', p.name
+	ReferenceError: weakly-referenced object no longer exists
+
 .. {{{end}}}
 
 Cyclic References
@@ -109,6 +149,62 @@ delete the graphs, since we know what they are:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u weakref_cycle.py'))
 .. }}}
+
+::
+
+	$ python -u weakref_cycle.py
+	
+	Setting up the cycle
+	
+	Set up graph:
+	one.set_next(two (<class 'weakref_graph.Graph'>))
+	two.set_next(three (<class 'weakref_graph.Graph'>))
+	three.set_next(one->two->three (<class 'weakref_graph.Graph'>))
+	
+	Graphs:
+	one->two->three->one
+	two->three->one->two
+	three->one->two->three
+	Collecting...
+	Unreachable objects: 0
+	Garbage:[]
+	
+	After 2 references removed:
+	one->two->three->one
+	Collecting...
+	Unreachable objects: 0
+	Garbage:[]
+	
+	Removing last reference:
+	Collecting...
+	gc: uncollectable <Graph 0x10046ff50>
+	gc: uncollectable <Graph 0x10046ff90>
+	gc: uncollectable <Graph 0x10046ffd0>
+	gc: uncollectable <dict 0x100363060>
+	gc: uncollectable <dict 0x100366460>
+	gc: uncollectable <dict 0x1003671f0>
+	Unreachable objects: 6
+	Garbage:[Graph(one),
+	 Graph(two),
+	 Graph(three),
+	 {'name': 'one', 'other': Graph(two)},
+	 {'name': 'two', 'other': Graph(three)},
+	 {'name': 'three', 'other': Graph(one)}]
+	
+	Breaking the cycle and cleaning up garbage
+	
+	one.set_next(None (<type 'NoneType'>))
+	(Deleting two)
+	two.set_next(None (<type 'NoneType'>))
+	(Deleting three)
+	three.set_next(None (<type 'NoneType'>))
+	(Deleting one)
+	one.set_next(None (<type 'NoneType'>))
+	
+	Collecting...
+	Unreachable objects: 0
+	Garbage:[]
+
 .. {{{end}}}
 
 
@@ -128,6 +224,41 @@ collector can delete the objects for us.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'weakref_weakgraph.py'))
 .. }}}
+
+::
+
+	$ python weakref_weakgraph.py
+	
+	Set up graph:
+	one.set_next(two (<class '__main__.WeakGraph'>))
+	two.set_next(three (<class '__main__.WeakGraph'>))
+	three.set_next(one->two->three (<type 'weakproxy'>))
+	
+	Graphs:
+	one->two->three
+	two->three->one->two
+	three->one->two->three
+	Collecting...
+	Unreachable objects: 0
+	Garbage:[]
+	
+	After 2 references removed:
+	one->two->three
+	Collecting...
+	Unreachable objects: 0
+	Garbage:[]
+	
+	Removing last reference:
+	(Deleting one)
+	one.set_next(None (<type 'NoneType'>))
+	(Deleting two)
+	two.set_next(None (<type 'NoneType'>))
+	(Deleting three)
+	three.set_next(None (<type 'NoneType'>))
+	Collecting...
+	Unreachable objects: 0
+	Garbage:[]
+
 .. {{{end}}}
 
 
@@ -162,6 +293,44 @@ prevent them from being garbage collected prematurely.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'weakref_valuedict.py'))
 .. }}}
+
+::
+
+	$ python weakref_valuedict.py
+	
+	CACHE TYPE: <type 'dict'>
+	all_refs ={'one': ExpensiveObject(one),
+	 'three': ExpensiveObject(three),
+	 'two': ExpensiveObject(two)}
+	Before, cache contains: ['three', 'two', 'one']
+	  three = ExpensiveObject(three)
+	  two = ExpensiveObject(two)
+	  one = ExpensiveObject(one)
+	Cleanup:
+	After, cache contains: ['three', 'two', 'one']
+	  three = ExpensiveObject(three)
+	  two = ExpensiveObject(two)
+	  one = ExpensiveObject(one)
+	demo returning
+	(Deleting ExpensiveObject(three))
+	(Deleting ExpensiveObject(two))
+	(Deleting ExpensiveObject(one))
+	
+	CACHE TYPE: weakref.WeakValueDictionary
+	all_refs ={'one': ExpensiveObject(one),
+	 'three': ExpensiveObject(three),
+	 'two': ExpensiveObject(two)}
+	Before, cache contains: ['three', 'two', 'one']
+	  three = ExpensiveObject(three)
+	  two = ExpensiveObject(two)
+	  one = ExpensiveObject(one)
+	Cleanup:
+	(Deleting ExpensiveObject(three))
+	(Deleting ExpensiveObject(two))
+	(Deleting ExpensiveObject(one))
+	After, cache contains: []
+	demo returning
+
 .. {{{end}}}
 
 The WeakKeyDictionary works similarly but uses weak references for the keys

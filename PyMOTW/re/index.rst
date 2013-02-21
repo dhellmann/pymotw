@@ -61,6 +61,14 @@ not found, :func:`search` returns ``None``.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_simple.py'))
 .. }}}
+
+::
+
+	$ python re_simple.py
+	
+	Looking for "this" in "Does this text match the pattern?" -> found a match!
+	Looking for "that" in "Does this text match the pattern?" -> no match
+
 .. {{{end}}}
 
 The :class:`Match` object returned by :func:`search` holds information
@@ -78,6 +86,13 @@ into the string showing where the text matched by the pattern occurs.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_simple_match.py'))
 .. }}}
+
+::
+
+	$ python re_simple_match.py
+	
+	Found "this" in "Does this text match the pattern?" from 5 to 9 ("this")
+
 .. {{{end}}}
 
 Compiling Expressions
@@ -103,6 +118,14 @@ instead of a point where the program is responding to a user action.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_simple_compiled.py'))
 .. }}}
+
+::
+
+	$ python re_simple_compiled.py
+	
+	Looking for "this" in "Does this text match the pattern?" -> found a match!
+	Looking for "that" in "Does this text match the pattern?" -> no match
+
 .. {{{end}}}
 
 Multiple Matches
@@ -122,6 +145,14 @@ There are two instances of ``ab`` in the input string.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_findall.py'))
 .. }}}
+
+::
+
+	$ python re_findall.py
+	
+	Found "ab"
+	Found "ab"
+
 .. {{{end}}}
 
 :func:`finditer` returns an iterator that produces :class:`Match`
@@ -137,6 +168,14 @@ This example finds the same two occurrences of ``ab``, and the
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_finditer.py'))
 .. }}}
+
+::
+
+	$ python re_finditer.py
+	
+	Found "ab" at 0:2
+	Found "ab" at 5:7
+
 .. {{{end}}}
 
 Pattern Syntax
@@ -162,6 +201,20 @@ portion of the input that matches the pattern.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_test_patterns.py'))
 .. }}}
+
+::
+
+	$ python re_test_patterns.py
+	
+	
+	          11111
+	012345678901234
+	abbaaabbbbaaaaa
+	
+	Matching "ab"
+	   0 :  1 = "ab"
+	   5 :  6 = "ab"
+
 .. {{{end}}}
 
 Repetition
@@ -189,6 +242,49 @@ Notice how many more matches there are for ``ab*`` and ``ab?`` than
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_repetition.py'))
 .. }}}
+
+::
+
+	$ python re_repetition.py
+	
+	
+	          11111
+	012345678901234
+	abbaaabbbbaaaaa
+	
+	Matching "ab*"
+	   0 :  2 = "abb"
+	   3 :  3 = "a"
+	   4 :  4 = "a"
+	   5 :  9 = "abbbb"
+	  10 : 10 = "a"
+	  11 : 11 = "a"
+	  12 : 12 = "a"
+	  13 : 13 = "a"
+	  14 : 14 = "a"
+	
+	Matching "ab+"
+	   0 :  2 = "abb"
+	   5 :  9 = "abbbb"
+	
+	Matching "ab?"
+	   0 :  1 = "ab"
+	   3 :  3 = "a"
+	   4 :  4 = "a"
+	   5 :  6 = "ab"
+	  10 : 10 = "a"
+	  11 : 11 = "a"
+	  12 : 12 = "a"
+	  13 : 13 = "a"
+	  14 : 14 = "a"
+	
+	Matching "ab{3}"
+	   5 :  8 = "abbb"
+	
+	Matching "ab{2,3}"
+	   0 :  2 = "abb"
+	   5 :  8 = "abbb"
+
 .. {{{end}}}
 
 The normal processing for a repetition instruction is to consume as
@@ -209,6 +305,49 @@ does not include any ``b`` characters.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_repetition_non_greedy.py'))
 .. }}}
+
+::
+
+	$ python re_repetition_non_greedy.py
+	
+	
+	          11111
+	012345678901234
+	abbaaabbbbaaaaa
+	
+	Matching "ab*?"
+	   0 :  0 = "a"
+	   3 :  3 = "a"
+	   4 :  4 = "a"
+	   5 :  5 = "a"
+	  10 : 10 = "a"
+	  11 : 11 = "a"
+	  12 : 12 = "a"
+	  13 : 13 = "a"
+	  14 : 14 = "a"
+	
+	Matching "ab+?"
+	   0 :  1 = "ab"
+	   5 :  6 = "ab"
+	
+	Matching "ab??"
+	   0 :  0 = "a"
+	   3 :  3 = "a"
+	   4 :  4 = "a"
+	   5 :  5 = "a"
+	  10 : 10 = "a"
+	  11 : 11 = "a"
+	  12 : 12 = "a"
+	  13 : 13 = "a"
+	  14 : 14 = "a"
+	
+	Matching "ab{3}?"
+	   5 :  8 = "abbb"
+	
+	Matching "ab{2,3}?"
+	   0 :  2 = "abb"
+	   5 :  7 = "abb"
+
 .. {{{end}}}
 
 Character Sets
@@ -229,6 +368,43 @@ character is either ``a`` or ``b``.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_charset.py'))
 .. }}}
+
+::
+
+	$ python re_charset.py
+	
+	
+	          11111
+	012345678901234
+	abbaaabbbbaaaaa
+	
+	Matching "[ab]"
+	   0 :  0 = "a"
+	   1 :  1 = "b"
+	   2 :  2 = "b"
+	   3 :  3 = "a"
+	   4 :  4 = "a"
+	   5 :  5 = "a"
+	   6 :  6 = "b"
+	   7 :  7 = "b"
+	   8 :  8 = "b"
+	   9 :  9 = "b"
+	  10 : 10 = "a"
+	  11 : 11 = "a"
+	  12 : 12 = "a"
+	  13 : 13 = "a"
+	  14 : 14 = "a"
+	
+	Matching "a[ab]+"
+	   0 : 14 = "abbaaabbbbaaaaa"
+	
+	Matching "a[ab]+?"
+	   0 :  1 = "ab"
+	   3 :  4 = "aa"
+	   5 :  6 = "ab"
+	  10 : 11 = "aa"
+	  12 : 13 = "aa"
+
 .. {{{end}}}
 
 A character set can also be used to exclude specific characters.  The
@@ -245,6 +421,24 @@ characters ``-``, ``.``, or a space.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_charset_exclude.py'))
 .. }}}
+
+::
+
+	$ python re_charset_exclude.py
+	
+	
+	          1111111111222222222233333333
+	01234567890123456789012345678901234567
+	This is some text -- with punctuation.
+	
+	Matching "[^-. ]+"
+	   0 :  3 = "This"
+	   5 :  6 = "is"
+	   8 : 11 = "some"
+	  13 : 16 = "text"
+	  21 : 24 = "with"
+	  26 : 36 = "punctuation"
+
 .. {{{end}}}
 
 As character sets grow larger, typing every character that should (or
@@ -263,6 +457,38 @@ also be combined into a single character set.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_charset_ranges.py'))
 .. }}}
+
+::
+
+	$ python re_charset_ranges.py
+	
+	
+	          1111111111222222222233333333
+	01234567890123456789012345678901234567
+	This is some text -- with punctuation.
+	
+	Matching "[a-z]+"
+	   1 :  3 = "his"
+	   5 :  6 = "is"
+	   8 : 11 = "some"
+	  13 : 16 = "text"
+	  21 : 24 = "with"
+	  26 : 36 = "punctuation"
+	
+	Matching "[A-Z]+"
+	   0 :  0 = "T"
+	
+	Matching "[a-zA-Z]+"
+	   0 :  3 = "This"
+	   5 :  6 = "is"
+	   8 : 11 = "some"
+	  13 : 16 = "text"
+	  21 : 24 = "with"
+	  26 : 36 = "punctuation"
+	
+	Matching "[A-Z][a-z]+"
+	   0 :  3 = "This"
+
 .. {{{end}}}
 
 As a special case of a character set the metacharacter dot, or period
@@ -279,6 +505,35 @@ the non-greedy form is used.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_charset_dot.py'))
 .. }}}
+
+::
+
+	$ python re_charset_dot.py
+	
+	
+	          11111
+	012345678901234
+	abbaaabbbbaaaaa
+	
+	Matching "a."
+	   0 :  1 = "ab"
+	   3 :  4 = "aa"
+	   5 :  6 = "ab"
+	  10 : 11 = "aa"
+	  12 : 13 = "aa"
+	
+	Matching "b."
+	   1 :  2 = "bb"
+	   6 :  7 = "bb"
+	   8 :  9 = "bb"
+	
+	Matching "a.*b"
+	   0 :  9 = "abbaaabbbb"
+	
+	Matching "a.*?b"
+	   0 :  1 = "ab"
+	   3 :  6 = "aaab"
+
 .. {{{end}}}
 
 
@@ -320,6 +575,54 @@ sequences of like characters in the input string.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_escape_codes.py'))
 .. }}}
+
+::
+
+	$ python re_escape_codes.py
+	
+	
+	          11111111112222222
+	012345678901234567890123456
+	This is a prime #1 example!
+	
+	Matching "\d+"
+	  17 : 17 = "1"
+	
+	Matching "\D+"
+	   0 : 16 = "This is a prime #"
+	  18 : 26 = " example!"
+	
+	Matching "\s+"
+	   4 :  4 = " "
+	   7 :  7 = " "
+	   9 :  9 = " "
+	  15 : 15 = " "
+	  18 : 18 = " "
+	
+	Matching "\S+"
+	   0 :  3 = "This"
+	   5 :  6 = "is"
+	   8 :  8 = "a"
+	  10 : 14 = "prime"
+	  16 : 17 = "#1"
+	  19 : 26 = "example!"
+	
+	Matching "\w+"
+	   0 :  3 = "This"
+	   5 :  6 = "is"
+	   8 :  8 = "a"
+	  10 : 14 = "prime"
+	  17 : 17 = "1"
+	  19 : 25 = "example"
+	
+	Matching "\W+"
+	   4 :  4 = " "
+	   7 :  7 = " "
+	   9 :  9 = " "
+	  15 : 16 = " #"
+	  18 : 18 = " "
+	  26 : 26 = "!"
+
 .. {{{end}}}
 
 To match the characters that are part of the regular expression
@@ -335,6 +638,34 @@ metacharacters both have special meaning in a regular expression.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_escape_escapes.py'))
 .. }}}
+
+::
+
+	$ python re_escape_escapes.py
+	
+	
+	          1111111111222
+	01234567890123456789012
+	\d+ \D+ \s+ \S+ \w+ \W+
+	
+	Matching "\\d\+"
+	   0 :  2 = "\d+"
+	
+	Matching "\\D\+"
+	   4 :  6 = "\D+"
+	
+	Matching "\\s\+"
+	   8 : 10 = "\s+"
+	
+	Matching "\\S\+"
+	  12 : 14 = "\S+"
+	
+	Matching "\\w\+"
+	  16 : 18 = "\w+"
+	
+	Matching "\\W\+"
+	  20 : 22 = "\W+"
+
 .. {{{end}}}
 
 
@@ -369,6 +700,44 @@ alphanumeric character.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_anchoring.py'))
 .. }}}
+
+::
+
+	$ python re_anchoring.py
+	
+	
+	          1111111111222222222233333333
+	01234567890123456789012345678901234567
+	This is some text -- with punctuation.
+	
+	Matching "^\w+"
+	   0 :  3 = "This"
+	
+	Matching "\A\w+"
+	   0 :  3 = "This"
+	
+	Matching "\w+\S*$"
+	  26 : 37 = "punctuation."
+	
+	Matching "\w+\S*\Z"
+	  26 : 37 = "punctuation."
+	
+	Matching "\w*t\w*"
+	  13 : 16 = "text"
+	  21 : 24 = "with"
+	  26 : 36 = "punctuation"
+	
+	Matching "\bt\w+"
+	  13 : 16 = "text"
+	
+	Matching "\w+t\b"
+	  13 : 16 = "text"
+	
+	Matching "\Bt\B"
+	  23 : 23 = "t"
+	  30 : 30 = "t"
+	  33 : 33 = "t"
+
 .. {{{end}}}
 
 Constraining the Search
@@ -392,6 +761,16 @@ two other times in the text, though, so :func:`search` finds it.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_match.py'))
 .. }}}
+
+::
+
+	$ python re_match.py
+	
+	Text   : This is some text -- with punctuation.
+	Pattern: is
+	Match  : None
+	Search : <_sre.SRE_Match object at 0x100452988>
+
 .. {{{end}}}
 
 The :func:`search` method of a compiled regular expression accepts
@@ -409,6 +788,16 @@ the next search.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_search_substring.py'))
 .. }}}
+
+::
+
+	$ python re_search_substring.py
+	
+	Text: This is some text -- with punctuation.
+	
+	   0 :  3 = "This"
+	   5 :  6 = "is"
+
 .. {{{end}}}
 
 
@@ -433,6 +822,37 @@ repeat.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_groups.py'))
 .. }}}
+
+::
+
+	$ python re_groups.py
+	
+	
+	          11111
+	012345678901234
+	abbaaabbbbaaaaa
+	
+	Matching "a(ab)"
+	   4 :  6 = "aab"
+	
+	Matching "a(a*b*)"
+	   0 :  2 = "abb"
+	   3 :  9 = "aaabbbb"
+	  10 : 14 = "aaaaa"
+	
+	Matching "a(ab)*"
+	   0 :  0 = "a"
+	   3 :  3 = "a"
+	   4 :  6 = "aab"
+	  10 : 10 = "a"
+	  11 : 11 = "a"
+	  12 : 12 = "a"
+	  13 : 13 = "a"
+	  14 : 14 = "a"
+	
+	Matching "a(ab)+"
+	   4 :  6 = "aab"
+
 .. {{{end}}}
 
 To access the substrings matched by the individual groups within a
@@ -448,6 +868,26 @@ group within the expression that matches the string.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_groups_match.py'))
 .. }}}
+
+::
+
+	$ python re_groups_match.py
+	
+	This is some text -- with punctuation.
+	
+	Matching "^(\w+)"
+	   ('This',)
+	
+	Matching "(\w+)\S*$"
+	   ('punctuation',)
+	
+	Matching "(\bt\w+)\W+(\w+)"
+	   ('text', 'with')
+	
+	Matching "(\w+t)\b"
+	   ('text',)
+	
+
 .. {{{end}}}
 
 If you are using grouping to find parts of the string, but you don't
@@ -465,6 +905,17 @@ left parenthesis appears in the expression.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_groups_individual.py'))
 .. }}}
+
+::
+
+	$ python re_groups_individual.py
+	
+	Input text            : This is some text -- with punctuation.
+	Pattern               : (\bt\w+)\W+(\w+)
+	Entire match          : text -- with
+	Word starting with "t": text
+	Word after "t" word   : with
+
 .. {{{end}}}
 
 Python extends the basic grouping syntax to add *named groups*.  Using
@@ -483,6 +934,30 @@ ordered sequence returned by :func:`groups`, as well.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_groups_named.py'))
 .. }}}
+
+::
+
+	$ python re_groups_named.py
+	
+	This is some text -- with punctuation.
+	
+	Matching "^(?P<first_word>\w+)"
+	   ('This',)
+	   {'first_word': 'This'}
+	
+	Matching "(?P<last_word>\w+)\S*$"
+	   ('punctuation',)
+	   {'last_word': 'punctuation'}
+	
+	Matching "(?P<t_word>\bt\w+)\W+(?P<other_word>\w+)"
+	   ('text', 'with')
+	   {'other_word': 'with', 't_word': 'text'}
+	
+	Matching "(?P<ends_with_t>\w+t)\b"
+	   ('text',)
+	   {'ends_with_t': 'text'}
+	
+
 .. {{{end}}}
 
 An updated version of :func:`test_patterns` that shows the numbered
@@ -507,6 +982,27 @@ matched value.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_groups_nested.py'))
 .. }}}
+
+::
+
+	$ python re_groups_nested.py
+	
+	
+	          11111
+	012345678901234
+	abbaaabbbbaaaaa
+	
+	Matching "a((a*)(b*))"
+	   0 :  2 = "abb"
+	    Groups: ('bb', '', 'bb')
+	
+	   3 :  9 = "aaabbbb"
+	    Groups: ('aabbbb', 'aa', 'bbbb')
+	
+	  10 : 14 = "aaaaa"
+	    Groups: ('aaaa', 'aaaa', '')
+	
+
 .. {{{end}}}
 
 Groups are also useful for specifying alternative patterns.  Use ``|``
@@ -529,6 +1025,32 @@ the point in the sequence where the alternative group should appear.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_groups_alternative.py'))
 .. }}}
+
+::
+
+	$ python re_groups_alternative.py
+	
+	
+	          11111
+	012345678901234
+	abbaaabbbbaaaaa
+	
+	Matching "a((a+)|(b+))"
+	   0 :  2 = "abb"
+	    Groups: ('bb', None, 'bb')
+	
+	   3 :  5 = "aaa"
+	    Groups: ('aa', 'aa', None)
+	
+	  10 : 14 = "aaaaa"
+	    Groups: ('aaaa', 'aaaa', None)
+	
+	
+	Matching "a((a|b)+)"
+	   0 : 14 = "abbaaabbbbaaaaa"
+	    Groups: ('bbaaabbbbaaaaa', 'a')
+	
+
 .. {{{end}}}
 
 Defining a group containing a sub-pattern is also useful in cases
@@ -547,6 +1069,38 @@ of a pattern that matches the same results.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_groups_non_capturing.py'))
 .. }}}
+
+::
+
+	$ python re_groups_non_capturing.py
+	
+	
+	          11111
+	012345678901234
+	abbaaabbbbaaaaa
+	
+	Matching "a((a+)|(b+))"
+	   0 :  2 = "abb"
+	    Groups: ('bb', None, 'bb')
+	
+	   3 :  5 = "aaa"
+	    Groups: ('aa', 'aa', None)
+	
+	  10 : 14 = "aaaaa"
+	    Groups: ('aaaa', 'aaaa', None)
+	
+	
+	Matching "a((?:a+)|(?:b+))"
+	   0 :  2 = "abb"
+	    Groups: ('bb',)
+	
+	   3 :  5 = "aaa"
+	    Groups: ('aa',)
+	
+	  10 : 14 = "aaaaa"
+	    Groups: ('aaaa',)
+	
+
 .. {{{end}}}
 
 
@@ -576,6 +1130,16 @@ ignored, ``text`` also matches.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_flags_ignorecase.py'))
 .. }}}
+
+::
+
+	$ python re_flags_ignorecase.py
+	
+	Text            : This is some text -- with punctuation.
+	Pattern         : \bT\w+
+	Case-sensitive  : ['This']
+	Case-insensitive: ['This', 'text']
+
 .. {{{end}}}
 
 Input with Multiple Lines
@@ -599,6 +1163,16 @@ there is no newline.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_flags_multiline.py'))
 .. }}}
+
+::
+
+	$ python re_flags_multiline.py
+	
+	Text        : 'This is some text -- with punctuation.\nAnd a second line.'
+	Pattern     : (^\w+)|(\w+\S*$)
+	Single Line : [('This', ''), ('', 'line.')]
+	Multline    : [('This', ''), ('', 'punctuation.'), ('And', ''), ('', 'line.')]
+
 .. {{{end}}}
 
 :const:`DOTALL` is the other flag related to multiline text.  Normally
@@ -615,6 +1189,16 @@ separately.  Adding the flag causes the entire string to be consumed.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_flags_dotall.py'))
 .. }}}
+
+::
+
+	$ python re_flags_dotall.py
+	
+	Text        : 'This is some text -- with punctuation.\nAnd a second line.'
+	Pattern     : .+
+	No newlines : ['This is some text -- with punctuation.', 'And a second line.']
+	Dotall      : ['This is some text -- with punctuation.\nAnd a second line.']
+
 .. {{{end}}}
 
 Unicode
@@ -642,6 +1226,16 @@ database to find the properties of each character.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_flags_unicode.py'))
 .. }}}
+
+::
+
+	$ python re_flags_unicode.py
+	
+	Text    : Français złoty Österreich
+	Pattern : \w+
+	ASCII   : Fran, ais, z, oty, sterreich
+	Unicode : Français, złoty, Österreich
+
 .. {{{end}}}
 
 .. note:: 
@@ -676,6 +1270,24 @@ classes, groups, and repetition expressions.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_email_compact.py'))
 .. }}}
+
+::
+
+	$ python re_email_compact.py
+	
+	
+	Candidate: first.last@example.com
+	  Matches
+	
+	Candidate: first.last+category@gmail.com
+	  Matches
+	
+	Candidate: valid-address@mail.example.com
+	  Matches
+	
+	Candidate: not-valid@example.foo
+	  No match
+
 .. {{{end}}}
 
 Converting the expression to a more verbose format will make it easier
@@ -692,6 +1304,24 @@ the pattern so that it can be expanded to match more inputs.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_email_verbose.py'))
 .. }}}
+
+::
+
+	$ python re_email_verbose.py
+	
+	
+	Candidate: first.last@example.com
+	  Matches
+	
+	Candidate: first.last+category@gmail.com
+	  Matches
+	
+	Candidate: valid-address@mail.example.com
+	  Matches
+	
+	Candidate: not-valid@example.foo
+	  No match
+
 .. {{{end}}}
 
 This expanded version parses inputs that include a person's name and
@@ -712,6 +1342,50 @@ their nesting level.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_email_with_name.py'))
 .. }}}
+
+::
+
+	$ python re_email_with_name.py
+	
+	
+	Candidate: first.last@example.com
+	  Match name : None
+	  Match email: first.last@example.com
+	
+	Candidate: first.last+category@gmail.com
+	  Match name : None
+	  Match email: first.last+category@gmail.com
+	
+	Candidate: valid-address@mail.example.com
+	  Match name : None
+	  Match email: valid-address@mail.example.com
+	
+	Candidate: not-valid@example.foo
+	  No match
+	
+	Candidate: First Last <first.last@example.com>
+	  Match name : First Last
+	  Match email: first.last@example.com
+	
+	Candidate: No Brackets first.last@example.com
+	  Match name : None
+	  Match email: first.last@example.com
+	
+	Candidate: First Last
+	  No match
+	
+	Candidate: First Middle Last <first.last@example.com>
+	  Match name : First Middle Last
+	  Match email: first.last@example.com
+	
+	Candidate: First M. Last <first.last@example.com>
+	  Match name : First M. Last
+	  Match email: first.last@example.com
+	
+	Candidate: <first.last@example.com>
+	  Match name : None
+	  Match email: first.last@example.com
+
 .. {{{end}}}
 
 Embedding Flags in Patterns
@@ -733,6 +1407,15 @@ or parsed, they should always come at the beginning of the expression.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_flags_embedded.py'))
 .. }}}
+
+::
+
+	$ python re_flags_embedded.py
+	
+	Text      : This is some text -- with punctuation.
+	Pattern   : (?i)\bT\w+
+	Matches   : ['This', 'text']
+
 .. {{{end}}}
 
 The abbreviations for all of the flags are:
@@ -780,6 +1463,26 @@ pattern picks up from the same spot after the look ahead matches.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_look_ahead.py'))
 .. }}}
+
+::
+
+	$ python re_look_ahead.py
+	
+	
+	Candidate: First Last <first.last@example.com>
+	  Match name : First Last
+	  Match email: first.last@example.com
+	
+	Candidate: No Brackets first.last@example.com
+	  Match name : No Brackets
+	  Match email: first.last@example.com
+	
+	Candidate: Open Bracket <first.last@example.com
+	  No match
+	
+	Candidate: Close Bracket first.last@example.com>
+	  No match
+
 .. {{{end}}}
 
 A *negative look ahead* assertion (``(?!pattern)``) says that the
@@ -797,6 +1500,18 @@ look ahead assertion fails.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_negative_look_ahead.py'))
 .. }}}
+
+::
+
+	$ python re_negative_look_ahead.py
+	
+	
+	Candidate: first.last@example.com
+	  Match: first.last@example.com
+	
+	Candidate: noreply@example.com
+	  No match
+
 .. {{{end}}}
 
 Instead of looking ahead for ``noreply`` in the username portion of
@@ -815,6 +1530,18 @@ allowed, as long as there is a fixed number (no wildcards or ranges).
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_negative_look_behind.py'))
 .. }}}
+
+::
+
+	$ python re_negative_look_behind.py
+	
+	
+	Candidate: first.last@example.com
+	  Match: first.last@example.com
+	
+	Candidate: noreply@example.com
+	  No match
+
 .. {{{end}}}
 
 A *positive look behind* assertion can be used to find text following
@@ -831,6 +1558,17 @@ handle, as long as they are preceded by an ``@``.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_look_behind.py'))
 .. }}}
+
+::
+
+	$ python re_look_behind.py
+	
+	This text includes two Twitter handles.
+	One for @ThePSF, and one for the author, @doughellmann.
+	
+	Handle: ThePSF
+	Handle: doughellmann
+
 .. {{{end}}}
 
 Self-referencing Expressions
@@ -861,6 +1599,27 @@ expression.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_refer_to_group.py'))
 .. }}}
+
+::
+
+	$ python re_refer_to_group.py
+	
+	
+	Candidate: First Last <first.last@example.com>
+	  Match name : First Last
+	  Match email: first.last@example.com
+	
+	Candidate: Different Name <first.last@example.com>
+	  No match
+	
+	Candidate: First Middle Last <first.last@example.com>
+	  Match name : First Last
+	  Match email: first.last@example.com
+	
+	Candidate: First M. Last <first.last@example.com>
+	  Match name : First Last
+	  Match email: first.last@example.com
+
 .. {{{end}}}
 
 Python's expression parser includes an extension that uses
@@ -878,6 +1637,27 @@ are not.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_refer_to_named_group.py'))
 .. }}}
+
+::
+
+	$ python re_refer_to_named_group.py
+	
+	
+	Candidate: First Last <first.last@example.com>
+	  Match name : First Last
+	  Match email: first.last@example.com
+	
+	Candidate: Different Name <first.last@example.com>
+	  No match
+	
+	Candidate: First Middle Last <first.last@example.com>
+	  Match name : First Last
+	  Match email: first.last@example.com
+	
+	Candidate: First M. Last <first.last@example.com>
+	  Match name : First Last
+	  Match email: first.last@example.com
+
 .. {{{end}}}
 
 The other mechanism for using back-references in expressions lets you
@@ -904,6 +1684,29 @@ literal patterns, otherwise it consumes any blank space.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_id.py'))
 .. }}}
+
+::
+
+	$ python re_id.py
+	
+	
+	Candidate: First Last <first.last@example.com>
+	  Match name : First Last
+	  Match email: first.last@example.com
+	
+	Candidate: No Brackets first.last@example.com
+	  No match
+	
+	Candidate: Open Bracket <first.last@example.com
+	  No match
+	
+	Candidate: Close Bracket first.last@example.com>
+	  No match
+	
+	Candidate: no.brackets@example.com
+	  Match name : None
+	  Match email: no.brackets@example.com
+
 .. {{{end}}}
 
 
@@ -926,6 +1729,14 @@ the ``\num`` syntax used for back-references above.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_sub.py'))
 .. }}}
+
+::
+
+	$ python re_sub.py
+	
+	Text: Make this **bold**.  This **too**.
+	Bold: Make this <b>bold</b>.  This <b>too</b>.
+
 .. {{{end}}}
 
 To use named groups in the substitution, use the syntax ``\g<name>``.
@@ -941,6 +1752,14 @@ literal digits.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_sub_named_groups.py'))
 .. }}}
+
+::
+
+	$ python re_sub_named_groups.py
+	
+	Text: Make this **bold**.  This **too**.
+	Bold: Make this <b>bold</b>.  This <b>too</b>.
+
 .. {{{end}}}
 
 Pass a value to *count* to limit the number of substitutions
@@ -955,6 +1774,14 @@ Only the first substitution is made because *count* is ``1``.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_sub_count.py'))
 .. }}}
+
+::
+
+	$ python re_sub_count.py
+	
+	Text: Make this **bold**.  This **too**.
+	Bold: Make this <b>bold</b>.  This **too**.
+
 .. {{{end}}}
 
 :func:`subn` works just like :func:`sub` except that it returns both
@@ -969,6 +1796,14 @@ The search pattern matches twice in the example.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_subn.py'))
 .. }}}
+
+::
+
+	$ python re_subn.py
+	
+	Text: Make this **bold**.  This **too**.
+	Bold: ('Make this <b>bold</b>.  This <b>too</b>.', 2)
+
 .. {{{end}}}
 
 Splitting with Patterns
@@ -996,6 +1831,16 @@ output.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_paragraphs_findall.py'))
 .. }}}
+
+::
+
+	$ python re_paragraphs_findall.py
+	
+	0 'Paragraph one\non two lines.'
+	
+	1 'Paragraph two.'
+	
+
 .. {{{end}}}
 
 Extending the pattern to say that a paragraph ends with two or more
@@ -1015,6 +1860,27 @@ separator point between paragraphs in the input string.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_split.py'))
 .. }}}
+
+::
+
+	$ python re_split.py
+	
+	With findall:
+	0 ('Paragraph one\non two lines.', '\n\n')
+	
+	1 ('Paragraph two.', '\n\n\n')
+	
+	2 ('Paragraph three.', '')
+	
+	
+	With split:
+	0 'Paragraph one\non two lines.'
+	
+	1 'Paragraph two.'
+	
+	2 'Paragraph three.'
+	
+
 .. {{{end}}}
 
 Enclosing the expression in parentheses to define a group causes
@@ -1031,6 +1897,24 @@ newlines separating them.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 're_split_groups.py'))
 .. }}}
+
+::
+
+	$ python re_split_groups.py
+	
+	
+	With split:
+	0 'Paragraph one\non two lines.'
+	
+	1 '\n\n'
+	
+	2 'Paragraph two.'
+	
+	3 '\n\n\n'
+	
+	4 'Paragraph three.'
+	
+
 .. {{{end}}}
 
 .. seealso::

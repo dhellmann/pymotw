@@ -37,6 +37,14 @@ If you run both sample scripts, you should see:
 .. cog.out(run_script(cog.inFile, 'shelve_create.py', trailing_newlines=False))
 .. cog.out(run_script(cog.inFile, 'shelve_existing.py', include_prefix=False))
 .. }}}
+
+::
+
+	$ python shelve_create.py
+	$ python shelve_existing.py
+	
+	{'int': 10, 'float': 9.5, 'string': 'Sample data'}
+
 .. {{{end}}}
 
 
@@ -71,6 +79,15 @@ shelf is re-opened, the changes have not been preserved.
 .. cog.out(run_script(cog.inFile, 'shelve_create.py', trailing_newlines=False))
 .. cog.out(run_script(cog.inFile, 'shelve_withoutwriteback.py', include_prefix=False))
 .. }}}
+
+::
+
+	$ python shelve_create.py
+	$ python shelve_withoutwriteback.py
+	
+	{'int': 10, 'float': 9.5, 'string': 'Sample data'}
+	{'int': 10, 'float': 9.5, 'string': 'Sample data'}
+
 .. {{{end}}}
 
 To automatically catch changes to volatile objects stored in the shelf, open
@@ -95,6 +112,16 @@ than it writes, writeback will add more overhead than you might want.
 .. cog.out(run_script(cog.inFile, 'shelve_create.py', trailing_newlines=False))
 .. cog.out(run_script(cog.inFile, 'shelve_writeback.py', include_prefix=False))
 .. }}}
+
+::
+
+	$ python shelve_create.py
+	$ python shelve_writeback.py
+	
+	{'int': 10, 'float': 9.5, 'string': 'Sample data'}
+	{'int': 10, 'new_value': 'this was not here before', 'float': 9.5, 'string': 'Sample data'}
+	{'int': 10, 'new_value': 'this was not here before', 'float': 9.5, 'string': 'Sample data'}
+
 .. {{{end}}}
 
 

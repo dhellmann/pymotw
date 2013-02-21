@@ -121,6 +121,35 @@ The output for the program should look something like this:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'SocketServer_echo.py'))
 .. }}}
+
+::
+
+	$ python SocketServer_echo.py
+	
+	EchoServer: __init__
+	EchoServer: server_activate
+	EchoServer: waiting for request
+	client: Server on 127.0.0.1:56210
+	EchoServer: Handling requests, press <Ctrl-C> to quit
+	client: creating socket
+	EchoServer: handle_request
+	client: connecting to server
+	client: sending data: "Hello, world"
+	EchoServer: verify_request(<socket._socketobject object at 0x1004cdfa0>, ('127.0.0.1', 56211))
+	EchoServer: process_request(<socket._socketobject object at 0x1004cdfa0>, ('127.0.0.1', 56211))
+	client: waiting for response
+	EchoServer: finish_request(<socket._socketobject object at 0x1004cdfa0>, ('127.0.0.1', 56211))
+	EchoRequestHandler: __init__
+	EchoRequestHandler: setup
+	EchoRequestHandler: handle
+	EchoRequestHandler: recv()->"Hello, world"
+	EchoRequestHandler: finish
+	client: response from server: "Hello, world"
+	EchoServer: close_request(<socket._socketobject object at 0x1004cdfa0>)
+	client: closing socket
+	EchoServer: handle_request
+	client: done
+
 .. {{{end}}}
 
 The port number used will change each time you run it, as the kernel
@@ -141,6 +170,14 @@ In this case, no special server class is required since the
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'SocketServer_echo_simple.py'))
 .. }}}
+
+::
+
+	$ python SocketServer_echo_simple.py
+	
+	Sending : "Hello, world"
+	Received: "Hello, world"
+
 .. {{{end}}}
 
 Threading and Forking
@@ -164,6 +201,15 @@ request is handled:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'SocketServer_threaded.py'))
 .. }}}
+
+::
+
+	$ python SocketServer_threaded.py
+	
+	Server loop running in thread: Thread-1
+	Sending : "Hello, world"
+	Received: "Thread-2: Hello, world"
+
 .. {{{end}}}
 
 To use separate processes, use the :class:`ForkingMixIn`:
@@ -178,6 +224,15 @@ from the server:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'SocketServer_forking.py'))
 .. }}}
+
+::
+
+	$ python SocketServer_forking.py
+	
+	Server loop running in process: 14610
+	Sending : "Hello, world"
+	Received: "14611: Hello, world"
+
 .. {{{end}}}
 
 

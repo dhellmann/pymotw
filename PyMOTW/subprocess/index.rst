@@ -52,6 +52,32 @@ might be interpreted by the shell.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'subprocess_os_system.py'))
 .. }}}
+
+::
+
+	$ python subprocess_os_system.py
+	
+	__init__.py
+	index.rst
+	interaction.py
+	repeater.py
+	signal_child.py
+	signal_parent.py
+	subprocess_check_call.py
+	subprocess_check_output.py
+	subprocess_check_output_error.py
+	subprocess_check_output_error_trap_output.py
+	subprocess_os_system.py
+	subprocess_pipes.py
+	subprocess_popen2.py
+	subprocess_popen3.py
+	subprocess_popen4.py
+	subprocess_popen_read.py
+	subprocess_popen_write.py
+	subprocess_shell_variables.py
+	subprocess_signal_parent_shell.py
+	subprocess_signal_setsid.py
+
 .. {{{end}}}
 
 Setting the *shell* argument to a true value causes :mod:`subprocess`
@@ -69,6 +95,13 @@ before the command is run.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'subprocess_shell_variables.py'))
 .. }}}
+
+::
+
+	$ python subprocess_shell_variables.py
+	
+	/Users/dhellmann
+
 .. {{{end}}}
 
 Error Handling
@@ -90,6 +123,20 @@ which :func:`check_call` interprets as an error.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'subprocess_check_call.py', ignore_error=True, break_lines_at=70))
 .. }}}
+
+::
+
+	$ python subprocess_check_call.py
+	
+	Traceback (most recent call last):
+	  File "subprocess_check_call.py", line 11, in <module>
+	    subprocess.check_call(['false'])
+	  File "/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.
+	7/subprocess.py", line 511, in check_call
+	    raise CalledProcessError(retcode, cmd)
+	subprocess.CalledProcessError: Command '['false']' returned non-zero e
+	xit status 1
+
 .. {{{end}}}
 
 Capturing Output
@@ -110,6 +157,34 @@ standard output is captured and returned.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'subprocess_check_output.py'))
 .. }}}
+
+::
+
+	$ python subprocess_check_output.py
+	
+	Have 462 bytes in output
+	__init__.py
+	index.rst
+	interaction.py
+	repeater.py
+	signal_child.py
+	signal_parent.py
+	subprocess_check_call.py
+	subprocess_check_output.py
+	subprocess_check_output_error.py
+	subprocess_check_output_error_trap_output.py
+	subprocess_os_system.py
+	subprocess_pipes.py
+	subprocess_popen2.py
+	subprocess_popen3.py
+	subprocess_popen4.py
+	subprocess_popen_read.py
+	subprocess_popen_write.py
+	subprocess_shell_variables.py
+	subprocess_signal_parent_shell.py
+	subprocess_signal_setsid.py
+	
+
 .. {{{end}}}
 
 This script runs a series of commands in a subshell.  Messages are
@@ -126,6 +201,21 @@ message to standard output is hidden.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'subprocess_check_output_error.py', ignore_error=True, break_lines_at=70))
 .. }}}
+
+::
+
+	$ python subprocess_check_output_error.py
+	
+	to stderr
+	Traceback (most recent call last):
+	  File "subprocess_check_output_error.py", line 14, in <module>
+	    shell=True,
+	  File "/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.
+	7/subprocess.py", line 544, in check_output
+	    raise CalledProcessError(retcode, cmd, output=output)
+	subprocess.CalledProcessError: Command 'echo to stdout; echo to stderr
+	 1>&2; exit 1' returned non-zero exit status 1
+
 .. {{{end}}}
 
 To prevent error messages from commands run through
@@ -143,6 +233,21 @@ the console.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'subprocess_check_output_error_trap_output.py', ignore_error=True, break_lines_at=70))
 .. }}}
+
+::
+
+	$ python subprocess_check_output_error_trap_output.py
+	
+	Traceback (most recent call last):
+	  File "subprocess_check_output_error_trap_output.py", line 15, in <mo
+	dule>
+	    stderr=subprocess.STDOUT,
+	  File "/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.
+	7/subprocess.py", line 544, in check_output
+	    raise CalledProcessError(retcode, cmd, output=output)
+	subprocess.CalledProcessError: Command 'echo to stdout; echo to stderr
+	 1>&2; exit 1' returned non-zero exit status 1
+
 .. {{{end}}}
 
 
@@ -170,6 +275,15 @@ reading is managed internally by the :class:`Popen` instance.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'subprocess_popen_read.py'))
 .. }}}
+
+::
+
+	$ python subprocess_popen_read.py
+	
+	
+	read:
+		stdout: '"to stdout"\n'
+
 .. {{{end}}}
 
 To set up a pipe to allow the calling program to write data to it, set
@@ -186,6 +300,15 @@ pass the data to :func:`communicate`.  This is similar to using
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u subprocess_popen_write.py'))
 .. }}}
+
+::
+
+	$ python -u subprocess_popen_write.py
+	
+	
+	write:
+		stdin: to stdin
+
 .. {{{end}}}
 
 popen2
@@ -203,6 +326,15 @@ This sets up the pipe to mimic :func:`popen2`.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u subprocess_popen2.py'))
 .. }}}
+
+::
+
+	$ python -u subprocess_popen2.py
+	
+	
+	popen2:
+		pass through: 'through stdin to stdout'
+
 .. {{{end}}}
 
 popen3
@@ -222,6 +354,16 @@ Reading from stderr works the same as with stdout.  Passing
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u subprocess_popen3.py'))
 .. }}}
+
+::
+
+	$ python -u subprocess_popen3.py
+	
+	
+	popen3:
+		pass through: 'through stdin to stdout'
+		stderr      : 'to stderr\n'
+
 .. {{{end}}}
 
 popen4
@@ -240,6 +382,16 @@ works.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u subprocess_popen4.py'))
 .. }}}
+
+::
+
+	$ python -u subprocess_popen4.py
+	
+	
+	popen4:
+		combined output: 'through stdin to stdout\nto stderr\n'
+		stderr value   : None
+
 .. {{{end}}}
 
 Connecting Segments of a Pipe
@@ -265,6 +417,31 @@ files, then prints only the filenames.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u subprocess_pipes.py'))
 .. }}}
+
+::
+
+	$ python -u subprocess_pipes.py
+	
+	Included files:
+		subprocess_os_system.py
+		subprocess_shell_variables.py
+		subprocess_check_call.py
+		subprocess_check_output.py
+		subprocess_check_output_error.py
+		subprocess_check_output_error_trap_output.py
+		subprocess_popen_read.py
+		subprocess_popen_write.py
+		subprocess_popen2.py
+		subprocess_popen3.py
+		subprocess_popen4.py
+		subprocess_pipes.py
+		repeater.py
+		interaction.py
+		signal_child.py
+		signal_parent.py
+		subprocess_signal_parent_shell.py
+		subprocess_signal_setsid.py
+
 .. {{{end}}}
 
 
@@ -303,6 +480,41 @@ output for each loop style.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u interaction.py'))
 .. }}}
+
+::
+
+	$ python -u interaction.py
+	
+	One line at a time:
+	repeater.py: starting
+	0
+	1
+	2
+	3
+	4
+	5
+	6
+	7
+	8
+	9
+	repeater.py: exiting
+	
+	
+	All output at once:
+	repeater.py: starting
+	repeater.py: exiting
+	0
+	1
+	2
+	3
+	4
+	5
+	6
+	7
+	8
+	9
+	
+
 .. {{{end}}}
 
 
@@ -332,6 +544,17 @@ the output is:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'signal_parent.py'))
 .. }}}
+
+::
+
+	$ python signal_parent.py
+	
+	PARENT      : Pausing before sending signal...
+	CHILD  14756: Setting up signal handler
+	CHILD  14756: Pausing to wait for signal
+	PARENT      : Signaling child
+	CHILD  14756: Received USR1
+
 .. {{{end}}}
 
 .. _subprocess-process-groups:
@@ -361,6 +584,19 @@ are three separate processes interacting:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'subprocess_signal_parent_shell.py'))
 .. }}}
+
+::
+
+	$ python subprocess_signal_parent_shell.py
+	
+	PARENT      : Pausing before sending signal to child 14759...
+	Shell script in process 14759
+	+ python signal_child.py
+	CHILD  14760: Setting up signal handler
+	CHILD  14760: Pausing to wait for signal
+	PARENT      : Signaling child 14759
+	CHILD  14760: Never received signal
+
 .. {{{end}}}
 
 The solution to this problem is to use a *process group* to associate
@@ -397,6 +633,19 @@ value from the :class:`Popen` instance.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'subprocess_signal_setsid.py'))
 .. }}}
+
+::
+
+	$ python subprocess_signal_setsid.py
+	
+	PARENT      : Pausing before sending signal to child 14763...
+	Shell script in process 14763
+	+ python signal_child.py
+	CHILD  14764: Setting up signal handler
+	CHILD  14764: Pausing to wait for signal
+	PARENT      : Signaling process group 14763
+	CHILD  14764: Received USR1
+
 .. {{{end}}}
 
 

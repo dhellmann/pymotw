@@ -34,6 +34,19 @@ passed to the opcode.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-m dis dis_simple.py'))
 .. }}}
+
+::
+
+	$ python -m dis dis_simple.py
+	
+	  4           0 BUILD_MAP                1
+	              3 LOAD_CONST               0 (1)
+	              6 LOAD_CONST               1 ('a')
+	              9 STORE_MAP           
+	             10 STORE_NAME               0 (my_dict)
+	             13 LOAD_CONST               2 (None)
+	             16 RETURN_VALUE        
+
 .. {{{end}}}
 
 In this case, the source translates to 5 different operations to
@@ -61,6 +74,34 @@ body of the function.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-m dis dis_function.py'))
 .. }}}
+
+::
+
+	$ python -m dis dis_function.py
+	
+	  4           0 LOAD_CONST               0 (<code object f at 0x10046db30, file "dis_function.py", line 4>)
+	              3 MAKE_FUNCTION            0
+	              6 STORE_NAME               0 (f)
+	
+	  8           9 LOAD_NAME                1 (__name__)
+	             12 LOAD_CONST               1 ('__main__')
+	             15 COMPARE_OP               2 (==)
+	             18 POP_JUMP_IF_FALSE       49
+	
+	  9          21 LOAD_CONST               2 (-1)
+	             24 LOAD_CONST               3 (None)
+	             27 IMPORT_NAME              2 (dis)
+	             30 STORE_NAME               2 (dis)
+	
+	 10          33 LOAD_NAME                2 (dis)
+	             36 LOAD_ATTR                2 (dis)
+	             39 LOAD_NAME                0 (f)
+	             42 CALL_FUNCTION            1
+	             45 POP_TOP             
+	             46 JUMP_FORWARD             0 (to 49)
+	        >>   49 LOAD_CONST               3 (None)
+	             52 RETURN_VALUE        
+
 .. {{{end}}}
 
 To see inside the function, we need to pass it to ``dis.dis()``.
@@ -68,6 +109,24 @@ To see inside the function, we need to pass it to ``dis.dis()``.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'dis_function.py'))
 .. }}}
+
+::
+
+	$ python dis_function.py
+	
+	  5           0 LOAD_GLOBAL              0 (len)
+	              3 LOAD_FAST                0 (args)
+	              6 CALL_FUNCTION            1
+	              9 STORE_FAST               1 (nargs)
+	
+	  6          12 LOAD_FAST                1 (nargs)
+	             15 PRINT_ITEM          
+	             16 LOAD_FAST                0 (args)
+	             19 PRINT_ITEM          
+	             20 PRINT_NEWLINE       
+	             21 LOAD_CONST               0 (None)
+	             24 RETURN_VALUE        
+
 .. {{{end}}}
 
 
@@ -83,6 +142,26 @@ are disassembled in turn.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'dis_class.py'))
 .. }}}
+
+::
+
+	$ python dis_class.py
+	
+	Disassembly of __init__:
+	 12           0 LOAD_FAST                1 (name)
+	              3 LOAD_FAST                0 (self)
+	              6 STORE_ATTR               0 (name)
+	              9 LOAD_CONST               0 (None)
+	             12 RETURN_VALUE        
+	
+	Disassembly of __str__:
+	 15           0 LOAD_CONST               1 ('MyObject(%s)')
+	              3 LOAD_FAST                0 (self)
+	              6 LOAD_ATTR                0 (name)
+	              9 BINARY_MODULO       
+	             10 RETURN_VALUE        
+	
+
 .. {{{end}}}
 
 
@@ -139,6 +218,67 @@ disassembled version.  The bad operation is highlighted with the
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'dis_traceback.py'))
 .. }}}
+
+::
+
+	$ python dis_traceback.py
+	
+	  4           0 LOAD_CONST               0 (1)
+	              3 STORE_NAME               0 (i)
+	
+	  5           6 LOAD_CONST               1 (0)
+	              9 STORE_NAME               1 (j)
+	
+	  6          12 LOAD_CONST               2 (3)
+	             15 STORE_NAME               2 (k)
+	
+	 10          18 SETUP_EXCEPT            26 (to 47)
+	
+	 11          21 LOAD_NAME                2 (k)
+	             24 LOAD_NAME                0 (i)
+	             27 LOAD_NAME                1 (j)
+	    -->      30 BINARY_DIVIDE       
+	             31 BINARY_MULTIPLY     
+	             32 LOAD_NAME                0 (i)
+	             35 LOAD_NAME                2 (k)
+	             38 BINARY_DIVIDE       
+	             39 BINARY_ADD          
+	             40 STORE_NAME               3 (result)
+	             43 POP_BLOCK           
+	             44 JUMP_FORWARD            65 (to 112)
+	
+	 12     >>   47 POP_TOP             
+	             48 POP_TOP             
+	             49 POP_TOP             
+	
+	 13          50 LOAD_CONST               3 (-1)
+	             53 LOAD_CONST               4 (None)
+	             56 IMPORT_NAME              4 (dis)
+	             59 STORE_NAME               4 (dis)
+	
+	 14          62 LOAD_CONST               3 (-1)
+	             65 LOAD_CONST               4 (None)
+	             68 IMPORT_NAME              5 (sys)
+	             71 STORE_NAME               5 (sys)
+	
+	 15          74 LOAD_NAME                5 (sys)
+	             77 LOAD_ATTR                6 (exc_info)
+	             80 CALL_FUNCTION            0
+	             83 UNPACK_SEQUENCE          3
+	             86 STORE_NAME               7 (exc_type)
+	             89 STORE_NAME               8 (exc_value)
+	             92 STORE_NAME               9 (exc_tb)
+	
+	 16          95 LOAD_NAME                4 (dis)
+	             98 LOAD_ATTR               10 (distb)
+	            101 LOAD_NAME                9 (exc_tb)
+	            104 CALL_FUNCTION            1
+	            107 POP_TOP             
+	            108 JUMP_FORWARD             1 (to 112)
+	            111 END_FINALLY         
+	        >>  112 LOAD_CONST               4 (None)
+	            115 RETURN_VALUE        
+
 .. {{{end}}}
 
 
@@ -381,6 +521,43 @@ the operator involved, the evaluation has to be delayed to runtime.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-m dis dis_constant_folding.py'))
 .. }}}
+
+::
+
+	$ python -m dis dis_constant_folding.py
+	
+	  5           0 LOAD_CONST              11 (3)
+	              3 STORE_NAME               0 (i)
+	
+	  6           6 LOAD_CONST              12 (19.04)
+	              9 STORE_NAME               1 (f)
+	
+	  7          12 LOAD_CONST              13 ('Hello, World!')
+	             15 STORE_NAME               2 (s)
+	
+	 10          18 LOAD_NAME                0 (i)
+	             21 LOAD_CONST               6 (3)
+	             24 BINARY_MULTIPLY     
+	             25 LOAD_CONST               7 (4)
+	             28 BINARY_MULTIPLY     
+	             29 STORE_NAME               3 (I)
+	
+	 11          32 LOAD_NAME                1 (f)
+	             35 LOAD_CONST               1 (2)
+	             38 BINARY_DIVIDE       
+	             39 LOAD_CONST               6 (3)
+	             42 BINARY_DIVIDE       
+	             43 STORE_NAME               4 (F)
+	
+	 12          46 LOAD_NAME                2 (s)
+	             49 LOAD_CONST               8 ('\n')
+	             52 BINARY_ADD          
+	             53 LOAD_CONST               9 ('Fantastic!')
+	             56 BINARY_ADD          
+	             57 STORE_NAME               5 (S)
+	             60 LOAD_CONST              10 (None)
+	             63 RETURN_VALUE        
+
 .. {{{end}}}
 
 

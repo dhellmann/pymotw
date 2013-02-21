@@ -95,6 +95,13 @@ example above uses two different forms, ``-bval`` and ``-c val``.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'argparse_short.py'))
 .. }}}
+
+::
+
+	$ python argparse_short.py
+	
+	Namespace(a=True, b='val', c=3)
+
 .. {{{end}}}
 
 The type of the value associated with ``'c'`` in the output is an
@@ -113,6 +120,13 @@ And the results are similar:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'argparse_long.py'))
 .. }}}
+
+::
+
+	$ python argparse_long.py
+	
+	Namespace(noarg=True, witharg='val', witharg2=3)
+
 .. {{{end}}}
 
 One area in which :mod:`argparse` differs from :mod:`optparse` is the
@@ -134,6 +148,23 @@ type, an error is reported.
 .. cog.out(run_script(cog.inFile, 'argparse_arguments.py some inches', ignore_error=True, include_prefix=False))
 .. cog.out(run_script(cog.inFile, 'argparse_arguments.py', ignore_error=True, include_prefix=False))
 .. }}}
+
+::
+
+	$ python argparse_arguments.py 3 inches
+	
+	Namespace(count=3, units='inches')
+
+	$ python argparse_arguments.py some inches
+	
+	usage: argparse_arguments.py [-h] count units
+	argparse_arguments.py: error: argument count: invalid int value: 'some'
+
+	$ python argparse_arguments.py
+	
+	usage: argparse_arguments.py [-h] count units
+	argparse_arguments.py: error: too few arguments
+
 .. {{{end}}}
 
 Argument Actions
@@ -179,6 +210,77 @@ is encountered:
 .. cog.out(run_script(cog.inFile, 'argparse_action.py -B -A', include_prefix=False))
 .. cog.out(run_script(cog.inFile, 'argparse_action.py --version', include_prefix=False))
 .. }}}
+
+::
+
+	$ python argparse_action.py -h
+	
+	usage: argparse_action.py [-h] [-s SIMPLE_VALUE] [-c] [-t] [-f]
+	                          [-a COLLECTION] [-A] [-B] [--version]
+	
+	optional arguments:
+	  -h, --help       show this help message and exit
+	  -s SIMPLE_VALUE  Store a simple value
+	  -c               Store a constant value
+	  -t               Set a switch to true
+	  -f               Set a switch to false
+	  -a COLLECTION    Add repeated values to a list
+	  -A               Add different values to list
+	  -B               Add different values to list
+	  --version        show program's version number and exit
+
+	$ python argparse_action.py -s value
+	
+	simple_value     = value
+	constant_value   = None
+	boolean_switch   = False
+	collection       = []
+	const_collection = []
+
+	$ python argparse_action.py -c
+	
+	simple_value     = None
+	constant_value   = value-to-store
+	boolean_switch   = False
+	collection       = []
+	const_collection = []
+
+	$ python argparse_action.py -t
+	
+	simple_value     = None
+	constant_value   = None
+	boolean_switch   = True
+	collection       = []
+	const_collection = []
+
+	$ python argparse_action.py -f
+	
+	simple_value     = None
+	constant_value   = None
+	boolean_switch   = False
+	collection       = []
+	const_collection = []
+
+	$ python argparse_action.py -a one -a two -a three
+	
+	simple_value     = None
+	constant_value   = None
+	boolean_switch   = False
+	collection       = ['one', 'two', 'three']
+	const_collection = []
+
+	$ python argparse_action.py -B -A
+	
+	simple_value     = None
+	constant_value   = None
+	boolean_switch   = False
+	collection       = []
+	const_collection = ['value-2-to-append', 'value-1-to-append']
+
+	$ python argparse_action.py --version
+	
+	argparse_action.py 1.0
+
 .. {{{end}}}
 
 
@@ -216,6 +318,42 @@ In the example above, ``+a`` and ``-a`` are separate arguments, and
 .. cog.out(run_script(cog.inFile, 'argparse_prefix_chars.py ++noarg', include_prefix=False))
 .. cog.out(run_script(cog.inFile, 'argparse_prefix_chars.py --noarg', ignore_error=True, include_prefix=False))
 .. }}}
+
+::
+
+	$ python argparse_prefix_chars.py -h
+	
+	usage: argparse_prefix_chars.py [-h] [-a] [+a] [//noarg]
+	
+	Change the option prefix characters
+	
+	optional arguments:
+	  -h, --help        show this help message and exit
+	  -a                Turn A off
+	  +a                Turn A on
+	  //noarg, ++noarg
+
+	$ python argparse_prefix_chars.py +a
+	
+	Namespace(a=True, noarg=False)
+
+	$ python argparse_prefix_chars.py -a
+	
+	Namespace(a=False, noarg=False)
+
+	$ python argparse_prefix_chars.py //noarg
+	
+	Namespace(a=None, noarg=True)
+
+	$ python argparse_prefix_chars.py ++noarg
+	
+	Namespace(a=None, noarg=True)
+
+	$ python argparse_prefix_chars.py --noarg
+	
+	usage: argparse_prefix_chars.py [-h] [-a] [+a] [//noarg]
+	argparse_prefix_chars.py: error: unrecognized arguments: --noarg
+
 .. {{{end}}}
 
 
@@ -239,6 +377,15 @@ configuration file.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'argparse_with_shlex.py'))
 .. }}}
+
+::
+
+	$ python argparse_with_shlex.py
+	
+	Config  : -a -b 2
+	Arg List: ['-a', '-b', '2']
+	Results : Namespace(a=True, b='2', c=None)
+
 .. {{{end}}}
 
 An alternative to processing the configuration file yourself is to
@@ -263,6 +410,13 @@ The output produced when processing the file is:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'argparse_fromfile_prefix_chars.py'))
 .. }}}
+
+::
+
+	$ python argparse_fromfile_prefix_chars.py
+	
+	Namespace(a=True, b='2', c=None)
+
 .. {{{end}}}
 
 Automatically Generated Options
@@ -295,6 +449,24 @@ purposes.
 .. cog.out(run_script(cog.inFile, 'argparse_with_help.py -h'))
 .. cog.out(run_script(cog.inFile, 'argparse_without_help.py -h', ignore_error=True, include_prefix=False))
 .. }}}
+
+::
+
+	$ python argparse_with_help.py -h
+	
+	usage: argparse_with_help.py [-h] [-a] [-b B] [-c C]
+	
+	optional arguments:
+	  -h, --help  show this help message and exit
+	  -a
+	  -b B
+	  -c C
+
+	$ python argparse_without_help.py -h
+	
+	usage: argparse_without_help.py [-a] [-b B] [-c C]
+	argparse_without_help.py: error: unrecognized arguments: -h
+
 .. {{{end}}}
 
 The version options (``-v`` and ``--version``) are added when
@@ -312,6 +484,28 @@ cause it to exit immediately.
 .. cog.out(run_script(cog.inFile, 'argparse_with_version.py -v', include_prefix=False))
 .. cog.out(run_script(cog.inFile, 'argparse_with_version.py --version', include_prefix=False))
 .. }}}
+
+::
+
+	$ python argparse_with_version.py -h
+	
+	usage: argparse_with_version.py [-h] [-v] [-a] [-b B] [-c C]
+	
+	optional arguments:
+	  -h, --help     show this help message and exit
+	  -v, --version  show program's version number and exit
+	  -a
+	  -b B
+	  -c C
+
+	$ python argparse_with_version.py -v
+	
+	1.0
+
+	$ python argparse_with_version.py --version
+	
+	1.0
+
 .. {{{end}}}
 
 Parser Organization
@@ -353,6 +547,20 @@ And the resulting program takes all three options:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'argparse_uses_parent.py -h'))
 .. }}}
+
+::
+
+	$ python argparse_uses_parent.py -h
+	
+	usage: argparse_uses_parent.py [-h] [--user USER] [--password PASSWORD]
+	                               [--local-arg]
+	
+	optional arguments:
+	  -h, --help           show this help message and exit
+	  --user USER
+	  --password PASSWORD
+	  --local-arg
+
 .. {{{end}}}
 
 
@@ -376,6 +584,19 @@ example the stand-alone option ``-b`` is masked by the alias for
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'argparse_conflict_handler_resolve.py'))
 .. }}}
+
+::
+
+	$ python argparse_conflict_handler_resolve.py
+	
+	usage: argparse_conflict_handler_resolve.py [-h] [-a A] [--long-b LONG_B]
+	
+	optional arguments:
+	  -h, --help            show this help message and exit
+	  -a A
+	  --long-b LONG_B, -b LONG_B
+	                        Long and short together
+
 .. {{{end}}}
 
 Switching the order of the calls to :func:`add_argument` unmasks the
@@ -390,6 +611,20 @@ Now both options can be used together.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'argparse_conflict_handler_resolve2.py'))
 .. }}}
+
+::
+
+	$ python argparse_conflict_handler_resolve2.py
+	
+	usage: argparse_conflict_handler_resolve2.py [-h] [-a A] [--long-b LONG_B]
+	                                             [-b B]
+	
+	optional arguments:
+	  -h, --help       show this help message and exit
+	  -a A
+	  --long-b LONG_B  Long and short together
+	  -b B             Short alone
+
 .. {{{end}}}
 
 Argument Groups
@@ -409,6 +644,22 @@ The grouping is reflected in the separate "positional arguments" and
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'argparse_default_grouping.py -h'))
 .. }}}
+
+::
+
+	$ python argparse_default_grouping.py -h
+	
+	usage: argparse_default_grouping.py [-h] [--optional] positional
+	
+	Short sample app
+	
+	positional arguments:
+	  positional
+	
+	optional arguments:
+	  -h, --help  show this help message and exit
+	  --optional
+
 .. {{{end}}}
 
 You can adjust the grouping to make it more logical in the help, so
@@ -437,6 +688,22 @@ The help output now shows the authentication options together.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'argparse_uses_parent_with_group.py -h'))
 .. }}}
+
+::
+
+	$ python argparse_uses_parent_with_group.py -h
+	
+	usage: argparse_uses_parent_with_group.py [-h] [--user USER]
+	                                          [--password PASSWORD] [--local-arg]
+	
+	optional arguments:
+	  -h, --help           show this help message and exit
+	  --local-arg
+	
+	authentication:
+	  --user USER
+	  --password PASSWORD
+
 .. {{{end}}}
 
 Mutually Exclusive Options
@@ -459,6 +726,31 @@ one of the options from the group can be given.
 .. cog.out(run_script(cog.inFile, 'argparse_mutually_exclusive.py -b', include_prefix=False))
 .. cog.out(run_script(cog.inFile, 'argparse_mutually_exclusive.py -a -b', ignore_error=True, include_prefix=False))
 .. }}}
+
+::
+
+	$ python argparse_mutually_exclusive.py -h
+	
+	usage: argparse_mutually_exclusive.py [-h] [-a | -b]
+	
+	optional arguments:
+	  -h, --help  show this help message and exit
+	  -a
+	  -b
+
+	$ python argparse_mutually_exclusive.py -a
+	
+	Namespace(a=True, b=False)
+
+	$ python argparse_mutually_exclusive.py -b
+	
+	Namespace(a=False, b=True)
+
+	$ python argparse_mutually_exclusive.py -a -b
+	
+	usage: argparse_mutually_exclusive.py [-h] [-a | -b]
+	argparse_mutually_exclusive.py: error: argument -b: not allowed with argument -a
+
 .. {{{end}}}
 
 Nesting Parsers
@@ -485,6 +777,22 @@ specified on the command line as positional arguments.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'argparse_subparsers.py -h'))
 .. }}}
+
+::
+
+	$ python argparse_subparsers.py -h
+	
+	usage: argparse_subparsers.py [-h] {list,create,delete} ...
+	
+	positional arguments:
+	  {list,create,delete}  commands
+	    list                List contents
+	    create              Create a directory
+	    delete              Remove a directory
+	
+	optional arguments:
+	  -h, --help            show this help message and exit
+
 .. {{{end}}}
 
 Each subparser also has its own help, describing the arguments and
@@ -493,6 +801,20 @@ options for that command.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'argparse_subparsers.py create -h'))
 .. }}}
+
+::
+
+	$ python argparse_subparsers.py create -h
+	
+	usage: argparse_subparsers.py create [-h] [--read-only] dirname
+	
+	positional arguments:
+	  dirname      New directory to create
+	
+	optional arguments:
+	  -h, --help   show this help message and exit
+	  --read-only  Set permissions to prevent writing to the directory
+
 .. {{{end}}}
 
 And when the arguments are parsed, the :class:`Namespace` object
@@ -502,6 +824,13 @@ command specified.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'argparse_subparsers.py delete -r foo'))
 .. }}}
+
+::
+
+	$ python argparse_subparsers.py delete -r foo
+	
+	Namespace(dirname='foo', recursive=True)
+
 .. {{{end}}}
 
 
@@ -550,6 +879,64 @@ accurate syntax diagram as part of the command help text.
 .. cog.out(run_script(cog.inFile, 'argparse_nargs.py --one-or-more with multiple values', include_prefix=False))
 .. cog.out(run_script(cog.inFile, 'argparse_nargs.py --one-or-more', ignore_error=True, include_prefix=False))
 .. }}}
+
+::
+
+	$ python argparse_nargs.py -h
+	
+	usage: argparse_nargs.py [-h] [--three THREE THREE THREE]
+	                         [--optional [OPTIONAL]] [--all [ALL [ALL ...]]]
+	                         [--one-or-more ONE_OR_MORE [ONE_OR_MORE ...]]
+	
+	optional arguments:
+	  -h, --help            show this help message and exit
+	  --three THREE THREE THREE
+	  --optional [OPTIONAL]
+	  --all [ALL [ALL ...]]
+	  --one-or-more ONE_OR_MORE [ONE_OR_MORE ...]
+
+	$ python argparse_nargs.py
+	
+	Namespace(all=None, one_or_more=None, optional=None, three=None)
+
+	$ python argparse_nargs.py --three
+	
+	usage: argparse_nargs.py [-h] [--three THREE THREE THREE]
+	                         [--optional [OPTIONAL]] [--all [ALL [ALL ...]]]
+	                         [--one-or-more ONE_OR_MORE [ONE_OR_MORE ...]]
+	argparse_nargs.py: error: argument --three: expected 3 argument(s)
+
+	$ python argparse_nargs.py --three a b c
+	
+	Namespace(all=None, one_or_more=None, optional=None, three=['a', 'b', 'c'])
+
+	$ python argparse_nargs.py --optional
+	
+	Namespace(all=None, one_or_more=None, optional=None, three=None)
+
+	$ python argparse_nargs.py --optional with_value
+	
+	Namespace(all=None, one_or_more=None, optional='with_value', three=None)
+
+	$ python argparse_nargs.py --all with multiple values
+	
+	Namespace(all=['with', 'multiple', 'values'], one_or_more=None, optional=None, three=None)
+
+	$ python argparse_nargs.py --one-or-more with_value
+	
+	Namespace(all=None, one_or_more=['with_value'], optional=None, three=None)
+
+	$ python argparse_nargs.py --one-or-more with multiple values
+	
+	Namespace(all=None, one_or_more=['with', 'multiple', 'values'], optional=None, three=None)
+
+	$ python argparse_nargs.py --one-or-more
+	
+	usage: argparse_nargs.py [-h] [--three THREE THREE THREE]
+	                         [--optional [OPTIONAL]] [--all [ALL [ALL ...]]]
+	                         [--one-or-more ONE_OR_MORE [ONE_OR_MORE ...]]
+	argparse_nargs.py: error: argument --one-or-more: expected at least one argument
+
 .. {{{end}}}
 
 Argument Types
@@ -574,6 +961,21 @@ Any callable that takes a single string argument can be passed as
 .. cog.out(run_script(cog.inFile, 'argparse_type.py -f 3.14', include_prefix=False))
 .. cog.out(run_script(cog.inFile, 'argparse_type.py --file argparse_type.py', include_prefix=False))
 .. }}}
+
+::
+
+	$ python argparse_type.py -i 1
+	
+	Namespace(f=None, file=None, i=1)
+
+	$ python argparse_type.py -f 3.14
+	
+	Namespace(f=3.14, file=None, i=None)
+
+	$ python argparse_type.py --file argparse_type.py
+	
+	Namespace(f=None, file=<open file 'argparse_type.py', mode 'r' at 0x1004de270>, i=None)
+
 .. {{{end}}}
 
 If the type conversion fails, :mod:`argparse` raises an exception.
@@ -588,6 +990,24 @@ where the input file does not exist, must be handled by the caller.
 .. cog.out(run_script(cog.inFile, 'argparse_type.py -f 3.14.15', ignore_error=True, include_prefix=False))
 .. cog.out(run_script(cog.inFile, 'argparse_type.py --file does_not_exist.txt', ignore_error=True, include_prefix=False))
 .. }}}
+
+::
+
+	$ python argparse_type.py -i a
+	
+	usage: argparse_type.py [-h] [-i I] [-f F] [--file FILE]
+	argparse_type.py: error: argument -i: invalid int value: 'a'
+
+	$ python argparse_type.py -f 3.14.15
+	
+	usage: argparse_type.py [-h] [-i I] [-f F] [--file FILE]
+	argparse_type.py: error: argument -f: invalid float value: '3.14.15'
+
+	$ python argparse_type.py --file does_not_exist.txt
+	
+	usage: argparse_type.py [-h] [-i I] [-f F] [--file FILE]
+	argparse_type.py: error: [Errno 2] No such file or directory: 'does_not_exist.txt'
+
 .. {{{end}}}
 
 To limit an input argument to a value within a pre-defined set, use
@@ -605,6 +1025,27 @@ error is generated and processing stops.
 .. cog.out(run_script(cog.inFile, 'argparse_choices.py --mode read-only', include_prefix=False))
 .. cog.out(run_script(cog.inFile, 'argparse_choices.py --mode invalid', include_prefix=False, ignore_error=True, break_lines_at=71))
 .. }}}
+
+::
+
+	$ python argparse_choices.py -h
+	
+	usage: argparse_choices.py [-h] [--mode {read-only,read-write}]
+	
+	optional arguments:
+	  -h, --help            show this help message and exit
+	  --mode {read-only,read-write}
+
+	$ python argparse_choices.py --mode read-only
+	
+	Namespace(mode='read-only')
+
+	$ python argparse_choices.py --mode invalid
+	
+	usage: argparse_choices.py [-h] [--mode {read-only,read-write}]
+	argparse_choices.py: error: argument --mode: invalid choice: 'invalid' 
+	(choose from 'read-only', 'read-write')
+
 .. {{{end}}}
 
 File Arguments
@@ -628,6 +1069,29 @@ with it.
 .. cog.out(run_script(cog.inFile, 'argparse_FileType.py -i argparse_FileType.py -o temporary_file.txt', include_prefix=False))
 .. cog.out(run_script(cog.inFile, 'argparse_FileType.py -i no_such_file.txt', include_prefix=False, ignore_error=True))
 .. }}}
+
+::
+
+	$ python argparse_FileType.py -h
+	
+	usage: argparse_FileType.py [-h] [-i in-file] [-o out-file]
+	
+	optional arguments:
+	  -h, --help   show this help message and exit
+	  -i in-file
+	  -o out-file
+
+	$ python argparse_FileType.py -i argparse_FileType.py -o temporary_file.\
+	txt
+	
+	Input file: <open file 'argparse_FileType.py', mode 'rt' at 0x1004de270>
+	Output file: <open file 'temporary_file.txt', mode 'wt' at 0x1004de300>
+
+	$ python argparse_FileType.py -i no_such_file.txt
+	
+	usage: argparse_FileType.py [-h] [-i in-file] [-o out-file]
+	argparse_FileType.py: error: argument -i: can't open 'no_such_file.txt': [Errno 2] No such file or directory: 'no_such_file.txt'
+
 .. {{{end}}}
 
 
@@ -663,6 +1127,45 @@ always ``None``.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'argparse_custom_action.py'))
 .. }}}
+
+::
+
+	$ python argparse_custom_action.py
+	
+	
+	Initializing CustomAction
+	  dest = 'a'
+	  option_strings = ['-a']
+	  required = False
+	
+	Initializing CustomAction
+	  dest = 'm'
+	  nargs = '*'
+	  option_strings = ['-m']
+	  required = False
+	
+	Initializing CustomAction
+	  dest = 'positional'
+	  option_strings = []
+	  required = True
+	
+	Processing CustomAction for "a"
+	  parser = 4299616464
+	  values = 'value'
+	  option_string = '-a'
+	
+	Processing CustomAction for "m"
+	  parser = 4299616464
+	  values = ['multi-value']
+	  option_string = '-m'
+	
+	Processing CustomAction for "positional"
+	  parser = 4299616464
+	  values = 'positional-value'
+	  option_string = None
+	
+	Namespace(a='VALUE', m=['MULTI-VALUE'], positional='POSITIONAL-VALUE')
+
 .. {{{end}}}
 
 

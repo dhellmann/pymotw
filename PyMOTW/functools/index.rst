@@ -40,6 +40,43 @@ invoked without passing a value for *a*, causing an exception.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'functools_partial.py', ignore_error=True, break_lines_at=70))
 .. }}}
+
+::
+
+	$ python functools_partial.py
+	
+	myfunc:
+		object: <function myfunc at 0x100468c08>
+		__name__: myfunc
+		__doc__ 'Docstring for myfunc().'
+		called myfunc with: ('a', 3)
+	
+	partial with named default:
+		object: <functools.partial object at 0x10046b050>
+		__doc__ 'partial(func, *args, **keywords) - new function with partial
+	 application\n    of the given arguments and keywords.\n'
+		func: <function myfunc at 0x100468c08>
+		args: ()
+		keywords: {'b': 4}
+		called myfunc with: ('default a', 4)
+		called myfunc with: ('override b', 5)
+	
+	partial with defaults:
+		object: <functools.partial object at 0x10046b0a8>
+		__doc__ 'partial(func, *args, **keywords) - new function with partial
+	 application\n    of the given arguments and keywords.\n'
+		func: <function myfunc at 0x100468c08>
+		args: ('default a',)
+		keywords: {'b': 99}
+		called myfunc with: ('default a', 99)
+		called myfunc with: ('default a', 'override b')
+	
+	Insufficient arguments:
+	Traceback (most recent call last):
+	  File "functools_partial.py", line 49, in <module>
+	    p1()
+	TypeError: myfunc() takes at least 1 argument (1 given)
+
 .. {{{end}}}
 
 
@@ -64,6 +101,32 @@ The attributes added to the wrapper are defined in
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'functools_update_wrapper.py', break_lines_at=70))
 .. }}}
+
+::
+
+	$ python functools_update_wrapper.py
+	
+	myfunc:
+		object: <function myfunc at 0x100468c80>
+		__name__: myfunc
+		__doc__ 'Docstring for myfunc().'
+	
+	raw wrapper:
+		object: <functools.partial object at 0x10046c0a8>
+		__name__: (no __name__)
+		__doc__ 'partial(func, *args, **keywords) - new function with partial
+	 application\n    of the given arguments and keywords.\n'
+	
+	Updating wrapper:
+		assign: ('__module__', '__name__', '__doc__')
+		update: ('__dict__',)
+	
+	updated wrapper:
+		object: <functools.partial object at 0x10046c0a8>
+		__name__: myfunc
+		__doc__ 'Docstring for myfunc().'
+	
+
 .. {{{end}}}
 
 Other Callables
@@ -81,6 +144,55 @@ instance.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'functools_method.py', break_lines_at=68))
 .. }}}
+
+::
+
+	$ python functools_method.py
+	
+	meth1 straight:
+		object: <bound method MyClass.meth1 of <__main__.MyClass object at 
+	0x10046a3d0>>
+		__name__: meth1
+		__doc__ 'Docstring for meth1().'
+		called meth1 with: (<__main__.MyClass object at 0x10046a3d0>, 'no d
+	efault for a', 3)
+	
+	meth1 wrapper:
+		object: <functools.partial object at 0x10046c158>
+		__name__: meth1
+		__doc__ 'Docstring for meth1().'
+		called meth1 with: (<__main__.MyClass object at 0x10046a3d0>, 'a go
+	es here', 4)
+	
+	meth2:
+		object: <bound method MyClass.meth2 of <__main__.MyClass object at 
+	0x10046a3d0>>
+		__name__: meth2
+		__doc__ 'Docstring for meth2'
+		called meth2 with: (<__main__.MyClass object at 0x10046a3d0>, 'no d
+	efault for c', 6)
+	
+	wrapped meth2:
+		object: <functools.partial object at 0x10046c0a8>
+		__name__: meth2
+		__doc__ 'Docstring for meth2'
+		called meth2 with: ('wrapped c', 'no default for c', 6)
+	
+	instance:
+		object: <__main__.MyClass object at 0x10046a3d0>
+		__name__: (no __name__)
+		__doc__ 'Demonstration class for functools'
+		called object with: (<__main__.MyClass object at 0x10046a3d0>, 'no 
+	default for e', 6)
+	
+	instance wrapper:
+		object: <functools.partial object at 0x10046c1b0>
+		__name__: (no __name__)
+		__doc__ 'partial(func, *args, **keywords) - new function with parti
+	al application\n    of the given arguments and keywords.\n'
+		called object with: (<__main__.MyClass object at 0x10046a3d0>, 'e g
+	oes here', 7)
+
 .. {{{end}}}
 
 
@@ -101,6 +213,29 @@ properties of the original, "bare", function.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'functools_wraps.py'))
 .. }}}
+
+::
+
+	$ python functools_wraps.py
+	
+	myfunc:
+		object: <function myfunc at 0x10046c050>
+		__name__: myfunc
+		__doc__ None
+	
+		myfunc: ('unwrapped, default b', 2)
+		myfunc: ('unwrapped, passing b', 3)
+	
+	wrapped_myfunc:
+		object: <function myfunc at 0x10046c0c8>
+		__name__: myfunc
+		__doc__ None
+	
+		decorated: ('decorated defaults', 1)
+			myfunc: ('decorated defaults', 1)
+		decorated: ('args to decorated', 4)
+			myfunc: ('args to decorated', 4)
+
 .. {{{end}}}
 
 Comparison
@@ -139,6 +274,44 @@ comparisons provided.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'functools_total_ordering.py'))
 .. }}}
+
+::
+
+	$ python functools_total_ordering.py
+	
+	Methods:
+	
+	[('__eq__', <unbound method MyObject.__eq__>),
+	 ('__ge__', <unbound method MyObject.__ge__>),
+	 ('__gt__', <unbound method MyObject.__gt__>),
+	 ('__init__', <unbound method MyObject.__init__>),
+	 ('__le__', <unbound method MyObject.__le__>),
+	 ('__lt__', <unbound method MyObject.__lt__>)]
+	
+	Comparisons:
+	
+	a < b :
+	  testing __gt__(1, 2)
+	  testing __eq__(1, 2)
+	  result of a < b: True
+	
+	a <= b:
+	  testing __gt__(1, 2)
+	  result of a <= b: True
+	
+	a == b:
+	  testing __eq__(1, 2)
+	  result of a == b: False
+	
+	a >= b:
+	  testing __gt__(1, 2)
+	  testing __eq__(1, 2)
+	  result of a >= b: False
+	
+	a > b :
+	  testing __gt__(1, 2)
+	  result of a > b: False
+
 .. {{{end}}}
 
 Collation Order
@@ -172,6 +345,26 @@ by comparing the keys.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'functools_cmp_to_key.py'))
 .. }}}
+
+::
+
+	$ python functools_cmp_to_key.py
+	
+	key_wrapper(MyObject(5)) -> <functools.K object at 0x100466558>
+	key_wrapper(MyObject(4)) -> <functools.K object at 0x100466590>
+	key_wrapper(MyObject(3)) -> <functools.K object at 0x1004665c8>
+	key_wrapper(MyObject(2)) -> <functools.K object at 0x100466600>
+	key_wrapper(MyObject(1)) -> <functools.K object at 0x100466638>
+	comparing MyObject(4) and MyObject(5)
+	comparing MyObject(3) and MyObject(4)
+	comparing MyObject(2) and MyObject(3)
+	comparing MyObject(1) and MyObject(2)
+	MyObject(1)
+	MyObject(2)
+	MyObject(3)
+	MyObject(4)
+	MyObject(5)
+
 .. {{{end}}}
 
 

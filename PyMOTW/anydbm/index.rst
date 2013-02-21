@@ -39,6 +39,12 @@ file is managed.  To create a new database when necessary, use
 .. sh("cd %s; rm -f /tmp/example.db" % workdir)
 .. cog.out(run_script(cog.inFile, 'anydbm_new.py'))
 .. }}}
+
+::
+
+	$ python anydbm_new.py
+	
+
 .. {{{end}}}
 
 
@@ -55,6 +61,13 @@ system.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'anydbm_whichdb.py'))
 .. }}}
+
+::
+
+	$ python anydbm_whichdb.py
+	
+	dbhash
+
 .. {{{end}}}
 
 
@@ -77,6 +90,17 @@ usual methods:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'anydbm_existing.py'))
 .. }}}
+
+::
+
+	$ python anydbm_existing.py
+	
+	keys(): ['author', 'key', 'today']
+	iterating: author Doug
+	iterating: key value
+	iterating: today Sunday
+	db["author"] = Doug
+
 .. {{{end}}}
 
 Error Cases
@@ -94,6 +118,13 @@ Passing another type results in a :ref:`TypeError
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'anydbm_intkeys.py', ignore_error=True))
 .. }}}
+
+::
+
+	$ python anydbm_intkeys.py
+	
+	TypeError: Integer keys only allowed for Recno and Queue DB's
+
 .. {{{end}}}
 
 Values must be strings or ``None``.
@@ -108,6 +139,13 @@ is not a string.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'anydbm_intvalue.py', ignore_error=True))
 .. }}}
+
+::
+
+	$ python anydbm_intvalue.py
+	
+	TypeError: Data values must be of type string or None.
+
 .. {{{end}}}
 
 .. seealso::

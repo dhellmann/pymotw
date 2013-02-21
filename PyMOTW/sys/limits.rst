@@ -25,6 +25,15 @@ temporary reference to the object held by :func:`getrefcount` itself.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_getrefcount.py'))
 .. }}}
+
+::
+
+	$ python sys_getrefcount.py
+	
+	At start         : 2
+	Second reference : 3
+	After del        : 2
+
 .. {{{end}}}
 
 .. seealso::
@@ -49,6 +58,23 @@ objects are.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_getsizeof.py'))
 .. }}}
+
+::
+
+	$ python sys_getsizeof.py
+	
+	      list : 72
+	     tuple : 56
+	      dict : 280
+	       str : 38
+	       str : 43
+	       int : 24
+	     float : 24
+	  classobj : 104
+	  instance : 72
+	      type : 904
+	  NewStyle : 64
+
 .. {{{end}}}
 
 The reported size for a custom class does not include the size of the
@@ -64,6 +90,14 @@ consumed.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_getsizeof_object.py'))
 .. }}}
+
+::
+
+	$ python sys_getsizeof_object.py
+	
+	WithoutAttributes: 64
+	WithAttributes: 64
+
 .. {{{end}}}
 
 
@@ -81,6 +115,13 @@ the attributes stored in the internal :data:`__dict__`.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_getsizeof_custom.py'))
 .. }}}
+
+::
+
+	$ python sys_getsizeof_custom.py
+	
+	140
+
 .. {{{end}}}
 
 Recursion
@@ -103,6 +144,23 @@ program has an opportunity to handle the situation.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_recursionlimit.py'))
 .. }}}
+
+::
+
+	$ python sys_recursionlimit.py
+	
+	Initial limit: 1000
+	Modified limit: 10
+	generate_recursion_error(1)
+	generate_recursion_error(2)
+	generate_recursion_error(3)
+	generate_recursion_error(4)
+	generate_recursion_error(5)
+	generate_recursion_error(6)
+	generate_recursion_error(7)
+	generate_recursion_error(8)
+	Caught exception: maximum recursion depth exceeded while getting the str of an object
+
 .. {{{end}}}
 
 
@@ -126,6 +184,15 @@ the interpreter as currently configured.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_maximums.py'))
 .. }}}
+
+::
+
+	$ python sys_maximums.py
+	
+	maxint    : 9223372036854775807
+	maxsize   : 9223372036854775807
+	maxunicode: 65535
+
 .. {{{end}}}
 
 Floating Point Values
@@ -147,6 +214,29 @@ the underlying system's float implementation.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_float_info.py'))
 .. }}}
+
+::
+
+	$ python sys_float_info.py
+	
+	Smallest difference (epsilon): 2.22044604925e-16
+	
+	Digits (dig)              : 15
+	Mantissa digits (mant_dig): 53
+	
+	Maximum (max): 1.79769313486e+308
+	Minimum (min): 2.22507385851e-308
+	
+	Radix of exponents (radix): 2
+	
+	Maximum exponent for radix (max_exp): 1024
+	Minimum exponent for radix (min_exp): -1021
+	
+	Maximum exponent for power of 10 (max_10_exp): 308
+	Minimum exponent for power of 10 (min_10_exp): -307
+	
+	Rounding for addition (rounds): 1
+
 .. {{{end}}}
 
 .. seealso::
@@ -169,6 +259,13 @@ little-endian.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_byteorder.py'))
 .. }}}
+
+::
+
+	$ python sys_byteorder.py
+	
+	little
+
 .. {{{end}}}
 
 .. seealso::

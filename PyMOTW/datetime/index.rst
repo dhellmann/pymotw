@@ -27,6 +27,18 @@ unlikely to be what you want.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'datetime_time.py'))
 .. }}}
+
+::
+
+	$ python datetime_time.py
+	
+	01:02:03
+	hour  : 1
+	minute: 2
+	second: 3
+	microsecond: 0
+	tzinfo: None
+
 .. {{{end}}}
 
 A time instance only holds values of time, and not a date associated
@@ -42,6 +54,15 @@ times in a single day.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'datetime_time_minmax.py'))
 .. }}}
+
+::
+
+	$ python datetime_time_minmax.py
+	
+	Earliest  : 00:00:00
+	Latest    : 23:59:59.999999
+	Resolution: 0:00:00.000001
+
 .. {{{end}}}
 
 The resolution for time is limited to whole microseconds.
@@ -56,6 +77,16 @@ generates a :ref:`TypeError <exceptions-TypeError>`.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'datetime_time_resolution.py'))
 .. }}}
+
+::
+
+	$ python datetime_time_resolution.py
+	
+	1.0 : 00:00:00.000001
+	0.0 : 00:00:00
+	0.1 : ERROR: integer argument expected, got float
+	0.6 : ERROR: integer argument expected, got float
+
 .. {{{end}}}
 
 
@@ -76,6 +107,19 @@ This example prints the current date in several formats:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'datetime_date.py'))
 .. }}}
+
+::
+
+	$ python datetime_date.py
+	
+	2013-02-21
+	ctime: Thu Feb 21 00:00:00 2013
+	tuple: time.struct_time(tm_year=2013, tm_mon=2, tm_mday=21, tm_hour=0, tm_min=0, tm_sec=0, tm_wday=3, tm_yday=52, tm_isdst=-1)
+	ordinal: 734920
+	Year: 2013
+	Mon : 2
+	Day : 21
+
 .. {{{end}}}
 
 There are also class methods for creating instances from integers
@@ -92,6 +136,16 @@ This example illustrates the different value types used by
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'datetime_date_fromordinal.py'))
 .. }}}
+
+::
+
+	$ python datetime_date_fromordinal.py
+	
+	o: 733114
+	fromordinal(o): 2008-03-13
+	t: 1361446545.52
+	fromtimestamp(t): 2013-02-21
+
 .. {{{end}}}
 
 As with :class:`time`, the range of date values supported can be
@@ -106,6 +160,15 @@ The resolution for dates is whole days.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'datetime_date_minmax.py'))
 .. }}}
+
+::
+
+	$ python datetime_date_minmax.py
+	
+	Earliest  : 0001-01-01
+	Latest    : 9999-12-31
+	Resolution: 1 day, 0:00:00
+
 .. {{{end}}}
 
 Another way to create new date instances uses the :func:`replace()`
@@ -119,6 +182,14 @@ leaving the day and month alone.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'datetime_date_replace.py'))
 .. }}}
+
+::
+
+	$ python datetime_date_replace.py
+	
+	d1: 2008-03-12
+	d2: 2009-03-12
+
 .. {{{end}}}
 
 timedeltas
@@ -142,6 +213,19 @@ days, seconds, and microseconds.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'datetime_timedelta.py'))
 .. }}}
+
+::
+
+	$ python datetime_timedelta.py
+	
+	microseconds: 0:00:00.000001
+	milliseconds: 0:00:00.001000
+	seconds     : 0:00:01
+	minutes     : 0:01:00
+	hours       : 1:00:00
+	days        : 1 day, 0:00:00
+	weeks       : 7 days, 0:00:00
+
 .. {{{end}}}
 
 
@@ -160,6 +244,18 @@ new dates, and subtracting date instances to produce timedeltas
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'datetime_date_math.py'))
 .. }}}
+
+::
+
+	$ python datetime_date_math.py
+	
+	Today    : 2013-02-21
+	One day  : 1 day, 0:00:00
+	Yesterday: 2013-02-20
+	Tomorrow : 2013-02-22
+	tomorrow - yesterday: 2 days, 0:00:00
+	yesterday - tomorrow: -2 days, 0:00:00
+
 .. {{{end}}}
 
 Comparing Values
@@ -175,6 +271,20 @@ to determine which is earlier or later.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'datetime_comparing.py'))
 .. }}}
+
+::
+
+	$ python datetime_comparing.py
+	
+	Times:
+		t1: 12:55:00
+		t2: 13:05:00
+		t1 < t2: True
+	Dates:
+		d1: 2013-02-21
+		d2: 2013-02-22
+		d1 > d2: False
+
 .. {{{end}}}
 
 Combining Dates and Times
@@ -195,6 +305,22 @@ attributes of both a date and a time object.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'datetime_datetime.py'))
 .. }}}
+
+::
+
+	$ python datetime_datetime.py
+	
+	Now    : 2013-02-21 06:35:45.658505
+	Today  : 2013-02-21 06:35:45.659381
+	UTC Now: 2013-02-21 11:35:45.659396
+	year : 2013
+	month : 2
+	day : 21
+	hour : 6
+	minute : 35
+	second : 45
+	microsecond : 659677
+
 .. {{{end}}}
 
 Just as with date, datetime provides convenient class methods for
@@ -210,6 +336,15 @@ create a datetime.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'datetime_datetime_combine.py'))
 .. }}}
+
+::
+
+	$ python datetime_datetime_combine.py
+	
+	t : 01:02:03
+	d : 2013-02-21
+	dt: 2013-02-21 01:02:03
+
 .. {{{end}}}
 
 Formatting and Parsing
@@ -229,6 +364,15 @@ datetime instances.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'datetime_datetime_strptime.py'))
 .. }}}
+
+::
+
+	$ python datetime_datetime_strptime.py
+	
+	ISO     : 2013-02-21 06:35:45.707450
+	strftime: Thu Feb 21 06:35:45 2013
+	strptime: Thu Feb 21 06:35:45 2013
+
 .. {{{end}}}
 
 Time Zones
