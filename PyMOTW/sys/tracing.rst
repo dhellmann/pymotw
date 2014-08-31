@@ -76,7 +76,7 @@ tracing to only run line-by-line within certain modules or functions.
     :linenos:
 
 Here the global list of functions is kept in the variable
-:cont:`TRACE_INTO`, so when :func:`trace_calls` runs it can return
+:const:`TRACE_INTO`, so when :func:`trace_calls` runs it can return
 :func:`trace_lines` to enable tracing inside of :func:`b`.
 
 .. {{{cog
