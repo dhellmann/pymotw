@@ -126,7 +126,7 @@ options(
         
         # What server hosts the website?
         server = 'pymotw.com',
-        server_path = '/home/dhellmann/pymotw.com/2/',
+        server_path = '/home/douhel3shell/pymotw.com/2/',
 
         # What template should be used for the web site HTML?
         template_source = '%s/source/_templates/base.html' % WEB_WORK_DIR,
