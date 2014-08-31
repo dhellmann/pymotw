@@ -262,15 +262,15 @@ shows the caller, callee, and cumulative time.
 
 .. seealso::
 
-    `profile and cProfile <http://docs.python.org/lib/module-profile.html>`_
+    `profile and cProfile <https://docs.python.org/2.7/library/profile.html>`_
         Standard library documentation for this module.
 
-    `pstats <http://docs.python.org/lib/profile-stats.html>`_
+    `pstats <https://docs.python.org/2.7/library/profile.html#the-stats-class>`_
         Standard library documentation for pstats.
 
     `Gprof2Dot <http://code.google.com/p/jrfonseca/wiki/Gprof2Dot>`_
         Visualization tool for profile output data.
 
-    .. [#fibonacci] *Fibonacci numbers (Python) - LiteratePrograms* via http://en.literateprograms.org/Fibonacci_numbers_(Python)
+    .. [#fibonacci] `Fibonacci numbers (Python) - LiteratePrograms <http://en.literateprograms.org/Fibonacci_numbers_(Python)>`_
 
-    .. [#memoize] *Python Decorators: Syntactic Sugar | avinash.vora* from http://avinashv.net/2008/04/python-decorators-syntactic-sugar/
+    .. [#memoize] `Python Decorators: Syntactic Sugar | avinash.vora <http://avinashv.net/2008/04/python-decorators-syntactic-sugar/>`_
