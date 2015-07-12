@@ -431,8 +431,8 @@ def webhtml(options):
     if paverutils is None:
         raise RuntimeError('Could not find sphinxcontrib.paverutils, will not be able to build HTML output.')
     paverutils.run_sphinx(options, 'website')
-    sh('rsync --archive --verbose "%s" "%s"' % (options.website.css_source, options.website.css_dest))
-    sh('rsync --archive --verbose "%s" "%s"' % (options.website.images_source, options.website.images_dest))
+    #sh('rsync --archive --verbose "%s" "%s"' % (options.website.css_source, options.website.css_dest))
+    #sh('rsync --archive --verbose "%s" "%s"' % (options.website.images_source, options.website.images_dest))
     return
             
 

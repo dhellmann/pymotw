@@ -28,7 +28,7 @@ html_additional_pages = {
     }
 html_use_modindex = True
 html_last_updated_fmt = '%b %d, %Y'
-html_static_path = ['images']
+html_static_path = ['static']
 if os.environ['TEMPLATES'] == 'pkg':
     html_theme = 'sphinxdoc'
 else:

@@ -476,6 +476,8 @@ simulating an *interface*.
 
    :mod:`abc` - Abstract base classes
 
+.. _`exceptions-OSError`:
+
 OSError
 -------
 
