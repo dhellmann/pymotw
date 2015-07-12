@@ -107,7 +107,7 @@ latex_elements = {
     }
 
 latex_additional_files = [
-    'images/replacement-character.png',
+    'static/images/replacement-character.png',
     ]
 
 extensions = [ 'sphinx.ext.todo',
