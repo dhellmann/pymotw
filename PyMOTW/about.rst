@@ -40,7 +40,7 @@ cog_.
 
 	$ python -V
 	
-	Python 2.7.2
+	Python 2.7.8
 
 .. {{{end}}}
 

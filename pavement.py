@@ -47,9 +47,9 @@ os.environ['MODULE'] = MODULE
 README = path('README.txt').text()
 
 # Scan the input for package information
-# to grab any data files (text, images, etc.) 
+# to grab any data files (text, images, etc.)
 # associated with sub-packages.
-PACKAGE_DATA = paver.setuputils.find_package_data(PROJECT, 
+PACKAGE_DATA = paver.setuputils.find_package_data(PROJECT,
                                                   package=PROJECT,
                                                   only_in_packages=True,
                                                   )
@@ -60,7 +60,7 @@ options(
     setup=Bunch(
         name = PROJECT,
         version = VERSION,
-        
+
         description = 'Python Module of the Week Examples: ' + MODULE,
         long_description = README,
 
@@ -86,18 +86,18 @@ options(
         packages = setuptools.find_packages(),
         package_data=PACKAGE_DATA,
         zip_safe=False,
-        
+
         scripts=['motw'],
 
         ),
-    
+
     sdist = Bunch(
     ),
-    
+
     sdistext = Bunch(
         outdir='~/Desktop',
     ),
-    
+
     sphinx = Bunch(
         sourcedir=PROJECT,
         docroot = '.',
@@ -123,7 +123,7 @@ options(
     website=Bunch(
         templates = 'web',
         builddir = 'web',
-        
+
         # What server hosts the website?
         server = 'pymotw.com',
         server_path = '/home/douhel3shell/pymotw.com/2/',
@@ -138,19 +138,19 @@ options(
         images_source = '%s/source/_static/images' % WEB_WORK_DIR,
         images_dest = 'web/html/_static',
     ),
-    
+
     sitemap_gen=Bunch(
         # Where is the config file for sitemap_gen.py?
         config='sitemap_gen_config.xml',
     ),
-    
+
     pdf=Bunch(
         templates='pkg',
         builddir='web',
         builder='latex',
         docroot='.',
     ),
-    
+
     blog=Bunch(
         sourcedir=path(PROJECT)/MODULE,
         builddir='blog_posts',
@@ -161,7 +161,7 @@ options(
         out_file='blog.html',
         no_edit=False,
     ),
-    
+
     # Some of the files include [[[ as part of a nested list data structure,
     # so change the tags cog looks for to something less likely to appear.
     cog=Bunch(
@@ -187,7 +187,7 @@ __builtins__['path'] = path
 from paver.doctools import Includer, _cogsh
 def _runcog(options, files, uncog=False):
     """Common function for the cog and runcog tasks."""
-    
+
     from paver.cog import Cog
     options.order('cog', 'sphinx', add_rest=True)
     c = Cog()
@@ -197,21 +197,21 @@ def _runcog(options, files, uncog=False):
     c.options.bDeleteCode = options.get("delete_code", False)
     includedir = options.get('includedir', None)
     if includedir:
-        include = Includer(includedir, cog=c, 
+        include = Includer(includedir, cog=c,
                            include_markers=options.get("include_markers"))
         # load cog's namespace with our convenience functions.
         c.options.defines['include'] = include
         c.options.defines['sh'] = _cogsh(c)
-    
+
     c.sBeginSpec = options.get('beginspec', '[[[cog')
     c.sEndSpec = options.get('endspec', ']]]')
     c.sEndOutput = options.get('endoutput', '[[[end]]]')
-    
+
     basedir = options.get('basedir', None)
     if basedir is None:
         basedir = path(options.get('docroot', "docs")) / options.get('sourcedir', "")
     basedir = path(basedir)
-        
+
     if not files:
         pattern = options.get("pattern", "*.rst")
         if pattern:
@@ -226,13 +226,13 @@ def _runcog(options, files, uncog=False):
 @consume_args
 def cog(options):
     """Run cog against all or a subset of the input source files.
-    
+
     Examples::
-    
+
       $ paver cog PyMOTW/atexit
       $ paver cog PyMOTW/atexit/index.rst
       $ paver cog
-    
+
     See help on paver.doctools.cog for details on the standard
     options.
     """
@@ -283,9 +283,9 @@ def tabcheck(options):
 @consume_args
 def update(options):
     """Run cog against the named module, then re-build the HTML.
-    
+
     Examples::
-    
+
       $ paver update atexit
     """
     options.order('update', 'sphinx', add_rest=True)
@@ -301,7 +301,7 @@ def update(options):
     cog(options)
     html(options)
     return
-    
+
 
 @task
 def text(options):
@@ -312,10 +312,10 @@ def text(options):
     return
 
 @task
-@needs(['generate_setup', 
-        'minilib', 
-        'cog',
-        'html_clean', 
+@needs(['generate_setup',
+        'minilib',
+#        'cog',
+#        'html_clean',
         #'text',
         'setuptools.command.sdist',
         ])
@@ -329,7 +329,7 @@ def sdist(options):
         dest_file = dest_dir / f.basename()
         dest_file.unlink()
         f.move(dest_dir)
-    
+
     sh('growlnotify -m "package built"')
     return
 
@@ -434,7 +434,7 @@ def webhtml(options):
     #sh('rsync --archive --verbose "%s" "%s"' % (options.website.css_source, options.website.css_dest))
     #sh('rsync --archive --verbose "%s" "%s"' % (options.website.images_source, options.website.images_dest))
     return
-            
+
 
 def get_post_title(filename):
     f = open(filename, 'rt')
@@ -465,7 +465,7 @@ def gen_blog_post(outdir, input_base, blog_base, url_base):
     outdir = path(outdir)
     input_file = outdir / input_base
     blog_file = outdir/ blog_base
-    
+
     canonical_url = "http://www.doughellmann.com/" + url_base
     if not canonical_url.endswith('/'):
         canonical_url += '/'
@@ -495,7 +495,7 @@ def gen_blog_post(outdir, input_base, blog_base, url_base):
 
     home_page_reference = '''<p><a class="reference external" href="http://www.doughellmann.com/PyMOTW/">PyMOTW Home</a></p>'''
     canonical_reference = '''<p>The <a class="reference external" href="%(canonical_url)s">canonical version</a> of this article</p>''' % locals()
-    
+
     blog_file.write_text(output_body)
     return
 
@@ -508,49 +508,49 @@ def gen_blog_post(outdir, input_base, blog_base, url_base):
 ])
 def blog(options):
     """Generate the blog post version of the HTML for the current module.
-    
-    The default behavior generates the post for the current module using 
+
+    The default behavior generates the post for the current module using
     its index.html file as input.
-    
-    To use a different file within the module directory, use the 
+
+    To use a different file within the module directory, use the
     --in-file or -b option::
-    
+
       paver blog -b communication.html
-      
-    To run against a directory other than a module, use the 
+
+    To run against a directory other than a module, use the
     -s or --sourcedir option::
-    
+
       paver blog -s PyMOTW/articles -b text_processing.html
-    """    
+    """
     # Clean and recreate output directory
     remake_directories(options.blog.outdir)
-    
+
     # Generate html from sphinx
     if paverutils is None:
         raise RuntimeError('Could not find sphinxcontrib.paverutils, will not be able to build HTML output.')
     paverutils.run_sphinx(options, 'blog')
-    
+
     blog_file = path(options.blog.outdir) / options.blog.out_file
-    dry("Write blog post body to %s" % blog_file, 
-        gen_blog_post, 
-        outdir=options.blog.outdir, 
-        input_base=options.blog.in_file, 
+    dry("Write blog post body to %s" % blog_file,
+        gen_blog_post,
+        outdir=options.blog.outdir,
+        input_base=options.blog.in_file,
         blog_base=options.blog.out_file,
         url_base=options.blog.sourcedir,
         )
 
     title = get_post_title(path(options.blog.outdir) / options.blog.in_file)
-    
+
     if not options.no_edit:
         if os.path.exists('bin/SendToMarsEdit.applescript'):
-            sh('osascript bin/SendToMarsEdit.applescript "%s" "%s"' % 
+            sh('osascript bin/SendToMarsEdit.applescript "%s" "%s"' %
                 (blog_file, "PyMOTW: %s" % title)
                 )
 
         elif 'EDITOR' in os.environ:
             sh('$EDITOR %s' % blog_file)
     return
-    
+
 
 @task
 @needs(['uncog'])
