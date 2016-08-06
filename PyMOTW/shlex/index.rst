@@ -398,7 +398,7 @@ Here are a few examples of the differences in parsing behavior:
 
 .. seealso::
 
-    `shlex <http://docs.python.org/lib/module-shlex.html>`_
+    `shlex <https://docs.python.org/2/library/shlex.html>`_
         Standard library documentation for this module.
 
     :mod:`cmd`

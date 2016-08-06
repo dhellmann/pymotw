@@ -185,7 +185,7 @@ to the proxy.
 
 .. seealso::
 
-    `smtpd <http://docs.python.org/lib/module-smtpd.html>`_
+    `smtpd <https://docs.python.org/2/library/smtpd.html>`_
         Standard library documentation for this module.
 
     :mod:`smtplib`

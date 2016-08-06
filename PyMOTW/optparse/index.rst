@@ -804,7 +804,7 @@ When the user runs the program with the ``--version`` option,
 
 .. seealso::
 
-    `optparse <http://docs.python.org/lib/module-optparse.html>`_
+    `optparse <https://docs.python.org/2/library/optparse.html>`_
         Standard library documentation for this module.
 
     :mod:`getopt`

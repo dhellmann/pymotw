@@ -171,7 +171,7 @@ As the last 2 lines of output here show, the address ``dhellmann`` is valid but 
 
 .. seealso::
 
-    `smtplib <http://docs.python.org/lib/module-smtplib.html>`_
+    `smtplib <https://docs.python.org/2/library/smtplib.html>`_
         Standard library documentation for this module.
 
     :rfc:`821`

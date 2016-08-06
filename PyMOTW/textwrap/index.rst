@@ -202,7 +202,7 @@ conversion.
 
 .. seealso::
 
-    `textwrap <http://docs.python.org/lib/module-textwrap.html>`_
+    `textwrap <https://docs.python.org/2/library/textwrap.html>`_
         Standard library documentation for this module.
 
     :ref:`article-text-processing`

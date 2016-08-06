@@ -651,7 +651,7 @@ value from the :class:`Popen` instance.
 
 .. seealso::
 
-    `subprocess <http://docs.python.org/lib/module-subprocess.html>`_
+    `subprocess <https://docs.python.org/2/library/subprocess.html>`_
         Standard library documentation for this module.
 
     :mod:`os`

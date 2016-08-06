@@ -243,5 +243,5 @@ Windows::
 
 .. seealso::
 
-    `platform <http://docs.python.org/lib/module-platform.html>`_
+    `platform <https://docs.python.org/2/library/platform.html>`_
         Standard library documentation for this module.

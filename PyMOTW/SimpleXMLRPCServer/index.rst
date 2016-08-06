@@ -351,7 +351,7 @@ Notice that the system methods are included in the results.
 
 .. seealso::
 
-    `SimpleXMLRPCServer <http://docs.python.org/lib/module-SimpleXMLRPCServer.html>`_
+    `SimpleXMLRPCServer <https://docs.python.org/2/library/simplexmlrpcserver.html>`_
         Standard library documentation for this module.
 
     `XML-RPC How To <http://www.tldp.org/HOWTO/XML-RPC-HOWTO/index.html>`_

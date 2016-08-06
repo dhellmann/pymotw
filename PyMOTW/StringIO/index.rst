@@ -68,7 +68,7 @@ collect the output in memory to compare against expected results.
 
 .. seealso::
 
-    `StringIO <http://docs.python.org/lib/module-StringIO.html>`_
+    `StringIO <https://docs.python.org/2/library/stringio.html>`_
         Standard library documentation for this module.
 
     `The StringIO module ::: www.effbot.org <http://effbot.org/librarybook/stringio.htm>`_

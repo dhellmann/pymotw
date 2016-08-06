@@ -356,7 +356,7 @@ defined, but they do provide some idea of what is supported.
 
 .. seealso::
 
-    `operator <http://docs.python.org/lib/module-operator.html>`_
+    `operator <https://docs.python.org/2/library/operator.html>`_
         Standard library documentation for this module.
 
     :mod:`functools`

@@ -303,7 +303,7 @@ destination and then the source is removed.
 
 .. seealso::
 
-    `shutil <http://docs.python.org/lib/module-shutil.html>`_
+    `shutil <https://docs.python.org/2/library/shutil.html>`_
         Standard library documentation for this module.
 
     :ref:`article-file-access`

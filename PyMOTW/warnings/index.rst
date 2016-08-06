@@ -360,7 +360,7 @@ levels, one for itself and one for :func:`old_function()`.
 
 .. seealso::
 
-    `warnings <http://docs.python.org/lib/module-warnings.html>`_
+    `warnings <https://docs.python.org/2/library/warnings.html>`_
         Standard library documentation for this module.
 
     :pep:`230`

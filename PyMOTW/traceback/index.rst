@@ -247,7 +247,7 @@ extract_stack()
 
 .. seealso::
 
-    `traceback <http://docs.python.org/lib/module-traceback.html>`_
+    `traceback <https://docs.python.org/2/library/traceback.html>`_
         Standard library documentation for this module.
 
     :mod:`sys`

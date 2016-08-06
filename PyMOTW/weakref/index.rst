@@ -348,7 +348,7 @@ The library documentation for weakref contains this warning:
 
 .. seealso::
 
-    `weakref <http://docs.python.org/lib/module-weakref.html>`_
+    `weakref <https://docs.python.org/2/library/weakref.html>`_
         Standard library documentation for this module.
 
     :mod:`gc`

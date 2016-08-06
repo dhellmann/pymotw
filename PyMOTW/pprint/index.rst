@@ -263,5 +263,5 @@ invalid syntax.
 
 .. seealso::
 
-    `pprint <http://docs.python.org/lib/module-pprint.html>`_
+    `pprint <https://docs.python.org/2/library/pprint.html>`_
         Standard library documentation for this module.

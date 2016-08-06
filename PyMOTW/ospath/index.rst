@@ -393,7 +393,7 @@ directory listing, ignoring ``.svn`` directories.
 
 .. seealso::
 
-    `os.path <http://docs.python.org/lib/module-os.path.html>`_
+    `os.path <https://docs.python.org/2/library/os.path.html>`_
         Standard library documentation for this module.
 
     :mod:`os`

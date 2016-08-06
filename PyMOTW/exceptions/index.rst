@@ -194,7 +194,7 @@ Raised by floating point operations that result in errors, when
 floating point exception control (fpectl) is turned on.  Enabling
 :mod:`fpectl` requires an interpreter compiled with the
 ``--with-fpectl`` flag.  Using :mod:`fpectl` is `discouraged in the
-stdlib docs <http://docs.python.org/lib/module-fpectl.html>`_.
+stdlib docs <https://docs.python.org/2/library/fpectl.html>`_.
 
 .. include:: exceptions_FloatingPointError.py
     :literal:

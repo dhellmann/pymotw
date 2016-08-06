@@ -707,7 +707,7 @@ value), once in each thread.
 
 .. seealso::
     
-    `threading <http://docs.python.org/lib/module-threading.html>`_
+    `threading <https://docs.python.org/2/library/threading.html>`_
         Standard library documentation for this module.
 
     :mod:`thread`

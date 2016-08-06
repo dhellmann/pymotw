@@ -235,7 +235,7 @@ Notice that the alarm does not abort the :func:`sleep()` call in
 
 .. seealso::
 
-    `signal <http://docs.python.org/lib/module-signal.html>`_
+    `signal <https://docs.python.org/2/library/signal.html>`_
         Standard library documentation for this module.
 
     :ref:`creating-processes-with-os-fork`

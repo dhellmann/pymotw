@@ -141,7 +141,7 @@ subclass :class:`Shelf` for a custom solution.
 
 .. seealso::
 
-    `shelve <http://docs.python.org/lib/module-shelve.html>`_
+    `shelve <https://docs.python.org/2/library/shelve.html>`_
         Standard library documentation for this module.
 
     :mod:`anydbm`

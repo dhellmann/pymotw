@@ -409,7 +409,7 @@ they are spread over multiple files and directories.
 
 .. seealso::
 
-    `unittest <http://docs.python.org/lib/module-unittest.html>`_
+    `unittest <https://docs.python.org/2/library/unittest.html>`_
         Standard library documentation for this module.
 
     :mod:`doctest`

@@ -368,7 +368,7 @@ Then to run the test:
 
 .. seealso::
 
-    `timeit <http://docs.python.org/lib/module-timeit.html>`_
+    `timeit <https://docs.python.org/2/library/timeit.html>`_
         Standard library documentation for this module.
 
     :mod:`profile`

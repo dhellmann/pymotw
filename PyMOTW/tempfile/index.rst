@@ -275,7 +275,7 @@ directly.
 
 .. seealso::
 
-    `tempfile <http://docs.python.org/lib/module-tempfile.html>`_
+    `tempfile <https://docs.python.org/2/library/tempfile.html>`_
         Standard library documentation for this module.
 
     :ref:`article-file-access`

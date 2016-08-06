@@ -305,7 +305,7 @@ after being passed through pickle.
 
 .. seealso::
 
-    `pickle <http://docs.python.org/lib/module-pickle.html>`_
+    `pickle <https://docs.python.org/2/library/pickle.html>`_
         Standard library documentation for this module.
 
     :mod:`shelve`

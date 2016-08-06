@@ -168,7 +168,7 @@ time.
 
 .. seealso::
 
-    `sched <http://docs.python.org/lib/module-sched.html>`_
+    `sched <https://docs.python.org/2/library/sched.html>`_
         Standard library documentation for this module.
 
     :mod:`time`

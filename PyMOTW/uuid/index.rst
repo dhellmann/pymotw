@@ -270,7 +270,7 @@ compare them, sort them, etc.
 
 .. seealso::
 
-    `uuid <http://docs.python.org/lib/module-uuid.html>`_
+    `uuid <https://docs.python.org/2/library/uuid.html>`_
         Standard library documentation for this module.
 
     :rfc:`4122`

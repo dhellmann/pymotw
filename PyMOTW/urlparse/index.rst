@@ -238,7 +238,7 @@ into account when the second URL is computed.
 
 .. seealso::
 
-    `urlparse <http://docs.python.org/lib/module-urlparse.html>`_
+    `urlparse <https://docs.python.org/2/library/urlparse.html>`_
         Standard library documentation for this module.
 
     :mod:`urllib`

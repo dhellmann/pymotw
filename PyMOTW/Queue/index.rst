@@ -200,7 +200,7 @@ subscriptions in the guest account on http://www.CastSampler.com.
 
 .. seealso::
 
-    `Queue <http://docs.python.org/lib/module-Queue.html>`_
+    `Queue <https://docs.python.org/2/library/Queue.html>`_
         Standard library documentation for this module.
 
     :ref:`deque` from :mod:`collections`

@@ -361,7 +361,7 @@ the iterator and no more results are available.
 
 .. seealso::
 
-    `xmlrpclib <http://docs.python.org/lib/module-xmlrpclib.html>`_
+    `xmlrpclib <https://docs.python.org/2/library/xmlrpclib.html>`_
         Standard library documentation for this module.
 
     :mod:`SimpleXMLRPCServer`

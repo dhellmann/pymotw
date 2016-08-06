@@ -238,7 +238,7 @@ from the server:
 
 .. seealso::
 
-    `SocketServer <http://docs.python.org/lib/module-SocketServer.html>`_
+    `SocketServer <https://docs.python.org/2/library/socketserver.html>`_
         Standard library documentation for this module.
 
     :mod:`asyncore`

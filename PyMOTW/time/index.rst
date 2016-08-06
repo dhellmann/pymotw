@@ -230,7 +230,7 @@ timezone offset value.
 
 .. seealso::
 
-    `time <http://docs.python.org/lib/module-time.html>`_
+    `time <https://docs.python.org/2/library/time.html>`_
         Standard library documentation for this module.
 
     :mod:`datetime`

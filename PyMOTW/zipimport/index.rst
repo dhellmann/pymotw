@@ -329,7 +329,7 @@ The ``__loader__`` is not set for modules not imported via
 
 .. seealso::
 
-    `zipimport <http://docs.python.org/lib/module-zipimport.html>`_
+    `zipimport <https://docs.python.org/2/library/zipimport.html>`_
         Standard library documentation for this module.
 
     :mod:`imp`

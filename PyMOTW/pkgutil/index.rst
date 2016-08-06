@@ -454,7 +454,7 @@ using :mod:`pkgutil` to load the template and print it.
 
 .. seealso::
 
-    `pkgutil <http://docs.python.org/lib/module-pkgutil.html>`_
+    `pkgutil <https://docs.python.org/2/library/pkgutil.html>`_
         Standard library documentation for this module.
 
     `virtualenv`_

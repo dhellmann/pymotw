@@ -1003,7 +1003,7 @@ the current process.
 
 .. seealso::
 
-    `os <http://docs.python.org/lib/module-os.html>`_
+    `os <https://docs.python.org/2/library/os.html>`_
         Standard library documentation for this module.
 
     :mod:`subprocess`

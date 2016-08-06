@@ -338,7 +338,7 @@ Python 2.1.
 
 .. seealso::
 
-    `urllib <http://docs.python.org/lib/module-urllib.html>`_
+    `urllib <https://docs.python.org/2/library/urllib.html>`_
         Standard library documentation for this module.
 
     :mod:`urllib2`

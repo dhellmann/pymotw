@@ -13,7 +13,7 @@ mhlib -- Work with MH mailboxes
 
 .. seealso::
 
-    `mhlib <http://docs.python.org/lib/module-mhlib.html>`_
+    `mhlib <https://docs.python.org/2/library/mhlib.html>`_
         Standard library documentation for this module.
 
     :mod:`email`

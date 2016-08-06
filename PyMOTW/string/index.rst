@@ -292,7 +292,7 @@ the manual.
 
 .. seealso::
 
-    `string <http://docs.python.org/lib/module-string.html>`_
+    `string <https://docs.python.org/2/library/string.html>`_
         Standard library documentation for this module.
 
     :pep:`292`

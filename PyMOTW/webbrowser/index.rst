@@ -96,5 +96,5 @@ the command line as well as from within your Python program.
 
 .. seealso::
 
-    `webbrowser <http://docs.python.org/lib/module-webbrowser.html>`_
+    `webbrowser <https://docs.python.org/2/library/webbrowser.html>`_
         Standard library documentation for this module.

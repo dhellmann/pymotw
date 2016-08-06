@@ -180,7 +180,7 @@ spaces so the result prints on a single line.
 
 .. seealso::
 
-    `mmap <http://docs.python.org/lib/module-mmap.html>`_
+    `mmap <https://docs.python.org/2/library/mmap.html>`_
         Standard library documentation for this module.
 
     :mod:`os`

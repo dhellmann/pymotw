@@ -391,7 +391,7 @@ details.
 
 .. seealso::
 
-    `datetime <http://docs.python.org/lib/module-datetime.html>`_
+    `datetime <https://docs.python.org/2/library/datetime.html>`_
         The standard library documentation for this module.
 
     :mod:`calendar`

@@ -31,7 +31,7 @@ Your results will vary, depending on what modules are available in your PYTHONPA
 
 .. seealso::
 
-    `whichdb <http://docs.python.org/lib/module-whichdb.html>`_
+    `whichdb <https://docs.python.org/2/library/whichdb.html>`_
         Standard library documentation for this module.
 
     :mod:`anydbm`

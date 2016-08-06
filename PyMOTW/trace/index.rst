@@ -437,7 +437,7 @@ to control runtime behavior.
 
 .. seealso::
 
-    `trace <http://docs.python.org/lib/module-trace.html>`_
+    `trace <https://docs.python.org/2/library/trace.html>`_
         Standard library documentation for this module.
 
     :ref:`sys-tracing`
