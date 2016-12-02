@@ -400,7 +400,7 @@ your application (:func:`resetlocale`).
 
 .. seealso::
 
-    `locale <http://docs.python.org/library/locale.html>`_
+    `locale <http://docs.python.org/2.7/library/locale.html>`_
         The standard library documentation for this module.
 
     :mod:`gettext`

@@ -984,7 +984,7 @@ The complimentary error function is ``1 - erf(x)``.
 
 .. seealso::
 
-    `math <http://docs.python.org/library/math.html>`_
+    `math <http://docs.python.org/2.7/library/math.html>`_
         The standard library documentation for this module.
 
     `IEEE floating point arithmetic in Python <http://www.johndcook.com/blog/2009/07/21/ieee-arithmetic-python/>`__

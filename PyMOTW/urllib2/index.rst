@@ -355,7 +355,7 @@ directory where it should look for all of its files.
 
 .. seealso::
 
-    `urllib2 <http://docs.python.org/library/urllib2.html>`_
+    `urllib2 <http://docs.python.org/2.7/library/urllib2.html>`_
         The standard library documentation for this module.
 
     :mod:`urllib`

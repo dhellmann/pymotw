@@ -1175,7 +1175,7 @@ always ``None``.
 
 .. seealso::
 
-    `argparse <http://docs.python.org/library/argparse.html>`_
+    `argparse <http://docs.python.org/2.7/library/argparse.html>`_
         The standard library documentation for this module.
 
     `original argparse <http://pypi.python.org/pypi/argparse>`__

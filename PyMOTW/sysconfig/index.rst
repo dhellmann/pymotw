@@ -331,7 +331,7 @@ building a version-specific path.
 
 .. seealso::
 
-    `sysconfig <http://docs.python.org/library/sysconfig.html>`_
+    `sysconfig <http://docs.python.org/2.7/library/sysconfig.html>`_
         The standard library documentation for this module.
 
     :mod:`distutils`

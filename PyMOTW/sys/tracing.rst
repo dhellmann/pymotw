@@ -179,7 +179,7 @@ whether the caller catches and ignores it or not.
     :mod:`trace`
         The trace module implements several code analysis features.
 
-    `Types and Members <http://docs.python.org/library/inspect.html#types-and-members>`_
+    `Types and Members <http://docs.python.org/2.7/library/inspect.html#types-and-members>`_
         The descriptions of frame and code objects and their attributes.
 
     `Tracing python code <http://www.dalkescientific.com/writings/diary/archive/2005/04/20/tracing_python_code.html>`_

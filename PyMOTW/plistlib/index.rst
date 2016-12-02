@@ -173,7 +173,7 @@ The ``data`` attribute of the object contains the decoded data.
 
 .. seealso::
 
-    `plistlib <http://docs.python.org/library/plistlib.html>`_
+    `plistlib <http://docs.python.org/2.7/library/plistlib.html>`_
         The standard library documentation for this module.
 
     `plist manual page <http://developer.apple.com/documentation/Darwin/Reference/ManPages/man5/plist.5.html>`_

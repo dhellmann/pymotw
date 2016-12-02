@@ -177,7 +177,7 @@ range value could be written ``[0123456789]``.
 
 .. seealso::
 
-    `glob <http://docs.python.org/library/glob.html>`_
+    `glob <http://docs.python.org/2.7/library/glob.html>`_
         The standard library documentation for this module.
 
     `Pattern Matching Notation <http://www.opengroup.org/onlinepubs/000095399/utilities/xcu_chap02.html#tag_02_13>`_

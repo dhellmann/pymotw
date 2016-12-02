@@ -403,7 +403,7 @@ caller does not even need to know that the data file is compressed.
 
 .. seealso::
 
-    `bz2 <http://docs.python.org/library/bz2.html>`_
+    `bz2 <http://docs.python.org/2.7/library/bz2.html>`_
         The standard library documentation for this module.
 
     `bzip2.org <http://www.bzip.org/>`_

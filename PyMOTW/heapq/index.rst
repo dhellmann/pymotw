@@ -308,7 +308,7 @@ cases.
 
 .. seealso::
 
-    `heapq <http://docs.python.org/library/heapq.html>`_
+    `heapq <http://docs.python.org/2.7/library/heapq.html>`_
         The standard library documentation for this module.
 
     `WikiPedia: Heap (data structure) <http://en.wikipedia.org/wiki/Heap_(data_structure)>`_

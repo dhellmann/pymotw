@@ -307,7 +307,7 @@ buffered, and if the caller expects to be able to read all of the data
 from a stream then the child process must close that stream to
 indicate the end-of-file. For more information on these issues, refer
 to the `Flow Control Issues
-<http://docs.python.org/library/popen2.html#popen2-flow-control>`__
+<http://docs.python.org/2.7/library/popen2.html#popen2-flow-control>`__
 section of the Python library documentation.
 
 .. {{{cog

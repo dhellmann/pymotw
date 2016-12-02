@@ -28,7 +28,7 @@ modules or attributes of objects is activated.
 
 .. seealso::
 
-    `rlcompleter <http://docs.python.org/library/rlcompleter.html>`_
+    `rlcompleter <http://docs.python.org/2.7/library/rlcompleter.html>`_
         The standard library documentation for this module.
 
     :mod:`readline`

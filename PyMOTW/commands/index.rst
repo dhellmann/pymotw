@@ -122,7 +122,7 @@ call is escaped so the environment variable name is not expanded.
 
 .. seealso::
 
-    `commands <http://docs.python.org/library/commands.html>`_
+    `commands <http://docs.python.org/2.7/library/commands.html>`_
         The standard library documentation for this module.
 
     :mod:`signal`

@@ -227,7 +227,7 @@ closed.
 
 .. seealso::
 
-    `fileinput <http://docs.python.org/library/fileinput.html>`_
+    `fileinput <http://docs.python.org/2.7/library/fileinput.html>`_
         The standard library documentation for this module.
 
     `Patrick Bryant <http://events.mediumloud.com/>`_

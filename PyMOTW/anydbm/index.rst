@@ -153,7 +153,7 @@ is not a string.
     Module :mod:`shelve`
         Examples for the :mod:`shelve` module, which uses :mod:`anydbm` to store data.
 
-    `anydbm <http://docs.python.org/library/anydbm.html>`_
+    `anydbm <http://docs.python.org/2.7/library/anydbm.html>`_
         The standard library documentation for this module.
 
     :ref:`article-data-persistence`

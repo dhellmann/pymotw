@@ -219,7 +219,7 @@ data is being transmitted over a socket or from read an existing
 
 .. seealso::
 
-    `gzip <http://docs.python.org/library/gzip.html>`_
+    `gzip <http://docs.python.org/2.7/library/gzip.html>`_
         The standard library documentation for this module.
 
     :mod:`zlib`

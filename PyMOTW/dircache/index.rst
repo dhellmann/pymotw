@@ -137,6 +137,6 @@ Unfortunately for Windows users, although :func:`annotate` uses
 
 .. seealso::
 
-    `dircache <http://docs.python.org/library/dircache.html>`_
+    `dircache <http://docs.python.org/2.7/library/dircache.html>`_
         The standard library documentation for this module.
 

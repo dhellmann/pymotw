@@ -27,5 +27,5 @@ program.
 
 .. seealso::
 
-    `sys <http://docs.python.org/library/sys.html>`_
+    `sys <http://docs.python.org/2.7/library/sys.html>`_
         The standard library documentation for this module.

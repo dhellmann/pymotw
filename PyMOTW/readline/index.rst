@@ -368,7 +368,7 @@ If the buffer is modified inside the pre-input hook, you need to call
 
 .. seealso::
 
-    `readline <http://docs.python.org/library/readline.html>`_
+    `readline <http://docs.python.org/2.7/library/readline.html>`_
         The standard library documentation for this module.
 
     `GNU readline <http://tiswww.case.edu/php/chet/readline/readline.html>`_

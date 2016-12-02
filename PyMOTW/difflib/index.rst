@@ -355,7 +355,7 @@ built-in types, as long as they are hashable.
 
 .. seealso::
 
-    `difflib <http://docs.python.org/library/difflib.html>`_
+    `difflib <http://docs.python.org/2.7/library/difflib.html>`_
         The standard library documentation for this module.
 
     `Pattern Matching: The Gestalt Approach <http://www.ddj.com/documents/s=1103/ddj8807c/>`_

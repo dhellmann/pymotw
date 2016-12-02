@@ -601,7 +601,7 @@ call :meth:`close()`.
 
 .. seealso::
 
-    `imaplib <http://docs.python.org/library/imaplib.html>`_
+    `imaplib <http://docs.python.org/2.7/library/imaplib.html>`_
         The standard library documentation for this module.
 
     `What is IMAP? <http://www.imap.org/about/whatisIMAP.html>`_

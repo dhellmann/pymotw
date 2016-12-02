@@ -1087,7 +1087,7 @@ control.
 
 .. seealso::
 
-    `doctest <http://docs.python.org/library/doctest.html>`_
+    `doctest <http://docs.python.org/2.7/library/doctest.html>`_
         The standard library documentation for this module.
 
     `The Mighty Dictionary <http://blip.tv/file/3332763>`__

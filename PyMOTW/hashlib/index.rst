@@ -160,7 +160,7 @@ data is read or otherwise produced.
 
 .. seealso::
 
-    `hashlib <http://docs.python.org/library/hashlib.html>`_
+    `hashlib <http://docs.python.org/2.7/library/hashlib.html>`_
         The standard library documentation for this module.
 
     `Voidspace: IronPython and hashlib <http://www.voidspace.org.uk/python/weblog/arch_d7_2006_10_07.shtml#e497>`_

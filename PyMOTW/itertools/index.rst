@@ -565,7 +565,7 @@ in order for the groupings to work out as expected.
 
 .. seealso::
 
-    `itertools <http://docs.python.org/library/itertools.html>`_
+    `itertools <http://docs.python.org/2.7/library/itertools.html>`_
         The standard library documentation for this module.
 
     `The Standard ML Basis Library <http://www.standardml.org/Basis/>`_

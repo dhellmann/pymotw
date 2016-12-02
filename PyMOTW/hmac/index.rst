@@ -268,7 +268,7 @@ The output shows that the first object is verified and the second is deemed
 
 .. seealso::
 
-    `hmac <http://docs.python.org/library/hmac.html>`_
+    `hmac <http://docs.python.org/2.7/library/hmac.html>`_
         The standard library documentation for this module.
     
     :rfc:`2104`

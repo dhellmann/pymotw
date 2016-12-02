@@ -384,7 +384,7 @@ The "global" context is actually thread-local, so each thread can potentially be
 
 .. seealso::
 
-    `decimal <http://docs.python.org/library/decimal.html>`_
+    `decimal <http://docs.python.org/2.7/library/decimal.html>`_
         The standard library documentation for this module.
 
     `Wikipedia: Floating Point <http://en.wikipedia.org/wiki/Floating_point>`_

@@ -376,7 +376,7 @@ This example was tested under Python 2.5.2, so I am using ``os.open()`` to get a
 
 .. seealso::
 
-    `asyncore <http://docs.python.org/library/asyncore.html>`_
+    `asyncore <http://docs.python.org/2.7/library/asyncore.html>`_
         The standard library documentation for this module.
     
     :mod:`asynchat`

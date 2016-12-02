@@ -614,7 +614,7 @@ have been collected and deleted are retained.
 
 .. seealso::
 
-    `gc <http://docs.python.org/library/gc.html>`_
+    `gc <http://docs.python.org/2.7/library/gc.html>`_
         The standard library documentation for this module.
 
     :mod:`weakref`

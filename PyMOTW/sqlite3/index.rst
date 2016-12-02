@@ -1257,7 +1257,7 @@ Attempts to share a connection between threads result in an exception.
 
 .. seealso::
 
-    `sqlite3 <http://docs.python.org/library/sqlite3.html>`_
+    `sqlite3 <http://docs.python.org/2.7/library/sqlite3.html>`_
         The standard library documentation for this module.
 
     :pep:`249` -- DB API 2.0 Specificiation

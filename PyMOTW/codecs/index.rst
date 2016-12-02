@@ -1024,7 +1024,7 @@ inheritance for the implementation.
 
 .. seealso::
 
-    `codecs <http://docs.python.org/library/codecs.html>`_
+    `codecs <http://docs.python.org/2.7/library/codecs.html>`_
         The standard library documentation for this module.
 
     :mod:`locale`

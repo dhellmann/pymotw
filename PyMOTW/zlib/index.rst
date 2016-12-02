@@ -273,7 +273,7 @@ found it to be slower in my own tests.
 
 .. seealso::
 
-    `zlib <http://docs.python.org/library/zlib.html>`_
+    `zlib <http://docs.python.org/2.7/library/zlib.html>`_
         The standard library documentation for this module.
 
     :mod:`gzip`

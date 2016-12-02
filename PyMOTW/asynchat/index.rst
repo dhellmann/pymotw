@@ -180,7 +180,7 @@ easier to show the combined output.
 
 .. seealso::
 
-    `asynchat <http://docs.python.org/library/asynchat.html>`_
+    `asynchat <http://docs.python.org/2.7/library/asynchat.html>`_
         The standard library documentation for this module.
 
     :mod:`asyncore`

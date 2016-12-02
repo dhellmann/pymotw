@@ -754,7 +754,7 @@ traceback format changes to HTML output.
 
 .. seealso::
 
-    `cgitb <http://docs.python.org/library/cgitb.html>`_
+    `cgitb <http://docs.python.org/2.7/library/cgitb.html>`_
         The standard library documentation for this module.
 
     :mod:`traceback`

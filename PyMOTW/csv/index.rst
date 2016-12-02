@@ -458,7 +458,7 @@ knows how to order the columns in the output.
 
 .. seealso::
 
-    `csv <http://docs.python.org/library/csv.html>`_
+    `csv <http://docs.python.org/2.7/library/csv.html>`_
         The standard library documentation for this module.
 
     :pep:`305`

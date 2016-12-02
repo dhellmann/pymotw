@@ -12,7 +12,7 @@ The :mod:`dbhash` module is the primary backend for :mod:`anydbm`.  It uses the 
 
 .. seealso::
 
-    `dbhash <http://docs.python.org/library/dbhash.html>`_
+    `dbhash <http://docs.python.org/2.7/library/dbhash.html>`_
         The standard library documentation for this module.
 
     :mod:`anydbm`

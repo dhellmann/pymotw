@@ -283,13 +283,13 @@ block or not.
 
 .. seealso::
 
-    `contextlib <http://docs.python.org/library/contextlib.html>`_
+    `contextlib <http://docs.python.org/2.7/library/contextlib.html>`_
         The standard library documentation for this module.
 
     :pep:`343`
         The :command:`with` statement.
 
-    `Context Manager Types <http://docs.python.org/library/stdtypes.html#typecontextmanager>`__
+    `Context Manager Types <http://docs.python.org/2.7/library/stdtypes.html#typecontextmanager>`__
         Description of the context manager API from the standard library documentation.
 
     `With Statement Context Managers <http://docs.python.org/reference/datamodel.html#context-managers>`__

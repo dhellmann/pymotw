@@ -190,7 +190,7 @@ A useful feature of Fraction is the ability to convert a floating point number t
 
 .. seealso::
 
-    `fractions <http://docs.python.org/library/fractions.html>`_
+    `fractions <http://docs.python.org/2.7/library/fractions.html>`_
         The standard library documentation for this module.
 
     :mod:`decimal`

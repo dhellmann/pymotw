@@ -214,5 +214,5 @@ covered in depth in the library module documentation.
 
 .. seealso::
 
-    `logging <http://docs.python.org/library/logging.html>`_
+    `logging <http://docs.python.org/2.7/library/logging.html>`_
         The standard library documentation for this module.

@@ -67,7 +67,7 @@ can access the same information from the Python interpreter prompt.
 
 .. seealso::
 
-    `pydoc <http://docs.python.org/library/pydoc.html>`_
+    `pydoc <http://docs.python.org/2.7/library/pydoc.html>`_
         The standard library documentation for this module.
 
     :ref:`motw-cli`

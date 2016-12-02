@@ -270,7 +270,7 @@ like sys.argv.
 
 .. seealso::
 
-    `EasyDialogs <http://docs.python.org/library/easydialogs.html>`_
+    `EasyDialogs <http://docs.python.org/2.7/library/easydialogs.html>`_
         The standard library documentation for this module.
 
     `Navigation Services Reference`_

@@ -146,7 +146,7 @@ the module. The cache population code in :mod:`linecache` searches
     
 .. seealso::
 
-    `linecache <http://docs.python.org/library/linecache.html>`_
+    `linecache <http://docs.python.org/2.7/library/linecache.html>`_
         The standard library documentation for this module.
 
     http://www.ipsum.com/

@@ -131,7 +131,7 @@ Notice that some of the characters are escaped to make a valid expression.
 
 .. seealso::
 
-    `fnmatch <http://docs.python.org/library/fnmatch.html>`_
+    `fnmatch <http://docs.python.org/2.7/library/fnmatch.html>`_
         The standard library documentation for this module.
 
     :mod:`glob`

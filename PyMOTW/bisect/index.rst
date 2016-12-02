@@ -117,7 +117,7 @@ Python implementation automatically when you import the bisect module.
 
 .. seealso::
 
-    `bisect <http://docs.python.org/library/bisect.html>`_
+    `bisect <http://docs.python.org/2.7/library/bisect.html>`_
         The standard library documentation for this module.
 
     `WikiPedia: Insertion Sort <http://en.wikipedia.org/wiki/Insertion_sort>`_

@@ -174,7 +174,7 @@ module are simply replaced.
 
 .. seealso::
 
-    `imp <http://docs.python.org/library/imp.html>`_
+    `imp <http://docs.python.org/2.7/library/imp.html>`_
         The standard library documentation for this module.
         
     :ref:`sys-imports`

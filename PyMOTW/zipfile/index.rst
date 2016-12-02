@@ -408,7 +408,7 @@ file it finds.
 
 .. seealso::
 
-    `zipfile <http://docs.python.org/library/zipfile.html>`_
+    `zipfile <http://docs.python.org/2.7/library/zipfile.html>`_
         The standard library documentation for this module.
 
     :mod:`zlib`

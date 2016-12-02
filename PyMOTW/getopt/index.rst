@@ -325,7 +325,7 @@ processing the remaining arguments as options.
 
 .. seealso::
 
-    `getopt <http://docs.python.org/library/getopt.html>`_
+    `getopt <http://docs.python.org/2.7/library/getopt.html>`_
         The standard library documentation for this module.
 
     :mod:`optparse`

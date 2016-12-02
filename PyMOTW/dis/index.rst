@@ -563,10 +563,10 @@ the operator involved, the evaluation has to be delayed to runtime.
 
 .. seealso::
 
-    `dis <http://docs.python.org/library/dis.html>`_
+    `dis <http://docs.python.org/2.7/library/dis.html>`_
         The standard library documentation for this module, including
         the list of `bytecode instructions
-        <http://docs.python.org/library/dis.html#python-bytecode-instructions>`_.
+        <http://docs.python.org/2.7/library/dis.html#python-bytecode-instructions>`_.
 
     *Python Essential Reference*, 4th Edition, David M. Beazley
         http://www.informit.com/store/product.aspx?isbn=0672329786

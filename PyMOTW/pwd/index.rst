@@ -153,7 +153,7 @@ user currently running a process:
 
 .. seealso::
 
-    `pwd <http://docs.python.org/library/pwd.html>`_
+    `pwd <http://docs.python.org/2.7/library/pwd.html>`_
         The standard library documentation for this module.
 
     :mod:`spwd`

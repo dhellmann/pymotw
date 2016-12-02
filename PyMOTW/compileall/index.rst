@@ -194,5 +194,5 @@ would run:
 
 .. seealso::
 
-    `compileall <http://docs.python.org/library/compileall.html>`_
+    `compileall <http://docs.python.org/2.7/library/compileall.html>`_
         The standard library documentation for this module.

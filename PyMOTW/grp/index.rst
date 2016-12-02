@@ -205,7 +205,7 @@ the group returned by ``os.stat()``.
 
 .. seealso::
 
-    `grp <http://docs.python.org/library/grp.html>`_
+    `grp <http://docs.python.org/2.7/library/grp.html>`_
         The standard library documentation for this module.
 
     :mod:`pwd`

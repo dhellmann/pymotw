@@ -159,7 +159,7 @@ iterating over the elements from Python.
 
 .. seealso::
 
-    `array <http://docs.python.org/library/array.html>`_
+    `array <http://docs.python.org/2.7/library/array.html>`_
         The standard library documentation for this module.
 
     :mod:`struct`

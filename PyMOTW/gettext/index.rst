@@ -392,7 +392,7 @@ of translation functions by hand at the top of your module.
 
 .. seealso::
 
-    `gettext <http://docs.python.org/library/gettext.html>`_
+    `gettext <http://docs.python.org/2.7/library/gettext.html>`_
         The standard library documentation for this module.
 
     :mod:`locale`

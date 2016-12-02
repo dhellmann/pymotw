@@ -423,7 +423,7 @@ before the automatic import was added, the interpreter accepts an
 
 .. seealso::
 
-    `site <http://docs.python.org/library/site.html>`_
+    `site <http://docs.python.org/2.7/library/site.html>`_
         The standard library documentation for this module.
 
     :ref:`sys-imports`

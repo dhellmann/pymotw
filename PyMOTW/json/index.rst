@@ -465,7 +465,7 @@ of the input.
 
 .. seealso::
 
-    `json <http://docs.python.org/library/json.html>`_
+    `json <http://docs.python.org/2.7/library/json.html>`_
         The standard library documentation for this module.
 
     `JavaScript Object Notation`_

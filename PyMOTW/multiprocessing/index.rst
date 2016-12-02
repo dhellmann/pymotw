@@ -26,7 +26,7 @@ covered later.
 
 .. seealso::
 
-    `multiprocessing <http://docs.python.org/library/multiprocessing.html>`_
+    `multiprocessing <http://docs.python.org/2.7/library/multiprocessing.html>`_
         The standard library documentation for this module.
 
     :mod:`threading`

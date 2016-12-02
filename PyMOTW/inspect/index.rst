@@ -639,7 +639,7 @@ documentation for :func:`trace()`, :func:`getouterframes()`, and
 
 .. seealso::
 
-    `inspect <http://docs.python.org/library/inspect.html>`_
+    `inspect <http://docs.python.org/2.7/library/inspect.html>`_
         The standard library documentation for this module.
 
     `CommandLineApp`_

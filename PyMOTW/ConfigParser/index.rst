@@ -628,7 +628,7 @@ constructed.
 
 .. seealso::
 
-    `ConfigParser <http://docs.python.org/library/configparser.html>`_
+    `ConfigParser <http://docs.python.org/2.7/library/configparser.html>`_
         The standard library documentation for this module.
 
     :mod:`codecs`

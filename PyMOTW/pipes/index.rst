@@ -341,7 +341,7 @@ pipelines that perform the same basic function with small variations.
 
 .. seealso::
 
-    `pipes <http://docs.python.org/library/pipes.html>`_
+    `pipes <http://docs.python.org/2.7/library/pipes.html>`_
         The standard library documentation for this module.
 
     :mod:`tempfile`

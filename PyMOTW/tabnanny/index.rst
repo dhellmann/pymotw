@@ -97,7 +97,7 @@ And in action:
 
 .. seealso::
 
-    `tabnanny <http://docs.python.org/library/tabnanny.html>`_
+    `tabnanny <http://docs.python.org/2.7/library/tabnanny.html>`_
         The standard library documentation for this module.
 
     :mod:`tokenize`

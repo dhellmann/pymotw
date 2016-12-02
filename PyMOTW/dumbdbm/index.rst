@@ -14,7 +14,7 @@ It follows the semantics of the :mod:`anydbm` module.
 
 .. seealso::
 
-    `dumbdbm <http://docs.python.org/library/dumbdbm.html>`_
+    `dumbdbm <http://docs.python.org/2.7/library/dumbdbm.html>`_
         The standard library documentation for this module.
 
     :mod:`anydbm`

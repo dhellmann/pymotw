@@ -31,7 +31,7 @@ Structs support *packing* data into strings, and *unpacking* data from
 strings using format specifiers made up of characters representing the
 type of the data and optional count and endian-ness indicators.  For
 complete details, refer to `the standard library documentation
-<http://docs.python.org/library/struct.html>`__.
+<http://docs.python.org/2.7/library/struct.html>`__.
 
 In this example, the format specifier calls for an integer or long
 value, a two character string, and a floating point number.  The
@@ -171,7 +171,7 @@ buffer needs to be.
 
 .. seealso::
 
-    `struct <http://docs.python.org/library/struct.html>`_
+    `struct <http://docs.python.org/2.7/library/struct.html>`_
         The standard library documentation for this module.
 
     :mod:`array`

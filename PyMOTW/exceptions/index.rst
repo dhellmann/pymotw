@@ -827,7 +827,7 @@ UnicodeWarning
 
 .. seealso::
 
-    `exceptions <http://docs.python.org/library/exceptions.html>`_
+    `exceptions <http://docs.python.org/2.7/library/exceptions.html>`_
         The standard library documentation for this module.
 
     :mod:`warnings`

@@ -102,7 +102,7 @@ A "nicer" version of the long-lived application might request the modification t
 
 .. seealso::
 
-    `robotparser <http://docs.python.org/library/robotparser.html>`_
+    `robotparser <http://docs.python.org/2.7/library/robotparser.html>`_
         The standard library documentation for this module.
 
     `The Web Robots Page`_

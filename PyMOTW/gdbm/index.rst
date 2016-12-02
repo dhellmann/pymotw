@@ -19,7 +19,7 @@ Besides the standard ``'r'``, ``'w'``, ``'c'``, and ``'n'`` flags, ``gdbm.open()
 
 .. seealso::
 
-    `gdbm <http://docs.python.org/library/gdbm.html>`_
+    `gdbm <http://docs.python.org/2.7/library/gdbm.html>`_
         The standard library documentation for this module.
 
     :mod:`dbm`

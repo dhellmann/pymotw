@@ -1919,7 +1919,7 @@ newlines separating them.
 
 .. seealso::
 
-    `re <http://docs.python.org/library/re.html>`_
+    `re <http://docs.python.org/2.7/library/re.html>`_
         The standard library documentation for this module.
 
     `Regular Expression HOWTO <http://docs.python.org/howto/regex.html>`__

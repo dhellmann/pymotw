@@ -343,7 +343,7 @@ attribute subdirs to allow easy recursive comparison.
 
 .. seealso::
 
-    `filecmp <http://docs.python.org/library/filecmp.html>`_
+    `filecmp <http://docs.python.org/2.7/library/filecmp.html>`_
         The standard library documentation for this module.
 
     :ref:`os-directories` from :mod:`os`

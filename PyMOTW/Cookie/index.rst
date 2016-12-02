@@ -234,7 +234,7 @@ session key instead.
 
 .. seealso::
 
-    `Cookie <http://docs.python.org/library/cookie.html>`_
+    `Cookie <http://docs.python.org/2.7/library/cookie.html>`_
         The standard library documentation for this module.
 
     :mod:`cookielib`

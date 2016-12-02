@@ -373,7 +373,7 @@ the folder-related methods found in the Maildir class.
 
 .. seealso::
 
-    `mailbox <http://docs.python.org/library/mailbox.html>`_
+    `mailbox <http://docs.python.org/2.7/library/mailbox.html>`_
         The standard library documentation for this module.
 
     mbox manpage from qmail

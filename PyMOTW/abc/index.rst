@@ -315,7 +315,7 @@ more details.
 
 .. seealso::
 
-    `abc <http://docs.python.org/library/abc.html>`_
+    `abc <http://docs.python.org/2.7/library/abc.html>`_
         The standard library documentation for this module.
 
     :pep:`3119`
@@ -324,7 +324,7 @@ more details.
     :mod:`collections`
         The collections module includes abstract base classes for several collection types.
 
-    `collections <http://docs.python.org/library/collections.html>`_
+    `collections <http://docs.python.org/2.7/library/collections.html>`_
         The standard library documentation for collections.
 
     :pep:`3141`

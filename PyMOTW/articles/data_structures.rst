@@ -4,7 +4,7 @@
 In-Memory Data Structures
 #########################
 
-Python includes several standard programming data structures as `built-in types <http://docs.python.org/library/stdtypes.html>`_ (list, tuple, dictionary, and set).  Most applications won't need any other structures, but when they do the standard library delivers.
+Python includes several standard programming data structures as `built-in types <http://docs.python.org/2.7/library/stdtypes.html>`_ (list, tuple, dictionary, and set).  Most applications won't need any other structures, but when they do the standard library delivers.
 
 array
 =====

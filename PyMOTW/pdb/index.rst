@@ -1556,7 +1556,7 @@ are consistent across several runs.
 
 .. seealso::
 
-    `pdb <http://docs.python.org/library/pdb.html>`_
+    `pdb <http://docs.python.org/2.7/library/pdb.html>`_
         The standard library documentation for this module.
 
     :mod:`readline`

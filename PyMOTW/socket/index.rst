@@ -27,7 +27,7 @@ to an address and formatting data to be sent across the network.
 
 .. seealso::
 
-    `socket <http://docs.python.org/library/socket.html>`_
+    `socket <http://docs.python.org/2.7/library/socket.html>`_
         The standard library documentation for this module.
 
     `Socket Programming HOWOTO <http://docs.python.org/howto/sockets.html>`__

@@ -90,7 +90,7 @@ Each ``Function`` object has properties much like the ``Class`` object.
 
 .. seealso::
 
-    `pyclbr <http://docs.python.org/library/pyclbr.html>`_
+    `pyclbr <http://docs.python.org/2.7/library/pyclbr.html>`_
         The standard library documentation for this module.
 
     :mod:`inspect`

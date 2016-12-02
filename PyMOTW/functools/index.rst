@@ -371,7 +371,7 @@ by comparing the keys.
 
 .. seealso::
 
-    `functools <http://docs.python.org/library/functools.html>`_
+    `functools <http://docs.python.org/2.7/library/functools.html>`_
         The standard library documentation for this module.
     
     `Rich comparison methods <http://docs.python.org/reference/datamodel.html#object.__lt__>`__

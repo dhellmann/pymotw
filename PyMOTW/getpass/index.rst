@@ -114,7 +114,7 @@ Without a tty:
 
 .. seealso::
 
-    `getpass <http://docs.python.org/library/getpass.html>`_
+    `getpass <http://docs.python.org/2.7/library/getpass.html>`_
         The standard library documentation for this module.
 
     :mod:`readline`

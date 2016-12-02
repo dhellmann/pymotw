@@ -143,7 +143,7 @@ The base 16 functions work with the hexadecimal alphabet.
 
 .. seealso::
 
-    `base64 <http://docs.python.org/library/base64.html>`_
+    `base64 <http://docs.python.org/2.7/library/base64.html>`_
         The standard library documentation for this module.
 
     :rfc:`3548`

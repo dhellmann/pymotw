@@ -424,7 +424,7 @@ to the program need to be joined together before being passed in.
 
 .. seealso::
 
-    `cmd <http://docs.python.org/library/cmd.html>`_
+    `cmd <http://docs.python.org/2.7/library/cmd.html>`_
         The standard library documentation for this module.
 
     `cmd2 <http://pypi.python.org/pypi/cmd2>`__

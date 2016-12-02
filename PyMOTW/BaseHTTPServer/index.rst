@@ -186,7 +186,7 @@ timestamp formatted according to :rfc:`2822`.
 
 .. seealso::
 
-    `BaseHTTPServer <http://docs.python.org/library/basehttpserver.html>`_
+    `BaseHTTPServer <http://docs.python.org/2.7/library/basehttpserver.html>`_
         The standard library documentation for this module.
 
     :mod:`SocketServer`

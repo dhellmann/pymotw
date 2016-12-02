@@ -77,7 +77,7 @@ as :const:`sys.platform`.
 For most Unix systems, the value comes from combining the output of
 ``uname -s`` with the first part of the version in ``uname -r``. For
 other operating systems there is a `hard-coded table of values
-<http://docs.python.org/library/sys.html#sys.platform>`_.
+<http://docs.python.org/2.7/library/sys.html#sys.platform>`_.
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_platform.py'))

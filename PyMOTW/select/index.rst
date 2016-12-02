@@ -482,7 +482,7 @@ more detail about how they work.
 
 .. seealso::
 
-    `select <http://docs.python.org/library/select.html>`_
+    `select <http://docs.python.org/2.7/library/select.html>`_
         The standard library documentation for this module.
 
     `Socket Programming HOWOTO <http://docs.python.org/howto/sockets.html>`__

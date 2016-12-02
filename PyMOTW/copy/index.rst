@@ -203,5 +203,5 @@ object.
 
 .. seealso::
 
-    `copy <http://docs.python.org/library/copy.html>`_
+    `copy <http://docs.python.org/2.7/library/copy.html>`_
         The standard library documentation for this module.

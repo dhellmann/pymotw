@@ -41,7 +41,7 @@ The :func:`open()` function follows the same semantics as the
 
 .. seealso::
 
-    `dbm <http://docs.python.org/library/dbm.html>`_
+    `dbm <http://docs.python.org/2.7/library/dbm.html>`_
         The standard library documentation for this module.
 
     :mod:`anydbm`

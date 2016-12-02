@@ -24,7 +24,7 @@ system.
 
   Not all of the resource values gathered are displayed here.  Refer
   to the `stdlib docs
-  <http://docs.python.org/library/resource.html#resource.getrusage>`_
+  <http://docs.python.org/2.7/library/resource.html#resource.getrusage>`_
   for a more complete list.
 
 .. include:: resource_getrusage.py
@@ -141,7 +141,7 @@ them, but in this case it just prints a message and exits.
 
 .. seealso::
 
-    `resource <http://docs.python.org/library/resource.html>`_
+    `resource <http://docs.python.org/2.7/library/resource.html>`_
         The standard library documentation for this module.
 
     :mod:`signal`

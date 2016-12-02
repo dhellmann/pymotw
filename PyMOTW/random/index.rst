@@ -550,7 +550,7 @@ objects.
 
 .. seealso::
 
-    `random <http://docs.python.org/library/random.html>`_
+    `random <http://docs.python.org/2.7/library/random.html>`_
         The standard library documentation for this module.
 
     Mersenne Twister: A 623-dimensionally equidistributed uniform pseudorandom number generator

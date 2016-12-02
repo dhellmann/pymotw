@@ -366,7 +366,7 @@ use automatically.
 
 .. seealso::
 
-    `tarfile <http://docs.python.org/library/tarfile.html>`_
+    `tarfile <http://docs.python.org/2.7/library/tarfile.html>`_
         The standard library documentation for this module.
     
     `GNU tar manual <http://www.gnu.org/software/tar/manual/html_node/Standard.html>`_

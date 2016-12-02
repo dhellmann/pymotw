@@ -216,6 +216,6 @@ exit.
 
 .. seealso::
 
-    `atexit <http://docs.python.org/library/atexit.html>`_
+    `atexit <http://docs.python.org/2.7/library/atexit.html>`_
         The standard library documentation for this module.
 
