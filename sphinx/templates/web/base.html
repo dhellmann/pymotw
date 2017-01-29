@@ -64,12 +64,6 @@
 {% block relbar2 %}{% endblock %}
 {% endblock %}
 
-{% block comments %}
-<!-- Disqus -->
-<div id="disqus_wrapper">
-<div id="disqus_thread"></div><script type="text/javascript" src="https://disqus.com/forums/doughellmann/embed.js"></script><noscript><a href="https://doughellmann.disqus.com/?url=ref">View the discussion thread.</a></noscript><a href="https://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
-</div>
-{% endblock %}
 </div>
 
 <div id="footer">
@@ -95,20 +89,6 @@
 </div>
 
 </div>
-
-{% block disqus_footer %}
-<div id="disqus_thread"></div>
-<script>
-(function() { // DON'T EDIT BELOW THIS LINE
-var d = document, s = d.createElement('script');
-
-s.src = '//pymotw.disqus.com/embed.js';
-
-s.setAttribute('data-timestamp', +new Date());
-(d.head || d.body).appendChild(s);
-})();
-</script>
-{% endblock %}
 
 </body>
 </html>
