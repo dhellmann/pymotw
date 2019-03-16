@@ -568,7 +568,6 @@ def source_push(options):
 @task
 def publish(options):
     """Run the automatable steps of the publish process."""
-    sdist(options)
     installwebsite(options)
     source_push(options)
 
