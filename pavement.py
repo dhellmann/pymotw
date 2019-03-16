@@ -561,7 +561,6 @@ def commit():
     return
 
 @task
-@needs(['uncog'])
 def source_push(options):
     sh('git push')
     return
