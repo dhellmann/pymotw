@@ -562,17 +562,23 @@ def commit():
 
 @task
 @needs(['uncog'])
-def bitbucket_push(options):
-    sh('hg push')
+def source_push(options):
+    sh('git push')
     return
+
+@task
+def publish(options):
+    """Run the automatable steps of the publish process."""
+    sdist(options)
+    installwebsite(options)
+    source_push(options)
 
 @task
 def release(options):
     """Run the automatable steps of the release process."""
-    sdist(options)
-    installwebsite(options)
+    raise RuntimeError('JUST RUN publish')
+    publish(options)
     blog(options)
-    bitbucket_push(options)
     print 'NEXT: upload package, "paver register", post to blog'
     return
 
