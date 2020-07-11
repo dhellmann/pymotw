@@ -329,8 +329,6 @@ def sdist(options):
         dest_file = dest_dir / f.basename()
         dest_file.unlink()
         f.move(dest_dir)
-
-    sh('growlnotify -m "package built"')
     return
 
 @task
