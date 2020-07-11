@@ -10,7 +10,7 @@ series is building a set of example code for the modules in the
 
 See the project home page at http://pymotw.com/ for
 updates and the latest release.  Source code is available from
-http://bitbucket.org/dhellmann/pymotw/.
+https://github.com/dhellmann/pymotw.
 
 Complete documentation for the standard library can be found on the
 Python web site at http://docs.python.org/library/.
