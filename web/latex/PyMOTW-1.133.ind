@@ -1,0 +1,222 @@
+\begin{theindex}
+\def\bigletter#1{{\Large\sffamily#1}\nopagebreak\vspace{1mm}}
+
+  \bigletter A
+  \item abc (module), \hyperpage{795}
+  \item anydbm (module), \hyperpage{333}
+  \item argparse (module), \hyperpage{414}
+  \item array (module), \hyperpage{97}
+  \item asynchat (module), \hyperpage{513}
+  \item asyncore (module), \hyperpage{518}
+  \item atexit (module), \hyperpage{802}
+
+  \indexspace
+  \bigletter B
+  \item base64 (module), \hyperpage{213}
+  \item BaseHTTPServer (module), \hyperpage{545}
+  \item bisect (module), \hyperpage{126}
+  \item bz2 (module), \hyperpage{299}
+
+  \indexspace
+  \bigletter C
+  \item calendar (module), \hyperpage{106}
+  \item cgitb (module), \hyperpage{550}
+  \item cmd (module), \hyperpage{705}
+  \item codecs (module), \hyperpage{23}
+  \item collections (module), \hyperpage{110}
+  \item commands (module), \hyperpage{495}
+  \item ConfigParser (module), \hyperpage{240}
+  \item contextlib (module), \hyperpage{805}
+  \item Cookie (module), \hyperpage{563}
+  \item copy (module), \hyperpage{143}
+  \item cPickle (module), \hyperpage{337}
+  \item cProfile (module), \hyperpage{777}
+  \item cStringIO (module), \hyperpage{54}
+  \item csv (module), \hyperpage{233}
+
+  \indexspace
+  \bigletter D
+  \item datetime (module), \hyperpage{100}
+  \item dbhash (module), \hyperpage{335}
+  \item dbm (module), \hyperpage{335}
+  \item decimal (module), \hyperpage{153}
+  \item difflib (module), \hyperpage{43}
+  \item dircache (module), \hyperpage{295}
+  \item doctest (module), \hyperpage{723}
+  \item dumbdbm (module), \hyperpage{336}
+
+  \indexspace
+  \bigletter E
+  \item EasyDialogs (module), \hyperpage{913}
+  \item exceptions (module), \hyperpage{11}
+
+  \indexspace
+  \bigletter F
+  \item filecmp (module), \hyperpage{273}
+  \item fileinput (module), \hyperpage{268}
+  \item fnmatch (module), \hyperpage{285}
+  \item fractions (module), \hyperpage{160}
+  \item functools (module), \hyperpage{163}
+
+  \indexspace
+  \bigletter G
+  \item gc (module), \hyperpage{810}
+  \item gdbm (module), \hyperpage{336}
+  \item getopt (module), \hyperpage{397}
+  \item getpass (module), \hyperpage{436}
+  \item gettext (module), \hyperpage{691}
+  \item glob (module), \hyperpage{283}
+  \item grp (module), \hyperpage{497}
+  \item gzip (module), \hyperpage{307}
+
+  \indexspace
+  \bigletter H
+  \item hashlib (module), \hyperpage{255}
+  \item heapq (module), \hyperpage{121}
+  \item hmac (module), \hyperpage{258}
+
+  \indexspace
+  \bigletter I
+  \item imaplib (module), \hyperpage{567}
+  \item imp (module), \hyperpage{897}
+  \item inspect (module), \hyperpage{826}
+  \item itertools (module), \hyperpage{171}
+
+  \indexspace
+  \bigletter J
+  \item json (module), \hyperpage{215}
+
+  \indexspace
+  \bigletter L
+  \item linecache (module), \hyperpage{287}
+  \item locale (module), \hyperpage{697}
+  \item logging (module), \hyperpage{433}
+
+  \indexspace
+  \bigletter M
+  \item mailbox (module), \hyperpage{224}
+  \item math (module), \hyperpage{180}
+  \item mhlib (module), \hyperpage{231}
+  \item mmap (module), \hyperpage{459}
+  \item multiprocessing (module), \hyperpage{463}
+
+  \indexspace
+  \bigletter O
+  \item operator (module), \hyperpage{195}
+  \item optparse (module), \hyperpage{402}
+  \item os (module), \hyperpage{377}
+  \item os.path (module), \hyperpage{263}
+
+  \indexspace
+  \bigletter P
+  \item pdb (module), \hyperpage{749}
+  \item pickle (module), \hyperpage{337}
+  \item pipes (module), \hyperpage{501}
+  \item pkgutil (module), \hyperpage{900}
+  \item platform (module), \hyperpage{438}
+  \item plistlib (module), \hyperpage{926}
+  \item pprint (module), \hyperpage{147}
+  \item profile (module), \hyperpage{777}
+  \item pstats (module), \hyperpage{780}
+  \item pwd (module), \hyperpage{507}
+  \item pydoc (module), \hyperpage{742}
+  \item Python Enhancement Proposals
+    \subitem PEP 230, \hyperpage{890}, \hyperpage{894}
+    \subitem PEP 249, \hyperpage{375}
+    \subitem PEP 292, \hyperpage{51}, \hyperpage{54}
+    \subitem PEP 302, \hyperpage{867}, \hyperpage{876}, \hyperpage{880}, \hyperpage{900}, 
+		\hyperpage{906, 907}, \hyperpage{912}
+    \subitem PEP 305, \hyperpage{240}
+    \subitem PEP 3119, \hyperpage{802}
+    \subitem PEP 3141, \hyperpage{802}
+    \subitem PEP 343, \hyperpage{810}
+    \subitem PEP 369, \hyperpage{900}
+
+  \indexspace
+  \bigletter Q
+  \item Queue (module), \hyperpage{131}
+
+  \indexspace
+  \bigletter R
+  \item random (module), \hyperpage{202}
+  \item re (module), \hyperpage{55}
+  \item readline (module), \hyperpage{485}
+  \item resource (module), \hyperpage{510}
+  \item RFC
+    \subitem RFC 1869, \hyperpage{597}
+    \subitem RFC 2104, \hyperpage{258}, \hyperpage{262}
+    \subitem RFC 2109, \hyperpage{563}, \hyperpage{567}
+    \subitem RFC 2396, \hyperpage{653}
+    \subitem RFC 2822, \hyperpage{549}, \hyperpage{577}, \hyperpage{581}, \hyperpage{590}, 
+		\hyperpage{593}, \hyperpage{597}
+    \subitem RFC 2882, \hyperpage{593}
+    \subitem RFC 3501, \hyperpage{568}, \hyperpage{574}, \hyperpage{581}
+    \subitem RFC 3548, \hyperpage{215}
+    \subitem RFC 4122, \hyperpage{656}, \hyperpage{659}
+    \subitem RFC 821, \hyperpage{597}
+    \subitem RFC 822, \hyperpage{581}, \hyperpage{597}
+  \item rlcompleter (module), \hyperpage{494}
+  \item robotparser (module), \hyperpage{252}
+
+  \indexspace
+  \bigletter S
+  \item sched (module), \hyperpage{128}
+  \item select (module), \hyperpage{620}
+  \item shelve (module), \hyperpage{344}
+  \item shlex (module), \hyperpage{714}
+  \item shutil (module), \hyperpage{290}
+  \item signal (module), \hyperpage{528}
+  \item SimpleXMLRPCServer (module), \hyperpage{582}
+  \item site (module), \hyperpage{836}
+  \item sitecustomize (module), \hyperpage{839}
+  \item smtpd (module), \hyperpage{590}
+  \item smtplib (module), \hyperpage{593}
+  \item socket (module), \hyperpage{597}
+  \item SocketServer (module), \hyperpage{631}
+  \item sqlite3 (module), \hyperpage{347}
+  \item string (module), \hyperpage{49}
+  \item StringIO (module), \hyperpage{54}
+  \item struct (module), \hyperpage{90}
+  \item subprocess (module), \hyperpage{533}
+  \item sys (module), \hyperpage{842}
+  \item sysconfig (module), \hyperpage{880}
+
+  \indexspace
+  \bigletter T
+  \item tarfile (module), \hyperpage{311}
+  \item tempfile (module), \hyperpage{279}
+  \item textwrap (module), \hyperpage{93}
+  \item threading (module), \hyperpage{443}
+  \item time (module), \hyperpage{393}
+  \item timeit (module), \hyperpage{782}
+  \item trace (module), \hyperpage{788}
+  \item traceback (module), \hyperpage{885}
+
+  \indexspace
+  \bigletter U
+  \item unittest (module), \hyperpage{743}
+  \item urllib (module), \hyperpage{637}
+  \item urllib2 (module), \hyperpage{643}
+  \item urlparse (module), \hyperpage{652}
+  \item usercustomize (module), \hyperpage{840}
+  \item uuid (module), \hyperpage{656}
+
+  \indexspace
+  \bigletter W
+  \item warnings (module), \hyperpage{890}
+  \item weakref (module), \hyperpage{135}
+  \item webbrowser (module), \hyperpage{660}
+  \item whichdb (module), \hyperpage{346}
+
+  \indexspace
+  \bigletter X
+  \item xml.etree.ElementTree (module), \hyperpage{671}
+  \item xmlrpclib (module), \hyperpage{661}
+
+  \indexspace
+  \bigletter Z
+  \item zipfile (module), \hyperpage{318}
+  \item zipimport (module), \hyperpage{907}
+  \item zlib (module), \hyperpage{326}
+
+\end{theindex}

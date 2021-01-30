@@ -1,0 +1,1036 @@
+\select@language {english}
+\contentsline {paragraph}{About Python Module of the Week}{1}{paragraph*.3}
+\contentsline {paragraph}{Tools}{1}{paragraph*.4}
+\contentsline {paragraph}{Subscribe}{1}{paragraph*.5}
+\contentsline {paragraph}{Translations and Other Versions}{1}{paragraph*.6}
+\contentsline {paragraph}{Other Contributors}{2}{paragraph*.7}
+\contentsline {paragraph}{Copyright}{2}{paragraph*.8}
+\contentsline {chapter}{\numberline {1}Data Persistence and Exchange}{3}{chapter.1}
+\contentsline {section}{\numberline {1.1}Serializing Objects}{3}{section.1.1}
+\contentsline {section}{\numberline {1.2}Storing Serialized Objects}{3}{section.1.2}
+\contentsline {section}{\numberline {1.3}Relational Databases}{3}{section.1.3}
+\contentsline {section}{\numberline {1.4}Data Exchange Through Standard Formats}{4}{section.1.4}
+\contentsline {chapter}{\numberline {2}In-Memory Data Structures}{5}{chapter.2}
+\contentsline {section}{\numberline {2.1}array}{5}{section.2.1}
+\contentsline {section}{\numberline {2.2}Sorting}{5}{section.2.2}
+\contentsline {section}{\numberline {2.3}Queue}{5}{section.2.3}
+\contentsline {section}{\numberline {2.4}collections}{5}{section.2.4}
+\contentsline {section}{\numberline {2.5}Decoding Data}{6}{section.2.5}
+\contentsline {section}{\numberline {2.6}Custom Variations}{6}{section.2.6}
+\contentsline {chapter}{\numberline {3}File Access}{7}{chapter.3}
+\contentsline {section}{\numberline {3.1}Filenames}{7}{section.3.1}
+\contentsline {section}{\numberline {3.2}Meta-data}{7}{section.3.2}
+\contentsline {section}{\numberline {3.3}Reading Files}{7}{section.3.3}
+\contentsline {section}{\numberline {3.4}Temporary Files}{7}{section.3.4}
+\contentsline {section}{\numberline {3.5}Files and Directories}{8}{section.3.5}
+\contentsline {chapter}{\numberline {4}Text Processing Tools}{9}{chapter.4}
+\contentsline {section}{\numberline {4.1}string module}{9}{section.4.1}
+\contentsline {section}{\numberline {4.2}Text Input}{9}{section.4.2}
+\contentsline {section}{\numberline {4.3}Text Output}{9}{section.4.3}
+\contentsline {section}{\numberline {4.4}Comparing Values}{9}{section.4.4}
+\contentsline {chapter}{\numberline {5}Built-in Objects}{11}{chapter.5}
+\contentsline {section}{\numberline {5.1}exceptions -- Built-in error classes}{11}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Description}{11}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}Base Classes}{11}{subsection.5.1.2}
+\contentsline {subsubsection}{BaseException}{11}{subsubsection*.9}
+\contentsline {subsubsection}{Exception}{11}{subsubsection*.10}
+\contentsline {subsubsection}{StandardError}{11}{subsubsection*.11}
+\contentsline {subsubsection}{ArithmeticError}{11}{subsubsection*.12}
+\contentsline {subsubsection}{LookupError}{12}{subsubsection*.13}
+\contentsline {subsubsection}{EnvironmentError}{12}{subsubsection*.14}
+\contentsline {subsection}{\numberline {5.1.3}Raised Exceptions}{12}{subsection.5.1.3}
+\contentsline {subsubsection}{AssertionError}{12}{subsubsection*.15}
+\contentsline {subsubsection}{AttributeError}{12}{subsubsection*.16}
+\contentsline {subsubsection}{EOFError}{13}{subsubsection*.17}
+\contentsline {subsubsection}{FloatingPointError}{13}{subsubsection*.18}
+\contentsline {subsubsection}{GeneratorExit}{14}{subsubsection*.19}
+\contentsline {subsubsection}{IOError}{14}{subsubsection*.20}
+\contentsline {subsubsection}{ImportError}{14}{subsubsection*.21}
+\contentsline {subsubsection}{IndexError}{15}{subsubsection*.22}
+\contentsline {subsubsection}{KeyError}{15}{subsubsection*.23}
+\contentsline {subsubsection}{KeyboardInterrupt}{15}{subsubsection*.24}
+\contentsline {subsubsection}{MemoryError}{16}{subsubsection*.25}
+\contentsline {subsubsection}{NameError}{16}{subsubsection*.26}
+\contentsline {subsubsection}{NotImplementedError}{17}{subsubsection*.27}
+\contentsline {subsubsection}{OSError}{17}{subsubsection*.28}
+\contentsline {subsubsection}{OverflowError}{18}{subsubsection*.29}
+\contentsline {subsubsection}{ReferenceError}{19}{subsubsection*.30}
+\contentsline {subsubsection}{RuntimeError}{19}{subsubsection*.31}
+\contentsline {subsubsection}{StopIteration}{19}{subsubsection*.32}
+\contentsline {subsubsection}{SyntaxError}{20}{subsubsection*.33}
+\contentsline {subsubsection}{SystemError}{20}{subsubsection*.34}
+\contentsline {subsubsection}{SystemExit}{20}{subsubsection*.35}
+\contentsline {subsubsection}{TypeError}{20}{subsubsection*.36}
+\contentsline {subsubsection}{UnboundLocalError}{21}{subsubsection*.37}
+\contentsline {subsubsection}{UnicodeError}{21}{subsubsection*.38}
+\contentsline {subsubsection}{ValueError}{21}{subsubsection*.39}
+\contentsline {subsubsection}{ZeroDivisionError}{22}{subsubsection*.40}
+\contentsline {subsection}{\numberline {5.1.4}Warning Categories}{22}{subsection.5.1.4}
+\contentsline {chapter}{\numberline {6}String Services}{23}{chapter.6}
+\contentsline {section}{\numberline {6.1}codecs -- String encoding and decoding}{23}{section.6.1}
+\contentsline {subsection}{\numberline {6.1.1}Unicode Primer}{23}{subsection.6.1.1}
+\contentsline {subsubsection}{Encodings}{23}{subsubsection*.43}
+\contentsline {subsection}{\numberline {6.1.2}Working with Files}{25}{subsection.6.1.2}
+\contentsline {subsection}{\numberline {6.1.3}Byte Order}{26}{subsection.6.1.3}
+\contentsline {subsection}{\numberline {6.1.4}Error Handling}{28}{subsection.6.1.4}
+\contentsline {subsubsection}{Encoding Errors}{28}{subsubsection*.44}
+\contentsline {subsubsection}{Decoding Errors}{29}{subsubsection*.45}
+\contentsline {subsection}{\numberline {6.1.5}Standard Input and Output Streams}{31}{subsection.6.1.5}
+\contentsline {subsection}{\numberline {6.1.6}Network Communication}{33}{subsection.6.1.6}
+\contentsline {subsection}{\numberline {6.1.7}Encoding Translation}{35}{subsection.6.1.7}
+\contentsline {subsection}{\numberline {6.1.8}Non-Unicode Encodings}{36}{subsection.6.1.8}
+\contentsline {subsection}{\numberline {6.1.9}Incremental Encoding}{37}{subsection.6.1.9}
+\contentsline {subsection}{\numberline {6.1.10}Defining Your Own Encoding}{38}{subsection.6.1.10}
+\contentsline {section}{\numberline {6.2}difflib -- Compare sequences}{43}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}Comparing Bodies of Text}{44}{subsection.6.2.1}
+\contentsline {subsubsection}{Other Output Formats}{45}{subsubsection*.46}
+\contentsline {subsubsection}{HTML Output}{46}{subsubsection*.47}
+\contentsline {subsection}{\numberline {6.2.2}Junk Data}{47}{subsection.6.2.2}
+\contentsline {subsection}{\numberline {6.2.3}Comparing Arbitrary Types}{48}{subsection.6.2.3}
+\contentsline {section}{\numberline {6.3}string -- Working with text}{49}{section.6.3}
+\contentsline {subsection}{\numberline {6.3.1}Constants}{50}{subsection.6.3.1}
+\contentsline {subsection}{\numberline {6.3.2}Functions}{50}{subsection.6.3.2}
+\contentsline {subsection}{\numberline {6.3.3}Templates}{51}{subsection.6.3.3}
+\contentsline {subsection}{\numberline {6.3.4}Advanced Templates}{52}{subsection.6.3.4}
+\contentsline {subsection}{\numberline {6.3.5}Deprecated Functions}{54}{subsection.6.3.5}
+\contentsline {section}{\numberline {6.4}StringIO and cStringIO -- Work with text buffers using file-like API}{54}{section.6.4}
+\contentsline {subsection}{\numberline {6.4.1}Example}{54}{subsection.6.4.1}
+\contentsline {section}{\numberline {6.5}re -- Regular Expressions}{55}{section.6.5}
+\contentsline {subsection}{\numberline {6.5.1}Finding Patterns in Text}{56}{subsection.6.5.1}
+\contentsline {subsection}{\numberline {6.5.2}Compiling Expressions}{56}{subsection.6.5.2}
+\contentsline {subsection}{\numberline {6.5.3}Multiple Matches}{57}{subsection.6.5.3}
+\contentsline {subsection}{\numberline {6.5.4}Pattern Syntax}{58}{subsection.6.5.4}
+\contentsline {subsubsection}{Repetition}{59}{subsubsection*.49}
+\contentsline {subsubsection}{Character Sets}{61}{subsubsection*.50}
+\contentsline {subsubsection}{Escape Codes}{63}{subsubsection*.51}
+\contentsline {subsubsection}{Anchoring}{65}{subsubsection*.52}
+\contentsline {subsection}{\numberline {6.5.5}Constraining the Search}{67}{subsection.6.5.5}
+\contentsline {subsection}{\numberline {6.5.6}Dissecting Matches with Groups}{68}{subsection.6.5.6}
+\contentsline {subsection}{\numberline {6.5.7}Search Options}{73}{subsection.6.5.7}
+\contentsline {subsubsection}{Case-insensitive Matching}{73}{subsubsection*.53}
+\contentsline {subsubsection}{Input with Multiple Lines}{73}{subsubsection*.54}
+\contentsline {subsubsection}{Unicode}{74}{subsubsection*.55}
+\contentsline {subsubsection}{Verbose Expression Syntax}{75}{subsubsection*.56}
+\contentsline {subsubsection}{Embedding Flags in Patterns}{78}{subsubsection*.57}
+\contentsline {subsection}{\numberline {6.5.8}Looking Ahead, or Behind}{79}{subsection.6.5.8}
+\contentsline {subsection}{\numberline {6.5.9}Self-referencing Expressions}{83}{subsection.6.5.9}
+\contentsline {subsection}{\numberline {6.5.10}Modifying Strings with Patterns}{87}{subsection.6.5.10}
+\contentsline {subsection}{\numberline {6.5.11}Splitting with Patterns}{88}{subsection.6.5.11}
+\contentsline {section}{\numberline {6.6}struct -- Working with Binary Data}{90}{section.6.6}
+\contentsline {subsection}{\numberline {6.6.1}Functions vs. Struct Class}{90}{subsection.6.6.1}
+\contentsline {subsection}{\numberline {6.6.2}Packing and Unpacking}{90}{subsection.6.6.2}
+\contentsline {subsection}{\numberline {6.6.3}Endianness}{91}{subsection.6.6.3}
+\contentsline {subsection}{\numberline {6.6.4}Buffers}{92}{subsection.6.6.4}
+\contentsline {section}{\numberline {6.7}textwrap -- Formatting text paragraphs}{93}{section.6.7}
+\contentsline {subsection}{\numberline {6.7.1}Example Data}{93}{subsection.6.7.1}
+\contentsline {subsection}{\numberline {6.7.2}Filling Paragraphs}{94}{subsection.6.7.2}
+\contentsline {subsection}{\numberline {6.7.3}Removing Existing Indentation}{94}{subsection.6.7.3}
+\contentsline {subsection}{\numberline {6.7.4}Combining Dedent and Fill}{95}{subsection.6.7.4}
+\contentsline {subsection}{\numberline {6.7.5}Hanging Indents}{95}{subsection.6.7.5}
+\contentsline {chapter}{\numberline {7}Data Types}{97}{chapter.7}
+\contentsline {section}{\numberline {7.1}array -- Sequence of fixed-type data}{97}{section.7.1}
+\contentsline {subsection}{\numberline {7.1.1}array Initialization}{97}{subsection.7.1.1}
+\contentsline {subsection}{\numberline {7.1.2}Manipulating Arrays}{98}{subsection.7.1.2}
+\contentsline {subsection}{\numberline {7.1.3}Arrays and Files}{98}{subsection.7.1.3}
+\contentsline {subsection}{\numberline {7.1.4}Alternate Byte Ordering}{99}{subsection.7.1.4}
+\contentsline {section}{\numberline {7.2}datetime -- Date/time value manipulation}{100}{section.7.2}
+\contentsline {subsection}{\numberline {7.2.1}Times}{100}{subsection.7.2.1}
+\contentsline {subsection}{\numberline {7.2.2}Dates}{101}{subsection.7.2.2}
+\contentsline {subsection}{\numberline {7.2.3}timedeltas}{102}{subsection.7.2.3}
+\contentsline {subsection}{\numberline {7.2.4}Date Arithmetic}{103}{subsection.7.2.4}
+\contentsline {subsection}{\numberline {7.2.5}Comparing Values}{103}{subsection.7.2.5}
+\contentsline {subsection}{\numberline {7.2.6}Combining Dates and Times}{104}{subsection.7.2.6}
+\contentsline {subsection}{\numberline {7.2.7}Formatting and Parsing}{105}{subsection.7.2.7}
+\contentsline {subsection}{\numberline {7.2.8}Time Zones}{105}{subsection.7.2.8}
+\contentsline {section}{\numberline {7.3}calendar -- Work with dates}{106}{section.7.3}
+\contentsline {subsection}{\numberline {7.3.1}Formatting Examples}{106}{subsection.7.3.1}
+\contentsline {subsection}{\numberline {7.3.2}Calculating Dates}{109}{subsection.7.3.2}
+\contentsline {section}{\numberline {7.4}collections -- Container data types}{110}{section.7.4}
+\contentsline {subsection}{\numberline {7.4.1}Counter}{111}{subsection.7.4.1}
+\contentsline {subsubsection}{Initializing}{111}{subsubsection*.58}
+\contentsline {subsubsection}{Accessing Counts}{111}{subsubsection*.59}
+\contentsline {subsubsection}{Arithmetic}{112}{subsubsection*.60}
+\contentsline {subsection}{\numberline {7.4.2}defaultdict}{113}{subsection.7.4.2}
+\contentsline {subsection}{\numberline {7.4.3}Deque}{114}{subsection.7.4.3}
+\contentsline {subsubsection}{Populating}{114}{subsubsection*.61}
+\contentsline {subsubsection}{Consuming}{115}{subsubsection*.62}
+\contentsline {subsubsection}{Rotating}{116}{subsubsection*.63}
+\contentsline {subsection}{\numberline {7.4.4}namedtuple}{117}{subsection.7.4.4}
+\contentsline {subsubsection}{Defining}{118}{subsubsection*.64}
+\contentsline {subsubsection}{Invalid Field Names}{118}{subsubsection*.65}
+\contentsline {subsection}{\numberline {7.4.5}OrderedDict}{119}{subsection.7.4.5}
+\contentsline {subsubsection}{Equality}{120}{subsubsection*.66}
+\contentsline {section}{\numberline {7.5}heapq -- In-place heap sort algorithm}{121}{section.7.5}
+\contentsline {subsection}{\numberline {7.5.1}Example Data}{121}{subsection.7.5.1}
+\contentsline {subsection}{\numberline {7.5.2}Creating a Heap}{122}{subsection.7.5.2}
+\contentsline {subsection}{\numberline {7.5.3}Accessing Contents of a Heap}{123}{subsection.7.5.3}
+\contentsline {subsection}{\numberline {7.5.4}Data Extremes}{126}{subsection.7.5.4}
+\contentsline {section}{\numberline {7.6}bisect -- Maintain lists in sorted order}{126}{section.7.6}
+\contentsline {subsection}{\numberline {7.6.1}Example}{126}{subsection.7.6.1}
+\contentsline {section}{\numberline {7.7}sched -- Generic event scheduler.}{128}{section.7.7}
+\contentsline {subsection}{\numberline {7.7.1}Running Events With a Delay}{129}{subsection.7.7.1}
+\contentsline {subsection}{\numberline {7.7.2}Overlapping Events}{129}{subsection.7.7.2}
+\contentsline {subsection}{\numberline {7.7.3}Event Priorities}{130}{subsection.7.7.3}
+\contentsline {subsection}{\numberline {7.7.4}Canceling Events}{130}{subsection.7.7.4}
+\contentsline {section}{\numberline {7.8}Queue -- A thread-safe FIFO implementation}{131}{section.7.8}
+\contentsline {subsection}{\numberline {7.8.1}Basic FIFO Queue}{132}{subsection.7.8.1}
+\contentsline {subsection}{\numberline {7.8.2}LIFO Queue}{132}{subsection.7.8.2}
+\contentsline {subsection}{\numberline {7.8.3}Priority Queue}{132}{subsection.7.8.3}
+\contentsline {subsection}{\numberline {7.8.4}Using Queues with Threads}{133}{subsection.7.8.4}
+\contentsline {section}{\numberline {7.9}weakref -- Garbage-collectable references to objects}{135}{section.7.9}
+\contentsline {subsection}{\numberline {7.9.1}References}{136}{subsection.7.9.1}
+\contentsline {subsection}{\numberline {7.9.2}Reference Callbacks}{136}{subsection.7.9.2}
+\contentsline {subsection}{\numberline {7.9.3}Proxies}{137}{subsection.7.9.3}
+\contentsline {subsection}{\numberline {7.9.4}Cyclic References}{138}{subsection.7.9.4}
+\contentsline {subsection}{\numberline {7.9.5}Caching Objects}{141}{subsection.7.9.5}
+\contentsline {section}{\numberline {7.10}copy -- Duplicate objects}{143}{section.7.10}
+\contentsline {subsection}{\numberline {7.10.1}Shallow Copies}{144}{subsection.7.10.1}
+\contentsline {subsection}{\numberline {7.10.2}Deep Copies}{144}{subsection.7.10.2}
+\contentsline {subsection}{\numberline {7.10.3}Controlling Copy Behavior}{145}{subsection.7.10.3}
+\contentsline {subsection}{\numberline {7.10.4}Recursion in Deep Copy}{145}{subsection.7.10.4}
+\contentsline {section}{\numberline {7.11}pprint -- Pretty-print data structures}{147}{section.7.11}
+\contentsline {subsection}{\numberline {7.11.1}Printing}{148}{subsection.7.11.1}
+\contentsline {subsection}{\numberline {7.11.2}Formatting}{149}{subsection.7.11.2}
+\contentsline {subsection}{\numberline {7.11.3}Arbitrary Classes}{149}{subsection.7.11.3}
+\contentsline {subsection}{\numberline {7.11.4}Recursion}{150}{subsection.7.11.4}
+\contentsline {subsection}{\numberline {7.11.5}Limiting Nested Output}{150}{subsection.7.11.5}
+\contentsline {subsection}{\numberline {7.11.6}Controlling Output Width}{150}{subsection.7.11.6}
+\contentsline {chapter}{\numberline {8}Numeric and Mathematical Modules}{153}{chapter.8}
+\contentsline {section}{\numberline {8.1}decimal -- Fixed and floating point math}{153}{section.8.1}
+\contentsline {subsection}{\numberline {8.1.1}Decimal}{153}{subsection.8.1.1}
+\contentsline {subsection}{\numberline {8.1.2}Arithmetic}{154}{subsection.8.1.2}
+\contentsline {subsection}{\numberline {8.1.3}Logarithms}{155}{subsection.8.1.3}
+\contentsline {subsection}{\numberline {8.1.4}Special Values}{155}{subsection.8.1.4}
+\contentsline {subsection}{\numberline {8.1.5}Context}{156}{subsection.8.1.5}
+\contentsline {subsubsection}{Current Context}{156}{subsubsection*.67}
+\contentsline {subsubsection}{Precision}{156}{subsubsection*.68}
+\contentsline {subsubsection}{Rounding}{156}{subsubsection*.69}
+\contentsline {subsubsection}{Local Context}{158}{subsubsection*.70}
+\contentsline {subsubsection}{Per-Instance Context}{159}{subsubsection*.71}
+\contentsline {subsubsection}{Threads}{159}{subsubsection*.72}
+\contentsline {section}{\numberline {8.2}fractions -- Rational Numbers}{160}{section.8.2}
+\contentsline {subsection}{\numberline {8.2.1}Creating Fraction Instances}{160}{subsection.8.2.1}
+\contentsline {subsection}{\numberline {8.2.2}Arithmetic}{162}{subsection.8.2.2}
+\contentsline {subsection}{\numberline {8.2.3}Approximating Values}{162}{subsection.8.2.3}
+\contentsline {section}{\numberline {8.3}functools -- Tools for Manipulating Functions}{163}{section.8.3}
+\contentsline {subsection}{\numberline {8.3.1}Decorators}{163}{subsection.8.3.1}
+\contentsline {subsubsection}{partial}{163}{subsubsection*.73}
+\contentsline {subsubsection}{update\_wrapper}{165}{subsubsection*.74}
+\contentsline {subsubsection}{Other Callables}{166}{subsubsection*.75}
+\contentsline {subsubsection}{wraps}{168}{subsubsection*.76}
+\contentsline {subsection}{\numberline {8.3.2}Comparison}{169}{subsection.8.3.2}
+\contentsline {subsubsection}{Rich Comparison}{169}{subsubsection*.77}
+\contentsline {subsubsection}{Collation Order}{170}{subsubsection*.78}
+\contentsline {section}{\numberline {8.4}itertools -- Iterator functions for efficient looping}{171}{section.8.4}
+\contentsline {subsection}{\numberline {8.4.1}Merging and Splitting Iterators}{172}{subsection.8.4.1}
+\contentsline {subsection}{\numberline {8.4.2}Converting Inputs}{174}{subsection.8.4.2}
+\contentsline {subsection}{\numberline {8.4.3}Producing New Values}{175}{subsection.8.4.3}
+\contentsline {subsection}{\numberline {8.4.4}Filtering}{176}{subsection.8.4.4}
+\contentsline {subsection}{\numberline {8.4.5}Grouping Data}{178}{subsection.8.4.5}
+\contentsline {section}{\numberline {8.5}math -- Mathematical functions}{180}{section.8.5}
+\contentsline {subsection}{\numberline {8.5.1}Special Constants}{180}{subsection.8.5.1}
+\contentsline {subsection}{\numberline {8.5.2}Testing for Exceptional Values}{180}{subsection.8.5.2}
+\contentsline {subsection}{\numberline {8.5.3}Converting to Integers}{182}{subsection.8.5.3}
+\contentsline {subsection}{\numberline {8.5.4}Alternate Representations}{182}{subsection.8.5.4}
+\contentsline {subsection}{\numberline {8.5.5}Positive and Negative Signs}{183}{subsection.8.5.5}
+\contentsline {subsection}{\numberline {8.5.6}Commonly Used Calculations}{184}{subsection.8.5.6}
+\contentsline {subsection}{\numberline {8.5.7}Exponents and Logarithms}{187}{subsection.8.5.7}
+\contentsline {subsection}{\numberline {8.5.8}Angles}{189}{subsection.8.5.8}
+\contentsline {subsection}{\numberline {8.5.9}Trigonometry}{191}{subsection.8.5.9}
+\contentsline {subsection}{\numberline {8.5.10}Hyperbolic Functions}{193}{subsection.8.5.10}
+\contentsline {subsection}{\numberline {8.5.11}Special Functions}{194}{subsection.8.5.11}
+\contentsline {section}{\numberline {8.6}operator -- Functional interface to built-in operators}{195}{section.8.6}
+\contentsline {subsection}{\numberline {8.6.1}Logical Operations}{195}{subsection.8.6.1}
+\contentsline {subsection}{\numberline {8.6.2}Comparison Operators}{195}{subsection.8.6.2}
+\contentsline {subsection}{\numberline {8.6.3}Arithmetic Operators}{196}{subsection.8.6.3}
+\contentsline {subsection}{\numberline {8.6.4}Sequence Operators}{197}{subsection.8.6.4}
+\contentsline {subsection}{\numberline {8.6.5}In-place Operators}{199}{subsection.8.6.5}
+\contentsline {subsection}{\numberline {8.6.6}Attribute and Item ``Getters''}{199}{subsection.8.6.6}
+\contentsline {subsection}{\numberline {8.6.7}Combining Operators and Custom Classes}{200}{subsection.8.6.7}
+\contentsline {subsection}{\numberline {8.6.8}Type Checking}{201}{subsection.8.6.8}
+\contentsline {section}{\numberline {8.7}random -- Pseudorandom number generators}{202}{section.8.7}
+\contentsline {subsection}{\numberline {8.7.1}Generating Random Numbers}{202}{subsection.8.7.1}
+\contentsline {subsection}{\numberline {8.7.2}Seeding}{203}{subsection.8.7.2}
+\contentsline {subsection}{\numberline {8.7.3}Saving State}{203}{subsection.8.7.3}
+\contentsline {subsection}{\numberline {8.7.4}Random Integers}{205}{subsection.8.7.4}
+\contentsline {subsection}{\numberline {8.7.5}Picking Random Items}{205}{subsection.8.7.5}
+\contentsline {subsection}{\numberline {8.7.6}Permutations}{206}{subsection.8.7.6}
+\contentsline {subsection}{\numberline {8.7.7}Multiple Simultaneous Generators}{208}{subsection.8.7.7}
+\contentsline {subsection}{\numberline {8.7.8}SystemRandom}{209}{subsection.8.7.8}
+\contentsline {subsection}{\numberline {8.7.9}Non-uniform Distributions}{210}{subsection.8.7.9}
+\contentsline {subsubsection}{Normal}{210}{subsubsection*.79}
+\contentsline {subsubsection}{Approximation}{210}{subsubsection*.80}
+\contentsline {subsubsection}{Exponential}{210}{subsubsection*.81}
+\contentsline {subsubsection}{Angular}{211}{subsubsection*.82}
+\contentsline {subsubsection}{Sizes}{211}{subsubsection*.83}
+\contentsline {chapter}{\numberline {9}Internet Data Handling}{213}{chapter.9}
+\contentsline {section}{\numberline {9.1}base64 -- Encode binary data into ASCII characters}{213}{section.9.1}
+\contentsline {subsection}{\numberline {9.1.1}Base 64 Encoding}{213}{subsection.9.1.1}
+\contentsline {subsection}{\numberline {9.1.2}Base 64 Decoding}{214}{subsection.9.1.2}
+\contentsline {subsection}{\numberline {9.1.3}URL-safe Variations}{214}{subsection.9.1.3}
+\contentsline {subsection}{\numberline {9.1.4}Other Encodings}{215}{subsection.9.1.4}
+\contentsline {section}{\numberline {9.2}json -- JavaScript Object Notation Serializer}{215}{section.9.2}
+\contentsline {subsection}{\numberline {9.2.1}Encoding and Decoding Simple Data Types}{216}{subsection.9.2.1}
+\contentsline {subsection}{\numberline {9.2.2}Human-consumable vs. Compact Output}{216}{subsection.9.2.2}
+\contentsline {subsection}{\numberline {9.2.3}Encoding Dictionaries}{218}{subsection.9.2.3}
+\contentsline {subsection}{\numberline {9.2.4}Working with Your Own Types}{218}{subsection.9.2.4}
+\contentsline {subsection}{\numberline {9.2.5}Encoder and Decoder Classes}{220}{subsection.9.2.5}
+\contentsline {subsection}{\numberline {9.2.6}Working with Streams and Files}{222}{subsection.9.2.6}
+\contentsline {subsection}{\numberline {9.2.7}Mixed Data Streams}{223}{subsection.9.2.7}
+\contentsline {section}{\numberline {9.3}mailbox -- Access and manipulate email archives}{224}{section.9.3}
+\contentsline {subsection}{\numberline {9.3.1}mbox}{224}{subsection.9.3.1}
+\contentsline {subsubsection}{Creating an mbox mailbox}{224}{subsubsection*.84}
+\contentsline {subsubsection}{Reading an mbox Mailbox}{225}{subsubsection*.85}
+\contentsline {subsubsection}{Removing Messages from an mbox Mailbox}{225}{subsubsection*.86}
+\contentsline {subsection}{\numberline {9.3.2}Maildir}{226}{subsection.9.3.2}
+\contentsline {subsubsection}{Creating a Maildir Mailbox}{226}{subsubsection*.87}
+\contentsline {subsubsection}{Reading a Maildir Mailbox}{228}{subsubsection*.88}
+\contentsline {subsubsection}{Removing Messages from a Maildir Mailbox}{228}{subsubsection*.89}
+\contentsline {subsubsection}{Maildir folders}{229}{subsubsection*.90}
+\contentsline {subsection}{\numberline {9.3.3}Other Formats}{231}{subsection.9.3.3}
+\contentsline {section}{\numberline {9.4}mhlib -- Work with MH mailboxes}{231}{section.9.4}
+\contentsline {chapter}{\numberline {10}File Formats}{233}{chapter.10}
+\contentsline {section}{\numberline {10.1}csv -- Comma-separated value files}{233}{section.10.1}
+\contentsline {subsection}{\numberline {10.1.1}Reading}{233}{subsection.10.1.1}
+\contentsline {subsection}{\numberline {10.1.2}Writing}{234}{subsection.10.1.2}
+\contentsline {subsubsection}{Quoting}{235}{subsubsection*.91}
+\contentsline {subsection}{\numberline {10.1.3}Dialects}{235}{subsection.10.1.3}
+\contentsline {subsubsection}{Creating a Dialect}{236}{subsubsection*.92}
+\contentsline {subsubsection}{Dialect Parameters}{236}{subsubsection*.93}
+\contentsline {subsubsection}{Automatically Detecting Dialects}{238}{subsubsection*.94}
+\contentsline {subsection}{\numberline {10.1.4}Using Field Names}{239}{subsection.10.1.4}
+\contentsline {section}{\numberline {10.2}ConfigParser -- Work with configuration files}{240}{section.10.2}
+\contentsline {subsection}{\numberline {10.2.1}Configuration File Format}{241}{subsection.10.2.1}
+\contentsline {subsection}{\numberline {10.2.2}Reading Configuration Files}{241}{subsection.10.2.2}
+\contentsline {subsubsection}{Unicode Configuration Data}{242}{subsubsection*.95}
+\contentsline {subsection}{\numberline {10.2.3}Accessing Configuration Settings}{242}{subsection.10.2.3}
+\contentsline {subsubsection}{Testing whether values are present}{243}{subsubsection*.96}
+\contentsline {subsubsection}{Value Types}{244}{subsubsection*.97}
+\contentsline {subsubsection}{Options as Flags}{245}{subsubsection*.98}
+\contentsline {subsection}{\numberline {10.2.4}Modifying Settings}{246}{subsection.10.2.4}
+\contentsline {subsection}{\numberline {10.2.5}Saving Configuration Files}{247}{subsection.10.2.5}
+\contentsline {subsection}{\numberline {10.2.6}Option Search Path}{248}{subsection.10.2.6}
+\contentsline {subsection}{\numberline {10.2.7}Combining Values with Interpolation}{250}{subsection.10.2.7}
+\contentsline {subsubsection}{Using Defaults}{251}{subsubsection*.99}
+\contentsline {subsubsection}{Substitution Errors}{251}{subsubsection*.100}
+\contentsline {section}{\numberline {10.3}robotparser -- Internet spider access control}{252}{section.10.3}
+\contentsline {subsection}{\numberline {10.3.1}robots.txt}{252}{subsection.10.3.1}
+\contentsline {subsection}{\numberline {10.3.2}Simple Example}{253}{subsection.10.3.2}
+\contentsline {subsection}{\numberline {10.3.3}Long-lived Spiders}{253}{subsection.10.3.3}
+\contentsline {chapter}{\numberline {11}Cryptographic Services}{255}{chapter.11}
+\contentsline {section}{\numberline {11.1}hashlib -- Cryptographic hashes and message digests}{255}{section.11.1}
+\contentsline {subsection}{\numberline {11.1.1}Sample Data}{255}{subsection.11.1.1}
+\contentsline {subsection}{\numberline {11.1.2}MD5 Example}{255}{subsection.11.1.2}
+\contentsline {subsection}{\numberline {11.1.3}SHA1 Example}{256}{subsection.11.1.3}
+\contentsline {subsection}{\numberline {11.1.4}new()}{256}{subsection.11.1.4}
+\contentsline {subsection}{\numberline {11.1.5}Calling update() more than once}{257}{subsection.11.1.5}
+\contentsline {section}{\numberline {11.2}hmac -- Cryptographic signature and verification of messages.}{258}{section.11.2}
+\contentsline {subsection}{\numberline {11.2.1}Example}{258}{subsection.11.2.1}
+\contentsline {subsection}{\numberline {11.2.2}SHA vs. MD5}{259}{subsection.11.2.2}
+\contentsline {subsection}{\numberline {11.2.3}Binary Digests}{259}{subsection.11.2.3}
+\contentsline {subsection}{\numberline {11.2.4}Applications}{260}{subsection.11.2.4}
+\contentsline {chapter}{\numberline {12}File and Directory Access}{263}{chapter.12}
+\contentsline {section}{\numberline {12.1}os.path -- Platform-independent manipulation of file names.}{263}{section.12.1}
+\contentsline {subsection}{\numberline {12.1.1}Parsing Paths}{263}{subsection.12.1.1}
+\contentsline {subsection}{\numberline {12.1.2}Building Paths}{265}{subsection.12.1.2}
+\contentsline {subsection}{\numberline {12.1.3}Normalizing Paths}{266}{subsection.12.1.3}
+\contentsline {subsection}{\numberline {12.1.4}File Times}{266}{subsection.12.1.4}
+\contentsline {subsection}{\numberline {12.1.5}Testing Files}{267}{subsection.12.1.5}
+\contentsline {subsection}{\numberline {12.1.6}Traversing a Directory Tree}{268}{subsection.12.1.6}
+\contentsline {section}{\numberline {12.2}fileinput -- Process lines from input streams}{268}{section.12.2}
+\contentsline {subsection}{\numberline {12.2.1}Converting M3U files to RSS}{269}{subsection.12.2.1}
+\contentsline {subsection}{\numberline {12.2.2}Progress Meta-data}{270}{subsection.12.2.2}
+\contentsline {subsection}{\numberline {12.2.3}In-place Filtering}{272}{subsection.12.2.3}
+\contentsline {section}{\numberline {12.3}filecmp -- Compare files}{273}{section.12.3}
+\contentsline {subsection}{\numberline {12.3.1}Example Data}{273}{subsection.12.3.1}
+\contentsline {subsection}{\numberline {12.3.2}Comparing Files}{275}{subsection.12.3.2}
+\contentsline {subsection}{\numberline {12.3.3}Using dircmp}{276}{subsection.12.3.3}
+\contentsline {subsection}{\numberline {12.3.4}Using differences in your program}{277}{subsection.12.3.4}
+\contentsline {section}{\numberline {12.4}tempfile -- Create temporary filesystem resources.}{279}{section.12.4}
+\contentsline {subsection}{\numberline {12.4.1}TemporaryFile}{279}{subsection.12.4.1}
+\contentsline {subsection}{\numberline {12.4.2}NamedTemporaryFile}{281}{subsection.12.4.2}
+\contentsline {subsection}{\numberline {12.4.3}mkdtemp}{281}{subsection.12.4.3}
+\contentsline {subsection}{\numberline {12.4.4}Predicting Names}{281}{subsection.12.4.4}
+\contentsline {subsection}{\numberline {12.4.5}Temporary File Location}{282}{subsection.12.4.5}
+\contentsline {section}{\numberline {12.5}glob -- Filename pattern matching}{283}{section.12.5}
+\contentsline {subsection}{\numberline {12.5.1}Example Data}{283}{subsection.12.5.1}
+\contentsline {subsection}{\numberline {12.5.2}Wildcards}{284}{subsection.12.5.2}
+\contentsline {subsection}{\numberline {12.5.3}Single Character Wildcard}{284}{subsection.12.5.3}
+\contentsline {subsection}{\numberline {12.5.4}Character Ranges}{285}{subsection.12.5.4}
+\contentsline {section}{\numberline {12.6}fnmatch -- Compare filenames against Unix-style glob patterns.}{285}{section.12.6}
+\contentsline {subsection}{\numberline {12.6.1}Simple Matching}{285}{subsection.12.6.1}
+\contentsline {subsection}{\numberline {12.6.2}Filtering}{286}{subsection.12.6.2}
+\contentsline {subsection}{\numberline {12.6.3}Translating Patterns}{287}{subsection.12.6.3}
+\contentsline {section}{\numberline {12.7}linecache -- Read text files efficiently}{287}{section.12.7}
+\contentsline {subsection}{\numberline {12.7.1}Test Data}{288}{subsection.12.7.1}
+\contentsline {subsection}{\numberline {12.7.2}Reading Specific Lines}{288}{subsection.12.7.2}
+\contentsline {subsection}{\numberline {12.7.3}Handling Blank Lines}{289}{subsection.12.7.3}
+\contentsline {subsection}{\numberline {12.7.4}Error Handling}{289}{subsection.12.7.4}
+\contentsline {subsection}{\numberline {12.7.5}Python Source}{290}{subsection.12.7.5}
+\contentsline {section}{\numberline {12.8}shutil -- High-level file operations.}{290}{section.12.8}
+\contentsline {subsection}{\numberline {12.8.1}Copying Files}{290}{subsection.12.8.1}
+\contentsline {subsection}{\numberline {12.8.2}Copying File Meta-data}{293}{subsection.12.8.2}
+\contentsline {subsection}{\numberline {12.8.3}Working With Directory Trees}{294}{subsection.12.8.3}
+\contentsline {section}{\numberline {12.9}dircache -- Cache directory listings}{295}{section.12.9}
+\contentsline {subsection}{\numberline {12.9.1}Listing Directory Contents}{295}{subsection.12.9.1}
+\contentsline {subsection}{\numberline {12.9.2}Annotated Listings}{297}{subsection.12.9.2}
+\contentsline {chapter}{\numberline {13}Data Compression and Archiving}{299}{chapter.13}
+\contentsline {section}{\numberline {13.1}bz2 -- bzip2 compression}{299}{section.13.1}
+\contentsline {subsection}{\numberline {13.1.1}One-shot Operations in Memory}{299}{subsection.13.1.1}
+\contentsline {subsection}{\numberline {13.1.2}Working with Streams}{300}{subsection.13.1.2}
+\contentsline {subsection}{\numberline {13.1.3}Mixed Content Streams}{304}{subsection.13.1.3}
+\contentsline {subsection}{\numberline {13.1.4}Writing Compressed Files}{305}{subsection.13.1.4}
+\contentsline {subsection}{\numberline {13.1.5}Reading Compressed Files}{306}{subsection.13.1.5}
+\contentsline {section}{\numberline {13.2}gzip -- Read and write GNU zip files}{307}{section.13.2}
+\contentsline {subsection}{\numberline {13.2.1}Writing Compressed Files}{307}{subsection.13.2.1}
+\contentsline {subsection}{\numberline {13.2.2}Reading Compressed Data}{309}{subsection.13.2.2}
+\contentsline {subsection}{\numberline {13.2.3}Working with Streams}{310}{subsection.13.2.3}
+\contentsline {section}{\numberline {13.3}tarfile -- Tar archive access}{311}{section.13.3}
+\contentsline {subsection}{\numberline {13.3.1}Testing Tar Files}{312}{subsection.13.3.1}
+\contentsline {subsection}{\numberline {13.3.2}Reading Meta-data from an Archive}{312}{subsection.13.3.2}
+\contentsline {subsection}{\numberline {13.3.3}Extracting Files From an Archive}{313}{subsection.13.3.3}
+\contentsline {subsection}{\numberline {13.3.4}Creating New Archives}{314}{subsection.13.3.4}
+\contentsline {subsection}{\numberline {13.3.5}Using Alternate Archive Member Names}{315}{subsection.13.3.5}
+\contentsline {subsection}{\numberline {13.3.6}Writing Data from Sources Other Than Files}{315}{subsection.13.3.6}
+\contentsline {subsection}{\numberline {13.3.7}Appending to Archives}{316}{subsection.13.3.7}
+\contentsline {subsection}{\numberline {13.3.8}Working with Compressed Archives}{317}{subsection.13.3.8}
+\contentsline {section}{\numberline {13.4}zipfile -- Read and write ZIP archive files}{318}{section.13.4}
+\contentsline {subsection}{\numberline {13.4.1}Limitations}{318}{subsection.13.4.1}
+\contentsline {subsection}{\numberline {13.4.2}Testing ZIP Files}{318}{subsection.13.4.2}
+\contentsline {subsection}{\numberline {13.4.3}Reading Meta-data from a ZIP Archive}{318}{subsection.13.4.3}
+\contentsline {subsection}{\numberline {13.4.4}Extracting Archived Files From a ZIP Archive}{319}{subsection.13.4.4}
+\contentsline {subsection}{\numberline {13.4.5}Creating New Archives}{320}{subsection.13.4.5}
+\contentsline {subsection}{\numberline {13.4.6}Using Alternate Archive Member Names}{321}{subsection.13.4.6}
+\contentsline {subsection}{\numberline {13.4.7}Writing Data from Sources Other Than Files}{322}{subsection.13.4.7}
+\contentsline {subsection}{\numberline {13.4.8}Writing with a ZipInfo Instance}{322}{subsection.13.4.8}
+\contentsline {subsection}{\numberline {13.4.9}Appending to Files}{323}{subsection.13.4.9}
+\contentsline {subsection}{\numberline {13.4.10}Python ZIP Archives}{324}{subsection.13.4.10}
+\contentsline {section}{\numberline {13.5}zlib -- Low-level access to GNU zlib compression library}{326}{section.13.5}
+\contentsline {subsection}{\numberline {13.5.1}Working with Data in Memory}{326}{subsection.13.5.1}
+\contentsline {subsection}{\numberline {13.5.2}Working with Streams}{327}{subsection.13.5.2}
+\contentsline {subsection}{\numberline {13.5.3}Mixed Content Streams}{330}{subsection.13.5.3}
+\contentsline {subsection}{\numberline {13.5.4}Checksums}{331}{subsection.13.5.4}
+\contentsline {chapter}{\numberline {14}Data Persistence}{333}{chapter.14}
+\contentsline {section}{\numberline {14.1}anydbm -- Access to DBM-style databases}{333}{section.14.1}
+\contentsline {subsection}{\numberline {14.1.1}Creating a New Database}{333}{subsection.14.1.1}
+\contentsline {subsection}{\numberline {14.1.2}Opening an Existing Database}{334}{subsection.14.1.2}
+\contentsline {subsection}{\numberline {14.1.3}Error Cases}{334}{subsection.14.1.3}
+\contentsline {section}{\numberline {14.2}dbhash -- DBM-style API for the BSD database library}{335}{section.14.2}
+\contentsline {section}{\numberline {14.3}dbm -- Simple database interface}{335}{section.14.3}
+\contentsline {subsection}{\numberline {14.3.1}Examples}{335}{subsection.14.3.1}
+\contentsline {section}{\numberline {14.4}dumbdbm -- Portable DBM Implementation}{336}{section.14.4}
+\contentsline {section}{\numberline {14.5}gdbm -- GNU's version of the dbm library}{336}{section.14.5}
+\contentsline {section}{\numberline {14.6}pickle and cPickle -- Python object serialization}{337}{section.14.6}
+\contentsline {subsection}{\numberline {14.6.1}Importing}{337}{subsection.14.6.1}
+\contentsline {subsection}{\numberline {14.6.2}Encoding and Decoding Data in Strings}{337}{subsection.14.6.2}
+\contentsline {subsection}{\numberline {14.6.3}Working with Streams}{338}{subsection.14.6.3}
+\contentsline {subsection}{\numberline {14.6.4}Problems Reconstructing Objects}{339}{subsection.14.6.4}
+\contentsline {subsection}{\numberline {14.6.5}Circular References}{341}{subsection.14.6.5}
+\contentsline {section}{\numberline {14.7}shelve -- Persistent storage of arbitrary Python objects}{344}{section.14.7}
+\contentsline {subsection}{\numberline {14.7.1}Creating a new Shelf}{344}{subsection.14.7.1}
+\contentsline {subsection}{\numberline {14.7.2}Write-back}{345}{subsection.14.7.2}
+\contentsline {subsection}{\numberline {14.7.3}Specific Shelf Types}{346}{subsection.14.7.3}
+\contentsline {section}{\numberline {14.8}whichdb -- Identify DBM-style database formats}{346}{section.14.8}
+\contentsline {section}{\numberline {14.9}sqlite3 -- Embedded Relational Database}{347}{section.14.9}
+\contentsline {subsection}{\numberline {14.9.1}Creating a Database}{347}{subsection.14.9.1}
+\contentsline {subsection}{\numberline {14.9.2}Retrieving Data}{349}{subsection.14.9.2}
+\contentsline {subsubsection}{Query Metadata}{351}{subsubsection*.102}
+\contentsline {subsubsection}{Row Objects}{351}{subsubsection*.103}
+\contentsline {subsection}{\numberline {14.9.3}Using Variables with Queries}{352}{subsection.14.9.3}
+\contentsline {subsubsection}{Positional Parameters}{352}{subsubsection*.104}
+\contentsline {subsubsection}{Named Parameters}{353}{subsubsection*.105}
+\contentsline {subsubsection}{Bulk Loading}{354}{subsubsection*.106}
+\contentsline {subsection}{\numberline {14.9.4}Column Types}{355}{subsection.14.9.4}
+\contentsline {subsubsection}{Custom Types}{356}{subsubsection*.107}
+\contentsline {subsubsection}{Deriving Types from Column Names}{357}{subsubsection*.108}
+\contentsline {subsection}{\numberline {14.9.5}Transactions}{359}{subsection.14.9.5}
+\contentsline {subsubsection}{Preserving Changes}{359}{subsubsection*.109}
+\contentsline {subsubsection}{Discarding Changes}{360}{subsubsection*.110}
+\contentsline {subsubsection}{Isolation Levels}{361}{subsubsection*.111}
+\contentsline {paragraph}{Deferred}{363}{paragraph*.112}
+\contentsline {paragraph}{Immediate}{363}{paragraph*.113}
+\contentsline {paragraph}{Exclusive}{364}{paragraph*.114}
+\contentsline {paragraph}{Autocommit}{364}{paragraph*.115}
+\contentsline {subsection}{\numberline {14.9.6}User-defined Behaviors}{366}{subsection.14.9.6}
+\contentsline {subsubsection}{Using Python Functions in SQL}{366}{subsubsection*.116}
+\contentsline {subsubsection}{Custom Aggregation}{368}{subsubsection*.117}
+\contentsline {subsubsection}{Custom Sorting}{368}{subsubsection*.118}
+\contentsline {subsection}{\numberline {14.9.7}Restricting Access to Data}{370}{subsection.14.9.7}
+\contentsline {subsection}{\numberline {14.9.8}In-Memory Databases}{372}{subsection.14.9.8}
+\contentsline {subsection}{\numberline {14.9.9}Exporting the Contents of a Database}{373}{subsection.14.9.9}
+\contentsline {subsection}{\numberline {14.9.10}Threading and Connection Sharing}{374}{subsection.14.9.10}
+\contentsline {chapter}{\numberline {15}Generic Operating System Services}{377}{chapter.15}
+\contentsline {section}{\numberline {15.1}os -- Portable access to operating system specific features.}{377}{section.15.1}
+\contentsline {subsection}{\numberline {15.1.1}Process Owner}{377}{subsection.15.1.1}
+\contentsline {subsection}{\numberline {15.1.2}Process Environment}{379}{subsection.15.1.2}
+\contentsline {subsection}{\numberline {15.1.3}Process Working Directory}{380}{subsection.15.1.3}
+\contentsline {subsection}{\numberline {15.1.4}Pipes}{380}{subsection.15.1.4}
+\contentsline {subsection}{\numberline {15.1.5}File Descriptors}{383}{subsection.15.1.5}
+\contentsline {subsection}{\numberline {15.1.6}Filesystem Permissions}{383}{subsection.15.1.6}
+\contentsline {subsection}{\numberline {15.1.7}Directories}{385}{subsection.15.1.7}
+\contentsline {subsection}{\numberline {15.1.8}Symbolic Links}{385}{subsection.15.1.8}
+\contentsline {subsection}{\numberline {15.1.9}Walking a Directory Tree}{386}{subsection.15.1.9}
+\contentsline {subsection}{\numberline {15.1.10}Running External Commands}{387}{subsection.15.1.10}
+\contentsline {subsection}{\numberline {15.1.11}Creating Processes with os.fork()}{388}{subsection.15.1.11}
+\contentsline {subsection}{\numberline {15.1.12}Waiting for a Child}{390}{subsection.15.1.12}
+\contentsline {subsection}{\numberline {15.1.13}Spawn}{392}{subsection.15.1.13}
+\contentsline {section}{\numberline {15.2}time -- Functions for manipulating clock time}{393}{section.15.2}
+\contentsline {subsection}{\numberline {15.2.1}Wall Clock Time}{393}{subsection.15.2.1}
+\contentsline {subsection}{\numberline {15.2.2}Processor Clock Time}{394}{subsection.15.2.2}
+\contentsline {subsection}{\numberline {15.2.3}struct\_time}{395}{subsection.15.2.3}
+\contentsline {subsection}{\numberline {15.2.4}Parsing and Formatting Times}{395}{subsection.15.2.4}
+\contentsline {subsection}{\numberline {15.2.5}Working with Time Zones}{396}{subsection.15.2.5}
+\contentsline {section}{\numberline {15.3}getopt -- Command line option parsing}{397}{section.15.3}
+\contentsline {subsection}{\numberline {15.3.1}Function Arguments}{398}{subsection.15.3.1}
+\contentsline {subsection}{\numberline {15.3.2}Short Form Options}{398}{subsection.15.3.2}
+\contentsline {subsection}{\numberline {15.3.3}Long Form Options}{398}{subsection.15.3.3}
+\contentsline {subsection}{\numberline {15.3.4}Example}{398}{subsection.15.3.4}
+\contentsline {subsection}{\numberline {15.3.5}Abbreviating Long Form Options}{400}{subsection.15.3.5}
+\contentsline {subsection}{\numberline {15.3.6}GNU-style Option Parsing}{401}{subsection.15.3.6}
+\contentsline {subsection}{\numberline {15.3.7}Special Case: \texttt {-{-}}}{401}{subsection.15.3.7}
+\contentsline {section}{\numberline {15.4}optparse -- Command line option parser to replace getopt.}{402}{section.15.4}
+\contentsline {subsection}{\numberline {15.4.1}Creating an OptionParser}{402}{subsection.15.4.1}
+\contentsline {subsubsection}{Defining Options}{402}{subsubsection*.119}
+\contentsline {subsubsection}{Parsing a Command Line}{402}{subsubsection*.120}
+\contentsline {subsection}{\numberline {15.4.2}Short and Long-Form Options}{402}{subsection.15.4.2}
+\contentsline {subsection}{\numberline {15.4.3}Comparing with getopt}{403}{subsection.15.4.3}
+\contentsline {subsection}{\numberline {15.4.4}Option Values}{404}{subsection.15.4.4}
+\contentsline {subsubsection}{Setting Defaults}{404}{subsubsection*.121}
+\contentsline {subsubsection}{Type Conversion}{406}{subsubsection*.122}
+\contentsline {subsubsection}{Enumerations}{406}{subsubsection*.123}
+\contentsline {subsection}{\numberline {15.4.5}Option Actions}{407}{subsection.15.4.5}
+\contentsline {subsubsection}{Constants}{407}{subsubsection*.124}
+\contentsline {subsubsection}{Boolean Flags}{407}{subsubsection*.125}
+\contentsline {subsubsection}{Repeating Options}{408}{subsubsection*.126}
+\contentsline {subsubsection}{Callbacks}{409}{subsubsection*.127}
+\contentsline {subsection}{\numberline {15.4.6}Help Messages}{411}{subsection.15.4.6}
+\contentsline {subsubsection}{Organizing Options}{412}{subsubsection*.128}
+\contentsline {subsubsection}{Application Settings}{413}{subsubsection*.129}
+\contentsline {section}{\numberline {15.5}argparse -- Command line option and argument parsing.}{414}{section.15.5}
+\contentsline {subsection}{\numberline {15.5.1}Comparing with optparse}{414}{subsection.15.5.1}
+\contentsline {subsection}{\numberline {15.5.2}Setting up a Parser}{415}{subsection.15.5.2}
+\contentsline {subsection}{\numberline {15.5.3}Defining Arguments}{415}{subsection.15.5.3}
+\contentsline {subsection}{\numberline {15.5.4}Parsing a Command Line}{415}{subsection.15.5.4}
+\contentsline {subsection}{\numberline {15.5.5}Simple Examples}{415}{subsection.15.5.5}
+\contentsline {subsubsection}{Argument Actions}{416}{subsubsection*.130}
+\contentsline {subsubsection}{Option Prefixes}{419}{subsubsection*.131}
+\contentsline {subsubsection}{Sources of Arguments}{420}{subsubsection*.132}
+\contentsline {subsection}{\numberline {15.5.6}Automatically Generated Options}{421}{subsection.15.5.6}
+\contentsline {subsection}{\numberline {15.5.7}Parser Organization}{422}{subsection.15.5.7}
+\contentsline {subsubsection}{Sharing Parser Rules}{422}{subsubsection*.133}
+\contentsline {subsubsection}{Conflicting Options}{423}{subsubsection*.134}
+\contentsline {subsubsection}{Argument Groups}{424}{subsubsection*.135}
+\contentsline {subsubsection}{Mutually Exclusive Options}{425}{subsubsection*.136}
+\contentsline {subsubsection}{Nesting Parsers}{426}{subsubsection*.137}
+\contentsline {subsection}{\numberline {15.5.8}Advanced Argument Processing}{427}{subsection.15.5.8}
+\contentsline {subsubsection}{Variable Argument Lists}{427}{subsubsection*.138}
+\contentsline {subsubsection}{Argument Types}{429}{subsubsection*.139}
+\contentsline {subsubsection}{File Arguments}{430}{subsubsection*.140}
+\contentsline {subsubsection}{Custom Actions}{431}{subsubsection*.141}
+\contentsline {section}{\numberline {15.6}logging -- Report status, error, and informational messages.}{433}{section.15.6}
+\contentsline {subsection}{\numberline {15.6.1}Logging in Applications}{433}{subsection.15.6.1}
+\contentsline {subsubsection}{Logging to a File}{433}{subsubsection*.142}
+\contentsline {subsubsection}{Rotating Log Files}{434}{subsubsection*.143}
+\contentsline {subsubsection}{Verbosity Levels}{435}{subsubsection*.144}
+\contentsline {subsection}{\numberline {15.6.2}Logging in Libraries}{436}{subsection.15.6.2}
+\contentsline {subsubsection}{Naming Logger Instances}{436}{subsubsection*.145}
+\contentsline {section}{\numberline {15.7}getpass -- Prompt the user for a password without echoing.}{436}{section.15.7}
+\contentsline {subsection}{\numberline {15.7.1}Example}{437}{subsection.15.7.1}
+\contentsline {subsection}{\numberline {15.7.2}Using getpass Without a Terminal}{437}{subsection.15.7.2}
+\contentsline {section}{\numberline {15.8}platform -- Access system version information}{438}{section.15.8}
+\contentsline {subsection}{\numberline {15.8.1}Interpreter}{439}{subsection.15.8.1}
+\contentsline {subsection}{\numberline {15.8.2}Platform}{439}{subsection.15.8.2}
+\contentsline {subsection}{\numberline {15.8.3}Operating System and Hardware Info}{440}{subsection.15.8.3}
+\contentsline {subsection}{\numberline {15.8.4}Executable Architecture}{441}{subsection.15.8.4}
+\contentsline {chapter}{\numberline {16}Optional Operating System Services}{443}{chapter.16}
+\contentsline {section}{\numberline {16.1}threading -- Manage concurrent threads}{443}{section.16.1}
+\contentsline {subsection}{\numberline {16.1.1}Thread Objects}{443}{subsection.16.1.1}
+\contentsline {subsection}{\numberline {16.1.2}Determining the Current Thread}{444}{subsection.16.1.2}
+\contentsline {subsection}{\numberline {16.1.3}Daemon vs. Non-Daemon Threads}{445}{subsection.16.1.3}
+\contentsline {subsection}{\numberline {16.1.4}Enumerating All Threads}{447}{subsection.16.1.4}
+\contentsline {subsection}{\numberline {16.1.5}Subclassing Thread}{448}{subsection.16.1.5}
+\contentsline {subsection}{\numberline {16.1.6}Timer Threads}{450}{subsection.16.1.6}
+\contentsline {subsection}{\numberline {16.1.7}Signaling Between Threads}{450}{subsection.16.1.7}
+\contentsline {subsection}{\numberline {16.1.8}Controlling Access to Resources}{452}{subsection.16.1.8}
+\contentsline {subsubsection}{Re-entrant Locks}{454}{subsubsection*.146}
+\contentsline {subsubsection}{Locks as Context Managers}{455}{subsubsection*.147}
+\contentsline {subsection}{\numberline {16.1.9}Synchronizing Threads}{455}{subsection.16.1.9}
+\contentsline {subsection}{\numberline {16.1.10}Limiting Concurrent Access to Resources}{456}{subsection.16.1.10}
+\contentsline {subsection}{\numberline {16.1.11}Thread-specific Data}{458}{subsection.16.1.11}
+\contentsline {section}{\numberline {16.2}mmap -- Memory-map files}{459}{section.16.2}
+\contentsline {subsection}{\numberline {16.2.1}Reading}{460}{subsection.16.2.1}
+\contentsline {subsection}{\numberline {16.2.2}Writing}{461}{subsection.16.2.2}
+\contentsline {subsubsection}{ACCESS\_COPY Mode}{461}{subsubsection*.148}
+\contentsline {subsection}{\numberline {16.2.3}Regular Expressions}{462}{subsection.16.2.3}
+\contentsline {section}{\numberline {16.3}multiprocessing -- Manage processes like threads}{463}{section.16.3}
+\contentsline {subsection}{\numberline {16.3.1}multiprocessing Basics}{463}{subsection.16.3.1}
+\contentsline {subsubsection}{Importable Target Functions}{464}{subsubsection*.149}
+\contentsline {subsubsection}{Determining the Current Process}{464}{subsubsection*.150}
+\contentsline {subsubsection}{Daemon Processes}{465}{subsubsection*.151}
+\contentsline {subsubsection}{Waiting for Processes}{466}{subsubsection*.152}
+\contentsline {subsubsection}{Terminating Processes}{467}{subsubsection*.153}
+\contentsline {subsubsection}{Process Exit Status}{468}{subsubsection*.154}
+\contentsline {subsubsection}{Logging}{469}{subsubsection*.155}
+\contentsline {subsubsection}{Subclassing Process}{470}{subsubsection*.156}
+\contentsline {subsection}{\numberline {16.3.2}Communication Between Processes}{471}{subsection.16.3.2}
+\contentsline {subsubsection}{Passing Messages to Processes}{471}{subsubsection*.157}
+\contentsline {subsubsection}{Signaling between Processes}{474}{subsubsection*.158}
+\contentsline {subsubsection}{Controlling Access to Resources}{475}{subsubsection*.159}
+\contentsline {subsubsection}{Synchronizing Operations}{475}{subsubsection*.160}
+\contentsline {subsubsection}{Controlling Concurrent Access to Resources}{476}{subsubsection*.161}
+\contentsline {subsubsection}{Managing Shared State}{478}{subsubsection*.162}
+\contentsline {subsubsection}{Shared Namespaces}{478}{subsubsection*.163}
+\contentsline {subsubsection}{Process Pools}{480}{subsubsection*.164}
+\contentsline {subsection}{\numberline {16.3.3}Implementing MapReduce with multiprocessing}{482}{subsection.16.3.3}
+\contentsline {subsubsection}{SimpleMapReduce}{482}{subsubsection*.165}
+\contentsline {subsubsection}{Counting Words in Files}{483}{subsubsection*.166}
+\contentsline {section}{\numberline {16.4}readline -- Interface to the GNU readline library}{485}{section.16.4}
+\contentsline {subsection}{\numberline {16.4.1}Configuring}{485}{subsection.16.4.1}
+\contentsline {subsection}{\numberline {16.4.2}Completing Text}{486}{subsection.16.4.2}
+\contentsline {subsection}{\numberline {16.4.3}Accessing the Completion Buffer}{488}{subsection.16.4.3}
+\contentsline {subsection}{\numberline {16.4.4}Input History}{491}{subsection.16.4.4}
+\contentsline {subsection}{\numberline {16.4.5}Hooks}{493}{subsection.16.4.5}
+\contentsline {section}{\numberline {16.5}rlcompleter -- Adds tab-completion to the interactive interpreter}{494}{section.16.5}
+\contentsline {chapter}{\numberline {17}Unix-specific Services}{495}{chapter.17}
+\contentsline {section}{\numberline {17.1}commands -- Run external shell commands}{495}{section.17.1}
+\contentsline {subsection}{\numberline {17.1.1}getstatusoutput()}{495}{subsection.17.1.1}
+\contentsline {subsection}{\numberline {17.1.2}getoutput()}{496}{subsection.17.1.2}
+\contentsline {subsection}{\numberline {17.1.3}getstatus()}{497}{subsection.17.1.3}
+\contentsline {section}{\numberline {17.2}grp -- Unix Group Database}{497}{section.17.2}
+\contentsline {subsection}{\numberline {17.2.1}Querying All Groups}{498}{subsection.17.2.1}
+\contentsline {subsection}{\numberline {17.2.2}Group Memberships for a User}{499}{subsection.17.2.2}
+\contentsline {subsection}{\numberline {17.2.3}Finding a Group By Name}{500}{subsection.17.2.3}
+\contentsline {subsection}{\numberline {17.2.4}Finding a Group by ID}{500}{subsection.17.2.4}
+\contentsline {section}{\numberline {17.3}pipes -- Unix shell command pipeline templates}{501}{section.17.3}
+\contentsline {subsection}{\numberline {17.3.1}Passing Standard I/O Through a Pipe}{501}{subsection.17.3.1}
+\contentsline {subsection}{\numberline {17.3.2}Using Files Instead of Streams}{502}{subsection.17.3.2}
+\contentsline {subsection}{\numberline {17.3.3}A More Complex Example}{504}{subsection.17.3.3}
+\contentsline {subsection}{\numberline {17.3.4}Passing Files Through Pipelines}{506}{subsection.17.3.4}
+\contentsline {subsection}{\numberline {17.3.5}Cloning Templates}{506}{subsection.17.3.5}
+\contentsline {section}{\numberline {17.4}pwd -- Unix Password Database}{507}{section.17.4}
+\contentsline {subsection}{\numberline {17.4.1}Querying All Users}{507}{subsection.17.4.1}
+\contentsline {subsection}{\numberline {17.4.2}Querying User By Name}{508}{subsection.17.4.2}
+\contentsline {subsection}{\numberline {17.4.3}Querying User By UID}{509}{subsection.17.4.3}
+\contentsline {section}{\numberline {17.5}resource -- System resource management}{510}{section.17.5}
+\contentsline {subsection}{\numberline {17.5.1}Current Usage}{510}{subsection.17.5.1}
+\contentsline {subsection}{\numberline {17.5.2}Resource Limits}{510}{subsection.17.5.2}
+\contentsline {chapter}{\numberline {18}Interprocess Communication and Networking}{513}{chapter.18}
+\contentsline {section}{\numberline {18.1}asynchat -- Asynchronous protocol handler}{513}{section.18.1}
+\contentsline {subsection}{\numberline {18.1.1}Message Terminators}{513}{subsection.18.1.1}
+\contentsline {subsection}{\numberline {18.1.2}Server and Handler}{513}{subsection.18.1.2}
+\contentsline {subsection}{\numberline {18.1.3}Client}{515}{subsection.18.1.3}
+\contentsline {subsection}{\numberline {18.1.4}Putting It All Together}{517}{subsection.18.1.4}
+\contentsline {section}{\numberline {18.2}asyncore -- Asynchronous I/O handler}{518}{section.18.2}
+\contentsline {subsection}{\numberline {18.2.1}Clients}{518}{subsection.18.2.1}
+\contentsline {subsection}{\numberline {18.2.2}Servers}{521}{subsection.18.2.2}
+\contentsline {subsection}{\numberline {18.2.3}Working with Other Event Loops}{525}{subsection.18.2.3}
+\contentsline {subsection}{\numberline {18.2.4}Working with Files}{527}{subsection.18.2.4}
+\contentsline {section}{\numberline {18.3}signal -- Receive notification of asynchronous system events}{528}{section.18.3}
+\contentsline {subsection}{\numberline {18.3.1}Receiving Signals}{529}{subsection.18.3.1}
+\contentsline {subsection}{\numberline {18.3.2}getsignal()}{530}{subsection.18.3.2}
+\contentsline {subsection}{\numberline {18.3.3}Sending Signals}{531}{subsection.18.3.3}
+\contentsline {subsection}{\numberline {18.3.4}Alarms}{531}{subsection.18.3.4}
+\contentsline {subsection}{\numberline {18.3.5}Ignoring Signals}{531}{subsection.18.3.5}
+\contentsline {subsection}{\numberline {18.3.6}Signals and Threads}{532}{subsection.18.3.6}
+\contentsline {section}{\numberline {18.4}subprocess -- Work with additional processes}{533}{section.18.4}
+\contentsline {subsection}{\numberline {18.4.1}Running External Command}{534}{subsection.18.4.1}
+\contentsline {subsubsection}{Error Handling}{535}{subsubsection*.167}
+\contentsline {subsubsection}{Capturing Output}{535}{subsubsection*.168}
+\contentsline {subsection}{\numberline {18.4.2}Working with Pipes Directly}{537}{subsection.18.4.2}
+\contentsline {subsubsection}{popen}{537}{subsubsection*.169}
+\contentsline {subsubsection}{popen2}{537}{subsubsection*.170}
+\contentsline {subsubsection}{popen3}{538}{subsubsection*.171}
+\contentsline {subsubsection}{popen4}{538}{subsubsection*.172}
+\contentsline {subsection}{\numberline {18.4.3}Connecting Segments of a Pipe}{539}{subsection.18.4.3}
+\contentsline {subsection}{\numberline {18.4.4}Interacting with Another Command}{540}{subsection.18.4.4}
+\contentsline {subsection}{\numberline {18.4.5}Signaling Between Processes}{541}{subsection.18.4.5}
+\contentsline {subsubsection}{Process Groups / Sessions}{542}{subsubsection*.173}
+\contentsline {chapter}{\numberline {19}Internet Protocols and Support}{545}{chapter.19}
+\contentsline {section}{\numberline {19.1}BaseHTTPServer -- base classes for implementing web servers}{545}{section.19.1}
+\contentsline {subsection}{\numberline {19.1.1}HTTP GET}{545}{subsection.19.1.1}
+\contentsline {subsection}{\numberline {19.1.2}HTTP POST}{546}{subsection.19.1.2}
+\contentsline {subsection}{\numberline {19.1.3}Threading and Forking}{547}{subsection.19.1.3}
+\contentsline {subsection}{\numberline {19.1.4}Handling Errors}{548}{subsection.19.1.4}
+\contentsline {subsection}{\numberline {19.1.5}Setting Headers}{549}{subsection.19.1.5}
+\contentsline {section}{\numberline {19.2}cgitb -- Detailed traceback reports}{550}{section.19.2}
+\contentsline {subsection}{\numberline {19.2.1}Standard Traceback Dumps}{550}{subsection.19.2.1}
+\contentsline {subsection}{\numberline {19.2.2}Enabling Detailed Tracebacks}{550}{subsection.19.2.2}
+\contentsline {subsection}{\numberline {19.2.3}Local Variables in Tracebacks}{552}{subsection.19.2.3}
+\contentsline {subsection}{\numberline {19.2.4}Adding More Context}{555}{subsection.19.2.4}
+\contentsline {subsection}{\numberline {19.2.5}Exception Properties}{559}{subsection.19.2.5}
+\contentsline {subsection}{\numberline {19.2.6}Logging Tracebacks}{560}{subsection.19.2.6}
+\contentsline {subsection}{\numberline {19.2.7}HTML Output}{562}{subsection.19.2.7}
+\contentsline {section}{\numberline {19.3}Cookie -- HTTP Cookies}{563}{section.19.3}
+\contentsline {subsection}{\numberline {19.3.1}Creating and Setting a Cookie}{564}{subsection.19.3.1}
+\contentsline {subsection}{\numberline {19.3.2}Morsels}{564}{subsection.19.3.2}
+\contentsline {subsection}{\numberline {19.3.3}Encoded Values}{565}{subsection.19.3.3}
+\contentsline {subsection}{\numberline {19.3.4}Receiving and Parsing Cookie Headers}{566}{subsection.19.3.4}
+\contentsline {subsection}{\numberline {19.3.5}Alternative Output Formats}{567}{subsection.19.3.5}
+\contentsline {subsection}{\numberline {19.3.6}Deprecated Classes}{567}{subsection.19.3.6}
+\contentsline {section}{\numberline {19.4}imaplib - IMAP4 client library}{567}{section.19.4}
+\contentsline {subsection}{\numberline {19.4.1}Variations}{568}{subsection.19.4.1}
+\contentsline {subsection}{\numberline {19.4.2}Connecting to a Server}{568}{subsection.19.4.2}
+\contentsline {subsubsection}{Authentication Failure}{569}{subsubsection*.174}
+\contentsline {subsection}{\numberline {19.4.3}Example Configuration}{569}{subsection.19.4.3}
+\contentsline {subsection}{\numberline {19.4.4}Listing Mailboxes}{570}{subsection.19.4.4}
+\contentsline {subsection}{\numberline {19.4.5}Mailbox Status}{572}{subsection.19.4.5}
+\contentsline {subsection}{\numberline {19.4.6}Selecting a Mailbox}{572}{subsection.19.4.6}
+\contentsline {subsection}{\numberline {19.4.7}Searching for Messages}{573}{subsection.19.4.7}
+\contentsline {subsection}{\numberline {19.4.8}Search Criteria}{574}{subsection.19.4.8}
+\contentsline {subsection}{\numberline {19.4.9}Fetching Messages}{575}{subsection.19.4.9}
+\contentsline {subsection}{\numberline {19.4.10}Whole Messages}{577}{subsection.19.4.10}
+\contentsline {subsection}{\numberline {19.4.11}Uploading Messages}{578}{subsection.19.4.11}
+\contentsline {subsection}{\numberline {19.4.12}Moving and Copying Messages}{579}{subsection.19.4.12}
+\contentsline {subsection}{\numberline {19.4.13}Deleting Messages}{580}{subsection.19.4.13}
+\contentsline {section}{\numberline {19.5}SimpleXMLRPCServer -- Implements an XML-RPC server.}{582}{section.19.5}
+\contentsline {subsection}{\numberline {19.5.1}A Simple Server}{582}{subsection.19.5.1}
+\contentsline {subsection}{\numberline {19.5.2}Alternate Names}{583}{subsection.19.5.2}
+\contentsline {subsection}{\numberline {19.5.3}Dotted Names}{584}{subsection.19.5.3}
+\contentsline {subsection}{\numberline {19.5.4}Arbitrary Names}{585}{subsection.19.5.4}
+\contentsline {subsection}{\numberline {19.5.5}Exposing Methods of Objects}{585}{subsection.19.5.5}
+\contentsline {subsection}{\numberline {19.5.6}Dispatching Calls Yourself}{587}{subsection.19.5.6}
+\contentsline {subsection}{\numberline {19.5.7}Introspection API}{588}{subsection.19.5.7}
+\contentsline {section}{\numberline {19.6}smtpd -- Sample SMTP Servers}{590}{section.19.6}
+\contentsline {subsection}{\numberline {19.6.1}SMTPServer}{590}{subsection.19.6.1}
+\contentsline {subsection}{\numberline {19.6.2}DebuggingServer}{592}{subsection.19.6.2}
+\contentsline {subsection}{\numberline {19.6.3}PureProxy}{592}{subsection.19.6.3}
+\contentsline {subsection}{\numberline {19.6.4}MailmanProxy}{593}{subsection.19.6.4}
+\contentsline {section}{\numberline {19.7}smtplib -- Simple Mail Transfer Protocol client}{593}{section.19.7}
+\contentsline {subsection}{\numberline {19.7.1}Sending an Email Message}{593}{subsection.19.7.1}
+\contentsline {subsection}{\numberline {19.7.2}Authentication and Encryption}{595}{subsection.19.7.2}
+\contentsline {subsection}{\numberline {19.7.3}Verifying an Email Address}{596}{subsection.19.7.3}
+\contentsline {section}{\numberline {19.8}socket -- Network Communication}{597}{section.19.8}
+\contentsline {subsection}{\numberline {19.8.1}Addressing, Protocol Families and Socket Types}{597}{subsection.19.8.1}
+\contentsline {subsubsection}{Looking up Hosts on the Network}{598}{subsubsection*.175}
+\contentsline {subsubsection}{Finding Service Information}{600}{subsubsection*.176}
+\contentsline {subsubsection}{Looking Up Server Addresses}{601}{subsubsection*.177}
+\contentsline {subsubsection}{IP Address Representations}{603}{subsubsection*.178}
+\contentsline {subsection}{\numberline {19.8.2}TCP/IP Client and Server}{604}{subsection.19.8.2}
+\contentsline {subsubsection}{Echo Server}{605}{subsubsection*.179}
+\contentsline {subsubsection}{Echo Client}{605}{subsubsection*.180}
+\contentsline {subsubsection}{Client and Server Together}{606}{subsubsection*.181}
+\contentsline {subsubsection}{Easy Client Connections}{607}{subsubsection*.182}
+\contentsline {subsubsection}{Choosing an Address for Listening}{608}{subsubsection*.183}
+\contentsline {subsection}{\numberline {19.8.3}User Datagram Client and Server}{610}{subsection.19.8.3}
+\contentsline {subsubsection}{Echo Server}{611}{subsubsection*.184}
+\contentsline {subsubsection}{Echo Client}{611}{subsubsection*.185}
+\contentsline {subsubsection}{Client and Server Together}{612}{subsubsection*.186}
+\contentsline {subsection}{\numberline {19.8.4}Unix Domain Sockets}{612}{subsection.19.8.4}
+\contentsline {subsubsection}{Permissions}{614}{subsubsection*.187}
+\contentsline {subsubsection}{Communication Between Parent and Child Processes}{615}{subsubsection*.188}
+\contentsline {subsection}{\numberline {19.8.5}Multicast}{615}{subsection.19.8.5}
+\contentsline {subsubsection}{Sending Multicast Messages}{616}{subsubsection*.189}
+\contentsline {subsubsection}{Receiving Multicast Messages}{616}{subsubsection*.190}
+\contentsline {subsubsection}{Example Output}{617}{subsubsection*.191}
+\contentsline {subsection}{\numberline {19.8.6}Sending Binary Data}{618}{subsection.19.8.6}
+\contentsline {subsection}{\numberline {19.8.7}Non-blocking Communication and Timeouts}{619}{subsection.19.8.7}
+\contentsline {section}{\numberline {19.9}select -- Wait for I/O Efficiently}{620}{section.19.9}
+\contentsline {subsection}{\numberline {19.9.1}select()}{620}{subsection.19.9.1}
+\contentsline {subsubsection}{Timeouts}{625}{subsubsection*.192}
+\contentsline {subsection}{\numberline {19.9.2}poll()}{627}{subsection.19.9.2}
+\contentsline {subsection}{\numberline {19.9.3}Platform-specific Options}{630}{subsection.19.9.3}
+\contentsline {section}{\numberline {19.10}SocketServer -- Creating network servers.}{631}{section.19.10}
+\contentsline {subsection}{\numberline {19.10.1}Server Types}{631}{subsection.19.10.1}
+\contentsline {subsection}{\numberline {19.10.2}Server Objects}{631}{subsection.19.10.2}
+\contentsline {subsection}{\numberline {19.10.3}Implementing a Server}{631}{subsection.19.10.3}
+\contentsline {subsection}{\numberline {19.10.4}Request Handlers}{632}{subsection.19.10.4}
+\contentsline {subsection}{\numberline {19.10.5}Echo Example}{632}{subsection.19.10.5}
+\contentsline {subsection}{\numberline {19.10.6}Threading and Forking}{635}{subsection.19.10.6}
+\contentsline {section}{\numberline {19.11}urllib -- simple interface for network resource access}{637}{section.19.11}
+\contentsline {subsection}{\numberline {19.11.1}HTTP GET}{638}{subsection.19.11.1}
+\contentsline {subsection}{\numberline {19.11.2}Encoding Arguments}{639}{subsection.19.11.2}
+\contentsline {subsection}{\numberline {19.11.3}HTTP POST}{640}{subsection.19.11.3}
+\contentsline {subsection}{\numberline {19.11.4}Paths vs. URLs}{641}{subsection.19.11.4}
+\contentsline {subsection}{\numberline {19.11.5}Simple Retrieval with Cache}{642}{subsection.19.11.5}
+\contentsline {subsection}{\numberline {19.11.6}URLopener}{643}{subsection.19.11.6}
+\contentsline {section}{\numberline {19.12}urllib2 -- Library for opening URLs.}{643}{section.19.12}
+\contentsline {subsection}{\numberline {19.12.1}HTTP GET}{643}{subsection.19.12.1}
+\contentsline {subsubsection}{Encoding Arguments}{645}{subsubsection*.193}
+\contentsline {subsection}{\numberline {19.12.2}HTTP POST}{646}{subsection.19.12.2}
+\contentsline {subsection}{\numberline {19.12.3}Working with Requests Directly}{646}{subsection.19.12.3}
+\contentsline {subsubsection}{Adding Outgoing Headers}{646}{subsubsection*.194}
+\contentsline {subsubsection}{Posting Form Data}{647}{subsubsection*.195}
+\contentsline {subsubsection}{Uploading Files}{648}{subsubsection*.196}
+\contentsline {subsection}{\numberline {19.12.4}Custom Protocol Handlers}{650}{subsection.19.12.4}
+\contentsline {section}{\numberline {19.13}urlparse -- Split URL into component pieces.}{652}{section.19.13}
+\contentsline {subsection}{\numberline {19.13.1}Parsing}{652}{subsection.19.13.1}
+\contentsline {subsection}{\numberline {19.13.2}Unparsing}{654}{subsection.19.13.2}
+\contentsline {subsection}{\numberline {19.13.3}Joining}{655}{subsection.19.13.3}
+\contentsline {section}{\numberline {19.14}uuid -- Universally unique identifiers}{656}{section.19.14}
+\contentsline {subsection}{\numberline {19.14.1}UUID 1 - IEEE 802 MAC Address}{656}{subsection.19.14.1}
+\contentsline {subsection}{\numberline {19.14.2}UUID 3 and 5 - Name-Based Values}{658}{subsection.19.14.2}
+\contentsline {subsection}{\numberline {19.14.3}UUID 4 - Random Values}{658}{subsection.19.14.3}
+\contentsline {subsection}{\numberline {19.14.4}Working with UUID Objects}{659}{subsection.19.14.4}
+\contentsline {section}{\numberline {19.15}webbrowser -- Displays web pages}{660}{section.19.15}
+\contentsline {subsection}{\numberline {19.15.1}Simple Example}{660}{subsection.19.15.1}
+\contentsline {subsection}{\numberline {19.15.2}Windows vs. Tabs}{660}{subsection.19.15.2}
+\contentsline {subsection}{\numberline {19.15.3}Using a specific browser}{660}{subsection.19.15.3}
+\contentsline {subsection}{\numberline {19.15.4}\texttt {BROWSER} variable}{660}{subsection.19.15.4}
+\contentsline {subsection}{\numberline {19.15.5}Command Line Interface}{661}{subsection.19.15.5}
+\contentsline {section}{\numberline {19.16}xmlrpclib -- Client-side library for XML-RPC communication}{661}{section.19.16}
+\contentsline {subsection}{\numberline {19.16.1}Connecting to a Server}{662}{subsection.19.16.1}
+\contentsline {subsection}{\numberline {19.16.2}Data Types}{664}{subsection.19.16.2}
+\contentsline {subsection}{\numberline {19.16.3}Passing Objects}{665}{subsection.19.16.3}
+\contentsline {subsection}{\numberline {19.16.4}Binary Data}{666}{subsection.19.16.4}
+\contentsline {subsection}{\numberline {19.16.5}Exception Handling}{667}{subsection.19.16.5}
+\contentsline {subsection}{\numberline {19.16.6}MultiCall}{668}{subsection.19.16.6}
+\contentsline {chapter}{\numberline {20}Structured Markup Processing Tools}{671}{chapter.20}
+\contentsline {section}{\numberline {20.1}xml.etree.ElementTree -- XML Manipulation API}{671}{section.20.1}
+\contentsline {subsection}{\numberline {20.1.1}Parsing XML Documents}{671}{subsection.20.1.1}
+\contentsline {subsubsection}{Parsing an Entire Document}{671}{subsubsection*.197}
+\contentsline {subsubsection}{Traversing the Parsed Tree}{673}{subsubsection*.198}
+\contentsline {subsubsection}{Finding Nodes in a Document}{674}{subsubsection*.199}
+\contentsline {subsubsection}{Parsed Node Attributes}{675}{subsubsection*.200}
+\contentsline {subsubsection}{Watching Events While Parsing}{677}{subsubsection*.201}
+\contentsline {subsubsection}{Creating a Custom Tree Builder}{679}{subsubsection*.202}
+\contentsline {subsubsection}{Parsing Strings}{680}{subsubsection*.203}
+\contentsline {subsection}{\numberline {20.1.2}Creating XML Documents}{682}{subsection.20.1.2}
+\contentsline {subsubsection}{Building Element Nodes}{682}{subsubsection*.204}
+\contentsline {subsubsection}{Pretty-Printing XML}{683}{subsubsection*.205}
+\contentsline {subsubsection}{Setting Element Properties}{684}{subsubsection*.206}
+\contentsline {subsubsection}{Building Trees from Lists of Nodes}{686}{subsubsection*.207}
+\contentsline {subsubsection}{Serializing XML to a Stream}{688}{subsubsection*.208}
+\contentsline {chapter}{\numberline {21}Internationalization}{691}{chapter.21}
+\contentsline {section}{\numberline {21.1}gettext -- Message Catalogs}{691}{section.21.1}
+\contentsline {subsection}{\numberline {21.1.1}Translation Workflow Overview}{691}{subsection.21.1.1}
+\contentsline {subsection}{\numberline {21.1.2}Creating Message Catalogs from Source Code}{692}{subsection.21.1.2}
+\contentsline {subsection}{\numberline {21.1.3}Finding Message Catalogs at Runtime}{694}{subsection.21.1.3}
+\contentsline {subsection}{\numberline {21.1.4}Plural Values}{694}{subsection.21.1.4}
+\contentsline {subsection}{\numberline {21.1.5}Application vs. Module Localization}{696}{subsection.21.1.5}
+\contentsline {subsubsection}{Application Localization}{696}{subsubsection*.209}
+\contentsline {subsubsection}{Module Localization}{697}{subsubsection*.210}
+\contentsline {section}{\numberline {21.2}locale -- POSIX cultural localization API}{697}{section.21.2}
+\contentsline {subsection}{\numberline {21.2.1}Probing the Current Locale}{697}{subsection.21.2.1}
+\contentsline {subsection}{\numberline {21.2.2}Currency}{702}{subsection.21.2.2}
+\contentsline {subsection}{\numberline {21.2.3}Formatting Numbers}{702}{subsection.21.2.3}
+\contentsline {subsection}{\numberline {21.2.4}Parsing Numbers}{703}{subsection.21.2.4}
+\contentsline {subsection}{\numberline {21.2.5}Dates and Times}{703}{subsection.21.2.5}
+\contentsline {chapter}{\numberline {22}Program Frameworks}{705}{chapter.22}
+\contentsline {section}{\numberline {22.1}cmd -- Create line-oriented command processors}{705}{section.22.1}
+\contentsline {subsection}{\numberline {22.1.1}Processing Commands}{705}{subsection.22.1.1}
+\contentsline {subsection}{\numberline {22.1.2}Command Arguments}{706}{subsection.22.1.2}
+\contentsline {subsection}{\numberline {22.1.3}Live Help}{707}{subsection.22.1.3}
+\contentsline {subsection}{\numberline {22.1.4}Auto-Completion}{708}{subsection.22.1.4}
+\contentsline {subsection}{\numberline {22.1.5}Overriding Base Class Methods}{709}{subsection.22.1.5}
+\contentsline {subsection}{\numberline {22.1.6}Configuring Cmd Through Attributes}{710}{subsection.22.1.6}
+\contentsline {subsection}{\numberline {22.1.7}Shelling Out}{711}{subsection.22.1.7}
+\contentsline {subsection}{\numberline {22.1.8}Alternative Inputs}{712}{subsection.22.1.8}
+\contentsline {subsection}{\numberline {22.1.9}Commands from sys.argv}{713}{subsection.22.1.9}
+\contentsline {section}{\numberline {22.2}shlex -- Lexical analysis of shell-style syntaxes.}{714}{section.22.2}
+\contentsline {subsection}{\numberline {22.2.1}Quoted Strings}{714}{subsection.22.2.1}
+\contentsline {subsection}{\numberline {22.2.2}Embedded Comments}{716}{subsection.22.2.2}
+\contentsline {subsection}{\numberline {22.2.3}Split}{716}{subsection.22.2.3}
+\contentsline {subsection}{\numberline {22.2.4}Including Other Sources of Tokens}{716}{subsection.22.2.4}
+\contentsline {subsection}{\numberline {22.2.5}Controlling the Parser}{717}{subsection.22.2.5}
+\contentsline {subsection}{\numberline {22.2.6}Error Handling}{719}{subsection.22.2.6}
+\contentsline {subsection}{\numberline {22.2.7}POSIX vs. Non-POSIX Parsing}{719}{subsection.22.2.7}
+\contentsline {chapter}{\numberline {23}Development Tools}{723}{chapter.23}
+\contentsline {section}{\numberline {23.1}doctest -- Testing through documentation}{723}{section.23.1}
+\contentsline {subsection}{\numberline {23.1.1}Getting Started}{723}{subsection.23.1.1}
+\contentsline {subsection}{\numberline {23.1.2}Handling Unpredictable Output}{724}{subsection.23.1.2}
+\contentsline {subsection}{\numberline {23.1.3}Tracebacks}{727}{subsection.23.1.3}
+\contentsline {subsection}{\numberline {23.1.4}Working Around Whitespace}{728}{subsection.23.1.4}
+\contentsline {subsection}{\numberline {23.1.5}Test Locations}{732}{subsection.23.1.5}
+\contentsline {subsection}{\numberline {23.1.6}External Documentation}{735}{subsection.23.1.6}
+\contentsline {subsection}{\numberline {23.1.7}Running Tests}{737}{subsection.23.1.7}
+\contentsline {subsubsection}{By Module}{737}{subsubsection*.211}
+\contentsline {subsubsection}{By File}{738}{subsubsection*.212}
+\contentsline {subsubsection}{Unittest Suite}{739}{subsubsection*.213}
+\contentsline {subsection}{\numberline {23.1.8}Test Context}{739}{subsection.23.1.8}
+\contentsline {section}{\numberline {23.2}pydoc -- Online help for Python modules}{742}{section.23.2}
+\contentsline {subsection}{\numberline {23.2.1}Plain Text Help}{742}{subsection.23.2.1}
+\contentsline {subsection}{\numberline {23.2.2}HTML Help}{742}{subsection.23.2.2}
+\contentsline {subsection}{\numberline {23.2.3}Interactive Help}{742}{subsection.23.2.3}
+\contentsline {section}{\numberline {23.3}unittest -- Automated testing framework}{743}{section.23.3}
+\contentsline {subsection}{\numberline {23.3.1}Basic Test Structure}{743}{subsection.23.3.1}
+\contentsline {subsection}{\numberline {23.3.2}Running Tests}{743}{subsection.23.3.2}
+\contentsline {subsection}{\numberline {23.3.3}Test Outcomes}{744}{subsection.23.3.3}
+\contentsline {subsection}{\numberline {23.3.4}Asserting Truth}{745}{subsection.23.3.4}
+\contentsline {subsection}{\numberline {23.3.5}Testing Equality}{746}{subsection.23.3.5}
+\contentsline {subsection}{\numberline {23.3.6}Almost Equal?}{747}{subsection.23.3.6}
+\contentsline {subsection}{\numberline {23.3.7}Testing for Exceptions}{748}{subsection.23.3.7}
+\contentsline {subsection}{\numberline {23.3.8}Test Fixtures}{748}{subsection.23.3.8}
+\contentsline {subsection}{\numberline {23.3.9}Test Suites}{749}{subsection.23.3.9}
+\contentsline {section}{\numberline {23.4}pdb -- Interactive Debugger}{749}{section.23.4}
+\contentsline {subsection}{\numberline {23.4.1}Starting the Debugger}{750}{subsection.23.4.1}
+\contentsline {subsubsection}{From the Command Line}{750}{subsubsection*.214}
+\contentsline {subsubsection}{Within the Interpreter}{750}{subsubsection*.215}
+\contentsline {subsubsection}{From Within Your Program}{751}{subsubsection*.216}
+\contentsline {subsubsection}{After a Failure}{751}{subsubsection*.217}
+\contentsline {subsection}{\numberline {23.4.2}Controlling the Debugger}{752}{subsection.23.4.2}
+\contentsline {subsubsection}{Navigating the Execution Stack}{752}{subsubsection*.218}
+\contentsline {subsubsection}{Examining Variables on the Stack}{754}{subsubsection*.219}
+\contentsline {subsubsection}{Stepping Through Your Program}{756}{subsubsection*.220}
+\contentsline {subsection}{\numberline {23.4.3}Breakpoints}{759}{subsection.23.4.3}
+\contentsline {subsubsection}{Managing Breakpoints}{762}{subsubsection*.221}
+\contentsline {subsubsection}{Temporary Breakpoints}{764}{subsubsection*.222}
+\contentsline {subsubsection}{Conditional Breakpoints}{765}{subsubsection*.223}
+\contentsline {subsubsection}{Ignoring Breakpoints}{766}{subsubsection*.224}
+\contentsline {subsubsection}{Triggering Actions on a Breakpoint}{767}{subsubsection*.225}
+\contentsline {subsection}{\numberline {23.4.4}Changing Execution Flow}{768}{subsection.23.4.4}
+\contentsline {subsubsection}{Jump Ahead}{769}{subsubsection*.226}
+\contentsline {subsubsection}{Jump Back}{769}{subsubsection*.227}
+\contentsline {subsubsection}{Illegal Jumps}{770}{subsubsection*.228}
+\contentsline {subsubsection}{Restarting Your Program}{772}{subsubsection*.229}
+\contentsline {subsection}{\numberline {23.4.5}Customizing the Debugger with Aliases}{773}{subsection.23.4.5}
+\contentsline {subsection}{\numberline {23.4.6}Saving Configuration Settings}{774}{subsection.23.4.6}
+\contentsline {chapter}{\numberline {24}Debugging and Profiling}{777}{chapter.24}
+\contentsline {section}{\numberline {24.1}profile, cProfile, and pstats -- Performance analysis of Python programs.}{777}{section.24.1}
+\contentsline {subsection}{\numberline {24.1.1}run()}{777}{subsection.24.1.1}
+\contentsline {subsection}{\numberline {24.1.2}runctx()}{779}{subsection.24.1.2}
+\contentsline {subsection}{\numberline {24.1.3}pstats: Saving and Working With Statistics}{780}{subsection.24.1.3}
+\contentsline {subsection}{\numberline {24.1.4}Limiting Report Contents}{781}{subsection.24.1.4}
+\contentsline {subsection}{\numberline {24.1.5}Caller / Callee Graphs}{781}{subsection.24.1.5}
+\contentsline {section}{\numberline {24.2}timeit -- Time the execution of small bits of Python code.}{782}{section.24.2}
+\contentsline {subsection}{\numberline {24.2.1}Module Contents}{783}{subsection.24.2.1}
+\contentsline {subsection}{\numberline {24.2.2}Basic Example}{783}{subsection.24.2.2}
+\contentsline {subsection}{\numberline {24.2.3}Storing Values in a Dictionary}{784}{subsection.24.2.3}
+\contentsline {subsection}{\numberline {24.2.4}From the Command Line}{786}{subsection.24.2.4}
+\contentsline {section}{\numberline {24.3}trace -- Follow Python statements as they are executed}{788}{section.24.3}
+\contentsline {subsection}{\numberline {24.3.1}Command Line Interface}{788}{subsection.24.3.1}
+\contentsline {subsubsection}{Tracing Execution}{788}{subsubsection*.231}
+\contentsline {subsubsection}{Code Coverage}{789}{subsubsection*.232}
+\contentsline {subsubsection}{Calling Relationships}{791}{subsubsection*.233}
+\contentsline {subsection}{\numberline {24.3.2}Programming Interface}{791}{subsection.24.3.2}
+\contentsline {subsubsection}{Saving Result Data}{792}{subsubsection*.234}
+\contentsline {subsubsection}{Trace Options}{794}{subsubsection*.235}
+\contentsline {chapter}{\numberline {25}Python Runtime Services}{795}{chapter.25}
+\contentsline {section}{\numberline {25.1}abc -- Abstract Base Classes}{795}{section.25.1}
+\contentsline {subsection}{\numberline {25.1.1}Why use Abstract Base Classes?}{795}{subsection.25.1.1}
+\contentsline {subsection}{\numberline {25.1.2}How ABCs Work}{795}{subsection.25.1.2}
+\contentsline {subsection}{\numberline {25.1.3}Registering a Concrete Class}{796}{subsection.25.1.3}
+\contentsline {subsection}{\numberline {25.1.4}Implementation Through Subclassing}{796}{subsection.25.1.4}
+\contentsline {subsubsection}{Incomplete Implementations}{797}{subsubsection*.236}
+\contentsline {subsection}{\numberline {25.1.5}Concrete Methods in ABCs}{797}{subsection.25.1.5}
+\contentsline {subsection}{\numberline {25.1.6}Abstract Properties}{798}{subsection.25.1.6}
+\contentsline {subsection}{\numberline {25.1.7}Collection Types}{801}{subsection.25.1.7}
+\contentsline {section}{\numberline {25.2}atexit -- Call functions when a program is closing down}{802}{section.25.2}
+\contentsline {subsection}{\numberline {25.2.1}Examples}{802}{subsection.25.2.1}
+\contentsline {subsection}{\numberline {25.2.2}When are atexit functions not called?}{803}{subsection.25.2.2}
+\contentsline {subsection}{\numberline {25.2.3}Exceptions in atexit Callbacks}{804}{subsection.25.2.3}
+\contentsline {section}{\numberline {25.3}contextlib -- Context manager utilities}{805}{section.25.3}
+\contentsline {subsection}{\numberline {25.3.1}Context Manager API}{805}{subsection.25.3.1}
+\contentsline {subsection}{\numberline {25.3.2}From Generator to Context Manager}{807}{subsection.25.3.2}
+\contentsline {subsection}{\numberline {25.3.3}Nesting Contexts}{808}{subsection.25.3.3}
+\contentsline {subsection}{\numberline {25.3.4}Closing Open Handles}{809}{subsection.25.3.4}
+\contentsline {section}{\numberline {25.4}gc -- Garbage Collector}{810}{section.25.4}
+\contentsline {subsection}{\numberline {25.4.1}Tracing References}{811}{subsection.25.4.1}
+\contentsline {subsection}{\numberline {25.4.2}Forcing Garbage Collection}{813}{subsection.25.4.2}
+\contentsline {subsection}{\numberline {25.4.3}Finding References to Objects that Can't be Collected}{816}{subsection.25.4.3}
+\contentsline {subsection}{\numberline {25.4.4}Collection Thresholds and Generations}{818}{subsection.25.4.4}
+\contentsline {subsection}{\numberline {25.4.5}Debugging}{820}{subsection.25.4.5}
+\contentsline {section}{\numberline {25.5}inspect -- Inspect live objects}{826}{section.25.5}
+\contentsline {subsection}{\numberline {25.5.1}Module Information}{826}{subsection.25.5.1}
+\contentsline {subsection}{\numberline {25.5.2}Example Module}{827}{subsection.25.5.2}
+\contentsline {subsection}{\numberline {25.5.3}Modules}{828}{subsection.25.5.3}
+\contentsline {subsection}{\numberline {25.5.4}Classes}{829}{subsection.25.5.4}
+\contentsline {subsection}{\numberline {25.5.5}Documentation Strings}{830}{subsection.25.5.5}
+\contentsline {subsection}{\numberline {25.5.6}Retrieving Source}{831}{subsection.25.5.6}
+\contentsline {subsection}{\numberline {25.5.7}Method and Function Arguments}{832}{subsection.25.5.7}
+\contentsline {subsection}{\numberline {25.5.8}Class Hierarchies}{832}{subsection.25.5.8}
+\contentsline {subsection}{\numberline {25.5.9}Method Resolution Order}{833}{subsection.25.5.9}
+\contentsline {subsection}{\numberline {25.5.10}The Stack and Frames}{834}{subsection.25.5.10}
+\contentsline {section}{\numberline {25.6}site -- Site-wide configuration}{836}{section.25.6}
+\contentsline {subsection}{\numberline {25.6.1}Import Path}{836}{subsection.25.6.1}
+\contentsline {subsection}{\numberline {25.6.2}User Directories}{837}{subsection.25.6.2}
+\contentsline {subsection}{\numberline {25.6.3}Path Configuration Files}{838}{subsection.25.6.3}
+\contentsline {subsection}{\numberline {25.6.4}sitecustomize}{840}{subsection.25.6.4}
+\contentsline {subsection}{\numberline {25.6.5}usercustomize}{840}{subsection.25.6.5}
+\contentsline {subsection}{\numberline {25.6.6}Disabling site}{841}{subsection.25.6.6}
+\contentsline {section}{\numberline {25.7}sys -- System-specific Configuration}{842}{section.25.7}
+\contentsline {subsection}{\numberline {25.7.1}Interpreter Settings}{842}{subsection.25.7.1}
+\contentsline {subsubsection}{Build-time Version Information}{842}{subsubsection*.239}
+\contentsline {subsubsection}{Install Location}{843}{subsubsection*.240}
+\contentsline {subsubsection}{Command Line Options}{843}{subsubsection*.241}
+\contentsline {subsubsection}{Unicode Defaults}{845}{subsubsection*.242}
+\contentsline {subsubsection}{Interactive Prompts}{845}{subsubsection*.243}
+\contentsline {subsubsection}{Display Hook}{846}{subsubsection*.244}
+\contentsline {subsection}{\numberline {25.7.2}Runtime Environment}{847}{subsection.25.7.2}
+\contentsline {subsubsection}{Command Line Arguments}{847}{subsubsection*.245}
+\contentsline {subsubsection}{Input and Output Steams}{848}{subsubsection*.246}
+\contentsline {subsubsection}{Returning Status}{849}{subsubsection*.247}
+\contentsline {subsection}{\numberline {25.7.3}Memory Management and Limits}{849}{subsection.25.7.3}
+\contentsline {subsubsection}{Reference Counts}{849}{subsubsection*.248}
+\contentsline {subsubsection}{Object Size}{850}{subsubsection*.249}
+\contentsline {subsubsection}{Recursion}{851}{subsubsection*.250}
+\contentsline {subsubsection}{Maximum Values}{852}{subsubsection*.251}
+\contentsline {subsubsection}{Floating Point Values}{852}{subsubsection*.252}
+\contentsline {subsubsection}{Byte Ordering}{853}{subsubsection*.253}
+\contentsline {subsection}{\numberline {25.7.4}Exception Handling}{853}{subsection.25.7.4}
+\contentsline {subsubsection}{Unhandled Exceptions}{854}{subsubsection*.254}
+\contentsline {subsubsection}{Current Exception}{854}{subsubsection*.255}
+\contentsline {subsubsection}{Previous Interactive Exception}{855}{subsubsection*.256}
+\contentsline {subsection}{\numberline {25.7.5}Tracing a Program As It Runs}{855}{subsection.25.7.5}
+\contentsline {subsubsection}{Tracing Function Calls}{856}{subsubsection*.257}
+\contentsline {subsubsection}{Tracing Inside Functions}{857}{subsubsection*.258}
+\contentsline {subsubsection}{Watching the Stack}{858}{subsubsection*.259}
+\contentsline {subsubsection}{Exception Propagation}{859}{subsubsection*.260}
+\contentsline {subsection}{\numberline {25.7.6}Low-level Thread Support}{860}{subsection.25.7.6}
+\contentsline {subsubsection}{Check Interval}{860}{subsubsection*.261}
+\contentsline {subsubsection}{Debugging}{863}{subsubsection*.262}
+\contentsline {subsection}{\numberline {25.7.7}Modules and Imports}{864}{subsection.25.7.7}
+\contentsline {subsubsection}{Imported Modules}{864}{subsubsection*.263}
+\contentsline {subsubsection}{Built-in Modules}{865}{subsubsection*.264}
+\contentsline {subsubsection}{Import Path}{866}{subsubsection*.265}
+\contentsline {subsubsection}{Custom Importers}{867}{subsubsection*.266}
+\contentsline {paragraph}{Finders}{867}{paragraph*.267}
+\contentsline {paragraph}{Importing from a Shelve}{868}{paragraph*.268}
+\contentsline {paragraph}{Packages}{872}{paragraph*.269}
+\contentsline {paragraph}{Reloading}{874}{paragraph*.270}
+\contentsline {paragraph}{Import Errors}{875}{paragraph*.271}
+\contentsline {paragraph}{Package Data}{876}{paragraph*.272}
+\contentsline {subsubsection}{Importer Cache}{877}{subsubsection*.273}
+\contentsline {subsubsection}{Meta Path}{878}{subsubsection*.274}
+\contentsline {section}{\numberline {25.8}sysconfig -- Interpreter Compile-time Configuration}{880}{section.25.8}
+\contentsline {subsection}{\numberline {25.8.1}Configuration Variables}{881}{subsection.25.8.1}
+\contentsline {subsection}{\numberline {25.8.2}Installation Paths}{882}{subsection.25.8.2}
+\contentsline {subsection}{\numberline {25.8.3}Python Version and Platform}{884}{subsection.25.8.3}
+\contentsline {section}{\numberline {25.9}traceback -- Extract, format, and print exceptions and stack traces.}{885}{section.25.9}
+\contentsline {subsection}{\numberline {25.9.1}Supporting Functions}{886}{subsection.25.9.1}
+\contentsline {subsection}{\numberline {25.9.2}Working With Exceptions}{886}{subsection.25.9.2}
+\contentsline {subsection}{\numberline {25.9.3}Working With the Stack}{888}{subsection.25.9.3}
+\contentsline {subsubsection}{print\_stack()}{888}{subsubsection*.275}
+\contentsline {subsubsection}{format\_stack()}{889}{subsubsection*.276}
+\contentsline {subsubsection}{extract\_stack()}{889}{subsubsection*.277}
+\contentsline {section}{\numberline {25.10}warnings -- Non-fatal alerts}{890}{section.25.10}
+\contentsline {subsection}{\numberline {25.10.1}Categories and Filtering}{890}{subsection.25.10.1}
+\contentsline {subsection}{\numberline {25.10.2}Generating Warnings}{890}{subsection.25.10.2}
+\contentsline {subsection}{\numberline {25.10.3}Filtering with Patterns}{891}{subsection.25.10.3}
+\contentsline {subsection}{\numberline {25.10.4}Repeated Warnings}{893}{subsection.25.10.4}
+\contentsline {subsection}{\numberline {25.10.5}Alternate Message Delivery Functions}{893}{subsection.25.10.5}
+\contentsline {subsection}{\numberline {25.10.6}Formatting}{894}{subsection.25.10.6}
+\contentsline {subsection}{\numberline {25.10.7}Stack Level in Warnings}{894}{subsection.25.10.7}
+\contentsline {chapter}{\numberline {26}Importing Modules}{897}{chapter.26}
+\contentsline {section}{\numberline {26.1}imp -- Interface to module import mechanism.}{897}{section.26.1}
+\contentsline {subsection}{\numberline {26.1.1}Example Package}{897}{subsection.26.1.1}
+\contentsline {subsection}{\numberline {26.1.2}Module Types}{897}{subsection.26.1.2}
+\contentsline {subsection}{\numberline {26.1.3}Finding Modules}{898}{subsection.26.1.3}
+\contentsline {subsection}{\numberline {26.1.4}Loading Modules}{899}{subsection.26.1.4}
+\contentsline {section}{\numberline {26.2}pkgutil -- Package Utilities}{900}{section.26.2}
+\contentsline {subsection}{\numberline {26.2.1}Package Import Paths}{900}{subsection.26.2.1}
+\contentsline {subsubsection}{Development Versions of Packages}{902}{subsubsection*.278}
+\contentsline {subsubsection}{Managing Paths with PKG Files}{903}{subsubsection*.279}
+\contentsline {subsubsection}{Nested Packages}{904}{subsubsection*.280}
+\contentsline {subsection}{\numberline {26.2.2}Package Data}{905}{subsection.26.2.2}
+\contentsline {section}{\numberline {26.3}zipimport -- Load Python code from inside ZIP archives}{907}{section.26.3}
+\contentsline {subsection}{\numberline {26.3.1}Example}{908}{subsection.26.3.1}
+\contentsline {subsection}{\numberline {26.3.2}Finding a Module}{908}{subsection.26.3.2}
+\contentsline {subsection}{\numberline {26.3.3}Accessing Code}{909}{subsection.26.3.3}
+\contentsline {subsection}{\numberline {26.3.4}Source}{909}{subsection.26.3.4}
+\contentsline {subsection}{\numberline {26.3.5}Packages}{910}{subsection.26.3.5}
+\contentsline {subsection}{\numberline {26.3.6}Data}{910}{subsection.26.3.6}
+\contentsline {chapter}{\numberline {27}Miscelaneous}{913}{chapter.27}
+\contentsline {section}{\numberline {27.1}EasyDialogs -- Carbon dialogs for Mac OS X}{913}{section.27.1}
+\contentsline {subsection}{\numberline {27.1.1}Messages}{913}{subsection.27.1.1}
+\contentsline {subsection}{\numberline {27.1.2}ProgressBar}{914}{subsection.27.1.2}
+\contentsline {subsection}{\numberline {27.1.3}Simple Prompts}{916}{subsection.27.1.3}
+\contentsline {subsection}{\numberline {27.1.4}Passwords}{917}{subsection.27.1.4}
+\contentsline {subsection}{\numberline {27.1.5}Files and Directories}{917}{subsection.27.1.5}
+\contentsline {subsection}{\numberline {27.1.6}GetArgv}{920}{subsection.27.1.6}
+\contentsline {section}{\numberline {27.2}plistlib -- Manipulate OS X property list files}{926}{section.27.2}
+\contentsline {subsection}{\numberline {27.2.1}Reading plist Files}{926}{subsection.27.2.1}
+\contentsline {subsection}{\numberline {27.2.2}Writing plist Files}{927}{subsection.27.2.2}
+\contentsline {subsection}{\numberline {27.2.3}Binary Property Data}{929}{subsection.27.2.3}
+\contentsline {chapter}{\numberline {28}History}{931}{chapter.28}
+\contentsline {chapter}{Python Module Index}{943}{section*.281}
+\contentsline {chapter}{Index}{945}{section*.282}

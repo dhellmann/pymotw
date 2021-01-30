@@ -1,0 +1,7 @@
+This is makeindex, version 2.15 [TeX Live 2016] (kpathsea + Thai support).
+Scanning style file ./python.ist......done (6 attributes redefined, 0 ignored).
+Scanning input file PyMOTW-1.133.idx....done (172 entries accepted, 0 rejected).
+Sorting entries....done (1334 comparisons).
+Generating output file PyMOTW-1.133.ind....done (222 lines written, 0 warnings).
+Output written in PyMOTW-1.133.ind.
+Transcript written in PyMOTW-1.133.ilg.

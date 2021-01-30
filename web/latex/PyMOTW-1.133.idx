@@ -1,0 +1,172 @@
+\indexentry{exceptions (module)|hyperpage}{11}
+\indexentry{codecs (module)|hyperpage}{23}
+\indexentry{difflib (module)|hyperpage}{43}
+\indexentry{string (module)|hyperpage}{49}
+\indexentry{Python Enhancement Proposals!PEP 292|hyperpage}{51}
+\indexentry{Python Enhancement Proposals!PEP 292|hyperpage}{54}
+\indexentry{StringIO (module)|hyperpage}{54}
+\indexentry{cStringIO (module)|hyperpage}{54}
+\indexentry{re (module)|hyperpage}{55}
+\indexentry{struct (module)|hyperpage}{90}
+\indexentry{textwrap (module)|hyperpage}{93}
+\indexentry{array (module)|hyperpage}{97}
+\indexentry{datetime (module)|hyperpage}{100}
+\indexentry{calendar (module)|hyperpage}{106}
+\indexentry{collections (module)|hyperpage}{110}
+\indexentry{heapq (module)|hyperpage}{121}
+\indexentry{bisect (module)|hyperpage}{126}
+\indexentry{sched (module)|hyperpage}{128}
+\indexentry{Queue (module)|hyperpage}{131}
+\indexentry{weakref (module)|hyperpage}{135}
+\indexentry{copy (module)|hyperpage}{143}
+\indexentry{pprint (module)|hyperpage}{147}
+\indexentry{decimal (module)|hyperpage}{153}
+\indexentry{fractions (module)|hyperpage}{160}
+\indexentry{functools (module)|hyperpage}{163}
+\indexentry{itertools (module)|hyperpage}{171}
+\indexentry{math (module)|hyperpage}{180}
+\indexentry{operator (module)|hyperpage}{195}
+\indexentry{random (module)|hyperpage}{202}
+\indexentry{base64 (module)|hyperpage}{213}
+\indexentry{RFC!RFC 3548|hyperpage}{215}
+\indexentry{json (module)|hyperpage}{215}
+\indexentry{mailbox (module)|hyperpage}{224}
+\indexentry{mhlib (module)|hyperpage}{231}
+\indexentry{csv (module)|hyperpage}{233}
+\indexentry{Python Enhancement Proposals!PEP 305|hyperpage}{240}
+\indexentry{ConfigParser (module)|hyperpage}{240}
+\indexentry{robotparser (module)|hyperpage}{252}
+\indexentry{hashlib (module)|hyperpage}{255}
+\indexentry{hmac (module)|hyperpage}{258}
+\indexentry{RFC!RFC 2104|hyperpage}{258}
+\indexentry{RFC!RFC 2104|hyperpage}{258}
+\indexentry{RFC!RFC 2104|hyperpage}{262}
+\indexentry{os.path (module)|hyperpage}{263}
+\indexentry{fileinput (module)|hyperpage}{268}
+\indexentry{filecmp (module)|hyperpage}{273}
+\indexentry{tempfile (module)|hyperpage}{279}
+\indexentry{glob (module)|hyperpage}{283}
+\indexentry{fnmatch (module)|hyperpage}{285}
+\indexentry{linecache (module)|hyperpage}{287}
+\indexentry{shutil (module)|hyperpage}{290}
+\indexentry{dircache (module)|hyperpage}{295}
+\indexentry{bz2 (module)|hyperpage}{299}
+\indexentry{gzip (module)|hyperpage}{307}
+\indexentry{tarfile (module)|hyperpage}{311}
+\indexentry{zipfile (module)|hyperpage}{318}
+\indexentry{zlib (module)|hyperpage}{326}
+\indexentry{anydbm (module)|hyperpage}{333}
+\indexentry{dbhash (module)|hyperpage}{335}
+\indexentry{dbm (module)|hyperpage}{335}
+\indexentry{dumbdbm (module)|hyperpage}{336}
+\indexentry{gdbm (module)|hyperpage}{336}
+\indexentry{pickle (module)|hyperpage}{337}
+\indexentry{cPickle (module)|hyperpage}{337}
+\indexentry{shelve (module)|hyperpage}{344}
+\indexentry{whichdb (module)|hyperpage}{346}
+\indexentry{sqlite3 (module)|hyperpage}{347}
+\indexentry{Python Enhancement Proposals!PEP 249|hyperpage}{375}
+\indexentry{os (module)|hyperpage}{377}
+\indexentry{time (module)|hyperpage}{393}
+\indexentry{getopt (module)|hyperpage}{397}
+\indexentry{optparse (module)|hyperpage}{402}
+\indexentry{argparse (module)|hyperpage}{414}
+\indexentry{logging (module)|hyperpage}{433}
+\indexentry{getpass (module)|hyperpage}{436}
+\indexentry{platform (module)|hyperpage}{438}
+\indexentry{threading (module)|hyperpage}{443}
+\indexentry{mmap (module)|hyperpage}{459}
+\indexentry{multiprocessing (module)|hyperpage}{463}
+\indexentry{readline (module)|hyperpage}{485}
+\indexentry{rlcompleter (module)|hyperpage}{494}
+\indexentry{commands (module)|hyperpage}{495}
+\indexentry{grp (module)|hyperpage}{497}
+\indexentry{pipes (module)|hyperpage}{501}
+\indexentry{pwd (module)|hyperpage}{507}
+\indexentry{resource (module)|hyperpage}{510}
+\indexentry{asynchat (module)|hyperpage}{513}
+\indexentry{asyncore (module)|hyperpage}{518}
+\indexentry{signal (module)|hyperpage}{528}
+\indexentry{subprocess (module)|hyperpage}{533}
+\indexentry{BaseHTTPServer (module)|hyperpage}{545}
+\indexentry{RFC!RFC 2822|hyperpage}{549}
+\indexentry{cgitb (module)|hyperpage}{550}
+\indexentry{Cookie (module)|hyperpage}{563}
+\indexentry{RFC!RFC 2109|hyperpage}{563}
+\indexentry{RFC!RFC 2109|hyperpage}{567}
+\indexentry{imaplib (module)|hyperpage}{567}
+\indexentry{RFC!RFC 3501|hyperpage}{568}
+\indexentry{RFC!RFC 3501|hyperpage}{574}
+\indexentry{RFC!RFC 2822|hyperpage}{577}
+\indexentry{RFC!RFC 3501|hyperpage}{581}
+\indexentry{RFC!RFC 2822|hyperpage}{581}
+\indexentry{RFC!RFC 822|hyperpage}{581}
+\indexentry{RFC!RFC 2822|hyperpage}{581}
+\indexentry{SimpleXMLRPCServer (module)|hyperpage}{582}
+\indexentry{smtpd (module)|hyperpage}{590}
+\indexentry{RFC!RFC 2822|hyperpage}{590}
+\indexentry{RFC!RFC 2822|hyperpage}{593}
+\indexentry{smtplib (module)|hyperpage}{593}
+\indexentry{RFC!RFC 2882|hyperpage}{593}
+\indexentry{RFC!RFC 821|hyperpage}{597}
+\indexentry{RFC!RFC 1869|hyperpage}{597}
+\indexentry{RFC!RFC 822|hyperpage}{597}
+\indexentry{RFC!RFC 2822|hyperpage}{597}
+\indexentry{socket (module)|hyperpage}{597}
+\indexentry{select (module)|hyperpage}{620}
+\indexentry{SocketServer (module)|hyperpage}{631}
+\indexentry{urllib (module)|hyperpage}{637}
+\indexentry{urllib2 (module)|hyperpage}{643}
+\indexentry{urlparse (module)|hyperpage}{652}
+\indexentry{RFC!RFC 2396|hyperpage}{653}
+\indexentry{uuid (module)|hyperpage}{656}
+\indexentry{RFC!RFC 4122|hyperpage}{656}
+\indexentry{RFC!RFC 4122|hyperpage}{656}
+\indexentry{RFC!RFC 4122|hyperpage}{659}
+\indexentry{webbrowser (module)|hyperpage}{660}
+\indexentry{xmlrpclib (module)|hyperpage}{661}
+\indexentry{xml.etree.ElementTree (module)|hyperpage}{671}
+\indexentry{gettext (module)|hyperpage}{691}
+\indexentry{locale (module)|hyperpage}{697}
+\indexentry{cmd (module)|hyperpage}{705}
+\indexentry{shlex (module)|hyperpage}{714}
+\indexentry{doctest (module)|hyperpage}{723}
+\indexentry{pydoc (module)|hyperpage}{742}
+\indexentry{unittest (module)|hyperpage}{743}
+\indexentry{pdb (module)|hyperpage}{749}
+\indexentry{profile (module)|hyperpage}{777}
+\indexentry{cProfile (module)|hyperpage}{777}
+\indexentry{pstats (module)|hyperpage}{780}
+\indexentry{timeit (module)|hyperpage}{782}
+\indexentry{trace (module)|hyperpage}{788}
+\indexentry{abc (module)|hyperpage}{795}
+\indexentry{Python Enhancement Proposals!PEP 3119|hyperpage}{802}
+\indexentry{Python Enhancement Proposals!PEP 3141|hyperpage}{802}
+\indexentry{atexit (module)|hyperpage}{802}
+\indexentry{contextlib (module)|hyperpage}{805}
+\indexentry{Python Enhancement Proposals!PEP 343|hyperpage}{810}
+\indexentry{gc (module)|hyperpage}{810}
+\indexentry{inspect (module)|hyperpage}{826}
+\indexentry{site (module)|hyperpage}{836}
+\indexentry{sitecustomize (module)|hyperpage}{839}
+\indexentry{usercustomize (module)|hyperpage}{840}
+\indexentry{sys (module)|hyperpage}{842}
+\indexentry{Python Enhancement Proposals!PEP 302|hyperpage}{867}
+\indexentry{Python Enhancement Proposals!PEP 302|hyperpage}{876}
+\indexentry{Python Enhancement Proposals!PEP 302|hyperpage}{880}
+\indexentry{sysconfig (module)|hyperpage}{880}
+\indexentry{traceback (module)|hyperpage}{885}
+\indexentry{warnings (module)|hyperpage}{890}
+\indexentry{Python Enhancement Proposals!PEP 230|hyperpage}{890}
+\indexentry{Python Enhancement Proposals!PEP 230|hyperpage}{894}
+\indexentry{imp (module)|hyperpage}{897}
+\indexentry{Python Enhancement Proposals!PEP 302|hyperpage}{900}
+\indexentry{Python Enhancement Proposals!PEP 369|hyperpage}{900}
+\indexentry{pkgutil (module)|hyperpage}{900}
+\indexentry{Python Enhancement Proposals!PEP 302|hyperpage}{906}
+\indexentry{Python Enhancement Proposals!PEP 302|hyperpage}{907}
+\indexentry{zipimport (module)|hyperpage}{907}
+\indexentry{Python Enhancement Proposals!PEP 302|hyperpage}{907}
+\indexentry{Python Enhancement Proposals!PEP 302|hyperpage}{912}
+\indexentry{EasyDialogs (module)|hyperpage}{913}
+\indexentry{plistlib (module)|hyperpage}{926}
